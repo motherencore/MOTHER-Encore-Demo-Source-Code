@@ -1,0 +1,306 @@
+[gd_resource type="TileSet" load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Tilesets/TilZooBuilding.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 48, 32, 16, 32, 16, 16, 48, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 16, 32, 40, 32, 40, 24, 72, 24, 72, 32, 64, 32, 96, 32, 96, 64, 16, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 54, 12, 54, 48, 24, 48, 24, 38, 16, 38, 6, 32, 6, 12 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 76, 80, 4, 80, 4, 16, 76, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 24, 48, 24, 38, 16, 38, 6, 32, 6, 12, 54, 12, 54, 48 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 76, 80, 4, 80, 4, 16, 76, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 60, 28, 4, 28, 4, 16, 60, 16 )
+
+[resource]
+0/name = "Plant"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, -16 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 16, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Plant Broken"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, -16 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 16, 0, 48, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, -16 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+1/shape = SubResource( 6 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+1/z_index = 0
+2/name = "Sofa"
+2/texture = ExtResource( 1 )
+2/tex_offset = Vector2( 0, -16 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 64, 0, 64, 48 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, -16 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+2/shape = SubResource( 1 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+2/z_index = 0
+3/name = "Wall Blacks"
+3/texture = ExtResource( 1 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 80, 48, 64, 32 )
+3/tile_mode = 2
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 16, 16 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Front Chairs"
+4/texture = ExtResource( 1 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 32, 64, 16 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Meeting Table"
+5/texture = ExtResource( 1 )
+5/tex_offset = Vector2( 0, -16 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 48, 80, 80 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, -16 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+5/shape = SubResource( 2 )
+5/shape_one_way = false
+5/shape_one_way_margin = 1.0
+5/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+5/z_index = 0
+6/name = "Tea Table"
+6/texture = ExtResource( 1 )
+6/tex_offset = Vector2( 0, -16 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 80, 80, 64, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, -16 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+6/shape = SubResource( 5 )
+6/shape_one_way = false
+6/shape_one_way_margin = 1.0
+6/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+6/z_index = 0
+7/name = "Front Desk"
+7/texture = ExtResource( 1 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 80, 112, 32, 32 )
+7/tile_mode = 2
+7/autotile/icon_coordinate = Vector2( 0, 0 )
+7/autotile/tile_size = Vector2( 16, 32 )
+7/autotile/spacing = 0
+7/autotile/occluder_map = [  ]
+7/autotile/navpoly_map = [  ]
+7/autotile/priority_map = [  ]
+7/autotile/z_index_map = [  ]
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "Tea Cup"
+8/texture = ExtResource( 1 )
+8/tex_offset = Vector2( 0, -16 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 112, 112, 32, 32 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "CEO Table Left"
+9/texture = ExtResource( 1 )
+9/tex_offset = Vector2( 0, -16 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 160, 144, 32, 64 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "CEO Table Right"
+10/texture = ExtResource( 1 )
+10/tex_offset = Vector2( 0, -16 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 192, 144, 32, 64 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "CEO Desk"
+11/texture = ExtResource( 1 )
+11/tex_offset = Vector2( 0, -32 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 0, 144, 112, 64 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, -32 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+11/shape = SubResource( 4 )
+11/shape_one_way = false
+11/shape_one_way_margin = 1.0
+11/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+11/z_index = 0
+12/name = "Shelf"
+12/texture = ExtResource( 1 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 112, 144, 48, 32 )
+12/tile_mode = 2
+12/autotile/icon_coordinate = Vector2( 1, 0 )
+12/autotile/tile_size = Vector2( 16, 32 )
+12/autotile/spacing = 0
+12/autotile/occluder_map = [  ]
+12/autotile/navpoly_map = [  ]
+12/autotile/priority_map = [  ]
+12/autotile/z_index_map = [  ]
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "Sofa Broken"
+13/texture = ExtResource( 1 )
+13/tex_offset = Vector2( 0, -16 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 128, 0, 64, 48 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, -16 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+13/shape = SubResource( 7 )
+13/shape_one_way = false
+13/shape_one_way_margin = 1.0
+13/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+13/z_index = 0
+14/name = "Meeting Table Broken"
+14/texture = ExtResource( 1 )
+14/tex_offset = Vector2( 0, -16 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 144, 48, 80, 80 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, -16 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+14/shape = SubResource( 8 )
+14/shape_one_way = false
+14/shape_one_way_margin = 1.0
+14/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+14/z_index = 0

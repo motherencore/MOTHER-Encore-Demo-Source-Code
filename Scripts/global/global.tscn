@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/global/global.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/global/Slowmo.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Playtimer" type="Timer" parent="."]
+
+[node name="Slowmo" parent="." instance=ExtResource( 2 )]
+
+[connection signal="timeout" from="Playtimer" to="." method="_on_Playtimer_timeout"]

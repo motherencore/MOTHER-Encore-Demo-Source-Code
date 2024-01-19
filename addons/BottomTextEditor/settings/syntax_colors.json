@@ -1,0 +1,12 @@
+{
+	"text_normal":		"#c8c8c8",
+	"keyword":			"#ff415d",
+	"member_variable":	"#bfffd2",
+	"user_type":		"#c1a5ff",
+	"engine_type":		"#8effda",
+	"comment":			"#80c8c8c8",
+	"function":			"#41e0fc",
+	"number":			"#4dadff",
+	"string":			"#fcd781",
+	"dummy":			"#000000"
+}

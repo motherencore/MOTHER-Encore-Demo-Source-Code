@@ -1,0 +1,167 @@
+[gd_resource type="TileSet" load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/Tilesets/TilMayorsOffice.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 42, 32, 42, 16, 70, 16, 70, 32, 98, 32, 98, 64, 14, 64, 14, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 0, 16, 22, 16, 22, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 40, 48, 10, 48, 10, 12, 58, 12, 58, 32, 48, 38, 40, 38 )
+
+[resource]
+168/name = "Plant"
+168/texture = ExtResource( 1 )
+168/tex_offset = Vector2( 0, -16 )
+168/modulate = Color( 1, 1, 1, 1 )
+168/region = Rect2( 0, 0, 16, 32 )
+168/tile_mode = 0
+168/occluder_offset = Vector2( 0, 0 )
+168/navigation_offset = Vector2( 0, 0 )
+168/shape_offset = Vector2( 0, 0 )
+168/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+168/shape = SubResource( 1 )
+168/shape_one_way = false
+168/shape_one_way_margin = 1.0
+168/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+168/z_index = 0
+169/name = "Chair"
+169/texture = ExtResource( 1 )
+169/tex_offset = Vector2( 0, -16 )
+169/modulate = Color( 1, 1, 1, 1 )
+169/region = Rect2( 16, 0, 16, 32 )
+169/tile_mode = 0
+169/occluder_offset = Vector2( 0, 0 )
+169/navigation_offset = Vector2( 0, 0 )
+169/shape_offset = Vector2( 0, -16 )
+169/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+169/shape = SubResource( 2 )
+169/shape_one_way = false
+169/shape_one_way_margin = 1.0
+169/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+169/z_index = 0
+170/name = "Desk"
+170/texture = ExtResource( 1 )
+170/tex_offset = Vector2( 0, -32 )
+170/modulate = Color( 1, 1, 1, 1 )
+170/region = Rect2( 32, 0, 112, 64 )
+170/tile_mode = 0
+170/occluder_offset = Vector2( 0, 0 )
+170/navigation_offset = Vector2( 0, 0 )
+170/shape_offset = Vector2( 0, -32 )
+170/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+170/shape = SubResource( 3 )
+170/shape_one_way = false
+170/shape_one_way_margin = 1.0
+170/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+170/z_index = 0
+171/name = "Plant Offset"
+171/texture = ExtResource( 1 )
+171/tex_offset = Vector2( 0, -16 )
+171/modulate = Color( 1, 1, 1, 1 )
+171/region = Rect2( 0, 32, 32, 32 )
+171/tile_mode = 0
+171/occluder_offset = Vector2( 0, 0 )
+171/navigation_offset = Vector2( 0, 0 )
+171/shape_offset = Vector2( 0, 0 )
+171/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+171/shape = SubResource( 4 )
+171/shape_one_way = false
+171/shape_one_way_margin = 1.0
+171/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+171/z_index = 0
+172/name = "FrontDesk"
+172/texture = ExtResource( 1 )
+172/tex_offset = Vector2( 0, 0 )
+172/modulate = Color( 1, 1, 1, 1 )
+172/region = Rect2( 144, 0, 32, 32 )
+172/tile_mode = 2
+172/autotile/icon_coordinate = Vector2( 0, 0 )
+172/autotile/tile_size = Vector2( 16, 32 )
+172/autotile/spacing = 0
+172/autotile/occluder_map = [  ]
+172/autotile/navpoly_map = [  ]
+172/autotile/priority_map = [  ]
+172/autotile/z_index_map = [  ]
+172/occluder_offset = Vector2( 0, 0 )
+172/navigation_offset = Vector2( 0, 0 )
+172/shape_offset = Vector2( 0, 0 )
+172/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+172/shape_one_way = false
+172/shape_one_way_margin = 0.0
+172/shapes = [  ]
+172/z_index = 0
+173/name = "Wall Blacks"
+173/texture = ExtResource( 1 )
+173/tex_offset = Vector2( 0, 0 )
+173/modulate = Color( 1, 1, 1, 1 )
+173/region = Rect2( 144, 32, 64, 32 )
+173/tile_mode = 2
+173/autotile/icon_coordinate = Vector2( 0, 0 )
+173/autotile/tile_size = Vector2( 16, 16 )
+173/autotile/spacing = 0
+173/autotile/occluder_map = [  ]
+173/autotile/navpoly_map = [  ]
+173/autotile/priority_map = [  ]
+173/autotile/z_index_map = [  ]
+173/occluder_offset = Vector2( 0, 0 )
+173/navigation_offset = Vector2( 0, 0 )
+173/shape_offset = Vector2( 0, 0 )
+173/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+173/shape_one_way = false
+173/shape_one_way_margin = 0.0
+173/shapes = [  ]
+173/z_index = 0
+174/name = "TilMayorsOffice.png 174"
+174/texture = ExtResource( 1 )
+174/tex_offset = Vector2( 0, -16 )
+174/modulate = Color( 1, 1, 1, 1 )
+174/region = Rect2( 208, 0, 64, 48 )
+174/tile_mode = 0
+174/occluder_offset = Vector2( 0, 0 )
+174/navigation_offset = Vector2( 0, 0 )
+174/shape_offset = Vector2( 0, -16 )
+174/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+174/shape = SubResource( 5 )
+174/shape_one_way = false
+174/shape_one_way_margin = 1.0
+174/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+174/z_index = 0

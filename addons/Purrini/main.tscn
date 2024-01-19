@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/Purrini/Nodes/WindowDialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/Purrini/main.gd" type="Script" id=2]
+[ext_resource path="res://addons/Purrini/Nodes/Actions/if statement.tscn" type="PackedScene" id=3]
+
+[node name="Control" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -251.379, -115.471 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+margin_right = 331.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 0, 156 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_offset = Vector2( -331, 0 )
+minimap_enabled = false
+
+[node name="GraphNode" parent="GraphEdit" instance=ExtResource( 3 )]
+margin_left = 331.0
+margin_right = 517.0
+margin_bottom = 84.0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 160.0
+margin_right = 331.0
+margin_bottom = 180.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 3.0
+margin_right = 70.0
+margin_bottom = 17.0
+text = " Purrini 0.1"
+
+[node name="divider2" type="Label" parent="HBoxContainer"]
+margin_left = 74.0
+margin_top = 3.0
+margin_right = 81.0
+margin_bottom = 17.0
+text = "|"
+
+[node name="Add" type="Button" parent="HBoxContainer"]
+margin_left = 85.0
+margin_right = 122.0
+margin_bottom = 20.0
+text = "Add"
+
+[node name="WindowDialog" parent="HBoxContainer/Add" instance=ExtResource( 1 )]
+visible = false
+margin_left = -80.8085
+margin_top = -168.786
+margin_right = 239.192
+margin_bottom = -6.78574
+
+[node name="divider3" type="Label" parent="HBoxContainer"]
+margin_left = 126.0
+margin_top = 3.0
+margin_right = 133.0
+margin_bottom = 17.0
+text = "|"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+margin_left = 137.0
+margin_right = 177.0
+margin_bottom = 20.0
+text = "New"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_left = 181.0
+margin_right = 222.0
+margin_bottom = 20.0
+text = "Save"
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+margin_left = 226.0
+margin_right = 268.0
+margin_bottom = 20.0
+text = "Load"
+
+[node name="Button4" type="Button" parent="HBoxContainer"]
+margin_left = 272.0
+margin_right = 331.0
+margin_bottom = 20.0
+text = "Save as"
+
+[connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
+[connection signal="pressed" from="HBoxContainer/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="HBoxContainer/Add/WindowDialog/TabContainer/Control/GridContainer/Button" to="." method="_on_IF_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+
+[editable path="HBoxContainer/Add/WindowDialog"]

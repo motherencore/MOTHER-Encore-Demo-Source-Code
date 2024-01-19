@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/ZoneLoadingSystem/scripts/zone.gd" type="Script" id=1]
+[ext_resource path="res://addons/ZoneLoadingSystem/scripts/world.gd" type="Script" id=2]
+[ext_resource path="res://addons/ZoneLoadingSystem/scripts/zone_loader.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 755.996, 428.289 )
+
+[node name="World" type="YSort"]
+script = ExtResource( 2 )
+starting_zone = "Zone01"
+
+[node name="ZoneLoader" type="YSort" parent="."]
+script = ExtResource( 3 )
+
+[node name="Zone01" type="YSort" parent="ZoneLoader"]
+position = Vector2( 571.435, 293.19 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+zone_path = "res://Maps/Snowman/Snowman.tscn"
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/Zone01"]
+collision_layer = 32768
+collision_mask = 32768
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/Zone01/LoadTrigger"]
+shape = SubResource( 1 )
+
+[node name="Zone02" type="YSort" parent="ZoneLoader"]
+position = Vector2( -1639, -129 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+zone_path = "res://Maps/Snowman/Snowman Interiors.tscn"
+preview = true
+
+[node name="LoadTrigger" type="Area2D" parent="ZoneLoader/Zone02"]
+collision_layer = 32768
+collision_mask = 32768
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneLoader/Zone02/LoadTrigger"]
+shape = SubResource( 1 )
+
+[node name="YSort" type="YSort" parent="."]

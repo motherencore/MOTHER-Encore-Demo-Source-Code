@@ -1,0 +1,269 @@
+[gd_resource type="TileSet" load_steps=13 format=2]
+
+[ext_resource path="res://Graphics/Tilesets/TilDeptStore.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=29]
+points = PoolVector2Array( 64, 48, 0, 48, 0, 32, 64, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=30]
+points = PoolVector2Array( 64, 48, 0, 48, 0, 32, 64, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=31]
+points = PoolVector2Array( 96, 40, 0, 40, 0, 16, 96, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=32]
+points = PoolVector2Array( 96, 48, 0, 48, 0, 24, 96, 24 )
+
+[sub_resource type="ConvexPolygonShape2D" id=33]
+points = PoolVector2Array( 48, 16, 48, 8, 80, 8, 80, 64, 8, 64, 8, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=34]
+points = PoolVector2Array( 64, 32, 0, 32, 0, 16, 64, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=35]
+points = PoolVector2Array( 32, 32, 0, 32, 0, 8, 32, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=36]
+points = PoolVector2Array( 64, 32, 0, 32, 0, 16, 64, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=37]
+points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
+
+[sub_resource type="ConvexPolygonShape2D" id=38]
+points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
+
+[sub_resource type="ConvexPolygonShape2D" id=39]
+points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
+
+[resource]
+32/name = "StoreShelf"
+32/texture = ExtResource( 1 )
+32/tex_offset = Vector2( 0, -32 )
+32/modulate = Color( 1, 1, 1, 1 )
+32/region = Rect2( 0, 0, 64, 48 )
+32/tile_mode = 0
+32/occluder_offset = Vector2( 0, 0 )
+32/navigation_offset = Vector2( 0, 0 )
+32/shape_offset = Vector2( 0, -32 )
+32/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+32/shape = SubResource( 29 )
+32/shape_one_way = false
+32/shape_one_way_margin = 1.0
+32/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 29 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+32/z_index = 0
+33/name = "StoreShelf2"
+33/texture = ExtResource( 1 )
+33/tex_offset = Vector2( 0, -32 )
+33/modulate = Color( 1, 1, 1, 1 )
+33/region = Rect2( 64, 0, 64, 48 )
+33/tile_mode = 0
+33/occluder_offset = Vector2( 0, 0 )
+33/navigation_offset = Vector2( 0, 0 )
+33/shape_offset = Vector2( 0, -32 )
+33/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+33/shape = SubResource( 30 )
+33/shape_one_way = false
+33/shape_one_way_margin = 1.0
+33/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 30 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+33/z_index = 0
+34/name = "Food Shelf Bread"
+34/texture = ExtResource( 1 )
+34/tex_offset = Vector2( 0, -32 )
+34/modulate = Color( 1, 1, 1, 1 )
+34/region = Rect2( 0, 48, 96, 48 )
+34/tile_mode = 0
+34/occluder_offset = Vector2( 0, 0 )
+34/navigation_offset = Vector2( 0, 0 )
+34/shape_offset = Vector2( 0, -32 )
+34/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+34/shape = SubResource( 31 )
+34/shape_one_way = false
+34/shape_one_way_margin = 1.0
+34/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 31 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+34/z_index = 0
+35/name = "Food Shelf Milk"
+35/texture = ExtResource( 1 )
+35/tex_offset = Vector2( 0, -32 )
+35/modulate = Color( 1, 1, 1, 1 )
+35/region = Rect2( 0, 96, 96, 48 )
+35/tile_mode = 0
+35/occluder_offset = Vector2( 0, 0 )
+35/navigation_offset = Vector2( 0, 0 )
+35/shape_offset = Vector2( 0, -32 )
+35/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+35/shape = SubResource( 32 )
+35/shape_one_way = false
+35/shape_one_way_margin = 1.0
+35/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 32 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+35/z_index = 0
+36/name = "Food Desk"
+36/texture = ExtResource( 1 )
+36/tex_offset = Vector2( 0, -16 )
+36/modulate = Color( 1, 1, 1, 1 )
+36/region = Rect2( 96, 48, 80, 64 )
+36/tile_mode = 0
+36/occluder_offset = Vector2( 0, 0 )
+36/navigation_offset = Vector2( 0, 0 )
+36/shape_offset = Vector2( 0, -16 )
+36/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+36/shape = SubResource( 33 )
+36/shape_one_way = false
+36/shape_one_way_margin = 1.0
+36/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 33 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+36/z_index = 0
+37/name = "Sports Shelf Bats"
+37/texture = ExtResource( 1 )
+37/tex_offset = Vector2( 0, -16 )
+37/modulate = Color( 1, 1, 1, 1 )
+37/region = Rect2( 0, 144, 64, 32 )
+37/tile_mode = 0
+37/occluder_offset = Vector2( 0, 0 )
+37/navigation_offset = Vector2( 0, 0 )
+37/shape_offset = Vector2( 0, -16 )
+37/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+37/shape = SubResource( 34 )
+37/shape_one_way = false
+37/shape_one_way_margin = 1.0
+37/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 34 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+37/z_index = 0
+38/name = "Sports Balls"
+38/texture = ExtResource( 1 )
+38/tex_offset = Vector2( 0, -16 )
+38/modulate = Color( 1, 1, 1, 1 )
+38/region = Rect2( 64, 144, 32, 32 )
+38/tile_mode = 0
+38/occluder_offset = Vector2( 0, 0 )
+38/navigation_offset = Vector2( 0, 0 )
+38/shape_offset = Vector2( 0, -16 )
+38/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+38/shape = SubResource( 35 )
+38/shape_one_way = false
+38/shape_one_way_margin = 1.0
+38/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 35 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+38/z_index = 0
+39/name = "Sports Shelf Rackets"
+39/texture = ExtResource( 1 )
+39/tex_offset = Vector2( 0, -16 )
+39/modulate = Color( 1, 1, 1, 1 )
+39/region = Rect2( 0, 176, 64, 32 )
+39/tile_mode = 0
+39/occluder_offset = Vector2( 0, 0 )
+39/navigation_offset = Vector2( 0, 0 )
+39/shape_offset = Vector2( 0, -16 )
+39/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+39/shape = SubResource( 36 )
+39/shape_one_way = false
+39/shape_one_way_margin = 1.0
+39/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 36 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+39/z_index = 0
+40/name = "Drug Shelf 1"
+40/texture = ExtResource( 1 )
+40/tex_offset = Vector2( 0, -32 )
+40/modulate = Color( 1, 1, 1, 1 )
+40/region = Rect2( 96, 112, 32, 64 )
+40/tile_mode = 0
+40/occluder_offset = Vector2( 0, 0 )
+40/navigation_offset = Vector2( 0, 0 )
+40/shape_offset = Vector2( 0, -32 )
+40/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+40/shape = SubResource( 37 )
+40/shape_one_way = false
+40/shape_one_way_margin = 1.0
+40/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 37 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+40/z_index = 0
+41/name = "Drug Shelf 2"
+41/texture = ExtResource( 1 )
+41/tex_offset = Vector2( 0, -32 )
+41/modulate = Color( 1, 1, 1, 1 )
+41/region = Rect2( 128, 112, 32, 64 )
+41/tile_mode = 0
+41/occluder_offset = Vector2( 0, 0 )
+41/navigation_offset = Vector2( 0, 0 )
+41/shape_offset = Vector2( 0, -32 )
+41/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+41/shape = SubResource( 38 )
+41/shape_one_way = false
+41/shape_one_way_margin = 1.0
+41/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 38 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+41/z_index = 0
+42/name = "Drug Shelf 3"
+42/texture = ExtResource( 1 )
+42/tex_offset = Vector2( 0, -32 )
+42/modulate = Color( 1, 1, 1, 1 )
+42/region = Rect2( 160, 112, 32, 64 )
+42/tile_mode = 0
+42/occluder_offset = Vector2( 0, 0 )
+42/navigation_offset = Vector2( 0, 0 )
+42/shape_offset = Vector2( 0, -32 )
+42/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+42/shape = SubResource( 39 )
+42/shape_one_way = false
+42/shape_one_way_margin = 1.0
+42/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 39 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+42/z_index = 0

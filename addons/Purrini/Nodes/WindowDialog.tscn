@@ -1,0 +1,60 @@
+[gd_scene format=2]
+
+[node name="WindowDialog" type="WindowDialog"]
+visible = true
+margin_left = 1.0
+margin_top = 20.0
+margin_right = 491.0
+margin_bottom = 390.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+window_title = "Add Action"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_right = 490.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Control"]
+margin_left = 3.0
+margin_right = 509.0
+margin_bottom = 360.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TabContainer/Control/GridContainer"]
+margin_right = 155.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 155, 0 )
+text = "FUCK!!!!!!!!"
+
+[node name="Button2" type="Button" parent="TabContainer/Control/GridContainer"]
+margin_left = 159.0
+margin_right = 314.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 155, 0 )
+text = "FUCK!!!!!!!!"
+
+[node name="Button3" type="Button" parent="TabContainer/Control/GridContainer"]
+margin_left = 318.0
+margin_right = 473.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 155, 0 )
+text = "FUCK!!!!!!!!"

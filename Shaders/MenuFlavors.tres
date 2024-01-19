@@ -1,0 +1,64 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 OLDCOLOR1 : hint_color;
+uniform vec4 NEWCOLOR1: hint_color;
+uniform vec4 OLDCOLOR2 : hint_color;
+uniform vec4 NEWCOLOR2: hint_color;
+uniform vec4 OLDCOLOR3 : hint_color;
+uniform vec4 NEWCOLOR3: hint_color;
+uniform vec4 OLDCOLOR4 : hint_color;
+uniform vec4 NEWCOLOR4: hint_color;
+uniform vec4 OLDCOLOR5 : hint_color;
+uniform vec4 NEWCOLOR5: hint_color;
+uniform vec4 OLDCOLOR6 : hint_color;
+uniform vec4 NEWCOLOR6: hint_color;
+uniform vec4 OLDCOLOR7 : hint_color;
+uniform vec4 NEWCOLOR7: hint_color;
+
+void fragment() {
+	vec4 curr_pixel = texture(TEXTURE, UV);
+	if (distance(curr_pixel, OLDCOLOR1) < 0.01){
+		COLOR = NEWCOLOR1;
+		}
+	else if (distance(curr_pixel, OLDCOLOR2) < 0.01){
+		COLOR = NEWCOLOR2;
+		}
+	else if (distance(curr_pixel, OLDCOLOR3) < 0.01){
+		COLOR = NEWCOLOR3;
+		}
+	else if (distance(curr_pixel, OLDCOLOR4) < 0.01){
+		COLOR = NEWCOLOR4;
+		}
+	else if (distance(curr_pixel, OLDCOLOR5) < 0.01){
+		COLOR = NEWCOLOR5;
+		}
+	else if (distance(curr_pixel, OLDCOLOR6) < 0.01){
+		COLOR = NEWCOLOR6;
+		}
+	else if (distance(curr_pixel, OLDCOLOR7) < 0.01){
+		COLOR = NEWCOLOR7;
+		}
+	else {
+		COLOR = curr_pixel;
+	}
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/OLDCOLOR1 = Color( 0.952941, 0.94902, 0.956863, 1 )
+shader_param/NEWCOLOR1 = Color( 0.635294, 0.941176, 0.972549, 1 )
+shader_param/OLDCOLOR2 = Color( 0.74902, 0.705882, 0.803922, 1 )
+shader_param/NEWCOLOR2 = Color( 0.54902, 0.686275, 0.941176, 1 )
+shader_param/OLDCOLOR3 = Color( 0.478431, 0.423529, 0.52549, 1 )
+shader_param/NEWCOLOR3 = Color( 0.482353, 0.545098, 0.8, 1 )
+shader_param/OLDCOLOR4 = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+shader_param/NEWCOLOR4 = Color( 0.192157, 0.0745098, 0.0196078, 1 )
+shader_param/OLDCOLOR5 = Color( 0.729412, 0.32549, 0.894118, 1 )
+shader_param/NEWCOLOR5 = Color( 0.819608, 0.713726, 0.129412, 1 )
+shader_param/OLDCOLOR6 = Color( 0.839216, 0.807843, 0.87451, 1 )
+shader_param/NEWCOLOR6 = Color( 0.639216, 0.85098, 0.92549, 1 )
+shader_param/OLDCOLOR7 = Color( 0.2, 0.160784, 0.262745, 1 )
+shader_param/NEWCOLOR7 = Color( 0.235294, 0.105882, 0.0784314, 1 )

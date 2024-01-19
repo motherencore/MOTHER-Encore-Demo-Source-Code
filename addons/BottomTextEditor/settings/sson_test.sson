@@ -1,0 +1,280 @@
+--safe_room_wake_up
+	pose claire sit2 3
+	move bruno
+		mvspeed 32
+		mvadd -24 24
+		mvspeed 64
+	wait 2.0
+	pose bruno scared 2
+	pose claire sit 3
+	Claire (down): ...
+	pose bruno idle 2
+	pose bruno idle -1
+	Bruno (scared): Oh,¢¢ you're finally awake.
+	Claire (down): It looks like so...
+	pose bruno idle 3
+	wait 1.0
+	pose bruno idle -1
+	Bruno (scared): Are you okay?
+	Claire (): What are we doing at school at night...
+	pose bruno idle 3
+	Bruno (): Well... I'm not sure.
+	Bruno (): I woke up dizzy and found you on the grass.
+	Bruno (): Out there, it's,¢¢ like,¢¢ full of ¬C01those things¬C00.
+	pose bruno idle -1
+	Bruno (): So I ran here inside with you.
+	Claire (): *ugh*.
+	Bruno (): Uh...¢¢ take your time¢¢ there.
+	pose bruno idle 2
+	move bruno
+		mvto 648 366
+		mvto 802 371
+		mvto 842 331
+		turn 2
+		action check
+
+# Making some cool ass changes in here
+
+--safe_room_bruno_talk
+	* ← → CHOOSE\n* %KEY_OK% SELECT.
+		"What are the things..." (check):
+			Bruno (): I'm not sure... It looked like people.
+			Bruno (): They were walking around all suspicious.
+		"What are you doing" (game):
+			Bruno (): I'm trying to look for help.
+			Bruno (): Shoot. I'm outta data.
+		"Who are you" (ch_bruno):
+			Bruno (): I'm Bruno.
+			Claire (): cool.
+
+--safe_room_bigboard1
+	* "The derivative of ln x is x to the negative first power."
+	* This doesn't need to be stated, as it is a commonly known fact.
+
+--safe_room_bigboard2
+	* Why are they teaching calculus in high school...?
+
+--safe_room_door1
+	* It's a door, better leave it closed.
+
+--safe_room_door2
+	* You don't want to party with zombies.
+	* I know it sounds cool, but don't.
+
+--safe_room_door3
+	* Better leave it closed.
+
+--cheat
+	* Cheat Menu
+		Fight (fight):
+			continue
+		Warp (flirt):
+			continue
+		Test Route (ch_bruno):
+			continue
+		Nevermind (wait):
+			continue
+
+--book1
+	* A bookshelf filled with books.
+--book2
+	* It's just books.
+	* Who reads those anymore when we can play videogames.
+--nobook1
+	* A bookshelf not filled with books.
+--nobook2
+	* Maybe some book will pop into existence...
+--nobook3
+	* Just wait for it...
+--nobook4
+	* No, that's not going to happen.
+
+--cutscene_2_1
+	Bruno (): *huff¢ huff*
+	Claire (): Ok,¢ got it.
+	bgm restart
+	Bruno (): ¬SHoly sh-¢ damn,¢¢ did you see THAT?
+	Bruno (): ¬SIt was full of 'em!!
+	Claire (): ah...
+	Claire (): so.¢.¢.¢¢ are we going to stay in this dark room?
+	Bruno (): Any better idea?
+	wait 2.0
+	Claire (): no...
+	Bruno (): We're screwed...
+
+--cutscene_2_2
+	bgm pause
+	Andy (): Yep, we are.
+
+--cutscene_2_3
+	bgm restart
+	Bruno (): ¬SAAAaaaAAaaAa Wha-¢¢¬N\n-¬S Dude!
+	Andy(mild_mad): Don't scream at me.
+	Andy(mild_mad): If anyone should be screaming, it is me.
+	Bruno (): You almost gave me a heart attack!
+	Andy(mild_mad): You were the ones who jumped into the room.
+	Bruno (smile): Hmmm...¢¢¢ You're right.
+	Bruno (): Where was I...¢¢ Oh yeah.
+	move bruno
+		mvadd 0 -16
+		mvto 97 90
+		mvto 161 90
+		goto 1
+	move andy
+		action sit
+	Bruno(worried): Oh my...
+	Bruno(worried): What am I gonna do...
+	Bruno(worried): Is it...
+	Bruno(theheckup): A zombie apocalypse?
+	Bruno(worried): Dang it!¢¢¢¢\n- I left my apocalypse stuff at home.
+	move claire
+		mvspeed 32
+		mvto 173 100
+		wait 0.1
+		turn 1
+		wait 0.1
+		turn 2
+		wait 0.1
+		turn 3
+		wait 0.1
+		turn 4
+		action sit
+	move andy
+		action sit_look
+	Andy(mild_mad): A zombie apocalypse...
+	Bruno(frisk): Cut me some slack, Andy,\n I'm tryna think, k?
+	Bruno(worried): Is it all right at home...\n- My mum, my sisters..
+	Andy(sad): Hey,¢¢ walking in circles\nisn't gonna help.
+	Bruno(worried): It's more like a straight line, really¹
+	Andy(cool): Let's use our heads!
+	Bruno(worried): what
+	Bruno(frisk): How are you so calm?
+	move andy
+		action sit
+	Andy(cool): I'm the definition of calmness.
+	move bruno
+		turn 5
+	Bruno(offended): .¢¢.¢¢.
+	move bruno
+		mvspeed 16
+		mvto 169 90
+		wait 0.1
+		turn 1
+		wait 0.2
+		turn 2
+		wait 0.2
+		turn 3
+		wait 0.1
+		action sit
+	Bruno(offended): "Definition of calmness."
+	Bruno(frisk): Tsc,¢¢ I'm gon' do something useful.
+	Bruno(frisk): 'cause you ain't doing nothing.
+	# Andy will look at Claire and ask for her name.
+	move andy
+		action sit_look
+	Andy(side): And who's that girl you brought with you?
+	Bruno(down): I dunno,¢¢ ask her.
+	wait 1.0
+	Andy(side): Psst¢¢¢¢, girl¢¢, who ARE you?
+		"..." (talk):
+			Andy(side): Ih... cat got your tongue?
+		"I don't know..." (question):
+			Andy(side): I know, tough question.
+			Andy(side): We're all still teens, aren't we?
+		"Claire..." (ch_claire):
+			Andy(side): Nice name.
+	Andy(smile): My name is Andy.
+	Claire(): oh...
+	Andy(smile): You can sit here with me if you want.
+	Andy(): Or just... enjoy the floor I guess.
+
+--cutscene_2_4
+	Andy(): Heyyy,¢¢ think us two could run straight for the gate?
+	Andy(): Like,¢¢ if we just¢¢ ran real fast.
+	Claire(): I don't know...
+	Andy(): Oh,¢¢ and,¢¢ if I'm not mistaken,
+	Andy(): There's a vending machine out and to the right.
+	Andy(): We can go there get some snacks.
+	Claire(): I don't know if it's a good idea to risk it...
+	Andy(really_yeah): There are some Nacho Chips there...
+	Claire(smile): I've been convinced.
+	pose claire idle 8
+	pose bruno idle 4
+	Bruno(): Wait,¢¢ did that really work?
+	Claire(smile): How can I say no to Nacho Chips...
+	Bruno(): If you two leave I'm locking the door, no cap.
+	pose bruno check 2
+	pose claire idle 6
+	Andy(confident): We'll be back to get you, Bruno.
+
+--cutscene_2_5
+	Bruno(): I'll see if I can hack some\nWiFi and call help.
+	Claire(): With a videogame?
+	Bruno(): Videogame?
+	Bruno(): Oh,¢¢ this is my SOUL Weapon.
+		"Ah, cool" (talk):
+			Bruno(): Yeah, I made it myself with spare parts.
+		"Your what...?" (talk):
+			Bruno(): You haven't heard of 'em?
+			Bruno(): It's like, your weapon, dude.
+			Bruno(): Don't you have one?
+			Claire(): I don't think so.
+			Bruno(): This one's great,
+			speech_delay 0.005
+			Bruno(): It has a ton of RAM and an easily acessible programmable ROM.
+			Bruno(): So I can run advanced sims, and make my software blaaaazing fast.
+			Bruno(): Also, there's qLINK that connects databases,
+			Bruno(): And the VPN, ahhhh so secure.
+			speech_delay 0.03
+			Claire(): oh¢¢.¢¢.¢¢. cool!
+			Bruno(): Ain' it?
+--cutscene_2_6
+	* The face of a true hacker.
+
+--library_poster
+	* Two wonderful game series.
+
+--library_dont_leave
+	Claire(): (I'm not going to leave\nby myself.)
+	move claire
+		mvadd 0 -16
+
+--library_leave_attack_1
+	pose claire idle 6
+	Andy(): Oh, but pay attention.
+	Andy(): We must be ready for anything.
+	pose claire idle 2
+	Claire(): Right.¢.¢.¢¢ I'll do a countdown.
+	bgm pause
+	Claire(): One...¢¢\n- Two...
+--library_leave_attack_2
+	Andy(attack): ¬SHUYAAAAA!!!!!¬N
+	Andy(): .¢¢.¢¢.¢¢
+	Andy(smile): They must be taking a nap.
+
+--pride_parade_poster
+	* Nothing interesting.
+	Andy(proud): Look! It's the ExH pride parade poster!
+	Andy(proud): I made it in art class!
+	* A bit interesting, I guess?
+--pride_parade_poster2
+	* I wonder what that's about.
+
+--vending_machine
+	Andy(smile): There it is!
+	Andy(smile): Do you have any money on you?
+	pose claire idle 0
+	Claire(): no...
+	Andy(): welp, at least we tried.
+	Andy(): Although...
+	pose andy idle 5
+	Andy(): We could try to just break it open.
+	pose andy idle 4
+	Claire(): No!
+	Andy(): Why not?\n- If we ARE in a¢¢ ¬Wzombie apocalypse¬N, it's better we do!
+	Andy(): Before a rival scavenging team gets all the food.
+	Claire(smile): No, even if these tough moments...
+	pose claire idle 4
+	Claire(smile): ¬WWe can't let the anarchy poison our just hearts.
+	Andy(): Well, you're the boss.
+	

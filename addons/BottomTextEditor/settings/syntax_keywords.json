@@ -1,0 +1,103 @@
+{
+	"groups": [
+		{
+			"name":		"cutscene",
+			"color":	"keyword",
+			"words": [
+				"*", "-", "move", "choice", "mvto", "mvadd", "mvspeed", "wait", "turn", "pose",
+				"anim", "action", "face", "call", "switch", "var", "important",
+				"continue", "back", "goto", "destroy",
+				"and", "or", "xor", "not", "if", "unless", "elif", "else",
+				"compare", "case", "menu", "default",
+				"item", "give", "take", "doctype", "bgm", "pause", "resume", "restart", "load",
+				"path", "append", "lock", "unlock", "dialog", "function",
+				"text_mode", "speech_delay", "sfx", "camera", "screen", "shake", "transition",
+			]
+		},
+		{
+			"name":		"inner_voices_constants",
+			"color":	"user_type",
+			"words": [
+				"once", "true", "false", "yes", "no", "on", "off",
+				"PLAYER_POS", "TAU", "PI", "e"
+			]
+		},
+		{
+			"name":		"inner_voices_bullet_attacks_primary",
+			"color":	"keyword",
+			"words": [
+				"type", "battle_box", "source",
+				"scene", "bullet_count",
+				
+				"base_damage", "source", "rate",
+				"beatcode_tempo", "beatcode_script",
+				
+				"process", "damage_mode", "damage_scale", "type",
+				"script", "minigame",
+				"clock_interval", "spawn_count", "sprite",
+				"battle_box",
+				"position", "angle", "sprite_angle", "accel_angle", "moving_angle",
+				"speed", "accel",
+				
+				"slippery_floor", "torus_border", "incandescence", "discrete", "mirror", "snek_mode",
+			]
+		},
+		{
+			"name":		"inner_voices_bullet_attacks_secondary",
+			"color":	"engine_type",
+			"words": [
+				"static", "projectile", "minigame", "bullets", "animation",
+				"physical", "spirit", "magic", "light", "darkness", "pure",
+				"normal", "when_moving", "when_idle",
+				"randf", "randi", "rand_range", "min", "max", "clamp",
+				"floor", "ceil", "round", "vector2", "sin", "cos", "tan", "atan", "asin", "acos", 
+				"Vector2",
+			]
+		},
+	],
+	
+	"areas": [
+		{
+			"name": 	"block header",
+			"color":	"keyword",
+			"char_A":	"--",
+			"char_B":	"",
+			"multiline":false,
+		},
+		{
+			"name": 	"string",
+			"color":	"string",
+			"char_A":	"\"",
+			"char_B":	"\"",
+			"multiline":false,
+		},
+		{
+			"name": 	"string",
+			"color":	"string",
+			"char_A":	"'",
+			"char_B":	"'",
+			"multiline":false,
+		},
+		{
+			"name": 	"comment",
+			"color":	"comment",
+			"char_A":	"#",
+			"char_B":	"",
+			"multiline":false,
+		},
+		{
+			"name": 	"inner_voices_speech",
+			"color":	"text_normal",
+			"char_A":	": ",
+			"char_B":	"",
+			"multiline":false,
+		},
+		{
+			"name": 	"inner_voices_narration",
+			"color":	"text_normal",
+			"char_A":	"* ",
+			"char_B":	"",
+			"multiline":false,
+		}
+	],
+}

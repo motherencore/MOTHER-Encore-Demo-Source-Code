@@ -1,0 +1,172 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/BottomTextEditor/text_editor_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://addons/BottomTextEditor/TextEditorTab.gd" type="Script" id=2]
+[ext_resource path="res://addons/BottomTextEditor/AdvancedTextEdit.gd" type="Script" id=3]
+
+[node name="[empty]" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_right = 332.0
+margin_bottom = 156.0
+focus_neighbour_top = NodePath("..")
+focus_neighbour_right = NodePath("../VBoxContainer/BtnSave")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/member_variable_color = Color( 0.74902, 1, 0.823529, 1 )
+custom_colors/function_color = Color( 0.254902, 0.878431, 0.988235, 1 )
+custom_colors/number_color = Color( 0.301961, 0.678431, 1, 1 )
+custom_fonts/font = ExtResource( 1 )
+highlight_current_line = true
+syntax_highlighting = true
+show_line_numbers = true
+draw_tabs = true
+fold_gutter = true
+highlight_all_occurrences = true
+hiding_enabled = true
+wrap_enabled = true
+minimap_draw = true
+caret_block_mode = true
+caret_blink = true
+script = ExtResource( 3 )
+
+[node name="CloseUnsavedPopup" type="ConfirmationDialog" parent="TextEdit"]
+visible = true
+margin_top = 605.0
+margin_right = 1200.0
+margin_bottom = 675.0
+window_title = "Are you really sure?"
+resizable = true
+dialog_text = "This file is unsaved.
+Are you really, really sure you want to close it?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerDestroy" type="Timer" parent="TextEdit"]
+wait_time = 0.05
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 160.0
+margin_right = 332.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="BtnNew" type="Button" parent="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 20.0
+text = "New"
+
+[node name="BtnOpen" type="Button" parent="HBoxContainer"]
+margin_left = 44.0
+margin_right = 91.0
+margin_bottom = 20.0
+text = "Open"
+
+[node name="BtnSave" type="Button" parent="HBoxContainer"]
+margin_left = 95.0
+margin_right = 136.0
+margin_bottom = 20.0
+text = "Save"
+
+[node name="BtnSaveAs" type="Button" parent="HBoxContainer"]
+margin_left = 140.0
+margin_right = 213.0
+margin_bottom = 20.0
+text = "Save As..."
+
+[node name="BtnClose" type="Button" parent="HBoxContainer"]
+margin_left = 217.0
+margin_right = 237.0
+margin_bottom = 20.0
+text = "X"
+
+[node name="MenuFile" type="MenuButton" parent="HBoxContainer"]
+visible = false
+margin_left = 241.0
+margin_right = 276.0
+margin_bottom = 20.0
+text = "File"
+items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Open", null, 0, false, false, 1, 0, null, "", false, "Close", null, 0, false, false, 2, 0, null, "", false, "Save", null, 0, false, false, 3, 0, null, "", false, "Save As...", null, 0, false, false, 4, 0, null, "", false ]
+
+[node name="MenuText" type="MenuButton" parent="HBoxContainer"]
+margin_left = 241.0
+margin_right = 277.0
+margin_bottom = 20.0
+text = "Edit"
+items = [ "Find/Replace", null, 1, false, false, 0, 0, null, "", false, "Fold All", null, 0, false, false, 1, 0, null, "", false, "Unfold All", null, 0, false, false, 2, 0, null, "", false ]
+
+[node name="MenuPower" type="MenuButton" parent="HBoxContainer"]
+margin_left = 281.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "Power"
+items = [ "Close All", null, 0, false, false, 0, 0, null, "", false ]
+
+[node name="FindReplaceBar" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 648.0
+margin_right = 1200.0
+margin_bottom = 675.0
+
+[node name="TxtRegex" type="LineEdit" parent="FindReplaceBar"]
+margin_right = 477.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+clear_button_enabled = true
+
+[node name="Separator" type="Label" parent="FindReplaceBar"]
+margin_left = 481.0
+margin_top = 6.0
+margin_right = 489.0
+margin_bottom = 20.0
+text = "::"
+
+[node name="TxtReplace" type="LineEdit" parent="FindReplaceBar"]
+margin_left = 493.0
+margin_right = 970.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+clear_button_enabled = true
+
+[node name="BtnFindNext" type="Button" parent="FindReplaceBar"]
+margin_left = 974.0
+margin_right = 1047.0
+margin_bottom = 27.0
+text = "Find Next"
+
+[node name="BtnReplace" type="Button" parent="FindReplaceBar"]
+margin_left = 1051.0
+margin_right = 1113.0
+margin_bottom = 27.0
+text = "Replace"
+
+[node name="BtnReplaceAll" type="Button" parent="FindReplaceBar"]
+margin_left = 1117.0
+margin_right = 1200.0
+margin_bottom = 27.0
+text = "Replace All"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="TextEdit" to="." method="_on_TextEdit_text_changed"]
+[connection signal="confirmed" from="TextEdit/CloseUnsavedPopup" to="." method="_on_CloseUnsavedPopup_confirmed"]
+[connection signal="timeout" from="TextEdit/TimerDestroy" to="." method="_on_TimerDestroy"]
+[connection signal="pressed" from="HBoxContainer/BtnNew" to="." method="_on_BtnNew_pressed"]
+[connection signal="pressed" from="HBoxContainer/BtnOpen" to="." method="_on_BtnLoad_pressed"]
+[connection signal="pressed" from="HBoxContainer/BtnSave" to="." method="_on_BtnSave_pressed"]
+[connection signal="pressed" from="HBoxContainer/BtnSaveAs" to="." method="_on_BtnSaveAs_pressed"]
+[connection signal="pressed" from="HBoxContainer/BtnClose" to="." method="_on_BtnClose_pressed"]
+[connection signal="pressed" from="FindReplaceBar/BtnReplace" to="TextEdit" method="_on_BtnReplace_pressed"]
+[connection signal="pressed" from="FindReplaceBar/BtnReplaceAll" to="TextEdit" method="_on_BtnReplaceAll_pressed"]

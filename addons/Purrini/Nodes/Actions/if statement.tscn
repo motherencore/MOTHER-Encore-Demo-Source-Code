@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/Purrini/Nodes/Actions/if statement.gd" type="Script" id=1]
+
+[node name="GraphNode" type="GraphNode"]
+margin_right = 186.0
+margin_bottom = 81.0
+title = "if Flag"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 1, 1, 1, 1 )
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color( 1, 1, 1, 1 )
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = true
+slot/1/right_type = 0
+slot/1/right_color = Color( 0.478431, 1, 0.729412, 1 )
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color( 1, 1, 1, 1 )
+slot/2/right_enabled = true
+slot/2/right_type = 0
+slot/2/right_color = Color( 1, 0.454902, 0.454902, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 170.0
+margin_bottom = 48.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 49.0
+margin_right = 170.0
+margin_bottom = 63.0
+text = "is true"
+align = 2
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 64.0
+margin_right = 170.0
+margin_bottom = 78.0
+text = "is false"
+align = 2
