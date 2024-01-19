@@ -1,0 +1,24 @@
+{
+	"name": "Alarm Ghost",
+	"maxhp": 50,
+	"hp": 50,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 35,
+	"offense": 34,
+	"defense": 64,
+	"iq": 50,
+	"guts": 0,
+	"level": 4,
+	"exp": 160,
+	"cash": 27,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Don't alarm this ghost, he has friends!",
+	"boss": false,
+	"sprite": "alarm ghost",
+	"ovsprite": "GhostAlarmOV",
+	"music": "Unsettling Opponent.mp3",
+	"bg": ""
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Poltergeist.mp3-1f0efe687896ecd582c067c742d28ccc.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Poltergeist.mp3"
+dest_files=[ "res://.import/Poltergeist.mp3-1f0efe687896ecd582c067c742d28ccc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

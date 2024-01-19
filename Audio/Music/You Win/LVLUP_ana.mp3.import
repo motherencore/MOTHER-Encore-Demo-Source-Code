@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LVLUP_ana.mp3-c08240bd74f24234bbfbcc2b323c9a84.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/You Win/LVLUP_ana.mp3"
+dest_files=[ "res://.import/LVLUP_ana.mp3-c08240bd74f24234bbfbcc2b323c9a84.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

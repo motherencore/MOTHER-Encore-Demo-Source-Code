@@ -1,0 +1,50 @@
+{
+	"name": {
+		"english": "Life Up Cream",
+		"french": "Crème de Vie"
+	},
+	"article" : {
+		"english": "some",
+		"french": "de la"
+	},
+	"keyitem": false,
+	"cost": 200,
+	"value": 100,
+	"usable": {
+		"ninten": true,
+		"lloyd": true,
+		"ana": true,
+		"teddy": true,
+		"pippi": true
+	},
+	"action_one": {
+		"name": {
+			"english": "Use", 
+			"french": "Utiliser"
+		},
+		"function": "consume",
+		"text": {
+			"english": "User recovered 200 HP!",
+			"french": "User a récupéré 200 PV!",
+		},
+	},
+	"action_two": null,
+	"battle_action": "",
+	"transform": "",
+	"slot": "",
+	"HPrecover": 200,
+	"PPrecover": 0,
+	"boost": {
+		"maxhp": 0, 
+		"maxpp": 0, 
+		"speed": 0, 
+		"offense": 0, 
+		"defense": 0, 
+		"iq": 0, 
+		"guts": 0,
+	},
+	"description": {
+		"english": "Some good quality wound healer.\nRestores 200 HP.",
+		"french": "Guérit les blessures de bonne qualité.\nRécupère 200 PV.",
+	},
+}

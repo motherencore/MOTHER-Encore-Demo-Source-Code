@@ -1,0 +1,153 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+export (String) var music = \"\"
+export (String) var loop = \"\"
+export var appear_flag = \"\"
+export var disappear_flag = \"\"
+export (bool) var diegetic = false
+export (int) var volume_db = 0
+export var fadein_length = 1
+export var fadeout_length = 1.5
+export var disabled = false
+var attachedPlayer = null
+var playerInside = false
+
+func _ready():
+	get_child(0).disabled = disabled
+
+func _on_Area2D_body_entered(body):
+	if body == global.persistPlayer and !global.cutscene and !global.inBattle and check_flags() and !self in audioManager.musicChangers:
+		playerInside = true
+		audioManager.musicChangers.append(self)
+		play_music()
+
+
+func _on_MusicArea_body_exited(body):
+	if body == global.persistPlayer and !global.cutscene:
+		playerInside = false
+		get_tree().create_timer(0.1).connect(\"timeout\", self, \"check_player_and_stop\")
+
+
+
+func play_music():
+	if !playerInside:
+		playerInside = true
+	if !self in audioManager.musicChangers:
+		audioManager.musicChangers.append(self)
+	if get_tree().is_connected(\"idle_frame\", self, \"play_music\"):
+		get_tree().disconnect(\"idle_frame\", self, \"play_music\")
+	var sameSong = false
+	var musicPlayer = 0
+	if audioManager.musicChangers[0] != self:
+		if music != \"\":
+			if audioManager.musicChangers[0].music == music:
+				sameSong = true
+		if loop != \"\":
+			if audioManager.musicChangers[0].loop == loop:
+				sameSong = true
+				
+	else:
+		if music != \"\":
+			if audioManager.get_audio_player(musicPlayer).stream == load(\"res://Audio/Music/\" + music):
+				sameSong = true
+		if loop != \"\":
+			if audioManager.get_audio_player(musicPlayer).stream == load(\"res://Audio/Music/\" + loop):
+				sameSong = true
+		
+	if !sameSong and audioManager.get_audio_player(audioManager.get_audio_player_count() - 1).playing: #Checks if it isn't the same song playing
+		audioManager.add_audio_player()
+		var start = 0
+		musicPlayer = audioManager.get_audio_player_count() - 1
+		attachedPlayer = audioManager.get_audio_player(musicPlayer)
+		if diegetic:
+			start = audioManager.get_audio_player(0).get_playback_position()
+		audioManager.set_audio_player_volume(musicPlayer, -80)
+		audioManager.music_fadein(musicPlayer, volume_db, fadein_length)
+		audioManager.play_music(music, loop, attachedPlayer, start)
+		
+	else:
+		var was_playing = true
+		musicPlayer = audioManager.get_audio_player_count() - 1
+		if !audioManager.get_audio_player(musicPlayer).playing or audioManager.get_audio_player(musicPlayer).volume_db == -80:
+			was_playing = false
+		if was_playing:
+			musicPlayer = audioManager.get_audio_player_count() - 1
+			attachedPlayer = audioManager.get_audio_player(musicPlayer)
+			audioManager.music_fadeto(musicPlayer, volume_db)
+		else:
+			attachedPlayer = audioManager.get_audio_player(musicPlayer)
+			audioManager.play_music(music, loop, attachedPlayer)
+			audioManager.set_audio_player_volume(musicPlayer, volume_db)
+
+func check_player_and_stop():
+	if !playerInside:
+		stop_music(fadeout_length)
+
+func stop_music(fadeoutLength = 1.5):
+	if self in audioManager.musicChangers:
+		audioManager.musicChangers.erase(self)
+	var sameSong = false
+	var musicPlayer = audioManager.get_audio_player_id(attachedPlayer)
+	if audioManager.musicChangers.size() > 0:
+		print(\"huh?\")
+		if music != \"\":
+			if audioManager.get_audio_player_from_song(music, self) != null:
+				musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music, self))
+				sameSong = true
+		if loop != \"\":
+			print(audioManager.get_audio_player_from_song(loop, self))
+			if audioManager.get_audio_player_from_song(loop, self) != null:
+				musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop, self))
+				sameSong = true
+		if diegetic:
+			sameSong = false
+	if musicPlayer != -1 and !sameSong:
+		if fadeoutLength == 0:
+			audioManager.stop_audio_player(musicPlayer)
+		else:
+			audioManager.music_fadeout(musicPlayer, fadeoutLength)
+	attachedPlayer = null
+
+func stop_music_immediately():
+	stop_music(0)
+
+func set_disabled(value):
+	get_child(0).disabled = value
+
+func check_flags():
+	var enabled = true
+	if appear_flag != \"\":
+		if globaldata.flags.has(appear_flag):
+			if globaldata.flags[appear_flag]:
+				enabled = true
+			else:
+				enabled = false
+	if disappear_flag != \"\":
+		if globaldata.flags.has(disappear_flag):
+			if globaldata.flags[disappear_flag]:
+				enabled = false
+	return enabled
+
+func _on_MusicArea_tree_exiting():
+	if self in audioManager.musicChangers:
+		stop_music(fadeout_length)
+"
+__meta__ = {
+"Scene_Path": "res://Nodes/Overworld/MusicChanger.tscn"
+}
+
+[node name="MusicArea" type="Area2D"]
+collision_layer = 4096
+collision_mask = 0
+monitorable = false
+script = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_MusicArea_body_exited"]
+[connection signal="tree_exiting" from="." to="." method="_on_MusicArea_tree_exiting"]

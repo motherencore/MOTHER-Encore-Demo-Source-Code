@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name":"Pierre",
+		"text":"I want to help the zombies become friendly by teaching them about God.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Pierre",
+		"text":"But... Zombies freak me out!",
+		"sound": "Adult"
+	}
+}

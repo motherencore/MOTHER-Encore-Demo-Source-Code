@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Confirm.wav-bde5643b3738e9e876a6a33e28e84dd8.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Confirm.wav"
+dest_files=[ "res://.import/Confirm.wav-bde5643b3738e9e876a6a33e28e84dd8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

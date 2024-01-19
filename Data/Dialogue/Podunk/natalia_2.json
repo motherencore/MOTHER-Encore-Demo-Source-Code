@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Natalia",
+		"text": "Oh, looks like you found the lost girl!",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Natalia",
+		"text": "Great job!",
+		"sound": "Adult"
+	}
+}

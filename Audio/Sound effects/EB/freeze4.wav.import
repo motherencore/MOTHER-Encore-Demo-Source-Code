@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/freeze4.wav-d4aa4a2a32a60802cc9fa79c67613e9f.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/freeze4.wav"
+dest_files=[ "res://.import/freeze4.wav-d4aa4a2a32a60802cc9fa79c67613e9f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

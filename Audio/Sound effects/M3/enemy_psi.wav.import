@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy_psi.wav-9baff5da3dab4ca7bd970a86f13d46e1.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/enemy_psi.wav"
+dest_files=[ "res://.import/enemy_psi.wav-9baff5da3dab4ca7bd970a86f13d46e1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

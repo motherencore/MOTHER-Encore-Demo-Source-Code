@@ -1,0 +1,288 @@
+{
+	"0": {
+		"name": "Nurse",
+		"sound": "Sexy",
+		"text": "Who here needs our assistance?",
+		"emotenpc": "question",
+		"options": {
+			"chkninten": "2",
+			"chkana": "6",
+			"chklloyd": "10",
+			"chkteddy": "14",
+			"chkpippi": "18",
+			"cancel": "1"
+		}
+	},
+	"1": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "If you are the patient, come into the back room."
+	},
+	"2": {
+		"if": {
+			"hasstatus": {
+				"character": "ninten",
+				"status": "Unconscious"
+			},
+			"goto": "3"
+		},
+		"goto": "24"
+	},
+	"3": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "Oh my! [Ninten] looks like he's still unconscious.",
+		"if": {
+			"hascash": 150,
+			"goto": "4"
+		},
+		"goto": "25"
+	},
+	"4": {
+		"name": "Nurse",
+		"type": "question",
+		"sound": "Sexy",
+		"cash": true,
+		"text": "Please pay 150$ for the doctor's fee.",
+		"options": {
+			"Yes": "5",
+			"No": "23",
+			"cancel": "23"
+		}
+	},
+	"5": {
+		"name": "Nurse",
+		"type": "normal",
+		"givecash": -150,
+		"sound": "Sexy",
+		"text": "I'm so glad that you recovered, [Ninten].",
+		"cure": {
+			"character": "ninten",
+			"status": "Unconscious"
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"goto": "22"
+	},
+	"6": {
+		"if": {
+			"hasstatus": {
+				"character": "ana",
+				"status": "Unconscious"
+			},
+			"goto": "7"
+		},
+		"goto": "24"
+	},
+	"7": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "Oh my! [Ana] looks like she's still unconscious.",
+		"if": {
+			"hascash": 150,
+			"goto": "8"
+		},
+		"goto": "25"
+	},
+	"8": {
+		"name": "Nurse",
+		"type": "question",
+		"sound": "Sexy",
+		"cash": true,
+		"text": "Please pay 150$ for the doctor's fee.",
+		"options": {
+			"Yes": "9",
+			"No": "23",
+			"cancel": "23"
+		}
+	},
+	"9": {
+		"name": "Nurse",
+		"type": "normal",
+		"givecash": -150,
+		"sound": "Sexy",
+		"text": "I'm so glad that you recovered, [Ana].",
+		"cure": {
+			"character": "ana",
+			"status": "Unconscious"
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"goto": "22"
+	},
+	"10": {
+		"if": {
+			"hasstatus": {
+				"character": "lloyd",
+				"status": "Unconscious"
+			},
+			"goto": "11"
+		},
+		"goto": "24"
+	},
+	"11": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "Oh my! [Lloyd] looks like he's still unconscious.",
+		"if": {
+			"hascash": 150,
+			"goto": "12"
+		},
+		"goto": "25"
+	},
+	"12": {
+		"name": "Nurse",
+		"type": "question",
+		"sound": "Sexy",
+		"cash": true,
+		"text": "Please pay 150$ for the doctor's fee.",
+		"options": {
+			"Yes": "13",
+			"No": "23",
+			"cancel": "23"
+		}
+	},
+	"13": {
+		"name": "Nurse",
+		"type": "normal",
+		"givecash": -150,
+		"sound": "Sexy",
+		"text": "I'm so glad that you recovered, [Lloyd].",
+		"cure": {
+			"character": "lloyd",
+			"status": "Unconscious"
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"goto": "22"
+	},
+	"14": {
+		"if": {
+			"hasstatus": {
+				"character": "teddy",
+				"status": "Unconscious"
+			},
+			"goto": "15"
+		},
+		"goto": "24"
+	},
+	"15": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "Oh my! [Teddy] looks like he's still unconscious.",
+		"if": {
+			"hascash": 150,
+			"goto": "16"
+		},
+		"goto": "25"
+	},
+	"16": {
+		"name": "Nurse",
+		"type": "question",
+		"sound": "Sexy",
+		"cash": true,
+		"text": "Please pay 150$ for the doctor's fee.",
+		"options": {
+			"Yes": "17",
+			"No": "23",
+			"cancel": "23"
+		}
+	},
+	"17": {
+		"name": "Nurse",
+		"type": "normal",
+		"givecash": -150,
+		"sound": "Sexy",
+		"text": "I'm so glad that you recovered, [Teddy].",
+		"cure": {
+			"character": "teddy",
+			"status": "Unconscious"
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"goto": "22"
+	},
+	"18": {
+		"if": {
+			"hasstatus": {
+				"character": "pippi",
+				"status": "Unconscious"
+			},
+			"goto": "19"
+		},
+		"goto": "24"
+	},
+	"19": {
+		"name": "Nurse",
+		"type": "normal",
+		"sound": "Sexy",
+		"text": "Oh my! [Pippi] looks like she's still unconscious.",
+		"if": {
+			"hascash": 150,
+			"goto": "20"
+		},
+		"goto": "25"
+	},
+	"20": {
+		"name": "Nurse",
+		"type": "question",
+		"sound": "Sexy",
+		"cash": true,
+		"text": "Please pay 150$ for the doctor's fee.",
+		"options": {
+			"Yes": "21",
+			"No": "23",
+			"cancel": "23"
+		}
+	},
+	"21": {
+		"name": "Nurse",
+		"type": "normal",
+		"givecash": -150,
+		"sound": "Sexy",
+		"text": "I'm so glad that you recovered, [Pippi].",
+		"cure": {
+			"character": "pippi",
+			"status": "Unconscious"
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"goto": "22"
+	},
+	"22": {
+		"name": "Nurse",
+		"type": "normal",
+		"cash": false,
+		"sound": "Sexy",
+		"text": "Come back any time you need."
+	},
+	"23": {
+		"name": "Nurse",
+		"type": "normal",
+		"cash": false,
+		"sound": "Sexy",
+		"text": "Isn't that your friend?... It's very serious."
+	},
+	"24": {
+		"name": "Nurse",
+		"type": "normal",
+		"cash": false,
+		"sound": "Sexy",
+		"text": "We don't have a person like that in our hospital."
+	},
+	"25": {
+		"name": "Nurse",
+		"type": "normal",
+		"cash": true,
+		"sound": "Sexy",
+		"text": "The doctor's fee is 150$, but it seems like you're short on cash.",
+		"goto": "26"
+	},
+	"26": {
+		"name": "Nurse",
+		"type": "normal",
+		"cash": false,
+		"sound": "Sexy",
+		"text": "Feel free to use the ATM on the side to withdraw the amount needed."
+	}
+}

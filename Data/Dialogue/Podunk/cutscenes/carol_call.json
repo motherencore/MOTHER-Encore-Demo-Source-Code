@@ -1,0 +1,89 @@
+{
+	"0": {
+		"actors": {
+			"carol": "Objects/npc",
+			"ninten": "leader"
+		},
+		"talker": "carol",
+		"currentcam": "none",
+		"returncam": 0.1,
+		"actorsdir": {
+			"carol": {
+				"x": 0,
+				"y": 1
+			}
+		},
+		"name": "Carol",
+		"text": "Are you okay, [Ninten]?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 0, "y": -32}, {"wait": 0.1}],
+				"speed": 64,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"actor": "carol",
+				"speed": 0.1,
+				"queue": true
+			}
+		},
+		"name": "Carol",
+		"text": "What on earth is happening to our home?",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Carol",
+		"text": "I'm so scared...",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Carol",
+		"text": "If only your father were here now...",
+		"sound": "Sexy",
+		"autoadvance": true,
+		"goto": "4"
+	},
+	"4": {
+		"name": "Carol",
+		"wait": 0.3,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "5"
+	},
+	"5": {
+		"objectfunction": {
+			"Objects/Phone": "_ring"
+		},
+		"actorsturn": {
+			"carol": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.05
+			}
+		},
+		"name": "Carol",
+		"wait": 1,
+		"goto": "6"
+	},
+	"6": {
+		"name": "Carol",
+		"text": "Oh! That must be him.",
+		"sound": "Sexy",
+		"goto": "7"
+	},
+	"7": {
+		"name": "Carol",
+		"text": "Could you get it, [Ninten]?",
+		"sound": "Sexy",
+		"flag": "phone_ring"
+	}
+}

@@ -1,0 +1,234 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaulttag.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Main/UI/DialogueBox.gd" type="Script" id=4]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/Sound effects/text/Kid.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Audio/Sound effects/Cursor 2.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Nodes/Ui/Camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Close"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.63728, 2.54913 ),
+"update": 0,
+"values": [ Vector2( 30, 120 ), Vector2( 30, 180 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 30, 180 ), Vector2( 30, 120 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 35, 180 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Close"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox/Namebox:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.420448, 0.420448 ),
+"update": 0,
+"values": [ Vector2( 8, -15 ), Vector2( 8, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox/Namebox:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.34151, 2.54912 ),
+"update": 0,
+"values": [ Vector2( 8, 0 ), Vector2( 8, -15 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dialoguebox/Namebox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8, 0 ) ]
+}
+
+[node name="Dialogue" type="CanvasLayer"]
+pause_mode = 2
+layer = 3
+script = ExtResource( 4 )
+
+[node name="Dialoguebox" type="NinePatchRect" parent="."]
+material = ExtResource( 9 )
+margin_left = 35.0
+margin_top = 180.0
+margin_right = 295.0
+margin_bottom = 239.0
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Arrow" parent="Dialoguebox" instance=ExtResource( 5 )]
+position = Vector2( 108, 42 )
+menu_parent_path = NodePath("../Options")
+cursor_offset = Vector2( -8, 2 )
+on = true
+
+[node name="Cursor_Down" parent="Dialoguebox" instance=ExtResource( 5 )]
+position = Vector2( 249, 53 )
+rotation = 1.5708
+cursor_offset = Vector2( 0, 0 )
+
+[node name="Options" type="HBoxContainer" parent="Dialoguebox"]
+margin_left = 15.0
+margin_top = 34.0
+margin_right = 216.0
+margin_bottom = 54.0
+alignment = 1
+
+[node name="ClipBox" type="Control" parent="Dialoguebox"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 261.0
+margin_bottom = 53.0
+rect_clip_content = true
+
+[node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
+margin_left = 3.0
+margin_top = -12.0
+margin_right = 11.0
+margin_bottom = 48.0
+custom_constants/line_separation = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
+meta_underlined = false
+text = "
+@
+
+@"
+scroll_active = false
+scroll_following = true
+
+[node name="Dialogue" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
+margin_left = 12.0
+margin_top = -12.0
+margin_right = 247.0
+margin_bottom = 48.0
+custom_constants/line_separation = 3
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "
+Whats your opinion on [tornado radius=3 freq=-4]Dialog boxes [/tornado]?
+"
+text = "
+Whats your opinion on Dialog boxes ?
+"
+scroll_active = false
+scroll_following = true
+
+[node name="Namebox" type="NinePatchRect" parent="Dialoguebox"]
+show_behind_parent = true
+margin_left = 8.0
+margin_right = 50.0
+margin_bottom = 47.0
+texture = ExtResource( 3 )
+patch_margin_left = 14
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 14
+
+[node name="Name" type="Label" parent="Dialoguebox/Namebox"]
+margin_left = 5.0
+margin_top = 3.0
+margin_right = 27.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 22, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "Sans"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 1 )
+anims/Open = SubResource( 2 )
+anims/RESET = SubResource( 6 )
+
+[node name="NameAnim" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 3 )
+anims/Open = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="InputSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

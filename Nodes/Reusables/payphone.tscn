@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Maps/Testing/phone.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Objects/Payphone.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Ui/emotes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Audio/Sound effects/phonering.wav" type="AudioStream" id=4]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=103]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=88]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("main:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 81 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.87464, 8.50427 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=104]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.5, 4.5 )
+
+[node name="PayPhone" type="Sprite"]
+position = Vector2( 0, -4 )
+script = ExtResource( 1 )
+dialog = "Reusable/dad_normal"
+payphone = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 103 )
+anims/RESET = SubResource( 88 )
+
+[node name="main" type="Sprite" parent="."]
+position = Vector2( 1, -6 )
+texture = ExtResource( 2 )
+
+[node name="interact" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
+modulate = Color( 0, 1, 0.717647, 1 )
+position = Vector2( -4.76837e-07, 12 )
+scale = Vector2( 1.01592, 0.940705 )
+shape = SubResource( 3 )
+
+[node name="ButtonPrompt" parent="interact" instance=ExtResource( 5 )]
+material = SubResource( 104 )
+position = Vector2( 1, -25 )
+offset = Vector2( 1, -25 )
+
+[node name="emotes" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -26 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, 9 )
+stream = ExtResource( 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0.5, 8.5 )
+shape = SubResource( 2 )

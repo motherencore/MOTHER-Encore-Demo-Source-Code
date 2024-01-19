@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Nodes/Reusables/Overlap/LaserTrail.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Reusables/Overlap/LaserHead.tscn" type="PackedScene" id=2]
+
+[node name="Laser" type="YSort"]
+
+[node name="LaserHead" parent="." instance=ExtResource( 2 )]
+collision_mask = 4
+
+[node name="LaserTrail3" parent="LaserHead" instance=ExtResource( 1 )]
+show_behind_parent = true
+width = 4.0
+default_color = Color( 0.184314, 0.235294, 0.643137, 0.662745 )
+begin_cap_mode = 0
+end_cap_mode = 0
+sharp_limit = 0.0
+round_precision = 1
+length = 15
+
+[node name="LaserTrail2" parent="LaserHead" instance=ExtResource( 1 )]
+show_behind_parent = true
+width = 4.0
+default_color = Color( 0.25098, 0.52549, 0.952941, 0.560784 )
+begin_cap_mode = 0
+end_cap_mode = 0
+sharp_limit = 0.0
+round_precision = 1
+length = 13
+
+[node name="LaserTrail" parent="LaserHead" instance=ExtResource( 1 )]
+show_behind_parent = true
+width = 4.0
+default_color = Color( 0.454902, 0.658824, 0.819608, 1 )
+begin_cap_mode = 0
+end_cap_mode = 0
+sharp_limit = 0.0
+round_precision = 1
+length = 10

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Canary_Village_Loop.mp3-7d59a8753f54de827b2e03f7d3efe4b6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Canary Village/Canary_Village_Loop.mp3"
+dest_files=[ "res://.import/Canary_Village_Loop.mp3-7d59a8753f54de827b2e03f7d3efe4b6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

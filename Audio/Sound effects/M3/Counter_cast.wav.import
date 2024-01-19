@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Counter_cast.wav-0bdcb727ba63a5f279f6d1bf58b94916.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Counter_cast.wav"
+dest_files=[ "res://.import/Counter_cast.wav-0bdcb727ba63a5f279f6d1bf58b94916.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

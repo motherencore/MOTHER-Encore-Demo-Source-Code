@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Mrs. Lindgren",
+		"text": "Thank you for finding my daughter, [Ninten].",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mrs. Lindgren",
+		"text": "By the way, the [color]mayor[/color] is itching to see you, [Ninten]...",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mrs. Lindgren",
+		"text": "[Pippi], go with [Ninten] and help straighten this out.",
+		"sound": "Sexy"
+	}
+}

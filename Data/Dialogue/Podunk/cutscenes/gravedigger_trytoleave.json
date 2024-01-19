@@ -1,0 +1,37 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"iggy": "Objects/NPCS/npc18"
+		},
+		"talker": "iggy",
+		"name": "Iggy",
+		"text": "Hey, where do you think you're going?!",
+		"sound": "Adult",
+		"actorsblend": {
+			"ninten": false
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.1
+			}
+		},
+		"goto": "1"
+	},
+	"1": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 8, "y": 0}],
+				"speed": 64,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"wait": 1.2,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

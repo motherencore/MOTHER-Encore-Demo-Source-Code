@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hotel_Main_Track.mp3-f3902637c2a66ced5a07db7d44355997.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Hotel/Hotel_Main_Track.mp3"
+dest_files=[ "res://.import/Hotel_Main_Track.mp3-f3902637c2a66ced5a07db7d44355997.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

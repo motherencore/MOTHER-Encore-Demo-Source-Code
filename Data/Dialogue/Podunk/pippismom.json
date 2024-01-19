@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Mrs. Lindgren",
+		"text": "Oh me, oh my!",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mrs. Lindgren",
+		"text": "It seems my dear [color][Pippi][/color]'s gone missing!",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mrs. Lindgren",
+		"text": "If you're going into town, please ask [color]Mayor Goodman[/color] if anyone's seen her, okay?",
+		"sound": "Sexy"
+	}
+}

@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Reusables/flag landmarks.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Main/Hotel Room.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 156, 116 )
+
+[node name="Hotel Room" type="YSort"]
+script = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4352
+collision_mask = 4352
+monitorable = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 4, 4 )
+shape = SubResource( 1 )
+
+[node name="Pippi Rescued" parent="." instance=ExtResource( 2 )]
+appear_flag = "pippi_rescued"
+disappear_flag = "canary_found"
+
+[node name="npc_Pippi" parent="Pippi Rescued" instance=ExtResource( 1 )]
+position = Vector2( 64, -8 )
+sprite = "Pippi"
+dialog = "Hotel Party Banter/PippiRescued_Pippi"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="Canary Found" parent="." instance=ExtResource( 2 )]
+appear_flag = "canary_found"
+disappear_flag = "canary_melody"
+
+[node name="npc_Pippi" parent="Canary Found" instance=ExtResource( 1 )]
+position = Vector2( 64, -8 )
+sprite = "Pippi"
+dialog = "Hotel Party Banter/CanaryFound_Pippi"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="npc_Canary" parent="Canary Found" instance=ExtResource( 1 )]
+position = Vector2( -32, 24 )
+sprite = "CanaryChick"
+dialog = "Hotel Party Banter/CanaryFound_Canary"
+thoughts = "Hotel Party Banter/CanaryFound_CanaryThoughts"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="Canary Melody" parent="." instance=ExtResource( 2 )]
+appear_flag = "canary_melody"
+disappear_flag = "pippi_delivered"
+
+[node name="npc_Pippi" parent="Canary Melody" instance=ExtResource( 1 )]
+position = Vector2( 64, -8 )
+sprite = "Pippi"
+dialog = "Hotel Party Banter/CanaryMelody_Pippi"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="Flag Landmark10" parent="." instance=ExtResource( 2 )]
+appear_flag = "lloyd"
+
+[node name="npc_Lloyd" parent="Flag Landmark10" instance=ExtResource( 1 )]
+position = Vector2( 64, -8 )
+sprite = "Lloyd"
+dialog = "Hotel Party Banter/Lloyd_01"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="npc_Ana" parent="Flag Landmark10" instance=ExtResource( 1 )]
+position = Vector2( -16, -8 )
+sprite = "Ana"
+dialog = "Hotel Party Banter/Ana_01"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

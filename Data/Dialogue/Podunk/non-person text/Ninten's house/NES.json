@@ -1,0 +1,13 @@
+{
+	"0": {
+		"text": "A [Ninten]do Entertainment System.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Inside is a cartridge with a dozen games packed in.",
+		"goto": "2"
+	},
+	"2": {
+		"text": "Whoever made this must be really generous."
+	}
+}

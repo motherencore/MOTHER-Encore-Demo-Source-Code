@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Store - Copy.mp3-d57a06518fa318c8996cad978e02ae47.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Store - Copy.mp3"
+dest_files=[ "res://.import/Store - Copy.mp3-d57a06518fa318c8996cad978e02ae47.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

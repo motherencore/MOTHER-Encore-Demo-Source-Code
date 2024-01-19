@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/YOUWON.mp3-b1102d7d6807b65567555412258a4b02.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/You Win/YOUWON.mp3"
+dest_files=[ "res://.import/YOUWON.mp3-b1102d7d6807b65567555412258a4b02.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

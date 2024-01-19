@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/EerieBuilding.mp3-4afd113c66eaccbf81100a1b4daf77fd.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/EerieBuilding.mp3"
+dest_files=[ "res://.import/EerieBuilding.mp3-4afd113c66eaccbf81100a1b4daf77fd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

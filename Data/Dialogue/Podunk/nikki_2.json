@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name":"Nikki",
+		"text":"Oh wow, you found her!",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Nikki",
+		"text":"That must have taken a lot of courage.",
+		"sound": "Adult"
+	}
+}

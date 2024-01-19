@@ -1,0 +1,24 @@
+{
+	"name": "Gabilan",
+	"maxhp": 100,
+	"hp": 100,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 68,
+	"offense": 62,
+	"defense": 100,
+	"iq": 70,
+	"guts": 0,
+	"level": 4,
+	"exp": 140,
+	"cash": 43,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Something like this should not exist on the earth...",
+	"boss": false,
+	"sprite": "gabilan",
+	"ovsprite": "GabilanOV",
+	"music": "",
+	"bg": ""
+}

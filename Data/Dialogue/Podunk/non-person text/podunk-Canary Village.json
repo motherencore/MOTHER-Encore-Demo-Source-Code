@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "Go down south to reach Podunk town.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Head west if you wanna check out Canary Village."
+	}
+}

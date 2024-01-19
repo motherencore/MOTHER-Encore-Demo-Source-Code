@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Buy_Somethin_Will_Ya.mp3-c30582bf6f736a5c940448ac99a9c521.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Buy_Somethin_Will_Ya.mp3"
+dest_files=[ "res://.import/Buy_Somethin_Will_Ya.mp3-c30582bf6f736a5c940448ac99a9c521.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

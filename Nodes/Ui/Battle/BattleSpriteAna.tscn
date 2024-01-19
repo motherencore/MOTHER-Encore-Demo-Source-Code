@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Character Sprites/Ana/battle.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/Battle/BattleSprite.gd" type="Script" id=2]
+[ext_resource path="res://Shaders/Outline.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = ExtResource( 3 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 0.0
+shader_param/pattern = 0
+shader_param/inside = false
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "psi"
+length = 0.714286
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429, 0.642857 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29, 30, 31, 32, 33, 34, 35, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "psiPrep"
+length = 0.285714
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "psiPrep2"
+length = 0.214286
+loop = true
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+
+[node name="BattleSprite" type="Control"]
+show_behind_parent = true
+margin_top = -16.0
+margin_right = 64.0
+margin_bottom = 48.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 10 )
+position = Vector2( 32, 32 )
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 5 )
+anims/psi = SubResource( 6 )
+anims/psiPrep = SubResource( 8 )
+anims/psiPrep2 = SubResource( 9 )
+next/psi = "idle"
+next/psiPrep = "psiPrep2"
+
+[node name="Tween" type="Tween" parent="."]

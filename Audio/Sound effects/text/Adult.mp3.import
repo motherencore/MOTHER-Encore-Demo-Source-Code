@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Adult.mp3-0da66f277ac2bcb4a27a150ca057d046.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/text/Adult.mp3"
+dest_files=[ "res://.import/Adult.mp3-0da66f277ac2bcb4a27a150ca057d046.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

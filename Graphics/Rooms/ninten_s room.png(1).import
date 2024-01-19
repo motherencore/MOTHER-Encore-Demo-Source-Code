@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/ninten_s room.png-8f56d7984fc257b29a15a4da55b6e518.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Graphics/Rooms/ninten_s room.png"
+dest_files=[ "res://.import/ninten_s room.png-8f56d7984fc257b29a15a4da55b6e518.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

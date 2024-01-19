@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Speed_down_cast.wav-238111cc761d591db0d329af19d3cb74.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Speed_down_cast.wav"
+dest_files=[ "res://.import/Speed_down_cast.wav-238111cc761d591db0d329af19d3cb74.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

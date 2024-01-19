@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Shock.mp3-0ddef0a51d4b823a59bacf3074a47e51.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Shock.mp3"
+dest_files=[ "res://.import/Shock.mp3-0ddef0a51d4b823a59bacf3074a47e51.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

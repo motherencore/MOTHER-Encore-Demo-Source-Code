@@ -1,0 +1,13 @@
+{
+	"0": {
+		"text": "A really cool baseball bat.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "It's even signed by the one and only Will Clark!",
+		"goto": "2"
+	},
+	"2": {
+		"text": "You know it's too valuable to swing around yourself."
+	}
+}

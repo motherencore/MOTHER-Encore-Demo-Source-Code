@@ -1,0 +1,50 @@
+{
+	"0": {
+		"name": "Mimmie",
+		"text": "The Basement Key?",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mimmie",
+		"text": "Ah, I see...",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mimmie",
+		"text": "So you're also after the secret treasure in the basement, aren't you?",
+		"sound": "Kid",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Mimmie",
+		"text": "I'm talking about the lifetime supply of Orange Juice.",
+		"sound": "Kid",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Mimmie",
+		"text": "Unfortunately, the basement is locked right now.",
+		"sound": "Kid",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Mimmie",
+		"text": "I tried asking mom where the key is, but she won't tell me.",
+		"sound": "Kid",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Mimmie",
+		"text": "Maybe she'll listen to you, though. Try asking her.",
+		"sound": "Kid",
+		"goto": "7"
+	},
+	"7": {
+		"flag": "mimmie_ask_key",
+		"name": "Mimmie",
+		"text": "If you manage to unlock the basement, I'll find all of the Orange Juice for you.",
+		"sound": "Kid"
+	}
+}

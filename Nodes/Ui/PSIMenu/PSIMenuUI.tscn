@@ -1,0 +1,408 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Nodes/Ui/Inventory/ConfirmationSelect.gd" type="Script" id=1]
+[ext_resource path="res://Nodes/Ui/Battle/PartyInfoPlate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/UI/Inventory/cursor.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_title.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/UI/TargetCharacter.gd" type="Script" id=8]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=9]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=10]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=11]
+[ext_resource path="res://Scripts/UI/PSIMenuUI.gd" type="Script" id=13]
+[ext_resource path="res://Nodes/Ui/PSISelect.tscn" type="PackedScene" id=17]
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.729412, 0.32549, 0.894118, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Close"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PSIMenu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PSIMenu/PartyInfoHBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 131 ), Vector2( 0, 360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PSIMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Open"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PSIMenu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -180 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PSIMenu/PartyInfoHBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 380 ), Vector2( 0, 127 ), Vector2( 0, 131 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PSIMenu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PSIMenu/PartyInfoHBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 131 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PSIMenu/PartyInfoHBox:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PSIMenu/PartyInfoHBox:margin_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0.0 ]
+}
+
+[node name="PSIMenuUI" type="CanvasLayer"]
+layer = 2
+script = ExtResource( 13 )
+
+[node name="PSIMenu" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -180.0
+margin_bottom = -180.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PartyInfoHBox" type="HBoxContainer" parent="PSIMenu"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -49.0
+custom_constants/separation = 9
+alignment = 1
+
+[node name="PartyInfoPlate" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
+material = SubResource( 3 )
+margin_left = 16.0
+margin_right = 81.0
+
+[node name="PartyInfoPlate2" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
+material = SubResource( 4 )
+margin_left = 90.0
+margin_right = 155.0
+
+[node name="PartyInfoPlate3" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
+material = SubResource( 5 )
+margin_left = 164.0
+margin_right = 229.0
+
+[node name="PartyInfoPlate4" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
+material = SubResource( 6 )
+margin_left = 238.0
+margin_right = 303.0
+
+[node name="PSISelect" parent="PSIMenu" instance=ExtResource( 17 )]
+margin_left = 31.0
+margin_top = 23.0
+margin_right = 286.0
+margin_bottom = 123.0
+psiType = -1
+
+[node name="PSICharacterTab" parent="PSIMenu" instance=ExtResource( 4 )]
+psiOnly = true
+menuName = "PSI"
+
+[node name="Description" type="Control" parent="PSIMenu"]
+margin_left = 52.0
+margin_top = 100.0
+margin_right = 266.0
+margin_bottom = 114.0
+
+[node name="Desc" type="Label" parent="PSIMenu/Description"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+custom_fonts/font = ExtResource( 11 )
+text = "This is a PSI Skill. This is a PSI Skill. This is a PSI S-"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="Divider2" type="ColorRect" parent="PSIMenu"]
+margin_left = 44.0
+margin_top = 96.0
+margin_right = 274.0
+margin_bottom = 97.0
+rect_pivot_offset = Vector2( -82, -3 )
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 10 )
+
+[node name="TargetCharacterMenu" type="NinePatchRect" parent="PSIMenu"]
+material = ExtResource( 9 )
+margin_left = 130.0
+margin_top = 46.0
+margin_right = 204.0
+margin_bottom = 122.0
+texture = ExtResource( 6 )
+patch_margin_left = 8
+patch_margin_top = 16
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 8 )
+
+[node name="ToWhomLabel" parent="PSIMenu/TargetCharacterMenu" instance=ExtResource( 3 )]
+margin_left = 6.0
+margin_top = 2.0
+margin_right = 56.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/normal = SubResource( 1 )
+text = "To whom?"
+
+[node name="MarginContainer" type="MarginContainer" parent="PSIMenu/TargetCharacterMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 6
+custom_constants/margin_top = 15
+custom_constants/margin_left = 13
+custom_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PSIMenu/TargetCharacterMenu/MarginContainer"]
+margin_left = 13.0
+margin_top = 15.0
+margin_right = 68.0
+margin_bottom = 69.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 0
+custom_constants/separation = 2
+
+[node name="CharaLabel1" parent="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 55.0
+text = "lloyd"
+
+[node name="CharaLabel2" parent="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 14.0
+margin_right = 55.0
+margin_bottom = 26.0
+text = "lloyd"
+
+[node name="CharaLabel3" parent="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 28.0
+margin_right = 55.0
+margin_bottom = 40.0
+text = "lloyd"
+
+[node name="CharaLabel4" parent="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 42.0
+margin_right = 55.0
+margin_bottom = 54.0
+text = "lloyd"
+
+[node name="arrow2" parent="PSIMenu/TargetCharacterMenu" instance=ExtResource( 7 )]
+position = Vector2( 7, 20 )
+menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+skip_empty_labels = true
+skip_hidden_items = true
+highlight = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="ConfirmationSelect" type="NinePatchRect" parent="PSIMenu/TargetCharacterMenu"]
+material = ExtResource( 9 )
+margin_left = 74.0
+margin_right = 133.0
+margin_bottom = 48.0
+texture = ExtResource( 6 )
+patch_margin_left = 8
+patch_margin_top = 16
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 1 )
+
+[node name="ConfirmationLabel" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect" instance=ExtResource( 3 )]
+margin_left = 6.0
+margin_top = 2.0
+margin_right = 56.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "You sure?"
+
+[node name="MarginContainer" type="MarginContainer" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -1.0
+custom_constants/margin_right = 7
+custom_constants/margin_top = 15
+custom_constants/margin_left = 13
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer"]
+margin_left = 13.0
+margin_top = 15.0
+margin_right = 52.0
+margin_bottom = 47.0
+custom_constants/separation = 2
+
+[node name="CharaLabel1" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_right = 39.0
+text = "Yes"
+
+[node name="CharaLabel2" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 14.0
+margin_right = 39.0
+margin_bottom = 26.0
+text = "No"
+
+[node name="arrow" type="TextureRect" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect"]
+visible = false
+margin_left = 7.0
+margin_top = 17.0
+margin_right = 12.0
+margin_bottom = 23.0
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 7 )
+anims/Open = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[connection signal="show_statsbar" from="PSIMenu/TargetCharacterMenu" to="." method="_on_TargetCharacterMenu_show_statsbar"]
+[connection signal="resized" from="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" to="PSIMenu/TargetCharacterMenu" method="_on_VBoxContainer_resized"]
+[connection signal="back" from="PSIMenu/TargetCharacterMenu/ConfirmationSelect" to="PSIMenu/TargetCharacterMenu" method="_on_ConfirmationSelect_back"]

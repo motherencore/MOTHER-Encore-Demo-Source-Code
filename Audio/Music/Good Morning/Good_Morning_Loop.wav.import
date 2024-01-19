@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Good_Morning_Loop.wav-9a9a57214351bbaa91ff8619e2b0214e.sample"
+
+[deps]
+
+source_file="res://Audio/Music/Good Morning/Good_Morning_Loop.wav"
+dest_files=[ "res://.import/Good_Morning_Loop.wav-9a9a57214351bbaa91ff8619e2b0214e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

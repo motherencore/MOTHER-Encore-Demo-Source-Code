@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Main/Present.gd" type="Script" id=2]
+[ext_resource path="res://Audio/Sound effects/Gift Box.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Reusables/Effects/Sparkles.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 7 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Unwrapped"
+length = 0.666667
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.333333
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 3, 2, 1, 0 ]
+}
+
+[node name="Present" type="Sprite"]
+script = ExtResource( 2 )
+type = "item"
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="Sparkles" parent="." instance=ExtResource( 6 )]
+position = Vector2( 5, -4 )
+frame = 11
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 517
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, 1 )
+shape = SubResource( 2 )
+
+[node name="interact" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
+visible = false
+modulate = Color( 0, 1, 0.717647, 1 )
+position = Vector2( -4.76837e-07, 4.76837e-07 )
+shape = SubResource( 6 )
+
+[node name="ButtonPrompt" parent="interact" instance=ExtResource( 4 )]
+material = SubResource( 7 )
+position = Vector2( 0, -8 )
+offset = Vector2( 0, -8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 3 )
+anims/Unwrapped = SubResource( 4 )
+anims/Wrapped = SubResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

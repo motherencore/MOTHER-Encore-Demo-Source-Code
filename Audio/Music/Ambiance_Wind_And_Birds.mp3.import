@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ambiance_Wind_And_Birds.mp3-176e69fa0f4731db0860813f46eb301b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Ambiance_Wind_And_Birds.mp3"
+dest_files=[ "res://.import/Ambiance_Wind_And_Birds.mp3-176e69fa0f4731db0860813f46eb301b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

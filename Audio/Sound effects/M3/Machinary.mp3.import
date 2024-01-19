@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Machinary.mp3-21179e53fb4bc27da46d84dd3ec00414.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Machinary.mp3"
+dest_files=[ "res://.import/Machinary.mp3-21179e53fb4bc27da46d84dd3ec00414.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

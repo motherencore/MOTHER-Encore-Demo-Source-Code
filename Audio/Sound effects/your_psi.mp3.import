@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/your_psi.mp3-22c125929200e0b3bd7ba8b5cae31a50.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/your_psi.mp3"
+dest_files=[ "res://.import/your_psi.mp3-22c125929200e0b3bd7ba8b5cae31a50.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

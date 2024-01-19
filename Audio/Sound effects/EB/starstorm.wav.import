@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/starstorm.wav-c9e1fe5a758e418a2f1411473d10f008.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/starstorm.wav"
+dest_files=[ "res://.import/starstorm.wav-c9e1fe5a758e418a2f1411473d10f008.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

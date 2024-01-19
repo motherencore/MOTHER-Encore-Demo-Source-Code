@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ana PSI Fire.mp3-26aa3352e60887ea0bdb54341448053c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Ana PSI Fire.mp3"
+dest_files=[ "res://.import/Ana PSI Fire.mp3-26aa3352e60887ea0bdb54341448053c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

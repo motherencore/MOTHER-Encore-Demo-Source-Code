@@ -1,0 +1,32 @@
+{
+	"0": {
+		"name": "Carol",
+		"text": "So you're leaving, huh?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Carol",
+		"text": "I guess all boys have to leave home someday...",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Carol",
+		"text": "If you want to know where I put the [color]Basement Key[/color], I gave it to [color]Mick.[/color]",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Carol",
+		"text": "Don't tell Mimmie, though.",
+		"sound": "Sexy",
+		"goto": "4"
+	},
+	"4": {
+		"flag": "carol_ask_key",
+		"name": "Carol",
+		"text": "I made sure to keep all the Orange Juice away from her.",
+		"sound": "Sexy"
+	}
+}

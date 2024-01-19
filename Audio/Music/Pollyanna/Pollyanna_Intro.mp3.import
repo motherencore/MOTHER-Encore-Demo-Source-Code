@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Pollyanna_Intro.mp3-cbde7308d22be512ac2a8a0f2d7485fa.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Pollyanna/Pollyanna_Intro.mp3"
+dest_files=[ "res://.import/Pollyanna_Intro.mp3-cbde7308d22be512ac2a8a0f2d7485fa.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

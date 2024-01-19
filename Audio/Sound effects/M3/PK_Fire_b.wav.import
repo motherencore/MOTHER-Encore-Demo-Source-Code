@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PK_Fire_b.wav-0797a379217fd7fdcb165544db64bbff.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PK_Fire_b.wav"
+dest_files=[ "res://.import/PK_Fire_b.wav-0797a379217fd7fdcb165544db64bbff.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

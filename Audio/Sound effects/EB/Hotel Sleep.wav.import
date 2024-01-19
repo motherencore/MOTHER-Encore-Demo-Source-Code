@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hotel Sleep.wav-8f9f18fdb2be6220c5a4e041eb81be99.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/Hotel Sleep.wav"
+dest_files=[ "res://.import/Hotel Sleep.wav-8f9f18fdb2be6220c5a4e041eb81be99.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Boss Win.mp3-386890dbc54b94abd07df3aa2ba8169c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Boss Win.mp3"
+dest_files=[ "res://.import/Boss Win.mp3-386890dbc54b94abd07df3aa2ba8169c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

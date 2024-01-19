@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/poopy.mp3-d34960ca68d1c4c9f4e710afbcf86796.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/poopy.mp3"
+dest_files=[ "res://.import/poopy.mp3-d34960ca68d1c4c9f4e710afbcf86796.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

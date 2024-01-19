@@ -1,0 +1,25 @@
+{
+	"0": {
+		"name": "Lucy",
+		"text": "Hey [Ninten], how's your asthma holding up?",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Lucy",
+		"text": "Mine's a bit better now, but car exhausts still makes it-",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Lucy",
+		"text": "*Cough*     *Cough*     *ReeeEEETCH*",
+		"sound": "Kid",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Lucy",
+		"text": "pretty bad sometimes...",
+		"sound": "Kid"
+	}
+}

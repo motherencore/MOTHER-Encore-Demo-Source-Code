@@ -1,0 +1,23 @@
+{
+	"name": "Dragon",
+	"maxhp": 650,
+	"hp": 650,
+	"maxpp": 200,
+	"pp": 200,
+	"speed": 60,
+	"offense": 180,
+	"defense": 200,
+	"iq": 20,
+	"guts": 0,
+	"level": 4,
+	"exp": 1000,
+	"cash": 1200,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It seems to have an important secret.",
+	"boss": true,
+	"sprite": "dragon",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,23 @@
+{
+	"name": "R7308XX",
+	"maxhp": 1000,
+	"hp": 1000,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 50,
+	"offense": 900,
+	"defense": 1000,
+	"iq": 60,
+	"guts": 0,
+	"level": 100,
+	"exp": 1100,
+	"cash": 180,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "New and unfortunately, improved.",
+	"sprite": "r7308xx",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,96 @@
+{
+	"0": {
+		"actors": {
+			"lindgren": "Objects/NPCS/npc26",
+			"ninten": "leader",
+			"pippi": "pippi"
+		},
+		"emoteactors": {
+			"lindgren": "exclamation"
+		},
+		"actorsdir": {
+			"lindgren": {
+				"x": 1,
+				"y": 0
+			}
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "1"
+	},
+	"1": {
+		"actorsturn": {
+			"ninten": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.1
+			},
+			"pippi": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.05
+			}
+		},
+		"talker": "lindgren",
+		"name": "Mrs. Lindgren",
+		"text": "All the canaries in the village are singing again.",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mrs. Lindgren",
+		"text": "I assume you've reunited the lost canary chick to its mother, correct?",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"talker": "pippi",
+		"name": "[Pippi]",
+		"text": "Yep! We found her on the other side of a crack in the wall.",
+		"sound": "Kid",
+		"goto": "4"
+	},
+	"4": {
+		"talker": "lindgren",
+		"name": "Mrs. Lindgren",
+		"text": "Great! I knew you'd find her!",
+		"sound": "Sexy",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Mrs. Lindgren",
+		"text": "Oh, and by the way, the [color]mayor[/color] is itching to see you, [Ninten]...",
+		"sound": "Sexy",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Mrs. Lindgren",
+		"text": "[Pippi], go with [Ninten] and help straighten this out.",
+		"sound": "Sexy",
+		"goto": "7"
+	},
+	"7": {
+		"talker": "pippi",
+		"name": "[Pippi]",
+		"text": "Sure thing, mom!",
+		"sound": "Kid",
+		"goto": "8"
+	},
+	"8": {
+		"flag": "leave_canary_village",
+		"actorsturn": {
+			"ninten": {
+				"actor": "pippi",
+				"speed": 0.05
+			},
+			"pippi": {
+				"actor": "ninten",
+				"speed": 0.05
+			}
+		},
+		"name": "[Pippi]",
+		"text": "Come on, [Ninten]! Let's go see the [color]mayor[/color]!",
+		"sound": "Kid"
+	}
+}

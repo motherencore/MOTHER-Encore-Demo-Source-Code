@@ -1,0 +1,37 @@
+{
+	"0": {
+		"name": "[Pippi]",
+		"text": "Thanks for freeing me from that coffin, Ninten.",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "[Pippi]",
+		"text": "I was scared I was going to be eaten by zombies or starve to death.",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"name": "[Pippi]",
+		"text": "You say the mayor's looking for me, right?",
+		"sound": "Kid",
+		"goto": "3"
+	},
+	"3": {
+		"name": "[Pippi]",
+		"text": "Well maybe we don't have to see that old guy just yet.",
+		"sound": "Kid",
+		"goto": "4"
+	},
+	"4": {
+		"name": "[Pippi]",
+		"text": "I really want to go see that pet shop in the department store.",
+		"sound": "Kid",
+		"goto": "5"
+	},
+	"5": {
+		"name": "[Pippi]",
+		"text": "It's practically like a zoo, but you don't even have to PAY to see the animals.",
+		"sound": "Kid"
+	}
+}

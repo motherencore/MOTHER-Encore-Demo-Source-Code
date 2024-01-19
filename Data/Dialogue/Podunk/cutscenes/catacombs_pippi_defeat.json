@@ -1,0 +1,418 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"pippi": "Objects/npc"
+		},
+		"talker": "pippi",
+		"actorsblend": {
+			"pippi": false
+		},
+		"actorsmove": {
+			"pippi": {
+				"movement": [{"x": -1416, "y": -1672}, {"wait": 0.8}, {"x": -1416, "y": -1680}],
+				"speed": 96,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsshake": {
+			"pippi": {
+				"x": 1,
+				"length": 0.2
+			}
+		},
+		"actorsjump": {
+			"pippi": {"height": 16, "speed": 0.2, "times": 2}
+		},
+		"name":"[Pippi]",
+		"text":"Okay, Okay! I surrender!",
+		"sound": "Kid",
+		"goto":"1"
+	},
+	"1": {
+		"talker": "none",
+		"actorsblend": {
+			"pippi": true
+		},
+		"actorsdir": {
+			"pippi": {
+				"x": 0,
+				"y": 1
+			}
+		},
+		"actorsturn": {
+			"pippi": {
+				"x": 0,
+				"y": -1,
+				"speed": 0.05
+			}
+		},
+		"actorsshake": {
+			"pippi": {
+				"x": 0.5,
+				"length": -1
+			}
+		},
+		"emoteactors": {
+			"pippi": "sweat"
+		},
+		"name":"[Pippi]",
+		"text":"Just, please don't eat my brain...",
+		"sound": "Kid",
+		"goto":"2"
+	},
+	"2": {
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": -1416, "y": -1656}, {"wait": 0.2}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsjump": {
+			"ninten": {"height": 8, "speed": 0.2, "times": 2, "queue": true}
+		},
+		"showbox": false,
+		"wait": 2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"3"
+	},
+	"3": {
+		"stopactorsloop": {
+			"pippi": null
+		},
+		"emoteactors": {
+			"pippi": "question"
+		},
+		"name": "[Pippi]",
+		"text": "Huh?",
+		"sound": "Kid",
+		"goto":"4"
+	},
+	"4": {
+		"actorsanim": {
+			"ninten": {
+				"anim": "Talk",
+				"type": 0
+			}
+		},
+		"showbox": false,
+		"autoadvance": true,
+		"caninput": false,
+		"wait": 1.1,
+		"goto":"5"
+	},
+	"5": {
+		"talker": "pippi",
+		"actorsanim": {
+			"ninten": {
+				"anim": "Idle",
+				"type": 0
+			}
+		},
+		"actorsturn": {
+			"pippi": {
+				"x": 0,
+				"y": 1,
+				"speed": 0.1
+			}
+		},
+		"name": "[Pippi]",
+		"text": "So... you're NOT a zombie?",
+		"sound": "Kid",
+		"goto":"6"
+	},
+	"6": {
+		"actorsjump": {
+			"ninten": {"height": 8, "speed": 0.2}
+		},
+		"showbox": false,
+		"wait": 0.8,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"7"
+	},
+	"7": {
+		"actorsanim": {
+			"ninten": {
+				"anim": "Idle",
+				"type": 0
+			}
+		},
+		"emoteactors": {
+			"pippi": "angry"
+		},
+		"shakecam":{
+			"x": 1,
+			"y": 0,
+			"size": "medium"
+		},
+		"actorsjump": {
+			"pippi": {"height": 8, "speed": 0.2, "times": 2},
+			"ninten": {"height": 8, "speed": 0.2}
+		},
+		"name": "[Pippi]",
+		"text": "Why didn't you say so earlier?",
+		"sound": "Kid",
+		"goto":"8"
+	},
+	"8": {
+		"name": "[Pippi]",
+		"text": "This entire situation could have been avoided!",
+		"sound": "Kid",
+		"goto":"9"
+	},
+	"9": {
+		"emoteactors": {
+			"ninten": "dot"
+		},
+		"showbox": false,
+		"autoadvance": true,
+		"caninput": false,
+		"wait": 1.5,
+		"goto":"10"
+	},
+	"10": {
+		"emoteactors": {
+			"pippi": "surprise"
+		},
+		"name": "[Pippi]",
+		"text": "Wait a minute... I think I finally recognize you.",
+		"sound": "Kid",
+		"goto":"11"
+	},
+	"11": {
+		"name": "[Pippi]",
+		"text": "You're Mimmie and Minnie's older brother, [Ninten]!",
+		"sound": "Kid",
+		"goto":"12"
+	},
+	"12": {
+		"emoteactors": {
+			"pippi": "heart"
+		},
+		"name": "[Pippi]",
+		"text": "Wow, the rumors are true. You really do look like that galactic farm boy!",
+		"sound": "Kid",
+		"goto":"13"
+	},
+	"13": {
+		"actorsjump": {
+			"ninten": {"height": 8, "speed": 0.2, "times": 2}
+		},
+		"showbox": false,
+		"autoadvance": true,
+		"caninput": false,
+		"wait": 0.8,
+		"goto":"14"
+	},
+	"14": {
+		"name": "[Pippi]",
+		"text": "What's that?",
+		"sound": "Kid",
+		"goto":"15"
+	},
+	"15": {
+		"name": "[Pippi]",
+		"text": "My mom's looking for me?",
+		"sound": "Kid",
+		"goto":"16"
+	},
+	"16": {
+		"name": "[Pippi]",
+		"text": "And you came all this way just to find me?",
+		"sound": "Kid",
+		"goto":"17"
+	},
+	"17": {
+		"actorsjump": {
+			"ninten": {"height": 8, "speed": 0.2}
+		},
+		"showbox": false,
+		"autoadvance": true,
+		"caninput": false,
+		"wait": 0.8,
+		"goto":"18"
+	},
+	"18": {
+		"name": "[Pippi]",
+		"text": "Well, aren't you a brave boy!",
+		"sound": "Kid",
+		"options": {
+			"Yes": "19",
+			"No": "20",
+			"cancel": "20"
+		}
+	},
+	"19": {
+		"name": "[Pippi]",
+		"text": "Don't get too swell headed, ha-ha-ha!",
+		"sound": "Kid",
+		"goto":"29"
+	},
+	"20": {
+		"name": "[Pippi]",
+		"text": "Really? Well, I think you ARE brave.",
+		"sound": "Kid",
+		"goto":"21"
+	},
+	"21": {
+		"name": "[Pippi]",
+		"text": "You know what? I think I like you, [Ninten]. Do you like me?",
+		"sound": "Kid",
+		"options": {
+			"Yes": "23",
+			"No": "22",
+			"cancel": "22"
+		}
+	},
+	"22": {
+		"name": "[Pippi]",
+		"text": "Yeah... You probably have someone special already...",
+		"sound": "Kid",
+		"goto":"29"
+	},
+	"23": {
+		"emoteactors": {
+			"pippi": "heart"
+		},
+		"name": "[Pippi]",
+		"text": "Oh me, oh my... You have such a way with words...",
+		"sound": "Kid",
+		"goto":"24"
+	},
+	"24": {
+		"name": "[Pippi]",
+		"text": "Here, take this shiny badge.",
+		"sound": "Kid",
+		"goto":"25"
+	},
+	"25": {
+		"name": "[Pippi]",
+		"text": "My mom said that as long as I have it, it'll give me courage.",
+		"sound": "Kid",
+		"goto":"26"
+	},
+	"26": {
+		"name": "[Pippi]",
+		"text": "But I think you'll probably need it more than me, so keep it!",
+		"sound": "Kid",
+		"if": {
+			"invspace": true,
+			"goto": "27"
+		},
+		"goto":"28"
+	},
+	"27": {
+		"talker": "null",
+		"text":"[Ninten] got the Courage Badge!",
+		"item": "CourageBadge",
+		"soundeffect": "Item Received.mp3",
+		"flag": "courage_badge_received",
+		"goto":"29"
+	},
+	"28": {
+		"talker": "pippi",
+		"name": "[Pippi]",
+		"text": "Wait, you can't carry it? What a shame!",
+		"sound": "Kid",
+		"goto":"29"
+	},
+	"29": {
+		"talker": "pippi",
+		"name": "[Pippi]",
+		"text": "Now, let's go back to town.",
+		"sound": "Kid",
+		"goto":"30"
+	},
+	"30": {
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"wait": 1}, {"x": -1448, "y": -1624}, {"x": -1599, "y": -1624}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			},
+			"pippi": {
+				"movement": [{"x": -1472, "y": -1624}, {"x": -1616, "y": -1624}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": -1,
+				"y": 1,
+				"speed": 0.3
+			}
+		},
+		"showbox": false,
+		"autoadvance": true,
+		"caninput": false,
+		"wait": 8,
+		"goto":"31"
+	},
+	"31": {
+		"actorsturn": {
+			"pippi": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.05
+			}
+		},
+		"name": "[Pippi]",
+		"text": "Actually, can you please go first, [Ninten]? This place gives me the creeps.",
+		"sound": "Kid",
+		"goto":"32"
+	},
+	"32": {
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": -1616, "y": -1624}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			},
+			"pippi": {
+				"movement": [{"x": -1599, "y": -1624}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"pippi": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.05,
+				"queue": true
+			}
+		},
+		"showbox": false,
+		"wait": 1.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"33"
+	},
+	"33": {
+		"talker": "null",
+		"text": "[Pippi] joined your party!",
+		"soundeffect": "Party Fanfare.mp3",
+		"flag": "pippi_rescued",
+		"setcrumbs": true,
+		"setpartymembers": {
+			"pippi": true
+		},
+		"changereplaced": {
+			"pippi": "pippi"
+		},
+		"givestatus": {
+			"pippi": "poisoned"
+		},
+		"wait": 5
+	}
+}

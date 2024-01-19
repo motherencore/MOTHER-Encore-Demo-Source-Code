@@ -1,0 +1,31 @@
+{
+	"0": {
+		"name": "Alice",
+		"text": "Heya! Did you know that not only you can eat Bread, but you can also [color]turn it into Crumbs[/color]?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Alice",
+		"text": "If you use the Crumbs in a fight, you can [color]instantly escape from battle[/color].",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Alice",
+		"text": "I heard long ago, people would use them to go back on their tracks when they got lost.",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Alice",
+		"text": "Though, they tended to attract bugs and cause problems, so people stopped doing that.",
+		"sound": "Sexy",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Alice",
+		"text": "Rumor says some guy even got lost in a ghost town where everything's white.",
+		"sound": "Sexy"
+	}
+}

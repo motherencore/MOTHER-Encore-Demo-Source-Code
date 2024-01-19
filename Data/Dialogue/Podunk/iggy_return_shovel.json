@@ -1,0 +1,9 @@
+{
+	"0": {
+		"name": "Iggy",
+		"text": "Thank you for returning my shovel.",
+		"sound": "Adult",
+		"removeitem": "Shovel",
+		"flag": "returned_shovel"
+	}
+}

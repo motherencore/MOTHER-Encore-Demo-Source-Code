@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Zoo.mp3-5df50d0bc904207fc189b7a6241ec5a6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Zoo.mp3"
+dest_files=[ "res://.import/Zoo.mp3-5df50d0bc904207fc189b7a6241ec5a6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PSI_Refresh_1.wav-65dc8d1cc9c34946dcd5c048095c220d.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PSI_Refresh_1.wav"
+dest_files=[ "res://.import/PSI_Refresh_1.wav-65dc8d1cc9c34946dcd5c048095c220d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

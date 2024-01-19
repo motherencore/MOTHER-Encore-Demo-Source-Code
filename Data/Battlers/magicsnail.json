@@ -1,0 +1,24 @@
+{
+	"name": "Magic Snail",
+	"maxhp": 50,
+	"hp": 50,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 18,
+	"offense": 20,
+	"defense": 90,
+	"iq": 18,
+	"guts": 0,
+	"level": 4,
+	"exp": 84,
+	"cash": 28,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Its shell is unbelievably hard.",
+	"boss": false,
+	"sprite": "magic snail",
+	"ovsprite": "MagicSnailOV",
+	"music": "",
+	"bg": ""
+}

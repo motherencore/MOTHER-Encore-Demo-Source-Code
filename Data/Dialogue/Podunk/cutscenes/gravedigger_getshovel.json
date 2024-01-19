@@ -1,0 +1,185 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"iggy": "Objects/NPCS/npc18"
+		},
+		"flag": "got_shovel",
+		"talker": "iggy",
+		"name": "Iggy",
+		"text": "Wow! You're a natural!",
+		"sound": "Adult",
+		"actorsdir": {
+			"iggy": {
+				"x": 0,
+				"y": -1
+			}
+		},
+		"goto": "1"
+	},
+	"1": {
+		"actorsturn": {
+			"ninten": {
+				"x": 1,
+				"y": 1,
+				"speed": 0.1
+			}
+		},
+		"changecam": "iggy",
+		"returncam": 1,
+		"name": "Iggy",
+		"text": "It took me years to master that skill.",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"wait": 0.5}, {"x": 1408, "y": 4720}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			},
+			"iggy": {
+				"movement": [{"x": 1432, "y": 4744}, {"x": 1432, "y": 4680}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": 0,
+				"y": -1,
+				"speed": 0.1,
+				"queue": true
+			}
+		},
+		"wait": 3,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"objectfunction": {
+			"Objects/Items/Item": "queue_free"
+		},		
+		"name": "Iggy",
+		"text": "Oh thank heavens, it's okay.",
+		"sound": "Adult",
+		"goto": "4"
+	},
+	"4": {
+		"showbox": false,
+		"actorsmove": {
+			"iggy": {
+				"movement": [{"x": 1432, "y": 4720}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.3
+			},
+			"iggy": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.1,
+				"queue": true
+			}
+		},
+		"wait": 2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "5"
+	},
+	"5": {
+		"name": "Iggy",
+		"text": "You have my gratitude, boy.",
+		"sound": "Adult",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Iggy",
+		"text": "Now if you'll excuse me, I have some zombies to put down.",
+		"sound": "Adult",
+		"goto": "7"
+	},
+	"7": {
+		"showbox": false,
+		"actorsmove": {
+			"iggy": {
+				"movement": [{"x": 1432, "y": 4744}, {"x": 1360, "y": 4744}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": -1,
+				"y": 1,
+				"speed": 0.5
+			}
+		},
+		"wait": 4,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "8"
+	},
+	"8": {
+		"changecam": "none",
+		"actorsturn": {
+			"iggy": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.1
+			}
+		},
+		"name": "Iggy",
+		"text": "Oh, and you can keep the bat.",
+		"sound": "Adult",
+		"goto": "9"
+	},
+	"9": {
+		"name": "Iggy",
+		"text": "I don't need it anymore.",
+		"sound": "Adult",
+		"goto": "10"
+	},
+	"10": {
+		"showbox": false,
+		"changecam": "ninten",
+		"returncam": 1,
+		"actorsmove": {
+			"iggy": {
+				"movement": [{"x": 1280, "y": 4744}, {"x": 1280, "y": 4600}],
+				"speed": 48,
+				"animation": "Walk",
+				"type": "position",
+				"queue": true
+			}
+		},
+		"actorsdir": {
+			"ninten": {
+				"x": -1,
+				"y": 0
+			}
+		},
+		"wait": 4.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "11"
+	},
+	"11": {
+		"eraseactors": {
+			"iggy": true
+		},
+		"flag": "returned_shovel"
+	}
+}

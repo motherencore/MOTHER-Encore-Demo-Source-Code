@@ -1,0 +1,24 @@
+{
+	"name": "Big Foot",
+	"maxhp": 90,
+	"hp": 90,
+	"maxpp": 50,
+	"pp": 50,
+	"speed": 38,
+	"offense": 50,
+	"defense": 90,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 3000,
+	"cash": 48,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Surprised? It really does exist!",
+	"boss": false,
+	"sprite": "bigfoot",
+	"ovsprite": "BigFootOV",
+	"music": "",
+	"bg": ""
+}

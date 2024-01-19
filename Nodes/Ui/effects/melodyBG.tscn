@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/UI/melody bg.png" type="Texture" id=1]
+[ext_resource path="res://Nodes/Ui/effects/melodyBG.gd" type="Script" id=2]
+[ext_resource path="res://Shaders/Distortionator.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/opacity = 1.0
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/move = Vector2( 0, -1 )
+shader_param/ping_pong_speed = Vector2( 0, 0 )
+shader_param/oscillation_amplitude = Vector2( 0, 0.5 )
+shader_param/oscillation_frequency = Vector2( 0, 2 )
+shader_param/oscillation_speed = Vector2( 0, 2 )
+shader_param/osc_amp_ping_pong = Vector2( 0, 0 )
+shader_param/osc_trans_ping_pong = Vector2( 0, 2 )
+shader_param/compression_amplitude = Vector2( 0, 0 )
+shader_param/compression_frequency = Vector2( 0, 0 )
+shader_param/compression_speed = Vector2( 0, 0 )
+shader_param/comp_amp_ping_pong = Vector2( 0, 0 )
+shader_param/comp_trans_ping_pong = Vector2( 0, 0 )
+shader_param/interlaced_amplitude = Vector2( 0, 0 )
+shader_param/interlaced_frequency = Vector2( 0, 0 )
+shader_param/interlaced_speed = Vector2( 0, 0 )
+shader_param/inter_amp_ping_pong = Vector2( 0, 0 )
+shader_param/inter_trans_ping_pong = Vector2( 0, 0 )
+shader_param/palette_shifting_speed = 1.0
+shader_param/palette_shifting = false
+shader_param/barrel = false
+shader_param/effect = 1.0
+shader_param/effect_scale = 2.0
+shader_param/barrelxy = Vector2( 1, 1 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Melody"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.423529, 0.568627, 0.941176, 1 ), Color( 0.654902, 0.509804, 0.964706, 1 ), Color( 0.701961, 0.32549, 0.823529, 1 ), Color( 0.780392, 0.266667, 0.701961, 1 ), Color( 0.701961, 0.32549, 0.823529, 1 ), Color( 0.654902, 0.509804, 0.964706, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BG:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="melodyBG" type="YSort"]
+script = ExtResource( 2 )
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color( 0.43791, 0.564971, 0.942638, 1 )
+material = SubResource( 3 )
+margin_left = -160.0
+margin_top = -90.0
+margin_right = 160.0
+margin_bottom = 90.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/Melody = SubResource( 5 )
+anims/RESET = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]

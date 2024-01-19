@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "TV with a built-in VHS player.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Star Wars, Rambo and a bunch of other movie tapes are scrambled on the floor."
+	}
+}

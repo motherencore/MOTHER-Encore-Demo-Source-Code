@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "North leads you to Podunk.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Head south for the Cemetery."
+	}
+}

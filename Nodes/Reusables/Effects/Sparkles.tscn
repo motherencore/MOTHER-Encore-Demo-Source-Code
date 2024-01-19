@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Objects/Sparkles.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/misc/sparkles.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 7, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 14, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 21, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 28, 0, 7, 7 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 7, 7 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ), SubResource( 19 ) ],
+"loop": true,
+"name": "Sparkle On",
+"speed": 12.0
+} ]
+
+[node name="Sparkles" type="AnimatedSprite"]
+frames = SubResource( 14 )
+animation = "Sparkle On"
+frame = 22
+playing = true
+script = ExtResource( 2 )

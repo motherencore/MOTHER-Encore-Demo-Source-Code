@@ -1,0 +1,511 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Nodes/Ui/Borders.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/UI/Introduction.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/EB0.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_1_1.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_0_2.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_0_3.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_0_1.png" type="Texture" id=8]
+[ext_resource path="res://Audio/Sound effects/EB/text.wav" type="AudioStream" id=9]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_2_1.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_3_1.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Cutscenes/Intro/Intro_1_2.png" type="Texture" id=12]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Introduction"
+length = 116.0
+step = 0.25
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 3, 11, 17, 24, 25, 32, 33, 41, 42, 49, 50, 58.5, 64, 71.5, 72.5, 79.5, 80.5, 87.5, 92.75, 99.5, 100, 100.25, 102.5, 109.5, 110, 110.5, 114.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "stop_music"
+}, {
+"args": [  ],
+"method": "slow_down_text"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+}, {
+"args": [  ],
+"method": "reset_text_speed"
+}, {
+"args": [  ],
+"method": "next_text"
+}, {
+"args": [  ],
+"method": "hide_text"
+} ]
+}
+tracks/1/type = "animation"
+tracks/1/path = NodePath("Borders/BorderAnims")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": PoolStringArray( "Open", "Close", "Open", "Close", "Open", "Close", "Open", "Close" ),
+"times": PoolRealArray( 0, 11, 14, 58.5, 61, 87.5, 90, 99.5 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Images/Intro_2:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3, 13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ), Vector2( 2, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Images/Intro_0:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3, 13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ), Vector2( -28, 18 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Images/Intro_1:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3, 13 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ), Vector2( -100, 18 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Images/Intro_3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 13.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Images/Intro_3:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 33, 40.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ), Vector2( 64, -94 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Images/Intro_4:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 50.25, 50.5, 50.75, 51 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.333333 ), Color( 1, 1, 1, 0.666667 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Images/Intro_4:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 51.5, 57.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, -94 ), Vector2( 64, 18 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Images/Intro_5:rect_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 63, 79.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, -94 ), Vector2( 64, 18 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Images/Intro_5:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 61 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Text/HBoxContainer:rect_position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 101.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 136 ), Vector2( 0, 73 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Images/Intro_6:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 89.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Images/Intro_2:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Images/Intro_0:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Images/Intro_1:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Images/Intro_3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Images/Intro_3:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 18 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Images/Intro_4:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Images/Intro_4:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, -94 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Images/Intro_5:rect_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, -94 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Images/Intro_5:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Text/HBoxContainer:rect_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 136 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Images/Intro_6:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Introduction" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -416, -64 )
+script = ExtResource( 3 )
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Door" parent="Objects" instance=ExtResource( 2 )]
+position = Vector2( 344, 5 )
+targetX = 520
+targetY = 400
+dir = Vector2( 0, 1 )
+transit_out_anim = "Circle Focus"
+targetScene = "Cutscenes/Mt Itoi Landscape"
+unpause_player = false
+
+[node name="Images" type="CanvasLayer" parent="."]
+
+[node name="ColorRect5" type="ColorRect" parent="Images"]
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 256.0
+margin_bottom = 130.0
+color = Color( 0.698039, 0.631373, 0.482353, 1 )
+
+[node name="Intro_2" type="TextureRect" parent="Images"]
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 348.0
+margin_bottom = 130.0
+texture = ExtResource( 7 )
+stretch_mode = 3
+
+[node name="Intro_0" type="TextureRect" parent="Images"]
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 348.0
+margin_bottom = 130.0
+texture = ExtResource( 8 )
+stretch_mode = 3
+
+[node name="Intro_1" type="TextureRect" parent="Images"]
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 348.0
+margin_bottom = 130.0
+texture = ExtResource( 6 )
+stretch_mode = 3
+
+[node name="Intro_3" type="TextureRect" parent="Images"]
+visible = false
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 256.0
+margin_bottom = 242.0
+texture = ExtResource( 5 )
+stretch_mode = 3
+
+[node name="Intro_4" type="TextureRect" parent="Images"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 64.0
+margin_top = -94.0
+margin_right = 256.0
+margin_bottom = 130.0
+texture = ExtResource( 12 )
+stretch_mode = 3
+
+[node name="Intro_5" type="TextureRect" parent="Images"]
+visible = false
+margin_left = 64.0
+margin_top = -94.0
+margin_right = 256.0
+margin_bottom = 130.0
+texture = ExtResource( 10 )
+stretch_mode = 3
+
+[node name="Intro_6" type="TextureRect" parent="Images"]
+visible = false
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 256.0
+margin_bottom = 130.0
+texture = ExtResource( 11 )
+stretch_mode = 3
+
+[node name="Borders" parent="." instance=ExtResource( 1 )]
+
+[node name="Text" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Text"]
+margin_top = 136.0
+margin_right = 320.0
+margin_bottom = 171.0
+rect_clip_content = true
+alignment = 1
+
+[node name="ScrollingText" type="Label" parent="Text/HBoxContainer"]
+margin_left = 148.0
+margin_right = 172.0
+margin_bottom = 35.0
+custom_constants/line_spacing = 4
+custom_fonts/font = ExtResource( 4 )
+text = "text
+text
+text"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Introduction = SubResource( 4 )
+anims/RESET = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

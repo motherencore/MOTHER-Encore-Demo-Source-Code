@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Isabella",
+		"text": "The guy at Canary Village is my idol.",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Isabella",
+		"text": "I wonder if he's single...",
+		"sound": "Sexy"
+	}
+}

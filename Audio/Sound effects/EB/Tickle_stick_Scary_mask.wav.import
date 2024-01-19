@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Tickle_stick_Scary_mask.wav-c12dfe3489089aa1c19181f8befb8423.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/Tickle_stick_Scary_mask.wav"
+dest_files=[ "res://.import/Tickle_stick_Scary_mask.wav-c12dfe3489089aa1c19181f8befb8423.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

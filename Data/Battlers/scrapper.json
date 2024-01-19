@@ -1,0 +1,22 @@
+{
+	"name": "Scrapper",
+	"maxhp": 120,
+	"hp": 120,
+	"maxpp": 0,
+	"pp": 40,
+	"speed": 14,
+	"offense": 25,
+	"defense": 30,
+	"iq": 55,
+	"guts": 0,
+	"level": 10,
+	"exp": 25,
+	"cash": 4,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"sprite": "scrapper",
+	"music": "",
+	"bg": ""
+}

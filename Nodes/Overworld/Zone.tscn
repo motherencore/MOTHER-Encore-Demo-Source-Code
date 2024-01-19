@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Maps/Testing/loader.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=45]
+extents = Vector2( 103.005, 21.1993 )
+
+[node name="Zone" type="Node2D"]
+script = ExtResource( 1 )
+room = "res://Maps/Testing/bottomEagleland2.tscn"
+
+[node name="loader" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="loader"]
+shape = SubResource( 45 )
+
+[connection signal="area_entered" from="loader" to="." method="_on_loader_area_entered"]
+[connection signal="area_exited" from="loader" to="." method="_on_loader_area_exited"]

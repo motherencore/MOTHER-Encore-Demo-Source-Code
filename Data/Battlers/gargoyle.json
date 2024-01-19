@@ -1,0 +1,24 @@
+{
+	"name": "Gargoyle",
+	"maxhp": 180,
+	"hp": 180,
+	"maxpp": 60,
+	"pp": 60,
+	"speed": 70,
+	"offense": 90,
+	"defense": 160,
+	"iq": 70,
+	"guts": 0,
+	"level": 4,
+	"exp": 110,
+	"cash": 86,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It has the awful stone of origin.",
+	"boss": false,
+	"sprite": "gargoyle",
+	"ovsprite": "GargoyleOV",
+	"music": "",
+	"bg": ""
+}

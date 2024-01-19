@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LVLUP_lloyd.mp3-1d64de2f675cc8c6b36cded2ecb259c9.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/You Win/LVLUP_lloyd.mp3"
+dest_files=[ "res://.import/LVLUP_lloyd.mp3-1d64de2f675cc8c6b36cded2ecb259c9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

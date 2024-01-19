@@ -1,0 +1,21 @@
+{
+	"0": {
+		"text": "A mess of notes and newspaper clippings about the George and Maria case.",
+		"goto": "2"
+	},
+	"2": {
+		"text": "One note sticks out in particular.",
+		"goto": "3"
+	},
+	"3": {
+		"text": "(A curiosity the police uncovered was Maria's missing necklace.",
+		"goto": "4"
+	},
+	"4": {
+		"text": "It was a family pendant passed down from generation to generation.",
+		"goto": "5"
+	},
+	"5": {
+		"text": "She always kept it safe. but when she went missing, the necklace was nowhere to be found.)"
+	}
+}

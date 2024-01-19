@@ -1,0 +1,24 @@
+{
+	"name": "Omega Borg",
+	"maxhp": 230,
+	"hp": 230,
+	"maxpp": 150,
+	"pp": 150,
+	"speed": 100,
+	"offense": 150,
+	"defense": 200,
+	"iq": 90,
+	"guts": 0,
+	"level": 10,
+	"exp": 360,
+	"cash": 180,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "Strong as an ox.",
+	"sprite": "omega borg",
+	"ovsprite": "OmegaBorgOV",
+	"music": "",
+	"bg": ""
+}

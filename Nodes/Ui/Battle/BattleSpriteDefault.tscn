@@ -1,0 +1,374 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Shaders/Outline.shader" type="Shader" id=1]
+[ext_resource path="res://Scripts/UI/Battle/BattleSprite.gd" type="Script" id=2]
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 1 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 0.0
+shader_param/pattern = 0
+shader_param/inside = false
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "bash"
+length = 0.6
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.333333, 0.4, 0.466667, 0.533333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 123, 124, 125, 126, 127, 128, 17 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "bashPrep"
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "bat"
+length = 0.6
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15, 16, 17 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "batPrep"
+length = 0.6
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "guard"
+length = 0.533334
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 51 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.466667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 5 ), Vector2( 0, 5 ), Vector2( 3, 5 ), Vector2( -3, 4 ), Vector2( 2, 4 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "guardPrep"
+length = 0.933333
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.666667, 0.733333, 0.8, 0.866667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 103, 101, 102, 101, 102, 101, 102, 101, 102, 101, 102 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "hitIdle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 103, 100, 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "item"
+length = 0.266667
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 65, 66, 67, 68 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "itemLoop"
+length = 0.133333
+loop = true
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 63, 64 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "itemPrep"
+length = 0.333333
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 60, 61, 62, 63, 64 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "itemReturn"
+length = 0.266667
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 69, 70, 71, 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "special"
+length = 0.8
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29, 30, 31, 32, 33, 20 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "specialPrep"
+length = 0.266667
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "specialPrep2"
+length = 0.2
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "victory"
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95 ]
+}
+
+[node name="BattleSprite" type="Control"]
+show_behind_parent = true
+margin_top = -16.0
+margin_right = 64.0
+margin_bottom = 48.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 22 )
+position = Vector2( 32, 32 )
+hframes = 10
+vframes = 13
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 12 )
+anims/bash = SubResource( 3 )
+anims/bashPrep = SubResource( 4 )
+anims/bat = SubResource( 16 )
+anims/batPrep = SubResource( 17 )
+anims/guard = SubResource( 13 )
+anims/guardPrep = SubResource( 14 )
+anims/hit = SubResource( 11 )
+anims/hitIdle = SubResource( 15 )
+anims/idle = SubResource( 5 )
+anims/item = SubResource( 18 )
+anims/itemLoop = SubResource( 19 )
+anims/itemPrep = SubResource( 20 )
+anims/itemReturn = SubResource( 21 )
+anims/special = SubResource( 6 )
+anims/specialPrep = SubResource( 8 )
+anims/specialPrep2 = SubResource( 9 )
+anims/victory = SubResource( 7 )
+next/bash = "idle"
+next/bat = "idle"
+next/special = "idle"
+next/specialPrep = "specialPrep2"
+
+[node name="Tween" type="Tween" parent="."]

@@ -1,0 +1,80 @@
+{
+	"0": {
+		"actors": {
+			"monkey": "AbovePlayer1/npc"
+		},
+		"movecam": {
+			"y": -1128
+		},
+		"wait": 1,
+		"caninput": false,
+		"autoadvance": true,
+		"goto": "1"
+	},
+	"1": {
+		"name": "Monkey",
+		"text": "EEK, EE EEEK, EEK.",
+		"sound": "Strange",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Monkey",
+		"text": "(Sorry for stealing your key earlier.",
+		"sound": "Strange",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Monkey",
+		"text": "Let me make it up to you with a song.)",
+		"sound": "Strange",
+		"goto": "4"
+	},
+	"4": {
+		"showbox": false,
+		"actorsmove": {
+			"monkey": {
+				"movement": [{"x": 848, "y": -1152}],
+				"speed": 96,
+				"type": "position"
+			}
+		},
+		"actorsjump": {
+			"monkey": {
+				"height": 6,
+				"length": 0.4
+			}
+		},
+		"wait": 0.4,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "5"
+	},
+	"5": {
+		"flag": "monkey_apologize",
+		"showbox": false,
+		"actorsmove": {
+			"monkey": {
+				"movement": [{"x": 864, "y": -1232}],
+				"speed": 128,
+				"type": "position"
+			}
+		},
+		"actorsjump": {
+			"monkey": {
+				"height": 50,
+				"length": 0.7
+			}
+		},
+		"actorsturn": {
+			"monkey": {
+				"x": 0,
+				"y": 1,
+				"speed": 0.1,
+				"queue": true
+			}
+		},
+		"wait": 1.6,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

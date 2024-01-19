@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Belle",
+		"text": "This place is such an amazing deal.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Belle",
+		"text": "I'll never sleep at home again.",
+		"sound": "Adult"
+	}
+}

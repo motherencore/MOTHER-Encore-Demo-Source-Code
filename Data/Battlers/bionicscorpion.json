@@ -1,0 +1,24 @@
+{
+	"name": "Bionic Scorpion",
+	"maxhp": 100,
+	"hp": 100,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 70,
+	"offense": 60,
+	"defense": 150,
+	"iq": 80,
+	"guts": 0,
+	"level": 4,
+	"exp": 122,
+	"cash": 56,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Beware of its poison and stone of origin.",
+	"boss": false,
+	"sprite": "bionic scorpion",
+	"ovsprite": "BionicScorpionOV",
+	"music": "",
+	"bg": ""
+}

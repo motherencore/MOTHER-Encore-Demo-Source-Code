@@ -1,0 +1,67 @@
+{
+	"0": {
+		"actors": {
+			"minnie": "Objects/npc3",
+			"ninten": "leader"
+		},
+		"actorsdir": {
+			"minnie": {
+				"x": 0,
+				"y": -1
+			}
+		},
+		"actorsjump": {
+			"minnie": {
+				"height": 8,
+				"times": 2
+			}
+		},
+		"movecam": {
+			"x": 105
+		},
+		"wait": 0.8,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"1"
+	},
+	"1": {
+		"actorsturn": {
+			"ninten": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.3
+			}
+		},
+		"emoteactors": {
+			"minnie": "sweat"
+		},
+		"talker": "minnie",
+		"name": "Minnie",
+		"text": "Ugh, it won't open!",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"showbox": false,
+		"actorsmove": {
+			"minnie": {
+				"movement": [{"x": -24, "y": 0}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"actorsturn": {
+			"minnie": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.08,
+				"queue": true
+			}
+		},
+		"flag": "minnie_door",
+		"wait": 1.4,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pk_beam_alpha.mp3-8ce636e60c8a8b115f9ee05ce2c2bc3d.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/pk_beam_alpha.mp3"
+dest_files=[ "res://.import/pk_beam_alpha.mp3-8ce636e60c8a8b115f9ee05ce2c2bc3d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

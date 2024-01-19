@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mother Earth.mp3-99fd25537d9c1312294ce96d84f42db1.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Mother Earth.mp3"
+dest_files=[ "res://.import/Mother Earth.mp3-99fd25537d9c1312294ce96d84f42db1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,25 @@
+{
+	"name": "Elder Batty",
+	"maxhp": 80,
+	"hp": 80,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 35,
+	"offense": 34,
+	"defense": 64,
+	"iq": 50,
+	"guts": 0,
+	"level": 4,
+	"exp": 40,
+	"cash": 34,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Beware of its stone of origin.",
+	"boss": false,
+	"sprite": "elder batty",
+	"ovsprite": "ElderBattyOV",
+	"ovtype": "Basic Enemy 2F",
+	"music": "Flippant Foe.mp3",
+	"bg": ""
+}

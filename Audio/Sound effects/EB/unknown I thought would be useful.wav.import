@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/unknown I thought would be useful.wav-4cc9b7564e6ca885b6a3bfb88776155b.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/unknown I thought would be useful.wav"
+dest_files=[ "res://.import/unknown I thought would be useful.wav-4cc9b7564e6ca885b6a3bfb88776155b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

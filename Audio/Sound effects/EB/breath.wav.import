@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/breath.wav-c4f0bb75a29add6e9bf7050a97aca8a5.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/breath.wav"
+dest_files=[ "res://.import/breath.wav-c4f0bb75a29add6e9bf7050a97aca8a5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

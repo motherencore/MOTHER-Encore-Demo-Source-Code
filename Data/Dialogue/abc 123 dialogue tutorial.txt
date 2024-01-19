@@ -1,0 +1,96 @@
+this will be updated regularly when we add more stuff to the system, text should be a json file and look smth like this
+{
+	"0": {
+		"type": "normal",
+		"text": "@ Hello World!"
+	}
+}
+
+you can add other entries, keep in mind they always have to be stringed numbers ("0" "1" "2", "10")
+
+when you have multiple entries you have to add a "goto" in each index ("goto": "1")
+
+you can also set the npcs name by adding "name" ("name": "Ben")
+
+set the sound of the dialogue by doing "sound": "Adult", current list of sounds are:
+============
+"Adult"
+"Kid"
+"Robot"
+"Strange"
+"Sexy"
+"Shy"
+============
+
+
+theres also "type" to set the index as normal dialogue or dialogue with questions
+speaking of questions when you have a dialogue set as a question add the code below to an index
+==========
+"options": {
+			"Yes": {"goto": "2"},
+			"No": {"goto": "3"}
+		}
+==========
+basically choosing yes will set the dialogue to the index 2 dialogue and choosing no will bring you to the index 3 dialogue, you can also set the options to other words other than yes and no, you can have 3 options too!
+
+you can make the screen shake by adding "shake" and then the magnitude being
+==========
+"small"
+"medium"
+"big"
+
+theres "emoteplayer" and "emotenpc", these will summon emote bubble boxes on top of an npc or a player, current reaction list is (the list will be updated too when we add more options):
+============
+"dot"
+"surprise"
+"shock"
+"question"
+"heart"
+============
+thats it folks, also remember to follow json and dictonary rules by having , at the end of things, heres an example of where to put the,
+===============
+{
+	"0": {
+		"name": "Ben",
+		"type": "normal",
+		"font": "EBZ",
+		"sound": "Blip",
+		"text": "@ Hello World!",
+		"goto" : "1"
+	},
+	"1": {
+		"name": "Ben",
+		"type": "question",
+		"font": "EBZ",
+		"sound": "Blip",
+		"text": "@ Whats your opinion on Dialog boxes?",
+		"emotenpc": "question",
+		"options": {
+			"Yes": {"goto": "2"},
+			"No": {"goto": "3"}
+		}
+	},
+	"2": {
+		"name": "Ben",
+		"type": "normal",
+		"font": "EBZ",
+		"sound": "Blip",
+		"text": "@ I know right?"
+	},
+	"3": {
+		"name": "Ben",
+		"type": "normal",
+		"font": "EBZ",
+		"sound": "Blip",
+		"emoteplayer": "shock",
+		"text": "@ Fuck you go get stuck in an infinite text loop",
+		"goto": "0",
+		"commands": [
+			{
+				"method": "print",
+				"param": "doing your mom, please work :pray:"
+			}
+		]
+	}
+}
+==============

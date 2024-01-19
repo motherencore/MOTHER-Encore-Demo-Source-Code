@@ -1,0 +1,24 @@
+{
+	"name": "Ghost of Barbot",
+	"maxhp": 120,
+	"hp": 120,
+	"maxpp": 100,
+	"pp": 100,
+	"speed": 90,
+	"offense": 90,
+	"defense": 140,
+	"iq": 60,
+	"guts": 0,
+	"level": 4,
+	"exp": 660,
+	"cash": 389,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It is as light as air.",
+	"boss": false,
+	"sprite": "ghost of barbot",
+	"ovsprite": "GhostBarbotOV",
+	"music": "",
+	"bg": ""
+}

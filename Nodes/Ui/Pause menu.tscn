@@ -1,0 +1,254 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UI/Pausemenu.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/UI/Overworld/cents.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=5]
+[ext_resource path="res://Nodes/Ui/MapScreen/MapScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Nodes/Ui/Inventory/InventoryUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Ui/EquipMenu/EquipMenuUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Ui/StatsMenuUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/Ui/PSIMenu/PSIMenuUI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=12]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=13]
+[ext_resource path="res://Nodes/Ui/Options/OptionsUI.tscn" type="PackedScene" id=14]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Close"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.4, 0.637281 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -80 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -80 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "open"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("menu:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 0.637281 ),
+"update": 0,
+"values": [ Vector2( 0, -80 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Pausemenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="pausemenu" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
+
+[node name="menu" type="Control" parent="."]
+margin_top = -80.0
+margin_right = 40.0
+margin_bottom = -40.0
+
+[node name="cash" type="NinePatchRect" parent="menu"]
+material = ExtResource( 12 )
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 98.0
+margin_bottom = 77.0
+texture = ExtResource( 5 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="ColorRect" type="ColorRect" parent="menu/cash"]
+margin_left = 4.0
+margin_top = 69.0
+margin_right = 89.0
+margin_bottom = 70.0
+color = Color( 0.74902, 0.705882, 0.803922, 1 )
+script = ExtResource( 13 )
+
+[node name="Commands" type="NinePatchRect" parent="menu"]
+material = ExtResource( 12 )
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 98.0
+margin_bottom = 68.0
+texture = ExtResource( 4 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="title" type="ColorRect" parent="menu/Commands"]
+margin_left = 11.0
+margin_top = 1.0
+margin_right = 46.0
+margin_bottom = 8.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="menu/Commands/title"]
+margin_left = 3.0
+margin_top = -2.0
+margin_right = 53.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 7 )
+text = "Menu"
+
+[node name="Items" type="GridContainer" parent="menu/Commands"]
+margin_left = 11.0
+margin_top = 11.0
+margin_right = 81.0
+margin_bottom = 55.0
+custom_constants/vseparation = 3
+custom_constants/hseparation = 12
+columns = 2
+
+[node name="Goods" type="Label" parent="menu/Commands/Items"]
+margin_right = 26.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 7 )
+text = "Goods"
+
+[node name="PSI" type="Label" parent="menu/Commands/Items"]
+margin_left = 38.0
+margin_right = 70.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 7 )
+text = "PSI"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Equip" type="Label" parent="menu/Commands/Items"]
+margin_top = 15.0
+margin_right = 26.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 7 )
+text = "Equip"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="menu/Commands/Items"]
+margin_left = 38.0
+margin_top = 15.0
+margin_right = 70.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 7 )
+text = "Status"
+valign = 1
+
+[node name="Map" type="Label" parent="menu/Commands/Items"]
+margin_top = 30.0
+margin_right = 26.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 7 )
+text = "Map"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Label" parent="menu/Commands/Items"]
+margin_left = 38.0
+margin_top = 30.0
+margin_right = 70.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 7 )
+text = "Options"
+valign = 1
+
+[node name="Sign" type="Label" parent="menu/Commands"]
+margin_left = 7.0
+margin_top = 59.0
+margin_right = 34.0
+margin_bottom = 73.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "$"
+
+[node name="Amount" type="Label" parent="menu/Commands/Sign"]
+margin_left = 24.0
+margin_right = 73.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cents" type="Sprite" parent="menu/Commands/Sign/Amount"]
+material = ExtResource( 12 )
+position = Vector2( 54, 5 )
+texture = ExtResource( 3 )
+
+[node name="Arrow" parent="menu/Commands" instance=ExtResource( 1 )]
+position = Vector2( 6, 16 )
+menu_parent_path = NodePath("../Items")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 3 )
+anims/RESET = SubResource( 2 )
+anims/open = SubResource( 1 )
+
+[node name="InventoryUI" parent="." instance=ExtResource( 8 )]
+
+[node name="PSIMenuUI" parent="." instance=ExtResource( 11 )]
+
+[node name="EquipMenuUI" parent="." instance=ExtResource( 9 )]
+
+[node name="MapScreen" parent="." instance=ExtResource( 6 )]
+
+[node name="StatsMenuUI" parent="." instance=ExtResource( 10 )]
+
+[node name="OptionsUI" parent="." instance=ExtResource( 14 )]
+
+[connection signal="selected" from="menu/Commands/Arrow" to="." method="_on_Arrow_selected"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="back" from="InventoryUI" to="." method="_on_InventoryUI_back"]
+[connection signal="exit" from="InventoryUI" to="." method="_on_InventoryUI_exit"]
+[connection signal="back" from="PSIMenuUI" to="." method="_on_PSIMenuUI_back"]
+[connection signal="back" from="EquipMenuUI" to="." method="_on_EquipMenuUI_back"]
+[connection signal="back" from="MapScreen" to="." method="_on_MapScreen_back"]
+[connection signal="back" from="StatsMenuUI" to="." method="_on_StatsMenuUI_back"]
+[connection signal="back" from="OptionsUI" to="." method="_on_OptionsUI_back"]
+[connection signal="closeMenu" from="OptionsUI" to="." method="_on_OptionsUI_closeMenu"]

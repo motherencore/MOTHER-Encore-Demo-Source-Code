@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name":"Sandra",
+		"text":"It looks like the dead have risen.",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Sandra",
+		"text":"Thankfully, we have God to protect us!",
+		"sound": "Sexy"
+	}
+}

@@ -1,0 +1,67 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "ninten",
+			"pippi": "pippi"
+		},
+		"actorsturn": {
+			"ninten": {
+				"actor": "pippi",
+				"speed": 0.1
+			},
+			"pippi": {
+				"actor": "ninten",
+				"speed": 0.1
+			}
+		},
+		"talker": "pippi",
+		"name": "[Pippi]",
+		"text": "Hey, why are we going to the town hall?",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "[Pippi]",
+		"text": "Isn't that place boring?",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"name": "[Pippi]",
+		"text": "Come on, let's go somewhere else!",
+		"sound": "Kid",
+		"goto": "3"
+	},
+	"3": {
+		"name": "[Pippi]",
+		"text": "How's about the [color]department store[/color]?",
+		"sound": "Kid",
+		"goto": "4"
+	},
+	"4": {
+		"name": "[Pippi]",
+		"text": "I hear they have a new animal at the [color]pet shop[/color] there!",
+		"sound": "Kid",
+		"goto": "5"
+	},
+	"5": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"wait": 0.1},{"x": 0, "y": 16}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			},
+			"pippi": {
+				"movement": [{"x": 0, "y": 15}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

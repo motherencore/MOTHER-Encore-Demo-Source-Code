@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Attack 2.mp3-1e02295546e297b4bbb3a8974dc32856.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Attack 2.mp3"
+dest_files=[ "res://.import/Attack 2.mp3-1e02295546e297b4bbb3a8974dc32856.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

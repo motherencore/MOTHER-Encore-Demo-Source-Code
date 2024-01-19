@@ -1,0 +1,306 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Graphics/Rooms/Podunk_Burger_Shop.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Tilesets/TilPodunkBurgerShop.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 58, 32, 7, 32, 7, 16, 58, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 16, 16, 16, 16, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 16, 32, 0, 32, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=7]
+0/name = "Table"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, -16 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 48 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, -16 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+0/z_index = 0
+1/name = "Counter"
+1/texture = ExtResource( 2 )
+1/tex_offset = Vector2( 0, -16 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 64, 0, 96, 32 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 16, 32 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, -16 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+1/shape = SubResource( 2 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+}, {
+"autotile_coord": Vector2( 5, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+} ]
+1/z_index = 0
+2/name = "TilPodunkBurgerShop.png 2"
+2/texture = ExtResource( 2 )
+2/tex_offset = Vector2( 0, -32 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 48, 96, 32 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, -32 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+2/shape = SubResource( 6 )
+2/shape_one_way = false
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+} ]
+2/z_index = 0
+3/name = "Wall Blacks"
+3/texture = ExtResource( 2 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 96, 32, 32, 48 )
+3/tile_mode = 2
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 16, 16 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="Shader" id=432]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=433]
+resource_local_to_scene = true
+shader = SubResource( 432 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 192, 112 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 128, 100 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 48, 36 )
+
+[node name="Burger Shop" type="Node2D"]
+script = ExtResource( 9 )
+player_map_offset = Vector2( 93, 243 )
+map_name_override = "Podunk"
+map_item = "MapPodunk"
+is_sub_area = true
+
+[node name="PodunkBurgerShop" type="Sprite" parent="."]
+position = Vector2( 0, -72 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Objects" type="TileMap" parent="."]
+tile_set = SubResource( 7 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_y_sort = true
+show_collision = true
+collision_layer = 1597
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -262151, 1, 0, -262150, 1, 2, -262149, 1, 3, -262148, 1, 1, -262147, 1, 2, -262146, 1, 3, -262145, 1, 1, -327680, 1, 2, -327679, 1, 3, -327678, 1, 4, -327677, 1, 5, -131078, 0, 0, -196606, 536870912, 0, 65529, 2, 0, 1, 536870914, 0 )
+
+[node name="npc" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -21, -84 )
+sprite = "Npcs/4dir/fastfoodgirl"
+dialog = "Podunk/podunk_burger_shop"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="AnimationTree" parent="Objects/npc" index="2"]
+parameters/playback = SubResource( 9 )
+
+[node name="PartyMemberTree" parent="Objects/npc" index="4"]
+parameters/playback = SubResource( 10 )
+
+[node name="interact" parent="Objects/npc" index="7"]
+scale = Vector2( 1, 1.5 )
+
+[node name="ButtonPrompt" parent="Objects/npc/interact" index="1"]
+material = SubResource( 433 )
+scale = Vector2( 1, 0.666667 )
+
+[node name="npc2" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 46, -40 )
+sprite = "Npcs/4dir/fedoradude"
+dialog = "Podunk/jonathan"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="Door NPC" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 68, -105 )
+scale = Vector2( 3, 1 )
+dialog = "Podunk/burger_toilet"
+
+[node name="Above" type="TileMap" parent="."]
+tile_set = SubResource( 7 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65526, 3, 0, 65527, 3, 0, 65528, 3, 0, 65529, 3, 0, 65530, 3, 0, 65531, 3, 0, 65532, 3, 0, 65533, 3, 0, 65534, 3, 65536, 65535, 3, 131072, 0, 3, 131073, 1, 3, 65537, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 196598, 3, 0, 196599, 3, 0, 196600, 3, 0, 196601, 3, 0, 196602, 3, 0, 196603, 3, 0, 196604, 3, 0, 196605, 3, 0, 196606, 3, 0, 196607, 3, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0 )
+
+[node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 1597
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
+visible = false
+polygon = PoolVector2Array( -112, 0, -96, -96, 68, -96, 68, -97, 92, -97, 92, -96, 96, -96, 112, 0, 24, 0, 24, 16, 16, 16, 16, 32, -16, 32, -16, 48, 120, 48, 120, -160, -120, -160, -120, 48, -16, 48, -16, 16, -24, 16, -24, 0 )
+
+[node name="camarea" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="CollisionShape2D" parent="camarea" index="0"]
+position = Vector2( 0, -64 )
+shape = SubResource( 8 )
+
+[node name="Door" parent="." instance=ExtResource( 5 )]
+position = Vector2( -16, 24 )
+scale = Vector2( 4, 1 )
+targetX = -112
+targetY = 1848
+dir = Vector2( 0, 1 )
+transit_in_anim = "Circle Focus"
+transit_out_anim = "Circle Focus"
+targetScene = "podunk/podunk"
+
+[node name="MusicArea" parent="." instance=ExtResource( 7 )]
+visible = false
+loop = "Buy_Somethin_Will_Ya_Radio.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
+position = Vector2( 0, -76 )
+shape = SubResource( 13 )
+
+[node name="Stepping Sounds" parent="." instance=ExtResource( 8 )]
+entering_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds"]
+position = Vector2( 0, 12 )
+shape = SubResource( 14 )
+
+[editable path="Objects/npc"]
+[editable path="camarea"]

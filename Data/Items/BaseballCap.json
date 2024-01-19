@@ -1,0 +1,50 @@
+{
+	"name": {
+		"english": "Baseball Cap",
+		"french": "Casquette"
+	},
+	"article" : {
+		"english": "a",
+		"french": "une"
+	},
+	"keyitem": false,
+	"cost": 60,
+	"value": 30,
+	"usable": {
+		"ninten": true,
+		"lloyd": false,
+		"ana": false,
+		"teddy": false,
+		"pippi": false
+	},
+	"action_one": {
+		"name": {
+			"english": "Equip", 
+			"french": "Équipper"
+		},
+		"nametwo": {
+			"english": "Unequip", 
+			"french": "Déséquipper"
+		},
+		"function": "equip"
+	},
+	"action_two": null,
+	"battle_action": "",
+	"transform": "",
+	"slot": "head",
+	"HPrecover": 0,
+	"PPrecover": 0,
+	"boost": {
+		"maxhp": 0, 
+		"maxpp": 0, 
+		"speed": 0, 
+		"offense": 0, 
+		"defense": 5, 
+		"iq": 0, 
+		"guts": 0
+	},
+	"description": {
+		"english": "A hat for baseball players.\nHead @ Defense +5.",
+		"french": "Une casquette pour les joueurs de baseball.\nTête @ Défense +5."
+	}
+}

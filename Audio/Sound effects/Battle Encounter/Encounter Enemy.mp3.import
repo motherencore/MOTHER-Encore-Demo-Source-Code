@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Encounter Enemy.mp3-8745d5c3a3edfbed39a991e9e251008f.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Battle Encounter/Encounter Enemy.mp3"
+dest_files=[ "res://.import/Encounter Enemy.mp3-8745d5c3a3edfbed39a991e9e251008f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

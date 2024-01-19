@@ -1,0 +1,24 @@
+{
+	"name": "Biopede",
+	"maxhp": 35,
+	"hp": 35,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 28,
+	"offense": 16,
+	"defense": 32,
+	"iq": 60,
+	"guts": 0,
+	"level": 4,
+	"exp": 36,
+	"cash": 14,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Its strong poison was developed in a laboratory.",
+	"boss": false,
+	"sprite": "biopede",
+	"ovsprite": "BiopedeOV",
+	"music": "",
+	"bg": ""
+}

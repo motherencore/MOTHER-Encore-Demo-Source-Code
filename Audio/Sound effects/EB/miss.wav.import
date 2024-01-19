@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/miss.wav-6501e4530cab1823bed8f70255b7e25f.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/miss.wav"
+dest_files=[ "res://.import/miss.wav-6501e4530cab1823bed8f70255b7e25f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

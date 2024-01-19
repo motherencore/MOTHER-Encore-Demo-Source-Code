@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Super_Bomb.wav-a6f6bd4146865e8fb7d3e222751018ff.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Super_Bomb.wav"
+dest_files=[ "res://.import/Super_Bomb.wav-a6f6bd4146865e8fb7d3e222751018ff.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+{
+	"0": {
+		"text": "Two photographs stand on the drawer.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "The first one has your family standing in front of the house.",
+		"goto": "2"
+	},
+	"2": {
+		"text": "Everyone's overjoyed beyond words.",
+		"goto": "3"
+	},
+	"3": {
+		"text": "The second is an old sepia photo.",
+		"goto": "4"
+	},
+	"4": {
+		"text": "A couple standing beside each other with similar glee."
+	}
+}

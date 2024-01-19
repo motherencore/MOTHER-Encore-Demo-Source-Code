@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Party Fanfare.mp3-311b083c0dd1ff9c8e5dae96c4e24794.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Party Fanfare.mp3"
+dest_files=[ "res://.import/Party Fanfare.mp3-311b083c0dd1ff9c8e5dae96c4e24794.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

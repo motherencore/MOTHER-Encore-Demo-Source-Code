@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A_Ghastly_Site_Loop.mp3-848cc91db0c11b2565a569c5dfe874c9.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/A Ghastly Site!/A_Ghastly_Site_Loop.mp3"
+dest_files=[ "res://.import/A_Ghastly_Site_Loop.mp3-848cc91db0c11b2565a569c5dfe874c9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

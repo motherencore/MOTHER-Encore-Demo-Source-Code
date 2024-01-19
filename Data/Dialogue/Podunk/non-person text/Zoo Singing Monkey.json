@@ -1,0 +1,69 @@
+{
+	"0": {
+		"text": "One of a kind!",
+		"goto": "1"
+	},
+	"1": {
+		"text": "See and listen to the amazing Singing Monkey!",
+		"if": {
+			"flags": {
+				"monkey_apologize": true,
+				"monkey_melody": false
+			},
+			"goto": "2"
+		}
+	},
+	"2": {
+		"actors": {
+			"leader": "leader",
+			"monkey": "AbovePlayer1/npc"
+		},
+		"movecam": {
+			"x": 848,
+			"y": -1184
+		},
+		"wait": 1.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"name": "Monkey",
+		"text": "EEK, EE EEEK, EEK.",
+		"sound": "Strange",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Monkey",
+		"text": "(My momma used to sing this song to me.",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Monkey",
+		"text": "And now, I shall sing it to you!)",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Monkey",
+		"objectfunction": {
+			"melodyBG": "appear",
+			"Music/MusicArea11": "stop_music_immediately"
+		},
+		"music": "Melodies/melody3.mp3",
+		"wait": 4,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "7"
+	},
+	"7": {
+		"objectfunction": {
+			"melodyBG": "disappear",
+			"Music/MusicArea11": "play_music"
+			
+		},
+		"soundeffect": "M3/heal_se.wav",
+		"text": "PartyLead remembered the tune.",
+		"flag": "monkey_melody",
+		"wait": 1
+	}
+}

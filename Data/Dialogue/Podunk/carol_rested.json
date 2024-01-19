@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Carol",
+		"text": "Did you have a good rest?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Carol",
+		"text": "Whenever you want some more FavFood, you're welcome to come home.",
+		"sound": "Sexy"
+	},
+}

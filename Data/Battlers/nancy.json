@@ -1,0 +1,24 @@
+{
+	"name": "Nancy",
+	"maxhp": 120,
+	"hp": 120,
+	"maxpp": 60,
+	"pp": 60,
+	"speed": 72,
+	"offense": 62,
+	"defense": 170,
+	"iq": 60,
+	"guts": 0,
+	"level": 4,
+	"exp": 134,
+	"cash": 50,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "Do not be tricked by her smile.",
+	"sprite": "nancy",
+	"ovsprite": "NancyOV",
+	"music": "",
+	"bg": ""
+}

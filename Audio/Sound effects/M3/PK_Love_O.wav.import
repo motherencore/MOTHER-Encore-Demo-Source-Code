@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PK_Love_O.wav-5c74820af9880454b8f9411b5c5221f3.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PK_Love_O.wav"
+dest_files=[ "res://.import/PK_Love_O.wav-5c74820af9880454b8f9411b5c5221f3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

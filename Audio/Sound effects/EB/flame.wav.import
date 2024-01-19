@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flame.wav-8ad72447df6bb364ced6fb9fa4032090.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/flame.wav"
+dest_files=[ "res://.import/flame.wav-8ad72447df6bb364ced6fb9fa4032090.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

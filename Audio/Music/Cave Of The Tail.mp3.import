@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cave Of The Tail.mp3-5a676635adf830002df5050054e82dbb.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Cave Of The Tail.mp3"
+dest_files=[ "res://.import/Cave Of The Tail.mp3-5a676635adf830002df5050054e82dbb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

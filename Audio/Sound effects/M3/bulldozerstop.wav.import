@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bulldozerstop.wav-e2a111b8bb3fd77164c1dd3665d1ead1.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/bulldozerstop.wav"
+dest_files=[ "res://.import/bulldozerstop.wav-e2a111b8bb3fd77164c1dd3665d1ead1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

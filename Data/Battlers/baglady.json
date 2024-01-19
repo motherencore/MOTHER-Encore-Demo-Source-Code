@@ -1,0 +1,24 @@
+{
+	"name": "Bag Lady",
+	"maxhp": 90,
+	"hp": 90,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 15,
+	"offense": 12,
+	"defense": 38,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 126,
+	"cash": 150,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Her refrigerator shaped body holds a heart of ice.",
+	"boss": false,
+	"sprite": "bag lady",
+	"ovsprite": "BagLadyOV",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/drill.wav-1b8b0c7fff93a146719404960715b4d9.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/drill.wav"
+dest_files=[ "res://.import/drill.wav-1b8b0c7fff93a146719404960715b4d9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

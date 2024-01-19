@@ -1,0 +1,25 @@
+{
+	"name": "Nasty Zombie",
+	"maxhp": 90,
+	"hp": 90,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 30,
+	"offense": 62,
+	"defense": 90,
+	"iq": 50,
+	"guts": 0,
+	"level": 4,
+	"exp": 108,
+	"cash": 58,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "It attacks with bare hands.",
+	"sprite": "nasty zombie",
+	"ovsprite": "NastyZombieOV",
+	"musicintro": "Murky Meanie/Murky Meanie Intro.wav",
+	"music": "Murky Meanie/Murky Meanie Loop.wav",
+	"bg": ""
+}

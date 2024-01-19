@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Barrel Coffin Explode.mp3-b33192ad675ce2cebb58e5847f216999.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Barrel Coffin Explode.mp3"
+dest_files=[ "res://.import/Barrel Coffin Explode.mp3-b33192ad675ce2cebb58e5847f216999.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

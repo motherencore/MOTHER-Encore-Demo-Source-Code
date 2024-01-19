@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cursor 2.mp3-5baaf42ec65a8345ade8664378e9cf07.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Cursor 2.mp3"
+dest_files=[ "res://.import/Cursor 2.mp3-5baaf42ec65a8345ade8664378e9cf07.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

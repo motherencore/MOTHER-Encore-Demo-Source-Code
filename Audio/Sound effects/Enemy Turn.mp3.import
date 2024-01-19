@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Enemy Turn.mp3-8af9aa30e58e292fc5854a5a9d4365ad.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Enemy Turn.mp3"
+dest_files=[ "res://.import/Enemy Turn.mp3-8af9aa30e58e292fc5854a5a9d4365ad.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

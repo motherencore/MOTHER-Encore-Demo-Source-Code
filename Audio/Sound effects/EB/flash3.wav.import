@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flash3.wav-38a6424e0590a908d7937522bcbbbd22.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/flash3.wav"
+dest_files=[ "res://.import/flash3.wav-38a6424e0590a908d7937522bcbbbd22.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

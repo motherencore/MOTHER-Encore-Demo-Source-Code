@@ -1,0 +1,44 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"mick": "Objects/NPCS/npc21"
+		},
+		"actorsturn": {
+			"mick": {
+				"x": 0,
+				"y": 1,
+				"speed": 0.1
+			}
+		},
+		"actorsjump": {
+			"mick": {
+				"height": 8,
+				"times": 2
+			}
+		},
+		"talker": "mick",
+		"name": "Mick",
+		"text": "Woof woof!",
+		"goto": "1"
+	},
+	"1": {
+		"talker": "none",
+		"text": "Looks like Mick has something to tell you.",
+		"goto": "2"
+	},
+	"2": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 0, "y": -16}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"wait": 0.5,
+		"caninput": false,
+		"autoadvance": true
+	}
+}

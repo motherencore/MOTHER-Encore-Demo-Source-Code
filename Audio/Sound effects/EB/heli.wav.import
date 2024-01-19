@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/heli.wav-36f3cd699577a8fe9082c473dae68fab.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/heli.wav"
+dest_files=[ "res://.import/heli.wav-36f3cd699577a8fe9082c473dae68fab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

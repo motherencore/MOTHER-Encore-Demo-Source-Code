@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Minnie",
+		"text": "Woah! You got the door to open!",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Minnie",
+		"text": "Now hurry up and check if Mimmie's okay!",
+		"sound": "Kid"
+	}
+}

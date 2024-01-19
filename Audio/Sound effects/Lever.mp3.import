@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lever.mp3-6d371f78134cf63c6c0a61781d5b1e14.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Lever.mp3"
+dest_files=[ "res://.import/Lever.mp3-6d371f78134cf63c6c0a61781d5b1e14.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Defense_Up.wav-d7a06ad779bdb51fd21d1d1343f74eaf.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Defense_Up.wav"
+dest_files=[ "res://.import/Defense_Up.wav-d7a06ad779bdb51fd21d1d1343f74eaf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

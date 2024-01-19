@@ -1,0 +1,25 @@
+{
+	"name": "Centipede",
+	"maxhp": 13,
+	"hp": 13,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 8,
+	"offense": 4,
+	"defense": 12,
+	"iq": 10,
+	"guts": 0,
+	"level": 4,
+	"exp": 5,
+	"cash": 2,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Exterminate with insecticide.",
+	"boss": false,
+	"sprite": "centipede",
+	"ovsprite": "CentipedeOV",
+	"ovtype": "Basic Enemy 2F",
+	"music": "Unsettling Opponent.mp3",
+	"bg": "centipede"
+}

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ropedown.wav-7e2cbbe5b190f340a828b91016b11978.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/ropedown.wav"
+dest_files=[ "res://.import/ropedown.wav-7e2cbbe5b190f340a828b91016b11978.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

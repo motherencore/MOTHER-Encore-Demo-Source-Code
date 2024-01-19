@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PK_Starstorm.wav-91540b1459b37bb0f7868aef4ec6fb62.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PK_Starstorm.wav"
+dest_files=[ "res://.import/PK_Starstorm.wav-91540b1459b37bb0f7868aef4ec6fb62.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

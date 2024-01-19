@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PSI_Shield_attacked.wav-80b6f30489a676333a4f7dc17c968242.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PSI_Shield_attacked.wav"
+dest_files=[ "res://.import/PSI_Shield_attacked.wav-80b6f30489a676333a4f7dc17c968242.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

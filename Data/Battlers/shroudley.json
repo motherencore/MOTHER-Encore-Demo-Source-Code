@@ -1,0 +1,24 @@
+{
+	"name": "Shroudley",
+	"maxhp": 90,
+	"hp": 90,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 35,
+	"offense": 42,
+	"defense": 128,
+	"iq": 55,
+	"guts": 0,
+	"level": 4,
+	"exp": 116,
+	"cash": 34,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "An evil, caped zombie. Beware, its Last Strike could be devastating.",
+	"boss": false,
+	"sprite": "shroudley",
+	"ovsprite": "ShroudleyOV",
+	"music": "",
+	"bg": ""
+}

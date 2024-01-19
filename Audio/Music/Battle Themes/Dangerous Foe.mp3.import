@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Dangerous Foe.mp3-6e79bbef8729a725c061e72575928a5e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Dangerous Foe.mp3"
+dest_files=[ "res://.import/Dangerous Foe.mp3-6e79bbef8729a725c061e72575928a5e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

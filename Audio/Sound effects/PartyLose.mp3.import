@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/PartyLose.mp3-be41db9711df56b04cc8754b9723c249.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/PartyLose.mp3"
+dest_files=[ "res://.import/PartyLose.mp3-be41db9711df56b04cc8754b9723c249.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

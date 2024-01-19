@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Cheering.mp3-3da1c105d06646cc4c0e1637e55b2550.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Cheering.mp3"
+dest_files=[ "res://.import/Cheering.mp3-3da1c105d06646cc4c0e1637e55b2550.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

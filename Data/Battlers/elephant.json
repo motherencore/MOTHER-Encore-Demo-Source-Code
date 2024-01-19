@@ -1,0 +1,31 @@
+{
+	"name": "Elephant",
+	"maxhp": 130,
+	"hp": 130,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 6,
+	"offense": 28,
+	"defense": 30,
+	"iq": 30,
+	"guts": 0,
+	"level": 10,
+	"exp": 120,
+	"cash": 99,
+	"items": [
+		{"item": "LifeUpCream", "chance": 25}
+	],
+	"skills": [
+		{"skill" : "attack", "weight" : 4},
+		{"skill" : "blindingThrow", "weight" : 1},
+		{"skill" : "rage", "weight" : 2},
+		{"skill" : "mightyRoar", "weight" : 2}
+	],
+	"description": "Don't let him stop and unpack his trunk!",
+	"boss": false,
+	"sprite": "elephant",
+	"ovsprite": "ElephantOV",
+	"ovoffset": 18,
+	"music": "Dangerous Foe.mp3",
+	"bg": "elephant"
+}

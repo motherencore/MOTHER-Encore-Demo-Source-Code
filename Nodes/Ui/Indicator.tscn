@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/UI/select_arrow.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI/Indicator.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -22, 0 ), Vector2( -18, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -20, 0 ) ]
+}
+
+[node name="Indicator" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -320.0
+margin_bottom = -180.0
+script = ExtResource( 3 )
+key = "ui_focus_next"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 11.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 11.0
+custom_constants/separation = 2
+alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_left = 1.0
+margin_right = 7.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 2 )
+stretch_mode = 3
+flip_h = true
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 9.0
+margin_right = 39.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 1 )
+text = "ctrl"
+align = 2
+valign = 1

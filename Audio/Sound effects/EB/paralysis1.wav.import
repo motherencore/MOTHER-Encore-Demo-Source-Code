@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/paralysis1.wav-c6e7c3cbfec023818fafedd41de162b5.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/paralysis1.wav"
+dest_files=[ "res://.import/paralysis1.wav-c6e7c3cbfec023818fafedd41de162b5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

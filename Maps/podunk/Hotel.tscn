@@ -1,0 +1,364 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=1]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Reusables/hotel room.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Graphics/Rooms/Podunk_Hotel.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Rooms/Podunk_Hotel_Desk.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Rooms/Podunk_Hotel_Hallway_Rails.png" type="Texture" id=8]
+[ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Overworld/Objects/Openable Door.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/Reusables/phone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Graphics/Objects/Doors/Door_Dark_Locked.png" type="Texture" id=14]
+[ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=16]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[sub_resource type="Shader" id=432]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=433]
+resource_local_to_scene = true
+shader = SubResource( 432 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform vec4 OLDCOLOR : hint_color;
+uniform vec4 NEWCOLOR: hint_color;
+
+void fragment() {
+	vec4 curr_pixel = texture(TEXTURE, UV);
+	if (curr_pixel == OLDCOLOR)
+		COLOR = NEWCOLOR;
+	else
+		COLOR = curr_pixel;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 8 )
+shader_param/OLDCOLOR = Color( 0, 0, 0, 1 )
+shader_param/NEWCOLOR = Color( 0, 0, 0, 1 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 296, 400 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 340, 432 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 168, 116 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 204, 108 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 224, 100 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 24, 12 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 144, 16 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 33, 21 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 8, 4 )
+
+[node name="Podunk Hotel" type="Node2D"]
+script = ExtResource( 16 )
+player_map_offset = Vector2( 136, 224 )
+map_name_override = "Podunk"
+map_item = "MapPodunk"
+is_sub_area = true
+
+[node name="PodunkHotel" type="Sprite" parent="."]
+position = Vector2( 0, -224 )
+texture = ExtResource( 6 )
+
+[node name="npc" parent="." instance=ExtResource( 5 )]
+position = Vector2( 32, -93 )
+sprite = "Npcs/4dir/hotelreceptionist"
+dialog = "Podunk/podunkhotel"
+player_turn = {
+"x": false,
+"y": true
+}
+
+[node name="AnimationTree" parent="npc" index="2"]
+parameters/playback = SubResource( 2 )
+
+[node name="PartyMemberTree" parent="npc" index="4"]
+parameters/playback = SubResource( 3 )
+
+[node name="interact" parent="npc" index="7"]
+scale = Vector2( 1, 2 )
+
+[node name="ButtonPrompt" parent="npc/interact" index="1"]
+material = SubResource( 433 )
+scale = Vector2( 1, 0.5 )
+
+[node name="PodunkHotelDesk" type="Sprite" parent="."]
+position = Vector2( 56, -96 )
+texture = ExtResource( 7 )
+
+[node name="Openable Door" parent="." instance=ExtResource( 10 )]
+position = Vector2( 104, -384 )
+sprite = ExtResource( 14 )
+one_way = true
+
+[node name="Openable Door2" parent="." instance=ExtResource( 10 )]
+position = Vector2( -104, -384 )
+sprite = ExtResource( 14 )
+one_way = true
+
+[node name="Below" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2883601, 55, 65541, -2883600, 55, 65541, -2883599, 55, 65538, -2883598, 55, 65539, -2883597, 55, 65539, -2883596, 55, 65539, -2883595, 55, 65539, -2883594, 55, 65539, -2883593, 55, 65539, -2883592, 55, 65539, -2883591, 55, 65539, -2883590, 55, 65539, -2883589, 55, 65539, -2883588, 55, 65539, -2883587, 55, 65540, -2883586, 536870967, 65541, -2883585, 55, 65541, -2818065, 55, 65541, -2818064, 55, 65541, -2818063, 55, 65538, -2818062, 55, 65539, -2818061, 55, 65539, -2818060, 55, 65539, -2818059, 55, 65539, -2818058, 55, 65539, -2818057, 55, 65539, -2818056, 55, 65539, -2818055, 55, 65539, -2818054, 55, 65539, -2818053, 55, 65539, -2818052, 55, 65539, -2818051, 55, 65540, -2818050, 536870967, 65541, -2818049, 55, 65541, -2752529, 55, 65541, -2752528, 55, 65541, -2752527, 55, 65538, -2752526, 55, 65539, -2752525, 55, 65539, -2752524, 55, 65539, -2752523, 55, 65539, -2752522, 55, 65539, -2752521, 55, 65539, -2752520, 55, 65539, -2752519, 55, 65539, -2752518, 55, 65539, -2752517, 55, 65539, -2752516, 55, 65539, -2752515, 55, 65540, -2752514, 536870967, 65541, -2752513, 55, 65541, -2686993, 55, 65541, -2686991, 55, 65539, -2686990, 55, 65539, -2686989, 55, 65539, -2686988, 55, 65539, -2686987, 55, 65539, -2686986, 55, 65539, -2686985, 55, 65539, -2686984, 55, 65539, -2686983, 55, 65539, -2686982, 55, 65539, -2686981, 55, 65539, -2686980, 55, 65539, -2686979, 55, 65539, -2686978, 536870967, 65541, -2686977, 55, 65541, -2621457, 55, 65541, -2621456, 56, 2, -2621455, 56, 2, -2621454, 56, 2, -2621453, 56, 2, -2621452, 56, 2, -2621451, 56, 2, -2621450, 56, 2, -2621449, 56, 2, -2621448, 56, 2, -2621447, 56, 2, -2621446, 56, 2, -2621445, 56, 2, -2621444, 56, 2, -2621443, 56, 2, -2621442, 56, 2, -2621441, 55, 65541, -2555921, 55, 65541, -2555920, 56, 2, -2555919, 56, 0, -2555918, 56, 2, -2555917, 56, 2, -2555916, 56, 2, -2555915, 56, 2, -2555914, 56, 2, -2555913, 56, 1, -2555912, 56, 2, -2555911, 56, 2, -2555910, 56, 2, -2555909, 56, 2, -2555908, 56, 2, -2555907, 56, 2, -2555906, 56, 2, -2555905, 55, 65541, -2490385, 55, 65541, -2490384, 56, 2, -2490383, 56, 2, -2490382, 56, 2, -2490381, 56, 2, -2490380, 56, 2, -2490379, 56, 2, -2490378, 56, 2, -2490377, 56, 2, -2490376, 56, 2, -2490375, 56, 0, -2490374, 56, 2, -2490373, 56, 2, -2490372, 56, 2, -2490371, 56, 0, -2490370, 56, 2, -2490369, 55, 65541, -2424849, 55, 65541, -2424848, 56, 2, -2424847, 56, 2, -2424846, 56, 2, -2424845, 56, 2, -2424844, 56, 2, -2424843, 56, 2, -2424842, 56, 2, -2424841, 56, 1, -2424840, 56, 2, -2424839, 56, 2, -2424838, 56, 2, -2424837, 56, 2, -2424836, 56, 2, -2424835, 56, 2, -2424834, 56, 2, -2424833, 55, 65541, -2359313, 55, 65541, -2359312, 56, 2, -2359311, 56, 2, -2359310, 56, 1, -2359309, 56, 2, -2359308, 56, 2, -2359307, 56, 2, -2359306, 56, 2, -2359305, 56, 2, -2359304, 56, 2, -2359303, 56, 2, -2359302, 56, 2, -2359301, 56, 2, -2359300, 56, 1, -2359299, 56, 2, -2359298, 56, 2, -2359297, 55, 65541, -2293777, 55, 65541, -2293776, 56, 2, -2293775, 56, 2, -2293774, 56, 2, -2293773, 56, 2, -2293772, 56, 2, -2293771, 56, 2, -2293770, 56, 2, -2293769, 56, 2, -2293768, 56, 2, -2293767, 56, 2, -2293766, 56, 0, -2293765, 56, 2, -2293764, 56, 2, -2293763, 56, 2, -2293762, 56, 2, -2293761, 55, 65541, -2228233, 56, 2, -2228232, 56, 2, -2228231, 56, 2, -2228230, 56, 2, -2228229, 56, 2, -1703945, 536871086, 0, -1703941, 536871086, 0, -1703939, 536871086, 0, -1703937, 536870934, 0, -1769470, 536871086, 0, -1769468, 536871086, 0, -1769464, 536871086, 0, -1507329, 536871032, 0 )
+
+[node name="Below2" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2883596, 74, 0, -2883591, 74, 0, -2818052, 536871062, 4, -2686992, 55, 65541, -2686991, 61, 65537, -2686990, 61, 1, -2686989, 61, 1, -2686988, 61, 1, -2686987, 61, 1, -2686986, 61, 1, -2686985, 61, 1, -2686984, 61, 1, -2686983, 61, 1, -2686982, 61, 1, -2686981, 61, 1, -2686980, 61, 1, -2686979, 61, 2, -2621456, 55, 65542, -2621442, 536870967, 65542, -2555920, 55, 65543, -2555906, 536870967, 65543, -2490384, 55, 65544, -2490370, 536870967, 65544, -2424848, 55, 65545, -2424834, 536870967, 65545, -2359312, 55, 65546, -2359298, 536870967, 65546, -2293768, 145, 0, -2228240, 131, 65538, -2228239, 131, 65538, -2228238, 131, 65538, -2228237, 131, 65538, -2228236, 131, 65538, -2228235, 131, 65539, -2228228, 131, 65537, -2228227, 131, 65538, -2228226, 131, 65538, -2162694, 145, 0, -1638400, 536871011, 7, -1507331, 536870979, 0 )
+
+[node name="Below3" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2686992, 61, 3, -2686990, 69, 0, -2686978, 61, 0, -2621456, 61, 65539, -2621455, 117, 0, -2621450, 117, 0, -2621448, 536871042, 0, -2621442, 61, 65536, -2555920, 61, 131075, -2555906, 61, 131072, -2490384, 61, 196611, -2490370, 61, 196608, -2424848, 61, 262147, -2424845, 44, 0, -2424834, 61, 262144, -2359313, 61, 327682, -2359312, 61, 327683, -2359298, 61, 327680, -2359297, 61, 327681, -2293777, 61, 393218, -2293776, 61, 393219, -2293762, 61, 393216, -2293761, 61, 393217 )
+
+[node name="Below4" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_y_sort = true
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2883601, 14, 2, -2883600, 14, 0, -2883586, 14, 1, -2883585, 14, 2, -2818065, 14, 2, -2818064, 14, 65536, -2818050, 14, 65537, -2818049, 14, 2, -2752529, 14, 2, -2752528, 14, 131072, -2752517, 144, 0, -2752514, 14, 131073, -2752513, 14, 2, -2686993, 14, 2, -2686992, 14, 196608, -2686991, 99, 8, -2686986, 99, 6, -2686978, 14, 196609, -2686977, 14, 2, -2621457, 14, 2, -2621456, 14, 262144, -2621442, 14, 262145, -2621441, 14, 2, -2555921, 14, 2, -2555920, 14, 327680, -2555908, 103, 0, -2555906, 14, 327681, -2555905, 14, 2, -2490385, 14, 2, -2490369, 14, 2, -2424849, 14, 2, -2424833, 14, 2, -2359313, 14, 2, -2359297, 14, 2, -2293777, 14, 2, -2293761, 14, 2 )
+
+[node name="Objects" type="TileMap" parent="."]
+material = SubResource( 4 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_y_sort = true
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -1376249, 180, 0, -65544, 536871085, 0, 3, 181, 0 )
+
+[node name="Hotel Room" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -136, -632 )
+
+[node name="Door NPC" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( -120, -393 )
+scale = Vector2( 4, 1 )
+dialog = "Podunk/working"
+
+[node name="ATM" parent="Objects" instance=ExtResource( 13 )]
+position = Vector2( -29, -113 )
+
+[node name="Phone" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 72, -92 )
+
+[node name="PodunkHotelHallwayRails" type="Sprite" parent="."]
+position = Vector2( -112, -312 )
+texture = ExtResource( 8 )
+
+[node name="Above" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2621456, 536870952, 0, -2621442, 40, 0, -2293776, 131, 2, -2293775, 131, 2, -2293774, 131, 2, -2293773, 131, 2, -2293772, 131, 2, -2293771, 131, 3, -2293764, 131, 1, -2293763, 131, 2, -2293762, 131, 2, -2228244, 14, 2, -2228243, 14, 2, -2228242, 14, 2, -2228241, 14, 2, -2228240, 14, 2, -2228239, 14, 2, -2228238, 14, 2, -2228237, 14, 2, -2228236, 14, 2, -2228235, 14, 2, -2228234, 14, 2, -2228233, 14, 2, -2228232, 14, 327682, -2228230, 14, 262146, -2228229, 14, 2, -2228228, 14, 2, -2228227, 14, 2, -2228226, 14, 2, -2228225, 14, 2, -2293760, 14, 2, -2293759, 14, 2, -2162708, 14, 2, -2162707, 14, 2, -2162706, 14, 2, -2162705, 14, 2, -2162704, 14, 2, -2162703, 14, 2, -2162702, 14, 2, -2162701, 14, 2, -2162700, 14, 2, -2162699, 14, 2, -2162698, 14, 2, -2162697, 14, 2, -2162696, 14, 2, -2162695, 14, 2, -2162694, 14, 2, -2162693, 14, 2, -2162692, 14, 2, -2162691, 14, 2, -2162690, 14, 2, -2162689, 14, 2, -2228224, 14, 2, -2228223, 14, 2, -2097172, 14, 2, -2097171, 14, 2, -2097170, 14, 2, -2097169, 14, 2, -2097168, 14, 2, -2097167, 14, 2, -2097166, 14, 2, -2097165, 14, 2, -2097164, 14, 2, -2097163, 14, 2, -2097162, 14, 2, -2097161, 14, 2, -2097160, 14, 2, -2097159, 14, 2, -2097158, 14, 2, -2097157, 14, 2, -2097156, 14, 2, -2097155, 14, 2, -2097154, 14, 2, -2097153, 14, 2, -2162688, 14, 2, -2162687, 14, 2, -1507339, 536870951, 0, -1572854, 39, 0, -1245199, 14, 2, -1245198, 14, 2, -1245197, 14, 2, -1245196, 14, 2, -1245195, 14, 2, -1245194, 14, 393216, -1245189, 14, 458753, -1245188, 14, 2, -1245187, 14, 2, -1245186, 14, 2, -1245185, 14, 2, -1310720, 14, 2, -1310719, 14, 2, -1310718, 14, 2, -1310717, 14, 2, -1310716, 14, 2, -1310715, 14, 2, -1310714, 14, 2, -1310713, 14, 2, -1310712, 14, 2, -1310711, 14, 2, -1310710, 14, 2, -1310709, 14, 2, -1310708, 14, 2, -1179663, 14, 2, -1179662, 14, 2, -1179661, 14, 2, -1179660, 14, 2, -1179659, 14, 2, -1179658, 14, 2, -1179657, 14, 393217, -1179654, 14, 458752, -1179653, 14, 2, -1179652, 14, 2, -1179651, 14, 2, -1179650, 14, 2, -1179649, 14, 2, -1245184, 14, 2, -1245183, 14, 2, -1245182, 14, 2, -1245181, 14, 2, -1245180, 14, 2, -1245179, 14, 2, -1245178, 14, 2, -1245177, 14, 2, -1245176, 14, 2, -1245175, 14, 2, -1245174, 14, 2, -1245173, 14, 2, -1245172, 14, 2, -1114127, 14, 2, -1114126, 14, 2, -1114125, 14, 2, -1114124, 14, 2, -1114123, 14, 2, -1114122, 14, 2, -1114121, 14, 2, -1114120, 14, 2, -1114119, 14, 2, -1114118, 14, 2, -1114117, 14, 2, -1114116, 14, 2, -1114115, 14, 2, -1114114, 14, 2, -1114113, 14, 2, -1179648, 14, 2, -1179647, 14, 2, -1179646, 14, 2, -1179645, 14, 2, -1179644, 14, 2, -1179643, 14, 2, -1179642, 14, 2, -1179641, 14, 2, -1179640, 14, 2, -1179639, 14, 2, -1179638, 14, 2, -1179637, 14, 2, -1179636, 14, 2, -1048591, 14, 2, -1048590, 14, 2, -1048589, 14, 2, -1048588, 14, 2, -1048587, 14, 2, -1048586, 14, 2, -1048585, 14, 2, -1048584, 14, 2, -1048583, 14, 2, -1048582, 14, 2, -1048581, 14, 2, -1048580, 14, 2, -1048579, 14, 2, -1048578, 14, 2, -1048577, 14, 2, -1114112, 14, 2, -1114111, 14, 2, -1114110, 14, 2, -1114109, 14, 2, -1114108, 14, 2, -1114107, 14, 2, -1114106, 14, 2, -1114105, 14, 2, -1114104, 14, 2, -1114103, 14, 2, -1114102, 14, 2, -1114101, 14, 2, -1114100, 14, 2, -262152, 536871084, 0, -327674, 172, 0, 65525, 14, 2, 65526, 14, 2, 65527, 14, 2, 65528, 14, 2, 65529, 14, 2, 65530, 14, 2, 65531, 14, 2, 65532, 14, 2, 65533, 14, 393216, 65534, 14, 393217, 0, 14, 458752, 1, 14, 458753, 2, 14, 2, 3, 14, 2, 4, 14, 2, 5, 14, 2, 6, 14, 2, 7, 14, 2, 8, 14, 2, 9, 14, 2, 131061, 14, 2, 131062, 14, 2, 131063, 14, 2, 131064, 14, 2, 131065, 14, 2, 131066, 14, 2, 131067, 14, 2, 131068, 14, 2, 131069, 14, 2, 131070, 14, 2, 131071, 14, 2, 65536, 14, 2, 65537, 14, 2, 65538, 14, 2, 65539, 14, 2, 65540, 14, 2, 65541, 14, 2, 65542, 14, 2, 65543, 14, 2, 65544, 14, 2, 65545, 14, 2, 196597, 14, 2, 196598, 14, 2, 196599, 14, 2, 196600, 14, 2, 196601, 14, 2, 196602, 14, 2, 196603, 14, 2, 196604, 14, 2, 196605, 14, 2, 196606, 14, 2, 196607, 14, 2, 131072, 14, 2, 131073, 14, 2, 131074, 14, 2, 131075, 14, 2, 131076, 14, 2, 131077, 14, 2, 131078, 14, 2, 131079, 14, 2, 131080, 14, 2 )
+
+[node name="Above2" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+collision_layer = 1597
+format = 1
+tile_data = PoolIntArray( -2359312, 140, 0, -2293773, 99, 3, -2293763, 99, 12, -2293762, 99, 7 )
+
+[node name="MusicArea" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -48, 8 )
+music = "Hotel/Hotel_Main_Track.mp3"
+loop = "Hotel/Hotel_Loop.mp3"
+disappear_flag = "good_morning"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
+position = Vector2( 24, -360 )
+shape = SubResource( 1 )
+
+[node name="MusicArea2" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 0, -528 )
+music = "Good Morning/Good_Morning.wav"
+loop = "Good Morning/Good_Morning_Loop.wav"
+appear_flag = "good_morning"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea2"]
+position = Vector2( -12, 176 )
+shape = SubResource( 9 )
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( -32, 24 )
+scale = Vector2( 6, 1 )
+targetX = 576
+targetY = 1552
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+transit_in_anim = "Circle Focus"
+transit_out_anim = "Circle Focus"
+targetScene = "podunk/podunk"
+flag_set = "good_morning"
+set_flag_state = false
+
+[node name="Door3" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( -120, -536 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+
+[node name="Position2D" parent="Doors/Door3" index="1"]
+position = Vector2( 56, 160 )
+
+[node name="Door6" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( 88, -393 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+
+[node name="Position2D" parent="Doors/Door6" index="1"]
+position = Vector2( -48, -152 )
+
+[node name="Door4" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( -88, -121 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+
+[node name="Position2D" parent="Doors/Door4" index="1"]
+position = Vector2( -6, -167 )
+
+[node name="Door5" parent="Doors" instance=ExtResource( 2 )]
+position = Vector2( -144, -280 )
+scale = Vector2( 8, 1 )
+dir = Vector2( 0, 1 )
+
+[node name="Position2D" parent="Doors/Door5" index="1"]
+position = Vector2( 9, 176 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 573
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 16, 16, 112, 16, 104, -64, -9, -64, -9, -112, -56, -112, -56, -120, -88, -120, -88, -112, -96, -112, -96, -96, -112, -96, -128, -16, -128, 16, -32, 16, -32, 32, 16, 32, 16, 48, -136, 48, -136, -192, 128, -192, 128, 48, 16, 48 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -128, -560 )
+polygon = PoolVector2Array( 40, 16, 112, 16, 96, -96, -112, -96, -128, 16, 8, 16, 8, 32, 40, 32, 40, 48, -136, 48, -136, -192, 128, -192, 128, 48, 40, 48 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( -32, -288 )
+polygon = PoolVector2Array( -45, -16, 200, -16, 200, -32, 192, -32, 192, -88, 176, -88, 176, -96, 152, -96, 152, -104, 120, -104, 120, -96, 96, -96, 96, -88, 80, -88, 80, -96, -16, -96, -16, -88, -32, -88, -32, -96, -56, -96, -56, -97, -88, -97, -88, -96, -112, -96, -112, -88, -128, -88, -144, -16, -115, -16, -115, -32, -108, -32, -108, 16, -52, 16, -52, -32, -45, -32, -45, 32, -160, 32, -160, -176, 208, -176, 208, 32, -45, 32 )
+
+[node name="Camareas" type="Node2D" parent="."]
+
+[node name="camarea" parent="Camareas" instance=ExtResource( 12 )]
+position = Vector2( -16, -64 )
+
+[node name="CollisionShape2D" parent="Camareas/camarea" index="0"]
+position = Vector2( 8, -12 )
+shape = SubResource( 5 )
+
+[node name="camarea3" parent="Camareas" instance=ExtResource( 12 )]
+position = Vector2( -144, -624 )
+
+[node name="CollisionShape2D" parent="Camareas/camarea3" index="0"]
+position = Vector2( 12, -4 )
+shape = SubResource( 7 )
+
+[node name="camarea2" parent="Camareas" instance=ExtResource( 12 )]
+position = Vector2( -8, -336 )
+
+[node name="CollisionShape2D" parent="Camareas/camarea2" index="0"]
+position = Vector2( 8, -28 )
+shape = SubResource( 6 )
+
+[node name="Stepping Sounds" type="Node2D" parent="."]
+
+[node name="Carpet" parent="Stepping Sounds" instance=ExtResource( 15 )]
+entering_sound = "stone"
+exiting_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( -8, -4 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( -104, -564 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( 0, -352 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( -113, -301 )
+shape = SubResource( 13 )
+
+[node name="Wood" parent="Stepping Sounds" instance=ExtResource( 15 )]
+entering_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Wood"]
+position = Vector2( -8, 20 )
+shape = SubResource( 12 )
+
+[editable path="npc"]
+[editable path="MusicArea2"]
+[editable path="Doors/Door3"]
+[editable path="Doors/Door6"]
+[editable path="Doors/Door4"]
+[editable path="Doors/Door5"]
+[editable path="Camareas/camarea"]
+[editable path="Camareas/camarea3"]
+[editable path="Camareas/camarea2"]

@@ -1,0 +1,21 @@
+{
+	"0": {
+		"name": "Katie",
+		"text": "Welcome! Would you like to see what's on our menu?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"text": "",
+		"cleardialog": true,
+		"caninput": false,
+		"showbox": false,
+		"openshop": "podunk_burger_shop",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Katie",
+		"sound": "Sexy",
+		"text": "Thank you for coming!"
+	}
+}

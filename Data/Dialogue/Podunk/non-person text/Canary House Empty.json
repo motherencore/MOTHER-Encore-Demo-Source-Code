@@ -1,0 +1,20 @@
+{
+	"0": {
+		"actors": {
+			"leader": "leader"
+		},
+		"actorsjump": {
+			"leader": {
+				"height": 16,
+				"times": 2,
+				"speed": 0.25,
+				"crouch": true
+			}
+		},
+		"text": "Nobody's home...",
+		"goto": "1"
+	},
+	"1": {
+		"text": "You can feel a slight breeze coming from behind the birdhouse."
+	}
+}

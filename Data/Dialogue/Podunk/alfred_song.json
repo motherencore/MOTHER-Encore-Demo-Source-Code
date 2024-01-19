@@ -1,0 +1,47 @@
+{
+	"0": {
+		"name": "Alfred",
+		"text": "Laura remembered her song, and began to sing once more.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Alfred",
+		"text": "Did you learn the melody?",
+		"sound": "Adult",
+		"options": {
+			"Yes": "3",
+			"No": "2",
+			"cancel": "2"
+		}
+	},
+	"2": {
+		"name": "Alfred",
+		"text": "That's no good.",
+		"sound": "Adult"
+	},
+	"3": {
+		"name": "Alfred",
+		"text": "I heard that a long time ago, the canaries of this village didn't sing.",
+		"sound": "Adult",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Alfred",
+		"text": "Well, that was until a man with an ocarina showed up, and started playing a lullaby to the canaries of this village.",
+		"sound": "Adult",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Alfred",
+		"text": "There was also a woman who let her singing pet canaries loose in the village.",
+		"sound": "Adult",
+		"goto": "6"
+	},
+	"6": {
+		"flag": "alfred_song",
+		"name": "Alfred",
+		"text": "Together, they managed to turn this quiet village into a lively one.",
+		"sound": "Adult"
+	}
+}

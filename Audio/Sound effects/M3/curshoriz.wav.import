@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/curshoriz.wav-f2adfe62abd8760c944a7e14e0cd9795.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/curshoriz.wav"
+dest_files=[ "res://.import/curshoriz.wav-f2adfe62abd8760c944a7e14e0cd9795.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

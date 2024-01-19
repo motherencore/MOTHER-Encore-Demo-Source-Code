@@ -1,0 +1,24 @@
+{
+	"name": "Fugitive",
+	"maxhp": 60,
+	"hp": 60,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 22,
+	"offense": 32,
+	"defense": 45,
+	"iq": 20,
+	"guts": 0,
+	"level": 4,
+	"exp": 120,
+	"cash": 350,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "He can be found on the FBI's most wanted list.",
+	"boss": false,
+	"sprite": "fugitive",
+	"ovsprite": "FugitiveOV",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,248 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Nodes/Ui/moneyContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/UI/ATM/icons.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Nodes/Ui/Indicator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/UI/ATM/tab_01.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/UI/ATM/tab_00.png" type="Texture" id=6]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=7]
+[ext_resource path="res://Graphics/UI/ATM/money_dir_arrow.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_thinner.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/default_divider.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/ATM/money.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/UI/ATM/select_arrow_gray_animated.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/UI/ATM/ATM Menu.gd" type="Script" id=13]
+[ext_resource path="res://Graphics/UI/ATM/icons_colored.png" type="Texture" id=14]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 10, 9 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 12 )
+region = Rect2( 10, 0, 10, 9 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 12 )
+region = Rect2( 20, 0, 10, 9 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="ATM Menu" type="Control"]
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 13 )
+
+[node name="background" type="NinePatchRect" parent="."]
+material = ExtResource( 7 )
+margin_left = 72.0
+margin_top = 59.0
+margin_right = 248.0
+margin_bottom = 127.0
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 24, 24 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 6
+
+[node name="BankIcon" type="Sprite" parent="background"]
+position = Vector2( 12, 14 )
+texture = ExtResource( 2 )
+hframes = 2
+
+[node name="Arrow" type="TextureRect" parent="background"]
+margin_left = 8.0
+margin_top = 25.0
+margin_right = 17.0
+margin_bottom = 35.0
+rect_rotation = 180.0
+rect_pivot_offset = Vector2( 4.5, 5 )
+texture = ExtResource( 8 )
+
+[node name="WalletIcon" type="Sprite" parent="background"]
+position = Vector2( 12, 54 )
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="Label" type="Label" parent="background"]
+margin_left = 23.0
+margin_top = 9.0
+margin_right = 60.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 3 )
+text = "Balance"
+
+[node name="Label2" type="Label" parent="background"]
+margin_left = 23.0
+margin_top = 25.0
+margin_right = 60.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 3 )
+text = "Deposit"
+
+[node name="Label3" type="Label" parent="background"]
+margin_left = 23.0
+margin_top = 49.0
+margin_right = 60.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 3 )
+text = "On Hand"
+
+[node name="divider" type="NinePatchRect" parent="background"]
+material = ExtResource( 7 )
+margin_top = 37.0
+margin_right = 176.0
+margin_bottom = 47.0
+texture = ExtResource( 10 )
+patch_margin_left = 6
+patch_margin_top = 1
+patch_margin_right = 6
+patch_margin_bottom = 2
+
+[node name="BankBalance" parent="background" instance=ExtResource( 1 )]
+material = ExtResource( 7 )
+margin_left = 97.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 19.0
+
+[node name="userAmount" parent="background" instance=ExtResource( 1 )]
+material = ExtResource( 7 )
+margin_left = 97.0
+margin_top = 24.0
+margin_right = 148.0
+margin_bottom = 35.0
+
+[node name="ArrowL" type="AnimatedSprite" parent="background/userAmount"]
+position = Vector2( -9, 1 )
+frames = SubResource( 4 )
+centered = false
+flip_h = true
+
+[node name="ArrowR" type="AnimatedSprite" parent="background/userAmount"]
+position = Vector2( 50, 1 )
+frames = SubResource( 4 )
+centered = false
+
+[node name="ArrowU" type="AnimatedSprite" parent="background/userAmount"]
+position = Vector2( 50, -9 )
+rotation = 1.5708
+frames = SubResource( 4 )
+centered = false
+flip_h = true
+
+[node name="ArrowD" type="AnimatedSprite" parent="background/userAmount"]
+position = Vector2( 50, 10 )
+rotation = 1.5708
+frames = SubResource( 4 )
+centered = false
+
+[node name="WalletBalance" parent="background" instance=ExtResource( 1 )]
+material = ExtResource( 7 )
+margin_left = 97.0
+margin_top = 48.0
+margin_right = 148.0
+margin_bottom = 59.0
+
+[node name="MoneySymb" type="TextureRect" parent="background"]
+margin_left = 159.0
+margin_top = 9.0
+margin_right = 166.0
+margin_bottom = 18.0
+texture = ExtResource( 11 )
+
+[node name="MoneySymb2" type="TextureRect" parent="background"]
+margin_left = 159.0
+margin_top = 25.0
+margin_right = 166.0
+margin_bottom = 34.0
+texture = ExtResource( 11 )
+
+[node name="MoneySymb3" type="TextureRect" parent="background"]
+margin_left = 159.0
+margin_top = 49.0
+margin_right = 166.0
+margin_bottom = 58.0
+texture = ExtResource( 11 )
+
+[node name="TabMain" type="TextureRect" parent="."]
+material = ExtResource( 7 )
+margin_left = 72.0
+margin_top = 42.0
+margin_right = 160.0
+margin_bottom = 64.0
+texture = ExtResource( 6 )
+
+[node name="TabSub" type="TextureRect" parent="."]
+show_behind_parent = true
+material = ExtResource( 7 )
+margin_left = 160.0
+margin_top = 44.0
+margin_right = 248.0
+margin_bottom = 66.0
+texture = ExtResource( 5 )
+
+[node name="Deposit" type="Control" parent="."]
+margin_left = 91.0
+margin_top = 47.0
+margin_right = 150.0
+margin_bottom = 58.0
+
+[node name="Sprite" type="Sprite" parent="Deposit"]
+position = Vector2( 5, 5 )
+texture = ExtResource( 14 )
+hframes = 2
+
+[node name="Label" type="Label" parent="Deposit"]
+margin_left = 13.0
+margin_right = 50.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Deposit"
+
+[node name="Withdraw" type="Control" parent="."]
+margin_left = 171.0
+margin_top = 47.0
+margin_right = 230.0
+margin_bottom = 58.0
+
+[node name="Sprite" type="Sprite" parent="Withdraw"]
+position = Vector2( 5, 5 )
+texture = ExtResource( 14 )
+hframes = 2
+frame = 1
+
+[node name="Label" type="Label" parent="Withdraw"]
+margin_left = 12.0
+margin_right = 54.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Withdraw"
+
+[node name="IndicatorL" parent="." instance=ExtResource( 4 )]
+margin_left = 80.0
+margin_top = 45.0
+margin_right = -240.0
+margin_bottom = -135.0
+key = "ui_focus_prev"
+
+[node name="IndicatorR" parent="." instance=ExtResource( 4 )]
+margin_left = 240.0
+margin_top = 45.0
+margin_right = -80.0
+margin_bottom = -135.0
+
+[node name="CursorTween" type="Tween" parent="."]
+
+[node name="TabTween" type="Tween" parent="."]

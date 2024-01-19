@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Gift Box.mp3-8f96ce30d41d0e9f3210196013d16339.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Gift Box.mp3"
+dest_files=[ "res://.import/Gift Box.mp3-8f96ce30d41d0e9f3210196013d16339.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dooropen2.wav-13f861a6a7a9a1b12909f45669445f67.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/dooropen2.wav"
+dest_files=[ "res://.import/dooropen2.wav-13f861a6a7a9a1b12909f45669445f67.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

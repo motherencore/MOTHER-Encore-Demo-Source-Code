@@ -1,0 +1,26 @@
+{
+	"0": {
+		"name": "Minnie",
+		"text": "What can I do for you?",
+		"sound": "Kid",
+		"options": {
+			"Storage isn't in the demo": "1",
+			"cancel": "3"
+		}
+	},
+	"1": {
+		"name": "Minnie",
+		"text": "Man, the developers should really add that.",
+		"sound": "Kid"
+	},
+	"2": {
+		"name": "Minnie",
+		"text": "Man, the developers should really add that.",
+		"sound": "Kid"
+	},
+	"3":{
+		"name": "Minnie",
+		"text": "See you later, and take care!",
+		"sound": "Kid"
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"0": {
+		"if": {
+			"hasitem": "CashCard",
+			"goto": "2"
+		},
+		"goto" : "1"
+	},
+	"1": {
+		"name": "ATM",
+		"sound": "Robot",
+		"text": "PLEASE INSERT CASH CARD."
+	},
+	"2": {
+		"name": "ATM",
+		"sound": "Robot",
+		"text": "WELCOME TO THE AUTOMATIC TELLER MACHINE.",
+		"goto" : "3"
+	},
+	"3": {
+		"text": "",
+		"caninput": false,
+		"showbox": false,
+		"use_atm": true
+	}
+}

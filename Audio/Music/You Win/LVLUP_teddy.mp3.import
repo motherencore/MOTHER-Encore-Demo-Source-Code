@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LVLUP_teddy.mp3-e63219405fe34ea4c5aa3fd1082e0dde.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/You Win/LVLUP_teddy.mp3"
+dest_files=[ "res://.import/LVLUP_teddy.mp3-e63219405fe34ea4c5aa3fd1082e0dde.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

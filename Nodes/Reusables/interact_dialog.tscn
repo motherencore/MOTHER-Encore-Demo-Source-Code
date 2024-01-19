@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Main/Interact Dialog.gd" type="Script" id=1]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 4, 4 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[node name="interact_dialog" type="Area2D"]
+script = ExtResource( 1 )
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0, 1, 0.717647, 1 )
+shape = SubResource( 3 )
+
+[node name="ButtonPrompt" parent="." instance=ExtResource( 2 )]
+material = SubResource( 4 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Speed_up.wav-f15e41a426aacd619022ab36d84cfdf3.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Speed_up.wav"
+dest_files=[ "res://.import/Speed_up.wav-f15e41a426aacd619022ab36d84cfdf3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

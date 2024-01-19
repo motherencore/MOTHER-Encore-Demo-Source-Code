@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/statsdown.wav-4a375a335f23cfe0f90d6f058c4d6ee3.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/statsdown.wav"
+dest_files=[ "res://.import/statsdown.wav-4a375a335f23cfe0f90d6f058c4d6ee3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

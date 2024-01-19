@@ -1,0 +1,2838 @@
+[gd_scene load_steps=44 format=2]
+
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/NamingScreen/Naming screen.gd" type="Script" id=2]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/Sound effects/M3/okdesuka.wav" type="AudioStream" id=8]
+[ext_resource path="res://Nodes/Reusables/actor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/Ui/Indicator.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ninten.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/UI/Inventory/characters/teddy.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/UI/Inventory/characters/lloyd.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/UI/Inventory/characters/pippi.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ana.png" type="Texture" id=18]
+[ext_resource path="res://Graphics/UI/Misc/FavFoodPlate.png" type="Texture" id=19]
+[ext_resource path="res://Graphics/UI/Misc/FavFoodQuestionMark.png" type="Texture" id=20]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=21]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=22]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scripts/UI/NamingScreen/TextSpeed.gd" type="Script" id=24]
+[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=25]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=26]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scripts/UI/NamingScreen/ButtonPrompts.gd" type="Script" id=28]
+[ext_resource path="res://Scripts/UI/NamingScreen/Flavors.gd" type="Script" id=29]
+
+[sub_resource type="Shader" id=19]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = SubResource( 19 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="Animation" id=8]
+resource_name = "FavFoodEnd"
+tracks/0/type = "value"
+tracks/0/path = NodePath("QMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.45, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 36 ), Vector2( 64, -20 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "FavFoodLoop"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("QMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.3, 3 ),
+"update": 0,
+"values": [ Vector2( 64, 36 ), Vector2( 64, 32 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "FavFoodStart"
+tracks/0/type = "value"
+tracks/0/path = NodePath("QMark:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.6, 1 ),
+"transitions": PoolRealArray( 1.8025, 1 ),
+"update": 0,
+"values": [ Vector2( 64, -20 ), Vector2( 64, 36 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 3.0
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/Actors/actor:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.416667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Objects/Actors/actor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -40, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("QMark:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, -10 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 3.0
+step = 0.0833333
+tracks/0/type = "method"
+tracks/0/path = NodePath("Objects/Actors/actor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Objects/Actors/npc") ],
+"method": "replace_npc_from_path"
+}, {
+"args": [ "Walk", 0, 1.0, false ],
+"method": "play_anim"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Objects/Actors/actor2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Objects/Actors/npc2") ],
+"method": "replace_npc_from_path"
+}, {
+"args": [ "Walk", 0, 1, false ],
+"method": "play_anim"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Objects/Actors/actor3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Objects/Actors/npc3") ],
+"method": "replace_npc_from_path"
+}, {
+"args": [ "Walk", 0, 1, false ],
+"method": "play_anim"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Objects/Actors/actor4")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Objects/Actors/npc4") ],
+"method": "replace_npc_from_path"
+}, {
+"args": [ "Walk", 0, 1, false ],
+"method": "play_anim"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Objects/Actors/actor5")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.0833333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ NodePath("Objects/Actors/npc5") ],
+"method": "replace_npc_from_path"
+}, {
+"args": [ "Walk", 0, 1, false ],
+"method": "play_anim"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "ConfirmationClose"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ConfirmationLeft:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -136, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ConfirmationRight:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 130, 0 ), Vector2( 320, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 140, 39 ), Vector2( 330, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/PressButton:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 124, 167 ), Vector2( 124, 184 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "ConfirmationOpen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ConfirmationLeft:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( -136, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ConfirmationRight:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 320, 0 ), Vector2( 130, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 39 ), Vector2( 140, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Others/OthersArrow:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 17, 11 ), Vector2( 17, 19 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 92, 11 ), Vector2( 92, 19 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 40 ), Vector2( 16, 48 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 16, 24 ), Vector2( 16, 32 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Naming Open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ConfirmationRight:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 130, 0 ), Vector2( 320, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ConfirmationLeft:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -136, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 140, 39 ), Vector2( 330, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 192 ), Vector2( 8, 192 ), Vector2( 8, 64 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 128, -56 ), Vector2( 128, -56 ), Vector2( 128, 8 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "OthersClose"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 128, -56 ), Vector2( 128, -56 ), Vector2( 128, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 8, 192 ), Vector2( 8, 192 ), Vector2( 8, 64 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 8, 39 ), Vector2( -176, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/NamingBox/arrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "OthersOpen"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 128, 8 ), Vector2( 128, -56 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 64 ), Vector2( 8, 192 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 0.4, 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( -176, 39 ), Vector2( -176, 39 ), Vector2( 8, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 17, 11 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 24 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 40 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 92, 11 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 128, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 8, 64 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/ConfirmationLeft:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -136, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/ConfirmationRight:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -176, 39 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/Others/OthersArrow:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/TextSpeed:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer/Flavors:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CanvasLayer/ButtonPrompts:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("CanvasLayer/PressButton:rect_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 124, 167 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 17, 11 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 92, 11 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 40 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 24 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("CanvasLayer/NamingBox/arrow:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Naming screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 185.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Actors" type="YSort" parent="Objects"]
+
+[node name="actor" parent="Objects/Actors" instance=ExtResource( 9 )]
+position = Vector2( -40, 32 )
+
+[node name="actor2" parent="Objects/Actors" instance=ExtResource( 9 )]
+position = Vector2( 32, -80 )
+
+[node name="actor3" parent="Objects/Actors" instance=ExtResource( 9 )]
+position = Vector2( 136, -80 )
+
+[node name="actor4" parent="Objects/Actors" instance=ExtResource( 9 )]
+position = Vector2( 240, -80 )
+
+[node name="actor5" parent="Objects/Actors" instance=ExtResource( 9 )]
+position = Vector2( 328, -80 )
+
+[node name="npc" parent="Objects/Actors" instance=ExtResource( 10 )]
+position = Vector2( 64, 48 )
+sprite = "Ninten"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="npc2" parent="Objects/Actors" instance=ExtResource( 10 )]
+position = Vector2( 384, 40 )
+sprite = "Ana"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="npc3" parent="Objects/Actors" instance=ExtResource( 10 )]
+position = Vector2( 704, 40 )
+sprite = "Lloyd"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="npc4" parent="Objects/Actors" instance=ExtResource( 10 )]
+position = Vector2( 1024, 40 )
+sprite = "Pippi"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="npc5" parent="Objects/Actors" instance=ExtResource( 10 )]
+position = Vector2( 1344, 40 )
+sprite = "Teddy"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="Plate" type="Sprite" parent="Objects/Actors"]
+position = Vector2( 1664, 40 )
+texture = ExtResource( 19 )
+
+[node name="Door" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 344, 5 )
+monitoring = false
+dir = Vector2( 0, 1 )
+targetScene = "Title screen"
+unpause_player = false
+
+[node name="Door2" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 344, 5 )
+monitoring = false
+targetX = 520
+targetY = 400
+dir = Vector2( 0, 1 )
+fade_in_speed = 0.4
+targetScene = "Cutscenes/Introduction"
+unpause_player = false
+
+[node name="QMark" type="Sprite" parent="."]
+position = Vector2( 64, -10 )
+texture = ExtResource( 20 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="PressButton" type="HBoxContainer" parent="CanvasLayer"]
+margin_left = 124.0
+margin_top = 167.0
+margin_right = 310.0
+margin_bottom = 178.0
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PressButton"]
+margin_left = 76.0
+margin_right = 108.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 5 )
+text = "Back"
+align = 2
+
+[node name="Button" parent="CanvasLayer/PressButton" instance=ExtResource( 6 )]
+margin_left = 112.0
+margin_right = 120.0
+align = 2
+key = "ui_cancel"
+
+[node name="Label2" type="Label" parent="CanvasLayer/PressButton"]
+margin_left = 124.0
+margin_right = 174.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 5 )
+text = "  Select"
+align = 2
+
+[node name="Button2" parent="CanvasLayer/PressButton" instance=ExtResource( 6 )]
+margin_left = 178.0
+margin_right = 186.0
+align = 2
+key = "ui_accept"
+
+[node name="NameBox" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = 128.0
+margin_top = 8.0
+margin_right = 312.0
+margin_bottom = 56.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/NameBox"]
+margin_left = 6.0
+margin_top = 8.0
+margin_right = 179.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+text = "What is this boy's name?"
+align = 1
+
+[node name="name" type="ColorRect" parent="CanvasLayer/NameBox"]
+margin_left = 40.0
+margin_top = 23.0
+margin_right = 144.0
+margin_bottom = 38.0
+color = Color( 0.729412, 0.32549, 0.894118, 1 )
+script = ExtResource( 22 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/NameBox/name"]
+use_parent_material = true
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 105.0
+margin_bottom = 14.0
+color = Color( 0.729412, 0.32549, 0.894118, 1 )
+script = ExtResource( 22 )
+
+[node name="Label" type="Label" parent="CanvasLayer/NameBox/name"]
+margin_top = 1.0
+margin_right = 104.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "@``````"
+align = 1
+valign = 1
+
+[node name="Indicator" parent="CanvasLayer/NameBox" instance=ExtResource( 11 )]
+margin_left = 8.0
+margin_top = -1.0
+margin_right = -176.0
+margin_bottom = -48.0
+key = "ui_focus_prev"
+
+[node name="Indicator2" parent="CanvasLayer/NameBox" instance=ExtResource( 11 )]
+margin_left = 176.0
+margin_top = -1.0
+margin_right = -8.0
+margin_bottom = -48.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/NameBox"]
+show_behind_parent = true
+margin_top = -16.0
+margin_right = 200.0
+margin_bottom = 64.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NamingBox" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 312.0
+margin_bottom = 170.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Grid" type="GridContainer" parent="CanvasLayer/NamingBox"]
+margin_left = 12.0
+margin_top = 8.0
+margin_right = 292.0
+margin_bottom = 99.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 17
+columns = 3
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
+margin_right = 89.0
+margin_bottom = 68.0
+custom_constants/vseparation = 2
+custom_constants/hseparation = 9
+columns = 6
+
+[node name="A" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_right = 8.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "A"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 17.0
+margin_right = 23.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "B"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 32.0
+margin_right = 39.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "C"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 48.0
+margin_right = 55.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "D"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="E" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 64.0
+margin_right = 70.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "E"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="F" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 79.0
+margin_right = 89.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "F"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="M" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_top = 14.0
+margin_right = 8.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "M"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="N" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 17.0
+margin_top = 14.0
+margin_right = 23.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "N"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="O" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 32.0
+margin_top = 14.0
+margin_right = 39.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "O"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 48.0
+margin_top = 14.0
+margin_right = 55.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "P"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Q" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 64.0
+margin_top = 14.0
+margin_right = 70.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="R" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 79.0
+margin_top = 14.0
+margin_right = 89.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "R"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Y" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_top = 28.0
+margin_right = 8.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Y"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Z" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 17.0
+margin_top = 28.0
+margin_right = 23.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Z"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ä" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 32.0
+margin_top = 28.0
+margin_right = 39.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ä"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Á" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 48.0
+margin_top = 28.0
+margin_right = 55.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Á"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ç" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 64.0
+margin_top = 28.0
+margin_right = 70.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ç"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ë" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 79.0
+margin_top = 28.0
+margin_right = 89.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ë"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Î" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_top = 42.0
+margin_right = 8.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Î"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ñ" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 17.0
+margin_top = 42.0
+margin_right = 23.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ñ"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ö" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 32.0
+margin_top = 42.0
+margin_right = 39.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ö"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ó" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 48.0
+margin_top = 42.0
+margin_right = 55.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ó"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ò" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 64.0
+margin_top = 42.0
+margin_right = 70.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ò"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ô" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 79.0
+margin_top = 42.0
+margin_right = 89.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ô"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="=" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_top = 56.0
+margin_right = 8.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="+" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 17.0
+margin_top = 56.0
+margin_right = 23.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="-" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 32.0
+margin_top = 56.0
+margin_right = 39.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="*" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 55.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "*"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slash" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 70.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "/"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="%" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
+margin_left = 79.0
+margin_top = 56.0
+margin_right = 89.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
+margin_left = 106.0
+margin_right = 193.0
+margin_bottom = 68.0
+custom_constants/vseparation = 2
+custom_constants/hseparation = 9
+columns = 6
+
+[node name="G" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_right = 9.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "G"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="H" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 18.0
+margin_right = 24.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "H"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="I" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 33.0
+margin_right = 39.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "I"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="J" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 48.0
+margin_right = 55.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "J"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="K" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 64.0
+margin_right = 72.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "K"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="L" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 81.0
+margin_right = 87.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "L"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="S" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_top = 14.0
+margin_right = 9.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "S"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="T" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 18.0
+margin_top = 14.0
+margin_right = 24.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "T"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="U" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 33.0
+margin_top = 14.0
+margin_right = 39.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "U"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 48.0
+margin_top = 14.0
+margin_right = 55.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "V"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="W" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 64.0
+margin_top = 14.0
+margin_right = 72.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "W"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="X" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 81.0
+margin_top = 14.0
+margin_right = 87.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "X"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="É" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_top = 28.0
+margin_right = 9.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "É"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="È" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 18.0
+margin_top = 28.0
+margin_right = 24.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "È"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ê" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 33.0
+margin_top = 28.0
+margin_right = 39.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ê"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ï" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 48.0
+margin_top = 28.0
+margin_right = 55.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ï"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Í" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 64.0
+margin_top = 28.0
+margin_right = 72.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Í"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ì" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 81.0
+margin_top = 28.0
+margin_right = 87.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ì"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Œ" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_top = 42.0
+margin_right = 9.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Œ"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ü" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 18.0
+margin_top = 42.0
+margin_right = 24.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ü"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ú" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 33.0
+margin_top = 42.0
+margin_right = 39.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ú"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ù" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 48.0
+margin_top = 42.0
+margin_right = 55.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Ù"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Û" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 64.0
+margin_top = 42.0
+margin_right = 72.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "Û"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 81.0
+margin_top = 42.0
+margin_right = 87.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = " "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="(" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_top = 56.0
+margin_right = 9.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "("
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name=")" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 18.0
+margin_top = 56.0
+margin_right = 24.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = ")"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="[" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 33.0
+margin_top = 56.0
+margin_right = 39.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "["
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="]" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 48.0
+margin_top = 56.0
+margin_right = 55.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="«" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 64.0
+margin_top = 56.0
+margin_right = 72.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "«"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="»" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 81.0
+margin_top = 56.0
+margin_right = 87.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "»"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer3" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
+margin_left = 210.0
+margin_right = 280.0
+margin_bottom = 68.0
+custom_constants/vseparation = 2
+custom_constants/hseparation = 9
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_right = 6.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 15.0
+margin_right = 21.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 30.0
+margin_right = 36.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 45.0
+margin_right = 52.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "4"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="5" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 61.0
+margin_right = 69.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "5"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="6" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_top = 14.0
+margin_right = 6.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "6"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="7" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 15.0
+margin_top = 14.0
+margin_right = 21.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "7"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="8" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 30.0
+margin_top = 14.0
+margin_right = 36.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "8"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="9" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 45.0
+margin_top = 14.0
+margin_right = 52.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "9"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="0" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 61.0
+margin_top = 14.0
+margin_right = 69.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+align = 1
+
+[node name="`" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_top = 28.0
+margin_right = 6.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "`"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="at" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 15.0
+margin_top = 28.0
+margin_right = 21.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "@"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="|" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 30.0
+margin_top = 28.0
+margin_right = 36.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "|"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="$" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 45.0
+margin_top = 28.0
+margin_right = 52.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "$"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="&" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 61.0
+margin_top = 28.0
+margin_right = 69.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 3 )
+text = "&"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="period" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_top = 42.0
+margin_right = 6.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="!" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 15.0
+margin_top = 42.0
+margin_right = 21.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="\?" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 30.0
+margin_top = 42.0
+margin_right = 36.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = "?"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="colon" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 45.0
+margin_top = 42.0
+margin_right = 52.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = ":"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name=";" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 61.0
+margin_top = 42.0
+margin_right = 69.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
+text = ";"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="," type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_top = 56.0
+margin_right = 6.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = ","
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="\'\'" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 15.0
+margin_top = 56.0
+margin_right = 21.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "\""
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="\'" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 30.0
+margin_top = 56.0
+margin_right = 36.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "'"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="~" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 45.0
+margin_top = 56.0
+margin_right = 52.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "~"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="©" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 61.0
+margin_top = 56.0
+margin_right = 69.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 3 )
+text = "©"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer4" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
+margin_top = 78.0
+margin_right = 89.0
+margin_bottom = 90.0
+custom_constants/hseparation = 17
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="A" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer4"]
+margin_right = 46.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Don't care"
+
+[node name="Empty" type="Control" parent="CanvasLayer/NamingBox/Grid"]
+margin_left = 106.0
+margin_top = 78.0
+margin_right = 193.0
+margin_bottom = 90.0
+
+[node name="GridContainer5" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
+margin_left = 210.0
+margin_top = 78.0
+margin_right = 280.0
+margin_bottom = 90.0
+custom_constants/hseparation = 10
+columns = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="A2" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer5"]
+margin_right = 48.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Backspace"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A3" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer5"]
+margin_left = 58.0
+margin_right = 70.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "OK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arrow" parent="CanvasLayer/NamingBox" instance=ExtResource( 4 )]
+position = Vector2( 7, 11 )
+menu_parent_path = NodePath("../Grid/GridContainer")
+cursor_offset = Vector2( -4, 1 )
+on = true
+consume_input_events = true
+move_sfx = true
+
+[node name="PressButton" type="HBoxContainer" parent="CanvasLayer/NamingBox"]
+margin_left = 3.0
+margin_top = 103.0
+margin_right = 113.0
+margin_bottom = 114.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/NamingBox/PressButton"]
+margin_right = 98.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 5 )
+text = "Capital/small"
+
+[node name="Button" parent="CanvasLayer/NamingBox/PressButton" instance=ExtResource( 6 )]
+margin_left = 102.0
+margin_right = 110.0
+key = "ui_ctrl"
+
+[node name="Others" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = -176.0
+margin_top = 39.0
+margin_right = -8.0
+margin_bottom = 120.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Others"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 87.0
+rect_clip_content = true
+
+[node name="TextSpeed" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Text Speed:"
+valign = 1
+
+[node name="MenuFlavor" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "Menu Flavor:"
+valign = 1
+
+[node name="ButtonPrompts" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "Button Prompts:"
+valign = 1
+
+[node name="End" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 3 )
+text = "End"
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Others"]
+margin_left = 92.0
+margin_top = 11.0
+margin_right = 152.0
+margin_bottom = 71.0
+
+[node name="Speed" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+margin_right = 60.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Medium"
+align = 2
+valign = 1
+
+[node name="Flavor" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+margin_top = 16.0
+margin_right = 60.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "Plain"
+align = 2
+valign = 1
+
+[node name="Prompts" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+margin_top = 32.0
+margin_right = 60.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "Both"
+align = 2
+valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Others"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 152.0
+margin_bottom = 25.0
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 22 )
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Others"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 152.0
+margin_bottom = 41.0
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 22 )
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/Others"]
+margin_left = 16.0
+margin_top = 56.0
+margin_right = 152.0
+margin_bottom = 57.0
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 22 )
+
+[node name="OthersArrow" parent="CanvasLayer/Others" instance=ExtResource( 4 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="TextSpeed" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = 328.0
+margin_top = 48.0
+margin_right = 456.0
+margin_bottom = 112.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 24 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextSpeed"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 56.0
+rect_clip_content = true
+
+[node name="Fast" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Fast Speed"
+valign = 1
+
+[node name="Medium" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "Medium Speed"
+valign = 1
+
+[node name="Slow" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "Slow Speed"
+valign = 1
+
+[node name="TextSpeedArrow" parent="CanvasLayer/TextSpeed" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="Flavors" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = 328.0
+margin_top = 16.0
+margin_right = 456.0
+margin_bottom = 144.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 29 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Flavors"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 87.0
+rect_clip_content = true
+
+[node name="Plain" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_right = 75.0
+text = "Plain"
+
+[node name="Mint" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+text = "Mint"
+
+[node name="Strawberry" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+text = "Strawberry"
+
+[node name="Banana" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 60.0
+text = "Banana"
+
+[node name="Peanut" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 64.0
+margin_right = 75.0
+margin_bottom = 76.0
+text = "Peanut"
+
+[node name="Grape" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 80.0
+margin_right = 75.0
+margin_bottom = 92.0
+text = "Grape"
+
+[node name="Melon" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
+margin_top = 96.0
+margin_right = 75.0
+margin_bottom = 108.0
+text = "Melon"
+
+[node name="FlavorsArrow" parent="CanvasLayer/Flavors" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+highlight = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="ButtonPrompts" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 21 )
+margin_left = 328.0
+margin_top = 39.0
+margin_right = 456.0
+margin_bottom = 120.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 28 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ButtonPrompts"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 72.0
+rect_clip_content = true
+
+[node name="Both" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Both"
+valign = 1
+
+[node name="Objects" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "Objects"
+valign = 1
+
+[node name="NPCs" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 3 )
+text = "NPCs"
+valign = 1
+
+[node name="None" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 3 )
+text = "None"
+valign = 1
+
+[node name="ButtonPromptsArrow" parent="CanvasLayer/ButtonPrompts" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
+position = Vector2( 72, 57 )
+texture = ExtResource( 25 )
+hframes = 5
+
+[node name="ButtonPrompt" parent="CanvasLayer/ButtonPrompts/Present" instance=ExtResource( 27 )]
+material = SubResource( 16 )
+position = Vector2( 0, -8 )
+offset = Vector2( 0, -8 )
+
+[node name="NPC" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
+position = Vector2( 104, 49 )
+texture = ExtResource( 26 )
+hframes = 5
+vframes = 4
+frame = 1
+
+[node name="ButtonPrompt" parent="CanvasLayer/ButtonPrompts/NPC" instance=ExtResource( 27 )]
+material = SubResource( 16 )
+position = Vector2( 0, -16 )
+type = "NPCs"
+offset = Vector2( 0, -16 )
+
+[node name="ConfirmationLeft" type="Control" parent="CanvasLayer"]
+margin_left = -136.0
+margin_bottom = 184.0
+
+[node name="Ninten" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+material = ExtResource( 21 )
+margin_left = 12.0
+margin_top = 6.0
+margin_right = 132.0
+margin_bottom = 38.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Ninten"]
+material = ExtResource( 21 )
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Ninten"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWW"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Ninten"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 14 )
+
+[node name="Ana" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+material = ExtResource( 21 )
+margin_left = 12.0
+margin_top = 39.0
+margin_right = 132.0
+margin_bottom = 71.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Ana"]
+material = ExtResource( 21 )
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Ana"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWW"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Ana"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 18 )
+
+[node name="Lloyd" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+material = ExtResource( 21 )
+margin_left = 12.0
+margin_top = 72.0
+margin_right = 132.0
+margin_bottom = 104.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
+material = ExtResource( 21 )
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWW"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 16 )
+
+[node name="Pippi" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+material = ExtResource( 21 )
+margin_left = 12.0
+margin_top = 105.0
+margin_right = 132.0
+margin_bottom = 137.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Pippi"]
+material = ExtResource( 21 )
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Pippi"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWW"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Pippi"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 17 )
+
+[node name="Teddy" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+material = ExtResource( 21 )
+margin_left = 12.0
+margin_top = 138.0
+margin_right = 132.0
+margin_bottom = 170.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Teddy"]
+material = ExtResource( 21 )
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Teddy"]
+material = ExtResource( 21 )
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 112.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWW"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Teddy"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 15 )
+
+[node name="ConfirmationRight" type="Control" parent="CanvasLayer"]
+margin_left = 320.0
+margin_right = 504.0
+margin_bottom = 184.0
+
+[node name="Food" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight"]
+material = ExtResource( 21 )
+margin_left = 10.0
+margin_top = 6.0
+margin_right = 178.0
+margin_bottom = 38.0
+texture = ExtResource( 12 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight/Food"]
+material = ExtResource( 21 )
+margin_left = 40.0
+margin_right = 168.0
+margin_bottom = 32.0
+texture = ExtResource( 13 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Food"]
+margin_left = 48.0
+margin_top = 9.0
+margin_right = 114.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 3 )
+text = "WWWWWWWWWWWWW"
+valign = 1
+
+[node name="Plate" type="Sprite" parent="CanvasLayer/ConfirmationRight/Food"]
+position = Vector2( 23, 19 )
+texture = ExtResource( 19 )
+
+[node name="QMark" type="Sprite" parent="CanvasLayer/ConfirmationRight/Food/Plate"]
+position = Vector2( 0, -5 )
+texture = ExtResource( 20 )
+
+[node name="Surely" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight"]
+material = ExtResource( 21 )
+margin_left = 10.0
+margin_top = 121.0
+margin_right = 178.0
+margin_bottom = 170.0
+texture = ExtResource( 1 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Surely"]
+margin_left = 16.0
+margin_top = 15.0
+margin_right = 82.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 3 )
+text = "Are you sure?"
+valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ConfirmationRight/Surely"]
+margin_left = 97.0
+margin_top = 9.0
+margin_right = 98.0
+margin_bottom = 39.0
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 22 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ConfirmationRight/Surely"]
+margin_left = 110.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 38.0
+
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Surely/VBoxContainer"]
+margin_right = 50.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "Yep"
+valign = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/ConfirmationRight/Surely/VBoxContainer"]
+margin_top = 16.0
+margin_right = 50.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 3 )
+text = "Nope"
+valign = 1
+
+[node name="ConfirmationArrow" parent="CanvasLayer/ConfirmationRight/Surely" instance=ExtResource( 4 )]
+position = Vector2( 104, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="OkDesuka" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 1.1
+
+[node name="CharAnims" type="AnimationPlayer" parent="."]
+anims/FavFoodEnd = SubResource( 8 )
+anims/FavFoodLoop = SubResource( 7 )
+anims/FavFoodStart = SubResource( 6 )
+anims/NintenEnd = SubResource( 17 )
+anims/RESET = SubResource( 4 )
+anims/Start = SubResource( 15 )
+
+[node name="MenuAnims" type="AnimationPlayer" parent="."]
+anims/ConfirmationClose = SubResource( 13 )
+anims/ConfirmationOpen = SubResource( 11 )
+"anims/Naming Open" = SubResource( 12 )
+anims/OthersClose = SubResource( 18 )
+anims/OthersOpen = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="failed_move" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_failed_move"]
+[connection signal="selected" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_selected"]
+[connection signal="cancel" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_moved"]
+[connection signal="selected" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="CanvasLayer/TextSpeed" method="_on_TextSpeedArrow_moved"]
+[connection signal="selected" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/Flavors/FlavorsArrow" to="." method="_on_FlavorsArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/Flavors/FlavorsArrow" to="CanvasLayer/Flavors" method="_on_FlavorsArrow_moved"]
+[connection signal="selected" from="CanvasLayer/Flavors/FlavorsArrow" to="." method="_on_FlavorsArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_ButtonPromptsArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="CanvasLayer/ButtonPrompts" method="_on_ButtonPromptsArrow_moved"]
+[connection signal="selected" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_ButtonPromptsArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/ConfirmationRight/Surely/ConfirmationArrow" to="." method="_on_ConfirmationArrow_cancel"]
+[connection signal="selected" from="CanvasLayer/ConfirmationRight/Surely/ConfirmationArrow" to="." method="_on_ConfirmationArrow_selected"]

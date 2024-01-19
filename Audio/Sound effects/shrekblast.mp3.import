@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/shrekblast.mp3-d0abcfae2baa9e90a5c638b22f2335a0.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/shrekblast.mp3"
+dest_files=[ "res://.import/shrekblast.mp3-d0abcfae2baa9e90a5c638b22f2335a0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

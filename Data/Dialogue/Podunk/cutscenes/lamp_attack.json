@@ -1,0 +1,187 @@
+{
+	"0": {
+		"actors": {
+			"lamp": "Objects/lamp",
+			"ninten": "leader"
+		},
+		"actorsanim": {
+			"lamp": {"anim": "Idle", "type": 1}
+		},
+		"music": "",
+		"talker": "lamp",
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"1"
+	},
+	"1": {
+		"changecam": "lamp",
+		"movecam": {
+			"x": 474,
+			"y": 392,
+			"time": 1
+		},
+		"actorsturn": {
+			"ninten": {"x": 1, "y": 0}
+		},
+		"actorsanim": {
+			"lamp": {"anim": "Open", "type": 1}
+		},
+		"wait": 1.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"2"
+	},
+	"2": {
+		"emoteactors": {
+			"ninten": "surprise"
+		},
+		"objectfunction": {
+			"Poltergeist/MusicArea": "play_music"
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"actorsshake": {
+			"lamp": {"x": 2, "length": 0.5}
+		},
+		"wait": 0.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "4"
+	},
+	"4": {
+		"actorsmove": {
+			"lamp": {
+				"movement": [{"x": 460,"y": 456}],
+				"speed": 600,
+				"type": "position"
+			}
+		},
+		"wait": 0.2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "5"
+	},
+	"5": {
+		"actorsjump": {
+			"ninten": {
+				"height": 3,
+				"length": 0.2
+			}
+		},
+		"shakecam": {
+			"size": "small",
+			"length": 0.2
+		},
+		"wait": 0.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "6"
+	},
+	"6": {
+		"actorsmove": {
+			"lamp": {
+				"movement": [{"x": 410,"y": 408}],
+				"speed": 500,
+				"type": "position"
+			}
+		},
+		"wait": 0.1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "7"
+	},
+	"7": {
+		"actorsjump": {
+			"ninten": {
+				"height": 3,
+				"length": 0.2
+			}
+		},
+		"shakecam": {
+			"size": "small",
+			"length": 0.2
+		},
+		"wait": 0.05,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "8"
+	},
+	"8": {
+		"actorsmove": {
+			"lamp": {
+				"movement": [{"x": 480,"y": 328}],
+				"speed": 500,
+				"type": "position"
+			}
+		},
+		"wait": 0.1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "9"
+	},
+	"9": {
+		"actorsjump": {
+			"ninten": {
+				"height": 3,
+				"length": 0.2
+			}
+		},
+		"shakecam": {
+			"size": "small",
+			"length": 0.2
+		},
+		"wait": 0.1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "10"
+	},
+	"10": {
+		"actorsmove": {
+			"lamp": {
+				"movement": [{"x": 496,"y": 392}],
+				"speed": 500,
+				"type": "position"
+			}
+		},
+		"wait": 0.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "11"
+	},
+	"11": {
+		"actorsshake": {
+			"lamp": {"x": 2, "length": 0.5}
+		},
+		"wait": 0.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "12"
+	},
+	"12": {
+		"actorsjump": {
+			"lamp": {"height": 24, "length": 0.35}
+		},
+		"actorsmove": {
+			"lamp": {
+				"movement": [{"x": 432,"y": 392}],
+				"speed": 200,
+				"type": "position"
+			}
+		},
+		"ovbattlemusic": true,
+		"batloseheal": "leader",
+		"batwinflag": "poltergeist",
+		"battler": {
+			"enemy": "lamp",
+			"actor": "lamp"
+		},
+		"wait": 0.35,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

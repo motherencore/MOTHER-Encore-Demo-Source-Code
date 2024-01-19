@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Retro Enemy.mp3-59266a4108b33a6ee682866231c4a1bc.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Retro Enemy.mp3"
+dest_files=[ "res://.import/Retro Enemy.mp3-59266a4108b33a6ee682866231c4a1bc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

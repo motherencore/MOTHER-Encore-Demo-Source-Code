@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kid.mp3-e974a6aadf728900c3ce2019e303e1cc.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/text/Kid.mp3"
+dest_files=[ "res://.import/Kid.mp3-e974a6aadf728900c3ce2019e303e1cc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

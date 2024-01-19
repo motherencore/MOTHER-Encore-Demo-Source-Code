@@ -1,0 +1,23 @@
+{
+	"0": {
+		"musicvolume": -70,
+		"soundeffect":"Fanfare.mp3",
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "1"
+	},
+	"1": {
+		"text":"PartyLead got the [color]ItemName[/color]!",
+		"wait": 5,
+		"goto": "2"
+	},
+	"2": {
+		"musicvolume": 0,
+		"text":"A feather dropped by a bald eagle.",
+		"goto": "3"
+	},
+	"3": {
+		"text":"Press [color][ui_accept][/color] near certain ledges to [color]jump[/color]!"
+	}
+}

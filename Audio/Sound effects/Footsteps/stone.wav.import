@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/stone.wav-f1f7c6ce61786bf6f2ae0e360b7b90c1.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/stone.wav"
+dest_files=[ "res://.import/stone.wav-f1f7c6ce61786bf6f2ae0e360b7b90c1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,23 @@
+{
+	"name": "TEST",
+	"maxhp": 60,
+	"hp": 60,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 4,
+	"offense": 6,
+	"defense": 3,
+	"iq": 5,
+	"guts": 0,
+	"level": 3,
+	"exp": 80,
+	"cash": 1,
+	"skills": [
+		{"skill" : "swing", "weight" : 5},
+		{"skill" : "bash", "weight" : 5}
+	],
+	"boss": false,
+	"sprite": "TEST",
+	"music": "",
+	"bg": ""
+}

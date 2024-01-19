@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Guard",
+		"text": "The mayor says no passing until the commotion at the zoo is over.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Guard",
+		"text": "A bit extreme, I know, but those are the orders. Sorry.",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Guard",
+		"text": "The mayor's the only one with the zoo keys as far as I know.",
+		"sound": "Adult"
+	}
+}

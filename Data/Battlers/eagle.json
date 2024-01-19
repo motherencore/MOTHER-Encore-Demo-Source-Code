@@ -1,0 +1,25 @@
+{
+	"name": "Eagle",
+	"maxhp": 45,
+	"hp": 45,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 60,
+	"offense": 32,
+	"defense": 44,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 72,
+	"cash": 30,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Its quickness is the source for its pride.",
+	"boss": false,
+	"sprite": "eagle",
+	"ovsprite": "EagleOV",
+	"ovtype": "Flying Enemy 8Dir",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,24 @@
+{
+	"name": "Dadseyes",
+	"maxhp": 40,
+	"hp": 40,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 20,
+	"offense": 20,
+	"defense": 32,
+	"iq": 1,
+	"guts": 0,
+	"level": 4,
+	"exp": 70,
+	"cash": 53,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Watch your step, Dadseyes are everywhere.",
+	"boss": false,
+	"sprite": "dadseyes",
+	"ovsprite": "DadseyesOV",
+	"music": "",
+	"bg": ""
+}

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/steps.wav-2edca6a7ca3c2df84760cd7d9d9657fe.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/steps.wav"
+dest_files=[ "res://.import/steps.wav-2edca6a7ca3c2df84760cd7d9d9657fe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

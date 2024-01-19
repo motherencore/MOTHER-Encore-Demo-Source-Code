@@ -1,0 +1,62 @@
+{
+	"0": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "[Ninten]? It's your dad.",
+		"if": {
+			"flags": {
+				"earned_cash": true
+			},
+			"goto": "1"
+		},
+		"goto" : "2"
+	},
+	"1": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "I've deposited EarnedCash into your bank account.",
+		"goto" : "2"
+	},
+	"2": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "Taking away what you've spent, you should now have BankCash in the bank.",
+		"unflag": "money_earned",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Dad",
+		"type": "question",
+		"sound": "Adult",
+		"text": "Anyways, what do you need from me?",
+		"options": {
+			"Record": "4",
+			"Nothing, really": "6",
+			"cancel": "6"
+		}
+	},
+	"4": {
+		"text": "",
+		"caninput": false,
+		"showbox": false,
+		"save": true,
+		"goto": "5"
+	},
+	"5": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "All done.",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "Well, good luck with your adventure and whatnot.",
+		"goto": "7"
+	},
+	"7": {
+		"name": "Dad",
+		"sound": "Adult",
+		"text": "Just remember to take a break once in a while, okay?"
+	}
+}

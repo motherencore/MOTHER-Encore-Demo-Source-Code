@@ -1,0 +1,26 @@
+{
+	"0": {
+		"name":"Mayor Goodman",
+		"text":"Why if it isn't our hero, [Ninten]?",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Mayor Goodman",
+		"text":"Now that the commotion at the zoo is over, the bridge at the [color]northeast[/color] of town is now open.",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"emoteplayer": "question",
+		"name":"Mayor Goodman",
+		"text":"By the way... You have some tiger droppings on your clothes.",
+		"sound": "Adult",
+		"goto": "3"
+	},
+	"3": {
+		"name":"Mayor Goodman",
+		"text":"Haha, just joking. Now run along, kid.",
+		"sound": "Adult"
+	}
+}

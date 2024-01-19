@@ -1,0 +1,23 @@
+{
+	"name": "Sky Yddet",
+	"maxhp": 74,
+	"hp": 74,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 30,
+	"offense": 24,
+	"defense": 50,
+	"iq": 20,
+	"guts": 0,
+	"level": 10,
+	"exp": 80,
+	"cash": 23,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "It has friends!",
+	"sprite": "sky yddet",
+	"music": "",
+	"bg": ""
+}

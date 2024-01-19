@@ -1,0 +1,40 @@
+{
+	"0": {
+		"actors": {
+			"zombie": "talker"
+		},
+		"emoteplayer": "question",
+		"name":"???",
+		"text":"Haha...",
+		"sound": "Strange",
+		"goto": "1"
+	},
+	"1": {
+		"name":"???",
+		"text":"Fool...",
+		"sound": "Strange",
+		"goto": "2"
+	},
+	"2": {
+		"name":"???",
+		"text":"Foolish fool...",
+		"sound": "Strange",
+		"goto": "3"
+	},
+	"3": {
+		"name":"???",
+		"text":"You foolishly got lured into a false sense of security by my disguise...",
+		"sound": "Strange",
+		"goto": "4"
+	},
+	"4": {
+		"name":"???",
+		"text":"Now... Prepare to become one of us, fool!",
+		"sound": "Strange",
+		"batwinflag": "disguised_zombie_defeated",
+		"battler": {
+			"enemy": "pseudozombie",
+			"actor": "zombie"
+		}
+	}
+}

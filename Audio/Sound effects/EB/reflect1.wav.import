@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/reflect1.wav-33ed4996bf8c88944d89c741b7d249fc.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/reflect1.wav"
+dest_files=[ "res://.import/reflect1.wav-33ed4996bf8c88944d89c741b7d249fc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fire3.wav-0241cd4e0cefe6e6294e87c8b985be7c.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/fire3.wav"
+dest_files=[ "res://.import/fire3.wav-0241cd4e0cefe6e6294e87c8b985be7c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

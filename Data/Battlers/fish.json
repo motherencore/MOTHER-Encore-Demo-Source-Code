@@ -1,0 +1,23 @@
+{
+	"name": "Fish!",
+	"maxhp": 65,
+	"hp": 65,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 30,
+	"offense": 38,
+	"defense": 60,
+	"iq": 20,
+	"guts": 0,
+	"level": 4,
+	"exp": 280,
+	"cash": 180,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It seems to be guarding something.",
+	"boss": true,
+	"sprite": "fish",
+	"music": "",
+	"bg": ""
+}

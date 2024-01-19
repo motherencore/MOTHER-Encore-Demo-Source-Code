@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Graphics/Battle BGS/bg-ichi.png" type="Texture" id=1]
+[ext_resource path="res://Shaders/Video Drug.shader" type="Shader" id=2]
+
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/horizontal_distortion = false
+shader_param/vertical_distortion = 0
+shader_param/amplitude = Vector2( 0.2, 0.1 )
+shader_param/frequency = Vector2( 3, 2 )
+shader_param/scale = 0.2
+shader_param/move = Vector2( 0, 0 )
+shader_param/ping_pong = true
+shader_param/palette_shifting_speed = 0.0
+shader_param/palette_shifting = false
+shader_param/interleaved = 0
+shader_param/screen_height = 180.0
+
+[node name="BattleBG" type="CanvasLayer"]
+
+[node name="BG" type="TextureRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

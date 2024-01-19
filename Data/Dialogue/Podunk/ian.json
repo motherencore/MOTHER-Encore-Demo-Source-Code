@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Ian",
+		"text": "I heard the zoo was locked because the animals went all crazy. That's nuts.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Ian",
+		"text": "Also, this is off topic, but all these rumours aren't hints.",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Ian",
+		"text": "We're just really nosey. Hehe.",
+		"sound": "Adult"
+	}
+}

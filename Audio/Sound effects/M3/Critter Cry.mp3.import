@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Critter Cry.mp3-7ad52052e0eba908ece417aa67e17a90.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Critter Cry.mp3"
+dest_files=[ "res://.import/Critter Cry.mp3-7ad52052e0eba908ece417aa67e17a90.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

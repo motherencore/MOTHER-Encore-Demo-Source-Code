@@ -1,0 +1,936 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/UI/Credits/Credits.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Ui/TitleLogo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/EBMainOutline.tres" type="DynamicFont" id=5]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/TitleLogo:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/TitleLogo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Scroll"
+length = 190.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/TitleLogo:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 182 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -3696 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("CanvasLayer/TitleLogo")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "form_logo"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/TitleLogo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 185, 188 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Objects" type="YSort" parent="."]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/Scroll = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TitleLogo" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_right = 6400.0
+margin_bottom = 3996.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TitleLogo"]
+margin_left = 32.0
+margin_top = 288.0
+margin_right = 288.0
+margin_bottom = 3682.0
+custom_constants/separation = 30
+
+[node name="EncoreStaffCredits" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 11.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/EncoreStaffCredits"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 2 )
+text = "Mother Encore Staff Credits"
+align = 1
+
+[node name="Underline" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/EncoreStaffCredits/Role"]
+margin_left = 30.0
+margin_top = 12.0
+margin_right = 224.0
+margin_bottom = 15.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/EncoreStaffCredits/Role/Underline"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 193.0
+margin_bottom = 2.0
+
+[node name="ProjectCreator" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 41.0
+margin_right = 256.0
+margin_bottom = 68.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ProjectCreator"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Project Creator"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ProjectCreator"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Sam the Salmon"
+
+[node name="Director" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 98.0
+margin_right = 256.0
+margin_bottom = 125.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Director"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Director"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Director"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Pkdotts"
+
+[node name="Programmers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 155.0
+margin_right = 256.0
+margin_bottom = 257.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Programmers"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Programmers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Programmers"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 5 )
+text = "Pkdotts
+roka
+benichi
+ZetCipher
+HepHep
+Pedro Braga"
+
+[node name="OverworldCharacterSprites" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 287.0
+margin_right = 256.0
+margin_bottom = 449.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OverworldCharacterSprites"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "NPC Sprite Artists"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OverworldCharacterSprites"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 162.0
+custom_fonts/font = ExtResource( 5 )
+text = "benichi
+Retro64
+Nicolás Romero
+Pkdotts
+Sam the Salmon
+Bassya
+CB78
+FlintMother3
+Yahav
+Megadrivesonic"
+
+[node name="CharacterAnimators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 479.0
+margin_right = 256.0
+margin_bottom = 671.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/CharacterAnimators"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Character Animators"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/CharacterAnimators"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 192.0
+custom_fonts/font = ExtResource( 5 )
+text = "Pkdotts
+benichi
+Sam the Salmon
+CB78
+dianesaur
+MaxBound
+-MP64-
+Castor28
+SuperSquidoodle
+Cart Mart
+Mallow
+corblan"
+
+[node name="EffectsAnimators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 701.0
+margin_right = 256.0
+margin_bottom = 773.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/EffectsAnimators"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Effects Animators"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/EffectsAnimators"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+text = "Ren Amamiya
+Pkdotts
+CB78
+AveryPizza"
+
+[node name="BattleBackgroundsArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 803.0
+margin_right = 256.0
+margin_bottom = 875.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BattleBackgroundsArtists"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Battle Background Artists"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BattleBackgroundsArtists"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+text = "Sam The Salmon
+Pkdotts
+CB78
+Bassya"
+
+[node name="MapArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 905.0
+margin_right = 256.0
+margin_bottom = 977.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/MapArtists"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Map Designers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/MapArtists"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+text = "Sam the Salmon
+Pkdotts
+benichi
+CB78"
+
+[node name="IntroCinematic" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1007.0
+margin_right = 256.0
+margin_bottom = 1109.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/IntroCinematic"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Illustration Artists"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/IntroCinematic"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 5 )
+text = "Sam the Salmon
+Pkdotts
+dianesaur
+CB78
+Benichi
+Birb"
+
+[node name="ConceptArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1139.0
+margin_right = 256.0
+margin_bottom = 1226.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ConceptArtists"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Concept Artists"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ConceptArtists"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 5 )
+text = "Falcon
+Pkdotts
+Sam the Salmon
+Nicolás Romero
+Scan"
+
+[node name="PromotionalArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1256.0
+margin_right = 256.0
+margin_bottom = 1313.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/PromotionalArtists"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Promotional Artists"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/PromotionalArtists"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 5 )
+text = "Nicolás Romero
+Retro64
+CB78"
+
+[node name="LogoDesign" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1343.0
+margin_right = 256.0
+margin_bottom = 1370.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/LogoDesign"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Mother Encore Logo Designer"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/LogoDesign"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Orange is Borange"
+
+[node name="Writers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1400.0
+margin_right = 256.0
+margin_bottom = 1457.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Writers"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Writers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Writers"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 5 )
+text = "Scan
+Pkdotts
+sludgeXP"
+
+[node name="SoundDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1487.0
+margin_right = 256.0
+margin_bottom = 1529.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SoundDesigners"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Musicians"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SoundDesigners"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "CopperTheJackal
+McThrillington"
+
+[node name="Singers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1559.0
+margin_right = 256.0
+margin_bottom = 1601.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Singers"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Singers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Singers"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "BismuthBloom
+CopperTheJackal"
+
+[node name="VoiceActors" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1631.0
+margin_right = 256.0
+margin_bottom = 1658.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VoiceActors"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Voice Actor"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VoiceActors"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Retro64"
+
+[node name="BugTesters" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1688.0
+margin_right = 256.0
+margin_bottom = 1850.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BugTesters"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Bug Testers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BugTesters"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 162.0
+custom_fonts/font = ExtResource( 5 )
+text = "Vicente
+CB78
+SuperSquidoodle
+sludgeXP
+Pkdotts
+benichi
+Bassya
+Scan
+Okano
+Xylo"
+
+[node name="JapaneseTranslator" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1880.0
+margin_right = 256.0
+margin_bottom = 1907.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/JapaneseTranslator"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Japanese Translator"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/JapaneseTranslator"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Lone"
+
+[node name="ManagerOfFun" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1937.0
+margin_right = 256.0
+margin_bottom = 1964.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ManagerOfFun"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Manager of Fun"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ManagerOfFun"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "sludgeXP"
+
+[node name="SpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 1994.0
+margin_right = 256.0
+margin_bottom = 2111.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SpecialThanks"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Special Thanks"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SpecialThanks"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 5 )
+text = "Jonathan DaEgg123
+Snowwood a.k.a. Burger God
+Chiipan7
+MF PORKy
+Kody NOKOLO
+Echoes / Minty
+HeyItsCeleste"
+
+[node name="VerySpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2141.0
+margin_right = 256.0
+margin_bottom = 2228.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VerySpecialThanks"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Very Special Thanks"
+
+[node name="Names" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VerySpecialThanks"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 87.0
+custom_fonts/font = ExtResource( 5 )
+text = "Mother Forever
+Starmen.net
+The Mother 1 + 2 Fan Translation Team
+The Mother Community
+The Mother Encore Discord Server"
+
+[node name="OriginalMotherStaffCredits" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2258.0
+margin_right = 256.0
+margin_bottom = 2269.0
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OriginalMotherStaffCredits"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 2 )
+text = "Original Mother Staff Credits"
+align = 1
+
+[node name="Underline" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/OriginalMotherStaffCredits/Label"]
+margin_left = 22.0
+margin_top = 12.0
+margin_right = 232.0
+margin_bottom = 15.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/OriginalMotherStaffCredits/Label/Underline"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 209.0
+margin_bottom = 2.0
+
+[node name="OGDirector" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2299.0
+margin_right = 256.0
+margin_bottom = 2326.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGDirector"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Director"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGDirector"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Shigesato Itoi"
+
+[node name="OGGameDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2356.0
+margin_right = 256.0
+margin_bottom = 2398.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGGameDesigners"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Game Designers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGGameDesigners"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "Shigesato Itoi
+Miyuki Kure"
+
+[node name="OGMusicProducers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2428.0
+margin_right = 256.0
+margin_bottom = 2470.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicProducers"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Music Producers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicProducers"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "Akio Ohmori
+Ritsuo Kamimura"
+
+[node name="OGMusicalEffects" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2500.0
+margin_right = 256.0
+margin_bottom = 2542.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicalEffects"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Musical Effects"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicalEffects"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "Keiichi Suzuki
+Hirokazu Tanaka"
+
+[node name="OGCharacterDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2572.0
+margin_right = 256.0
+margin_bottom = 2614.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCharacterDesigners"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Character Designers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCharacterDesigners"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+text = "Shinbo Minami
+Tatsuya Ishii"
+
+[node name="OGFigureModeling" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2644.0
+margin_right = 256.0
+margin_bottom = 2671.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGFigureModeling"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Figure Modeling"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGFigureModeling"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Tottori"
+
+[node name="OGProgrammers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2701.0
+margin_right = 256.0
+margin_bottom = 2758.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProgrammers"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Programmers"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProgrammers"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 5 )
+text = "Kazuya Nakatani
+Takayuki Onodera
+Motoo Yasuma"
+
+[node name="OGScenarioAssistants" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2788.0
+margin_right = 256.0
+margin_bottom = 2860.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGScenarioAssistants"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Scenario Assistants"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGScenarioAssistants"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 5 )
+text = "Masayuki Kameyama
+Hideo Kon
+Katsutomo Maeiwa
+Kuniko Sakurai"
+
+[node name="OGCoordinators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2890.0
+margin_right = 256.0
+margin_bottom = 2992.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCoordinators"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Coordinators"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCoordinators"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 102.0
+custom_fonts/font = ExtResource( 5 )
+text = "Masahiro Tatemoto
+Takashi Kawaguchi
+Keizoh Katoh
+Motohiro Ishii
+Akihito Toda
+Yukari Saitoh"
+
+[node name="OGEnglishScriptWriter" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3022.0
+margin_right = 256.0
+margin_bottom = 3049.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGEnglishScriptWriter"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "English Script Writer"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGEnglishScriptWriter"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Phil Sandhop"
+
+[node name="OGTranslators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3079.0
+margin_right = 256.0
+margin_bottom = 3136.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGTranslators"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Translators"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGTranslators"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 5 )
+text = "Toshiko Watson
+Yuka Nakata
+Hoko Faulkner"
+
+[node name="OGSpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3166.0
+margin_right = 256.0
+margin_bottom = 3283.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGSpecialThanks"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Special Thanks"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGSpecialThanks"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 117.0
+custom_fonts/font = ExtResource( 5 )
+text = "Tony Harman
+Dayv Brooks
+Noriyuki Minami
+Bin Ohgawara
+Yoshihisa Wada
+Hikonori Suzuki
+Takao Shimizu"
+
+[node name="OGProducer" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3313.0
+margin_right = 256.0
+margin_bottom = 3340.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProducer"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Producer"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProducer"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Shigeru Miyamoto"
+
+[node name="OGExecutiveProducer" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3370.0
+margin_right = 256.0
+margin_bottom = 3397.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGExecutiveProducer"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Executive Producer"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGExecutiveProducer"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+text = "Hiroshi Yamauchi"
+
+[node name="Player" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 3427.0
+margin_right = 256.0
+margin_bottom = 3508.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Player"]
+margin_right = 256.0
+margin_bottom = 81.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "
+
+
+
+
+Thank you for playing"
+align = 1
+
+[node name="Door" parent="." instance=ExtResource( 3 )]
+position = Vector2( 328, 0 )
+targetScene = "Title screen"
+unpause_player = false
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/Main/Item.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Objects/Items/Error.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Reusables/Effects/Sparkles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9, 8 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "blink"
+length = 0.4
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[node name="Item" type="Sprite"]
+show_behind_parent = true
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Sparkles" parent="." instance=ExtResource( 3 )]
+position = Vector2( 4, -4 )
+frame = 24
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 2 )
+
+[node name="interact" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
+visible = false
+modulate = Color( 0, 1, 0.717647, 1 )
+position = Vector2( -4.76837e-07, 4.76837e-07 )
+shape = SubResource( 6 )
+
+[node name="ButtonPrompt" parent="interact" instance=ExtResource( 4 )]
+material = SubResource( 9 )
+position = Vector2( 0, -8 )
+offset = Vector2( 0, -8 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 0.0
+anims/RESET = SubResource( 7 )
+anims/blink = SubResource( 8 )

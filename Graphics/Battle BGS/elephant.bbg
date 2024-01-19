@@ -1,0 +1,102 @@
+[]
+
+shader_folder="res://"
+texture_folder="res://"
+
+[Layer 0]
+
+shader="[DEFAULT]"
+texture="/Graphics/Battle BGS/elephant_2.png"
+texture_stretch="STRETCH_TILE"
+opacity=2.0
+screen_size=Vector2( 320, 180 )
+move=Vector2( 0, 0 )
+ping_pong_speed=Vector2( 0, 0 )
+oscillation_amplitude=Vector2( 0, 0 )
+oscillation_frequency=Vector2( 0, 0 )
+oscillation_speed=Vector2( 0, 0 )
+osc_amp_ping_pong=Vector2( 0, 0 )
+osc_trans_ping_pong=Vector2( 0, 0 )
+compression_amplitude=Vector2( 0, 0 )
+compression_frequency=Vector2( 0, 0 )
+compression_speed=Vector2( 0, 0 )
+comp_amp_ping_pong=Vector2( 0, 0 )
+comp_trans_ping_pong=Vector2( 0, 0 )
+interlaced_amplitude=Vector2( 0, 0 )
+interlaced_frequency=Vector2( 0, 0 )
+interlaced_speed=Vector2( 0, 0 )
+inter_amp_ping_pong=Vector2( 0, 0 )
+inter_trans_ping_pong=Vector2( 0, 0 )
+palette_shifting_speed=0.0
+palette="[Resource]/Graphics/Battle BGS/elephant_pal.png"
+palette_shifting=false
+palette_anim_frame_count=0
+barrel=false
+effect=1.0
+effect_scale=2.0
+barrelxy=Vector2( 1, 1 )
+
+[Layer 1]
+
+shader="[DEFAULT]"
+texture="/Graphics/Battle BGS/elephant.png"
+texture_stretch="STRETCH_TILE"
+opacity=0.5
+screen_size=Vector2( 512, 512 )
+move=Vector2( -0.1, 0.4 )
+ping_pong_speed=Vector2( 0, 0.9 )
+oscillation_amplitude=Vector2( 0.8, 0 )
+oscillation_frequency=Vector2( 0.5, 0 )
+oscillation_speed=Vector2( 0.3, 0 )
+osc_amp_ping_pong=Vector2( 0, 0 )
+osc_trans_ping_pong=Vector2( 0, 0 )
+compression_amplitude=Vector2( 0, 0.6 )
+compression_frequency=Vector2( 0, 3.1 )
+compression_speed=Vector2( 0, 0.1 )
+comp_amp_ping_pong=Vector2( 0, 0.2 )
+comp_trans_ping_pong=Vector2( 0, 0 )
+interlaced_amplitude=Vector2( 0, 0.4 )
+interlaced_frequency=Vector2( 0, 0 )
+interlaced_speed=Vector2( 0, 0.8 )
+inter_amp_ping_pong=Vector2( 0, 0 )
+inter_trans_ping_pong=Vector2( 0, 0 )
+palette_shifting_speed=3.1
+palette="[Resource]/Graphics/Battle BGS/elephant_pal.png"
+palette_shifting=false
+palette_anim_frame_count=5.0
+barrel=true
+effect=1.0
+effect_scale=4.5
+barrelxy=Vector2( 1.3, 0.9 )
+
+[Layer 2]
+
+shader="[DEFAULT]"
+texture="/Graphics/Battle BGS/elephant.png"
+texture_stretch="STRETCH_TILE"
+opacity=0.3
+screen_size=Vector2( 512, 512 )
+move=Vector2( -0.2, 0.6 )
+ping_pong_speed=Vector2( 0, 1 )
+oscillation_amplitude=Vector2( 0.5, 0 )
+oscillation_frequency=Vector2( 0.6, 0 )
+oscillation_speed=Vector2( 0.6, 0 )
+osc_amp_ping_pong=Vector2( 0, 0 )
+osc_trans_ping_pong=Vector2( 0, 0 )
+compression_amplitude=Vector2( 0, 0.7 )
+compression_frequency=Vector2( 0, 3.8 )
+compression_speed=Vector2( 0, 0.3 )
+comp_amp_ping_pong=Vector2( 0, 0.2 )
+comp_trans_ping_pong=Vector2( 0, 0 )
+interlaced_amplitude=Vector2( 0, 0.4 )
+interlaced_frequency=Vector2( 0, 0 )
+interlaced_speed=Vector2( 0, 0 )
+inter_amp_ping_pong=Vector2( 0, 0 )
+inter_trans_ping_pong=Vector2( 0, 0 )
+palette_shifting_speed=0.0
+palette_shifting=false
+palette_anim_frame_count=0
+barrel=true
+effect=1.0
+effect_scale=4.5
+barrelxy=Vector2( 1.3, 0.9 )

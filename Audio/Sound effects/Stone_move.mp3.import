@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stone_move.mp3-329b06afbbffab4e6242f013831f1d18.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Stone_move.mp3"
+dest_files=[ "res://.import/Stone_move.mp3-329b06afbbffab4e6242f013831f1d18.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

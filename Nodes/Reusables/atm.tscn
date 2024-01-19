@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Nodes/Reusables/interact_dialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Objects/ATM.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 8 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 4.5 )
+
+[node name="ATM" type="Sprite"]
+position = Vector2( 0, -4 )
+
+[node name="main" type="Sprite" parent="."]
+position = Vector2( 0, -6 )
+texture = ExtResource( 2 )
+
+[node name="interact_dialog" parent="." instance=ExtResource( 1 )]
+dialog = "Reusable/atm"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="CollisionShape2D" parent="interact_dialog" index="0"]
+position = Vector2( 0, 12 )
+shape = SubResource( 3 )
+
+[node name="ButtonPrompt" parent="interact_dialog" index="1"]
+material = SubResource( 4 )
+position = Vector2( 0, -25 )
+offset = Vector2( 0, -25 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, 8.5 )
+shape = SubResource( 2 )
+
+[editable path="interact_dialog"]

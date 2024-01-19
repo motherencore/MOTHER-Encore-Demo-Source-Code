@@ -1,0 +1,21 @@
+{
+	"0": {
+		"name": "Noisy Mouse",
+		"text": "(Have you ever heard of [color]adrenaline rushes[/color]?",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Noisy Mouse",
+		"text": "If you receive [color]mortal damage[/color], your body will be filled with adrenaline.",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Noisy Mouse",
+		"text": "During an adrenaline rush, your [color]attack damage will be increased[/color]!",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Noisy Mouse",
+		"text": "Be careful though, the rush will only last while your [color]HP is dropping down to zero[/color].)"
+	}
+}

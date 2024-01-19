@@ -1,0 +1,12 @@
+# TODO List
+- [ ] Battle system
+- [ ] Improved dialogue system
+- [ ] Party member switching
+- [ ] Inventory system
+- [ ] Overworld Enemies
+- [ ] Cleaning up the overworld attack mechanic
+- [ ] Cutscene system
+- [ ] Shop & hotel system
+- [ ] Saving & loading
+- [ ] trains
+- [x] your mom

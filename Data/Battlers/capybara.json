@@ -1,0 +1,24 @@
+{
+	"name": "Capybara",
+	"maxhp": 89,
+	"hp": 89,
+	"maxpp": 0,
+	"pp": 40,
+	"speed": 90,
+	"offense": 80,
+	"defense": 180,
+	"iq": 30,
+	"guts": 0,
+	"level": 10,
+	"exp": 200,
+	"cash": 41,
+	"skills": [
+		{"skill" : "bash", "weight" : 2}
+	],
+	"description": "It appears to be a giant hamster.",
+	"boss": false,
+	"sprite": "capybara",
+	"ovsprite": "CapybaraOV",
+	"music": "",
+	"bg": "capybara"
+}

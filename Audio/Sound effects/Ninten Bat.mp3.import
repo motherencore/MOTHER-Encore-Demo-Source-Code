@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ninten Bat.mp3-f5d6dc8fd02344fd572af2e463930ad7.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Ninten Bat.mp3"
+dest_files=[ "res://.import/Ninten Bat.mp3-f5d6dc8fd02344fd572af2e463930ad7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

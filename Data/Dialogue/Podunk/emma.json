@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Emma",
+		"text": "One of my friends got into a fight with a stray dog and fell unconscious.",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Emma",
+		"text": "Thankfully, the hospital was able to revive her in an instant!",
+		"sound": "Sexy"
+	}
+}

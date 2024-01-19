@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lifeup_cast.mp3-7c652ed36364514f3ca128fa4b94b92d.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Lifeup_cast.mp3"
+dest_files=[ "res://.import/Lifeup_cast.mp3-7c652ed36364514f3ca128fa4b94b92d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

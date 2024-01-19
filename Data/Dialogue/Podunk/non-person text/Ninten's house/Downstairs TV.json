@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "There's a man on the news being interviewed about a recent surge in paranormal activity.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "He sure is waving his arms around a lot.",
+	},
+}

@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Matt",
+		"text": "If you head north and then west, you'll find the Canary Village.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Matt",
+		"text": "You should check it out, it's free!",
+		"sound": "Adult"
+	}
+}

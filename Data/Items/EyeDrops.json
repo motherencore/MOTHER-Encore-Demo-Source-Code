@@ -1,0 +1,55 @@
+{
+	"name": {
+		"english": "Eye Drops",
+		"french": "Gouttes d'Oeil"
+	},
+	"article" : {
+		"english": "some",
+		"french": "des"
+	},
+	"keyitem": false,
+	"cost": 18,
+	"value": 9,
+	"usable": {
+		"ninten": false,
+		"lloyd": false,
+		"ana": false,
+		"teddy": false,
+		"pippi": false
+	},
+	"action_one": {
+		"name": {
+			"english": "Use", 
+			"french": "Utiliser"
+		},
+		"function": "consume",
+		"text": {
+			"english": "User could see again!",
+			"french": "User peut voir encore!"
+		},
+		"textfail": {
+			"english": "User is not blinded.",
+			"french": "User n'est pas aveugle."
+		}
+	},
+	"action_two": null,
+	"battle_action": "",
+	"transform": "",
+	"slot": "",
+	"status_heals" : ["blinded"],
+	"HPrecover": 0,
+	"PPrecover": 0,
+	"boost": {
+		"maxhp": 0, 
+		"maxpp": 0, 
+		"speed": 0, 
+		"offense": 0, 
+		"defense": 0, 
+		"iq": 0, 
+		"guts": 0
+	},
+	"description": {
+		"english": "Cures blindness.",
+		"french": "Guérit l'aveuglement."
+	}
+}

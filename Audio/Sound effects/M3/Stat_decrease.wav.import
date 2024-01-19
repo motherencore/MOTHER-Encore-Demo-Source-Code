@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Stat_decrease.wav-60263c5cbf0a0eb9b3dc2e865590779f.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Stat_decrease.wav"
+dest_files=[ "res://.import/Stat_decrease.wav-60263c5cbf0a0eb9b3dc2e865590779f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

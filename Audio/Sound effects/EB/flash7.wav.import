@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flash7.wav-180fb900c0e468e7db055e4c482c1295.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/flash7.wav"
+dest_files=[ "res://.import/flash7.wav-180fb900c0e468e7db055e4c482c1295.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

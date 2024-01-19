@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Roar.mp3-f31a9edc472e4365b5e0458184307693.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Roar.mp3"
+dest_files=[ "res://.import/Roar.mp3-f31a9edc472e4365b5e0458184307693.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

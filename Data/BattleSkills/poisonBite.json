@@ -1,0 +1,26 @@
+{
+	"name" : "Poison Bite",
+	"description" : "A bite using poisonous fangs.",
+	"dialog" : "{name} bit into {target} using {userpronoun} poisonous fangs!",
+	"skillType" : "physical",
+	"useCases" : 1,
+	"damageType" : 0,
+	"targetType" : 0,
+	"damage" : 8,
+	"variance" : 4,
+	"priority" : 0,
+	"statusEffects" : [
+		{"name" : "poisoned", "chance" : 80}
+	],
+	  "statusHeals" : [],
+	"critChance" : 0,
+	"failChance" : 10,
+	"ppCost" : 0,
+	"hpCost" : 0,
+	"preHitEffect": "",
+	"hitEffect" : "bash",
+	"screenEffect" : "",
+	"userAnim" : "bash",
+	"useSound" : "",
+	"hitSound" : "bash"
+}

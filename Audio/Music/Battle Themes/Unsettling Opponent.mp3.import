@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Unsettling Opponent.mp3-7017ad1922b00ca69bb7daf2f5ad145e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Unsettling Opponent.mp3"
+dest_files=[ "res://.import/Unsettling Opponent.mp3-7017ad1922b00ca69bb7daf2f5ad145e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

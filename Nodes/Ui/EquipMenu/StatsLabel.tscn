@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=1]
+
+[node name="StatsLabel" type="Label"]
+margin_right = 21.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+custom_fonts/font = ExtResource( 1 )
+text = "999"

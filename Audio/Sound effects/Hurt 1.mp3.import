@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hurt 1.mp3-9357fbecbce7a6a320f96fc828e85604.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Hurt 1.mp3"
+dest_files=[ "res://.import/Hurt 1.mp3-9357fbecbce7a6a320f96fc828e85604.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

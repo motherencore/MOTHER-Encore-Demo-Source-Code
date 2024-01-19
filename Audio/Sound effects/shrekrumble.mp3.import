@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/shrekrumble.mp3-32ee17dd89055e7a73363d788e356d4d.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/shrekrumble.mp3"
+dest_files=[ "res://.import/shrekrumble.mp3-32ee17dd89055e7a73363d788e356d4d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

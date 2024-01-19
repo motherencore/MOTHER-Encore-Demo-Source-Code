@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/watershallow.wav-88111dff0243583996416440465dd0da.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/watershallow.wav"
+dest_files=[ "res://.import/watershallow.wav-88111dff0243583996416440465dd0da.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

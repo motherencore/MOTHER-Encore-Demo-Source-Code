@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/phonehangup.wav-2d7d7719002583a0f30b2cc9f9da8f83.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/phonehangup.wav"
+dest_files=[ "res://.import/phonehangup.wav-2d7d7719002583a0f30b2cc9f9da8f83.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,28 @@
+{
+	"0": {
+		"name": "Isabella",
+		"text": "Is that Canary Chick from Canary Village?",
+		"sound": "Sexy",
+		"options":{
+			"Yes": "1",
+			"No": "2",
+			"cancel" : "2"
+		}
+	},
+	"1": {
+		"name": "Isabella",
+		"text": "Aww, what a cutie.",
+		"sound": "Sexy"
+	},
+	"2": {
+		"name": "Isabella",
+		"text": "The chicks there have lovely voices.",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Isabella",
+		"text": "I hope they start singing again soon.",
+		"sound": "Sexy"
+	}
+}

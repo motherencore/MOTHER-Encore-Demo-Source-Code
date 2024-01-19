@@ -1,0 +1,114 @@
+{
+	"0": {
+		"actors": {
+			"lindgren": "talker",
+			"ninten": "leader"
+		},
+		"emoteactors": {
+			"lindgren": "exclamation"
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mrs. Lindgren",
+		"text": "Oh, hello [Ninten]...",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"emoteactors": {
+			"lindgren": "dot"
+		},
+		"showbox": false,
+		"actorsturn": {
+			"lindgren": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.05
+			}
+		},
+		"wait": 0.8,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"showbox": false,
+		"actorsturn": {
+			"lindgren": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.05
+			}
+		},
+		"wait": 1.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "4"
+	},
+	"4": {
+		"actorsturn": {
+			"lindgren": {
+				"actor": "ninten",
+				"speed": 0.05
+			}
+		},
+		"name": "Mrs. Lindgren",
+		"text": "It seems my dear [color][Pippi][/color]'s gone missing!",
+		"sound": "Sexy",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Mrs. Lindgren",
+		"text": "She always goes outside to play, but she hasn't come home since yesterday...",
+		"sound": "Sexy",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Mrs. Lindgren",
+		"text": "If you're going into town, please ask [color]Mayor Goodman[/color] if anyone's seen her, okay?",
+		"sound": "Sexy",
+		"goto": "7"
+	},
+	"7": {
+		"name": "Mrs. Lindgren",
+		"text": "(Sniffle sniffle... Sob sob...)",
+		"emoteactors": {
+			"ninten": "sweat"
+		},
+		"sound": "Sexy",
+		"goto": "8"
+	},
+	"8": {
+		"showbox": false,
+		"actorsjump": {
+			"ninten": {
+				"height": 6,
+				"length": 0.2,
+				"times": 2
+			}
+		},
+		"wait": 0.6,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "9"
+	},
+	"9": {
+		"name": "Mrs. Lindgren",
+		"text": "Yes, you will?",
+		"sound": "Sexy",
+		"goto": "10"
+	},
+	"10": {
+		"flag": "pippis_mom_help",
+		"emoteactors": {
+			"lindgren": "heart"
+		},
+		"name": "Mrs. Lindgren",
+		"text": "Thank you so much, [Ninten]!",
+		"sound": "Sexy"
+	}
+}

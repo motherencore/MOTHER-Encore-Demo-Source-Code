@@ -1,0 +1,24 @@
+{
+	"name": "Scorpion",
+	"maxhp": 75,
+	"hp": 75,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 60,
+	"offense": 60,
+	"defense": 80,
+	"iq": 80,
+	"guts": 0,
+	"level": 4,
+	"exp": 100,
+	"cash": 72,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It's poisonous, but insecticide works.",
+	"boss": false,
+	"sprite": "scorpion",
+	"ovsprite": "ScorpionOV",
+	"music": "",
+	"bg": ""
+}

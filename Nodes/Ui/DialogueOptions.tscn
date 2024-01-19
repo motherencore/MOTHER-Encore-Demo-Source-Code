@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
+
+[node name="Option" type="Label"]
+margin_left = 38.0
+margin_top = 4.0
+margin_right = 98.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 60, 10 )
+custom_fonts/font = ExtResource( 1 )

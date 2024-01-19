@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hospital_Intro.mp3-d75a9a0e3cf6ad42d397644fbfb7d7bf.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Hospital/Hospital_Intro.mp3"
+dest_files=[ "res://.import/Hospital_Intro.mp3-d75a9a0e3cf6ad42d397644fbfb7d7bf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

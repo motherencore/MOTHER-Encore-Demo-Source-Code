@@ -1,0 +1,55 @@
+{
+	"0": {
+		"actors": {
+			"starman jr": "Objects/starman jr capsule",
+			"player": "leader"
+		},
+		"actorsturn": {
+			"player": {
+				"x": 0,
+				"y": -1,
+				"speed": 0.1
+			}
+		},
+		"objectfunction": {
+			"Flag Landmark/Room Shaker": "stop_shake"
+		},
+		"movecam": {
+			"actor": "starman jr"
+		},
+		"actorsanim": {
+			"starman jr": {"anim": "Idle", "type": 1}
+		},
+		"wait": 2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"1"
+	},
+	"1": {
+		"actorsturn": {
+			"player": {
+				"x": 0,
+				"y": -1,
+				"speed": 0.1
+			}
+		},
+		"actorsanim": {
+			"starman jr": {"anim": "Open", "type": 1}
+		},
+		"wait": 6,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "2"
+	},
+	"2": {
+		"batwincutscene": "Podunk/cutscenes/starman_jr_defeat",
+		"talker": "starman jr",
+		"text": "You may have bested the vicious beasts of this place, but you are no match to me!",
+		"sound": "Robot",
+		"battler": {
+			"enemy": "starmanjr",
+			"actor": "starman jr",
+			"keep": true
+		}
+	}
+}

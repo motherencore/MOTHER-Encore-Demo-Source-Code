@@ -1,0 +1,24 @@
+{
+	"name": "Grizzly Bear",
+	"maxhp": 340,
+	"hp": 340,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 100,
+	"offense": 160,
+	"defense": 340,
+	"iq": 60,
+	"guts": 0,
+	"level": 4,
+	"exp": 250,
+	"cash": 65,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "If you must sleep, don't borrow his bed!",
+	"boss": false,
+	"sprite": "grizzly bear",
+	"ovsprite": "GrizzlyBearOV",
+	"music": "",
+	"bg": ""
+}

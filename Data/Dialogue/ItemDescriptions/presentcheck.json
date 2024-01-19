@@ -1,0 +1,10 @@
+{
+	"0": {
+		"text":"PartyLead opened the present.",
+		"goto":"1"
+		},
+	"1": {
+		"text":"ItemReceiver got ItemArt ItemName!",
+		"soundeffect":"Item Received.mp3"
+	}
+}

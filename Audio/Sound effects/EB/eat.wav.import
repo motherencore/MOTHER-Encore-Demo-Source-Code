@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/eat.wav-4f9b75d2c04f0b5201a884b57fefc997.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/eat.wav"
+dest_files=[ "res://.import/eat.wav-4f9b75d2c04f0b5201a884b57fefc997.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Colour Switch.mp3-07501145b66c97c3321ae6f59ba987bb.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Colour Switch.mp3"
+dest_files=[ "res://.import/Colour Switch.mp3-07501145b66c97c3321ae6f59ba987bb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

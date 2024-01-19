@@ -1,0 +1,38 @@
+{
+	"0": {
+		"name": "Mick",
+		"text": "(I hope they haven't found out I ate all of the FavFood...",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mick",
+		"text": "Hey, are you reading my thoughts?",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mick",
+		"text": "Cut it out! That's an invasion of privacy!",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Mick",
+		"text": "Take this and forget what you just heard.)",
+		"goto": "4"
+	},
+	"4": {
+		"text": "You got the Basement Key.",
+		"item": "KeyBasement",
+		"soundeffect": "Item Received.mp3",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Mick",
+		"text": "(I can smell some Dog Treats in the basement.",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Mick",
+		"text": "If you fetch them for me, I'll let you go.)",
+		"flag": "mick_telepathy"
+	}
+}

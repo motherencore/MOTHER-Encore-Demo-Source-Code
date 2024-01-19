@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/storm2.wav-72d0aa738da684aa6a052c18e28621dd.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/storm2.wav"
+dest_files=[ "res://.import/storm2.wav-72d0aa738da684aa6a052c18e28621dd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

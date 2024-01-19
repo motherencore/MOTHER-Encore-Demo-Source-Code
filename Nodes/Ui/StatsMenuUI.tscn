@@ -1,0 +1,308 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=2]
+[ext_resource path="res://Scripts/UI/statsmenu.gd" type="Script" id=3]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Close"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Stats:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Open"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -180 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Stats:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Stats:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="StatsMenuUI" type="CanvasLayer"]
+offset = Vector2( 0, -180 )
+transform = Transform2D( 1, 0, 0, 1, 0, -180 )
+script = ExtResource( 3 )
+
+[node name="Stats" type="NinePatchRect" parent="."]
+visible = false
+material = ExtResource( 2 )
+margin_left = 33.0
+margin_top = 23.0
+margin_right = 288.0
+margin_bottom = 152.0
+rect_pivot_offset = Vector2( 40, -10 )
+texture = ExtResource( 4 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Name" type="Label" parent="Stats"]
+margin_left = 8.0
+margin_top = 10.0
+margin_right = 73.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 5 )
+text = "Ninten"
+
+[node name="statuses" type="Label" parent="Stats/Name"]
+margin_left = 69.0
+margin_right = 241.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "Statuses"
+align = 1
+autowrap = true
+
+[node name="stats" parent="Stats" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_left = 10.0
+margin_top = 25.0
+margin_right = 60.0
+margin_bottom = 121.0
+custom_constants/line_spacing = 2
+text = "HP
+PP
+Offense
+Defense
+Speed
+IQ
+Guts"
+
+[node name="HP" type="Label" parent="Stats/stats"]
+margin_left = 39.0
+margin_top = -2.0
+margin_right = 111.0
+margin_bottom = 9.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999 / 999"
+align = 2
+
+[node name="PP" type="Label" parent="Stats/stats"]
+margin_left = 39.0
+margin_top = 12.0
+margin_right = 111.0
+margin_bottom = 23.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999 / 999"
+align = 2
+
+[node name="offense" type="Label" parent="Stats/stats"]
+margin_left = 89.0
+margin_top = 26.0
+margin_right = 111.0
+margin_bottom = 37.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="defense" type="Label" parent="Stats/stats"]
+margin_left = 89.0
+margin_top = 40.0
+margin_right = 111.0
+margin_bottom = 51.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="speed" type="Label" parent="Stats/stats"]
+margin_left = 89.0
+margin_top = 54.0
+margin_right = 111.0
+margin_bottom = 65.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="IQ" type="Label" parent="Stats/stats"]
+margin_left = 89.0
+margin_top = 68.0
+margin_right = 111.0
+margin_bottom = 79.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="guts" type="Label" parent="Stats/stats"]
+margin_left = 89.0
+margin_top = 82.0
+margin_right = 111.0
+margin_bottom = 93.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="stats2" parent="Stats" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_left = 127.0
+margin_top = 25.0
+margin_right = 177.0
+margin_bottom = 121.0
+custom_constants/line_spacing = 2
+text = "Level
+EXP
+Weapon
+Body
+Head
+Other
+"
+
+[node name="level" type="Label" parent="Stats/stats2"]
+margin_left = 99.0
+margin_top = -2.0
+margin_right = 121.0
+margin_bottom = 9.0
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "99"
+align = 2
+
+[node name="points" type="Label" parent="Stats/stats2"]
+margin_left = 18.0
+margin_top = 12.0
+margin_right = 121.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 6 )
+text = "999999/999999"
+align = 2
+
+[node name="weapon" type="Label" parent="Stats/stats2"]
+margin_left = 37.0
+margin_top = 28.0
+margin_right = 122.0
+margin_bottom = 42.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "None"
+
+[node name="body" type="Label" parent="Stats/stats2"]
+margin_left = 37.0
+margin_top = 42.0
+margin_right = 122.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "None"
+
+[node name="head" type="Label" parent="Stats/stats2"]
+margin_left = 37.0
+margin_top = 56.0
+margin_right = 122.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "None"
+
+[node name="other" type="Label" parent="Stats/stats2"]
+margin_left = 37.0
+margin_top = 70.0
+margin_right = 122.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "None"
+
+[node name="skills" type="Label" parent="Stats/stats2"]
+visible = false
+margin_top = 84.0
+margin_right = 122.0
+margin_bottom = 98.0
+rect_pivot_offset = Vector2( 11, 9 )
+custom_fonts/font = ExtResource( 5 )
+text = "Press Z to see Skills"
+align = 1
+
+[node name="PartySelect" parent="." instance=ExtResource( 1 )]
+margin_left = 33.0
+margin_right = 288.0
+menuName = "Status"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 2 )
+anims/Open = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[connection signal="character_changed" from="PartySelect" to="." method="_on_InventorySelect_character_changed"]

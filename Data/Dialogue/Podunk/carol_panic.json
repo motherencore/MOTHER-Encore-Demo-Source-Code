@@ -1,0 +1,25 @@
+{
+	"0": {
+		"name": "Carol",
+		"text": "Are you okay, [Ninten]?",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Carol",
+		"text": "What on earth is happening to our home?",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Carol",
+		"text": "I'm so scared...",
+		"sound": "Sexy",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Carol",
+		"text": "If only your father were here now...",
+		"sound": "Sexy"
+	}
+}

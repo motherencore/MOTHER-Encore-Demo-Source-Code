@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Save.mp3-b20cee2dcf712cbfa8082f3bc67347af.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Save.mp3"
+dest_files=[ "res://.import/Save.mp3-b20cee2dcf712cbfa8082f3bc67347af.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

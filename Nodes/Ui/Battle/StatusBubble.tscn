@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Graphics/UI/Battle/status_bubbles.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/Battle/StatusBubble.gd" type="Script" id=2]
+
+[node name="StatusBubble" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -320.0
+margin_bottom = -180.0
+script = ExtResource( 2 )
+
+[node name="Poisoned" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+
+[node name="Sleeping" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 3
+
+[node name="Numb" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 6
+
+[node name="Confused" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 9
+
+[node name="Cold" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 12
+
+[node name="Forgetful" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 15
+
+[node name="Asthma" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 18
+
+[node name="Blinded" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 21
+
+[node name="Burned" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 24
+
+[node name="Sunstroked" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 27
+
+[node name="Nausea" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 30
+
+[node name="Mushroomized" type="Sprite" parent="."]
+position = Vector2( 0, -9.13443 )
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 12
+frame = 33

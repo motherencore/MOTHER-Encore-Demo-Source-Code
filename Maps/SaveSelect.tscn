@@ -1,0 +1,501 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=3]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=4]
+[ext_resource path="res://Scripts/UI/SaveSelect.gd" type="Script" id=5]
+[ext_resource path="res://Graphics/UI/Misc/file_select_cursor.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/UI/save_cursor_idle.tres" type="Animation" id=7]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/UI/NamingScreen/ButtonPrompts.gd" type="Script" id=11]
+[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/UI/NamingScreen/TextSpeed.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/UI/NamingScreen/Flavors.gd" type="Script" id=15]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 28, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 265, 78 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "select"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 28, 17 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_size")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 264, 77 ) ]
+}
+
+[sub_resource type="Shader" id=19]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = SubResource( 19 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[node name="SaveSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Door" parent="Objects" instance=ExtResource( 1 )]
+position = Vector2( 344, 5 )
+dir = Vector2( 0, 1 )
+targetScene = "Title screen"
+unpause_player = false
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Saves" type="Control" parent="CanvasLayer"]
+margin_top = 21.0
+margin_right = 320.0
+margin_bottom = 205.0
+
+[node name="SaveList" type="VBoxContainer" parent="CanvasLayer/Saves"]
+margin_left = 32.0
+margin_right = 288.0
+margin_bottom = 256.0
+custom_constants/separation = 7
+
+[node name="CopyCursor" type="Node2D" parent="CanvasLayer/Saves"]
+visible = false
+
+[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Saves/CopyCursor"]
+modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
+margin_left = 28.0
+margin_top = 17.0
+margin_right = 293.0
+margin_bottom = 95.0
+rect_pivot_offset = Vector2( 250, 78 )
+texture = ExtResource( 6 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="Cursor" type="Node2D" parent="CanvasLayer"]
+
+[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Cursor"]
+margin_left = 28.0
+margin_top = 17.0
+margin_right = 293.0
+margin_bottom = 95.0
+rect_pivot_offset = Vector2( 250, 78 )
+texture = ExtResource( 6 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Cursor/cursor_menu"]
+anims/RESET = SubResource( 1 )
+anims/idle = ExtResource( 7 )
+anims/select = SubResource( 2 )
+
+[node name="SaveConfirmation" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 64.0
+margin_top = 48.0
+margin_right = 256.0
+margin_bottom = 112.0
+texture = ExtResource( 3 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Text" type="Label" parent="CanvasLayer/SaveConfirmation"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "OK to overwrite this file?"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SaveConfirmation"]
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Yes" type="Label" parent="CanvasLayer/SaveConfirmation/HBoxContainer"]
+margin_left = 22.0
+margin_top = 6.0
+margin_right = 38.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 2 )
+text = "Yes"
+align = 1
+
+[node name="Yes2" type="Label" parent="CanvasLayer/SaveConfirmation/HBoxContainer"]
+margin_left = 62.0
+margin_top = 6.0
+margin_right = 73.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 2 )
+text = "No"
+align = 1
+
+[node name="saveArrow" parent="CanvasLayer/SaveConfirmation" instance=ExtResource( 9 )]
+position = Vector2( 64, 43 )
+menu_parent_path = NodePath("../HBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+move_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="DeleteConfirmation" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 64.0
+margin_top = 48.0
+margin_right = 256.0
+margin_bottom = 112.0
+texture = ExtResource( 3 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+
+[node name="Title" type="Label" parent="CanvasLayer/DeleteConfirmation"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 184.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 2 )
+text = "This will erase this save file.
+Is that okay?"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeleteConfirmation"]
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 144.0
+margin_bottom = 56.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Yes" type="Label" parent="CanvasLayer/DeleteConfirmation/HBoxContainer"]
+margin_left = 22.0
+margin_top = 2.0
+margin_right = 38.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "Yes"
+align = 1
+
+[node name="Yes2" type="Label" parent="CanvasLayer/DeleteConfirmation/HBoxContainer"]
+margin_left = 62.0
+margin_top = 2.0
+margin_right = 73.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+text = "No"
+align = 1
+
+[node name="deleteArrow" parent="CanvasLayer/DeleteConfirmation" instance=ExtResource( 9 )]
+position = Vector2( 64, 47 )
+menu_parent_path = NodePath("../HBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+move_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="TextSpeed" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 96.0
+margin_top = 48.0
+margin_right = 224.0
+margin_bottom = 112.0
+texture = ExtResource( 3 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 14 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextSpeed"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 56.0
+rect_clip_content = true
+
+[node name="Fast" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+text = "Fast Speed"
+valign = 1
+
+[node name="Medium" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Medium Speed"
+valign = 1
+
+[node name="Slow" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "Slow Speed"
+valign = 1
+
+[node name="TextSpeedArrow" parent="CanvasLayer/TextSpeed" instance=ExtResource( 9 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="Flavors" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 96.0
+margin_top = 16.0
+margin_right = 224.0
+margin_bottom = 144.0
+texture = ExtResource( 3 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 15 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Flavors"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 87.0
+rect_clip_content = true
+
+[node name="Plain" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_right = 75.0
+text = "Plain"
+
+[node name="Mint" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+text = "Mint"
+
+[node name="Strawberry" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+text = "Strawberry"
+
+[node name="Banana" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 60.0
+text = "Banana"
+
+[node name="Peanut" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 64.0
+margin_right = 75.0
+margin_bottom = 76.0
+text = "Peanut"
+
+[node name="Grape" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 80.0
+margin_right = 75.0
+margin_bottom = 92.0
+text = "Grape"
+
+[node name="Melon" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 96.0
+margin_right = 75.0
+margin_bottom = 108.0
+text = "Melon"
+
+[node name="FlavorsArrow" parent="CanvasLayer/Flavors" instance=ExtResource( 9 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+highlight = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="ButtonPrompts" type="NinePatchRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 96.0
+margin_top = 39.0
+margin_right = 224.0
+margin_bottom = 120.0
+texture = ExtResource( 3 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ButtonPrompts"]
+margin_left = 17.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 72.0
+rect_clip_content = true
+
+[node name="Both" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+text = "Both"
+valign = 1
+
+[node name="Objects" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 16.0
+margin_right = 75.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Objects"
+valign = 1
+
+[node name="NPCs" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 32.0
+margin_right = 75.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 2 )
+text = "NPCs"
+valign = 1
+
+[node name="None" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
+margin_top = 48.0
+margin_right = 75.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 2 )
+text = "None"
+valign = 1
+
+[node name="ButtonPromptsArrow" parent="CanvasLayer/ButtonPrompts" instance=ExtResource( 9 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+
+[node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
+position = Vector2( 72, 57 )
+texture = ExtResource( 12 )
+hframes = 5
+
+[node name="ButtonPrompt" parent="CanvasLayer/ButtonPrompts/Present" instance=ExtResource( 10 )]
+material = SubResource( 20 )
+position = Vector2( 0, -8 )
+offset = Vector2( 0, -8 )
+
+[node name="NPC" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
+position = Vector2( 104, 49 )
+texture = ExtResource( 13 )
+hframes = 5
+vframes = 4
+frame = 1
+
+[node name="ButtonPrompt" parent="CanvasLayer/ButtonPrompts/NPC" instance=ExtResource( 10 )]
+material = SubResource( 20 )
+position = Vector2( 0, -16 )
+type = "NPCs"
+offset = Vector2( 0, -16 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="cancel" from="CanvasLayer/SaveConfirmation/saveArrow" to="." method="_on_arrow_cancel"]
+[connection signal="selected" from="CanvasLayer/SaveConfirmation/saveArrow" to="." method="_on_arrow_selected"]
+[connection signal="cancel" from="CanvasLayer/DeleteConfirmation/deleteArrow" to="." method="_on_deleteArrow_cancel"]
+[connection signal="selected" from="CanvasLayer/DeleteConfirmation/deleteArrow" to="." method="_on_deleteArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="CanvasLayer/TextSpeed" method="_on_TextSpeedArrow_moved"]
+[connection signal="selected" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/Flavors/FlavorsArrow" to="." method="_on_FlavorsArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/Flavors/FlavorsArrow" to="CanvasLayer/Flavors" method="_on_FlavorsArrow_moved"]
+[connection signal="selected" from="CanvasLayer/Flavors/FlavorsArrow" to="." method="_on_FlavorsArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_ButtonPromptsArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="CanvasLayer/ButtonPrompts" method="_on_ButtonPromptsArrow_moved"]
+[connection signal="selected" from="CanvasLayer/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_ButtonPromptsArrow_selected"]

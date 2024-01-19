@@ -1,0 +1,24 @@
+{
+	"name": "Groucho",
+	"maxhp": 35,
+	"hp": 35,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 20,
+	"offense": 12,
+	"defense": 40,
+	"iq": 20,
+	"guts": 0,
+	"level": 4,
+	"exp": 50,
+	"cash": 12,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "If he was a mask, someone might mistake your identity!",
+	"boss": false,
+	"sprite": "groucho",
+	"ovsprite": "GrouchoOV",
+	"music": "",
+	"bg": ""
+}

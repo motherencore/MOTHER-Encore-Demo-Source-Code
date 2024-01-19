@@ -1,0 +1,28 @@
+{
+	"name" : "Vent Odor",
+	"description" : "Vent a terrible odor to lower an opponent's Offense and Defense.",
+	"dialog" : "{name} vented a terrible odor!",
+	"skillType" : "physical",
+	"useCases" : 1,
+	"damageType" : 2,
+	"targetType" : 0,
+	"damage" : 0,
+	"variance" : 0,
+	"priority" : 0,
+	"statusEffects" : [],
+	"statusHeals" : [],
+	"statMods": {
+		"offense": -1,
+		"defense": -1
+	},
+	"critChance" : 0,
+	"failChance" : 0,
+	"ppCost" : 0,
+	"hpCost" : 0,
+	"preHitEffect": "",
+	"hitEffect" : "",
+	"screenEffect" : "",
+	"userAnim" : "",
+	"useSound" : "",
+	"hitSound" : ""
+}

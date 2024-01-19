@@ -1,0 +1,40 @@
+{
+	"0": {
+		"name": "Iggy",
+		"text": "Have you forgotten my instructions already?",
+		"sound": "Adult",
+		"options": {
+			"Yes": "2",
+			"No": "1",
+			"cancel": "1"
+		},
+	},
+	"1": {
+		"name": "Iggy",
+		"text": "Hurry up, then!",
+		"sound": "Adult"
+	},
+	"2": {
+		"name": "Iggy",
+		"text": "Try to imagine a something called a [ui_cancel] button.",
+		"sound": "Adult",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Iggy",
+		"text": "Then, simply press it!",
+		"sound": "Adult",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Iggy",
+		"text": "This allows you to unleash a swing powerful enough to break any tough object.",
+		"sound": "Adult",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Iggy",
+		"text": "Come on, try it!",
+		"sound": "Adult"
+	},
+}

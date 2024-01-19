@@ -1,0 +1,24 @@
+{
+	"name": "Struttin' Evil Mushroom",
+	"maxhp": 386,
+	"hp": 386,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 88,
+	"offense": 102,
+	"defense": 55,
+	"iq": 47,
+	"guts": 0,
+	"level": 5,
+	"exp": 543,
+	"cash": 143,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"boss": false,
+	"description": "WIt walks very arrogantly",
+	"sprite": "struttin evil mushroom",
+	"ovsprite": "StruttinMushroomOV",
+	"music": "",
+	"bg": ""
+}

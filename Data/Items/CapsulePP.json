@@ -1,0 +1,53 @@
+{
+	"name": {
+		"english": "PP Capsule",
+		"french": "Capsule de PP"
+	},
+	"article" : {
+		"english": "a",
+		"french": "une"
+	},
+	"keyitem": false,
+	"cost": 0,
+	"value": 0,
+	"usable": {
+		"ninten": true,
+		"lloyd": false,
+		"ana": true,
+		"teddy": false,
+		"pippi": false
+	},
+	"action_one": {
+		"name": {
+			"english": "Eat", 
+			"french": "Manger"
+		},
+		"function": "consume",
+		"text": {
+			"english": "User's maximum PP increased by 3!",
+			"french": "Le PP maximum de User a augmenté par 3!"
+		},
+		"textfail": {
+			"english": "User won't eat the PP Capsule.",
+			"french": "User ne veut pas manger la Capsule de PP."
+		}
+	},
+	"action_two": null,
+	"transform": "",
+	"slot": "",
+	"HPrecover": 0,
+	"PPrecover": 3,
+	"boost": {
+		"maxhp": 0, 
+		"maxpp": 3, 
+		"speed": 0, 
+		"offense": 0, 
+		"defense": 0, 
+		"iq": 0, 
+		"guts": 0
+	},
+	"description": {
+		"english": "Increases your maximum PP by 3.",
+		"french": "Augmente ton PP maximum par 3."
+	}
+}

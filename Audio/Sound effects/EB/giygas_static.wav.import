@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/giygas_static.wav-ab44065e3c928c9ddfc3a8a209eb209b.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/giygas_static.wav"
+dest_files=[ "res://.import/giygas_static.wav-ab44065e3c928c9ddfc3a8a209eb209b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

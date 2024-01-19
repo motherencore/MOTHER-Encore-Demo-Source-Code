@@ -1,0 +1,24 @@
+{
+	"name": "Maniac Truck",
+	"maxhp": 80,
+	"hp": 80,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 35,
+	"offense": 34,
+	"defense": 48,
+	"iq": 35,
+	"guts": 0,
+	"level": 4,
+	"exp": 150,
+	"cash": 58,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "What is going to happen next, speeding, reckless driving, or...",
+	"boss": false,
+	"sprite": "maniac truck",
+	"ovsprite": "ManiacTruckOV",
+	"music": "",
+	"bg": ""
+}

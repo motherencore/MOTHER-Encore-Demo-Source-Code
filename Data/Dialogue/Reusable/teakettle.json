@@ -1,0 +1,24 @@
+{
+	"0": {
+		"text":"Would you like some tea?",
+		"options": {
+			"Yes": "1",
+			"No": "2",
+			"cancel": "2"
+		}
+	},
+	"1": {
+		"text":"You enjoyed some quality tea time.",
+		"heal": "All",
+		"restorepp": "All",
+		"cure": {
+			"character": "All",
+			"status": "All"
+		},
+		"soundeffect": "Much Better.wav",
+		"wait": 3
+	},
+	"2": {
+		"text":"There's no time for tea."
+	}
+}

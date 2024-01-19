@@ -1,0 +1,24 @@
+{
+	"name": "Elder Mook",
+	"maxhp": 160,
+	"hp": 160,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 65,
+	"offense": 60,
+	"defense": 140,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 350,
+	"cash": 110,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Not only will it attack using PSI, it is a thief!",
+	"boss": false,
+	"sprite": "elder mook",
+	"ovsprite": "ElderMookOV",
+	"music": "",
+	"bg": ""
+}

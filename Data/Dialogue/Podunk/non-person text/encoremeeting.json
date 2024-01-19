@@ -1,0 +1,63 @@
+{
+	"0": {
+		"emoteplayer": "question",
+		"text": "MOTHER Encore developer meeting. STAFF ONLY.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Ninten pressed his ear against the door.",
+		"goto": "2"
+	},
+	"2": {
+		"name": "???",
+		"text": "No, we should make it more like MOTHER 3!",
+		"sound": "Adult",
+		"goto": "3"
+	},
+	"3": {
+		"name": "???",
+		"text": "But Mother 2's better!",
+		"sound": "Kid",
+		"cleardialog": true,
+		"goto": "4"
+	},
+	"4": {
+		"name": "???",
+		"text": "How about we add another dungeon for no reason?",
+		"sound": "Sexy",
+		"cleardialog": true,
+		"goto": "5"
+		
+	},
+	"5": {
+		"name": "???",
+		"text": "Nobody has worked on the game in three months!",
+		"sound": "Shy",
+		"cleardialog": true,
+		"goto": "6"
+	},
+	"6": {
+		"name": "???",
+		"text": "But we need encounters every two steps, or it won't be faithful!",
+		"sound": "Adult",
+		"cleardialog": true,
+		"goto": "7"
+	},
+	"7": {
+		"name": "???",
+		"text": "Hey, let's add a minecart scene! Y'know, like that one game!",
+		"sound": "Sexy",
+		"cleardialog": true,
+		"goto": "8"
+	},
+	"8": {
+		"name": "???",
+		"text": "I can't wait to reveal the duncan strip-joint we mapped out! Mr. Itoi would be so proud..",
+		"sound": "Kid",
+		"cleardialog": true,
+		"goto": "9"
+	},
+	"9": {
+		"text": "Development seems to be going smoothly."
+	}
+}

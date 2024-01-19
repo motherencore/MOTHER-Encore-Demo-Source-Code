@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Carol",
+		"text": "I gave the [color]Basement Key[/color] to [color]Mick.[/color]",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Carol",
+		"text": "Don't tell Mimmie, though.",
+		"sound": "Sexy",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Carol",
+		"text": "I made sure to keep all the Orange Juice away from her.",
+		"sound": "Sexy"
+	}
+}

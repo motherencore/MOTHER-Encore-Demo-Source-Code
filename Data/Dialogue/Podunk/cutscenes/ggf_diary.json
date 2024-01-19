@@ -1,0 +1,111 @@
+{
+	"0": {
+		"actors":{
+			"ninten": "ninten"
+		},
+		"text":"PartyLead opened the present.",
+		"goto":"1"
+	},
+	"1": {
+		"text":"[Ninten] got his [color]Great Grand-Father's Diary[/color]!",
+		"soundeffect":"Item Received.mp3",
+		"goto":"2"
+	},
+	"2": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 128, "y": 1040}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"ninten": {
+				"x": 0, 
+				"y": 1,
+				"queue": true
+			}
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"3"
+	},
+	"3": {
+		"objectfunction": {
+			"MusicArea2": "stop_music",
+			"AnimationPlayer": "play_anim"
+		},
+		"actorsanim": {
+			"ninten": {
+				"anim": "NintenDiarySleep", 
+				"type": 1
+			}
+		},
+		"changecam": "ninten",
+		"returncam": 0.01,
+		"wait": 7,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"4"
+	},
+	"4": {
+		"objectfunction": {
+			"melodyBG": "appear"
+		},
+		"name": "???",
+		"text":"[Ninten]... Please... come find me...",
+		"sound": "Sexy",
+		"wait": 2,
+		"goto":"5"
+	},
+	"5": {
+		"name": "???",
+		"text":"Seek the [color]shell in the cave[/color]...",
+		"sound": "Sexy",
+		"wait": 2,
+		"goto":"6"
+	},
+	"6": {
+		"name": "???",
+		"text":"Do so, and the wisdom of the world shall be unveiled...",
+		"sound": "Sexy",
+		"wait": 2,
+		"goto":"7"
+	},
+	"7": {
+		"showbox": false,
+		"actorsanim": {
+			"ninten": {
+				"anim": "NintenDiaryWakeUp", 
+				"type": 1
+			}
+		},
+		"wait": 3,
+		"autoadvance": true,
+		"caninput": false,
+		"goto":"8"
+	},
+	"8": {
+		"text":"Something awoke inside [Ninten]!",
+		"goto":"9"
+	},
+	"9": {
+		"objectfunction": {
+			"melodyBG": "disappear",
+			"MusicArea2": "play_music"
+		},
+		"soundeffect": "M3/Learned PSI.wav",
+		"text":"[Ninten] learned Lifeup!",
+		"learnskills": {
+			"ninten": "lifeUpA"
+		},
+		"wait": 0.6,
+		"goto": "10"
+	},
+	"10": {
+		"text":"Press [color][ui_select][/color] and open your [color]PSI[/color] menu to use [color]Lifeup.[/color]"
+	}
+}

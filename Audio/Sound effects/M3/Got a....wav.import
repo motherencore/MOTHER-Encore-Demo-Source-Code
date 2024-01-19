@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Got a....wav-340848cf9023013ebf4e63ada5fb85a5.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Got a....wav"
+dest_files=[ "res://.import/Got a....wav-340848cf9023013ebf4e63ada5fb85a5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

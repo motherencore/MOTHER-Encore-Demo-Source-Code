@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/disrupt2.wav-b3e096ea2e9e4d0cc150bcf214a9d76c.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/disrupt2.wav"
+dest_files=[ "res://.import/disrupt2.wav-b3e096ea2e9e4d0cc150bcf214a9d76c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

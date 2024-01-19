@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mortal Damage.mp3-2c238d48a3ca7030ad008d2c3000b2ff.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Mortal Damage.mp3"
+dest_files=[ "res://.import/Mortal Damage.mp3-2c238d48a3ca7030ad008d2c3000b2ff.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

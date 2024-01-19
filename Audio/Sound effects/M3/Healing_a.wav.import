@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Healing_a.wav-aa52492c07bcf0c376294af34c41b607.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Healing_a.wav"
+dest_files=[ "res://.import/Healing_a.wav-aa52492c07bcf0c376294af34c41b607.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

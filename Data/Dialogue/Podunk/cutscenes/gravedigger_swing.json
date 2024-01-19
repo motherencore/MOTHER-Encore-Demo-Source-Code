@@ -1,0 +1,277 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"iggy": "Objects/NPCS/npc18"
+		},
+		"talker": "iggy",
+		"name": "Iggy",
+		"text": "Oh, it's no use.",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"changecam": "iggy",
+		"returncam": 1,
+		"name": "Iggy",
+		"text": "I'll never get it back...",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"showbox": false,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 1336, "y": 4744}, {"x": 1376, "y": 4744}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"wait": 3.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"actorsdir": {
+			"iggy": {
+				"x": -1,
+				"y": 0
+			}
+		},
+		"movecam": {
+			"x": 1404,
+			"y": 4744
+		},
+		"name": "Iggy",
+		"text": "Who's there?!",
+		"sound": "Adult",
+		"goto": "4"
+	},
+	"4": {
+		"name": "Iggy",
+		"text": "A child?",
+		"sound": "Adult",
+		"goto": "5"
+	},
+	"5": {
+		"name": "Iggy",
+		"text": "What are you doing here?",
+		"sound": "Adult",
+		"goto": "6"
+	},
+	"6": {
+		"name": "Iggy",
+		"text": "This place is dangerous! Haven't you noticed all the zombies walking around?",
+		"sound": "Adult",
+		"goto": "7"
+	},
+	"7": {
+		"actorsturn": {
+			"iggy": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.1
+			}
+		},
+		"name": "Iggy",
+		"text": "Eh, whatever. I'm too busy to worry about that.",
+		"sound": "Adult",
+		"goto": "8"
+	},
+	"8": {
+		"name": "Iggy",
+		"text": "Hold on...",
+		"sound": "Adult",
+		"wait": 1,
+		"goto": "9"
+	},
+	"9": {
+		"actorsturn": {
+			"iggy": {
+				"x": -1,
+				"y": 0,
+				"speed": 0.1
+			}
+		},
+		"name": "Iggy",
+		"text": "I recognize that hat.",
+		"sound": "Adult",
+		"goto": "10"
+	},
+	"10": {
+		"name": "Iggy",
+		"text": "You must be a baseball player!",
+		"sound": "Adult",
+		"goto": "11"
+	},
+	"11": {
+		"name": "Iggy",
+		"text": "Just my luck!",
+		"sound": "Adult",
+		"goto": "12"
+	},
+	"12": {
+		"actorsdir": {
+			"iggy": {
+				"x": 0,
+				"y": -1
+			}
+		},
+		"changecam": "null",
+		"movecam": {
+			"x": 1432,
+			"y": 4712
+		},
+		"name": "Iggy",
+		"text": "You see, I left my shovel over there, but when I came back, a strange root was blocking the way.",
+		"sound": "Adult",
+		"goto": "13"
+	},
+	"13": {
+		
+		"name": "Iggy",
+		"text": "I know a special batting technique that could get rid of it.",
+		"sound": "Adult",
+		"goto": "14"
+	},
+	"14": {
+		"actorsdir": {
+			"iggy": {
+				"x": -1,
+				"y": 0
+			}
+		},
+		"movecam": {
+			"x": 1404,
+			"y": 4744
+		},
+		"name": "Iggy",
+		"text": "However, I've become too old to use it.",
+		"sound": "Adult",
+		"goto": "15"
+	},
+	"15": {
+		"name": "Iggy",
+		"text": "If you promise to help get my shovel back, I'll teach you this skill.",
+		"sound": "Adult",
+		"goto": "16"
+	},
+	"16": {
+		"name": "Iggy",
+		"text": "Do we have a deal?",
+		"sound": "Adult",
+		"options": {
+			"Yes": "18",
+			"No": "17",
+			"cancel": "17"
+		}
+	},
+	"17": {
+		"name": "Iggy",
+		"text": "Please, it's urgent!",
+		"sound": "Adult",
+		"goto": "16"
+	},
+	"18": {
+		"name": "Iggy",
+		"text": "Wonderful!",
+		"sound": "Adult",
+		"goto": "19"
+	},
+	"19": {
+		"name": "Iggy",
+		"text": "All you need is a baseball bat.",
+		"sound": "Adult",
+		"goto": "20"
+	},
+	"20": {
+		"name": "Iggy",
+		"text": "Any bat, really.",
+		"sound": "Adult",
+		"goto": "21"
+	},
+	"21": {
+		"name": "Iggy",
+		"text": "To prove it, I'll give you my [color]Old Bat[/color] to test it out!",
+		"sound": "Adult",
+		"goto": "22"
+	},
+	"22": {
+		"talker": "none",
+		"text":"[Ninten] got the Old Bat!",
+		"soundeffect":"Item Received.mp3",
+		"item": "BatOld",
+		"goto": "23"
+	},
+	"23": {
+		"talker": "iggy",
+		"name": "Iggy",
+		"text": "Now, strength alone isn't enough to break this strange root.",
+		"sound": "Adult",
+		"goto": "24"
+	},
+	"24": {
+		"name": "Iggy",
+		"text": "It's all about the technique!",
+		"sound": "Adult",
+		"goto": "25"
+	},
+	"25": {
+		"name": "Iggy",
+		"text": "Try to imagine a [color][ui_cancel][/color] button in your mind.",
+		"sound": "Adult",
+		"goto": "26"
+	},
+	"26": {
+		"name": "Iggy",
+		"text": "Then... Simply press it!",
+		"sound": "Adult",
+		"goto": "27"
+	},
+	"27": {
+		"name": "Iggy",
+		"text": "This allows you to unleash a swing powerful enough to break any tough object.",
+		"sound": "Adult",
+		"flag": "bat",
+		"goto": "28"
+	},
+	"28": {
+		"name": "Iggy",
+		"text": "Come on, try it!",
+		"sound": "Adult",
+		"goto": "29"
+	},
+	"29": {
+		"flag": "bat",
+		"showbox": false,
+		"changecam": "ninten",
+		"returncam": 1,
+		"actorsmove": {
+			"ninten": {
+				"movement": [{"x": 1432, "y": 4744}, {"x": 1432, "y": 4720}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			},
+			"iggy": {
+				"movement": [{"x": 1456, "y": 4744}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"actorsturn": {
+			"iggy": {
+				"x": 0,
+				"y": -1,
+				"speed": 0.1,
+				"queue": true
+			}
+		},
+		"wait": 3,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

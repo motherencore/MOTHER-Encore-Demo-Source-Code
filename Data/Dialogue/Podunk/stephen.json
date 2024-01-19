@@ -1,0 +1,23 @@
+{
+	"0": {
+		"name": "Stephen",
+		"text": "You're not actually going to the cemetery, right?",
+		"sound": "Adult",
+		"emotenpc": "sweat",
+		"options": {
+			"Yes": "1",
+			"No": "2",
+			"cancel": "2"
+		}
+	},
+	"1": {
+		"name": "Stephen",
+		"text": "I thought you were a sensible child...",
+		"sound": "Adult"
+	},
+	"2": {
+		"name": "Stephen",
+		"text": "You children better stay safe.",
+		"sound": "Adult"
+	}
+}

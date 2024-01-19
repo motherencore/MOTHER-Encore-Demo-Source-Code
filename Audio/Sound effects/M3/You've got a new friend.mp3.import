@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/You've got a new friend.mp3-95ea51f44012f0b97e32022ec416c40e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/You've got a new friend.mp3"
+dest_files=[ "res://.import/You've got a new friend.mp3-95ea51f44012f0b97e32022ec416c40e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

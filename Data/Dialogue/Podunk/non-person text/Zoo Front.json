@@ -1,0 +1,14 @@
+{
+	"0": {
+		"emoteplayer": "question",
+		"text": "Welcome to the Miraculous Podunk zoo!",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Fun for everyone! Kids and grownups alike.",
+		"goto": "2"
+	},
+	"2": {
+		"text": "(Be sure not to feed the animals!)",
+	}
+}

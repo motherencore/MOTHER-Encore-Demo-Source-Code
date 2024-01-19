@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 1.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/multiplier = 0.5
+shader_param/softness = 1.0
+
+[node name="Vignette" type="CanvasLayer"]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0

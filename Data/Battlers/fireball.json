@@ -1,0 +1,24 @@
+{
+	"name": "Fire Ball",
+	"maxhp": 58,
+	"hp": 58,
+	"maxpp": 50,
+	"pp": 50,
+	"speed": 40,
+	"offense": 24,
+	"defense": 58,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 122,
+	"cash": 35,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "It looks like it jumped out of a comic book.",
+	"boss": false,
+	"sprite": "fire ball",
+	"ovsprite": "FireBallOV",
+	"music": "",
+	"bg": ""
+}

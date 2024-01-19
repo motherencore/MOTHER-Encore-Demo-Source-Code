@@ -1,0 +1,53 @@
+{
+	"0": {
+		"text": "PartyLead felt this question enter PartyLeadPrn mind.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "\"Who has lost his tail?\"",
+		"goto": "2"
+	},
+	"2": {
+		"text": "Finding the entry in the Great-Grand Father's Diary,",
+		"goto": "3"
+	},
+	"3": {
+		"text": "PartyLead read out loud...",
+		"goto": "4"
+	},
+	"4": {
+		"cleardialog": true,
+		"text": "The forgotten one of the ship that sails the cosmos!",
+		"sound": "Kid",
+		"goto": "5"
+	},
+	"5": {
+		"music": "",
+		"showbox": false,
+		"fadein": {
+			"anim": "Fade",
+			"color": "FFFFFF",
+			"speed": 0.7
+			},
+		"caninput": false,
+		"autoadvance": true,
+		"wait": 3,
+		"goto": "6"
+	},
+	"6": {
+		"teleportparty": {
+			"x": 0,
+			"y": -40
+		},
+		"changescene": "Cutscenes/Credits",
+		"fadeout": {
+			"anim": "Fade",
+			"color": "FFFFFF",
+			"speed": 0.2
+			},
+		"caninput": false,
+		"autoadvance": true,
+		"wait": 3,
+		"unpauseplayer": false
+	}
+}

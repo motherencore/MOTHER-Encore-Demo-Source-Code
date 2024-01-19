@@ -1,0 +1,240 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=2]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=3]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/UI/Options/OptionsUI.gd" type="Script" id=5]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=13]
+
+[node name="OptionsUI" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="OptionsMenu" type="Control" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="OptionsMenu"]
+material = ExtResource( 3 )
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 128.0
+texture = ExtResource( 2 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 7
+
+[node name="OptionsLabel" type="Label" parent="OptionsMenu/NinePatchRect"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 104.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+valign = 1
+clip_text = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Separator" type="ColorRect" parent="OptionsMenu/NinePatchRect"]
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 168.0
+margin_bottom = 25.0
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 13 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 112.0
+margin_bottom = 80.0
+alignment = 1
+
+[node name="FileSettingsLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
+visible = false
+margin_top = 2.0
+margin_right = 96.0
+margin_bottom = 14.0
+text = "File settings"
+
+[node name="SettingsLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
+visible = false
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 22.0
+text = "Settings"
+
+[node name="TitleScreenLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 22.0
+text = "Return to Title Screen"
+
+[node name="CloseGameLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 26.0
+margin_right = 96.0
+margin_bottom = 38.0
+text = "Close game"
+
+[node name="FileSettings" type="ColorRect" parent="OptionsMenu/NinePatchRect"]
+visible = false
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 96.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 13 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/FileSettings"]
+margin_left = 8.0
+margin_right = 104.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="TextSpeedLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 22.0
+text = "Text speed"
+
+[node name="MenuFlavorLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 26.0
+margin_right = 96.0
+margin_bottom = 38.0
+text = "Menu flavor"
+
+[node name="ButtonPromptsLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 42.0
+margin_right = 96.0
+margin_bottom = 54.0
+text = "Button prompts"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/FileSettings"]
+margin_left = 84.0
+margin_right = 152.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="TextSpeedLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 10.0
+margin_right = 68.0
+margin_bottom = 22.0
+text = "Fast"
+align = 2
+
+[node name="MenuFlavorLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 26.0
+margin_right = 68.0
+margin_bottom = 38.0
+text = "Plain"
+align = 2
+
+[node name="ButtonPromptsLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 42.0
+margin_right = 68.0
+margin_bottom = 54.0
+text = "Both"
+align = 2
+
+[node name="Settings" type="ColorRect" parent="OptionsMenu/NinePatchRect"]
+visible = false
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 96.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 13 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/Settings"]
+margin_left = 8.0
+margin_right = 104.0
+margin_bottom = 64.0
+alignment = 1
+
+[node name="WindowResolutionLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_right = 96.0
+text = "Window resolution"
+
+[node name="FullscreenLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 96.0
+margin_bottom = 28.0
+text = "Fullscreen"
+
+[node name="LanguageLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 32.0
+margin_right = 96.0
+margin_bottom = 44.0
+text = "Language"
+
+[node name="VolumeLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 48.0
+margin_right = 96.0
+margin_bottom = 60.0
+text = "Volume"
+
+[node name="ControlsLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 64.0
+margin_right = 96.0
+margin_bottom = 76.0
+text = "Controls"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/Settings"]
+margin_left = 88.0
+margin_right = 152.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="WindowSize" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_right = 64.0
+text = "1920x1080"
+align = 2
+
+[node name="Fullscreen" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 64.0
+margin_bottom = 28.0
+text = "Off"
+align = 2
+
+[node name="Language" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 32.0
+margin_right = 64.0
+margin_bottom = 44.0
+text = "English"
+align = 2
+
+[node name="Volume" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 60.0
+text = "1920"
+align = 2
+
+[node name="arrow" parent="OptionsMenu/NinePatchRect" instance=ExtResource( 4 )]
+position = Vector2( 11, 39 )
+menu_parent_path = NodePath("../VBoxContainer")
+cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+skip_hidden_items = true
+move_sfx = true
+select_sfx = true
+cancel_on = true
+
+[node name="Door" parent="OptionsMenu" instance=ExtResource( 12 )]
+position = Vector2( 328, 0 )
+targetScene = "Title screen"
+unpause_player = false
+
+[connection signal="cancel" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_cancel"]
+[connection signal="selected" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_selected"]
+[connection signal="done" from="OptionsMenu/Door" to="." method="_on_Door_done"]

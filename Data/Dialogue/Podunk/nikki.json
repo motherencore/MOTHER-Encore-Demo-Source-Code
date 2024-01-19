@@ -1,0 +1,34 @@
+{
+	"0": {
+		"name":"Nikki",
+		"text":"We're looking for the lost girl, [Pippi].",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Nikki",
+		"text":"She was last seen going down into the cemetery, but it's infested with zombies!",
+		"sound": "Adult",
+		"goto": "2"
+	},
+	"2": {
+		"name":"Nikki",
+		"text":"I'm too scared to go there myself, could you go there for me?",
+		"sound": "Adult",
+		"options": {
+			"Yes": "4",
+			"No": "3",
+			"cancel": "3"
+		}
+	},
+	"3": {
+		"name":"Nikki",
+		"text":"Honestly, I can't blame you...",
+		"sound": "Adult"
+	},
+	"4": {
+		"name":"Nikki",
+		"text":"Oh, you're a life saver!",
+		"sound": "Adult"
+	}
+}

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tcrash.wav-66e501c74099cb595c59631b23216dc0.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/tcrash.wav"
+dest_files=[ "res://.import/tcrash.wav-66e501c74099cb595c59631b23216dc0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

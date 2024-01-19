@@ -1,0 +1,23 @@
+{
+	"name": "Dr. Distorto",
+	"maxhp": 60,
+	"hp": 60,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 45,
+	"offense": 38,
+	"defense": 48,
+	"iq": 30,
+	"guts": 0,
+	"level": 4,
+	"exp": 45,
+	"cash": 40,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "His twisted face covers his twisted mind.",
+	"boss": true,
+	"sprite": "dr distorto",
+	"music": "",
+	"bg": ""
+}

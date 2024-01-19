@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Monkey 3.mp3-8065e8115a90723d5c0969dc3a0d818b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Monkey 3.mp3"
+dest_files=[ "res://.import/Monkey 3.mp3-8065e8115a90723d5c0969dc3a0d818b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

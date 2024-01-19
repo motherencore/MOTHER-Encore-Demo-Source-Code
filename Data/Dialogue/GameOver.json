@@ -1,0 +1,58 @@
+{
+    "0": {
+		"sound": "Adult",
+		"text": "PartyLead!",
+		"goto" : "1"
+    },
+	"1": {
+		"sound": "Adult",
+		"text": "It looks like you got your head handed to you.",
+		"goto" : "2"
+    },
+    "2": {
+		"sound": "Adult",
+		"text": "So, how about giving it another shot?",
+		"options": {
+			"Yes": "8",
+			"No": "3",
+			"cancel": "3"
+		}
+    },
+	"3": {
+		"sound": "Adult",
+		"text": "Are you sure?",
+		"goto": "4"
+    },
+    "4": {
+		"sound": "Adult",
+		"text": "The next time you start your adventure, you'll begin where you last saved.",
+		"goto": "5"
+    },
+    "5": {
+		"sound": "Adult",
+		"text": "Is that okay?",
+        "options": {
+			"Yes": "6",
+			"No": "2",
+			"cancel": "2"
+		}
+    },
+	"6": {
+		"sound": "Adult",
+		"text": "It must have all just been a bad dream.",
+		"goto": "7"
+    },
+	"7": {
+		"sound": "Adult",
+		"text": "See you, PartyLead!"
+    },
+	"8": {
+		"sound": "Adult",
+		"text": "PartyLead decided to return after summoning all the courage and energy he had.",
+		"goto": "9"
+    },
+	"9": {
+		"sound": "Adult",
+		"text": "Good luck, PartyLead!"
+    }
+}

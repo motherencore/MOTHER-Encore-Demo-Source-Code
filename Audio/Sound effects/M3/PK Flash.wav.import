@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PK Flash.wav-d208fc14f736796e91dc53366e5b7546.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/PK Flash.wav"
+dest_files=[ "res://.import/PK Flash.wav-d208fc14f736796e91dc53366e5b7546.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

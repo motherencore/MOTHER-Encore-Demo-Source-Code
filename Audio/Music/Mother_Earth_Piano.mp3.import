@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mother_Earth_Piano.mp3-439522290c07a72b46eb35cd23a25ff4.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Mother_Earth_Piano.mp3"
+dest_files=[ "res://.import/Mother_Earth_Piano.mp3-439522290c07a72b46eb35cd23a25ff4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Offense_Down_cast.wav-a48159832691c79f848b7b4a9a1daa30.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Offense_Down_cast.wav"
+dest_files=[ "res://.import/Offense_Down_cast.wav-a48159832691c79f848b7b4a9a1daa30.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

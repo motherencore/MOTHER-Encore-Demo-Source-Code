@@ -1,0 +1,11 @@
+{
+	"0": {
+		"name": "Mick",
+		"text": "(I can smell some Dog Treats in the basement.",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mick",
+		"text": "If you fetch them for me, I'll let you go.)"
+	}
+}

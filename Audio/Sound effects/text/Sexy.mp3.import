@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Sexy.mp3-815533051f174c9b03007bf592b53564.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/text/Sexy.mp3"
+dest_files=[ "res://.import/Sexy.mp3-815533051f174c9b03007bf592b53564.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

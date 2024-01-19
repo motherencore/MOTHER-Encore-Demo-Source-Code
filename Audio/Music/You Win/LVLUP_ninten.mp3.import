@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LVLUP_ninten.mp3-466a055258913db4af004de42e04518c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/You Win/LVLUP_ninten.mp3"
+dest_files=[ "res://.import/LVLUP_ninten.mp3-466a055258913db4af004de42e04518c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,19 @@
+{
+	"0": {
+		"name": "Mimmie",
+		"text": "I tried asking mom where the key is, but she won't tell me.",
+		"sound": "Kid",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Mimmie",
+		"text": "Maybe she'll listen to you, though. Try asking her.",
+		"sound": "Kid",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Mimmie",
+		"text": "If you manage to unlock the basement, I'll find all of the Orange Juice for you.",
+		"sound": "Kid"
+	}
+}

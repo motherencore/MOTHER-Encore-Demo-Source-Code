@@ -1,0 +1,130 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Shaders/Color Replacer.shader" type="Shader" id=1]
+[ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=2]
+[ext_resource path="res://Graphics/Rooms/Podunk_Healer_House.png" type="Texture" id=3]
+[ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/Rooms/Podunk_Healer_House_Above.png" type="Texture" id=5]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=9]
+[ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=10]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/OLDCOLOR = Color( 0, 0, 0, 0.411765 )
+shader_param/NEWCOLOR = Color( 0, 0, 0, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 168, 108 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 168, 128 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24, 13 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32, 22.5 )
+
+[node name="Podunk Healer\'s House" type="Node2D"]
+script = ExtResource( 9 )
+player_map_offset = Vector2( 40, 304 )
+map_name_override = "Podunk"
+map_item = "MapPodunk"
+is_sub_area = true
+
+[node name="PodunkHealerHouse" type="Sprite" parent="."]
+position = Vector2( -8, -72 )
+texture = ExtResource( 3 )
+
+[node name="Objects" type="TileMap" parent="."]
+material = SubResource( 1 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( -524296, 47, 1, -524295, 47, 5, -524294, 47, 5, -524293, 47, 8, -458760, 47, 65537, -458759, 47, 65543, -458758, 47, 65542, -458757, 47, 65544, -262147, 103, 0, -196613, 96, 0, -262142, 43, 0 )
+
+[node name="npc" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 16, -72 )
+sprite = "Npcs/4dir/healer"
+dialog = "Reusable/healer"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="PodunkHealerHouseAbove" type="Sprite" parent="."]
+position = Vector2( -8, -80 )
+texture = ExtResource( 5 )
+
+[node name="Above" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65524, 14, 2, 65525, 14, 2, 65526, 14, 2, 65527, 14, 2, 65528, 14, 2, 65529, 14, 2, 65530, 14, 2, 65531, 14, 2, 65532, 14, 2, 65533, 14, 2, 65534, 14, 393216, 65535, 14, 393217, 1, 14, 458752, 2, 14, 458753, 3, 14, 2, 4, 14, 2, 5, 14, 2, 6, 14, 2, 7, 14, 2, 8, 14, 2, 9, 14, 2, 10, 14, 2, 131060, 14, 2, 131061, 14, 2, 131062, 14, 2, 131063, 14, 2, 131064, 14, 2, 131065, 14, 2, 131066, 14, 2, 131067, 14, 2, 131068, 14, 2, 131069, 14, 2, 131070, 14, 2, 131071, 14, 2, 65536, 14, 2, 65537, 14, 2, 65538, 14, 2, 65539, 14, 2, 65540, 14, 2, 65541, 14, 2, 65542, 14, 2, 65543, 14, 2, 65544, 14, 2, 65545, 14, 2, 65546, 14, 2, 196596, 14, 2, 196597, 14, 2, 196598, 14, 2, 196599, 14, 2, 196600, 14, 2, 196601, 14, 2, 196602, 14, 2, 196603, 14, 2, 196604, 14, 2, 196605, 14, 2, 196606, 14, 2, 196607, 14, 2, 131072, 14, 2, 131073, 14, 2, 131074, 14, 2, 131075, 14, 2, 131076, 14, 2, 131077, 14, 2, 131078, 14, 2, 131079, 14, 2, 131080, 14, 2, 131081, 14, 2, 131082, 14, 2 )
+
+[node name="camarea3" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -16, -64 )
+
+[node name="CollisionShape2D" parent="camarea3" index="0"]
+position = Vector2( 8, -4 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 573
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 32, 16, 32, 48, 128, 48, 128, -168, -144, -168, -144, 48, 32, 48, 32, 32, -16, 32, -16, 16, -24, 16, -24, -8, -128, -8, -112, -72, -96, -72, -96, -88, 32, -88, 32, -80, 80, -80, 80, -88, 96, -88, 112, -8, 48, -8, 48, 16 )
+
+[node name="Door" parent="." instance=ExtResource( 6 )]
+position = Vector2( -16, 24 )
+scale = Vector2( 6, 1 )
+targetX = -472
+targetY = 2800
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+transit_in_anim = "Circle Focus"
+transit_out_anim = "Circle Focus"
+targetScene = "podunk/podunk"
+
+[node name="MusicArea" parent="." instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 104, 0 )
+loop = "House.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
+position = Vector2( -104, -64 )
+shape = SubResource( 3 )
+
+[node name="Stepping Sounds" type="Node2D" parent="."]
+
+[node name="Carpet" parent="Stepping Sounds" instance=ExtResource( 10 )]
+entering_sound = "stone"
+exiting_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( 8, -3 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
+position = Vector2( -40, -54.5 )
+shape = SubResource( 5 )
+
+[node name="Wood" parent="Stepping Sounds" instance=ExtResource( 10 )]
+entering_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Wood"]
+position = Vector2( 8, 24 )
+shape = SubResource( 4 )
+
+[editable path="camarea3"]
+[editable path="MusicArea"]

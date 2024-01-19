@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "Welcome to Town hall.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Please keep any grievances to yourself. - Mayor"
+	}
+}

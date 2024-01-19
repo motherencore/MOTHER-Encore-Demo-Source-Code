@@ -1,0 +1,27 @@
+{
+	"name": "Wally",
+	"pronoun": "his",
+	"maxhp": 800,
+	"hp": 800,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 15,
+	"offense": 24,
+	"defense": 37,
+	"iq": 10,
+	"guts": 0,
+	"level": 8,
+	"exp": 240,
+	"cash": 150,
+	"skills": [
+		{"skill" : "bash", "weight" : 5},
+		{"skill" : "brandishPitchfork", "weight" : 1},
+		{"skill" : "rage", "weight" : 1}
+	],
+	"description": "He has a short temper, so be careful.",
+	"boss": true,
+	"sprite": "wally",
+	"ovsprite": "WallyOV",
+	"music": "Retro Enemy.mp3",
+	"bg": "wally"
+}

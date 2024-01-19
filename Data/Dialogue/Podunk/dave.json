@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Dave",
+		"text": "Y-You aren't going to the cemetery, are you?",
+		"sound": "Adult",
+		"goto": "1"
+	},
+	"1": {
+		"name":"Dave",
+		"text":"...There's word of zombies, so be careful.",
+		"sound": "Adult"
+	}
+}

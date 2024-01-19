@@ -1,0 +1,1017 @@
+[gd_scene load_steps=54 format=2]
+
+[ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Reusables/event activator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/Overworld/Ladder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Ui/effects/melodyBG.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Overworld/Actors/Lamp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Overworld/Actors/Doll.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Overworld/Actors/Pillow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Reusables/roomshaker.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Reusables/CutsceneArea.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Nodes/Overworld/Objects/Openable Door.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Nodes/Reusables/interact_dialog.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Nodes/Reusables/phone.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Nodes/Reusables/flag landmarks.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Nodes/Overworld/Objects/Present.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=19]
+[ext_resource path="res://Maps/podunk/Ninten_s room.gd" type="Script" id=20]
+[ext_resource path="res://Graphics/Objects/Doors/Door_Dark.png" type="Texture" id=21]
+[ext_resource path="res://Graphics/Rooms/Ninten's House.png" type="Texture" id=22]
+[ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Graphics/Objects/Doors/Door_Dark_Locked.png" type="Texture" id=24]
+[ext_resource path="res://Graphics/Objects/Briefcase.png" type="Texture" id=25]
+[ext_resource path="res://Scripts/misc/Anim_start.gd" type="Script" id=26]
+[ext_resource path="res://Graphics/Tilesets/TilNintensHouse.png" type="Texture" id=27]
+
+[sub_resource type="RectangleShape2D" id=88]
+extents = Vector2( 5.5, 11.5 )
+
+[sub_resource type="TileSet" id=101]
+0/name = "TableBottomLongLeft"
+0/texture = ExtResource( 27 )
+0/tex_offset = Vector2( 0, -32 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 48 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "TableBottomLongRight"
+1/texture = ExtResource( 27 )
+1/tex_offset = Vector2( 0, -32 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 32, 0, 32, 48 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "TableBottomShortLeft"
+2/texture = ExtResource( 27 )
+2/tex_offset = Vector2( 0, -16 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 48, 32, 16 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "TableBottomShortRight"
+3/texture = ExtResource( 27 )
+3/tex_offset = Vector2( 0, -16 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 32, 48, 32, 16 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "StairRail"
+4/texture = ExtResource( 27 )
+4/tex_offset = Vector2( 0, -64 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 64, 0, 64, 80 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "NintenTV"
+5/texture = ExtResource( 27 )
+5/tex_offset = Vector2( 0, -32 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 128, 0, 48, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "PictureDrawer"
+6/texture = ExtResource( 27 )
+6/tex_offset = Vector2( 0, -32 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 128, 32, 48, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "Drawer"
+7/texture = ExtResource( 27 )
+7/tex_offset = Vector2( 0, -32 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 176, 32, 32, 32 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+8/name = "Chair"
+8/texture = ExtResource( 27 )
+8/tex_offset = Vector2( 0, -16 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 128, 64, 48, 32 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+9/name = "TablePlant"
+9/texture = ExtResource( 27 )
+9/tex_offset = Vector2( 0, -32 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 0, 64, 48, 48 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
+10/name = "TableTV"
+10/texture = ExtResource( 27 )
+10/tex_offset = Vector2( 0, -32 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 48, 80, 64, 48 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape_one_way = false
+10/shape_one_way_margin = 0.0
+10/shapes = [  ]
+10/z_index = 0
+11/name = "BoxesLeft"
+11/texture = ExtResource( 27 )
+11/tex_offset = Vector2( 0, -16 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 112, 96, 32, 32 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
+12/name = "BoxesRight"
+12/texture = ExtResource( 27 )
+12/tex_offset = Vector2( 0, -32 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 144, 96, 48, 48 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape_one_way = false
+12/shape_one_way_margin = 0.0
+12/shapes = [  ]
+12/z_index = 0
+13/name = "NintenBed"
+13/texture = ExtResource( 27 )
+13/tex_offset = Vector2( 0, -32 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 128, 64, 64 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=99]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id=59]
+extents = Vector2( 208, 104 )
+
+[sub_resource type="RectangleShape2D" id=60]
+extents = Vector2( 184, 112 )
+
+[sub_resource type="RectangleShape2D" id=61]
+extents = Vector2( 172, 96 )
+
+[sub_resource type="RectangleShape2D" id=63]
+extents = Vector2( 200, 132 )
+
+[sub_resource type="RectangleShape2D" id=64]
+extents = Vector2( 176, 104 )
+
+[sub_resource type="RectangleShape2D" id=83]
+extents = Vector2( 224, 216 )
+
+[sub_resource type="RectangleShape2D" id=84]
+extents = Vector2( 192, 112 )
+
+[sub_resource type="RectangleShape2D" id=49]
+extents = Vector2( 356, 456 )
+
+[sub_resource type="RectangleShape2D" id=96]
+extents = Vector2( 198.659, 129.128 )
+
+[sub_resource type="RectangleShape2D" id=95]
+extents = Vector2( 356, 600 )
+
+[sub_resource type="Animation" id=48]
+resource_name = "PhoneRing"
+tracks/0/type = "method"
+tracks/0/path = NodePath("Objects/Phone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_ring"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "cutscene"
+length = 4.0
+step = 0.0666667
+
+[sub_resource type="Animation" id=100]
+resource_name = "white fade"
+length = 4.41667
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.41667, 3.66667, 4.16667, 4.41667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0.156863 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=89]
+extents = Vector2( 24, 24 )
+
+[sub_resource type="RectangleShape2D" id=94]
+extents = Vector2( 24, 5 )
+
+[sub_resource type="RectangleShape2D" id=90]
+extents = Vector2( 352, 540 )
+
+[sub_resource type="RectangleShape2D" id=91]
+extents = Vector2( 25, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=92]
+extents = Vector2( 16, 9.25 )
+
+[sub_resource type="RectangleShape2D" id=97]
+extents = Vector2( 15, 12.625 )
+
+[sub_resource type="RectangleShape2D" id=98]
+extents = Vector2( 16, 12.625 )
+
+[sub_resource type="RectangleShape2D" id=93]
+extents = Vector2( 24, 12.625 )
+
+[node name="[Ninten]\'s House" type="Node2D"]
+script = ExtResource( 20 )
+player_map_offset = Vector2( 99, 127 )
+map_name_override = "Podunk"
+map_item = "MapPodunk"
+is_sub_area = true
+
+[node name="Ninten\'s House" type="Sprite" parent="."]
+position = Vector2( 312, 552 )
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Below" type="TileMap" parent="."]
+tile_set = ExtResource( 19 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 5
+format = 1
+tile_data = PoolIntArray( 8716225, 30, 0 )
+
+[node name="Ladder" parent="Below" instance=ExtResource( 3 )]
+position = Vector2( 64, 88 )
+
+[node name="CollisionShape2D" parent="Below/Ladder" index="0"]
+position = Vector2( -1.5, -10.5 )
+shape = SubResource( 88 )
+
+[node name="Openable Door" parent="Below" instance=ExtResource( 12 )]
+position = Vector2( 176, 368 )
+sprite = ExtResource( 21 )
+
+[node name="Openable Door2" parent="Below" instance=ExtResource( 12 )]
+position = Vector2( 64, 368 )
+sprite = ExtResource( 21 )
+blocked = true
+flag = "mimmie_door_opened"
+
+[node name="Openable Door3" parent="Below" instance=ExtResource( 12 )]
+position = Vector2( 96, 704 )
+sprite = ExtResource( 24 )
+key = "KeyBasement"
+flag = "ninten_basement_door"
+
+[node name="Openable Door4" parent="Below" instance=ExtResource( 12 )]
+position = Vector2( 88, 976 )
+sprite = ExtResource( 21 )
+
+[node name="Objects" type="TileMap" parent="."]
+tile_set = SubResource( 101 )
+cell_size = Vector2( 16, 16 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 589834, 1, 0, 589849, 0, 0, 655360, 2, 0, 655395, 3, 0, 1572895, 8, 0, 1769497, 13, 0, 1900550, 4, 0, 1900569, 7, 0, 1900575, 5, 0, 1900579, 6, 0, 3211264, 9, 0, 3211275, 10, 0, 4390915, 11, 0, 4390922, 12, 0 )
+
+[node name="npc" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 192, 704 )
+sprite = "Npcs/4dir/carol"
+dialog = "Podunk/carol_panic"
+event_dialog = [ PoolStringArray( "doll_melody", "Podunk/carol_call" ), PoolStringArray( "phone_ring", "Podunk/carol_phone" ), PoolStringArray( "talked_to_dad", "Podunk/carol_key" ), PoolStringArray( "carol_ask_key", "Podunk/carol_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/carol_got_key" ), PoolStringArray( "got_diary", "Podunk/carol_food" ), PoolStringArray( "good_morning", "Podunk/carol_rested" ) ]
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="npc2" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 120, 88 )
+sprite = "Npcs/4dir/mimmie"
+dialog = "Podunk/mimmie_doll_defeated"
+event_dialog = [ PoolStringArray( "doll_melody", "Podunk/mimmie_dead_doll" ), PoolStringArray( "talked_to_dad", "Podunk/mimmie_key" ), PoolStringArray( "mimmie_ask_key", "Podunk/mimmie_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/mimmie_got_key" ), PoolStringArray( "ninten_basement_door", "Podunk/mimmie_open_basement" ), PoolStringArray( "got_juice", "Podunk/mimmie_juice" ) ]
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="npc3" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 472, 88 )
+sprite = "Npcs/4dir/minnie"
+dialog = "Podunk/minnie_run_tutorial"
+event_dialog = [ PoolStringArray( "mimmie_door_opened", "Podunk/minnie_door_open" ), PoolStringArray( "doll_melody", "Podunk/minnie_storage" ) ]
+event_positions = [ PoolStringArray( "minnie_leave", "32", "368" ), PoolStringArray( "doll_defeated", "464", "80" ) ]
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="Phone" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( 148, 677 )
+dialog = "Reusable/phonenoanswer"
+event_dialog = [ PoolStringArray( "phone_ring", "Podunk/dad_poltergeist" ), PoolStringArray( "talked_to_dad", "Reusable/dad_normal" ) ]
+
+[node name="interact_dialog" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 503, 352 )
+scale = Vector2( 5, 2 )
+dialog = "Podunk/non-person text/Ninten's house/Pinboard"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 2, -40 )
+
+[node name="interact_dialog3" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 584, 456 )
+scale = Vector2( 5, 3 )
+dialog = "Podunk/non-person text/Ninten's house/Old Photos"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 0, -10 )
+
+[node name="interact_dialog7" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 531, 353 )
+scale = Vector2( 2, 3 )
+dialog = "Podunk/non-person text/Ninten's house/Electric Guitar"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 0, -32 )
+
+[node name="interact_dialog4" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 545, 454 )
+scale = Vector2( 2.678, 2.62 )
+dialog = "Podunk/non-person text/Ninten's house/NES"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( -2, -10 )
+
+[node name="interact_dialog2" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 518, 456 )
+scale = Vector2( 4.046, 3.834 )
+dialog = "Podunk/non-person text/Ninten's house/TV"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 2, -12 )
+
+[node name="interact_dialog8" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 204, 778 )
+scale = Vector2( 8.82842, 5.40837 )
+dialog = "Podunk/non-person text/Ninten's house/Downstairs TV"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 3, -20 )
+
+[node name="lamp" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 496, 392 )
+
+[node name="npcdoll" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 40, 40 )
+dialog = "Podunk/dollmelody"
+event_dialog = [ PoolStringArray( "doll_melody", "Podunk/doll" ) ]
+no_problem_thoughts = true
+
+[node name="pillow" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 824, 32 )
+
+[node name="interact_dialog5" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 116, 72 )
+scale = Vector2( 5, 3 )
+dialog = "Podunk/non-person text/Ninten's house/Mimmie Toybox"
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( 5, -18 )
+
+[node name="Present" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 128, 1016 )
+flag = "got_diary"
+item = "GGFDiary"
+dialog = "Podunk/cutscenes/ggf_diary"
+type = "briefcase"
+
+[node name="Sprite" parent="Objects/Present" index="0"]
+texture = ExtResource( 25 )
+
+[node name="Sparkles" parent="Objects/Present" index="1"]
+frame = 7
+
+[node name="interact" parent="Objects/Present" index="3"]
+scale = Vector2( 1.5, 1.5 )
+
+[node name="CollisionShape2D" parent="Objects/Present/interact" index="0"]
+visible = true
+
+[node name="ButtonPrompt" parent="Objects/Present/interact" index="1"]
+material = SubResource( 99 )
+position = Vector2( 0, -5.33333 )
+scale = Vector2( 0.666667, 0.666667 )
+
+[node name="Present2" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 160, 1072 )
+flag = "basement_pres_2"
+item = "BatPlastic"
+dialog = "ItemDescriptions/firstbat"
+
+[node name="Present4" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 184, 1032 )
+flag = "got_dog_treats"
+item = "DogTreats"
+
+[node name="Present3" parent="Objects" instance=ExtResource( 18 )]
+position = Vector2( 96, 1072 )
+flag = "basement_pres_3"
+item = "MapPodunk"
+type = "map"
+
+[node name="Above" type="TileMap" parent="."]
+tile_set = ExtResource( 19 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+show_collision = true
+collision_layer = 5
+format = 1
+tile_data = PoolIntArray( 720893, 14, 2, 720894, 14, 2, 720895, 14, 2, 655360, 14, 2, 655361, 14, 2, 655362, 14, 2, 655363, 14, 2, 655364, 14, 2, 655365, 14, 2, 655366, 14, 393216, 655367, 14, 393217, 655368, 14, 458752, 655369, 14, 458753, 655370, 14, 2, 655371, 14, 2, 655372, 14, 2, 655373, 14, 2, 655374, 14, 2, 655382, 14, 2, 655383, 14, 2, 655384, 14, 2, 655385, 14, 2, 655386, 14, 2, 655387, 14, 393216, 655388, 14, 393217, 655389, 14, 458752, 655390, 14, 458753, 655391, 14, 2, 655392, 14, 2, 655393, 14, 2, 655394, 14, 2, 655395, 14, 2, 655396, 14, 2, 655397, 14, 2, 655398, 14, 2, 655399, 14, 2, 786429, 14, 2, 786430, 14, 2, 786431, 14, 2, 720896, 14, 2, 720897, 14, 2, 720898, 14, 2, 720899, 14, 2, 720900, 14, 2, 720901, 14, 2, 720902, 14, 2, 720903, 14, 2, 720904, 14, 2, 720905, 14, 2, 720906, 14, 2, 720907, 14, 2, 720908, 14, 2, 720909, 14, 2, 720910, 14, 2, 720918, 14, 2, 720919, 14, 2, 720920, 14, 2, 720921, 14, 2, 720922, 14, 2, 720923, 14, 2, 720924, 14, 2, 720925, 14, 2, 720926, 14, 2, 720927, 14, 2, 720928, 14, 2, 720929, 14, 2, 720930, 14, 2, 720931, 14, 2, 720932, 14, 2, 720933, 14, 2, 720934, 14, 2, 720935, 14, 2, 1900566, 14, 2, 1900567, 14, 2, 1900568, 14, 2, 1900569, 14, 2, 1900570, 14, 2, 1900571, 14, 2, 1900572, 14, 2, 1900573, 14, 2, 1900574, 14, 2, 1900575, 14, 2, 1900576, 14, 2, 1900577, 14, 2, 1900578, 14, 2, 1900579, 14, 2, 1900580, 14, 2, 1900581, 14, 2, 1900582, 14, 2, 1900583, 14, 2, 1900584, 14, 2, 1966102, 14, 2, 1966103, 14, 2, 1966104, 14, 2, 1966105, 14, 2, 1966106, 14, 2, 1966107, 14, 2, 1966108, 14, 2, 1966109, 14, 2, 1966110, 14, 2, 1966111, 14, 2, 1966112, 14, 2, 1966113, 14, 2, 1966114, 14, 2, 1966115, 14, 2, 1966116, 14, 2, 1966117, 14, 2, 1966118, 14, 2, 1966119, 14, 2, 1966120, 14, 2, 3342333, 14, 2, 3342334, 14, 2, 3342335, 14, 2, 3276800, 14, 2, 3276801, 14, 2, 3276802, 14, 2, 3276803, 14, 2, 3276804, 14, 2, 3276805, 14, 2, 3276806, 14, 393216, 3276807, 14, 393217, 3276809, 14, 458752, 3276810, 14, 458753, 3276811, 14, 2, 3276812, 14, 2, 3276813, 14, 2, 3276814, 14, 2, 3276815, 14, 2, 3276816, 14, 2, 3407869, 14, 2, 3407870, 14, 2, 3407871, 14, 2, 3342336, 14, 2, 3342337, 14, 2, 3342338, 14, 2, 3342339, 14, 2, 3342340, 14, 2, 3342341, 14, 2, 3342342, 14, 2, 3342343, 14, 2, 3342344, 14, 2, 3342345, 14, 2, 3342346, 14, 2, 3342347, 14, 2, 3342348, 14, 2, 3342349, 14, 2, 3342350, 14, 2, 3342351, 14, 2, 3342352, 14, 2, 3473405, 14, 2, 3473406, 14, 2, 3473407, 14, 2, 3407872, 14, 2, 3407873, 14, 2, 3407874, 14, 2, 3407875, 14, 2, 3407876, 14, 2, 3407877, 14, 2, 3407878, 14, 2, 3407879, 14, 2, 3407880, 14, 2, 3407881, 14, 2, 3407882, 14, 2, 3407883, 14, 2, 3407884, 14, 2, 3407885, 14, 2, 3407886, 14, 2, 3407887, 14, 2, 3407888, 14, 2, 4456448, 14, 2, 4456449, 14, 2, 4456450, 14, 2, 4456451, 14, 2, 4456452, 14, 2, 4456453, 14, 2, 4456454, 14, 2, 4456455, 14, 2, 4456456, 14, 2, 4456457, 14, 2, 4456458, 14, 2, 4456459, 14, 2, 4456460, 14, 2, 4456461, 14, 2, 4456462, 14, 2, 4456463, 14, 2, 4521984, 14, 2, 4521985, 14, 2, 4521986, 14, 2, 4521987, 14, 2, 4521988, 14, 2, 4521989, 14, 2, 4521990, 14, 2, 4521991, 14, 2, 4521992, 14, 2, 4521993, 14, 2, 4521994, 14, 2, 4521995, 14, 2, 4521996, 14, 2, 4521997, 14, 2, 4521998, 14, 2, 4521999, 14, 2, 7274530, 14, 2, 7274531, 14, 2, 7274532, 14, 2, 7274533, 14, 2, 7274534, 14, 2, 7274535, 14, 2, 7274536, 14, 2, 7274537, 14, 2, 7274538, 14, 2, 7274539, 14, 2, 7274540, 14, 2, 7274541, 14, 2, 7274542, 14, 2, 7274543, 14, 2, 7274544, 14, 2, 7274545, 14, 2, 7274546, 14, 2, 7274547, 14, 2, 7274548, 14, 2, 7274549, 14, 2, 7274550, 14, 2, 7274551, 14, 2, 7274552, 14, 2, 7274553, 14, 2, 7274554, 14, 2, 7340066, 14, 2, 7340067, 14, 2, 7340068, 14, 2, 7340069, 14, 2, 7340070, 14, 2, 7340071, 14, 2, 7340072, 14, 2, 7340073, 14, 2, 7340074, 14, 2, 7340075, 14, 2, 7340076, 14, 2, 7340077, 14, 2, 7340078, 14, 2, 7340079, 14, 2, 7340080, 14, 2, 7340081, 14, 2, 7340082, 14, 2, 7340083, 14, 2, 7340084, 14, 2, 7340085, 14, 2, 7340086, 14, 2, 7340087, 14, 2, 7340088, 14, 2, 7340089, 14, 2, 7340090, 14, 2, 7405602, 14, 2, 7405603, 14, 2, 7405604, 14, 2, 7405605, 14, 2, 7405606, 14, 2, 7405607, 14, 2, 7405608, 14, 2, 7405609, 14, 2, 7405610, 14, 2, 7405611, 14, 2, 7405612, 14, 2, 7405613, 14, 2, 7405614, 14, 2, 7405615, 14, 2, 7405616, 14, 2, 7405617, 14, 2, 7405618, 14, 2, 7405619, 14, 2, 7405620, 14, 2, 7405621, 14, 2, 7405622, 14, 2, 7405623, 14, 2, 7405624, 14, 2, 7405625, 14, 2, 7405626, 14, 2 )
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Ninten_upstairs" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 412, 378 )
+scale = Vector2( 1, 4 )
+dir = Vector2( -1, 0 )
+sound = "M3/door_open.wav"
+end_sound = "Door_Short.mp3"
+
+[node name="Position2D" parent="Doors/Ninten_upstairs" index="1"]
+position = Vector2( -192, 3.5 )
+
+[node name="Upstairs_Ninten" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 234, 376 )
+scale = Vector2( 1, 4 )
+dir = Vector2( 1, 0 )
+sound = "M3/door_open.wav"
+end_sound = "Door_Short.mp3"
+
+[node name="CollisionShape2D" parent="Doors/Upstairs_Ninten" index="0"]
+position = Vector2( 0, 4 )
+
+[node name="Position2D" parent="Doors/Upstairs_Ninten" index="1"]
+position = Vector2( 196, 4.5 )
+
+[node name="Upstair_Mom" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 160, 359 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+end_sound = "Door_Short.mp3"
+
+[node name="Position2D" parent="Doors/Upstair_Mom" index="1"]
+position = Vector2( 76, -183 )
+
+[node name="Mom_Upstair" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 448, 184 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+
+[node name="Position2D" parent="Doors/Mom_Upstair" index="1"]
+position = Vector2( -68, 192 )
+
+[node name="Upstair_Sister" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 48, 359 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+end_sound = "Door_Short.mp3"
+
+[node name="Position2D" parent="Doors/Upstair_Sister" index="1"]
+position = Vector2( 20, -183 )
+
+[node name="Sister_Upstair" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 112, 184 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+
+[node name="Position2D" parent="Doors/Sister_Upstair" index="1"]
+position = Vector2( -12, 192 )
+
+[node name="Upstairs_Living" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 136, 400 )
+scale = Vector2( 1, 4 )
+dir = Vector2( 0, 1 )
+sound = "Stairs.mp3"
+
+[node name="Position2D" parent="Doors/Upstairs_Living" index="1"]
+position = Vector2( -104, 72 )
+
+[node name="Living_Upstairs" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 8, 672 )
+scale = Vector2( 6, 1 )
+dir = Vector2( 1, 0 )
+sound = "Stairs.mp3"
+
+[node name="Position2D" parent="Doors/Living_Upstairs" index="1"]
+position = Vector2( 24.5, -264 )
+
+[node name="Living_Basement" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 80, 695 )
+scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+
+[node name="Position2D" parent="Doors/Living_Basement" index="1"]
+position = Vector2( 2, 289 )
+
+[node name="Living_Basement2" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 72, 968 )
+scale = Vector2( 4, 1 )
+targetX = 8
+targetY = -10
+dir = Vector2( 0, 1 )
+
+[node name="Position2D" parent="Doors/Living_Basement2" index="1"]
+position = Vector2( 6, -256 )
+
+[node name="Podunk" parent="Doors" instance=ExtResource( 13 )]
+position = Vector2( 112, 824 )
+scale = Vector2( 6, 1 )
+targetX = 8
+targetY = -32
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
+transit_in_anim = "Circle Focus"
+transit_out_anim = "Circle Focus"
+targetScene = "podunk/podunk"
+flag_set = "good_morning"
+set_flag_state = false
+
+[node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 573
+collision_mask = 0
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -816, 320 )
+polygon = PoolVector2Array( 824, 456, 864, 456, 864, 496, 928, 496, 928, 512, 976, 512, 976, 520, 768, 520, 768, 312, 1064, 312, 1064, 520, 976, 520, 976, 496, 992, 496, 992, 456, 1048, 456, 1040, 384, 928, 384, 928, 376, 896, 376, 896, 384, 884, 384, 884, 400, 868, 400, 868, 418, 862, 418, 862, 352, 831, 352, 827, 415 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -760, 616 )
+polygon = PoolVector2Array( 818, 418, 808, 448, 840, 448, 840, 472, 935, 472, 935, 488, 800, 488, 800, 312, 976, 312, 976, 488, 935, 488, 935, 458, 951, 458, 951, 440, 960, 440, 956, 408, 904, 408, 904, 392, 868, 392, 868, 418, 861, 418, 861, 352, 835, 352, 835, 418 )
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -400, 8 )
+polygon = PoolVector2Array( 856, 440, 824, 440, 824, 472, 904, 472, 904, 448, 933, 448, 933, 439, 952, 439, 952, 488, 792, 488, 792, 272, 1016, 272, 1016, 488, 952, 488, 952, 472, 968, 472, 968, 448, 1000, 448, 984, 360, 952, 360, 952, 352, 920, 352, 920, 344, 840, 344, 840, 360, 821, 360, 813, 416, 856, 416 )
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -416, -280 )
+polygon = PoolVector2Array( 840, 456, 864, 456, 864, 472, 896, 472, 896, 456, 952, 456, 952, 488, 792, 488, 792, 272, 1016, 272, 1016, 488, 952, 488, 952, 456, 984, 456, 984, 432, 1000, 432, 984, 360, 968, 360, 968, 408, 920, 408, 920, 360, 904, 360, 904, 344, 856, 344, 856, 360, 840, 360, 824, 416, 840, 416 )
+
+[node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -816, -280 )
+polygon = PoolVector2Array( 840, 440, 840, 456, 928, 456, 928, 472, 944, 472, 944, 488, 792, 488, 792, 272, 1016, 272, 1016, 488, 944, 488, 944, 472, 960, 472, 960, 456, 984, 456, 984, 416, 1000, 416, 984, 360, 920, 360, 920, 344, 888, 344, 888, 376, 885, 368, 885, 318, 850, 318, 850, 341, 866, 341, 870, 345.444, 870, 368, 867, 376, 832, 376, 824, 432, 840, 432 )
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( -832, 16 )
+polygon = PoolVector2Array( 843, 352, 832, 416, 919, 416, 919, 373, 985, 373, 985, 384, 926, 384, 926, 448, 824, 448, 824, 312, 1080, 312, 1080, 448, 926, 448, 926, 416, 968, 416, 968, 408, 984, 408, 984, 416, 1072, 416, 1061, 352, 1024, 352, 1024, 344, 992, 344, 992, 352, 912, 352, 912, 344, 880, 344, 880, 352 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
+position = Vector2( 0, -1 )
+polygon = PoolVector2Array( 533, 385, 533, 395, 528, 401, 512, 401, 507, 395, 507, 385 )
+
+[node name="Limits" type="Node2D" parent="."]
+visible = false
+
+[node name="camarea" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 500, 397 )
+
+[node name="CollisionShape2D" parent="Limits/camarea" index="0"]
+position = Vector2( 4, -21 )
+shape = SubResource( 59 )
+
+[node name="camarea2" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 496, 104 )
+
+[node name="CollisionShape2D" parent="Limits/camarea2" index="0"]
+position = Vector2( 0, -8 )
+shape = SubResource( 60 )
+
+[node name="camarea3" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 96, 104 )
+
+[node name="CollisionShape2D" parent="Limits/camarea3" index="0"]
+position = Vector2( 0, -8 )
+shape = SubResource( 60 )
+
+[node name="camarea4" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 96, 400 )
+
+[node name="CollisionShape2D" parent="Limits/camarea4" index="0"]
+position = Vector2( 20, -16 )
+shape = SubResource( 61 )
+
+[node name="camarea5" parent="Limits" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 96, 688 )
+
+[node name="CollisionShape2D" parent="Limits/camarea5" index="0"]
+position = Vector2( 24, 20 )
+shape = SubResource( 63 )
+
+[node name="camarea6" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 96, 1000 )
+
+[node name="CollisionShape2D" parent="Limits/camarea6" index="0"]
+position = Vector2( 32, 32 )
+shape = SubResource( 64 )
+
+[node name="camarea8" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 240, 1712 )
+
+[node name="CollisionShape2D" parent="Limits/camarea8" index="0"]
+position = Vector2( 0, -8 )
+shape = SubResource( 83 )
+
+[node name="camarea9" parent="Limits" instance=ExtResource( 8 )]
+position = Vector2( 744, 1712 )
+
+[node name="CollisionShape2D" parent="Limits/camarea9" index="0"]
+position = Vector2( 0, -16 )
+shape = SubResource( 84 )
+
+[node name="MusicArea" parent="." instance=ExtResource( 16 )]
+position = Vector2( 301.318, 330.255 )
+loop = "House.mp3"
+appear_flag = "doll_melody"
+disappear_flag = "good_morning"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
+position = Vector2( -17.3183, 85.745 )
+shape = SubResource( 49 )
+
+[node name="MusicArea2" parent="." instance=ExtResource( 16 )]
+position = Vector2( 304, 1256 )
+loop = "House.mp3"
+appear_flag = "doll_melody"
+disappear_flag = "good_morning"
+volume_db = -5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea2"]
+position = Vector2( -174.659, -241.128 )
+shape = SubResource( 96 )
+
+[node name="MusicArea3" parent="." instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 301.318, 330.255 )
+music = "Good Morning/Good_Morning.wav"
+loop = "Good Morning/Good_Morning_Loop.wav"
+appear_flag = "good_morning"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea3"]
+position = Vector2( -17.3183, 229.745 )
+shape = SubResource( 95 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PhoneRing = SubResource( 48 )
+anims/RESET = SubResource( 3 )
+anims/cutscene = SubResource( 1 )
+"anims/white fade" = SubResource( 100 )
+script = ExtResource( 26 )
+animation = "white fade"
+play_on_start = false
+
+[node name="Cutscene Area3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 104, 816 )
+scale = Vector2( 8, 2 )
+dialog = "Podunk/cutscenes/carol_phone"
+appear_flag = "phone_ring"
+disappear_flag = "talked_to_dad"
+
+[node name="Cutscene Area4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 104, 808 )
+scale = Vector2( 8, 2 )
+dialog = "Podunk/cutscenes/carol_call"
+appear_flag = "doll_melody"
+disappear_flag = "phone_ring"
+
+[node name="Cutscene Area5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 112, 177 )
+scale = Vector2( 4, 2 )
+dialog = "Podunk/cutscenes/mimmie_ignore"
+appear_flag = "doll_defeated"
+disappear_flag = "doll_melody"
+
+[node name="Room Shaker" parent="." instance=ExtResource( 9 )]
+direction = Vector2( 1, 0 )
+
+[node name="Event Activator" parent="." instance=ExtResource( 2 )]
+position = Vector2( 416, 392 )
+object_path = NodePath("../Room Shaker")
+function = "start_shake"
+check_flag = "poltergeist"
+check_flag_state = true
+
+[node name="CollisionShape2D" parent="Event Activator" index="0"]
+position = Vector2( 8, 0 )
+shape = SubResource( 89 )
+
+[node name="Event Activator2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 464, 168 )
+object_path = NodePath("../Room Shaker")
+function = "start_shake"
+check_flag = "poltergeist"
+check_flag_state = true
+
+[node name="CollisionShape2D" parent="Event Activator2" index="0"]
+shape = SubResource( 89 )
+
+[node name="Poltergeist" parent="." instance=ExtResource( 17 )]
+disappear_flag = "doll_melody"
+
+[node name="Cutscene Area" parent="Poltergeist" instance=ExtResource( 10 )]
+position = Vector2( 409, 369 )
+scale = Vector2( 2, 6 )
+dialog = "Podunk/cutscenes/lamp_attack"
+disappear_flag = "poltergeist"
+
+[node name="Cutscene Area2" parent="Poltergeist" instance=ExtResource( 10 )]
+position = Vector2( 112, 168 )
+scale = Vector2( 4, 2 )
+dialog = "Podunk/cutscenes/doll_attack"
+disappear_flag = "doll_defeated"
+
+[node name="Cutscene Area6" parent="Poltergeist" instance=ExtResource( 10 )]
+position = Vector2( 448, 168 )
+scale = Vector2( 4, 2 )
+dialog = "Podunk/cutscenes/pillow_attack"
+disappear_flag = "minnie_leave"
+
+[node name="Cutscene Area7" parent="Poltergeist" instance=ExtResource( 10 )]
+position = Vector2( 160, 368 )
+scale = Vector2( 4, 2 )
+dialog = "Podunk/cutscenes/minnie_door"
+appear_flag = "minnie_leave"
+disappear_flag = "minnie_door"
+
+[node name="Door NPC" parent="Poltergeist" instance=ExtResource( 23 )]
+visible = false
+position = Vector2( 112, 821 )
+scale = Vector2( 6, 1 )
+dialog = "Podunk/non-person text/Ninten's house/Entrance Locked"
+
+[node name="Entrance" type="StaticBody2D" parent="Poltergeist"]
+visible = false
+position = Vector2( 136, 824 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poltergeist/Entrance"]
+position = Vector2( 0, 3 )
+shape = SubResource( 94 )
+
+[node name="MusicArea" parent="Poltergeist" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 301.318, 330.255 )
+loop = "Poltergeist.mp3"
+appear_flag = "poltergeist"
+disappear_flag = "doll_defeated"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Poltergeist/MusicArea"]
+position = Vector2( -17.3183, 85.745 )
+shape = SubResource( 49 )
+
+[node name="Stepping Sounds" type="Node2D" parent="."]
+visible = false
+
+[node name="Wood" parent="Stepping Sounds" instance=ExtResource( 1 )]
+entering_sound = "wood"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Wood"]
+visible = false
+position = Vector2( 304, 564 )
+shape = SubResource( 90 )
+
+[node name="Stone" parent="Stepping Sounds" instance=ExtResource( 1 )]
+entering_sound = "stone"
+exiting_sound = "wood"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stepping Sounds/Stone"]
+polygon = PoolVector2Array( 64, 1008, 48, 1088, 208, 1088, 192, 1008, 112, 1008, 112, 1032, 64, 1032 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Stepping Sounds/Stone"]
+polygon = PoolVector2Array( 480, 376, 552, 376, 560, 440, 472, 440 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Stepping Sounds/Stone"]
+polygon = PoolVector2Array( 72, 88, 152, 88, 160, 152, 72, 152 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Stone"]
+position = Vector2( 47, 51 )
+shape = SubResource( 91 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Stepping Sounds/Stone"]
+position = Vector2( 96, 707 )
+shape = SubResource( 92 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Stepping Sounds/Stone"]
+position = Vector2( 225, 395.375 )
+shape = SubResource( 97 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Stepping Sounds/Stone"]
+position = Vector2( 424, 397.375 )
+shape = SubResource( 98 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Stepping Sounds/Stone"]
+position = Vector2( 136, 803.375 )
+shape = SubResource( 93 )
+
+[node name="melodyBG" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 96, 80 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -64.0
+margin_top = 920.0
+margin_right = 320.0
+margin_bottom = 1144.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Below/Ladder"]
+[editable path="Objects/Present"]
+[editable path="Doors/Ninten_upstairs"]
+[editable path="Doors/Upstairs_Ninten"]
+[editable path="Doors/Upstair_Mom"]
+[editable path="Doors/Mom_Upstair"]
+[editable path="Doors/Upstair_Sister"]
+[editable path="Doors/Sister_Upstair"]
+[editable path="Doors/Upstairs_Living"]
+[editable path="Doors/Living_Upstairs"]
+[editable path="Doors/Living_Basement"]
+[editable path="Doors/Living_Basement2"]
+[editable path="Doors/Podunk"]
+[editable path="Limits/camarea"]
+[editable path="Limits/camarea2"]
+[editable path="Limits/camarea3"]
+[editable path="Limits/camarea4"]
+[editable path="Limits/camarea5"]
+[editable path="Limits/camarea6"]
+[editable path="Limits/camarea8"]
+[editable path="Limits/camarea9"]
+[editable path="MusicArea"]
+[editable path="MusicArea2"]
+[editable path="MusicArea3"]
+[editable path="Event Activator"]
+[editable path="Event Activator2"]
+[editable path="Poltergeist/MusicArea"]

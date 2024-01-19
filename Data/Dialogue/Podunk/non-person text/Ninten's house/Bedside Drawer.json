@@ -1,0 +1,11 @@
+{
+	"0": {
+		"text": "Leader opened the Bedside drawer.",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Inside, there was some spare change and an Asthma Spray.",
+		"givecash": 10,
+		"item": "AsthmaSpray"
+	},
+}

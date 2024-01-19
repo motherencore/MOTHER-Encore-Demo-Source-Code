@@ -1,0 +1,21 @@
+{
+	"0": {
+		"name": "Noisy Mouse",
+		"text": "(Have you noticed that you can enter some buildings while some you cannot?",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Noisy Mouse",
+		"text": "As a house entering professional, I can say that doors that are [color]round[/color] or have a sign can be entered.",
+		"goto": "2"
+	},
+	"2": {
+		"name": "Noisy Mouse",
+		"text": "[color]Rectangular doors[/color], on the other hand, [color]will not open[/color] no matter what.",
+		"goto": "3"
+	},
+	"3": {
+		"name": "Noisy Mouse",
+		"text": "Although, if you try knocking on some of those doors, you might get an answer.)"
+	}
+}

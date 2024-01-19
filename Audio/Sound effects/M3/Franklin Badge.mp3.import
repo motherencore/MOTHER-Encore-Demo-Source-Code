@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Franklin Badge.mp3-9e04195d10652525ad46055fcda2a85e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Franklin Badge.mp3"
+dest_files=[ "res://.import/Franklin Badge.mp3-9e04195d10652525ad46055fcda2a85e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,24 @@
+{
+	"name": "Mad Truck",
+	"maxhp": 60,
+	"hp": 60,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 35,
+	"offense": 22,
+	"defense": 40,
+	"iq": 35,
+	"guts": 0,
+	"level": 4,
+	"exp": 114,
+	"cash": 30,
+	"skills": [
+		{"skill" : "bash", "weight" : 1}
+	],
+	"description": "Be careful of its exhaust if you're asthmatic.",
+	"boss": false,
+	"sprite": "mad truck",
+	"ovsprite": "MadTruckOV",
+	"music": "",
+	"bg": ""
+}

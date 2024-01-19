@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sphinx3.wav-5224a7d0eadf9ed29b327ce4c7b0a93f.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/sphinx3.wav"
+dest_files=[ "res://.import/sphinx3.wav-5224a7d0eadf9ed29b327ce4c7b0a93f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,9 @@
+{
+	"0": {
+		"text": "Welcome to Podunk!",
+		"goto": "1"
+	},
+	"1": {
+		"text": "Let's make this a town that puts a smile on everyone's face!"
+	}
+}

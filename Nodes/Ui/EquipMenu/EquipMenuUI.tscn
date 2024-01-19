@@ -1,0 +1,539 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Nodes/Ui/Description.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=4]
+[ext_resource path="res://Nodes/Ui/EquipMenu/EquipMenuUI.gd" type="Script" id=5]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Ui/EquipMenu/StatsLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Graphics/UI/EquipMenu/empty.png" type="Texture" id=9]
+[ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=11]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=12]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Close"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 0.450625 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -140 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EquipMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EquipMenu/Description:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 132 ), Vector2( 32, 320 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Open"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -180 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EquipMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EquipMenu/Description:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, 360 ), Vector2( 32, 128 ), Vector2( 32, 132 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EquipMenu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EquipMenu/Description:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 32, 132 ) ]
+}
+
+[node name="EquipMenuUI" type="CanvasLayer"]
+layer = 2
+script = ExtResource( 5 )
+
+[node name="EquipMenu" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Box" type="NinePatchRect" parent="EquipMenu"]
+material = ExtResource( 12 )
+margin_left = 31.0
+margin_right = 286.0
+margin_bottom = 133.0
+texture = ExtResource( 11 )
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Stats" type="NinePatchRect" parent="EquipMenu"]
+material = ExtResource( 12 )
+margin_left = 31.0
+margin_top = 23.0
+margin_right = 189.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 59, 58 )
+texture = ExtResource( 4 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="StatsLabels" type="VBoxContainer" parent="EquipMenu/Stats"]
+margin_left = 11.0
+margin_top = 7.0
+margin_right = 61.0
+margin_bottom = 103.0
+custom_constants/separation = 0
+
+[node name="CharacterName" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+margin_right = 50.0
+text = "Ninten"
+
+[node name="MaxHPLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 12.0
+margin_right = 50.0
+margin_bottom = 24.0
+text = "   Max. HP"
+
+[node name="MaxPPLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 24.0
+margin_right = 50.0
+margin_bottom = 36.0
+text = "   Max. PP"
+
+[node name="OffenseLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 36.0
+margin_right = 50.0
+margin_bottom = 48.0
+text = "   Offense"
+
+[node name="DefenseLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 48.0
+margin_right = 50.0
+margin_bottom = 60.0
+text = "   Defense"
+
+[node name="IQLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 60.0
+margin_right = 50.0
+margin_bottom = 72.0
+text = "   IQ"
+
+[node name="SpeedLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 72.0
+margin_right = 50.0
+margin_bottom = 84.0
+text = "   Speed"
+
+[node name="GutsLabel" parent="EquipMenu/Stats/StatsLabels" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 84.0
+margin_right = 50.0
+margin_bottom = 96.0
+text = "   Guts"
+
+[node name="StatsValue" type="VBoxContainer" parent="EquipMenu/Stats"]
+margin_left = 75.0
+margin_top = 5.0
+margin_right = 115.0
+margin_bottom = 101.0
+custom_constants/separation = 0
+
+[node name="LevelValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_right = 40.0
+text = "99"
+align = 2
+
+[node name="MaxHPValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 12.0
+margin_right = 40.0
+margin_bottom = 24.0
+align = 2
+
+[node name="MaxPPValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 36.0
+align = 2
+
+[node name="OffenseValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 36.0
+margin_right = 40.0
+margin_bottom = 48.0
+align = 2
+
+[node name="DefenseValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 48.0
+margin_right = 40.0
+margin_bottom = 60.0
+align = 2
+
+[node name="IQValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 60.0
+margin_right = 40.0
+margin_bottom = 72.0
+align = 2
+
+[node name="SpeedValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 72.0
+margin_right = 40.0
+margin_bottom = 84.0
+align = 2
+
+[node name="GutsValue" parent="EquipMenu/Stats/StatsValue" instance=ExtResource( 7 )]
+margin_top = 84.0
+margin_right = 40.0
+margin_bottom = 96.0
+align = 2
+
+[node name="BoostStatsValue" type="VBoxContainer" parent="EquipMenu/Stats"]
+margin_left = 124.0
+margin_top = 5.0
+margin_right = 147.0
+margin_bottom = 101.0
+custom_constants/separation = 0
+
+[node name="LevelValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_right = 23.0
+text = ""
+align = 2
+
+[node name="MaxHPValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 12.0
+margin_right = 23.0
+margin_bottom = 24.0
+align = 2
+
+[node name="MaxPPValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 24.0
+margin_right = 23.0
+margin_bottom = 36.0
+align = 2
+
+[node name="OffenseValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 36.0
+margin_right = 23.0
+margin_bottom = 48.0
+align = 2
+
+[node name="DefenseValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 48.0
+margin_right = 23.0
+margin_bottom = 60.0
+align = 2
+
+[node name="IQValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 60.0
+margin_right = 23.0
+margin_bottom = 72.0
+align = 2
+
+[node name="SpeedValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 72.0
+margin_right = 23.0
+margin_bottom = 84.0
+align = 2
+
+[node name="GutsValue" parent="EquipMenu/Stats/BoostStatsValue" instance=ExtResource( 7 )]
+margin_top = 84.0
+margin_right = 23.0
+margin_bottom = 96.0
+align = 2
+
+[node name="BoostIcons" type="VBoxContainer" parent="EquipMenu/Stats"]
+margin_left = 118.0
+margin_top = 7.0
+margin_right = 132.0
+margin_bottom = 103.0
+custom_constants/separation = 4
+alignment = 1
+
+[node name="LevelIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 2.0
+margin_right = 14.0
+margin_bottom = 10.0
+texture_normal = ExtResource( 9 )
+
+[node name="MaxHPIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 14.0
+margin_right = 14.0
+margin_bottom = 22.0
+texture_normal = ExtResource( 9 )
+
+[node name="MaxPPIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 26.0
+margin_right = 14.0
+margin_bottom = 34.0
+texture_normal = ExtResource( 9 )
+
+[node name="OffenseIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 38.0
+margin_right = 14.0
+margin_bottom = 46.0
+texture_normal = ExtResource( 9 )
+
+[node name="DefenseIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 50.0
+margin_right = 14.0
+margin_bottom = 58.0
+texture_normal = ExtResource( 9 )
+
+[node name="IQIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 62.0
+margin_right = 14.0
+margin_bottom = 70.0
+texture_normal = ExtResource( 9 )
+
+[node name="SpeedIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 74.0
+margin_right = 14.0
+margin_bottom = 82.0
+texture_normal = ExtResource( 9 )
+
+[node name="GutsIcon" type="TextureButton" parent="EquipMenu/Stats/BoostIcons"]
+margin_top = 86.0
+margin_right = 14.0
+margin_bottom = 94.0
+texture_normal = ExtResource( 9 )
+
+[node name="Slots" type="NinePatchRect" parent="EquipMenu"]
+material = ExtResource( 12 )
+margin_left = 185.0
+margin_top = 23.0
+margin_right = 286.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 59, 58 )
+texture = ExtResource( 4 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="SlotsNames" type="VBoxContainer" parent="EquipMenu/Slots"]
+margin_left = 10.0
+margin_top = 7.0
+margin_right = 59.0
+margin_bottom = 102.0
+custom_constants/separation = 12
+
+[node name="Weapon" parent="EquipMenu/Slots/SlotsNames" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_right = 49.0
+text = "Weapon"
+
+[node name="Body" parent="EquipMenu/Slots/SlotsNames" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 24.0
+margin_right = 49.0
+margin_bottom = 36.0
+text = "Body"
+
+[node name="Head" parent="EquipMenu/Slots/SlotsNames" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 48.0
+margin_right = 49.0
+margin_bottom = 60.0
+text = "Head"
+
+[node name="Other" parent="EquipMenu/Slots/SlotsNames" instance=ExtResource( 2 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 72.0
+margin_right = 49.0
+margin_bottom = 84.0
+text = "Other"
+
+[node name="EquippeditemsNames" type="VBoxContainer" parent="EquipMenu/Slots"]
+margin_left = 20.0
+margin_top = 19.0
+margin_right = 69.0
+margin_bottom = 114.0
+custom_constants/separation = 10
+
+[node name="EquippedWeapon" parent="EquipMenu/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
+modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
+margin_right = 49.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "______"
+
+[node name="EquippedBody" parent="EquipMenu/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
+modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
+margin_top = 24.0
+margin_right = 49.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 1 )
+text = "______"
+
+[node name="EquippedHead" parent="EquipMenu/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
+modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
+margin_top = 48.0
+margin_right = 49.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 1 )
+text = "______"
+
+[node name="EquippedOther" parent="EquipMenu/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
+modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
+margin_top = 72.0
+margin_right = 49.0
+margin_bottom = 86.0
+custom_fonts/font = SubResource( 1 )
+text = "______"
+
+[node name="SlotArrow" parent="EquipMenu/Slots/EquippeditemsNames" instance=ExtResource( 3 )]
+position = Vector2( -7, 6 )
+menu_parent_path = NodePath("..")
+cursor_offset = Vector2( -5, 2 )
+move_sfx = true
+select_sfx = true
+
+[node name="Position2D" type="Position2D" parent="EquipMenu/Slots/EquippeditemsNames/SlotArrow"]
+position = Vector2( 9, 9 )
+
+[node name="ItemListPanel" type="ColorRect" parent="EquipMenu/Slots"]
+visible = false
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 95.0
+margin_bottom = 104.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 13 )
+
+[node name="ItemList" type="VBoxContainer" parent="EquipMenu/Slots/ItemListPanel"]
+margin_left = 12.0
+margin_top = 2.0
+margin_right = 52.0
+margin_bottom = 42.0
+custom_constants/separation = 1
+
+[node name="ItemArrow" parent="EquipMenu/Slots/ItemListPanel" instance=ExtResource( 3 )]
+position = Vector2( 3, 6 )
+menu_parent_path = NodePath("../ItemList")
+cursor_offset = Vector2( -5, 1 )
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+
+[node name="InventorySelect" parent="EquipMenu" instance=ExtResource( 8 )]
+menuName = "Equip"
+
+[node name="Description" type="NinePatchRect" parent="EquipMenu"]
+material = ExtResource( 12 )
+margin_left = 32.0
+margin_top = 132.0
+margin_right = 286.0
+margin_bottom = 180.0
+rect_pivot_offset = Vector2( 59, 58 )
+texture = ExtResource( 6 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="DescriptionPanel" parent="EquipMenu/Description" instance=ExtResource( 1 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 2 )
+anims/Open = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[connection signal="character_changed" from="EquipMenu/InventorySelect" to="." method="_on_InventorySelect_character_changed"]

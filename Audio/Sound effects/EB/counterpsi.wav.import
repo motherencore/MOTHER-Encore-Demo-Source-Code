@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/counterpsi.wav-151ddf7c23e8d54b072304c91e7b7baf.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/EB/counterpsi.wav"
+dest_files=[ "res://.import/counterpsi.wav-151ddf7c23e8d54b072304c91e7b7baf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

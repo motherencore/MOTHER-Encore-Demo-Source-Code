@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Refreshing sensation.wav-cf08231157ca4c63d03c341036ba7386.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Refreshing sensation.wav"
+dest_files=[ "res://.import/Refreshing sensation.wav-cf08231157ca4c63d03c341036ba7386.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

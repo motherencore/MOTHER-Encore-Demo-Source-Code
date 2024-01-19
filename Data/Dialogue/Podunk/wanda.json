@@ -1,0 +1,13 @@
+{
+	"0": {
+		"name": "Wanda",
+		"text": "The animals have gone crazy, and the dead have risen...",
+		"sound": "Sexy",
+		"goto": "1"
+	},
+	"1": {
+		"name": "Wanda",
+		"text": "I knew we should've cremated Rex.",
+		"sound": "Sexy"
+	}
+}

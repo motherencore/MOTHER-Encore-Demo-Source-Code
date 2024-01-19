@@ -1,0 +1,30 @@
+{
+	"name": "Gang Zombie",
+	"maxhp": 120,
+	"hp": 120,
+	"maxpp": 0,
+	"pp": 0,
+	"speed": 8,
+	"offense": 14,
+	"defense": 24,
+	"iq": 5,
+	"guts": 0,
+	"level": 4,
+	"exp": 20,
+	"cash": 32,
+	"items": [
+	{"item": "Hamburger", "chance": 70}
+	  ],
+	"skills": [
+		{"skill" : "punch", "weight" : 4},
+		{"skill" : "poisonBite", "weight" : 2},
+		{"skill" : "mysteriousAction", "weight" : 1},
+		{"skill" : "hystericalLaugh", "weight" : 1}
+	],
+	"description": "Careful, his Smash Hit is quite effective.",
+	"boss": false,
+	"sprite": "gang zombie",
+	"ovsprite": "GangZombieOV",
+	"music": "Retro Enemy.mp3",
+	"bg": "gangzombie"
+}

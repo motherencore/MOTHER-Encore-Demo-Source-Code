@@ -1,0 +1,145 @@
+{
+	"0": {
+		"actors": {
+			"ninten": "leader",
+			"zombie1": "Objects/NPCS/npczombie1",
+			"zombie2": "Objects/NPCS/npczombie2"
+		},
+		"wait": 0.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "1"
+	},
+	"1": {
+		"actorsturn": {
+			"ninten": {
+				"x": 1,
+				"y": 0,
+				"speed": 0.1
+			}
+		},
+		"movecam": {
+			"x": 488,
+			"length": 2
+		},			
+		"wait": 2.5,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "2"
+	},
+	"2": {
+		"actorsdir": {
+			"zombie1": {
+				"x": 1,
+				"y": 0
+			}
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "3"
+	},
+	"3": {
+		"actorsmove": {
+			"zombie2": {
+				"movement": [{"x": 608, "y": 4536}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "position"
+			}
+		},
+		"wait": 2.2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "4"
+	},
+	"4": {
+		"actorsjump": {
+			"zombie1": {
+				"height": 8,
+				"length": 0.2
+			}
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "5"
+	},
+	"5": {
+		"actorsdir": {
+			"zombie1": {
+				"x": 0,
+				"y": 1
+			}
+		},
+		"actorsmove": {
+			"zombie1": {
+				"movement": [{"wait": 0.5}, {"x": 0, "y": 8}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"wait": 1.2,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "6"
+	},
+	"6": {
+		"eraseactors": {
+			"zombie1": true
+		},
+		"actorsmove": {
+			"zombie2": {
+				"movement": [{"wait": 0.2}, {"x": -28, "y": 0}, {"x": 0, "y": 8}],
+				"speed": 32,
+				"animation": "Walk",
+				"type": "step"
+			}
+		},
+		"wait": 1.8,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "7"
+	},
+	"7": {
+		"eraseactors": {
+			"zombie2": true
+		},
+		"wait": 0.8,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "8"
+	},
+	"8": {
+		"shakecam":{
+			"x": 1,
+			"y": 0,
+			"size": "small"
+		},
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "9"
+	},
+	"9": {
+		"objectfunction": {
+			"Objects/Dead Bushes/Dead Bush4": "grow",
+			"Objects/Dead Bushes/Dead Bush5": "grow",
+			"Objects/Dead Bushes/Dead Bush6": "grow",
+			"Objects/Dead Bushes/Dead Bush7": "grow",
+			"Objects/Dead Bushes/Dead Bush8": "grow"
+		},
+		"flag": "cem_roots_grown",
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "10"
+	},
+	"10": {
+		"returncam": 1.5,
+		"wait": 1.6,
+		"autoadvance": true,
+		"caninput": false
+	}
+}

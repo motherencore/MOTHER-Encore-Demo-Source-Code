@@ -1,0 +1,19 @@
+{
+	"0": {
+		"text": "Drink from the water fountain?",
+		"options": {
+			"Yes": "1",
+			"No": "2",
+			"cancel": "2"
+		}
+	},
+	"1": {
+		"givestatus":{
+			"ninten": "poisoned"
+		},
+		"text": "You suddenly don't feel well."
+	},
+	"2": {
+		"text": "That's probably for the best."
+	}
+}

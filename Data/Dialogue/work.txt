@@ -1,0 +1,548 @@
+magicant dialogue:
+>phil sandhop version transcribed
+>new dialogue
+>all the descriptions
+
+podunk:
+>change "non-person text" to descriptions
+>make sure the descriptions from the script are all in place
+
+
+
+
+Swimming Candy Cat:
+(if you haven't gotten the candy yet)
+â€¢I am a Swimming
+ cat.
+â€¢Have you heard of
+ a Magic Candy that
+ gives strength
+â€¢and power to a
+ helpless child?
+    Yes    No
+(Yes)
+â€¢Hum.
+(No)
+(if Lloyd isn't in your party)
+â€¢I see, but you are
+ not helpless, so
+ you don't need it.
+(if Lloyd is in your party)
+â€¢The boy with
+ glasses can surely
+ use the Candy.
+(if you've gotten the candy already)
+â€¢Was the Candy
+ good?
+
+
+North Magicant Houses (ordered north-south, then east-west)
+
+
+
+Blue Wizard Guy:
+â€¢Have you met a man
+ who says, that you
+ cannot part,
+â€¢with someone you
+ have not met?
+    Yes    No
+(Yes)
+â€¢I tend to think
+ the same way, too.
+(No)
+â€¢You should meet
+ him.
+
+Purple Wizard Guy:
+(if you haven't met the guy who talks about how you can't part if you haven't met)
+â€¢Are you bothered that
+ unhappiness and
+â€¢misfortune search
+ you out?
+    Yes    No
+(Yes)
+â€¢If you desire to
+ never find
+ trouble...
+â€¢STAY HOME!!
+(No)
+â€¢Is that right?
+ Trouble searches
+ after you?
+â€¢Hmm, that's too
+ bad.
+(if you have met him, but haven't yet been nicknamed)
+â€¢Then, you admit I
+ have good taste.
+â€¢Huh?
+ You want a cool
+ nickname, too?
+    Yes    No
+(No)
+â€¢Is that right?
+ That's too bad.
+(Yes)
+â€¢OK, I've got it!
+ From now on, you
+ are Noodlenoggin!
+â€¢Sounds pretty
+ cool, doesn't it?
+(if you've already been nicknamed)
+â€¢Hello, there!
+ Noodlenoggin
+ [SOMEONE].
+
+
+Blue Wizard Guy:
+â€¢Have you ever met
+ the man who practices
+ philosophy?
+    Yes    No
+(Yes)
+(if you haven't actually met him)
+â€¢I know you're
+ lying. I can see
+ right through you.
+(if you have)
+â€¢He is so good at
+ nicknaming.
+â€¢He uses such...
+ good taste in it.
+(No)
+â€¢In the first
+ place, if we
+ have not met
+â€¢we cannot part!
+
+Blue Wizard Guy:
+(if you haven't slept at his house)
+â€¢I bent my spoon
+ and it's hard to
+ use like this.
+â€¢Do you think
+ somehow you could
+ fix it for me?
+    Yes    No
+(No)
+â€¢Why not? You can
+ fix it without any
+ physical effort!
+(Yes)
+â€¢Please fix it
+ right away.
+â€¢([NINTEN] fixed
+ the spoon with
+ PSI-Power.)
+â€¢Thanks a million!
+ Munch, munch...
+â€¢Hey, would you
+ like to spend
+ the night here?
+    Yes    No
+(No)
+â€¢Boo hoo hoo... You
+ should accept
+ kindness graciously.
+(Yes)
+â€¢That's good.
+(sleep)
+â€¢Please come again.
+ Promise me you'll
+ come again!
+(if you've already slept at his house)
+â€¢You come to stay
+ the night again?
+    Yes    No
+(No)
+â€¢Please feel free
+ to use our bed
+ anytime.
+(Yes)
+(sleep)
+â€¢Good morning!
+
+Blue Wizard Guy:
+(if he hasn't given you the Ocarina yet)
+â€¢The Ocarina of
+ Hope is finally
+ completed.
+â€¢Its melody
+ can now flow out
+ from it.
+â€¢Do you want it?
+    Yes    No
+(Yes)
+â€¢You're a pretty
+ straight looking
+ dude, Go ahead.
+â€¢Ha ha ha.
+(No)
+â€¢It's quite obvious
+ that you want it.
+ Ha ha ha.
+â€¢Go ahead, take it.
+(if he has)
+â€¢Hey, kid! 
+ How are you doing?
+
+
+South Magicant
+
+Red Witch Girl:
+â€¢You're a strange
+ person...
+â€¢but for some
+ reason, I like
+ you.
+
+
+Blue Wizard Guy:
+â€¢More to the south.
+ Are you lost?
+â€¢Sorry...I was
+ directing you to
+ the rest room.
+â€¢Queen Mary's
+ Fountain is west
+ of the castle.
+
+
+South Magicant Houses (ordered north-south, then east-west)
+
+Purple Wizard Guy:
+â€¢The mysterious
+ sound of the
+ fountain soothes.
+
+Blue Wizard Guy:
+â€¢My! What strange
+ clothing you wear!
+â€¢Surely monsters
+ will come after
+ those clothes!!
+
+Purple Witch Girl:
+â€¢I am so embarrassed!
+ I wish I could 
+ crawl into a hole.
+
+Mysterious Goods-Keeper:
+â€¢I am the
+ Mysterious
+ Goods-Keeper.
+â€¢You have a need?
+    Yes    No
+(No)
+â€¢Those bags must
+ weigh heavy on
+ your shoulders.
+(Yes)
+  Leave    Take out
+(Store)
+(after selecting an item)
+â€¢I'll send this
+ [ITEM] to
+ [NINTEN]'s house.
+â€¢Is there anything
+ else you want me
+ to keep?
+    Yes    No
+(if there are no items in your inventory)
+â€¢You have nothing.
+(No)
+â€¢Good bye!
+ Be careful.
+(Take)
+(after selecting an item)
+(after selecting a character if there are multiple characters)
+(if the character can't carry anything else)
+â€¢Can't someone else
+ carry that? Your
+ load is too great!
+    Yes    No
+(No)
+â€¢Good bye!
+ Be careful.
+(Yes -- jump back to selecting a character)
+(else)
+â€¢The [ITEM] is
+ once more in
+ your possession.
+â€¢Is there anything
+ else you'd like
+ to take?
+    Yes    No
+(No)
+â€¢Good bye!
+ Be careful.
+(if inventory is full)
+â€¢Sorry, but I am
+ afraid you can't
+ carry all of them.
+
+Mysterious Mimicker:
+â€¢I am the
+ Mysterious
+ Mimicker.
+(standard phone text minus "This is your dad")
+
+Red Witch Girl:
+â€¢I am taking this
+ broken earring to
+ the fountain.
+â€¢I'll bet it'll
+ change into a
+ magic earring.
+
+Purple Witch Girl:
+â€¢Pull out a Red
+ Weed and place it
+ into the fountain,
+â€¢it will turn into
+ the Magic Herb.
+
+Blue Wizard Man:
+(if haven't received the Big Bag)
+â€¢Would you like me
+ to give you the
+ Big Bag?
+    Yes    No
+(No)
+â€¢It holds 30
+ Magic Herbs.
+(Yes)
+â€¢Can I borrow your
+ Cash Card for a
+ while?
+    Yes    No
+(No)
+â€¢You don't trust
+ anyone.
+â€¢That may be a good
+ attitude,
+ possibly...
+(Yes)
+â€¢Thank you,
+ sure, sure I'll
+ return it to you.
+â€¢I thought that
+ it looked pretty
+ cool.
+(if he's taken your ATM Card)
+â€¢Oh that's right, I
+ have to return
+ your Cash Card!
+(if you can't hold any more items)
+â€¢Your load is too
+ great for more.
+ Why not come back?
+(else)
+â€¢I give you the
+ Big Bag.
+ A gift for you.
+(if you can't hold any more items after getting the ATM Card)
+â€¢Load is too heavy?
+ Remember to come
+ back and get it.
+(if you're coming to get it later)
+â€¢Load is too heavy?
+ Remember to come
+ back and get it.
+(if you've already gotten the Big Bag)
+â€¢Has it been helpful
+ to you?
+
+
+Outer Magicant
+
+Guitar Player:
+(if Ninten's level < 25)
+â€¢Hello! I didn't hear
+ you come in.
+â€¢That guitar playing
+ is so loud...
+â€¢I can't even
+ think.
+â€¢What? I was
+ playing the guitar
+ myself!?
+â€¢I should have
+ known.
+â€¢..........
+â€¢The story I tell
+ to you now
+ is a real secret.
+â€¢When you become
+ really strong,
+ come see me.
+â€¢You had better
+ write this down so
+ you don't forget.
+â€¢I know if I don't
+ write things down,
+ I forget.
+(if Ninten's level >= 25)
+â€¢Listen to my song!
+ Oh music-loving
+ adventurer [SOMEONE]!
+â€¢Why do you cry,
+ oh Cupid-Doll?
+â€¢Canary sings
+ so sadly.
+â€¢Monkey sings,
+ Piano plays,
+â€¢maybe there
+ is a ghost?
+â€¢Desert Cactus
+ so alone,
+â€¢every night
+ his sad, sad tone.
+â€¢The Dragon sleeps,
+ the note remains.
+â€¢Eve's last song
+ has no refrain.
+â€¢On the Mount
+ named Itoi,
+â€¢you must climb
+ high young boy.
+â€¢See the XX Stone,
+ for the last tone,
+â€¢then do not leave
+ Queen Mary alone!
+â€¢La la lullaby...
+ Strange lullaby...
+â€¢Bye bye bye...
+ Good-bye.
+â€¢Sure is a nice
+ song, isn't it?
+
+Cat that Swims in the Ground:
+â€¢Yes, I am the cat
+ who swims on the
+ ground.
+â€¢Guess what is in
+ my hand.
+(if using Telepathy)
+â€¢Do you know what I
+ have in my hand?
+â€¢That is right.
+ A Ribbon...
+â€¢This Magic Ribbon
+ will give
+ strength...
+â€¢Magic Ribbons are
+ only for girls.
+(if inventory is full)
+â€¢If you can't carry
+ it, come back some
+ other time.
+
+Monkey:
+â€¢Of course I am a
+ non-singing
+ monkey.
+â€¢Normal monkeys
+ don't sing.
+ So, any questions?
+    Yes    No
+(Yes)
+â€¢Anyhow...
+ questions are so
+ ridiculous.
+(No)
+â€¢Good, I worried
+ that you would ask
+ a difficult one.
+â€¢You look so much
+ like Queen Mary.
+â€¢I wonder why?
+
+Red Witch Girl:
+â€¢Someone told me
+ about a man that
+â€¢everyone forgot
+ about. But, I don't
+ remember who.
+
+Helpful Old Man:
+â€¢Did you call me
+ up?
+    Yes    No
+(No)
+â€¢Is that right?
+ Bye!
+(Yes)
+â€¢You need money,
+ don't you?
+    Yes    No
+(No)
+â€¢Is that right?
+ Bye!
+(Yes)
+â€¢Well, your balance
+ is $[BALANCE].
+â€¢How much do you
+ want to withdraw?
+    ? 0000
+â€¢Here...
+ Take it with you.
+(if canceling withdrawal)
+â€¢Is that right?
+ Bye!
+(if trying to withdraw too much money)
+â€¢Ouch, there is not
+ that much money left
+ in your account.
+
+Purple Clown:
+â€¢There are a great
+ many holes east of
+ town.
+â€¢The sound of
+ another world can
+ be heard from one.
+
+Purple Clown:
+â€¢I regained my
+ strength at Queen
+ Mary's fountain.
+
+Center Palace Guard:
+(if haven't yet answered his riddle)
+â€¢Suspicious man....
+ I'll let you pass,
+â€¢if you solve this
+ riddle...
+(if using Telepathy)
+â€¢That's right.
+ The answer is
+ "two alligators".
+â€¢Although I haven't
+ come up with the
+ riddle yet.
+(after answering the riddle)
+â€¢See you later!
+
+Left/Right Palace Guard:
+â€¢......
+
+Flying Man 1:
+â€¢I am the Flying
+ Man. My destiny
+ is to help you.
+
+Flying Man 2-5:
+â€¢I heard that my
+ brother died with
+ honor in combat.
+â€¢With all our love,
+ he was buried in
+ our cemetery.
+â€¢It is with great
+ pride that I take
+ his place by you.
+
+
+
+

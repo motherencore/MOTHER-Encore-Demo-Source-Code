@@ -1,0 +1,131 @@
+{
+	"0": {
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "Welcome to the Podunk Hotel.",
+		"goto" : "1"
+	},
+	"1": {
+		"cash": true,
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "We offer a stay for $50.",
+		"goto" : "2"
+	},
+	"2": {
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "Will you be staying with us for the night?",
+		"options": {
+			"Yes": "3",
+			"No": "12",
+			"cancel": "12"
+		}
+	},
+	"3": {
+		"cash": false,
+		"name": "Simon",
+		"if": {
+			"hascash": 50,
+			"goto": "5"
+		},
+		"goto": "13"
+	},
+	"5": {
+		"givecash": -50,
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "Have a nice stay.",
+		"goto": "6"
+	},
+	"6": {
+		"cash": false,
+		"objectfunction": {
+			"MusicArea": "stop_music"
+		},
+		"actors":{
+			"player": "player"
+		},
+		"showbox": false,
+		"fadein": {
+			"anim": "Circle Focus",
+			"speed": 0.3
+		},
+		"wait": 3,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "11"
+	},
+	"7": {
+		"fadefocus": "player",
+		"fadespin": true,
+		"fadesize":{
+			"size": 0.1,
+			"speed": 0.2
+		},
+		"teleportactors":{
+			"player": {"x": -136, "y": -632}
+		},
+		"text": "During the night, Lloyd fixed the broken item.",
+		"goto": "8"
+	},
+	"8": {
+		
+		"text": "Broken Item turned into Fixed Item.",
+		"goto": "9"
+	},
+	"9": {
+		"returncam": 0.1,
+		"showbox": false,
+		"fadeout": {
+			"anim": "Circle",
+			"speed": 0.1
+		},
+		"goto": "10"
+	},
+	"10": {
+		"fadesize":{
+			"size": 0
+		},
+		"wait": 3,
+		"autoadvance": true,
+		"caninput": false,
+		"goto": "11"
+	},
+	"11":{
+		"objectfunction": {
+			"MusicArea2": "play_music"
+		},
+		"heal": "All",
+		"restorepp": "All",
+		"teleportactors": {
+			"player": {"x": -136, "y": -632}
+		},
+		"teleportparty": {"x": 520, "y": 400},
+		"actorsdir": {
+			"player": {"x": 0, "y": 1}
+		},
+		"returncam": 0.01,
+		"fadefocus": "player",
+		"fadeout":{
+			"anim": "Circle",
+			"type": 1
+		},
+		"flag": "good_morning",
+		"wait": 1,
+		"autoadvance": true,
+		"caninput": false
+	},
+	"12": {
+		"cash": false,
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "Goodbye!"
+	},
+	"13": {
+		"cash": false,
+		"name": "Simon",
+		"sound": "Adult",
+		"text": "Oh, well it looks like you don't have enough money."
+	}
+}

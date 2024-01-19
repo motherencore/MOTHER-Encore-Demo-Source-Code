@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Door_Short.mp3-de0f5692b7da4b133f95881559c80e9f.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Door_Short.mp3"
+dest_files=[ "res://.import/Door_Short.mp3-de0f5692b7da4b133f95881559c80e9f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

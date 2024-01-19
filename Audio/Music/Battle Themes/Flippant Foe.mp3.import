@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Flippant Foe.mp3-f67f7d6b9c6a2b711f6ff1f2a0b7926a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Flippant Foe.mp3"
+dest_files=[ "res://.import/Flippant Foe.mp3-f67f7d6b9c6a2b711f6ff1f2a0b7926a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

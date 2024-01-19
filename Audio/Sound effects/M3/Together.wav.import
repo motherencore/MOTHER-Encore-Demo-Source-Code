@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Together.wav-723055f8321e23ade7d3ff8e5e4ab681.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Together.wav"
+dest_files=[ "res://.import/Together.wav-723055f8321e23ade7d3ff8e5e4ab681.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
