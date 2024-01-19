@@ -1,4 +1,5 @@
-The code, and *only* the code is licensed under the MIT license. You CANNOT use any of the assets or music without written permission.
+The code, and only the code is licensed under the MIT license. You are only allowed to use the assets in this repository under the condition that the purpose you're using them is related to the game. This can be forks, modifications, and translations. 
+This DOES NOT include projects unrelated to the game, such as projects that would be considered unrelated intellectual properties (such as a new game).
 
 To open the project, you will need version 3.4.5 of Godot, which you can download here: https://godotengine.org/download/archive/3.4.5-stable/
 
