@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.en.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.it.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.de.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.en.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.it.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.de.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

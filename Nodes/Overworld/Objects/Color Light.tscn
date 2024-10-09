@@ -1,0 +1,179 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Graphics/Objects/Color Light Front.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=43]
+script/source = "extends Sprite
+
+export var direction = 0
+
+onready var animationPlayer = $AnimationPlayer
+onready var animationState = $AnimationTree.get(\"parameters/playback\")
+
+
+func _ready():
+	match direction:
+		0:
+			$main.texture = load(\"res://Graphics/Objects/Color Light Front.png\")
+		1:
+			$main.texture = load(\"res://Graphics/Objects/Color Light Left.png\")
+		2:
+			$main.texture = load(\"res://Graphics/Objects/Color Light Right.png\")
+	$AnimationTree.active = true
+
+func _process(_delta):
+	if \"block\" in global.currentScene:
+		if global.currentScene.block:
+			animationState.travel(\"Stay Blue\")
+		else:
+			animationState.travel(\"Stay Red\")
+"
+
+[sub_resource type="Animation" id=26]
+resource_name = "Blue"
+length = 0.25
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 3 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "Red"
+length = 0.25
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Stay Blue"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Stay Red"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "Blue"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "Red"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "Stay Blue"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Stay Red"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/Blue/node = SubResource( 30 )
+states/Blue/position = Vector2( 371.84, 67.7572 )
+states/Red/node = SubResource( 31 )
+states/Red/position = Vector2( 569.963, 67.5743 )
+"states/Stay Blue/node" = SubResource( 32 )
+"states/Stay Blue/position" = Vector2( 372.389, -36.7901 )
+"states/Stay Red/node" = SubResource( 33 )
+"states/Stay Red/position" = Vector2( 571, -36.519 )
+transitions = [ "Blue", "Red", SubResource( 34 ), "Red", "Blue", SubResource( 35 ), "Blue", "Stay Blue", SubResource( 36 ), "Red", "Stay Red", SubResource( 37 ), "Stay Red", "Blue", SubResource( 38 ), "Stay Blue", "Red", SubResource( 39 ) ]
+start_node = "Blue"
+graph_offset = Vector2( 0, -65.625 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
+
+[node name="Color Light" type="Sprite"]
+script = SubResource( 43 )
+
+[node name="main" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Blue = SubResource( 26 )
+anims/RESET = SubResource( 25 )
+anims/Red = SubResource( 24 )
+"anims/Stay Blue" = SubResource( 28 )
+"anims/Stay Red" = SubResource( 29 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 42 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 41 )

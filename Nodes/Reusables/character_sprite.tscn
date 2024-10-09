@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Main/character_sprite.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Ui/emotes.tscn" type="PackedScene" id=3]
+
+[node name="CharacterSprite" type="Sprite"]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -15 )
+hframes = 5
+vframes = 4
+frame = 1
+script = ExtResource( 1 )
+sprite = "res://Graphics/Character Sprites/Lloyd/main.png"
+
+[node name="emotes" parent="." instance=ExtResource( 3 )]
+objectPath = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="sprite_changed" from="." to="emotes" method="set_bubble_offset"]

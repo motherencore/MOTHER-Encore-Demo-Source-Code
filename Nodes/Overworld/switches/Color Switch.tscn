@@ -1,0 +1,224 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Graphics/Objects/Switch Red Blue.png" type="Texture" id=1]
+[ext_resource path="res://Audio/Sound effects/Colour Switch.mp3" type="AudioStream" id=3]
+
+[sub_resource type="GDScript" id=43]
+script/source = "extends Sprite
+
+onready var animationPlayer = $AnimationPlayer
+onready var animationState = $AnimationTree.get(\"parameters/playback\")
+
+
+func _ready():
+	$AnimationTree.active = true
+	$Area2D/CollisionShape2D2.disabled = true
+	$Timer.start()
+
+func _process(_delta):
+	if \"block\" in global.currentScene:
+		if global.currentScene.block:
+			animationState.travel(\"Stay Blue\")
+		else:
+			animationState.travel(\"Stay Red\")
+
+
+func _on_Timer_timeout():
+	$Area2D/CollisionShape2D2.disabled = false
+
+func _on_Area2D_area_entered(area):
+	if $Timer.time_left == 0:
+		if \"block\" in global.currentScene:
+			if global.currentScene.block == true:
+				global.currentScene.block = false
+			else:
+				global.currentScene.block = true
+		$Timer.start()
+		$AudioStreamPlayer.playing = true
+	if area.get_collision_layer_bit(2) == true:
+		area.get_parent().create_spark(\"Explosion\")
+		area.get_parent().disappear()
+"
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 8, 5.5 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "Blue"
+length = 0.25
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 3 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "Red"
+length = 0.25
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Stay Blue"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Stay Red"
+length = 0.0833333
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "Blue"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "Red"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "Stay Blue"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Stay Red"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachine" id=42]
+states/Blue/node = SubResource( 30 )
+states/Blue/position = Vector2( 371.84, 67.7572 )
+states/Red/node = SubResource( 31 )
+states/Red/position = Vector2( 569.963, 67.5743 )
+"states/Stay Blue/node" = SubResource( 32 )
+"states/Stay Blue/position" = Vector2( 372.389, -36.7901 )
+"states/Stay Red/node" = SubResource( 33 )
+"states/Stay Red/position" = Vector2( 571, -36.519 )
+transitions = [ "Blue", "Red", SubResource( 34 ), "Red", "Blue", SubResource( 35 ), "Blue", "Stay Blue", SubResource( 36 ), "Red", "Stay Red", SubResource( 37 ), "Stay Red", "Blue", SubResource( 38 ), "Stay Blue", "Red", SubResource( 39 ) ]
+start_node = "Blue"
+graph_offset = Vector2( 0, -65.625 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=41]
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 8, 8.02734 )
+
+[node name="Color Switch" type="Sprite"]
+script = SubResource( 43 )
+
+[node name="main" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 3
+vframes = 2
+
+[node name="collision" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 1 )
+collision_layer = 513
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+position = Vector2( 0, 1.5 )
+shape = SubResource( 23 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Blue = SubResource( 26 )
+anims/RESET = SubResource( 25 )
+anims/Red = SubResource( 24 )
+"anims/Stay Blue" = SubResource( 28 )
+"anims/Stay Red" = SubResource( 29 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 42 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 41 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 126
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 0.054687 )
+shape = SubResource( 27 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

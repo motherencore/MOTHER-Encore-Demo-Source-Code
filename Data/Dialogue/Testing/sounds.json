@@ -1,0 +1,49 @@
+{
+    "0": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_SOUNDS_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Adult",
+        "text": "DIALOGUE_TESTING_SOUNDS_1",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Kid",
+        "text": "DIALOGUE_TESTING_SOUNDS_2",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Robot",
+        "text": "DIALOGUE_TESTING_SOUNDS_3",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Saturn",
+        "text": "DIALOGUE_TESTING_SOUNDS_4",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben",
+        "type": "normal",
+        "font": "EBZ",
+        "sound": "Sexy",
+        "text": "DIALOGUE_TESTING_SOUNDS_5"
+    }
+}

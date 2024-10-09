@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/A_Ghastly_Site.mp3-6a134de19e70cf3ad9e13b5d2f42512d.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/A_Ghastly_Site.mp3"
+dest_files=[ "res://.import/A_Ghastly_Site.mp3-6a134de19e70cf3ad9e13b5d2f42512d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=16.694

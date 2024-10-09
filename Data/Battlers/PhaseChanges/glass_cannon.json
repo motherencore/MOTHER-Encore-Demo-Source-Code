@@ -1,0 +1,7 @@
+{
+    "offense": 999,
+    "defense": 1,
+    "iq": 999,
+    "skills": [
+        { "skill": "pkBeamO", "weight": 21 }]
+}

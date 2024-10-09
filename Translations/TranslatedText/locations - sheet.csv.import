@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/locations - sheet.en.translation", "res://Translations/TranslatedText/locations - sheet.fr.translation", "res://Translations/TranslatedText/locations - sheet.it.translation", "res://Translations/TranslatedText/locations - sheet.ja.translation", "res://Translations/TranslatedText/locations - sheet.ko.translation", "res://Translations/TranslatedText/locations - sheet.es.translation", "res://Translations/TranslatedText/locations - sheet.es_ES.translation", "res://Translations/TranslatedText/locations - sheet.pt_BR.translation", "res://Translations/TranslatedText/locations - sheet.pl.translation", "res://Translations/TranslatedText/locations - sheet.de.translation", "res://Translations/TranslatedText/locations - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/locations - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/locations - sheet.en.translation", "res://Translations/TranslatedText/locations - sheet.fr.translation", "res://Translations/TranslatedText/locations - sheet.it.translation", "res://Translations/TranslatedText/locations - sheet.ja.translation", "res://Translations/TranslatedText/locations - sheet.ko.translation", "res://Translations/TranslatedText/locations - sheet.es.translation", "res://Translations/TranslatedText/locations - sheet.es_ES.translation", "res://Translations/TranslatedText/locations - sheet.pt_BR.translation", "res://Translations/TranslatedText/locations - sheet.pl.translation", "res://Translations/TranslatedText/locations - sheet.de.translation", "res://Translations/TranslatedText/locations - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,161 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Nodes/Reusables/interact_dialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Graphics/Rooms/changed map encore 1.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Rooms/changed map encore 2.png" type="Texture" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="changed" type="Sprite" parent="."]
+position = Vector2( 40, 24 )
+texture = ExtResource( 3 )
+
+[node name="Objects" type="TileMap" parent="."]
+position = Vector2( 0, -8 )
+format = 1
+
+[node name="changed2" type="Sprite" parent="."]
+position = Vector2( 40, 24 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 4 )
+
+[node name="Living_Podunk2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 72, 120 )
+scale = Vector2( 6, 1 )
+dir = Vector2( 0, 1 )
+
+[node name="Position2D" parent="Living_Podunk2" index="1"]
+position = Vector2( -12, -120 )
+
+[node name="Collisions" type="StaticBody2D" parent="Living_Podunk2"]
+visible = false
+position = Vector2( -12, -128 )
+scale = Vector2( 0.166667, 1 )
+collision_mask = 0
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Living_Podunk2/Collisions"]
+position = Vector2( -896, -408 )
+polygon = PoolVector2Array( 848, 472, 952, 472, 952, 480, 968, 480, 968, 544, 832, 544, 832, 464, 832, 336, 1064, 336, 1064, 544, 1016, 544, 1016, 472, 1024, 472, 1016, 400, 920, 400, 920, 408, 912, 416, 912, 408, 904, 400, 888, 400, 880, 408, 880, 416, 872, 408, 872, 400, 856, 400 )
+
+[node name="interact_dialog" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 16 )
+scale = Vector2( 3, 3 )
+dialog = "shitpost dialogue/capsule"
+player_turn = {
+"x": true,
+"y": true
+}
+button_offset = Vector2( 10000, 0 )
+
+[node name="interact_dialog2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48, 56 )
+scale = Vector2( 2, 4 )
+dialog = "shitpost dialogue/paper"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -8 )
+
+[node name="interact_dialog8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 16, 56 )
+scale = Vector2( 3, 4 )
+dialog = "shitpost dialogue/substances"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -20 )
+
+[node name="interact_dialog3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -32, 56 )
+scale = Vector2( 3, 4 )
+dialog = "shitpost dialogue/paperclip"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -14 )
+
+[node name="interact_dialog4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -32, -24 )
+scale = Vector2( 3, 4 )
+dialog = "shitpost dialogue/vent"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -8 )
+
+[node name="interact_dialog5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48, -24 )
+scale = Vector2( 2, 4 )
+dialog = "shitpost dialogue/goo"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -8 )
+
+[node name="interact_dialog6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, -24 )
+scale = Vector2( 2, 4 )
+dialog = "shitpost dialogue/button"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -22 )
+
+[node name="interact_dialog7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, -24 )
+scale = Vector2( 2, 4 )
+dialog = "shitpost dialogue/machine"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -28 )
+
+[node name="interact_dialog9" parent="." instance=ExtResource( 1 )]
+position = Vector2( 88, -24 )
+scale = Vector2( 4, 4 )
+dialog = "shitpost dialogue/screen"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 8, -48 )
+
+[node name="interact_dialog10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 112, -24 )
+scale = Vector2( 2, 4 )
+dialog = "shitpost dialogue/pipes"
+player_turn = {
+"x": false,
+"y": true
+}
+button_offset = Vector2( 0, -8 )
+
+[node name="interact_dialog11" parent="." instance=ExtResource( 1 )]
+position = Vector2( 80, 24 )
+scale = Vector2( 4, 4 )
+dialog = "shitpost dialogue/floorvent"
+player_turn = {
+"x": true,
+"y": true
+}
+button_offset = Vector2( 0, -8 )
+
+[node name="interact_dialog12" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 80 )
+scale = Vector2( 4, 6 )
+dialog = "shitpost dialogue/Boxes"
+player_turn = {
+"x": true,
+"y": true
+}
+button_offset = Vector2( 0, -20 )
+
+[editable path="Living_Podunk2"]

@@ -1,0 +1,17 @@
+EBMain:
+* Latin extended part from EarthBound / MOTHER 3, edited (EBMain.ttf)
+* Japanese part from MOTHER 3 (EBMain-jaM3.ttf)
+* Alternative Japanese part from MOTHER 2 (EBMain-jaM2.ttf)
+* Korean part from DS-inspired Galmuri9 font (EBMain-ko.ttf), OFL license
+* 9px full-width Latin for Asian languages from MOTHER 3 (EBMain-fw9.ttf)
+* 7px full-width Latin for Asian languages from MOTHER 2 (EBMain-fw7.ttf)
+
+EarthboundZero:
+* Latin extended part from EarthBound Beginnings, edited (EarthboundZero.ttf)
+* Korean part from DS-inspired Galmuri9 font (EarthboundZero-ko.ttf), OFL license
+* Japanese part + full-width digits from MOTHER (EarthboundZero-ja.ttf)
+
+BottleRocket:
+* Latin extended part + full-width from MOTHER 3 (BottleRocket.ttf)
+* Japanese part from Misaki font (BottleRocket-ja.ttf), Free software including commercial use
+* Korean part from  DS-inspired Galmuri7 font (BottleRocket-ko.ttf), OFL license

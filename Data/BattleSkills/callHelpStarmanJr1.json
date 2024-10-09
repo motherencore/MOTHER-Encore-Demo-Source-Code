@@ -1,0 +1,29 @@
+{
+    "name": "CALLHELPSTARMANJR",
+    "description": "CALLHELPSTARMANJR_DESC",
+    "dialog": "CALLHELPSTARMANJR_DIALOG",
+    "skillType": "",
+    "useCases": 1,
+    "damageType": 2,
+    "targetType": 0,
+    "damage": 0,
+    "variance": 0,
+    "priority": 0,
+    "statusEffects": [],
+    "statusHeals": [],
+    "allies": [
+        {
+            "ally": "rat",
+            "weight": 1
+        }
+    ],
+    "critChance": 0,
+    "failChance": 0,
+    "ppCost": 0,
+    "hpCost": 0,
+    "hitEffect": "",
+    "screenEffect": "",
+    "userAnim": "",
+    "useSound": "siren",
+    "hitSound": ""
+}

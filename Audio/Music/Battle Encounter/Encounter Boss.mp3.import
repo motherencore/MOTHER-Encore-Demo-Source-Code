@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Encounter Boss.mp3-f47ec18284d7fe639e73fe18e355a0c0.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Encounter/Encounter Boss.mp3"
+dest_files=[ "res://.import/Encounter Boss.mp3-f47ec18284d7fe639e73fe18e355a0c0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

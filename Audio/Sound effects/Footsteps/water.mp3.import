@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/water.mp3-5d65b98c0022bdfc0ef02794dd77ff8a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/water.mp3"
+dest_files=[ "res://.import/water.mp3-5d65b98c0022bdfc0ef02794dd77ff8a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

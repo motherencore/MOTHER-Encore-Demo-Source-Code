@@ -1,0 +1,12 @@
+{
+	"name": "FIELD_LASER",
+	"description": "FIELD_LASER_DESC",
+	"flag": "laser",
+    "usable": {
+        "ninten": false,
+        "lloyd": true,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    }
+}

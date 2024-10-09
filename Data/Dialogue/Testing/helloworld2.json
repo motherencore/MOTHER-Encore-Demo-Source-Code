@@ -1,0 +1,36 @@
+{
+    "0": {
+        "name": "DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_HELLOWORLD2_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben",
+        "sound": "Shy",
+        "item": "Bread",
+        "text": "DIALOGUE_TESTING_HELLOWORLD2_1",
+        "givecash": 30,
+        "cash": true,
+        "inv_full": "2",
+        "goto": "3"
+    },
+    "2": {
+        "name": "DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_HELLOWORLD2_2",
+        "goto": "4"
+    },
+    "3": {
+        "text": "DIALOGUE_TESTING_HELLOWORLD2_3",
+        "soundeffect": "Item Received.mp3",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_HELLOWORLD2_4",
+        "flag": "npc_dialog_2",
+        "cash": false
+    }
+}

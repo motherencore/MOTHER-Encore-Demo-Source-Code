@@ -1,0 +1,2172 @@
+000: System Error![BREAK][END]
+001: @Brother! I'm so scared![BREAK][PAUSE]My lamp suddenly started[BREAK]going crazy![BREAK][END]
+002: @Brother! It's like our[BREAK]house is about to fall[BREAK]apart![BREAK][END]
+003: @Waah![BREAK][END]
+004: @Here's some juice, big[BREAK]brother![BREAK][PAUSE]You must be pretty thirsty.[BREAK][END]
+005: @Eek![BREAK]My doll is going crazy![BREAK][END]
+006: @Whew, that was scary.[BREAK][PAUSE]@Oh! I think I see something[BREAK]inside the doll![BREAK][END]
+007: 
+008: @I'm Mimmie.[BREAK]Don't mix me up with[BREAK]Minnie![BREAK][END]
+009: @Are you okay, [03 10]?[BREAK][PAUSE]@What on earth is happening[BREAK]to our home?[BREAK][PAUSE]I'm so scared...[BREAK][PAUSE]@If only your father were[BREAK]here now...[BREAK][END]
+00A: @You're much braver than I[BREAK]ever imagined.[BREAK][PAUSE]@...But I can't send you on[BREAK]a journey so famished.[BREAK][END]
+00B: @Oh, my! You're hurt![BREAK][END]
+00C: @Let's see... To get to the[BREAK]next level, you need...[BREAK][END]
+00D: @Come back home whenever you[BREAK]want some more [03 15].[BREAK][END]
+00E: @Hmm, I see. Sounds like it[BREAK]must be a poltergeist of[BREAK]some sort.[BREAK][PAUSE]@I'm not sure what to do[BREAK]about it, either.[BREAK][PAUSE]@But your great-grandfather[BREAK]did study PSI at one point.[BREAK][PAUSE]@Perhaps there's something[BREAK]in the basement that could[BREAK]help make sense of things.[BREAK][PAUSE]@I know I put the basement[BREAK]key somewhere...[BREAK][PAUSE]but I can't remember where.[BREAK][PAUSE]@Anyway, you're our only[BREAK]hope. Now is the time for[BREAK]an adventure.[BREAK][PAUSE]Go forth, [03 10]![BREAK]Protect us all![BREAK][END]
+00F: 
+010: 
+011: 
+012: 
+013: @(Click! Beep-beep-beep...)[BREAK][END]
+014: @[03 10]? It's your dad.[BREAK][END]
+015: @I've deposited $[03 18][BREAK]into your bank account.[BREAK][PAUSE]@Taking away what you've[BREAK]spent, you should now have[BREAK]$[03 19] in the bank.[BREAK][PAUSE]@Use it wisely.[BREAK][END]
+016: @I realize this isn't any of[BREAK]my business, but why don't[BREAK]you take a little break?[BREAK][END]
+017: @I see. Then I'll make a[BREAK]record of your progress.[BREAK][END]
+018: @I see. Well, I guess the[BREAK]Earth IS in danger and all.[BREAK][END]
+019: 
+01A: 
+01B: @Okay.[BREAK][PAUSE]@Your dear old dad was also[BREAK]thinking about hitting the[BREAK]hay for the night.[BREAK][PAUSE]@I've created a record of[BREAK]your adventure to this[BREAK]point.[BREAK][PAUSE]@Good night, sleep tight.[BREAK][END]
+01C: @We're a great team, aren't[BREAK]we?[BREAK][PAUSE]@Well, you should turn the[BREAK]power OFF now.[BREAK][PAUSE]@All right?[BREAK][END]
+01D: @[03 16], you like to work[BREAK]hard, just like your mom.[BREAK][PAUSE]@But, I don't think it's[BREAK]good to work too hard.[BREAK][END]
+01E: @Anyway, what do you need[BREAK]from me?[BREAK][END]
+01F: 
+020: 
+021: @Good luck![BREAK][END]
+022: 
+023: @Hello.[BREAK][PAUSE]Pippi and I are feeling[BREAK]just dandy now![BREAK][END]
+024: @You didn't come from the[BREAK]cemetery to the south, did[BREAK]you?[BREAK][PAUSE]Please tell me you didn't![BREAK][END]
+025: @You're really amazing.[BREAK][END]
+026: @Please tell me you're not a[BREAK]zombie![BREAK][PAUSE]...Are you?[BREAK][END]
+027: @Oh, yeah? W-w-well...[BREAK][PAUSE]You're a big stupid zombie[BREAK]head! Waaaah! Eek![BREAK][END]
+028: @Are you really a human?[BREAK][END]
+029: @I'm amazed you made it this[BREAK]far.[BREAK][END]
+02A: @I knew it...[BREAK][END]
+02B: @I'm so scared I'm about to[BREAK]wet my pants...[BREAK][END]
+02C: @Boy, that was scary...[BREAK][END]
+02D: @ZOMBIE![END]
+02E: @Heheheh...![BREAK]You get to be a zombie too![BREAK][END]
+02F: @There must be someone[BREAK]controlling the dead...[BREAK][END]
+030: @Not too shabby, youngster![BREAK][END]
+031: @Are the zombies going to[BREAK]take over our town too?[BREAK][END]
+032: @Oh, that's a baby canary.[BREAK][PAUSE]Did you find it in Canary[BREAK]Village?[BREAK][END]
+033: @Hmm. You don't say.[BREAK][END]
+034: @The birds of Canary Village[BREAK]do sing such lovely songs.[BREAK][END]
+035: @I really admire the man[BREAK]living in Canary Village.[BREAK][END]
+036: @The town mayor is looking[BREAK]for someone brave to help[BREAK]him.[BREAK][END]
+037: @I heard a little girl got[BREAK]lost in the cemetery.[BREAK][PAUSE]I wonder if she's been[BREAK]rescued yet...[BREAK][END]
+038: @Say... You're not honestly[BREAK]thinking of going to the[BREAK]cemetery, are you?[BREAK][END]
+039: @I thought you were a[BREAK]sensible boy.[BREAK][END]
+03A: @Animals have suddenly[BREAK]turned violent,[BREAK][PAUSE]and the dead have come back[BREAK]as zombies to attack us...[BREAK][PAUSE]@What are we supposed to do?[BREAK]I'm so scared I can hardly[BREAK]breathe... (gasp gasp)[BREAK][END]
+03B: @You're so awesome![BREAK][END]
+03C: 
+03D: @Did a poltergeist attack[BREAK]your house?[BREAK][PAUSE]It tore mine apart.[BREAK][END]
+03E: @I hear they locked the zoo[BREAK]up to keep any more animals[BREAK]from escaping.[BREAK][PAUSE]@They've all gone berserk,[BREAK]you see...[BREAK][END]
+03F: @Bread is great for when[BREAK]you're hungry,[BREAK][PAUSE]but I bet you could also[BREAK]use its crumbs to mark your[BREAK]trail.[BREAK][PAUSE]@...I guess it's really none[BREAK]of my business, though.[BREAK][END]
+040: @I don't know, this task[BREAK]might be too much for you[BREAK]to handle,[BREAK][PAUSE]but I still have high hopes[BREAK]for you anyway.[BREAK][END]
+041: @Well, you see...[BREAK][PAUSE]@A child has strayed into[BREAK]the cemetery.[BREAK][PAUSE]@And, as luck would have it,[BREAK]I'm up for re-election[BREAK]soon.[BREAK][PAUSE]@So... please help me![BREAK][END]
+042: @Oh! You'll do it?![BREAK][PAUSE]@You'll go and rescue her?![BREAK][END]
+043: @Oh, is this Pippi, the girl[BREAK]who got lost?[BREAK][PAUSE]@Stunning work, lad![BREAK][PAUSE]@I knew from the start that[BREAK]you showed promise![BREAK][PAUSE](clap clap applause)[BREAK][PAUSE]@You're so lucky, Pippi.[BREAK]Adorable, too.[BREAK][PAUSE]@Now remember to tell your[BREAK]mother that the mayor[BREAK]rescued you.[BREAK][PAUSE]@And for you, [03 16]...[BREAK]A $[03 1E] reward. Here.[BREAK][END]
+044: 
+045: 
+046: @Say, since you're here and[BREAK]everything, won't you help[BREAK]with the zoo problem too?[BREAK][END]
+047: @Oh, you'll go check it out?[BREAK]That's wonderful![BREAK][PAUSE][03 16], you certainly do[BREAK]love to play games![BREAK][PAUSE]@Have my assistant Abbot[BREAK]give you a key to the zoo.[BREAK][END]
+048: @Here you go. This is the[BREAK]key to the zoo.[BREAK][END]
+049: @Come back alive and you'll[BREAK]be a hero![BREAK][PAUSE]@I'd go with you, but I'm,[BREAK]umm, not feeling well...[BREAK][END]
+04A: @Oh, it's [03 16], the hero![BREAK][PAUSE]@You have tiger droppings[BREAK]all over your clothes, you[BREAK]know.[BREAK][PAUSE]@Oh, I'm just kidding![BREAK][PAUSE]@Sorry, I don't have[BREAK]anything to give you this[BREAK]time...[BREAK][PAUSE]Wahahaha![BREAK][END]
+04B: @Everyone's talking about a[BREAK]girl with special powers.[BREAK]Have you heard about her?[BREAK][PAUSE]@I bet she'd be a great help[BREAK]to you on your journey.[BREAK][END]
+04C: @I have plenty of extra zoo[BREAK]keys.[BREAK][PAUSE]@Here, have another.[BREAK][END]
+04D: @As you can see, all our[BREAK]animals have escaped.[BREAK][END]
+04E: @All we have left is this[BREAK]canary chick.[BREAK][PAUSE]Interested in buying it?[BREAK][END]
+04F: @Then how about for $[03 1E]?[BREAK][END]
+050: @Yeah, I don't blame you.[BREAK][PAUSE]It doesn't even know any[BREAK]songs.[BREAK][END]
+051: @Thanks! Take extra good[BREAK]care of it![BREAK][END]
+052: @How about for free, then?[BREAK]C'mon, take it.[BREAK][END]
+053: @Say, how's that canary[BREAK]doing?[BREAK][END]
+054: @I'm almost certain that[BREAK]something is controlling[BREAK]all the animals...[BREAK][END]
+055: @Animals are so cute. Don't[BREAK]you agree?[BREAK][END]
+056: @Teehee.[BREAK][END]
+057: @Stupid head![BREAK][END]
+058: @Welcome! Do you need to[BREAK]return any items?[BREAK][END]
+059: @Something is speaking into[BREAK][03 16]'s mind.[BREAK][END]
+05A: @Whew, what a relief.[BREAK][END]
+05B: @Please visit us again for[BREAK]all your shopping needs![BREAK](giggle)[BREAK][END]
+05C: @It's nice that there's a[BREAK]machine on the first floor[BREAK]of the department store[BREAK][PAUSE]that lets you withdraw cash[BREAK]from your bank account,[BREAK][PAUSE]but you need a PTA card or[BREAK]something to use it.[BREAK][PAUSE]That's not very convenient,[BREAK]if you ask me.[BREAK][END]
+05D: 
+05E: @It's such nice weather out.[BREAK][PAUSE]But what does it matter?[END]
+05F: @Oh, that canary is Laura[BREAK]the songbird's baby![BREAK][PAUSE]@Go take it to her![BREAK][END]
+060: @You seem to have forgotten[BREAK]something important about[BREAK]life.[BREAK][PAUSE]How sad.[BREAK][END]
+061: @Now where did I last see[BREAK]Laura...?[BREAK][END]
+062: @It sounds like Laura the[BREAK]songbird has remembered her[BREAK]song.[BREAK][PAUSE]@Have you learned her[BREAK]melody, too?[BREAK][END]
+063: @Well, that's no good.[BREAK][END]
+064: @In song there is strength.[BREAK][PAUSE]True words, indeed.[BREAK][END]
+065: @I'm Pippi. I'm lost.[BREAK]You're really brave, huh?[BREAK][END]
+066: @You're such a goofball![BREAK]Hahaha![BREAK][END]
+067: @You're really brave.[BREAK]I hope we meet again[BREAK]sometime, don't you?[BREAK][END]
+068: @Oh, I'm so happy![BREAK][PAUSE]@Here, this badge can be a[BREAK]symbol of our bond.[BREAK][PAUSE]Take it with you.[BREAK][END]
+069: @I guess you already have a[BREAK]special someone, huh...[BREAK][END]
+06A: @Well, I guess this is bye[BREAK]for now.[BREAK][PAUSE]@Come by my house later to[BREAK]pick up an item of mine.[BREAK][PAUSE]@By the way... do you think[BREAK]my socks are too short?[BREAK][END]
+06B: 
+06C: @Oh, you didn't have to[BREAK]answer.[BREAK][PAUSE]You're such a cutie...[BREAK][END]
+06D: @Kyakyakya![BREAK](You're a big doo-doo[BREAK]head!)[BREAK][END]
+06E: @[03 16] heard a voice...[BREAK][PAUSE]@"Where is the god's tail?"[BREAK][END]
+06F: @Whoa, those are some weird[BREAK]clothes you have on there.[BREAK][PAUSE]@I bet you'll attract[BREAK]monsters dressed like that![BREAK][END]
+070: 
+071: @Happiness won't just walk[BREAK]into your life on its own.[BREAK][PAUSE]@But neither will[BREAK]unhappiness.[BREAK][PAUSE]@Wouldn't you agree?[BREAK][END]
+072: @So if you don't want[BREAK]trouble in your life...[BREAK][PAUSE]then you'd best stay still[BREAK]and never move a muscle.[BREAK][END]
+073: @Really? Unhappiness CAN[BREAK]walk?[BREAK][PAUSE]I had no idea.[BREAK][END]
+074: @So, you admit I have good[BREAK]taste?[BREAK][PAUSE]@Then I take it you want a[BREAK]cool nickname, too?[BREAK][END]
+075: @Okay, I got it.[BREAK][PAUSE]@From now on, your name will[BREAK]be Stupid Face [03 16].[BREAK][PAUSE]@It just oozes class.[BREAK][END]
+076: @Oh, that's too bad.[BREAK][END]
+077: @Heya, Stupid Face [03 16]![BREAK][END]
+078: @Have you met the guy who[BREAK]philosophizes about[BREAK]happiness?[BREAK][END]
+079: @He's a master nicknamer.[BREAK]He's got a real knack for[BREAK]names.[BREAK][END]
+07A: @People cannot part if they[BREAK]have not yet met.[BREAK][END]
+07B: @Have you met a guy who[BREAK]talks about how you can't[BREAK]part if you haven't met?[BREAK][END]
+07C: @I agree with him, actually.[BREAK][END]
+07D: @You really should meet him.[BREAK]You'll be a better person[BREAK]for it![BREAK][END]
+07E: @I feel completely refreshed[BREAK]after stopping by Queen[BREAK]Mary's fountain![BREAK][END]
+07F: @Gettng to Queen Mary's[BREAK]fountain is really tough.[BREAK][PAUSE]Not only is it far away,[BREAK]but it's hard to find, too.[BREAK][END]
+080: @I'm going to take this[BREAK]broken earring to the[BREAK]fountain to turn it into a[BREAK]magic earring.[BREAK][END]
+081: @I feel so relaxed just[BREAK]listening to the mysterious[BREAK]sound of the fountain.[BREAK][END]
+082: @Oh, are you lost?[BREAK]Just keep going south.[BREAK][PAUSE]@Oops, sorry. I thought you[BREAK]were looking for a[BREAK]restroom.[BREAK][PAUSE]@If you're looking for Queen[BREAK]Mary's fountain, then just[BREAK]go west from the castle.[BREAK][END]
+083: 
+084: @I bent my spoon, and now[BREAK]it's hard to eat with.[BREAK][PAUSE]@Can you bend it back for[BREAK]me?[BREAK][END]
+085: @Please hurry.[BREAK][PAUSE]@([03 10] used the power of[BREAK]PSI to fix the spoon.)[BREAK][PAUSE]@Thanks![BREAK](munch munch chomp chomp)[BREAK][PAUSE]@Do you wanna stay the night[BREAK]here tonight?[BREAK][END]
+086: @Why not?![BREAK][END]
+087: @You're very strange, you[BREAK]know that?[BREAK][PAUSE]But I also think I might[BREAK]like you...[BREAK][END]
+088: @Great![BREAK][END]
+089: @Waaah! You're supposed to[BREAK]accept people's kindness![END]
+08A: @Oh, a traveler! Why don't[BREAK]you eat with us?[BREAK][PAUSE]@Here, can you guess what[BREAK]we're having today?[BREAK][END]
+08B: @Huh? Why can't you tell?[BREAK]You're really suspicious![BREAK][END]
+08C: @That's right, [03 15].[BREAK][PAUSE]@I read your mind and[BREAK]decided to make [03 15].[BREAK][PAUSE]@How does it taste? Do you[BREAK]like it?[BREAK][END]
+08D: 
+08E: 
+08F: @I used to run a musical[BREAK]instrument store, but the[BREAK]ocarina I ordered never [BREAK]arrived.[BREAK][PAUSE]@So I've given up.[BREAK][END]
+090: @Oh. I see.[BREAK][END]
+091: @Thanks![BREAK][PAUSE]@Your bed is ready.[BREAK]Pleasant dreams![BREAK][END]
+092: @Stop by again anytime![BREAK][END]
+093: @You don't fit in with this[BREAK]place, you know that?[BREAK][END]
+094: @I finished the Ocarina of[BREAK]Hope.[BREAK][PAUSE]@It can play the melodies[BREAK]that you know.[BREAK][PAUSE]@Do you want it?[BREAK][END]
+095: 
+096: @Ahahaha. You're a real[BREAK]straightforward guy.[BREAK][PAUSE]@Here you go.[BREAK][END]
+097: @Ahahaha![BREAK]"I want it!" is written all[BREAK]over your face.[BREAK][PAUSE]@Go ahead, take it with you.[BREAK][END]
+098: @Hi, kid! How's it going?[BREAK][END]
+099: @Leave Magicant?[BREAK]That'd be the day![BREAK][PAUSE]@Ahahaha![BREAK][END]
+09A: @Outside?[BREAK][PAUSE]What is this "outside" you[BREAK]speak of?[BREAK][END]
+09B: @I'm so embarrassed I wish I[BREAK]could crawl into a hole.[BREAK][PAUSE]@If only there were holes to[BREAK]crawl into...[BREAK][END]
+09C: @I am the mysterious[BREAK]goods-keeper.[BREAK][PAUSE]@Can I help you?[BREAK][END]
+09D: @I'm great at impressions,[BREAK]you know![BREAK][END]
+09E: @There's a whole bunch of[BREAK]holes east of town.[BREAK][PAUSE]@I'm not sure which hole it[BREAK]is, but you can hear[BREAK]otherworldly sounds coming[BREAK]from one.[BREAK][END]
+09F: 
+0A0: 
+0A1: @If you pull out a Red Weed[BREAK]and put it in the fountain,[BREAK][PAUSE]it'll turn into a Magic[BREAK]Herb... just like magic![BREAK][END]
+0A2: @Could I interest you in a[BREAK]Big Bag?[BREAK][END]
+0A3: @In that case, could I[BREAK]borrow your ATM Card for a[BREAK]short while?[BREAK][END]
+0A4: @It has 30 Magic Herbs[BREAK]inside it, in case you[BREAK]didn't know.[BREAK][END]
+0A5: @Thanks. I promise I'll give[BREAK]it back.[BREAK][PAUSE]@It just seems... really[BREAK]cool.[BREAK][END]
+0A6: @You don't trust others.[BREAK][PAUSE]@That might be for the best.[BREAK]Well, maybe...[BREAK][END]
+0A7: @Oh, right, I need to return[BREAK]your ATM Card.[BREAK][END]
+0A8: @The queen isn't feeling[BREAK]very well right now...[BREAK][END]
+0A9: @You look suspicious.[BREAK][PAUSE]@But I'll let you through if[BREAK]you can solve my little[BREAK]riddle...[BREAK][END]
+0AA: @That's right. The answer is[BREAK]"two alligators".[BREAK][PAUSE]@I haven't thought up the[BREAK]question yet, though.[BREAK][PAUSE]Heheh.[BREAK][END]
+0AB: @Take care![BREAK][END]
+0AC: 
+0AD: @I wish I could hear the[BREAK]queen's song again...[BREAK][END]
+0AE: @Oh, hello![BREAK][PAUSE]@I was just in the middle of[BREAK]pondering philosophical[BREAK]questions.[BREAK][PAUSE]@It's hard for me to focus[BREAK]with all this guitar music,[BREAK]though.[BREAK][PAUSE]@Oh! Whoops![BREAK][PAUSE]I didn't realize I was the[BREAK]one playing the guitar![BREAK]How careless of me![BREAK][PAUSE]@.........[BREAK][PAUSE]@This is a secret between[BREAK]just you and me: come back[BREAK]here when you're stronger.[BREAK][PAUSE]@You should probably make a[BREAK]note of this now so you[BREAK]don't forget later.[BREAK][END]
+0AF: 
+0B0: @You tried to ignore me,[BREAK]didn't you?[BREAK][PAUSE]@I get so lonely, being out[BREAK]here all by myself.[BREAK][PAUSE]@If there's anything I can[BREAK]do, I'll do it.[BREAK][PAUSE]@Here![BREAK][END]
+0B1: @I'm so happy you came![BREAK][PAUSE]@I know just what you want.[BREAK][PAUSE]@Here you go![BREAK][END]
+0B2: @I finally wrote a song![BREAK]Give it a listen, you[BREAK]music-loving adventurer![BREAK][PAUSE]@Oh, baby doll, why do you[BREAK]weep?[BREAK][PAUSE]The saddened canary won't[BREAK]utter a peep.[BREAK][PAUSE]The monkey can sing,[BREAK]the piano - it chimes.[BREAK][PAUSE]Though ghosts will play out[BREAK]on its keyboard sometimes.[BREAK][PAUSE]Each night in the desert,[BREAK]the lone cactus croons.[BREAK][PAUSE]The dragon, when beaten,[BREAK]will carry some tunes.[BREAK][PAUSE]While scaling the mountain,[BREAK]EVE sings along.[BREAK][PAUSE]Will Queen Mary ever hear[BREAK]the XX Stone's last song?[BREAK][PAUSE]Lalala, what a mysterious[BREAK]lullaby.[BREAK][PAUSE]Lullaby, bye-bye, and[BREAK]goodbye.[BREAK][PAUSE]@What do you think? Nice[BREAK]song, huh?[BREAK][PAUSE]@It is, isn't it?[BREAK][END]
+0B3: @Deep in the forest is a[BREAK]guitar player who loves[BREAK]solitude.[BREAK][PAUSE]@He's kind of handsome...[BREAK]and a great poet, too.[END]
+0B4: @I've heard about a man who[BREAK]was forgotten...[BREAK][PAUSE]@But I forget what his story[BREAK]was.[BREAK][END]
+0B5: @Though you may not[BREAK]believe it, I'm a[BREAK]healer.[BREAK][PAUSE]@I can restore your[BREAK]PP or heal friends[BREAK]turned to stone.[BREAK][PAUSE]@So, what can I do[BREAK]for you?[BREAK][END]
+0B6: @...That's what I figured.[BREAK][END]
+0B7: @Don't carry so much cash[BREAK]with you.[BREAK][PAUSE]@Go think things over.[BREAK]See you later.[BREAK][END]
+0B8: @I'm an unsinging monkey.[BREAK][PAUSE]@But monkeys don't normally[BREAK]sing, anyway.[BREAK][PAUSE]@Any questions?[BREAK][END]
+0B9: @I'm sure it's a dumb[BREAK]question, too.[BREAK][END]
+0BA: @Whew, what a relief.[BREAK][PAUSE]@I was worried you were[BREAK]going to ask me something[BREAK]tough.[BREAK][PAUSE]@Say, you look kind of like[BREAK]Queen Mary.[BREAK][PAUSE]@I wonder why that is.[END]
+0BB: @I wanted to tell you this[BREAK]as soon as I saw you...[BREAK][PAUSE]@The train tracks have been[BREAK]fixed, so the train can run[BREAK]through here again.[BREAK][END]
+0BC: @Just once, I'd like to go[BREAK]inside the castle and see[BREAK]what Queen Mary looks like.[BREAK][END]
+0BD: @Queen Mary often has[BREAK]nightmares.[BREAK][PAUSE]@She talks like she's[BREAK]punishing a naughty child[BREAK][PAUSE]and then cries out about[BREAK]being afraid.[BREAK][PAUSE]@Then she starts to sing a[BREAK]song, but only a short bit[BREAK]of it.[BREAK][PAUSE]@The fact she can't remember[BREAK]it seems to bring her pain.[BREAK][PAUSE]@Then she wakes up covered[BREAK]in sweat.[BREAK][PAUSE]@Something really sad[BREAK]must've happened to Queen[BREAK]Mary a long time ago...[BREAK][END]
+0BE: @But it's for girls only.[BREAK][END]
+0BF: @Zzzzz...[BREAK][END]
+0C0: 
+0C1: @You rotten liar![BREAK][END]
+0C2: @We all know you're not from[BREAK]here, but we consider you[BREAK]one of us just the same.[BREAK][PAUSE]@With the Onyx Hook, you can[BREAK]come back here any time.[BREAK][END]
+0C3: @Don't hesitate to come[BREAK]visit us again whenever[BREAK]you're having a hard time.[BREAK][PAUSE]@Everyone here loves you.[BREAK][END]
+0C4: @Welcome, [03 16].[BREAK][PAUSE]@Here in the land of[BREAK]Magicant, everyone is your[BREAK]friend[BREAK][PAUSE]and you can have as much as[BREAK]you like of whatever you[BREAK]want.[BREAK][PAUSE]@Oh? You want to hear my[BREAK]song?[BREAK][PAUSE]@I'm sorry. I don't know[BREAK]why, but I just can't seem[BREAK]to remember it.[BREAK][PAUSE]@I'm sure I'll be able to[BREAK]remember it someday...[BREAK][PAUSE]@If I can just sing it[BREAK]again, something will[BREAK]happen...[BREAK][PAUSE]I just know it.[BREAK][END]
+0C5: 
+0C6: 
+0C7: 
+0C8: 
+0C9: 
+0CA: @......[END]
+0CB: @Let me hear the melodies[BREAK]you've learned...[BREAK][END]
+0CC: @Yes... That's it...[BREAK]That's the song...[BREAK][END]
+0CD: @Oh... Giygas...[BREAK][END]
+0CE: 
+0CF: @I had a dream that Magicant[BREAK]vanished into thin air.[BREAK][PAUSE]@My heart's still pounding,[BREAK]even now.[BREAK][END]
+0D0: 
+0D1: @I'm a cat that swims in the[BREAK]ground.[BREAK][PAUSE]@Can you guess what I'm[BREAK]holding in my paw?[BREAK][END]
+0D2: @Did you see what I'm[BREAK]holding in my paw?[BREAK][PAUSE]@That's right. A ribbon.[BREAK][PAUSE]@This ribbon is overflowing[BREAK]with a special power.[BREAK][END]
+0D3: @I'll only give this Magic[BREAK]Ribbon to a girl.[BREAK][END]
+0D4: @I'm a swimming cat.[BREAK][PAUSE]@Have you heard of a candy[BREAK]that gives courage and[BREAK]strength to weaklings?[BREAK][END]
+0D5: @I see. But you're a strong[BREAK]boy, so I doubt you would[BREAK]need any.[BREAK][END]
+0D6: @That boy with the glasses[BREAK]seems pretty weak. I'll[BREAK]give the candy to him.[BREAK][END]
+0D7: 
+0D8: @Pretty tasty candy, huh?[BREAK][END]
+0D9: @If you need to see the[BREAK]helpful old man, go to[BREAK]Mary's Fountain.[BREAK][PAUSE]@He'll come if he hears a[BREAK]cry from the heart.[BREAK][PAUSE]@Remember, a cry from the[BREAK]heart![BREAK][END]
+0DA: 
+0DB: @(The crowd grows restless.)[BREAK][PAUSE]@We didn't come to see no[BREAK]lousy rocks with hats on[BREAK]'em![BREAK][PAUSE]Boo! Boo![BREAK][END]
+0DC: @Need something?[BREAK][END]
+0DD: @Oh, okay. Goodbye.[BREAK][END]
+0DE: @Do you need money?[BREAK][END]
+0DF: @How is it? Are you finding[BREAK]it helpful?[BREAK][END]
+0E0: @I see.[BREAK][PAUSE]@You seem to have $[03 19][BREAK]in your account.[BREAK][PAUSE]@How much will you withdraw?[BREAK][END]
+0E1: @Hocus-pocus, allakazam![BREAK][PAUSE]@Use it wisely. Goodbye.[BREAK][END]
+0E2: @You can't withdraw that[BREAK]much.[BREAK][PAUSE]@You'll have to try again.[BREAK]Goodbye.[BREAK][END]
+0E3: @I'm a forgotten man.[BREAK]I might as well not exist.[BREAK][PAUSE]@You didn't have to notice[BREAK]me, you know...[BREAK][PAUSE]@Just go ahead and ignore[BREAK]me.[BREAK][END]
+0E4: @I'm a nowhere man.[BREAK][PAUSE]@It's best if you don't give[BREAK]me words of kindness.[BREAK][PAUSE]@I can't live on like this[BREAK]if I start to miss[BREAK]people...[BREAK][END]
+0E5: @My conversations are always[BREAK]a monologue.[BREAK][PAUSE]@I've always been alone,[BREAK]from the moment I was born.[BREAK][END]
+0E6: @Good luck, bad luck...[BREAK][PAUSE]None of it makes a[BREAK]difference to me.[BREAK][PAUSE]@Sometimes just breathing is[BREAK]almost too much for me to[BREAK]handle.[BREAK][END]
+0E7: @Why do you insist on[BREAK]talking to me?[BREAK][PAUSE]@Are you a forgotten man,[BREAK]too?[BREAK][END]
+0E8: @Liar! I know there's a girl[BREAK]waiting for you![BREAK][PAUSE]Just leave me alone and go[BREAK]back to her![BREAK][END]
+0E9: @Yeah. That's what I[BREAK]figured. Yep.[BREAK][PAUSE]@Now just hurry and ignore[BREAK]me already.[BREAK][END]
+0EA: @Good. Thanks.[BREAK][END]
+0EB: @You seem to be holding too[BREAK]much stuff.[BREAK][PAUSE]@Come back for it later.[END]
+0EC: @I heard some really weird[BREAK]stuff is happening over in[BREAK]Mother's Day...?[BREAK][END]
+0ED: @Something about a kidnapped[BREAK]zombie and animals doing[BREAK]something or other...[BREAK][PAUSE]It sounds absolutely nuts.[BREAK][END]
+0EE: Welcome to the town of[BREAK]Thanksgiving!![BREAK][PAUSE][BREAK]Advertisement: Cheap, fast,[BREAK]and handsome![BREAK][PAUSE]Big Ben Casey can heal what[BREAK]ails you![BREAK][PAUSE]Visit now for a[BREAK]super-discount checkup![BREAK][PAUSE]Protect your life... to the[BREAK]death![BREAK][END]
+0EF: 
+0F0: 
+0F1: @First show me some money.[BREAK]Then I'll heal you.[BREAK][PAUSE]@Otherwise I'll have to[BREAK]charge you my own price.[BREAK][PAUSE]@I can heal you for $[03 1E].[BREAK][PAUSE]@This is my special deal[BREAK]just for you. I'm actually[BREAK]losing money doing this.[BREAK][END]
+0F2: 
+0F3: @Thanks for the $[03 1E].[BREAK][PAUSE]@Okay, you're all better[BREAK]now.[BREAK][PAUSE]@Please come back sometime.[BREAK]I'll give you another nice[BREAK]deal.[BREAK][END]
+0F4: @Oh, I see.[BREAK][PAUSE]@In that case, I'll call a[BREAK]mortician and give them[BREAK]advance notice.[BREAK][END]
+0F5: @By mayor's orders, no one's[BREAK]to cross this bridge until[BREAK]martial law is lifted.[BREAK][PAUSE]@I suggest you use the[BREAK]bridge to the east of the[BREAK]zoo instead.[BREAK][END]
+0F6: @Hey, why aren't you in[BREAK]school, kid?[BREAK][PAUSE]@I'm pretty sure today's a[BREAK]school day.[BREAK][END]
+0F7: @I swiped a battery from[BREAK]Duncan's Factory north of[BREAK]here.[BREAK][END]
+0F8: @This factory is Mr.[BREAK]Duncan's private property.[BREAK][PAUSE]@Do you have a pass?[BREAK][END]
+0F9: @Sorry, but this is expired,[BREAK]kid.[BREAK][PAUSE]@You swiped it, didn't you?[BREAK][PAUSE]@You're suspicious...[BREAK][PAUSE]@Look me in the eye![BREAK][END]
+0FA: 
+0FB: @Some really strong monsters[BREAK]beat me up.[BREAK][PAUSE]@If you're headed for the[BREAK]train station, I'd watch[BREAK]out if I were you...[BREAK][END]
+0FC: 
+0FD: @I heard they lifted the[BREAK]order for martial law over[BREAK]in Mother's Day.[BREAK][PAUSE]@Which means we can cross[BREAK]that bridge now...[BREAK][PAUSE]@Get my drift?[BREAK][END]
+0FE: 
+0FF: 
+100: @I was teasing that wimp[BREAK][03 11] just now, but he got[BREAK]away.[BREAK][END]
+101: @Hey, you weakling,[BREAK]stinkling [03 11]![BREAK][END]
+102: @You've been picking on that[BREAK]weakling [03 11], haven't[BREAK]you?[BREAK][END]
+103: @What?! That was just a[BREAK]joke?![BREAK][END]
+104: @I heard that [03 11] ran off[BREAK]with some explosives.[BREAK][PAUSE]@He's in big trouble if a[BREAK]teacher finds him...[BREAK][END]
+105: @[03 11]. Your glasses are[BREAK]slipping.[BREAK][END]
+106: @I'm Suzy. I won the Miss[BREAK]Middle of Nowhere pageant.[BREAK]Do you think I'm pretty?[BREAK][END]
+107: @You're really cute, too.[BREAK][END]
+108: @You're way uglier than me![BREAK][PAUSE]@Stupid Face is what they[BREAK]should call you![BREAK][END]
+109: @The door to the roof is[BREAK]locked.[BREAK][PAUSE]@I was plannin' to ditch[BREAK]class and listen to the[BREAK]radio on the roof, too![BREAK][PAUSE]Weren't you?![BREAK][END]
+10A: @Geez, you don't talk much,[BREAK]do you?[BREAK][END]
+10B: @The gym teacher hit me.[BREAK][PAUSE]@Maybe I should drop out and[BREAK]become a thug...[BREAK][END]
+10C: @Getting lost in your own[BREAK]school...[BREAK][PAUSE]@Can you get any more lame?![BREAK][END]
+10D: @Oh, the door to the roof is[BREAK]locked?[BREAK][END]
+10E: 
+10F: @All she does is get fatter[BREAK]and fatter.[BREAK][PAUSE]@Isn't she a terrible woman?[BREAK][END]
+110: @A kid like you wouldn't[BREAK]understand the sorrows of[BREAK]life...[BREAK][END]
+111: @How dare you talk about my[BREAK]wife like that![BREAK][PAUSE]@Get out![BREAK][END]
+112: @She was pretty when she was[BREAK]young.[BREAK][PAUSE]@Yeah, come to think of it,[BREAK]she has her good points,[BREAK]too.[BREAK][PAUSE]@Say, how about some tea?[BREAK][END]
+113: 
+114: @You're a pretty smart kid.[BREAK][PAUSE]@Oh, that's right, you want[BREAK]to go up to the roof.[BREAK][PAUSE]@All right, then. Follow me.[BREAK][END]
+115: @Cherish your elders or[BREAK]you'll be sorry when YOU[BREAK]grow old![BREAK][END]
+116: @Hold on. What are you doing[BREAK]with something as dangerous[BREAK]as that?[BREAK][PAUSE]@I think I'LL hold on to[BREAK]this for you.[BREAK][END]
+117: @Say, you should stay a[BREAK]while and have some tea.[BREAK][END]
+118: @No running in the halls![BREAK][END]
+119: @Hey! I haven't seen you[BREAK]before, kid![BREAK][PAUSE]@Do you even go to this[BREAK]school?[BREAK][END]
+11A: @Oh, okay. Just don't run in[BREAK]the halls.[BREAK][END]
+11B: @Show me what you have.[BREAK][PAUSE]@You better not be carrying[BREAK]anything dangerous...[BREAK][END]
+11C: 
+11D: @Who's there?![BREAK][PAUSE]@I'm not coming out![BREAK][PAUSE]@You're just gonna pick on[BREAK]me if I do![BREAK][END]
+11E: @You want to be my friend?![BREAK][PAUSE]@Then do you promise not to[BREAK]tell that I took explosives[BREAK]from the science lab?[BREAK][END]
+11F: @I'm coming out now.[BREAK][END]
+120: @I'm [03 11].[BREAK][PAUSE]@I heard they make Bottle[BREAK]Rockets at the Sweet Little[BREAK]Factory south of here...[BREAK][PAUSE]I wanna launch one really[BREAK]bad![BREAK][END]
+121: @You must be exhausted.[BREAK]You should stay the night![BREAK][END]
+122: 
+123: @Wow![BREAK][PAUSE]@So this is a Bottle Rocket![BREAK]I heard so much about them![BREAK][PAUSE]@I should be able to make[BREAK]more of these now.[BREAK][PAUSE]@Come with me to the science[BREAK]lab.[BREAK][END]
+124: @[03 11]: OK! Now I just flip[BREAK]this switch and... Oh![END]
+125: @[03 11]: I may be a wimp,[BREAK]but now it's my turn to[BREAK]fight![BREAK][PAUSE]@[03 13]! You can take it[BREAK]easy in here.[BREAK][END]
+126: @I'm a weird teacher who[BREAK]secretly lives in this[BREAK]school.[BREAK][PAUSE]Yes, I admit I'm weird.[BREAK][PAUSE]@I need funding for my[BREAK]research.[BREAK][PAUSE]@Would you be willing to buy[BREAK]one of my inventions?[BREAK][END]
+127: 
+128: @Then have a look at my[BREAK]goods.[BREAK][END]
+129: @Come on, you gotta have[BREAK]at least SOME allowance[BREAK]money...[BREAK][END]
+12A: 
+12B: @Come back anytime.[BREAK][PAUSE]@I'll have some more nice[BREAK]stuff ready for you.[BREAK][END]
+12C: @I haven't made any progress[BREAK]with my inventions since[BREAK]your last visit.[BREAK][PAUSE]@Would you like to see my[BREAK]older items?[BREAK][END]
+12D: @I heard on the radio just[BREAK]now that major panics are[BREAK]breaking out everywhere.[BREAK][PAUSE]@I WILL protect this train[BREAK]station, no matter what![BREAK][END]
+12E: 
+12F: @I can't guarantee this[BREAK]train'll go very far, but[BREAK]you'll still need to pay.[BREAK][PAUSE]@Are you gonna ride the[BREAK]train?[BREAK][END]
+130: @([03 16]'s weapon was[BREAK]confiscated.)[BREAK][END]
+131: 
+132: 
+133: 
+134: @That'll be $[03 1E], then.[BREAK][END]
+135: 
+136: 
+137: @It looks like that hat you[BREAK]have belongs to a girl[BREAK]named [03 12] in Snowman.[BREAK][PAUSE]@You should go and return it[BREAK]to her.[BREAK][END]
+138: @May you live a long life.[END]
+139: @I was on my way to the town[BREAK]of Easter to find my wife.[BREAK][PAUSE]@But with the train tracks[BREAK]busted, I have no way to[BREAK]get there now...[BREAK][END]
+13A: @Poking your nose into other[BREAK]people's business is what[BREAK]makes playing games so fun![BREAK][END]
+13B: 
+13C: @Here you go.[BREAK][END]
+13D: @Have you seen a man with a[BREAK]sinister mustache?[BREAK][END]
+13E: @Sounds like he got away.[BREAK][PAUSE]@Guess I'll just go and[BREAK]catch me some more parking[BREAK]violators then.[BREAK][END]
+13F: @He's a big-time scam[BREAK]artist.[BREAK][PAUSE]@If you see him, let me know[BREAK]immediately![BREAK][END]
+140: @Whoa, hey, kid![BREAK][PAUSE]Hold on to this money for[BREAK]me, will ya?[BREAK][PAUSE]@If you run into any cops,[BREAK]act like you never saw me.[BREAK][END]
+141: @Don't run off with it, now![BREAK][END]
+142: @You'll do what I say![BREAK][END]
+143: @Quit bugging me![BREAK][PAUSE]I'm trying to make a[BREAK]getaway here![BREAK][END]
+144: @Have you seen a man with a[BREAK]huge gut?[BREAK][END]
+145: @Looks like he got away.[BREAK][PAUSE]@Guess I'll just go and[BREAK]catch some speeders then...[BREAK][END]
+146: @He ate five orders of[BREAK][03 15] and then ran off[BREAK]without paying.[BREAK][PAUSE]@If you see him, let me know[BREAK]immediately![BREAK][END]
+147: @Oof, my stomach's so full.[BREAK](belch)[END]
+148: @Things've gotten mighty[BREAK]dangerous in this town.[BREAK][PAUSE]@But it's still a whole lot[BREAK]better than the city of[BREAK]Valentine, that's for sure.[BREAK][END]
+149: @Oh, yeah!! You feelin' it?![BREAK][END]
+14A: @Right on![BREAK][PAUSE]You wanna hear me sing?![BREAK][END]
+14B: @I'm feelin' glum.[BREAK][END]
+14C: @It's time to say goodbye[BREAK]already?[BREAK][END]
+14D: 
+14E: @Have you heard the dragon's[BREAK]lullaby?[BREAK][END]
+14F: @I heard that there's a[BREAK]h-h-haunted house in the[BREAK]town of Halloween.[BREAK][PAUSE]@I dunno about you, but I'd[BREAK]never go anywhere near that[BREAK]place![BREAK][END]
+150: 
+151: @Give me something.[BREAK]Anything.[BREAK][PAUSE]@Gimme.[BREAK][PAUSE]@Please.[BREAK][PAUSE]@Pretty please?[BREAK][END]
+152: @I'll give you something in[BREAK]return, of course.[BREAK][END]
+153: @I was gonna give you[BREAK]something good in return,[BREAK]too...[BREAK][END]
+154: @What will you give me?[BREAK][END]
+155: @Thanks. In return, here are[BREAK]some fleas and lice.[BREAK][PAUSE]@Take them with you.[BREAK][END]
+156: @A cold's been going around[BREAK]lately...[BREAK][PAUSE]@Achoo![BREAK][PAUSE]@Argh! This sucks![BREAK][END]
+157: @I heard there's a prophetic[BREAK]old man in the mountains[BREAK][PAUSE]who's lived for 300 years[BREAK]without ever catching a[BREAK]cold.[BREAK][END]
+158: @A aann aak eey ell iiow ma[BREAK]ennas.[BREAK][END]
+159: @Not even I can hold a[BREAK]normal conversation with[BREAK]him like this...[BREAK][END]
+15A: @Oh! In exchange for finding[BREAK]my dentures,[BREAK][PAUSE]I'll share with you my[BREAK]secret to living a long[BREAK]life.[BREAK][PAUSE]@And that secret is...[BREAK][PAUSE]...to gargle all the time.[BREAK][PAUSE]@If you catch a cold, go and[BREAK]gargle until it's gone.[BREAK][PAUSE]@Here. Take some of my[BREAK]special mouthwash with you.[BREAK][END]
+15B: 
+15C: @Oh, you want more[BREAK]mouthwash?[BREAK][PAUSE]@All right, here you go.[BREAK][PAUSE]@From now on, it'll cost you[BREAK]$[03 1E], though.[BREAK][PAUSE](gargle gargle spit)[BREAK][END]
+15D: @I've heard that some people[BREAK]have died from catching a[BREAK]cold.[BREAK][PAUSE]Just a cold![BREAK][END]
+15E: @Have you heard about[BREAK]Halloween's haunted house?[BREAK][END]
+15F: @They say you can hear a[BREAK]piano melody coming from[BREAK]inside,[BREAK][PAUSE]even though the house is[BREAK]empty.[BREAK][END]
+160: @In that case, it's best[BREAK]that you don't know.[BREAK][END]
+161: @Heh heh heh heh.[BREAK][END]
+162: @No one's home.[BREAK]Keeheehee...[BREAK][END]
+163: @This is a nightmare.[BREAK][PAUSE]@A bad dream you'll never,[BREAK]ever wake from...[BREAK][PAUSE]@Hee hee hee...[END]
+164: @G O  B A C K[BREAK][END]
+165: @Gyaaaa![BREAK][END]
+166: @[03 16].[BREAK][PAUSE]@You're going to die.[BREAK][PAUSE]@Heeheehee hehehe![BREAK][PAUSE]...Keeheeheehee![BREAK][END]
+167: @A suspicious rat... I am[BREAK]not.[BREAK][PAUSE]@The room with the piano...[BREAK][PAUSE]@Heheheh...![BREAK][END]
+168: @The haunted house belongs[BREAK]to the Rosemarys.[BREAK][END]
+169: @A ghost started showing up[BREAK]at my house, too.[BREAK][PAUSE]@It finally left 'cause it[BREAK]hated how cramped it was.[BREAK][END]
+16A: @I'm more like a game[BREAK]assistant than a citizen of[BREAK]this town.[BREAK][PAUSE]@Surely there are things[BREAK]you've forgotten to jot[BREAK]down notes about, right?[BREAK][PAUSE]@I can give you a hint for[BREAK]$[03 1E]. What do you say?[BREAK][END]
+16B: 
+16C: @Oh. You're really confident[BREAK]about yourself.[BREAK][PAUSE]@Then I'll make sure we[BREAK]never meet again.[END]
+16D: @I can give you up to three[BREAK]hints.[BREAK][PAUSE]@Everything else is a[BREAK]S-E-C-R-E-T.[BREAK][END]
+16E: @I'm the most upbeat person[BREAK]here in Halloween.[BREAK][PAUSE]@Everyone else seems so[BREAK]gloomy, wouldn't you say?[BREAK][END]
+16F: @Yeah, huh.[BREAK][PAUSE]@To be honest, I'm not that[BREAK]cheerful a person either...[BREAK][END]
+170: @I dunno.[BREAK][PAUSE]@Maybe I'M actually the[BREAK]gloomy one.[BREAK][END]
+171: @Our home turned into a hive[BREAK]for ghosts and monsters...[BREAK][PAUSE]@So now we live out here.[BREAK][END]
+172: @[03 11]: I can use the fuel[BREAK]from your rocket and...[BREAK][PAUSE]Then, if I use it with[BREAK]this...[BREAK][PAUSE]@Pretty cool, huh?[BREAK][PAUSE]Ahh![BREAK][END]
+173: 
+174: @It's too dark to see much,[BREAK]but aren't you that girl[BREAK]from the church in Snowman?[BREAK][PAUSE]@[03 12], was it?[BREAK][PAUSE]@Your mom is being held in a[BREAK]room in the back.[BREAK][PAUSE]@But you can't save us right[BREAK]now.[BREAK][PAUSE]@You gotta find a way to[BREAK]deal with the mothership[BREAK]first...[BREAK][END]
+175: @Oh! It flew off into outer[BREAK]space.[BREAK][PAUSE]@A great success... sort of.[BREAK][END]
+176: @Oh! You're such a charming[BREAK]boy![BREAK][PAUSE]@Why, I could just gaze at[BREAK]you forever...[BREAK][PAUSE]@If anyone can turn our[BREAK]mansion back to normal, I'm[BREAK]sure it's you.[BREAK][PAUSE]@Here. This is the key to[BREAK]get in.[BREAK][PAUSE](giggle)[BREAK][END]
+177: @My name is [03 10].[BREAK][PAUSE]@It used to be Bugerror[BREAK]Rosemary, though.[BREAK][END]
+178: @[03 10]! You big dummy![BREAK][PAUSE]@Oh, sorry, I was talking to[BREAK]my son, not you.[END]
+179: @The ghosts haven't quite[BREAK]left yet, but you're such a[BREAK]brave boy![BREAK][PAUSE]@In fact, I even renamed my[BREAK]son after you.[BREAK][END]
+17A: @This is Snowman Station,[BREAK]the last stop.[BREAK][END]
+17B: @I heard all the citizens of[BREAK]Easter were spirited away.[BREAK][END]
+17C: @My mommy's in the town of[BREAK]Easter.[BREAK][PAUSE]@We haven't heard from her[BREAK]in days,[BREAK][PAUSE]so Daddy and I are going[BREAK]there to look for her.[BREAK][END]
+17D: @Have you been to the[BREAK]haunted house in Halloween?[BREAK][END]
+17E: @You HAVE to tell me all[BREAK]about it sometime.[BREAK][PAUSE]@I just love scary stories![END]
+17F: @I don't wanna visit it,[BREAK]but you probably should.[BREAK][END]
+180: @It's freezing here in[BREAK]Snowman. Be careful not to[BREAK]catch a cold.[BREAK][PAUSE]@And be sure to brush your[BREAK]teeth, too.[BREAK][PAUSE]@(cough cough)[BREAK][END]
+181: 
+182: @Life is a game.[BREAK][PAUSE]@Sometimes it's important to[BREAK]rest and pick up where you[BREAK]left off later.[BREAK][END]
+183: @[03 12] hasn't been at[BREAK]school lately.[BREAK][PAUSE]I'm really worried.[BREAK][END]
+184: @I'm so worried about [03 12][BREAK]that I can't sleep at[BREAK]night.[BREAK][END]
+185: 
+186: @You don't have enough[BREAK]money.[BREAK][END]
+187: @Oh, my! Your nose is[BREAK]running![BREAK][END]
+188: @Say, could I speak to the[BREAK]person playing this game?[BREAK][END]
+189: @It's really important.[BREAK][END]
+18A: @Hello, this is [03 10]'s[BREAK]father. Thank you for[BREAK]always looking after him.[BREAK][PAUSE]@I thought it would be nice[BREAK]to at least know your name.[BREAK][PAUSE]@So, if you could tell me,[BREAK]that'd be great.[BREAK][END]
+18B: @Thank you for your time.[BREAK][PAUSE]@I'm a busy man myself, so I[BREAK]must be going now. Goodbye![BREAK][END]
+18C: @[03 16]... right?[BREAK][END]
+18D: @Come on, quit joking[BREAK]around.[BREAK][END]
+18E: @I've been waiting for you.[BREAK][PAUSE]@I need your help to find my[BREAK]mom.[BREAK][PAUSE]@Let's start by seeing[BREAK]what's happening in the[BREAK]town of Easter.[BREAK][END]
+18F: @You know, I had a dream[BREAK]about someone who looked[BREAK]just like you...[BREAK][END]
+190: @[03 10]...[BREAK]Please stay with me.[BREAK][END]
+191: @No! Stay with me...[BREAK][PAUSE]Please...[BREAK][END]
+192: @It's so quiet here.[BREAK][PAUSE]@Would you like to dance?[BREAK][END]
+193: @...You're right. This isn't[BREAK]the time for that.[BREAK][PAUSE]I'm sorry for asking.[BREAK][END]
+194: @[03 10]...[BREAK][PAUSE]@Do you like me?[BREAK][END]
+195: @What's wrong, [03 11]?[BREAK][END]
+196: @The dragon is asleep.[BREAK][PAUSE]@[03 16] can't wake it up[BREAK]just yet.[BREAK][END]
+197: @The dragon sensed [03 16]'s[BREAK]presence and awoke.[BREAK][PAUSE]@"NO ONE WEAKER THAN ME CAN[BREAK]HAVE THIS SHEET MUSIC."[BREAK][END]
+198: 
+199: @My daughter [03 12] is[BREAK]timid, but she has a kind[BREAK]heart and mysterious power.[BREAK][END]
+19A: @You children WILL be[BREAK]victorious.[BREAK][PAUSE]@I have faith that our[BREAK]prayers will be heard soon.[BREAK][PAUSE]@For now, get some rest.[BREAK][END]
+19B: @[03 3E] found a pass that[BREAK]someone dropped.[BREAK][END]
+19C: @[03 16][03 17] climbed[BREAK]into the rocket.[BREAK][END]
+19D: @My grandpa lives in the[BREAK]Advent Desert.[BREAK][PAUSE]@If you see him, tell him I[BREAK]say hi.[BREAK][END]
+19E: @I'm a nice guy's corpse.[BREAK][PAUSE]@So don't worry, I won't[BREAK]attack you or anything like[BREAK]that.[BREAK][END]
+19F: @I make a useful signpost,[BREAK]wouldn't you say?[BREAK][END]
+1A0: @You're one gutsy kid,[BREAK]talking to dead bodies...[BREAK][END]
+1A1: @I'm a camel's bones.[BREAK][PAUSE]@Would you like some tips[BREAK]for walking through the[BREAK]desert?[BREAK][END]
+1A2: @Move your left foot before[BREAK]your right foot sinks.[BREAK][PAUSE]@Move your right foot before[BREAK]your left foot sinks.[BREAK][PAUSE]@It took me 100 years to[BREAK]figure this out.[BREAK][END]
+1A3: @Oh, but I wanna tell you.[BREAK][PAUSE]@Wouldn't you like to know?[BREAK][END]
+1A4: @Advent Desert is the most[BREAK]boring part of this game.[BREAK][PAUSE]@But watch out for land[BREAK]mines...[BREAK][END]
+1A5: "Advent Desert"[BREAK]Why not take a sightseeing[BREAK]flight?[BREAK][END]
+1A6: @I laid land mines in this[BREAK]desert during the war[BREAK]before last.[BREAK][PAUSE]@I thought I dug 'em all up,[BREAK]but I just can't seem to[BREAK]find the last one.[BREAK][PAUSE]@Best be careful out there.[BREAK][END]
+1A7: @Oh, do you want to ride in[BREAK]my plane?[BREAK][END]
+1A8: @Then it'll cost $[03 1E] for[BREAK]the lot of ya.[BREAK][PAUSE]@Be sure to hang on to your[BREAK]ticket stubs.[BREAK][PAUSE]@Collect ten of 'em and[BREAK]you'll earn a ride in my[BREAK]tank![BREAK][PAUSE]@Hahaha! You sure seem happy[BREAK]to hear that![BREAK][END]
+1A9: @It IS rather pricey, so I[BREAK]can't say I blame ya.[BREAK][END]
+1AA: @Oh! You collected ten[BREAK]ticket stubs![BREAK][PAUSE]@All right, then! I'll lend[BREAK]you my tank![BREAK][PAUSE]@Hahaha! You sure seem happy[BREAK]to hear that![BREAK][END]
+1AB: @You wrecked my tank. My[BREAK]precious, precious tank...[BREAK](weep)[BREAK][PAUSE]@You better pay me the money[BREAK]to have it fixed.[BREAK][PAUSE]@It comes to $[03 1E].[BREAK][PAUSE]@Will you pay right now?[BREAK][END]
+1AC: 
+1AD: @Oh, that's great.[BREAK]Well, be seein' ya![BREAK][END]
+1AE: @Now I'm mad![BREAK]Grrrrrrr...[BREAK][END]
+1AF: 
+1B0: @Mommy and Daddy are gone.[BREAK][END]
+1B1: @I gard this gate.[BREAK][PAUSE]Hoo goes there?![BREAK][END]
+1B2: @Y-you're suspishus![BREAK][PAUSE]D-don't make me beet you[BREAK]up...![BREAK](shiver shiver)[BREAK][END]
+1B3: @The Garricksons' baby is[BREAK]weird. Like, REALLY weird.[BREAK][END]
+1B4: @Let's see...[BREAK]Two plus three is five.[BREAK][PAUSE]Eight minus four is four...[BREAK][PAUSE]I study all the time.[BREAK][END]
+1B5: @Mommy! I miss you![BREAK][END]
+1B6: @Daddy! I miss you![BREAK][END]
+1B7: @A big flying ship took all[BREAK]the grownups away.[BREAK][END]
+1B8: @It's great having no[BREAK]grownups around![BREAK][PAUSE](sniffle sob)[BREAK][END]
+1B9: @I want milk![BREAK][END]
+1BA: @I want milk, too![BREAK][END]
+1BB: @Milk![BREAK][END]
+1BC: @Bring my mommy and daddy[BREAK]back. Please.[BREAK][END]
+1BD: @Oh, hello there.[BREAK]My name is Tom Garrickson.[BREAK][PAUSE]@Introducing myself is my[BREAK]hobby.[BREAK][END]
+1BE: @Mommy told me this baby has[BREAK]a special power.[BREAK][END]
+1BF: 
+1C0: @Gaga googoo.[BREAK][END]
+1C1: @I am this baby's[BREAK]consciousness.[BREAK][PAUSE]@I have psychic powers, just[BREAK]as you do.[BREAK][PAUSE]@I possess the ability to[BREAK]teleport.[BREAK][PAUSE]@With it, you can return to[BREAK]anywhere you've been[BREAK]before.[BREAK][PAUSE]@(The baby's mind taught[BREAK][03 10] how to use[BREAK]teleportation PSI.)[BREAK][END]
+1C2: 
+1C3: 
+1C4: 
+1C5: 
+1C6: @I think I heard the voices[BREAK]of my dad and the others[BREAK]coming from the mountains.[BREAK][PAUSE]@But the mountains are way[BREAK]past the town of Valentine.[BREAK][PAUSE]@It's too far away for me to[BREAK]go there.[BREAK][END]
+1C7: @Aww, man. I can't give it[BREAK]to you. You're holding too[BREAK]much stuff.[BREAK][END]
+1C8: @Time has passed, but you're[BREAK]still underage.[BREAK][END]
+1C9: @You really oughtta watch[BREAK]where you're walking.[BREAK][PAUSE]@Heheheh...[BREAK][END]
+1CA: @Oh, that blasted Black[BREAK]Blood Gang...[END]
+1CB: @"Black Blood Gang" is a[BREAK]long name, so everyone just[BREAK]calls it the BB Gang.[BREAK][END]
+1CC: @You're not with the[BREAK]BB Gang, I hope...[BREAK][END]
+1CD: @Everything's been nuts ever[BREAK]since black clouds appeared[BREAK]over the mountains.[BREAK][PAUSE]The town and its people[BREAK]have all started to go[BREAK]crazy.[BREAK][END]
+1CE: @Hey! You![BREAK][PAUSE]@You two, there![BREAK]Are you two sweethearts?[BREAK][END]
+1CF: @You love each other?[BREAK]Hurray![BREAK][END]
+1D0: @I dunno, are you sure love[BREAK]isn't budding deep inside[BREAK]your hearts?[BREAK][END]
+1D1: @Hey, I got concert tickets.[BREAK][PAUSE]@They cost $[03 1E]. Want some?[BREAK][END]
+1D2: @Here you go![BREAK][PAUSE]@You're lucky. They're all[BREAK]sold out at the department[BREAK]store.[BREAK][END]
+1D3: @Geez, you kids are cheap.[BREAK][END]
+1D4: @I have some secret info you[BREAK]might find interesting.[BREAK][PAUSE]@Want to hear it?[BREAK][END]
+1D5: @The BB Gang's boss's full[BREAK]name is [03 13] Junior the[BREAK]3rd.[BREAK][PAUSE]@It's only a rumor, though.[BREAK][END]
+1D6: @I'm sure you'll regret it[BREAK]later.[BREAK][END]
+1D7: @No peeking in the dressing[BREAK]room.[BREAK][PAUSE]@You'll wind up in a world[BREAK]of trouble if you do.[BREAK][END]
+1D8: 
+1D9: @You're so cute.[BREAK][PAUSE]@Oh, your name is [03 16]?[BREAK][PAUSE]@Here, this beer's on me.[BREAK]Drink up![BREAK][END]
+1DA: @Oh, you're still a kid?[BREAK][PAUSE]@Come back when you're[BREAK]older, then.[BREAK][END]
+1DB: @Forget it. No more drinks[BREAK]from me.[BREAK][END]
+1DC: @Now do you regret what you[BREAK]did?[BREAK][END]
+1DD: @If you promise not to do it[BREAK]again, then you can go.[BREAK][PAUSE]@But I think I'll hold on to[BREAK]your dangerous items.[BREAK][END]
+1DE: @Then you can spend another[BREAK]day in there to cool off.[BREAK][END]
+1DF: @Heheheh.[BREAK][PAUSE]@I got my hands on some[BREAK][03 1D]s the other day.[BREAK][PAUSE]@Want one for $[03 1E]?[BREAK][END]
+1E0: @You don't got enough money.[BREAK][PAUSE]@Grrrr...[BREAK][END]
+1E1: @[03 13]'s parents were[BREAK]killed by monsters in the[BREAK]mountains.[BREAK][PAUSE]@He had always been such a[BREAK]nice boy before then.[BREAK][END]
+1E2: @I wish [03 13] would go back[BREAK]to his old, gentle self.[BREAK][END]
+1E3: @You gonna sing too?[BREAK][END]
+1E4: @All right! Do something[BREAK]with lots of pizzazz![BREAK][END]
+1E5: @I guess you're a shy kid,[BREAK]huh?[BREAK][END]
+1E6: 
+1E7: @[03 12]![BREAK][PAUSE]@Oh, nothing. I saw your[BREAK]name written on your hat,[BREAK]that's all.[BREAK][END]
+1E8: @That girl you brought with[BREAK]you sure was cute.[BREAK][END]
+1E9: @Thanks, that was a great[BREAK]song.[BREAK][PAUSE]@Say, are you the guys[BREAK]who've been messin' with my[BREAK]buddies?[BREAK][END]
+1EA: @You're goin' down![BREAK][END]
+1EB: @I know it was you![BREAK][END]
+1EC: @Ahahaha, you're really[BREAK]somethin'![BREAK][PAUSE]@[03 10], was it?[BREAK][PAUSE]@Whadya say we call it a[BREAK]draw?[BREAK][PAUSE]@I really wanna avenge my[BREAK]parents.[BREAK][PAUSE]@How about we go to the[BREAK]mountains together?[BREAK][END]
+1ED: 
+1EE: @Please give my [03 10] all[BREAK]the help you can.[END]
+1EF: @[03 3E] used the Phone Card.[BREAK][END]
+1F0: @Great! I'm sure we'll make[BREAK]a great team of punks![BREAK]Cheers![BREAK][END]
+1F1: 
+1F2: 
+1F3: @Please! I know I can help[BREAK]you guys![BREAK][END]
+1F4: @Hello, this is your dad.[BREAK][PAUSE]@I don't mean to butt in or[BREAK]anything...[BREAK][PAUSE]But what's your problem?![BREAK][PAUSE]@Just press the A Button[BREAK]already![BREAK][END]
+1F5: @Hey, you. Four-eyes.[BREAK][PAUSE]@You're not cut out for[BREAK]fightin'.[BREAK][PAUSE]@Rest here and take it easy.[BREAK][PAUSE]@I'll take your stuff, too.[BREAK][END]
+1F6: 
+1F7: @There's no way we can beat[BREAK]'em with brute strength[BREAK]alone.[BREAK][PAUSE]@But we CAN bring peace back[BREAK]to the world.[BREAK][PAUSE]@I just know it.[BREAK][END]
+1F8: @[03 13]: What're you two[BREAK]blushin' for?[BREAK][PAUSE]@Let's get goin' already![END]
+1F9: @I'm changing my clothes![BREAK]You pervert![BREAK][END]
+1FA: @I'm [03 11]'s father.[BREAK][PAUSE]@[03 10]'s dad asked for your[BREAK]name earlier. Did you give[BREAK]him the right name?[BREAK][END]
+1FB: @Okay, great.[BREAK][PAUSE]@Please keep [03 11] safe,[BREAK]okay?[BREAK][PAUSE]@He IS a weakling, after[BREAK]all...[BREAK][END]
+1FC: @Then let's go through the[BREAK]process again.[BREAK][END]
+1FD: @You should visit the harbor[BREAK]before you go to Holy Loly[BREAK]Mountain.[BREAK][PAUSE]@I really mean it.[BREAK][END]
+1FE: @...Have you ever had[BREAK]strawberry-flavored tofu[BREAK]before?[BREAK][END]
+1FF: @If you ever find any more,[BREAK]could you bring it to me?[BREAK][PAUSE]I'll give you something[BREAK]nice in return.[BREAK][END]
+200: @Oh. I wish they'd start[BREAK]selling it out here...[BREAK][END]
+201: @Oh, strawberry-flavored[BREAK]tofu! Thank you![BREAK][PAUSE]@Now let me give you a nice[BREAK]gift in return.[BREAK][END]
+202: 
+203: 
+204: @Stop by if you ever get[BREAK]hurt.[BREAK][PAUSE]@It's not much, but I have[BREAK]food, medicine, and some[BREAK]plain beds here.[BREAK][END]
+205: 
+206: @Say, [03 11].[BREAK][PAUSE]@Looks like it's finally[BREAK]time to use what little[BREAK]courage you have.[BREAK][END]
+207: @Hello, kids.[BREAK][PAUSE]@What do you need?[BREAK][END]
+208: @MY NAME IS EVE.[BREAK][PAUSE]I HAVE BEEN WAITING FOR[BREAK]YOU.[BREAK][PAUSE]@MY FATHER WAS GEORGE.[BREAK][PAUSE]HE WAS TAKEN TO THE ENDS OF[BREAK]THE UNIVERSE,[BREAK][PAUSE]AND THEN HE RETURNED HERE.[BREAK][PAUSE]@MY DUTY IS TO PROTECT YOU.[BREAK][END]
+209: 
+20A: 
+20B: 
+20C: 
+20D: @Surely it must be[BREAK]hard carrying so[BREAK]much stuff...[BREAK][END]
+20E: @[03 10]! [03 10]![BREAK][PAUSE]@It looks like you got your[BREAK]head handed to you.[BREAK][PAUSE]@So, how about giving it[BREAK]another shot?[BREAK][END]
+20F: @[03 10] decided to return[BREAK]after summoning all the[BREAK]courage and energy he had.[BREAK][PAUSE]@Good luck, [03 10]![END]
+210: @[03 10] realized it had only[BREAK]been a bad dream.[BREAK][PAUSE]@Good luck, [03 10]![END]
+211: @Give to who?[BREAK][END]
+212: @That person can't[BREAK]carry any more[BREAK]stuff.[BREAK][PAUSE]@Give it to someone[BREAK]else?[BREAK][END]
+213: @You still have some[BREAK]stuff left here, so[BREAK]come get it later.[BREAK][END]
+214: @Are you a friend of[BREAK][03 10]?[BREAK][PAUSE]@Really? I see.[BREAK][PAUSE]@But these items[BREAK]belong to [03 10],[BREAK][PAUSE]so I can't give[BREAK]them to anyone[BREAK]else.[BREAK][END]
+215: @Has that weakling [03 11][BREAK]kicked the bucket?[BREAK][END]
+216: Welcome to Mother's Day[BREAK][END]
+217: Cream Puff Zoo[BREAK]  Manager's Office[BREAK][END]
+218: Ocean Overlook[BREAK][END]
+219: @I don't think[BREAK]there's anyone here[BREAK]by that name,[BREAK][PAUSE]but perhaps I'm[BREAK]mistaken...[BREAK][END]
+21A: @After being placed in the[BREAK]fountain,[BREAK][PAUSE]the Red Weed turned into a[BREAK]very energizing Magic Herb.[BREAK][END]
+21B: @There's no one like[BREAK]that here![BREAK][END]
+21C: @[03 1D], right?[BREAK][PAUSE]Thanks! I really appreciate[BREAK]it![BREAK][END]
+21D: @It is easy to lose items in[BREAK]the vicinity of this sign,[BREAK]so please be careful.[BREAK][END]
+21E: @Incredibly enough, you[BREAK]found dentures under the[BREAK]sign![BREAK][END]
+21F: @Hi there! Not[BREAK]feeling well, are[BREAK]we?[BREAK][PAUSE]@Then I can heal you[BREAK]up in a jiffy![BREAK][END]
+220: @Come to the science lab.[BREAK][END]
+221: 
+222: @The mysterious phenomenon[BREAK]has stopped, for now...[BREAK][END]
+223: @Listen closely, now. I'm[BREAK]going to explain how to use[BREAK]this.[BREAK][PAUSE]@All right. Whatever you do,[BREAK]don't press...[BREAK][PAUSE]@Oh, crap! I pressed it![BREAK][END]
+224: @I'll make you some [03 15],[BREAK][03 10].[BREAK][PAUSE]@Eat some and scoot up to[BREAK]bed.[BREAK][END]
+225: 
+226: 
+227: 
+228: @Oh me, oh my![BREAK] Oh me, oh my![BREAK]  Oh me, oh my![BREAK][PAUSE]@My dear Pippi's gotten[BREAK]lost.[BREAK][PAUSE]@If you're going into town,[BREAK]please tell the mayor for[BREAK]me, okay?[BREAK][PAUSE](sniffle sniffle sob sob)[BREAK][END]
+229: @What would you like to[BREAK]sell?[BREAK][END]
+22A: @I can buy your [03 1D][BREAK]for $[03 1E].[BREAK][PAUSE]@Is that okay with you?[BREAK][END]
+22B: @[03 3E] took out his[BREAK]great-grandfather's diary[BREAK]and read these words aloud:[BREAK][PAUSE]"...That which was left[BREAK]behind by the ship that[BREAK]soars the heavens."[BREAK][END]
+22C: 
+22D: 
+22E: @You're lying.[BREAK][PAUSE]@I can see right through[BREAK]your tricks.[BREAK][END]
+22F: @(The audience is unhappy.)[BREAK][PAUSE]@You said there'd be a trio![BREAK]There ain't three people[BREAK]here![BREAK][PAUSE]Boo! Boo![BREAK][END]
+230: @Which item will you[BREAK]leave with me?[BREAK][END]
+231: 
+232: @The dragon was in a very[BREAK]deep sleep.[BREAK][END]
+233: @([03 3E] looked over the[BREAK]sheet music.)[BREAK][END]
+234: @Can I help you?[BREAK][END]
+235: 
+236: @Your [03 1D]?[BREAK][PAUSE]@I'll take good[BREAK]care of it.[BREAK][PAUSE]@Do you want me to[BREAK]hold on to anything[BREAK]else?[BREAK][END]
+237: @Okay, then. Be[BREAK]careful out there.[BREAK][END]
+238: @Your [03 1D]?[BREAK][PAUSE]@Sure thing. Take[BREAK]good care of it,[BREAK]okay?[BREAK][PAUSE]@Is there anything[BREAK]else you want to[BREAK]take with you?[BREAK][END]
+239: @There was a landslide up by[BREAK]Santa Claus Station, so the[BREAK]train can't get through.[BREAK][END]
+23A: @The [03 1D], yes?[BREAK][END]
+23B: @It looks you can't hold any[BREAK]more items.[BREAK][END]
+23C: 
+23D: @Oh. You don't seem[BREAK]to have enough[BREAK]money.[BREAK][END]
+23E: @Oh, my. It looks like you[BREAK]can't hold any more items.[BREAK][END]
+23F: @You don't have[BREAK]enough money.[BREAK][PAUSE]@Come back again[BREAK]when you do.[BREAK][END]
+240: @Bye! Take care![BREAK][END]
+241: 
+242: @Oh, my. You can't carry any[BREAK]more things.[BREAK][PAUSE]@In that case, I'll give it[BREAK]to you the next time I see[BREAK]you.[BREAK][END]
+243: @Here you go! Medicine![BREAK][END]
+244: @Okey-doke! Good night![BREAK][END]
+245: 
+246: @WITHDRAW HOW MUCH?[BREAK][END]
+247: @DEPOSIT HOW MUCH?[BREAK][END]
+248: @Okay! Let's go back to town[BREAK]now![BREAK][END]
+249: @Oh, no. Looks like[BREAK]you can't carry any[BREAK]more items.[BREAK][PAUSE]@That's too bad.[BREAK][END]
+24A: @You can't carry any[BREAK]more stuff?[BREAK][PAUSE]@That's too bad.[BREAK][END]
+24B: @Looks like you can't carry[BREAK]any more stuff. Come by[BREAK]later when you can.[BREAK][END]
+24C: 
+24D: @Which course would you[BREAK]like?[BREAK][END]
+24E: 
+24F: 
+250: @I can't talk very well[BREAK]without my dentures.[BREAK][END]
+251: @Looks like you still don't[BREAK]have enough.[BREAK][END]
+252: 
+253: 
+254: 
+255: 
+256: 
+257: 
+258: @You seem to be having a[BREAK]tough time...[BREAK][PAUSE]I'm so worried...[BREAK][END]
+259: @Good luck![BREAK][END]
+25A: @Who's your leader?![BREAK][PAUSE]I'm gonna teach 'im a[BREAK]lesson!![BREAK][END]
+25B: @The BB Gang members are[BREAK]doing just fine.[BREAK][END]
+25C: 
+25D: @Please don't make me angry.[BREAK][END]
+25E: @[03 3E] secretly pocketed[BREAK]it.[BREAK][END]
+25F: @Oh, you don't seem to have[BREAK]enough money.[BREAK][END]
+260: @Oh, it looks like you can't[BREAK]carry any more things.[BREAK][END]
+261: @I am the professor's[BREAK]Assistant A.[BREAK][PAUSE]@I, too, would love to try[BREAK]some strawberry-flavored[BREAK]tofu.[BREAK][END]
+262: @Oh, it looks so good![BREAK][PAUSE]@Thanks, I appreciate it.[BREAK][PAUSE]As a token of my gratitude,[BREAK]I'll share some information[BREAK]I heard.[BREAK][PAUSE]@There's an amazing robot at[BREAK]the bottom of a lake on[BREAK]Holy Loly Mountain.[BREAK][PAUSE]@I bet it still works, too![BREAK][END]
+263: @I realize I look like[BREAK]Assistant A, but I'm[BREAK]actually Assistant B.[BREAK][PAUSE]@I really, truly want to try[BREAK]strawberry-flavored tofu[BREAK]too.[BREAK][END]
+264: @Oh! Oh! I'm so happy![BREAK][PAUSE]@Please, take these Curse[BREAK]Words with you.[BREAK][END]
+265:   Medicine  Sleep[END]
+266: @You can't hold any more[BREAK]stuff...[BREAK][PAUSE]@Come get it later, then.[BREAK]Don't forget![BREAK][END]
+267: @You're here for your[BREAK]Big Bag, right?[BREAK][PAUSE]I've been expecting you.[BREAK][END]
+268: @Here, this is for you.[BREAK]It's a Big Bag.[BREAK][END]
+269: @It's no big deal.[BREAK][PAUSE]@The real problem is my[BREAK]wife.[BREAK][PAUSE]@She sleeps until noon every[BREAK]day and she never packs me[BREAK]a lunch.[BREAK][PAUSE]@Isn't that just terrible?[BREAK][END]
+26A: @Oh! [03 12] is dead![BREAK][END]
+26B: @Thank you for everything.[BREAK][PAUSE]@As a token of my[BREAK]gratitude...[BREAK][PAUSE]I'll be praying for your[BREAK]success.[BREAK][END]
+26C: @I'm Laura.[BREAK][END]
+26D: 
+26E: 
+26F: 
+270: @Oh, my! It's [03 10], the[BREAK]hero![BREAK][PAUSE]I never expected you to[BREAK]return all alone...[BREAK][PAUSE]@Are you taking a break?[BREAK][END]
+271: @Oh, little girl.[BREAK][PAUSE]@This is no place for a[BREAK]child like you.[BREAK][END]
+272: 
+273: @Oh, [03 16]![BREAK]How are you doing?[BREAK][END]
+274: @Good morning. It looks like[BREAK]you slept well.[BREAK][END]
+275: @Please come again, okay?[BREAK]Promise?[BREAK][END]
+276: @Good morning![BREAK][END]
+277: @Be careful. A lot of the[BREAK]monkeys here like to lie.[BREAK][END]
+278: @Heheh. Do I look like a[BREAK]monkey?[BREAK][END]
+279: @...I'm actually a tanuki,[BREAK]also known as a raccoon[BREAK]dog.[BREAK][PAUSE]@I'm in disguise.[BREAK][END]
+27A: @Darn.[BREAK][PAUSE]@You have really good eyes,[BREAK]you know that?[BREAK][END]
+27B: @You should quit playing.[BREAK][END]
+27C: @Are you really sure about[BREAK]that?[BREAK][END]
+27D: @Oh. Oh, well, then.[BREAK][END]
+27E: @You managed to catch me.[BREAK][PAUSE]You're really something.[BREAK][PAUSE]@Here's something nice for[BREAK]you.[BREAK][END]
+27F: @Turn right and then left to[BREAK]find something nice.[BREAK][END]
+280: @It seems peaceful in here,[BREAK]but it's also way too dark.[BREAK][END]
+281: @Straight![BREAK]Just walk straight![BREAK][PAUSE]The truth is somewhere[BREAK]straight ahead.[BREAK][END]
+282: @I'm a lady, you know.[BREAK][PAUSE]@You shouldn't walk up to a[BREAK]lady so casually and start[BREAK]talking.[BREAK][PAUSE]Don't you agree?[BREAK][END]
+283: @Actually, I'm a man.[BREAK][END]
+284: 
+285: @La-la la la-la, la la la la[BREAK]la...[BREAK][PAUSE]@Oh, don't pay any attention[BREAK]to this melody.[BREAK][END]
+286: @How long has it taken you[BREAK]to get this far?[BREAK][PAUSE]@Oh, I just thought I'd ask.[BREAK][END]
+287: @I got some good information[BREAK]for you. You interested?[BREAK][END]
+288: @Well, basically...[BREAK]Treasure your friends.[BREAK][PAUSE]@That's all I have to say.[BREAK][END]
+289: @Fine, then![BREAK][PAUSE]@You have no intellectual[BREAK]curiosity at all![BREAK][END]
+28A: @Stop! You must not go this[BREAK]way![BREAK][END]
+28B: @I don't trust any of the[BREAK]monkeys here.[BREAK][PAUSE]All they ever do is lie.[BREAK][PAUSE]@Go right, left, left, and[BREAK]then right.[BREAK][END]
+28C: @Turn back![BREAK][PAUSE]@Or, if you don't feel like[BREAK]turning back, then just[BREAK]keep going![BREAK][END]
+28D: @I think you'll meet a new[BREAK]friend in a city with an[BREAK]ocean view.[BREAK][END]
+28E: @I'm a shy monkey.[BREAK][PAUSE]@Talking isn't really my[BREAK]thing.[BREAK][PAUSE]@......Okay?[BREAK][PAUSE]@......[BREAK][END]
+28F: @Hubba hubba. Heaven must be[BREAK]missing an angel.[BREAK][END]
+290: @Don't assume that all[BREAK]monkeys are liars.[BREAK][END]
+291: @I'm the boss monkey. It[BREAK]annoys me how the others[BREAK]lie all the time.[BREAK][PAUSE]@Go straight ahead and[BREAK]you'll find the exit to[BREAK]your right.[BREAK][END]
+292: @Boy, did I mess up...[BREAK][PAUSE]@I must've made a serious[BREAK]mistake to wind up here.[BREAK][END]
+293: @Help![BREAK][END]
+294: @Oh, the phone![BREAK]Could you get it, [03 10]?[BREAK][END]
+295: @I'm Abbot, the mayor...'s[BREAK]assistant.[BREAK][PAUSE]@The mayor is right over[BREAK]there.[BREAK][END]
+296: @I have a secret to share[BREAK]with you later.[BREAK][END]
+297: @Oh, you came to stay the[BREAK]night again?[BREAK][END]
+298: @Oh, a traveler![BREAK][END]
+299: @If you think you're[BREAK]supposed to bust the ghosts[BREAK]in the haunted house...[BREAK][PAUSE]you're gravely mistaken.[BREAK][PAUSE]@No, there's actually a[BREAK]melody there.[BREAK][END]
+29A: 
+29B: @I have faith that [03 12] is[BREAK]doing well somewhere out[BREAK]there.[END]
+29C: @Hey, you're underage. I'm[BREAK]taking you into custody.[BREAK][END]
+29D: 
+29E: 
+29F: @Say, I heard you stepped on[BREAK]a land mine.[BREAK][PAUSE]@I stepped in dog crap once[BREAK]myself.[BREAK][END]
+2A0: @I heard you stepped in dog[BREAK]crap in some place called[BREAK]the Advent Desert.[BREAK][PAUSE]@Could you get any lamer?![BREAK][END]
+2A1: Certificate[BREAK][PAUSE]This hereby certifies that:[BREAK]   [03 14][BREAK][PAUSE]has stepped on the land[BREAK]mine in the Advent Desert.[BREAK][PAUSE]Please keep this location a[BREAK]secret from other players.[BREAK][PAUSE]   -Shigesato Itoi[BREAK][BREAK][END]
+2A2: @It looks like you slept[BREAK]well.[BREAK][PAUSE]@Where are you off to today?[BREAK][PAUSE]@Well, take care![BREAK][END]
+2A3: @Oh, you're not here[BREAK]to visit someone?[BREAK][PAUSE]@If you are the[BREAK]patient, come into[BREAK]the back room.[BREAK][END]
+2A4: @We don't have[BREAK]anyone named that[BREAK]in our hospital.[BREAK][END]
+2A5: @The cold this year is[BREAK]especially bad.[BREAK][PAUSE]@It's made me so scrawny...[BREAK][END]
+2A6: @I don't have a cold.[BREAK][PAUSE]Cough cough.[BREAK][PAUSE]@Oh, that wasn't a cough.[BREAK][PAUSE]it's just something I say[BREAK]out of habit.[BREAK][PAUSE]@Cough cough.[BREAK][END]
+2A7: @Exhausted? Go to the hotel.[BREAK][PAUSE]@Sleepy? Go to the hotel.[BREAK][PAUSE]@That's all there is to say,[BREAK]really.[BREAK][END]
+2A8: @Oh, hi. Heh heh.[BREAK][END]
+2A9: @This is a restaurant,[BREAK]tra-la-la![BREAK][PAUSE]@A happy restaurant,[BREAK]ha-ha-ha![BREAK][PAUSE]@Are you feeling happy?[BREAK][END]
+2AA: @Are restaurant owners[BREAK]everywhere so musical, I[BREAK]wonder?[BREAK][END]
+2AB: @I just love [03 15], too.[BREAK][END]
+2AC: @The hotels around here are[BREAK]really no different from[BREAK]the ones in Mother's Day,[BREAK][PAUSE]yet they cost so much more.[BREAK][PAUSE](mutter grumble)[BREAK][END]
+2AD: @This hotel is cheap.[BREAK][PAUSE]@But that's about the only[BREAK]thing it has going for it.[BREAK][END]
+2AE: @There was a landslide and[BREAK]now big rocks are blocking[BREAK]the railroad tracks.[BREAK][PAUSE]@The train can't get[BREAK]through.[BREAK][END]
+2AF: @You understand animal talk,[BREAK]right?[BREAK][PAUSE]@Then I'll give you a hint:[BREAK]try checking me.[BREAK][PAUSE]@Woof![BREAK][END]
+2B0: @You don't have enough[BREAK]money. That's too bad.[BREAK][PAUSE]@Please come again some[BREAK]other time.[BREAK][END]
+2B1: @Welcome![BREAK][PAUSE]Please have a look at our[BREAK]menu.[BREAK][END]
+2B2: @Thank you.[BREAK][PAUSE]One order of [03 1D] to[BREAK]go![BREAK][END]
+2B3: 
+2B4: 
+2B5: @He...[BREAK][PAUSE]...might never come again.[BREAK][END]
+2B6: @Have fun![BREAK][END]
+2B7: @Hey, waiter![BREAK]Where's the wine list I[BREAK]asked for?[BREAK][END]
+2B8: @I want to try some [03 15].[BREAK][END]
+2B9: 
+2BA: 
+2BB: @I'd like to help the[BREAK]zombies become friendly by[BREAK]teaching them about God.[BREAK][PAUSE]@But...[BREAK]Zombies freak me out![BREAK][END]
+2BC: @It's me, Pippi![BREAK][PAUSE]@We really did meet again,[BREAK][03 16]![BREAK][PAUSE]@I went out to play again.[BREAK]That's why I'm here.[BREAK][PAUSE]Don't tell my mom, though.[BREAK][END]
+2BD: @Oh, aren't you [03 16], that[BREAK]snot-nose kid who sat next[BREAK]to me in kindergarten?[BREAK][PAUSE]@Or are you someone else?[BREAK][END]
+2BE: @Please don't dine-and-dash.[BREAK][PAUSE]Sorry if that comes off as[BREAK]distrustful...[BREAK][END]
+2BF: @You know, you look like you[BREAK]have a big appetite.[BREAK][END]
+2C0: 
+2C1: @With the tracks ruined, the[BREAK]train has stopped running.[BREAK][PAUSE]@Quit with all the pesky[BREAK]questions, will ya?[BREAK][PAUSE]@Geez, you're persistent.[BREAK][PAUSE]@You're gonna make me cry[BREAK]with all your questions.[BREAK][END]
+2C2: @Don't just stand there![BREAK]Get moving![BREAK][END]
+2C3: @You look like you've been[BREAK]through a lot.[BREAK][PAUSE]@Well, now you can sit back,[BREAK]relax, and regret it all.[BREAK][END]
+2C4: @I've heard about all the[BREAK]great things you've been up[BREAK]to.[BREAK][PAUSE]@You must really be brave,[BREAK]huh?[BREAK][END]
+2C5: @Canary Village is north and[BREAK]west of here.[BREAK][PAUSE]@You should definitely go[BREAK]visit it - admission is[BREAK]free![BREAK][END]
+2C6: @There's this really pretty[BREAK]secretary at the town hall.[BREAK][PAUSE]@She's the first floor[BREAK]receptionist.[BREAK][END]
+2C7: @I'm starving.[BREAK][END]
+2C8: @It's like I told my son,[BREAK]"If you have time to play[BREAK]Nintendo games...[BREAK][PAUSE]then you should be studying[BREAK]instead!"[BREAK][END]
+2C9: @You have a really cheerful[BREAK]look on your face.[BREAK][END]
+2CA: @Duncan is trying to open a[BREAK]strip club in this town.[BREAK][PAUSE]@I'm absolutely against it![BREAK][END]
+2CB: @Someday I wanna be a doctor[BREAK]so I can help people.[BREAK][PAUSE]@And so I can make loads of[BREAK]money.[BREAK][END]
+2CC: @Huh? Really?[BREAK][PAUSE]This is a respectable[BREAK]survey, though...[BREAK][END]
+2CD: @Go to school, you![BREAK][PAUSE]@You're a student, aren't[BREAK]you?![BREAK][END]
+2CE: @How are we going to get the[BREAK]rocks off the train tracks?[BREAK][PAUSE]@If we let city hall take[BREAK]care of it, they'll be[BREAK]there well into next year![BREAK][END]
+2CF: @I heard there's a gigantic[BREAK]rocket in the Duncan[BREAK]Factory way up north.[BREAK][END]
+2D0: @Don't assume I'm just an[BREAK]ordinary old guy.[BREAK][PAUSE]@Although I actually am.[BREAK][END]
+2D1: @You know...[BREAK][PAUSE]@If it were up to me...[BREAK][PAUSE]@I'd probably use a Duncan[BREAK]Factory rocket to blow up[BREAK]the rocks on the tracks.[BREAK][END]
+2D2: @My husband is an important[BREAK]man at Twinkle Elementary[BREAK]School.[BREAK][PAUSE]@He's so important that he[BREAK]doesn't eat packed lunches[BREAK]from home.[BREAK][END]
+2D3: @Have you been to the Sweet[BREAK]Little Factory?[BREAK][END]
+2D4: @You know how there are[BREAK]scary monsters all outside[BREAK]town?[BREAK][PAUSE]@I'm worried to death that[BREAK]they'll steal my money.[BREAK][END]
+2D5: @La-la-laaa...[BREAK][PAUSE]Into the wide blue sky...[BREAK][PAUSE]dandelion fuzz does fly...[BREAK][PAUSE]La-la-laaa![BREAK][PAUSE]@I love music more than[BREAK]anything else![BREAK][END]
+2D6: @The school janitor has the[BREAK]key to the roof,[BREAK][PAUSE]but he won't give it to[BREAK]anyone.[BREAK][END]
+2D7: @The old fortunetelling man[BREAK]on top of the mountain is[BREAK]really friendly.[BREAK][PAUSE]@He'll give you as much[BREAK]stuff as you can possibly[BREAK]carry![BREAK][END]
+2D8: @I walked through the tunnel[BREAK]once when I was young.[BREAK][PAUSE]@I went to see a dead body.[BREAK][END]
+2D9: @This is a residential area.[BREAK][PAUSE]Try to keep the noise level[BREAK]down when you're walking[BREAK]around.[BREAK][END]
+2DA: @I bet you've thrown food[BREAK]into the fields to get rid[BREAK]of it, huh?[BREAK][PAUSE]@Well, I guess it can't be[BREAK]helped, since this IS a[BREAK]game and all.[BREAK][END]
+2DB: @Whoa...!!![BREAK][PAUSE]@I'm... doing research about[BREAK]baths.[BREAK][PAUSE]@It's for a university[BREAK]project.[BREAK][PAUSE]@...It's the truth! I swear![BREAK][END]
+2DC: @Man, having a bike would be[BREAK]so convenient.[BREAK][END]
+2DD: @I'm starving...[BREAK][PAUSE]...Is what you expected me[BREAK]to say, huh?[BREAK][PAUSE]@Well, don't worry, I won't.[BREAK][PAUSE]I AM starving, though.[END]
+2DE: @I love the city.[BREAK][PAUSE]@I love the trendy,[BREAK]fashionable lifestyle.[BREAK][END]
+2DF: @I don't believe in psychic[BREAK]powers at all.[BREAK][END]
+2E0: @I'm an overshadowed man.[BREAK][PAUSE]@Sometimes it even seems[BREAK]like I've disappeared[BREAK]completely.[BREAK][END]
+2E1: @I love this town.[BREAK][PAUSE]@Halloween, the next town[BREAK]over, is scary, though.[BREAK][END]
+2E2: @Do you believe in God?[BREAK][END]
+2E3: @If you have really strong[BREAK]cold medicine, they'll buy[BREAK]it for a lot at the store.[BREAK][END]
+2E4: @I'm a cheery mailman,[BREAK]la-la-la![BREAK][PAUSE]@Do you know where the[BREAK]Rosemarys moved to,[BREAK]la-la-la?[BREAK][END]
+2E5: @The mailman's trying to[BREAK]find the Rosemarys' new[BREAK]address.[BREAK][PAUSE]@If you see him, tell them[BREAK]they live much further to[BREAK]the east.[BREAK][PAUSE]@La-la-la![BREAK][END]
+2E6: @That Rosemary girl gives me[BREAK]the creeps![BREAK][END]
+2E7: @The whole downtown area was[BREAK]so full of monsters that[BREAK]everyone fled here.[BREAK][END]
+2E8: @Can I help you?[BREAK][END]
+2E9: @I'm a fortuneteller in[BREAK]training.[BREAK][PAUSE]@I can see you returning to[BREAK]Santa Claus Station from[BREAK]this train station.[BREAK][PAUSE]@I'm not 100 percent sure[BREAK]about that, though.[BREAK][END]
+2EA: @[03 12] lives in a temple...[BREAK]Err, I mean a church.[BREAK][PAUSE]@Oh, you already knew that?[BREAK][END]
+2EB: @There's a church in the[BREAK]mountains further to the[BREAK]east.[BREAK][PAUSE]@(cough... cough...)[BREAK][END]
+2EC: @You kids sure are energetic[BREAK]and carefree, wearing such[BREAK]light clothes out here![BREAK][PAUSE](cough... cough...)[BREAK][END]
+2ED: @If you run into some camel[BREAK]bones in the Advent Desert,[BREAK]tell them I say hi.[BREAK][PAUSE]@That camel and I go way[BREAK]back.[BREAK][END]
+2EE: @I can treat minor injuries[BREAK]here.[BREAK][PAUSE]@But if you're sick, you'll[BREAK]need to visit an actual[BREAK]hospital, okay?[BREAK][PAUSE][END]
+2EF: @I bet [03 11] will have a[BREAK]computer-related job in the[BREAK]future.[BREAK][END]
+2F0: @Shh! Keep quiet in the[BREAK]library![BREAK][PAUSE]@A-a-a-CHOO![BREAK][END]
+2F1: @Oh, you must be here[BREAK]because you heard I'm the[BREAK]world's greatest fisherman.[BREAK][PAUSE]@Well, I wouldn't say I'm[BREAK]THAT great, but...[BREAK][PAUSE]@Oh, how about I tell you[BREAK]about some of my great[BREAK]exploits for an hour or so?[BREAK][END]
+2F2: @Get outta my face, twerps![BREAK][END]
+2F3: @Hey, you![BREAK][END]
+2F4: @My HP may be low, but I'm[BREAK]gonna give this everything[BREAK]I got![BREAK][END]
+2F5: @In a fight between you and[BREAK]me...[BREAK][PAUSE]I'm pretty sure I would[BREAK]lose.[BREAK][END]
+2F6: @I'm tough.[BREAK][PAUSE]@But I'm mostly all talk.[BREAK][END]
+2F7: @Our boss [03 13] could[BREAK]totally beat you with just[BREAK]his pinkie if he wanted to![BREAK][END]
+2F8: @Did you make sure to read[BREAK]the sign?[BREAK][END]
+2F9: @If you ever come across a[BREAK]cactus with a face on it[BREAK]in a desert somewhere...[BREAK][PAUSE]...that would be utterly[BREAK]terrifying.[BREAK][END]
+2FA: @Talk to the fisherman and[BREAK]he'll wind up talking your[BREAK]ears off.[BREAK][END]
+2FB: @Any first-grader can do a[BREAK]cartwheel, wouldn't you[BREAK]say?[BREAK][END]
+2FC: @Please take this elevator[BREAK]up to the observation deck.[BREAK][END]
+2FD: @I saw smoke rising from an[BREAK]island you can see from[BREAK]the observation deck.[BREAK][PAUSE]@I wonder if someone lives[BREAK]there.[BREAK][PAUSE]@Man, if only I'd looked[BREAK]through the telescope...[BREAK][END]
+2FE: @I can't do a cartwheel.[BREAK][END]
+2FF: @I still don't really know[BREAK]how to carry numbers in[BREAK]subtraction.[BREAK][END]
+300: @I hear strawberry-flavored[BREAK]tofu is all the rage in big[BREAK]cities.[BREAK][PAUSE]@I'd love to try some.[BREAK][END]
+301: @I'm hungry.[BREAK][END]
+302: @Don't assume I'm an[BREAK]ordinary old guy.[BREAK][PAUSE]@...Is what my dad likes to[BREAK]say all the time.[BREAK][END]
+303: @You're late for class![BREAK][END]
+304: @Did you see a strange[BREAK]teacher in the science lab?[BREAK][PAUSE]@...Because I did.[END]
+305: @Have you played Dragon[BREAK]Quest 4?[BREAK][PAUSE]@I'm still having a hard[BREAK]time with the third one.[BREAK][END]
+306: @Welcome.[BREAK][PAUSE]@What can I get you?[BREAK][END]
+307: @I'm very sorry. That item[BREAK]is currently sold out.[BREAK][END]
+308: @Oh, you've changed your[BREAK]mind?[BREAK][PAUSE]@That's too bad, but I hope[BREAK]you'll come back soon![BREAK][END]
+309: @Thank you.[BREAK][PAUSE]@Please come again.[BREAK][END]
+30A: @Oh, you've changed your[BREAK]mind?[BREAK][PAUSE]@Well, please come again.[BREAK][END]
+30B: @I'm so glad that[BREAK]you recovered,[BREAK][03 1B].[BREAK][PAUSE]@Come back any time[BREAK]you need.[BREAK][END]
+30C: @Oh, isn't that your[BREAK]friend, though?[BREAK][PAUSE]@They really could[BREAK]die, you know...[BREAK][END]
+30D: @Yes, yes.[BREAK][PAUSE]@I can examine you[BREAK]for $[03 1E] per[BREAK]person.[BREAK][PAUSE]@Is that agreeable[BREAK]with you?[BREAK][END]
+30E: @You really don't[BREAK]need treatment?[BREAK][PAUSE]@All right, then.[BREAK][END]
+30F: @I can find nothing[BREAK]wrong with that[BREAK]person.[BREAK][END]
+310: @There, all better![BREAK][END]
+311: 
+312: @Though you may not[BREAK]believe it, I'm a[BREAK]healer.[BREAK][PAUSE]@What do you want[BREAK]me to do?[BREAK][END]
+313: @Oh, okay.[BREAK]If you say so.[BREAK][END]
+314: @I need to charge[BREAK]you $[03 1E]. Okay?[BREAK][END]
+315: @Welcome.[BREAK]@It's $[03 1E] per night here.[BREAK][PAUSE]@Will you be staying?[BREAK][END]
+316: @Oh, that's too bad.[BREAK][PAUSE]@Well, come back again.[BREAK][END]
+317: @Pleasant dreams![BREAK][END]
+318: @Good morning.[BREAK][PAUSE]@Please come back again.[BREAK]We look forward to it.[BREAK][END]
+319: @[03 1B] was just[BREAK]brought in, and is[BREAK]still unconscious.[BREAK][PAUSE]@Please pay $[03 1E][BREAK]for the doctor's[BREAK]fee.[BREAK][END]
+31A: @Who are you here to[BREAK]see?[BREAK][END]
+31B: 
+31C: @Dad's not home.[BREAK][PAUSE]@I don't understand money,[BREAK]but I can do other stuff.[BREAK][PAUSE]@So don't worry. You can[BREAK]stay here tonight if you[BREAK]want.[BREAK][END]
+31D: @Good morning.[BREAK][PAUSE]@Stay again sometime, okay?[BREAK][PAUSE]@It gets lonely here all by[BREAK]myself.[BREAK][END]
+31E: @Oh? You're not going to[BREAK]stay?[BREAK][PAUSE]@But I can do this work just[BREAK]fine even when Dad's[BREAK]gone...[BREAK][END]
+31F: @Oh, I can't let you in[BREAK]without tickets.[BREAK][END]
+320: @But...[BREAK]There was nothing there.[BREAK][END]
+321: 
+322:   Store     Take[END]
+323: @You don't have any[BREAK]items.[BREAK][END]
+324: @You haven't left[BREAK]any items with me.[BREAK][END]
+325: @Hold on...[BREAK][PAUSE]@The storeroom is[BREAK]full,[BREAK][PAUSE]so I can't store[BREAK]any more stuff.[BREAK][END]
+326: @WELCOME[BREAK][END]
+327: @INSUFFICIENT FUNDS[BREAK][END]
+328: 
+329: @NOT ENOUGH MONEY[BREAK][END]
+32A: @SORRY, BUT YOUR WITHDRAWAL[BREAK]AMOUNT HAS EXCEEDED YOUR[BREAK]ACCOUNT BALANCE[BREAK][END]
+32B: @THANK YOU[BREAK][END]
+32C: @There's an old music box[BREAK]hidden inside the doll.[BREAK][PAUSE]@[03 3E] opened the music[BREAK]box.[BREAK][PAUSE]@A broken melody began to[BREAK]play.[BREAK][END]
+32D: @ ???[BREAK][END]
+32E: @Thank you.[BREAK][END]
+32F: @I have a great source for[BREAK]weapons.[BREAK][PAUSE]@One of these days, I might[BREAK]get ahold of some really[BREAK]amazing ones...[BREAK][END]
+330: 
+331: @[03 16]'s party won the[BREAK]battle.[BREAK][END]
+332:   WITHDRAW  DEPOSIT[END]
+333: @CURRENT BALANCE: $[03 19][DOUBLEZERO][BREAK][END]
+334: @It's locked.[BREAK][END]
+335: @The key doesn't fit.[BREAK][END]
+336: @[03 16][03 17] unlocked[BREAK]the door and went inside.[BREAK][END]
+337:   Save      Nothing[END]
+338:   Continue  End[END]
+339: @[03 3E] picked up the[BREAK]telephone.[BREAK][END]
+33A: @I'm sorry, but you[BREAK]don't seem to have[BREAK]enough money.[BREAK][END]
+33B: @Oh, I'm so sorry. You don't[BREAK]have enough money.[BREAK][END]
+33C: @This is only my humble[BREAK]opinion, but you probably[BREAK]shouldn't carry any more[BREAK]things.[BREAK][END]
+33D: @Okay! All better![BREAK][PAUSE]@Amazing, huh?[BREAK][END]
+33E: @I'm very sorry. I can't buy[BREAK]your [03 1D].[BREAK][END]
+33F: @Laura the songbird was so[BREAK]happy to see her baby again[BREAK]that she began singing.[BREAK][END]
+340: @[03 16] learned the melody.[BREAK][END]
+341: @The canary is singing.[BREAK][END]
+342: @The monkey stole the Zoo[BREAK]Key.[BREAK][END]
+343: @The robot is old and[BREAK]rusted.[BREAK][END]
+344: @The instant it sensed[BREAK][03 10], the robot sprang to[BREAK]life.[BREAK][END]
+345: @[03 1B]: [03 1E] EXP.[BREAK][END]
+346: @Good luck.[BREAK][END]
+347: 
+348: @Touching the fountain's[BREAK]water revitalized you.[BREAK][END]
+349: 
+34A: @Pippi![BREAK][PAUSE]@Oh, thank goodness![BREAK]She's all right![BREAK][PAUSE]@I think the mayor is[BREAK]looking for her too.[BREAK][PAUSE]@You should probably go and[BREAK]see him.[BREAK][END]
+34B: @Someone's in here![BREAK]...Wait, this isn't a[BREAK]bathroom.[BREAK][PAUSE]@I have my hands full at the[BREAK]moment. Come back later.[BREAK][END]
+34C: @Who's been[BREAK]poisoned?[BREAK][END]
+34D: @Who shall I soften?[BREAK][END]
+34E: @They haven't been[BREAK]poisoned![BREAK][END]
+34F: @Wait, they haven't[BREAK]been turned to[BREAK]stone![BREAK][END]
+350: @They used to make loads of[BREAK]Bottle Rockets there.[BREAK][END]
+351: @My wife was the very first[BREAK]Miss Middle of Nowhere.[BREAK][END]
+352: @Okay, I unlocked the door.[BREAK][PAUSE]@The view from the roof is[BREAK]really nice, by the way.[BREAK][END]
+353: @Let's go visit Duncan's[BREAK]Factory later.[BREAK][PAUSE]@I hear there's a really[BREAK]incredible rocket there.[BREAK][END]
+354: @I bet people have been[BREAK]spreading rumors about how[BREAK]I'm a "weakling stinkling"[BREAK]or a "stupid head"...[BREAK][END]
+355: @Oh... It's morning now.[BREAK][END]
+356: @Cherish your elders, you[BREAK]hear?[BREAK][PAUSE](cough cough)[BREAK][END]
+357: @Hey, pipsqueak![BREAK][PAUSE]Who said you could talk to[BREAK]me?![BREAK][END]
+358: @I heard there's a Famicom[BREAK]game called "MOTHER" now.[BREAK][PAUSE]@They totally copied that[BREAK]from John Lennon, didn't[BREAK]they?[BREAK][END]
+359: 
+35A: @An old lady at the Reindeer[BREAK]train station has something[BREAK]very important to give you.[BREAK][PAUSE]@Have you met her yet?[BREAK][END]
+35B: @This is my final hint.[BREAK][PAUSE]@You know the guitar player[BREAK]in Magicant?[BREAK][PAUSE]Be sure you listen to his[BREAK]song![BREAK][END]
+35C: @If something ever seems[BREAK]strange, be sure to "Check"[BREAK]all around.[BREAK][END]
+35D: @The singing monkey sang[BREAK]with passion.[BREAK][END]
+35E: @The cactus sang.[BREAK][PAUSE]@For some reason, it sang.[BREAK][PAUSE]@It continued to sing with[BREAK]emotion.[BREAK][END]
+35F: @The keys on the piano began[BREAK]to play all by themselves.[BREAK][END]
+360: @With no hesitation at all,[BREAK]the dragon showed its old[BREAK]sheet music.[BREAK][PAUSE]@The song went like this...[BREAK][END]
+361: @EVE was destroyed and[BREAK]ceased functioning.[BREAK][PAUSE]@Music began to emanate[BREAK]from EVE's chest area.[BREAK][END]
+362: The world's only singing[BREAK]monkey![BREAK][PAUSE]Right here at Cream Puff[BREAK]Zoo![BREAK][END]
+363: @There's a big lock on the[BREAK]door at the top of the[BREAK]stairs.[BREAK][END]
+364: @I'm going to stay here and[BREAK]help the people of Snowman.[BREAK][PAUSE]Please be careful on your[BREAK]way...[BREAK][END]
+365: @You don't have enough[BREAK]money.[BREAK][END]
+366: @I'm too scared.[BREAK][PAUSE]@You lead the way, [03 10].[BREAK][END]
+367: @Upon closer look, the[BREAK]gate's lock was broken.[BREAK][PAUSE]@[03 3E] opened the gate.[BREAK][END]
+368: @Oh! [03 13]! What's up?[BREAK][END]
+369: @You better hurry and get[BREAK][03 13] back on his feet![BREAK][END]
+36A: @Oh, whoops.[BREAK][PAUSE]@I can't hold on to your[BREAK][03 1D].[BREAK][PAUSE]@I'm selfish like that.[BREAK][END]
+36B: Here rests Flying Man, the[BREAK]courageous warrior and[BREAK]eternal servant to [03 10].[BREAK][END]
+36C: Here rests Flying Man, the[BREAK]courageous warrior and[BREAK]inner strength of [03 10].[BREAK][END]
+36D: Here rests Flying Man, the[BREAK]courageous warrior and[BREAK]virtuous heart of [03 10].[BREAK][END]
+36E: Here rests Flying Man, the[BREAK]courageous warrior and[BREAK]great sorrow of [03 10].[BREAK][END]
+36F: Here rests Flying Man, the[BREAK]courageous warrior and[BREAK]flesh and blood of [03 10].[BREAK][END]
+370: @No one's allowed past here[BREAK]until the incident at the[BREAK]zoo is resolved.[BREAK][PAUSE]@Those were the mayor's[BREAK]orders.[BREAK][PAUSE]@It's kind of a heavy-handed[BREAK]way of doing things though,[BREAK]if you ask me.[BREAK][END]
+371: @There's a strange rock in a[BREAK]mountain cave past here.[BREAK][PAUSE]@In fact, it's so strange[BREAK]that you should go check it[BREAK]out.[BREAK][END]
+372: @Say... You know how to use[BREAK]telepathy or whatever,[BREAK]right?[BREAK][PAUSE]@Everyone's talking about[BREAK]you, you know![BREAK][PAUSE]@You're a real celebrity![BREAK][END]
+373: @By any chance are you on[BREAK]your way to Snowman?[BREAK][END]
+374: @I found this hat. I think[BREAK]it belongs to a girl in[BREAK]Snowman.[BREAK][PAUSE]@Deliver it to her, if you'd[BREAK]be so kind.[BREAK][END]
+375: @Oh, that's too bad. I was[BREAK]hoping to ask you a favor.[BREAK][END]
+376: @The cool boy sang a very...[BREAK]unique song.[BREAK][PAUSE]@Not even [03 16] could learn[BREAK]this melody.[BREAK][END]
+377: @I'm sorry to bother you,[BREAK]but could I ask you some[BREAK]survey questions?[BREAK][END]
+378: 
+379: @Do you feel that train[BREAK]tickets are too expensive?[BREAK][END]
+37A: @Have you ever used a[BREAK]Megaphone?[BREAK][END]
+37B: @Thank you for your[BREAK]cooperation.[BREAK][PAUSE]@For your time, please take[BREAK]this Phone Card.[BREAK][END]
+37C: @I'm sorry to bother you,[BREAK]but... could you...[BREAK][PAUSE]@Oh! You've already taken[BREAK]the survey, haven't you?[BREAK][END]
+37D: @Hearing the cries from your[BREAK]heart, a helpful old man[BREAK]appeared.[BREAK][END]
+37E: @[03 3E] opened the coffin.[BREAK][PAUSE]@Inside the casket was...!![BREAK][END]
+37F: @[03 16] peered into the[BREAK]telescope.[BREAK][END]
+380: @The ocean was beautiful.[BREAK][END]
+381: @Something sparkled on the[BREAK]island in the distance![BREAK][END]
+382: @Something leapt out of the[BREAK]capsule![BREAK][END]
+383: @[03 12]: Dad...[BREAK]Goodbye for now...[BREAK][PAUSE]The next time I see you,[BREAK]Mom will be with me![BREAK][PAUSE]...Please pray for us.[BREAK][END]
+384: [END]
+385: @Who are you talking to?[BREAK][END]
+386: @What?[BREAK][END]
+387: @No problem here.[BREAK][END]
+388: @(The voice of Queen[BREAK]Mary speaks)[BREAK][PAUSE]@I am the[BREAK]consciousness of[BREAK]Maria.[BREAK][PAUSE]@[03 10][03 3F] use my[BREAK]last power![BREAK][PAUSE]@Then[03 3F] as the voice[BREAK]became a whisper of[BREAK]wind...[BREAK][PAUSE]@The rock[BREAK]disintegrated.[BREAK][PAUSE]@Leaving only a[BREAK]pile of very fine[BREAK]sand at their feet.[BREAK][END]
+389: 
+38A: 
+38B: @If you're looking for a[BREAK]weapon, check these out![BREAK][END]
+38C: @Thank you![BREAK][END]
+38D: 
+38E: @[03 1A] used the[BREAK][03 1C].[BREAK][END]
+38F: @[03 1A] can't use the[BREAK][03 1C].[BREAK][END]
+390: @Please don't do that.[BREAK][END]
+391: @[03 1A] equipped the[BREAK][03 1C].[BREAK][END]
+392: @[03 1A] can't equip the[BREAK][03 1C].[BREAK][END]
+393: @[03 1A] threw away the[BREAK][03 1C].[BREAK][END]
+394: @You shouldn't throw away[BREAK]the [03 1C].[BREAK][END]
+395: @[03 1A] gave the[BREAK][03 1C] to [03 1B].[BREAK][END]
+396: @The [03 1C] can't be[BREAK]given away.[BREAK][END]
+397: @[03 1B] can't hold any[BREAK]more stuff.[BREAK][END]
+398: @Nothing happened.[BREAK][END]
+399: @[03 3E] opened the present.[BREAK][END]
+39A: @Found [03 1D].[BREAK][END]
+39B: @[03 16][03 17] took the[BREAK][03 1D].[BREAK][END]
+39C: 
+39D: @But you can't hold any[BREAK]more stuff.[BREAK][END]
+39E: 
+39F: 
+3A0: 
+3A1: @It's empty...[BREAK][END]
+3A2: Cure Poison   Soften[END]
+3A3: South: Mother's Day[BREAK]North: Cream Puff Zoo [BREAK][END]
+3A4: Canary Village ahead[BREAK][BREAK]Let's nurture nature[BREAK]together![BREAK][END]
+3A5: Mother's Day Town Hall[BREAK][END]
+3A6: West:  Ocean Observatory[BREAK]North: Valentine Harbor[BREAK][BREAK]Keep our ocean clean![BREAK][END]
+3A7: West: Valentine[BREAK]East: Holy Loly Mountain[BREAK][END]
+3A8: West:        Healer's House[BREAK]Bridge Path: Cemetery[BREAK][BREAK]Walking alone is dangerous![BREAK][END]
+3A9: West: Mother's Day[BREAK]East: Thanksgiving[BREAK][END]
+3AA: Cream Puff Zoo[BREAK]  700 meters west[BREAK][END]
+3AB: Snowman Church ahead[BREAK][END]
+3AC: West:  Valentine[BREAK]South: Swamp[BREAK][END]
+3AD: Thanksgiving Main Street[BREAK]South: Twinkle Elem. School[BREAK][END]
+3AE: [03 10]'s house[BREAK][END]
+3AF: Welcome to Thanksgiving![BREAK][BREAK]West:  Mother's Day[BREAK]North: Santa Claus Station[BREAK][END]
+3B0: West:  Healer's House[BREAK]East:  Reindeer Station[BREAK]South: Reindeer[BREAK][END]
+3B1: West: Downtown Halloween[BREAK]East: Halloween residential[BREAK]      area[BREAK][END]
+3B2: East: Swamp[BREAK][END]
+3B3: Private property of the[BREAK]Rosemary family[BREAK][END]
+3B4: Valentine Police Department[BREAK][END]
+3B5: Coming soon: Strip Theater[BREAK][BREAK]      -Duncan Construction[BREAK][END]
+3B6: @I HEARD MY BROTHER FELL[BREAK]HONORABLY IN COMBAT.[BREAK][PAUSE]@HE WAS BURIED AND GIVEN A[BREAK]HEARTFELT FUNERAL.[BREAK][PAUSE]@IT'S MY TURN NEXT.[BREAK][END]
+3B7: @I CAN'T WAIT TO SERVE YOU.[BREAK][END]
+3B8: @I AM Flying Man.[BREAK][PAUSE]@I WILL BE YOUR STRENGTH.[BREAK][PAUSE]THAT IS WHY I WAS BORN.[BREAK][END]
+3B9: @They finally lifted the[BREAK]orders for martial law.[BREAK][PAUSE]@They overreacted a little[BREAK]bit, if you ask me.[BREAK][END]
+3BA: @There's an old rocket here.[BREAK][END]
+3BB: @You came to get[BREAK]your items, right?[BREAK][PAUSE]@Okay, here you go![BREAK][END]
+3BC: @I gave you all your[BREAK]items.[BREAK][PAUSE]But come seem me[BREAK]again sometime![BREAK][END]
+3BD: @I'm Minnie.[BREAK][END]
+3BE:   Refresh   Soften[END]
+3BF: @[03 13]: You two probably[BREAK]wanna be alone, huh?[BREAK][PAUSE]I'll just be catchin' some[BREAK]Zs over here, then.[BREAK][END]
+3C0: @Oh no! I'm too late![BREAK][END]
+3C1: @...I'm so glad.[BREAK][END]
+3C2: @[03 13]: Whoa! What the heck[BREAK]was that sound?![BREAK][END]
+3C3: @[03 13]: You gotta be[BREAK]kiddin' me![BREAK][END]
+3C4: @The boat's engine seems to[BREAK]be in poor condition.[BREAK][END]
+3C5: @[03 16] can't get it to[BREAK]work.[BREAK][END]
+3C6: @But [03 11] managed to get[BREAK]it running.[BREAK][END]
+3C7: @The [03 1D],[BREAK]right?[BREAK][PAUSE]@I'll be sure to[BREAK]send it to [03 10]'s[BREAK]house.[BREAK][PAUSE]@Is there anything[BREAK]else you want to[BREAK]store?[BREAK][END]
+3C8: @What are we trapped inside[BREAK]these cramped things for?[BREAK][PAUSE]@What's going to happen to[BREAK]us?[BREAK][END]
+3C9: Sweet Little Factory[BREAK][END]
+3CA: @The mothership brought us[BREAK]to the top of the mountain,[BREAK][PAUSE]and when we came to, we[BREAK]were stuck in these[BREAK]things...[BREAK][PAUSE]@Please, do something![BREAK][END]
+3CB: @Are you sure it's spelled[BREAK]right?[BREAK][END]
+3CC: @The strange sound driving[BREAK]the animals crazy stopped.[BREAK][PAUSE]@The zoo is safe once more.[BREAK][END]
+3CD: 
+3CE: @This tank is my prized[BREAK]possession. Try not to[BREAK]break it, okay?[BREAK][END]
+3CF: @A key to the basement is[BREAK]hanging from the dog's[BREAK]collar.[BREAK][END]
+3D0: @Heh heh heh! I'm a[BREAK]meddlesome mouse![BREAK][PAUSE]@In towns, there are some[BREAK]houses you can go inside[BREAK]and some you can't.[BREAK][PAUSE]@Houses with round doors or[BREAK]signs on them are the ones[BREAK]you can go into.[BREAK][PAUSE]@If you try to go into any[BREAK]of the other ones, you'll[BREAK]just hit your head.[BREAK][PAUSE]@Well, bye![BREAK][END]
+3D1: 
+3D2: @Remember, teleportation[BREAK]isn't something to be toyed[BREAK]with.[BREAK][END]
+3D3: @I had loved him as if he[BREAK]were my own child, too...[BREAK][END]
+3D4: @He would always wag his[BREAK]tail as a baby...[BREAK][PAUSE]@I would sing him a lullaby,[BREAK]but then...[BREAK][END]
+3D5: @Oh, George![BREAK][PAUSE]This is your wife, Maria.[BREAK][PAUSE]@I know you've been[BREAK]waiting...[BREAK][PAUSE]I'm on my way to join you[BREAK]in heaven now...[BREAK][END]
+3D6: @PLEASE INSERT ATM CARD[BREAK][END]
+3D7: @You shouldn't carry around[BREAK]that much cash.[BREAK][END]
+3D8: @This'll return you back to[BREAK]your previous save data.[BREAK]Is that all right?[BREAK][END]
+3D9: @You said yes, but you don't[BREAK]have a save file![BREAK][PAUSE]Ahahaha![BREAK][END]
+3DA: @His breathing is rough. He[BREAK]looks like he's in pain.[BREAK][END]
+3DB: @You don't have any[BREAK]friends to give[BREAK]items to yet.[BREAK][END]
+3DC: @Oh, the[BREAK][03 1D]?[BREAK][PAUSE]@Here you go. Take[BREAK]good care of it.[BREAK][PAUSE]@Is there anything[BREAK]else you want to[BREAK]take with you?[BREAK][END]
+3DD: @It looks like you[BREAK]can't carry any[BREAK]more stuff.[BREAK][PAUSE]@Should I give this[BREAK]to someone else?[BREAK][END]
+3DE: @The storeroom is[BREAK]full.[BREAK][END]
+3DF: @Once Queen Mary finished[BREAK]speaking to [03 10], she[BREAK]disappeared into the wind.[BREAK][PAUSE]And then the land of[BREAK]Magicant itself vanished[BREAK]without a trace.[BREAK][PAUSE]@Magicant had actually been[BREAK]an illusion born of Mary's[BREAK]consciousness.[BREAK][END]
+3E0: @It was I who called you[BREAK]here.[BREAK][PAUSE]@[03 10]![BREAK][PAUSE][03 12]![BREAK][PAUSE][03 11]![BREAK][PAUSE][03 13]![BREAK][PAUSE]@And all courageous children[BREAK]out there...[BREAK][PAUSE]@The time is now![BREAK][END]
+3E1: @Shh! I'm just like you![BREAK]I'm from the other world![BREAK][PAUSE]@For some money, I'll share[BREAK]some souvenirs of Magicant[BREAK]with you.[BREAK][PAUSE]@Hee hee hee![BREAK][END]
+3E2: @You'll end up like me if[BREAK]you don't take the train...[BREAK][END]
+3E3: @Do you need anything else?[BREAK][END]
+3E4: @Welcome, [03 16]...[BREAK][PAUSE]@I always had faith that you[BREAK]would make it this far.[BREAK][PAUSE]@Long ago, your[BREAK]great-grandmother Maria[BREAK]filled her eight melodies[BREAK][PAUSE]with all the love she could[BREAK]and scattered them around[BREAK]as gifts for you,[BREAK][PAUSE]even though she had never[BREAK]seen you before...[BREAK][PAUSE][END]
+3E5: @Bathed in the glow of the[BREAK]crystal, everyone was[BREAK]completely healed![BREAK][END]
+3E6: 
+3E7: [END]
+3E8: [END]
+3E9: Big Bag[END]
+3EA: Phone Card[END]
+3EB: BreadCrumbs[END]
+3EC: Repel Ring[END]
+3ED: ITEM 05[END]
+3EE: Memory Chip[END]
+3EF: [END]
+3F0: [END]
+3F1: [END]
+3F2: Knife[END]
+3F3: Surv. Knife[END]
+3F4: Basic Sword[END]
+3F5: Katana[END]
+3F6: Stun Gun[END]
+3F7: Toy Air Gun[END]
+3F8: Cracked Bat[END]
+3F9: Teeball Bat[END]
+3FA: Sandlot Bat[END]
+3FB: HallFameBat[END]
+3FC: Frypan[END]
+3FD: DX Frypan[END]
+3FE: Best Frypan[END]
+3FF: Slingshot[END]
+400: Boomerang[END]
+401: Bug Spray[END]
+402: Super Spray[END]
+403: Flea Bomb[END]
+404: Love Words[END]
+405: Curse Words[END]
+406: Slime Gen.[END]
+407: Flashdark[END]
+408: Stone Spray[END]
+409: Stinger[END]
+40A: Flamethrowr[END]
+40B: Bomb[END]
+40C: Super Bomb[END]
+40D: Laser Beam[END]
+40E: Death Beam[END]
+40F: ITEM 39[END]
+410: Rope[END]
+411: [END]
+412: [END]
+413: [END]
+414: [END]
+415: Peace Coin[END]
+416: ProtectCoin[END]
+417: Magic Coin[END]
+418: Fairy Brace[END]
+419: Angel Brace[END]
+41A: GoddessBrac[END]
+41B: RainPendant[END]
+41C: FlamePendnt[END]
+41D: EarthPendnt[END]
+41E: Sea Pendant[END]
+41F: Easy Ring[END]
+420: Item 56[END]
+421: Item 57[END]
+422: [END]
+423: [END]
+424: OrangeJuice[END]
+425: FrenchFries[END]
+426: Magic Herb[END]
+427: Hamburger[END]
+428: SportsDrink[END]
+429: Medicine[END]
+42A: AsthmaSpray[END]
+42B: Antidote[END]
+42C: Mouthwash[END]
+42D: Berry Tofu[END]
+42E: Item 70[END]
+42F: Bread[END]
+430: Angel Seed[END]
+431: PSI Stone[END]
+432: [END]
+433: MagicRibbon[END]
+434: Magic Candy[END]
+435: Item 77[END]
+436: SpeedCapsul[END]
+437: Wis.Capsule[END]
+438: Str.Capsule[END]
+439: ForceCapsul[END]
+43A: FightCapsul[END]
+43B: [END]
+43C: [END]
+43D: BasementKey[END]
+43E: Zoo Key[END]
+43F: Haunted Key[END]
+440: GGF's Diary[END]
+441: Pass[END]
+442: Show Ticket[END]
+443: [END]
+444: [END]
+445: [END]
+446: [END]
+447: Baby Canary[END]
+448: ITEM 96[END]
+449: BottlRocket[END]
+44A: Hat[END]
+44B: Dentures[END]
+44C: Ticket Stub[END]
+44D: IC Chip[END]
+44E: Ocarina[END]
+44F: Item 103[END]
+450: Frank.Badge[END]
+451: Friend Ring[END]
+452: Item 106[END]
+453: Onyx Hook[END]
+454: Ult. Weapon[END]
+455: Ruler[END]
+456: ATM Card[END]
+457: Red Weed[END]
+458: Megaphone[END]
+459: Map[END]
+45A: [END]
+45B: [END]
+45C: [END]
+45D: [END]
+45E: [END]
+45F: [END]
+460: [END]
+461: [END]
+462: [END]
+463: [END]
+464: [END]
+465: [END]
+466: [END]
+467: Coords.[END]
+468: [END]
+469: Telepathy[END]
+46A: Teleport[END]
+46B: [END]
+46C: [END]
+46D: [END]
+46E: [END]
+46F: [END]
+470: Lifeup [ALPHA][END]
+471: Lifeup [BETA][END]
+472: Lifeup [GAMMA][END]
+473: Lifeup [PIZ][END]
+474: Lifeup [OMEGA][END]
+475: [END]
+476: [END]
+477: [END]
+478: Healing [ALPHA][END]
+479: Healing [BETA][END]
+47A: Healing [GAMMA][END]
+47B: Healing [PIZ][END]
+47C: Super Heal[END]
+47D: PSI Shield[ALPHA][END]
+47E: PSI Shield[BETA][END]
+47F: PowerShield[END]
+480: Brainshock[END]
+481: BrainCyclon[END]
+482: Hypnosis[END]
+483: Paralysis[END]
+484: Darkness[END]
+485: PSI Magnet[END]
+486: Shield Off[END]
+487: PSI Block[END]
+488: Offense Up[END]
+489: Def. Up [ALPHA][END]
+48A: Def. Up [BETA][END]
+48B: Quick Up[END]
+48C: Def. Down [ALPHA][END]
+48D: Def. Down [BETA][END]
+48E: Dimens.Warp[END]
+48F: Hypnosis[END]
+490: PK Freeze [ALPHA][END]
+491: PK Freeze [BETA][END]
+492: PK Freeze [GAMMA][END]
+493: PK Freeze [OMEGA][END]
+494: PK Fire [ALPHA][END]
+495: PK Fire [BETA][END]
+496: PK Fire [GAMMA][END]
+497: PK Fire [OMEGA][END]
+498: PK Beam [ALPHA][END]
+499: PK Beam [BETA][END]
+49A: PK Beam [GAMMA][END]
+49B: PK Beam [OMEGA][END]
+49C: PK Thunder[ALPHA][END]
+49D: PK Thunder[BETA][END]
+49E: PK Thunder[GAMMA][END]
+49F: [END]
+4A0: [END]
+4A1: [END]
+4A2: [END]
+4A3: [END]
+4A4: [END]
+4A5: [END]
+4A6: [END]
+4A7: [END]
+4A8: Uncon.[END]
+4A9:  Stone[END]
+4AA: Paral.[END]
+4AB: Asleep[END]
+4AC: Flust.[END]
+4AD: Confus[END]
+4AE: Poison[END]
+4AF:   Cold[END]
+4B0: [END]
+4B1: Course A[END]
+4B2: Course B[END]
+4B3: Course C[END]
+4B4: Hint 1[END]
+4B5: Hint 2[END]
+4B6: Hint 3[END]
+4B7: Antidote[END]
+4B8: Antidote[END]
+4B9: Antidote[END]
+4BA: Antidote[END]
+4BB: Real Rocket[END]
+4BC: Time Machine[END]
+4BD: 
+4BE: 
+4BF: 
+4C0: 
+4C1: 
+4C2: 
+4C3: 
+4C4: 
+4C5: 
+4C6: 
+4C7: 
+4C8: 
+4C9: 
+4CA: 
+4CB: 
+4CC: 
+4CD: 
+4CE: [END]
+4CF: Home[END]
+4D0: Mother'sDay[END]
+4D1: Thanksgiv.[END]
+4D2: Reindeer[END]
+4D3: Halloween[END]
+4D4: Snowman[END]
+4D5: Easter[END]
+4D6: Valentine[END]
+4D7: Santa Claus[END]
+4D8: 
+4D9: 
+4DA: 
+4DB: 
+4DC: 
+4DD: 
+4DE: 
+4DF: 
+4E0: 
+4E1: 
+4E2: 
+4E3: 
+4E4: 
+4E5: 
+4E6: 
+4E7: 
+4E8: 
+4E9: 
+4EA: 
+4EB: 
+4EC: 
+4ED: 
+4EE: 
+4EF: 
+4F0: 
+4F1: 
+4F2: 
+4F3: 
+4F4: 
+4F5: 
+4F6: 
+4F7: 
+4F8: 
+4F9: 
+4FA: 
+4FB: 
+4FC: 
+4FD: 
+4FE: 
+4FF: 
+500: 
+501: 
+502: 
+503: 
+504: 
+505: 
+506: 
+507: 
+508: 
+509: 
+50A: 
+50B: 
+50C: 
+50D: 
+50E: 
+50F: 
+510: 
+511: 
+512: 
+513: 
+514: [END]
+515: Should you fight it?[BREAK]Or should you run from it?[END]
+516: It appears to be holding a very important secret.[END]
+517: Is there actually any way to defeat this thing?[END]
+518: Sometimes it'll slam you with its heavy body or attack with its long trunk![END]
+519: Someone ate its food, and it's not happy at all![END]
+51A: Shocked? It really does exist![END]
+51B: Watch out for its exhaust! It can cause an asthma attack![END]
+51C: Hypnosis probably doesn't work on robots, does it?[END]
+51D: It's wearing special armor to protect itself from PSI attacks.[END]
+51E: This has the power to turn people into stone.[END]
+51F: Creatures like this shouldn't exist on Earth, but...[END]
+520: This is no time to be getting caught up with a punk ape like this![END]
+521: The only one not afraid of this thing's face is its own mother.[END]
+522: Just look at those terrifying eyes![END]
+523: Whoa, there's no one in the driver's seat![END]
+524: He has strong friends.[END]
+525: This thing's shell is unbelievably hard.[END]
+526: Watch out. It'll use hypnosis on you.[END]
+527: [END]
+528: This animal is as swift as they come.[END]
+529: Watch out for those pearly whites![END]
+52A: You dirty thief![END]
+52B: Always turn down an alligator's dinner invitation.[END]
+52C: It's a walking fuel tank.[END]
+52D: It appears to be protecting something.[END]
+52E: This guy is at the very top of the FBI's most-wanted list.[END]
+52F: Deep down, he might actually be a nice guy.[END]
+530: A malnourished robot?[END]
+531: Don't be fooled by her smile![END]
+532: A man from a distant star.[END]
+533: This creature does not exist in the real world.[END]
+534: A mobile brain that is the result of an evil science experiment.[END]
+535: This creature is a master of many kinds of PSI.[END]
+536: It'd be nice to have some armor of your own.[END]
+537: A strange, mobile tree.[END]
+538: He looks bad-tempered, so be careful.[END]
+539: You could probably plant flowers in his hair and they'd grow.[END]
+53A: She has a body like a refrigerator and a heart of ice.[END]
+53B: Beating the punks' leader will probably set them all straight.[END]
+53C: His heart is as warped as his face is.[END]
+53D: [END]
+53E: Watch out for this guy's SMAAAASH hits![END]
+53F: Watch out for this guy's constant sneak attacks![END]
+540: Watch your items! This guy is a thief...[END]
+541: It isn't poisonous.[BREAK]Hopefully, anyway...[END]
+542: He who laughs last laughs best.[END]
+543: This animal is quite a bit different from your ordinary pet cat.[END]
+544: Kill it with bug spray![END]
+545: Aaaachoo!![END]
+546: Bug spray works wonders on it![END]
+547: Why not try using bug spray on it?[END]
+548: It's poisonous, but you can kill it with bug spray.[END]
+549: Try not to get tied up.[END]
+54A: It's almost like this guy escaped from a comic book or something.[END]
+54B: This guy's face is the easiest to draw.[END]
+54C: If this guy put a mask on, it'd be impossible to tell who he is.[END]
+54D: A rather run-of-the-mill ghost.[END]
+54E: It's about as big as a dinner plate...[END]
+54F: Apparently, life is like a puzzle to him.[END]
+550: It may be small, but it's clearly an alien.[END]
+551: Hold your nose![END]
+552: It looks scary on the outside, but its final attack is even scarier.[END]
+553: A big rat with a long tail.[END]
+554: It looks like an egg but is harder than one.[END]
+555: [END]
+556: It glares at you from afar...[END]
+557: It's flying all around![END]
+558: [END]
+559: [END]
+55A: It was apparently given a powerful poison at a lab somewhere.[END]
+55B: Watch out for its poison and petrifying attacks![END]
+55C: [END]
+55D: [END]
+55E: Don't let it get away! It's a good source of experience points![END]
+55F: It apparently doesn't have any friends at all.[END]
+560: @Its chair broke and now it's in a REALLY bad mood![END]
+561: [END]
+562: [END]
+563: [END]
+564: [END]
+565: Happen to have any Antidotes handy?[END]
+566: Poison Pois on Poi Sonnnn[END]
+567: Don't smile back at this alligator.[END]
+568: [END]
+569: Even this thing's own father is scared of its face.[END]
+56A: [END]
+56B: Be careful not to get petrified...[END]
+56C: This thing better not have fleas...[END]
+56D: Hypnosis probably doesn't work on cars, does it?[END]
+56E: Hypnosis probably doesn't work on trucks, does it?[END]
+56F: How will it come at you next?! Straight-on, or in a zig-zag?![END]
+570: Watch out, it'll call for friends if it's alarmed![END]
+571: [END]
+572: The favorite of optometrists everywhere.[END]
+573: Don't let your guard down. This daddy is always watching you...[END]
+574: This mommy can see through all your tricks![END]
+575: [END]
+576: [END]
+577: This thing will do anything for its friends![END]
+578: [END]
+579: He only seems to use PK Beam...[END]
+57A: This thing is devilishly strong.[END]
+57B: It may look like a hunk of junk, but don't underestimate it![END]
+57C: A cutting-edge, mass-produced robot.[END]
+57D: It's about as big as a manhole cover...[END]
+57E: Don't let her beauty fool you...[END]
+57F: It carries bombs... and often uses them.[END]
+580: This robot has large amounts of fuel stored inside its body.[END]
+581: Watch out! She won't hesitate to use powerful PSI attacks![END]
+582: His mission is to keep anyone from getting through the caves...[END]
+583: Prefers to use PK Freeze.[END]
+584: If you can beat this thing, you're incredible.[END]
+585: It doesn't just use PSI - it also likes to steal things![END]
+586: [END]
+587: Watch out for its Brainshock attacks![END]
+588: A violent guy who comes out swinging the first chance he gets.[END]
+589: Its beautiful silver coat glistens in the light.[END]
+58A: This thing is HUGE![END]
+58B: Don't ever sleep in this guy's bed, no matter how tired you are![END]
+58C: This robot has been remodeled to be even stronger now![END]
+58D: The strongest Starman of all.[END]
+58E: 
+58F: 
+590: 
+591: 
+592: 
+593: [END]
+594: 
+595: 
+596: 
+597: 
+598: 
+599: 
+59A: 
+59B: 
+59C: 
+59D: 
+59E: 
+59F: 
+5A0: 
+5A1: 
+5A2: 
+5A3: 
+5A4: 
+5A5: 
+5A6: 
+5A7: 
+5A8: 
+5A9: 
+5AA: 
+5AB: 
+5AC: 
+5AD: 
+5AE: 
+5AF: 
+5B0: 
+5B1: 
+5B2: 
+5B3: 
+5B4: 
+5B5: 
+5B6: 
+5B7: 
+5B8: 
+5B9: 
+5BA: 
+5BB: 
+5BC: 
+5BD: 
+5BE: 
+5BF: 
+5C0: 
+5C1: 
+5C2: 
+5C3: 
+5C4: 
+5C5: 
+5C6: 
+5C7: 
+5C8: 
+5C9: 
+5CA: 
+5CB: 
+5CC: 
+5CD: 
+5CE: 
+5CF: 
+5D0: 
+5D1: 
+5D2: 
+5D3: 
+5D4: 
+5D5: 
+5D6: 
+5D7: 
+5D8: 
+5D9: 
+5DA: 
+5DB: 
+5DC: [END]
+5DD: Territ. Oak[END]
+5DE: Dragon[END]
+5DF: R-7038[END]
+5E0: Elephant[END]
+5E1: Bear[END]
+5E2: Bigfoot[END]
+5E3: Mad Truck[END]
+5E4: Old Robot[END]
+5E5: Mega-Borg[END]
+5E6: Gargoyle[END]
+5E7: Gabilan[END]
+5E8: Gorilla[END]
+5E9: Bison[END]
+5EA: Tiger[END]
+5EB: Mad Car[END]
+5EC: Raeb Yddet[END]
+5ED: Magisnail[END]
+5EE: Titany[END]
+5EF: Giygas[END]
+5F0: Eagle[END]
+5F1: Wolf[END]
+5F2: Gull Bandit[END]
+5F3: Crocodile[END]
+5F4: Atomic Robot[END]
+5F5: Cave Master[END]
+5F6: Fugitive[END]
+5F7: BB Gang Boss[END]
+5F8: Barbot[END]
+5F9: Jane[END]
+5FA: Starman[END]
+5FB: Ulrich[END]
+5FC: Brainger[END]
+5FD: Mook[END]
+5FE: Armor[END]
+5FF: Oak[END]
+600: Redneck[END]
+601: Hippie[END]
+602: Bag Lady[END]
+603: Gang Member[END]
+604: Dr. Distorto[END]
+605: [END]
+606: Gang Zombie[END]
+607: PseudoZombie[END]
+608: Crow[END]
+609: Snake[END]
+60A: Hyena[END]
+60B: Lynx[END]
+60C: Centipede[END]
+60D: Dust Ghost[END]
+60E: Fly[END]
+60F: Arachnid![END]
+610: Scorpion[END]
+611: Rope[END]
+612: Fireball[END]
+613: Swoosh[END]
+614: Bonus Swoosh[END]
+615: Ghost[END]
+616: Li'l Saucer[END]
+617: Mr. Batty[END]
+618: Starman Jr.[END]
+619: Skunk[END]
+61A: BloodyZombie[END]
+61B: Rat[END]
+61C: Bomber[END]
+61D: [END]
+61E: Doll[END]
+61F: Lamp[END]
+620: [END]
+621: [END]
+622: Biopede[END]
+623: Bio-Scorpion[END]
+624: [END]
+625: [END]
+626: Red Snake[END]
+627: Lone Wolf[END]
+628: Polar Bear[END]
+629: [END]
+62A: [END]
+62B: [END]
+62C: [END]
+62D: Rattlesnake[END]
+62E: Tarantula[END]
+62F: Tough Croc[END]
+630: [END]
+631: Buffalo[END]
+632: [END]
+633: Bio-Bat[END]
+634: Stray Dog[END]
+635: Devil Car[END]
+636: Devil Truck[END]
+637: Death Truck[END]
+638: Alarm Ghost[END]
+639: [END]
+63A: Woosh Swoosh[END]
+63B: Papa Swoosh[END]
+63C: Swooshette[END]
+63D: [END]
+63E: [END]
+63F: Sky Yddet[END]
+640: [END]
+641: Giga-Borg[END]
+642: Last Borg[END]
+643: Scrapper[END]
+644: Death Barbot[END]
+645: Omega Saucer[END]
+646: Caroline[END]
+647: Star Miner[END]
+648: NuclearRobot[END]
+649: Suzie[END]
+64A: Blue Starman[END]
+64B: Satania[END]
+64C: Titanian[END]
+64D: Mook Senior[END]
+64E: [END]
+64F: Zombie[END]
+650: Mean Zombie[END]
+651: Silver Wolf[END]
+652: R-7037[END]
+653: Grizzly[END]
+654: R-7038XX[END]
+655: Last Starman[END]
+656: [END]
+657: [END]
+658: [END]
+659: [END]
+65A: [END]
+65B: [END]
+65C: 
+65D: 
+65E: 
+65F: 
+660: 
+661: 
+662: 
+663: 
+664: 
+665: 
+666: 
+667: 
+668: 
+669: 
+66A: 
+66B: 
+66C: 
+66D: 
+66E: 
+66F: 
+670: 
+671: 
+672: 
+673: 
+674: 
+675: 
+676: 
+677: 
+678: 
+679: 
+67A: 
+67B: 
+67C: 
+67D: 
+67E: 
+67F: 
+680: 
+681: 
+682: 
+683: 
+684: 
+685: 
+686: 
+687: 
+688: 
+689: 
+68A: 
+68B: 
+68C: 
+68D: 
+68E: 
+68F: 
+690: 
+691: 
+692: 
+693: 
+694: 
+695: 
+696: 
+697: 
+698: 
+699: 
+69A: 
+69B: 
+69C: 
+69D: 
+69E: 
+69F: 
+6A0: 
+6A1: 
+6A2: 
+6A3: 
+6A4: [END]
+6A5: @[03 1A] decided not to hand[BREAK]over any items.[BREAK][END]
+6A6: @[03 1A] gave the [03 1C][BREAK]to [03 1B].[BREAK][END]
+6A7: @[03 1A] put the [03 1C][BREAK]in [03 1B]'s bag.[BREAK][END]
+6A8: @[03 1B] took the [03 1C][BREAK]from [03 1A]'s bag.[BREAK][END]
+6A9: @[03 3E] threw out the[BREAK][03 1C] that was in[BREAK][03 1A]'s bag.[BREAK][END]
+6AA: @[03 3E] took the [03 1C][BREAK]out of [03 1A]'s bag[BREAK][PAUSE]and put it in [03 1B]'s bag.[BREAK][END]
+6AB: 
+6AC: 
+6AD: 
+6AE: @[03 1A] swallowed the[BREAK][03 1C].[BREAK][END]
+6AF: @[03 1A] ate the [03 1C].[BREAK][END]
+6B0: @[03 1A] drank the[BREAK][03 1C].[BREAK][END]
+6B1: was recovered by [03 1E].[BREAK][END]
+6B2: went up [03 1E].[BREAK][END]
+6B3: @[03 1A]'s HP[BREAK][END]
+6B4: @[03 1A]'s PP[BREAK][END]
+6B5: @[03 1A]'s Fight[BREAK][END]
+6B6: @[03 1A]'s Speed[BREAK][END]
+6B7: @[03 1A]'s Wisdom[BREAK][END]
+6B8: @[03 1A]'s Strength[BREAK][END]
+6B9: @[03 1A]'s Force[BREAK][END]
+6BA: @[03 1A] took a Magic Herb[BREAK]from the Big Bag and used[BREAK]it.[BREAK][END]
+6BB: @[03 1A] broke the bread into[BREAK]crumbs and started a trail[BREAK]out of them.[BREAK][END]
+6BC: @You need to throw out your[BREAK]old bread crumbs before you[BREAK]can use other bread.[BREAK][END]
+6BD: @[03 16] followed the trail[BREAK]of bread crumbs back to[BREAK]where it started.[BREAK][END]
+6BE: @[03 1A] put the ribbon in[BREAK]her hair.[BREAK][END]
+6BF: @"Just turn the power off!"[BREAK][END]
+6C0: @You were able to figure out[BREAK]the lengths of many things.[BREAK][END]
+6C1: @The Big Bag disappeared[BREAK]after being emptied.[BREAK][END]
+6C2: @You used up all the calls[BREAK]on your Phone Card.[BREAK][END]
+6C3: @The poison was removed from[BREAK][03 1A]'s body.[BREAK][END]
+6C4: @[03 1A]'s cold went away.[BREAK][END]
+6C5: @[03 1A] gripped the[BREAK]PSI Stone.[BREAK][END]
+6C6: @The PSI Stone turned into[BREAK]an ordinary rock.[BREAK][END]
+6C7: @[03 1A] tried [03 1C].[BREAK][END]
+6C8: @You don't have enough power[BREAK]left to try that.[BREAK][END]
+6C9: @[03 1A] was revived![BREAK][END]
+6CA: @Most of the diary is[BREAK]unreadable, but one part[BREAK]did stand out:[BREAK][PAUSE]@"The password...[BREAK][PAUSE]Where is the god's tail,[BREAK][PAUSE]that which was left behind[BREAK]by the ship that soars[BREAK]the heavens?"[BREAK][END]
+6CB: @[03 1A]'s body became soft[BREAK]again.[BREAK][END]
+6CC: @You played the Ocarina of[BREAK]Hope.[BREAK][END]
+6CD: @Did you catch that?[BREAK][END]
+6CE: @This location is not on the[BREAK]map.[BREAK][END]
+6CF: @[03 1A] checked the map.[BREAK][END]
+6D0: @Some sort of force is[BREAK]pushing [03 16][03 17][BREAK]back.[BREAK][END]
+6D1: @The Repel Ring's mysterious[BREAK]power wore off.[BREAK][END]
+6D2: 
+6D3: 
+6D4: 
+6D5: 
+6D6: @[03 1A] took out the[BREAK][03 1C] and then put it[BREAK]away again.[BREAK][END]
+6D7: @[03 1A] is unconscious.[BREAK][END]
+6D8: @The entire party was[BREAK]healed![BREAK][END]
+6D9: @[03 10] sensed a faint[BREAK]memory of his[BREAK]great-grandfather![BREAK][END]
+6DA: @Huh? There still seems to[BREAK]be something inside EVE's[BREAK]body...[BREAK][END]
+6DB: @I found your ATM Card on[BREAK]the floor in your room.[BREAK][END]
+6DC: @Oh, it looks like you can't[BREAK]carry any more stuff.[BREAK][END]
+6DD: 
+6DE: 
+6DF: 
+6E0: @Danger seems to be lurking[BREAK]nearby...[BREAK] [END]
+6E1: @Things are going crazy![BREAK] [END]
+6E2: 
+6E3: 
+6E4: 
+6E5: 
+6E6: 
+6E7: 
+6E8: 
+6E9: 
+6EA: 
+6EB: 
+6EC: 
+6ED: 
+6EE: 
+6EF: 
+6F0: 
+6F1: 
+6F2: 
+6F3: 
+6F4: [END]
+6F5: Copyrights of Game[03 3F] Scenario[03 3F][BREAK][BREAK]Music[03 3F] but excluding the[BREAK][BREAK]copyright of Music composed by[BREAK][BREAK]Keiichi Suzuki[03 3F] reserved by[BREAK][BREAK]SHIGESATO ITOI and NINTENDO.[BREAK][BREAK]Copyright of Program reserved[BREAK][BREAK]by NINTENDO.[BREAK][END]
+6F6: 
+6F7: 
+6F8: 
+6F9: 
+6FA: 
+6FB: 
+6FC: 
+6FD: 
+6FE: [BREAK][BREAK][BREAK][BREAK][END]
+6FF: [03 12] is reunited with her[BREAK]mother as the rest of the[BREAK]freed people exit the cave.[BREAK][END]
+700: [03 13], his health fully[BREAK]recovered, is now a popular[BREAK]singer at the Live House.[BREAK][END]
+701: The abducted grownups return[BREAK]to their children in Easter.[BREAK]You did great, kids![BREAK][END]
+702: [03 12]: I promise I'll never[BREAK]forget you. So I won't say[BREAK]goodbye...[BREAK]Just, "'Til we meet again!"[BREAK][END]
+703: [03 11] returns to a hero's[BREAK]welcome at Twinkle[BREAK]Elementary School.[BREAK][END]
+704: Welcome home, [03 10]![BREAK]We're so glad you made it[BREAK]back safe and sound.[BREAK]You must be famished![BREAK][END]
+705: Oh, a letter from [03 10].[BREAK]I miss him so much.[BREAK]I hope we can get together[BREAK]again soon...[BREAK][END]
+706: Well, now that the Earth's[BREAK]crisis is finally over, I[BREAK]think I'll just lie down for[BREAK]a moment and... Zzzzzzz...[END]
+707: Oh, this is your dad.[BREAK]I hate to wake you, but it[BREAK]might be just a little too[BREAK]soon to rest easy...[END]
+708: 
+709: "Big Bag"[BREAK]@A bag filled with lots of[BREAK]Magic Herbs.[END]
+70A: "Phone Card"[BREAK]@You can make 50 calls on[BREAK]public phones with this.[END]
+70B: "Bread Crumbs"[BREAK]@With these, you can return[BREAK]to the exact spot where you[BREAK]began spreading crumbs.[END]
+70C: "Repel Ring"[BREAK]@When used, this item will[BREAK]ward off weak enemies for a[BREAK]short while.[END]
+70D: [END]
+70E: "Memory Chip"[BREAK]@Part of Great Grandfather[BREAK]George's memory is stored[BREAK]on this.[BREAK][PAUSE]@[03 10] can use it to return[BREAK]to EVE's location.[END]
+70F: [END]
+710: [END]
+711: [END]
+712: "Knife"[BREAK]@A weapon that [03 13] can[BREAK]skillfully use.[END]
+713: "Survival Knife"[BREAK]@A weapon for [03 13].[BREAK]It looks stronger than a[BREAK]regular knife.[END]
+714: "Basic Sword"[BREAK]@Probably only a select few[BREAK]can master using this.[END]
+715: "Katana"[BREAK]@[03 13] can use this[BREAK]Japanese sword.[BREAK][PAUSE]@It's the strongest weapon[BREAK]of all.[END]
+716: "Stun Gun"[BREAK]@[03 11] can probably use[BREAK]this.[END]
+717: "Toy Air Gun"[BREAK]@This is a very strong[BREAK]weapon, but only [03 11] can[BREAK]use it.[END]
+718: "Cracked Bat"[BREAK]@[03 10]! Try using this as a[BREAK]weapon![END]
+719: "Teeball Bat"[BREAK]@This should work well[BREAK]against weak enemies,[BREAK][03 10].[END]
+71A: "Sandlot Bat"[BREAK]@With this, [03 10] can fight[BREAK]against strong enemies.[END]
+71B: "Hall of Fame Bat"[BREAK]@A spectacular bat with a[BREAK]famous athlete's autograph[BREAK]on it.[END]
+71C: "Frypan"[BREAK]@[03 12] can use this as a[BREAK]weapon.[END]
+71D: "Deluxe Frypan"[BREAK]@This frypan doesn't burn[BREAK]food,[BREAK][PAUSE]and [03 12] can also use it[BREAK]as a weapon.[END]
+71E: "Best Frypan"[BREAK][PAUSE]@Not even tough baddies can[BREAK]withstand a hit from this[BREAK]heavy frypan.[END]
+71F: "Slingshot"[BREAK]@A simple weapon that anyone[BREAK]can use.[END]
+720: "Boomerang"[BREAK]@Handle with care. This is[BREAK]not a toy.[BREAK][PAUSE]Anyone can use this weapon.[END]
+721: "Bug Spray"[BREAK]@Somewhat effective on[BREAK]insects and such.[END]
+722: "Super Spray"[BREAK]@A new and powerful bug[BREAK]spray.[END]
+723: "Flea Bomb"[BREAK]@Filled with fleas and lice.[BREAK]Throw it at the enemy and[BREAK]see what happens![END]
+724: "Love Words"[BREAK]@???[END]
+725: "Curse Words"[BREAK]@???[END]
+726: "Slime Generator"[BREAK]@It SEEMS like it could be[BREAK]useful in battle, but...[END]
+727: "Flashdark"[BREAK]@This is the exact opposite[BREAK]of a flashlight.[END]
+728: [END]
+729: [END]
+72A: "Flamethrower"[BREAK]@Burns enemies to a crisp,[BREAK]but only [03 11] can use it.[END]
+72B: "Bomb"[BREAK]@Probably only [03 11] can[BREAK]use this.[END]
+72C: "Super Bomb"[BREAK]@"Danger! Explosive!" is[BREAK]written on it.[BREAK][PAUSE]@Leave this in [03 11]'s[BREAK]hands.[END]
+72D: "Laser Beam"[BREAK]@If that weakling [03 11][BREAK]were to wield this...[END]
+72E: "Death Beam"[BREAK]@If that cowardly [03 11][BREAK]were to wield this, he'd[BREAK]really be something.[END]
+72F: [END]
+730: "Rope"[BREAK]@Use this to tie up the[BREAK]enemy.[END]
+731: [END]
+732: [END]
+733: [END]
+734: [END]
+735: "Peace Coin"[BREAK]@Raises your Defense[BREAK]slightly when equipped.[END]
+736: "Protect Coin"[BREAK]@Raises your Defense[BREAK]somewhat when equipped.[END]
+737: "Magic Coin"[BREAK]@Raises your Defense quite a[BREAK]bit when equipped.[END]
+738: "Fairy Bracelet"[BREAK]@Raises your Defense a tiny[BREAK]bit when equipped.[END]
+739: "Angel Bracelet"[BREAK]@Raises your Defense a nice[BREAK]amount when equipped.[END]
+73A: "Goddess Bracelet"[BREAK]@Raises your Defense a whole[BREAK]lot when equipped.[END]
+73B: "Rain Pendant"[BREAK]@Reduces damage from PK Fire[BREAK]when equipped.[END]
+73C: "Flame Pendant"[BREAK]@Reduces damage from[BREAK]PK Freeze when equipped.[END]
+73D: "Earth Pendant"[BREAK]@Reduces damage from[BREAK]PK Thunder when equipped.[END]
+73E: "Sea Pendant"[BREAK]@Reduces damage from[BREAK]PK Fire, PK Freeze, and[BREAK]PK Thunder when equipped.[END]
+73F: "Easy Ring"[BREAK]@Equip this ring to increase[BREAK]EXP and money from enemies[BREAK]and reduce random battles.[END]
+740: [END]
+741: [END]
+742: [END]
+743: [END]
+744: "Orange Juice"[BREAK]@Rich with Vitamin C.[BREAK]Restores a little HP.[END]
+745: "French Fries"[BREAK]@Restores HP with or without[BREAK]ketchup.[END]
+746: "Magic Herb"[BREAK]@Please use this when you're[BREAK]exhausted or hurt.[END]
+747: "Hamburger"[BREAK]@Fast food for restoring HP[BREAK]quickly.[END]
+748: "Sports Drink"[BREAK]@Drink this to feel[BREAK]refreshed, no matter how[BREAK]exhausted you are.[END]
+749: "Medicine"[BREAK]@Use this to heal wounds.[END]
+74A: "Asthma Spray"[BREAK]@If [03 10] starts to have an[BREAK]asthma attack, this will[BREAK]stop it.[END]
+74B: "Antidote"[BREAK]@Quickly counteracts poison.[END]
+74C: "Mouthwash"[BREAK]@Gargle with this to get[BREAK]over a cold.[END]
+74D: "Strawberry Tofu"[BREAK]@Wouldn't you like to try[BREAK]some for real?[END]
+74E: [END]
+74F: "Bread"[BREAK]@It's good to eat,[BREAK][PAUSE]but you can use its crumbs[BREAK]to mark a trail that you[BREAK]can retrace later.[END]
+750: "Angel Seed"[BREAK]@Lifts the curse of a Demon[BREAK]Seed.[END]
+751: "PSI Power Stone"[BREAK]@PSI power is hidden inside[BREAK]this stone.[END]
+752: [END]
+753: "Magic Ribbon"[BREAK]@Raises Force a little bit[BREAK]when tied into a girl's[BREAK]hair.[END]
+754: "Magic Candy"[BREAK]@Raises Fight a little bit[BREAK]when a weakling eats it.[END]
+755: [END]
+756: "Speed Capsule"[BREAK]@Raises Speed.[END]
+757: "Wisdom Capsule"[BREAK]@Raises Wisdom.[END]
+758: "Strength Capsule"[BREAK]@Raises Strength.[END]
+759: "Force Capsule"[BREAK]@Raises Force.[END]
+75A: "Fight Capsule"[BREAK]@Raises Fight.[END]
+75B: [END]
+75C: [END]
+75D: "Basement Key"[BREAK]@Needed to enter the[BREAK]basement.[END]
+75E: "Zoo Key"[BREAK]@This should open the front[BREAK]gate of the zoo.[END]
+75F: "Haunted House Key"[BREAK]@The key to the Rosemarys'[BREAK]mansion.[END]
+760: "Great-Grandfather's Diary"[BREAK]@The diary of [03 10]'s[BREAK]great-grandfather.[BREAK][PAUSE]@It's filled with writing,[BREAK]but it's in such bad shape[BREAK]that it's mostly illegible.[END]
+761: "Pass"[BREAK]@"Duncan Factory Employee"[BREAK]is written on it.[END]
+762: "Show Ticket"[BREAK]@"Every Day All Night[BREAK]Rock 'n' Roll Live Show"[BREAK]is written on it.[END]
+763: [END]
+764: [END]
+765: [END]
+766: [END]
+767: "Baby Canary"[BREAK]@It has a lonely look in its[BREAK]eyes.[END]
+768: [END]
+769: "Bottle Rocket"[BREAK]@[03 11] should know how to[BREAK]use this.[END]
+76A: "Hat"[BREAK]@A pretty hat with the name[BREAK]"[03 12]" embroidered on it.[END]
+76B: "Dentures"[BREAK]@Unnecessary if you make[BREAK]sure to take care of your[BREAK]teeth and brush regularly.[END]
+76C: "Ticket Stub"[BREAK]@"Collect 10 ticket stubs[BREAK]for a tank ride!" is[BREAK]written on it.[END]
+76D: [END]
+76E: "Ocarina of Hope"[BREAK]@You can use this to hear[BREAK]the melodies you've[BREAK]collected so far.[END]
+76F: [END]
+770: "Franklin Badge"[BREAK]@It's said Ben Franklin wore[BREAK]this as protection during[BREAK]his lightning experiments.[END]
+771: [END]
+772: [END]
+773: "Onyx Hook"[BREAK]@You can return to Magicant[BREAK]from anywhere using this.[END]
+774: "Ultimate Weapon"[BREAK]@???[END]
+775: "Ruler"[BREAK]@A 12-inch (approx. 30 cm)[BREAK]ruler.[END]
+776: "ATM Card"[BREAK]@Use this to access your[BREAK]bank account and make[BREAK]deposits or withdrawals.[END]
+777: "Red Weed"[BREAK]@At first glance, it looks[BREAK]like an ordinary weed,[BREAK]but...[END]
+778: "Magic Megaphone"[BREAK]@Use this to scare enemies[BREAK]with your loud voice.[END]
+779: [END]
+77A: [END]
+77B: [END]
+77C: [END]
+77D: [END]
+77E: [END]
+77F: [END]
+780: [END]
+781: [END]
+782: [END]
+783: [END]
+784: [END]
+785: [END]
+786: [END]
+787: "Debug"[BREAK]@.......[BREAK][END]
+788: 
+789: 
+78A: [03 14][END]
+78B: SHIGESATO ITOI[END]
+78C: MIYUKI KURE[END]
+78D: AKIO OHMORI[END]
+78E: RITSUO KAMIMURA[END]
+78F: KEIICHI SUZUKI[END]
+790: HIROKAZU TANAKA[END]
+791: SHINBO MINAMI[END]
+792: TATSUYA ISHII[END]
+793: TOTTORI[END]
+794: KAZUYA NAKATANI[END]
+795: TAKAYUKI ONODERA[END]
+796: MOTOO YASUMA[END]
+797: MASAYUKI KAMEYAMA[END]
+798: HIDEO KON[END]
+799: KATSUTOMO MAEIWA[END]
+79A: KUNIKO SAKURAI[END]
+79B: MASAHIRO TATEMOTO[END]
+79C: TAKASHI KAWAGUCHI[END]
+79D: KEIZOH KATOH[END]
+79E: MOTOHIRO ISHII[END]
+79F: AKIHITO TODA[END]
+7A0: YUKARI SAITOH[END]
+7A1: PHIL SANDHOP[END]
+7A2: TOSHIKO WATSON[END]
+7A3: YUKA NAKATA[END]
+7A4: HIROKO FAULKNER[END]
+7A5: TONY HARMAN[END]
+7A6: DAYV BROOKS[END]
+7A7: NORIYUKI MINAMI[END]
+7A8: BIN OHGAWARA[END]
+7A9: YOSHIHISA WADA[END]
+7AA: HIKONORI SUZUKI[END]
+7AB: TAKAO SHIMIZU[END]
+7AC: SHIGERU MIYAMOTO[END]
+7AD: HIROSHI YAMAUCHI[END]
+7AE: 
+7AF: 
+7B0: 
+7B1: 
+7B2: 
+7B3: 
+7B4: 
+7B5: 
+7B6: 
+7B7: 
+7B8: 
+7B9: 
+7BA: 
+7BB: 
+7BC: 
+7BD: 
+7BE: 
+7BF: 
+7C0: 
+7C1: 
+7C2: 
+7C3: 
+7C4: 
+7C5: 
+7C6: 
+7C7: 
+7C8: 
+7C9: 
+7CA: 
+7CB: 
+7CC: 
+7CD: 
+7CE: 
+7CF: [END]
+7D0: [END]
+7D1: [END]
+7D2: [03 03]Á¿[03 04]É [03 03]ÁÀ[03 04]É [END]
+7D3: [03 20] suddenly attacked![END]
+7D4: [03 20] attacks![END]
+7D5: [03 20] fired the tank cannon![END]
+7D6: [03 21] dodged quickly![END]
+7D7: Combo attack![END]
+7D8: [03 20] bit [03 21]![END]
+7D9: [03 20] scratched [03 21]![END]
+7DA: [03 20] bore down on [03 21]![END]
+7DB: [03 2C][END]
+7DC: [03 21] took [03 23] damage![END]
+7DD: [BREAK]         YOU WON![BREAK][END]
+7DE: [BREAK][03 16][03 17] was defeated...[BREAK][END]
+7DF: Defeated the [03 21]![END]
+7E0: [03 21] got tired and collapsed...[END]
+7E1: But [03 21] was already gone.[END]
+7E2: No effect on [03 21]![END]
+7E3: [03 20] went berserk![END]
+7E4: [03 20] ran out of strength![END]
+7E5: [03 20]'s final desperation attack!!![END]
+7E6: You can't grasp the form of [03 20]'s attack![END]
+7E7: [03 21] was enveloped in a barrier![END]
+7E8: "You're a disgrace to your mom!"[END]
+7E9: [03 21] turned to stone![END]
+7EA: [03 20] spewed a a sticky substance![END]
+7EB: [03 21] was blinded![END]
+7EC: [03 20] is tied up...[END]
+7ED: [03 20] let out a strange howl![END]
+7EE: [03 20] exploded![END]
+7EF: [03 20] burst into flames![END]
+7F0: [03 21]'s Offense went up by [03 23]![END]
+7F1: [03 21]'s Offense went down by [03 23]![END]
+7F2: [03 21]'s Defense went up by [03 23]![END]
+7F3: [03 21]'s Speed went went up by [03 23]![END]
+7F4: [03 3C] Offense [03 23][END]
+7F5: [03 3C] Defense [03 23][END]
+7F6: [03 21]'s Fight went down by [03 23]![END]
+7F7: [03 21]'s Defense went down by [03 23]![END]
+7F8: [03 20] smiled boldly![END]
+7F9: [03 21]'s Fight went up by [03 23]![END]
+7FA: [03 20] flew into a rage![END]
+7FB: [03 21]'s Speed went down by [03 23]![END]
+7FC: [03 20] did something disturbing![END]
+7FD: [03 20] called for help![END]
+7FE: [03 20] sowed some seeds![END]
+7FF: For some reason, [03 21]'s experience points went up![END]
+800: [03 20] burst into laughter![END]
+801: The tank was scrapped...[END]
+802: [03 20] said something scary![END]
+803: [03 20] said something nasty![END]
+804: [03 20] is trying to play dead...[END]
+805: It was effective![END]
+806: It wasn't very convincing.[END]
+807: [03 21] became angry![END]
+808: [03 21] fell into a critical state![END]
+809: [03 21] lost all sense of the situation![END]
+80A: [03 20] has lost sense of the situation.[END]
+80B: [03 21] fell asleep![END]
+80C: [03 20] is asleep...[END]
+80D: [03 21] recovered [03 23] PP![END]
+80E: [03 21] recovered [03 23] HP![END]
+80F: [03 20] replenished energy![END]
+810: But no one came.[END]
+811: (silence...)[END]
+812: [03 21] joined the battle![END]
+813: [03 20] ran away![END]
+814: ...It didn't work out.[END]
+815: [03 20] tripped and fell![END]
+816: [03 20] can't move...[END]
+817: [03 20] has been petrified...[END]
+818: Stole [03 23] PP from [03 21]![END]
+819: [03 21] is immobilized![END]
+81A: [03 20] vented exhaust fumes![END]
+81B: [03 21] was poisoned![END]
+81C: [03 21] was dehydrated![END]
+81D: [03 21]'s powers were blocked![END]
+81E: [03 21] was tied up with rope![END]
+81F: [03 21] was enveloped by a shield![END]
+820: Missed![END]
+821: But the PSI was blocked![END]
+822: But [03 21]'s Franklin Badge reflected the beam back![END]
+823: [03 21] reflected the attack back![END]
+824: Not enough PP![END]
+825: There was no effect on [03 21]![END]
+826: [03 20] had an asthma attack![BREAK]...(cough cough cough)[END]
+827: [03 20] is praying![END]
+828: [03 20] greeted everyone politely and left.[END]
+829: [03 20] is in a defensive stance![END]
+82A: [03 20] sang![END]
+82B: [03 20] is guarding.[END]
+82C: [03 20] edged closer![END]
+82D: The poison disappeared from [03 21]'s body![END]
+82E: [03 21] went back to normal![END]
+82F: [03 21] writhed around in itchy pain![END]
+830: [03 21] is able to move again![END]
+831: [03 21] woke up![END]
+832: [03 21] was revived!!![END]
+833: [03 20] used [03 F0][03 22]![END]
+834: [03 20] tried [03 22]![END]
+835: [03 20] can't use [03 22]![END]
+836: [03 20] is sizing up the situation...[END]
+837: [03 20] did something strange![END]
+838: [03 20] is spacing out.[END]
+839: [03 21]'s shield was destroyed![END]
+83A: [03 20] checked [03 21]![END]
+83B: [03 3C] Strong against heat[END]
+83C: [03 3C] Strong against cold[END]
+83D: [03 3C] Strong against thunder[END]
+83E: [03 3C] Strong against light[END]
+83F: [03 3C] Strong against sprays[END]
+840: [03 21]'s asthma attack went away![END]
+841: [03 21] softened![END]
+842: "I like you!"[END]
+843: "I hate you!"[END]
+844: [03 21] had an asthma attack![END]
+845: The [03 22] broke...[END]
+846: [03 20] used a Demon Seed![END]
+847: [03 20] used paralysis gas![END]
+848: The [03 22] turned into an ordinary stone...[END]
+849: [03 21] went back to normal![END]
+84A: [03 21] became tame![END]
+84B: [03 21] was defeated![END]
+84C: [03 21] was destroyed![END]
+84D: [03 21] returned to the dust of the earth![END]
+84E: [03 21] stopped moving![END]
+84F: [03 21] was scrapped![END]
+850: [03 21] disappeared into thin air![END]
+851: [03 20] stole [03 21]'s [03 22]![END]
+852: [03 20] leveled up![BREAK][PAUSE][03 01][END]
+853: [03 20] learned a new PSI in battle![BREAK][PAUSE][03 01][END]
+854: Max HP went up [03 23]![BREAK][PAUSE][03 01][END]
+855: Max PP went up [03 23]![BREAK][PAUSE][03 01][END]
+856: Fight went up [03 23]![BREAK][PAUSE][03 01][END]
+857: Speed went up [03 23]![BREAK][PAUSE][03 01][END]
+858: Wisdom went up [03 23]![BREAK][PAUSE][03 01][END]
+859: Strength went up [03 23]![BREAK][PAUSE][03 01][END]
+85A: Force went up [03 23]![BREAK][PAUSE][03 01][END]
+85B: [03 20] escaped from the rope![END]
+85C: Picked up [03 F1][03 1D]![BREAK][PAUSE][03 01][END]
+85D: [03 21]'s confusion went away![END]
+85E: [03 20] woke up![END]
+85F: [03 20] tore a hole through space![BREAK][END]
+860: But there was no effect![END]
+861: The [03 22] was fully emptied...[END]
+862: [BREAK]No end to the battle is in sight...[BREAK][END]
+863: (From somewhere,[BREAK][PAUSE][03 16] heard Queen Mary's voice...)[BREAK][PAUSE]You can't beat Giygas with brute strength...[BREAK][PAUSE]I doubt any weapon can defeat him...[BREAK][PAUSE]But the lullaby...[BREAK][PAUSE]Maybe the song I used to sing to him can stop him![BREAK][PAUSE][03 01][END]
+864: [03 21] recovered completely![END]
+865: [END]
+866: "[03 10]! I owe a great deal to your family line!"[BREAK][PAUSE][03 01][END]
+867: "Maria, George's wife, raised me[BREAK][PAUSE]when I was very young..."[BREAK][PAUSE][03 01][END]
+868: "While George himself stole vital information[BREAK][PAUSE]from our planet and tried to turn against us..."[BREAK][PAUSE][03 01][END]
+869: "And now their descendant[BREAK][PAUSE]is bent on hindering our plan again...[BREAK][PAUSE][03 10]! I am referring to you!"[BREAK][PAUSE][03 01][END]
+86A: "Now leave![BREAK][PAUSE]May you be destroyed[BREAK][PAUSE]with the rest of the disgusting Earth people!"[BREAK][PAUSE][03 01][END]
+86B: "You are too weak to do anything![BREAK][PAUSE]You are mere insects to me!"[BREAK][PAUSE][03 01][END]
+86C: "[03 10]...[BREAK][PAUSE]I'm willing to let you, and only you, live.[BREAK][PAUSE]Board the mothership with me."[BREAK][PAUSE][03 01][END]
+86D: "...Then you can perish here with your friends[BREAK][PAUSE]and all the other hideous Earth people!"[BREAK][PAUSE][03 01][END]
+86E: "Stop singing!"[END]
+86F: "Stop... singing...!"[END]
+870: "S-stop singing!"[END]
+871: "Stop singing!"[END]
+872: "You Earth insects![BREAK]Shut up! Stop singing!"[END]
+873: "Stop..."[END]
+874: "...singing!"[END]
+875: "!!!"[END]
+876: "Stop..."[END]
+877: "!!!"[END]
+878: "........."[END]
+879: "HOW COULD I BE DEFEATED BY THIS SONG...?"[BREAK][PAUSE][03 01][END]
+87A: "SOMEDAY I WILL RETURN... AND... MAKE YOU..."[BREAK][PAUSE][03 01][END]
+87B: "[03 10]! We will meet again!"[BREAK][PAUSE][03 01][END]

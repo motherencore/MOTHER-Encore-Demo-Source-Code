@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/Character Sprites/Ninten/retro.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/UI/Title/Disclaimer background.png" type="Texture" id=2]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Graphics/Character Sprites/Ninten/main.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/UI/Disclaimer.gd" type="Script" id=6]
+
+[node name="Disclaimer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="DoorToTitle" parent="Objects" instance=ExtResource( 3 )]
+position = Vector2( 315, 6 )
+dir = Vector2( 0, 1 )
+targetScene = "Title screen"
+set_respawn = true
+unpause_player = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DisclaimerBackground" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 160, 90 )
+texture = ExtResource( 2 )
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 304.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "DISCLAIMER_TITLE"
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 304.0
+margin_bottom = 162.0
+custom_constants/separation = 15
+
+[node name="Disclaimer1" type="Label" parent="CanvasLayer/VBoxContainer"]
+margin_right = 288.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 4 )
+text = "DISCLAIMER_PART_1"
+autowrap = true
+
+[node name="Disclaimer2" type="Label" parent="CanvasLayer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 288.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 4 )
+text = "DISCLAIMER_PART_2"
+autowrap = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 128.0
+margin_bottom = 41.0
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+margin_left = 132.0
+margin_top = 36.0
+margin_right = 141.0
+margin_bottom = 37.0
+rect_rotation = 44.0
+color = Color( 0.815686, 0.443137, 0.792157, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer"]
+margin_left = 127.0
+margin_top = 40.0
+margin_right = 133.0
+margin_bottom = 41.0
+rect_rotation = -45.0
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer"]
+margin_left = 137.0
+margin_top = 42.0
+margin_right = 149.0
+margin_bottom = 43.0
+rect_rotation = -45.0
+color = Color( 0.345098, 0.172549, 0.517647, 1 )
+
+[node name="RetroNinten" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 242, 29 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 2
+
+[node name="Ninten" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 262, 28 )
+texture = ExtResource( 5 )
+hframes = 10
+vframes = 20
+frame = 1
+
+[node name="Fade" type="ColorRect" parent="CanvasLayer"]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="CanvasLayer"]

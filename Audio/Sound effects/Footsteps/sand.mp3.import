@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sand.mp3-b9a75d8653cbe8ed93671d7af0ba8c15.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/sand.mp3"
+dest_files=[ "res://.import/sand.mp3-b9a75d8653cbe8ed93671d7af0ba8c15.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

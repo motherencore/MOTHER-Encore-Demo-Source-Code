@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Graphics/Objects/Color Block Panel.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+export(bool) var active
+onready var block = preload(\"res://Nodes/Overworld/Objects/Color Block.tscn\")
+
+func _ready():
+	var Block = block.instance()
+	
+	if active:
+		frame = 0
+	else:
+		frame = 1
+	Block.active = active
+	Block.global_position = global_position
+
+	if global.currentScene.has_node(\"YSort\"):
+		global.currentScene.get_node(\"YSort\").add_child(Block)
+	else:
+		global.currentScene.get_node(\"Objects\").add_child(Block)
+"
+
+[node name="Color Block Panel" type="Sprite"]
+texture = ExtResource( 1 )
+hframes = 2
+script = SubResource( 1 )

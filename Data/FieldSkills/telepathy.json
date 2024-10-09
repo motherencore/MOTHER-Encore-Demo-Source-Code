@@ -1,0 +1,12 @@
+{
+	"name": "FIELD_TELEPATHY",
+	"description": "FIELD_TELEPATHY_DESC",
+	"flag": "",
+    "usable": {
+        "ninten": true,
+        "lloyd": false,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    }
+}

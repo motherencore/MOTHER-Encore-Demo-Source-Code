@@ -1,0 +1,32 @@
+{
+    "name": "PKFIRE",
+    "level": 0,
+    "description": "PKFIREA_DESC",
+    "article": "PKFIRE_ART",
+    "category": "Offense",
+    "skillType": "psi",
+    "useCases": 1,
+    "damageType": 0,
+    "targetType": 6,
+    "damage": 20,
+    "variance": 6,
+    "priority": 0,
+    "statusEffects": [
+        {
+            "name": "burned",
+            "chance": 60
+        }
+    ],
+    "statusHeals": [],
+    "critChance": 0,
+    "failChance": 0,
+    "ppCost": 6,
+    "hpCost": 0,
+    "preHitEffect": "",
+    "hitEffect": "",
+    "screenEffect": "pk_fire_alpha",
+    "enemyScreenEffect": "e_pk_fire_alpha",
+    "userAnim": "psi",
+    "useSound": "fire1",
+    "hitSound": "fire1"
+}

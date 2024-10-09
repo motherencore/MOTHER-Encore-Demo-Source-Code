@@ -1,0 +1,11 @@
+[gd_resource type="DynamicFont" load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/EBMain_ko.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/EBMain_jaM3.ttf" type="DynamicFontData" id=3]
+
+[resource]
+extra_spacing_bottom = 1
+font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )
+fallback/1 = ExtResource( 3 )

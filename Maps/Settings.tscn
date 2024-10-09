@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Nodes/Ui/Options/OptionsUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 76, 188 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 185.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="OptionsUI" parent="Objects" instance=ExtResource( 1 )]
+from_save = false
+always_visible = true
+
+[node name="Door" parent="Objects/OptionsUI" instance=ExtResource( 2 )]
+position = Vector2( 344, 5 )
+dir = Vector2( 0, 1 )
+targetScene = "Title screen"
+unpause_player = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 11.0
+margin_top = 167.0
+margin_right = 310.0
+margin_bottom = 178.0
+custom_constants/separation = 10
+
+[node name="PressButton1" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 84.0
+margin_bottom = 11.0
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PressButton1"]
+margin_right = 72.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 4 )
+text = "MENU_BACK"
+align = 2
+
+[node name="Button" parent="HBoxContainer/PressButton1" instance=ExtResource( 3 )]
+margin_left = 76.0
+margin_right = 84.0
+align = 2
+key = "ui_cancel"
+
+[node name="PressButton2" type="HBoxContainer" parent="HBoxContainer"]
+margin_left = 94.0
+margin_right = 190.0
+margin_bottom = 11.0
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PressButton2"]
+margin_right = 84.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 4 )
+text = "MENU_SELECT"
+align = 2
+
+[node name="Button" parent="HBoxContainer/PressButton2" instance=ExtResource( 3 )]
+margin_left = 88.0
+margin_right = 96.0
+align = 2
+key = "ui_accept"

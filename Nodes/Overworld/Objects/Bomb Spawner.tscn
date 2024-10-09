@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Graphics/Objects/Bomb Spawner.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Sprite
+
+var bomb = load(\"res://Nodes/Overworld/Objects/Running Bomb.tscn\")
+var is_bomb
+var the_bomb
+var can_create = true
+
+func _ready():
+	$Sprite.frame = 0
+
+func _physics_process(delta):
+	is_bomb = global.currentScene.get_node_or_null(\"Objects/\" + self.name)
+	if is_bomb == null and !$AnimationPlayer.is_playing() and $Timer.time_left == 0:
+		$Timer.start()
+		yield($Timer,\"timeout\")
+		if can_create == true:
+			$AnimationPlayer.play(\"Come out\")
+
+func create_bomb():
+	if can_create == true:
+		var new_parent = global.currentScene.get_node(\"Objects\")
+		var Bomb = bomb.instance()
+		Bomb.name = self.name
+		Bomb.global_position = self.global_position
+		new_parent.add_child(Bomb)
+		$Tween.interpolate_property(Bomb, \"global_position\",
+			Bomb.global_position, Vector2(self.global_position.x, self.global_position.y - 5), 0.1,
+			Tween.TRANS_LINEAR, Tween.EASE_IN)
+		$Tween.start()
+
+func _on_Area2D_body_entered(body):
+	if body == global.persistPlayer:
+		can_create = false
+
+func _on_Area2D_body_exited(body):
+	if body == global.persistPlayer:
+		can_create = true
+"
+
+[sub_resource type="Animation" id=2]
+resource_name = "Come out"
+length = 0.533333
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 2, 1, 0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "create_bomb"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 8 )
+
+[node name="Bomb" type="Sprite"]
+script = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Come out" = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

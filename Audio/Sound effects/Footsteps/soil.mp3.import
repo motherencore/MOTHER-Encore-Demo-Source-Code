@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/soil.mp3-319950cf078de496e8bd177521202c4a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/soil.mp3"
+dest_files=[ "res://.import/soil.mp3-319950cf078de496e8bd177521202c4a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

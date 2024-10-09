@@ -1,0 +1,32 @@
+{
+    "0": {
+        "name": "DIALOGUE_TESTING_NAMES_SPEAKER_Nerd_Face_Emoji",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_NAMES_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_TESTING_NAMES_SPEAKER_Jeff",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_NAMES_1",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_TESTING_NAMES_SPEAKER_Really_long_for_no_reason",
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_NAMES_2",
+        "goto": "3"
+    },
+    "3": {
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_NAMES_3",
+        "goto": "4",
+        "name": "DIALOGUE_TESTING_NAMES_SPEAKER_Shy"
+    },
+    "4": {
+        "sound": "Shy",
+        "text": "DIALOGUE_TESTING_NAMES_4",
+        "flag": "npc_disappear_1",
+        "name": "DIALOGUE_TESTING_NAMES_SPEAKER_Shy"
+    }
+}

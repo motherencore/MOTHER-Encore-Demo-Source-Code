@@ -1,0 +1,14 @@
+{
+    "0": {
+        "name": "DIALOGUE_TESTING_BOBOO_SPEAKER_Healer_Kirby",
+        "text": "DIALOGUE_TESTING_BOBOO_0",
+        "sound": "kid",
+        "heal": "All",
+        "restorepp": "All",
+        "cure": {
+            "character": "All",
+            "status": "All"
+        },
+        "soundeffect": "M3/lifeup_a.wav"
+    }
+}

@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/dialogue_Testing - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/dialogue_Testing - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/dialogue_Testing - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

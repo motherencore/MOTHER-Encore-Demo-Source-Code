@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/story - sheet.en.translation", "res://Translations/TranslatedText/story - sheet.fr.translation", "res://Translations/TranslatedText/story - sheet.it.translation", "res://Translations/TranslatedText/story - sheet.ja.translation", "res://Translations/TranslatedText/story - sheet.ko.translation", "res://Translations/TranslatedText/story - sheet.es.translation", "res://Translations/TranslatedText/story - sheet.es_ES.translation", "res://Translations/TranslatedText/story - sheet.pt_BR.translation", "res://Translations/TranslatedText/story - sheet.pl.translation", "res://Translations/TranslatedText/story - sheet.de.translation", "res://Translations/TranslatedText/story - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/story - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/story - sheet.en.translation", "res://Translations/TranslatedText/story - sheet.fr.translation", "res://Translations/TranslatedText/story - sheet.it.translation", "res://Translations/TranslatedText/story - sheet.ja.translation", "res://Translations/TranslatedText/story - sheet.ko.translation", "res://Translations/TranslatedText/story - sheet.es.translation", "res://Translations/TranslatedText/story - sheet.es_ES.translation", "res://Translations/TranslatedText/story - sheet.pt_BR.translation", "res://Translations/TranslatedText/story - sheet.pl.translation", "res://Translations/TranslatedText/story - sheet.de.translation", "res://Translations/TranslatedText/story - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

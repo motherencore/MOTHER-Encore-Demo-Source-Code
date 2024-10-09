@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Pollyanna.ogg-f3abb0210ff6da07b2c5409a41249431.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Pollyanna.ogg"
+dest_files=[ "res://.import/Pollyanna.ogg-f3abb0210ff6da07b2c5409a41249431.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=8.771

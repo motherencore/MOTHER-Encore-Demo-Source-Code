@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cave.mp3-a1b71526dfef0f631af8ed796e6f6fcf.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/cave.mp3"
+dest_files=[ "res://.import/cave.mp3-a1b71526dfef0f631af8ed796e6f6fcf.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

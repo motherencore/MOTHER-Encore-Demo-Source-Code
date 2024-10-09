@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stone.mp3-b100d74bf8cffd4385db73311ca5c755.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Footsteps/stone.mp3"
+dest_files=[ "res://.import/stone.mp3-b100d74bf8cffd4385db73311ca5c755.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,311 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Graphics/Objects/Bomb Panel.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends Area2D
+
+
+export var direction = Vector2.ZERO
+
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get(\"parameters/playback\")
+
+func _ready():
+	animationTree.active = true
+	animationTree.set(\"parameters/Point/blend_position\", direction)
+	animationTree.set(\"parameters/Glow/blend_position\", direction)
+	animationState.travel(\"Point\")
+
+
+
+func _on_BombPanel_area_entered(area):
+	var body = area.get_parent()
+	if body.has_method(\"change_dir\"):
+		if body.running == true:
+			animationState.travel(\"Glow\")
+			body.change_dir(direction)
+"
+
+[sub_resource type="Animation" id=14]
+resource_name = "Glow Down"
+length = 0.0833333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Glow Left"
+length = 0.0833333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Glow Right"
+length = 0.0833333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Glow Up"
+length = 0.0833333
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Point Down"
+length = 0.375
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Point Right"
+length = 0.375
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Point Up"
+length = 0.375
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "PointLeft"
+length = 0.375
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("main:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Glow Down"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Glow Up"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Glow Right"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Glow Left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=22]
+blend_point_0/node = SubResource( 18 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 19 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 20 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 21 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Point Down"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Point Up"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Point Right"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "PointLeft"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=10]
+blend_point_0/node = SubResource( 6 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 7 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 8 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 9 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Glow/node = SubResource( 22 )
+states/Glow/position = Vector2( 501.667, 31.7222 )
+states/Point/node = SubResource( 10 )
+states/Point/position = Vector2( 340.333, 33.2963 )
+transitions = [ "Point", "Glow", SubResource( 23 ), "Glow", "Point", SubResource( 24 ) ]
+start_node = "Point"
+graph_offset = Vector2( 0, -136.611 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 1, 1 )
+
+[node name="BombPanel" type="Area2D"]
+collision_layer = 0
+script = SubResource( 25 )
+
+[node name="main" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Glow Down" = SubResource( 14 )
+"anims/Glow Left" = SubResource( 15 )
+"anims/Glow Right" = SubResource( 16 )
+"anims/Glow Up" = SubResource( 17 )
+"anims/Point Down" = SubResource( 1 )
+"anims/Point Right" = SubResource( 2 )
+"anims/Point Up" = SubResource( 3 )
+anims/PointLeft = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 12 )
+parameters/Glow/blend_position = Vector2( 0.000612736, 0.996094 )
+parameters/Point/blend_position = Vector2( 0, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 13 )
+
+[connection signal="area_entered" from="." to="." method="_on_BombPanel_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_BombPanel_body_entered"]

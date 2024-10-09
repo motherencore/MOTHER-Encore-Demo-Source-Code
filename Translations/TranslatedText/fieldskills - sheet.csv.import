@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/fieldskills - sheet.en.translation", "res://Translations/TranslatedText/fieldskills - sheet.fr.translation", "res://Translations/TranslatedText/fieldskills - sheet.it.translation", "res://Translations/TranslatedText/fieldskills - sheet.ja.translation", "res://Translations/TranslatedText/fieldskills - sheet.ko.translation", "res://Translations/TranslatedText/fieldskills - sheet.es.translation", "res://Translations/TranslatedText/fieldskills - sheet.es_ES.translation", "res://Translations/TranslatedText/fieldskills - sheet.pt_BR.translation", "res://Translations/TranslatedText/fieldskills - sheet.pl.translation", "res://Translations/TranslatedText/fieldskills - sheet.de.translation", "res://Translations/TranslatedText/fieldskills - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/fieldskills - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/fieldskills - sheet.en.translation", "res://Translations/TranslatedText/fieldskills - sheet.fr.translation", "res://Translations/TranslatedText/fieldskills - sheet.it.translation", "res://Translations/TranslatedText/fieldskills - sheet.ja.translation", "res://Translations/TranslatedText/fieldskills - sheet.ko.translation", "res://Translations/TranslatedText/fieldskills - sheet.es.translation", "res://Translations/TranslatedText/fieldskills - sheet.es_ES.translation", "res://Translations/TranslatedText/fieldskills - sheet.pt_BR.translation", "res://Translations/TranslatedText/fieldskills - sheet.pl.translation", "res://Translations/TranslatedText/fieldskills - sheet.de.translation", "res://Translations/TranslatedText/fieldskills - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

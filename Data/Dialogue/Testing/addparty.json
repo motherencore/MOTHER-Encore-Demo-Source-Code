@@ -1,0 +1,78 @@
+{
+    "0": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_1",
+        "options": {
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_0": "3",
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_1": "4",
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_2": "5",
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_3": "6",
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_4": "7",
+            "DIALOGUE_TESTING_ADDPARTY_1-OPT_5": "8",
+            "cancel": "2"
+        }
+    },
+    "2": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_2",
+        "sound": "Kid"
+    },
+    "3": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_3",
+        "sound": "Kid",
+        "setpartymembers": {
+            "ninten": true
+        }
+    },
+    "4": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_4",
+        "sound": "Kid",
+        "setpartymembers": {
+            "lloyd": true
+        }
+    },
+    "5": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_5",
+        "sound": "Kid",
+        "setpartymembers": {
+            "ana": true
+        }
+    },
+    "6": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_6",
+        "sound": "Kid",
+        "setpartymembers": {
+            "teddy": true
+        }
+    },
+    "7": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_7",
+        "sound": "Kid",
+        "setpartymembers": {
+            "pippi": true
+        }
+    },
+    "8": {
+        "name": "DIALOGUE_TESTING_ADDPARTY_SPEAKER_kirb",
+        "text": "DIALOGUE_TESTING_ADDPARTY_8",
+        "sound": "Kid",
+        "setpartymembers": {
+            "ninten": true,
+            "ana": true,
+            "lloyd": true,
+            "teddy": true,
+            "pippi": true
+        }
+    }
+}

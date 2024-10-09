@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Otherworldly Foe.mp3-ed781b34849bf1c1a59a1aab037e8cef.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Otherworldly Foe.mp3"
+dest_files=[ "res://.import/Otherworldly Foe.mp3-ed781b34849bf1c1a59a1aab037e8cef.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

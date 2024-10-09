@@ -1,0 +1,38 @@
+{
+  "name": "TEST",
+  "article": "Enemy article(s)",
+  "maxhp": 100,
+  "hp": 100,
+  "maxpp": 100,
+  "pp": 100,
+  "speed": 10,
+  "offense": 10,
+  "defense": 10,
+  "iq": 10,
+  "guts": 0,
+  "level": 10,
+  "exp": 100,
+  "cash": 100,
+  "items": [{ "item": "Bread", "chance": 50, "rare": true, "increaseChance": 0.01}],
+  "skills": [
+    { "skill": "bite", "weight": 10 },
+    { "skill": "approach", "weight": 1 }
+  ],
+  "description": "Enemy Description.",
+  "boss": false,
+  "sprite": "TEST",
+  "music": "Dangerous Foe.mp3",
+  "bg": "lamp",
+  "ov": {
+    "sprite": "MookOV",
+    "anim": "BasicEnemy",
+    "spriteOffset": [0, 0],
+    "connections": [],
+    "returning": false,
+    "maxDistance": 100,
+    "maxSpeed": 64,
+    "acceleration": 200,
+    "friction": 200,
+    "walkFrequency": 1
+  }
+}

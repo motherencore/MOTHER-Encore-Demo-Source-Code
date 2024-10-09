@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Good_Morning.mp3-63b267068b528140bd7cfb053431add3.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Good_Morning.mp3"
+dest_files=[ "res://.import/Good_Morning.mp3-63b267068b528140bd7cfb053431add3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=9.577

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Poltergeist.ogg-f05c7fc5ec74ecae0bdf8a3f17fd8aa5.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/Poltergeist.ogg"
+dest_files=[ "res://.import/Poltergeist.ogg-f05c7fc5ec74ecae0bdf8a3f17fd8aa5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=6.382

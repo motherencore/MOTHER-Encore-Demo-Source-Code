@@ -1,0 +1,12 @@
+{
+	"name": "FIELD_PK_FREEZE",
+	"description": "FIELD_PK_FREEZE_DESC",
+	"flag": "PKfreeze",
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    }
+}

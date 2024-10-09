@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Stairs_Up.mp3-0874ff02ae85ab111bbbefebfba82255.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/Stairs_Up.mp3"
+dest_files=[ "res://.import/Stairs_Up.mp3-0874ff02ae85ab111bbbefebfba82255.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

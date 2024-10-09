@@ -1,0 +1,12 @@
+{
+	"name": "FIELD_RUN",
+	"description": "FIELD_RUN_DESC",
+	"flag": "",
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": true,
+        "pippi": true
+    }
+}

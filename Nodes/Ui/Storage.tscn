@@ -1,0 +1,493 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Nodes/Ui/Description.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scripts/UI/Reusables/DescriptionModal.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/Reusables/ItemListMenu.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/Storage.gd" type="Script" id=5]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Ui/DescriptionWithYesNo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=11]
+[ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside_light.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/UI/dashedline.png" type="Texture" id=15]
+[ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.gd" type="Script" id=18]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=19]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=20]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.729412, 0.32549, 0.894118, 1 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+content_margin_left = 0.0
+content_margin_right = 0.0
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 5.0
+margin_bottom = 6.0
+expand_margin_left = 8.0
+expand_margin_right = 7.0
+expand_margin_top = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.729412, 0.32549, 0.894118, 1 )
+
+[node name="StorageUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
+rect_pivot_offset = Vector2( 47, 11 )
+script = ExtResource( 5 )
+
+[node name="StorageBox" type="Control" parent="."]
+margin_left = 28.0
+margin_top = 4.0
+margin_right = 292.0
+margin_bottom = 129.0
+rect_pivot_offset = Vector2( -119, -165 )
+
+[node name="BGLeft" type="NinePatchRect" parent="StorageBox"]
+visible = false
+material = ExtResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -133.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( -3, 25 )
+texture = ExtResource( 10 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="BGRight" type="NinePatchRect" parent="StorageBox"]
+visible = false
+material = ExtResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 133.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( -3, 25 )
+texture = ExtResource( 10 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="BGFull" type="NinePatchRect" parent="StorageBox"]
+material = ExtResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( -3, 25 )
+texture = ExtResource( 10 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="InventorySelect" parent="StorageBox" instance=ExtResource( 16 )]
+margin_left = 0.0
+margin_right = 264.0
+
+[node name="Separator" type="TextureRect" parent="StorageBox"]
+material = ExtResource( 20 )
+margin_left = 131.0
+margin_top = 1.0
+margin_right = 133.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( -7, 16 )
+texture = ExtResource( 15 )
+stretch_mode = 2
+
+[node name="ItemsOnHand" type="NinePatchRect" parent="StorageBox"]
+material = ExtResource( 20 )
+margin_top = 25.0
+margin_right = 132.0
+margin_bottom = 126.0
+texture = ExtResource( 11 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+script = ExtResource( 4 )
+priceType = "value"
+loop_around = true
+
+[node name="MarginContainer" type="MarginContainer" parent="StorageBox/ItemsOnHand"]
+margin_right = 131.0
+margin_bottom = 99.0
+rect_pivot_offset = Vector2( 115, 53 )
+custom_constants/margin_right = 17
+custom_constants/margin_top = 8
+custom_constants/margin_left = 17
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer"]
+margin_left = 17.0
+margin_top = 8.0
+margin_right = 114.0
+margin_bottom = 91.0
+custom_constants/separation = 1
+
+[node name="StorageItem" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="StorageItem2" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_top = 14.0
+margin_right = 97.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem2" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="StorageItem3" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 97.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem3" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="StorageItem4" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 97.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem4" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="StorageItem5" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 97.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem5" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="StorageItem6" type="HBoxContainer" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 97.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" parent="StorageBox/ItemsOnHand/MarginContainer/VBoxContainer/StorageItem6" instance=ExtResource( 9 )]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+valign = 1
+
+[node name="arrow" parent="StorageBox/ItemsOnHand" instance=ExtResource( 7 )]
+position = Vector2( 15, 18 )
+menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
+cursor_offset = Vector2( -5, 1 )
+consume_input_events = true
+skip_empty_labels = true
+skip_hidden_items = true
+move_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="ColorRect" type="ColorRect" parent="StorageBox/ItemsOnHand/arrow"]
+show_behind_parent = true
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 19 )
+
+[node name="Scrollbar" parent="StorageBox/ItemsOnHand" instance=ExtResource( 12 )]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -15.0
+margin_top = 6.0
+margin_right = -7.0
+margin_bottom = -7.0
+
+[node name="ItemsStored" type="NinePatchRect" parent="StorageBox"]
+material = ExtResource( 20 )
+margin_left = 132.0
+margin_top = 25.0
+margin_right = 264.0
+margin_bottom = 126.0
+rect_pivot_offset = Vector2( -4, 9 )
+texture = ExtResource( 11 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+script = ExtResource( 4 )
+loop_around = true
+
+[node name="MarginContainer" type="MarginContainer" parent="StorageBox/ItemsStored"]
+margin_right = 131.0
+margin_bottom = 97.0
+custom_constants/margin_right = 17
+custom_constants/margin_top = 8
+custom_constants/margin_left = 17
+custom_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StorageBox/ItemsStored/MarginContainer"]
+margin_left = 17.0
+margin_top = 8.0
+margin_right = 114.0
+margin_bottom = 91.0
+rect_pivot_offset = Vector2( 0, 17 )
+custom_constants/separation = 1
+
+[node name="StorageItem" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_right = 97.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Pornography"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="StorageItem2" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_top = 14.0
+margin_right = 97.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem2"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Equippable"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="StorageItem3" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 97.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem3"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Pornography"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="StorageItem4" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 97.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem4"]
+margin_right = 97.0
+margin_bottom = 13.0
+rect_pivot_offset = Vector2( -13, -26 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Pornography"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="StorageItem5" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 97.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem5"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Pornography"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="StorageItem6" type="HBoxContainer" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 97.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 13 )
+custom_constants/separation = 0
+
+[node name="ItemLabel" type="Label" parent="StorageBox/ItemsStored/MarginContainer/VBoxContainer/StorageItem6"]
+margin_right = 97.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 1 )
+text = "Pornography"
+valign = 1
+script = ExtResource( 18 )
+
+[node name="arrow" parent="StorageBox/ItemsStored" instance=ExtResource( 7 )]
+position = Vector2( 12, 13 )
+menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
+cursor_offset = Vector2( -5, 1 )
+consume_input_events = true
+skip_empty_labels = true
+skip_hidden_items = true
+move_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="Scrollbar" parent="StorageBox/ItemsStored" instance=ExtResource( 12 )]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -15.0
+margin_top = 6.0
+margin_right = -7.0
+margin_bottom = -7.0
+
+[node name="TitleAndCounter" type="HBoxContainer" parent="StorageBox"]
+margin_left = 134.0
+margin_top = 3.0
+margin_right = 257.0
+margin_bottom = 26.0
+grow_horizontal = 0
+
+[node name="Counter" type="NinePatchRect" parent="StorageBox/TitleAndCounter"]
+material = ExtResource( 20 )
+margin_top = 5.0
+margin_right = 38.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 38, 13 )
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource( 14 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="StorageBox/TitleAndCounter/Counter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = -1.0
+margin_right = -2.0
+margin_bottom = -3.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 13 )
+text = "25/64"
+align = 2
+valign = 1
+
+[node name="TitleContainer" type="PanelContainer" parent="StorageBox/TitleAndCounter"]
+material = ExtResource( 20 )
+margin_left = 42.0
+margin_right = 145.0
+margin_bottom = 23.0
+grow_horizontal = 0
+rect_min_size = Vector2( 61, 0 )
+size_flags_horizontal = 10
+custom_styles/panel = SubResource( 2 )
+
+[node name="Title" parent="StorageBox/TitleAndCounter/TitleContainer" instance=ExtResource( 9 )]
+margin_top = 5.0
+margin_right = 103.0
+margin_bottom = 17.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 3 )
+text = "MENU_TITLE_STORAGE"
+align = 1
+
+[node name="DescBox" type="NinePatchRect" parent="."]
+material = ExtResource( 20 )
+margin_left = 28.0
+margin_top = 132.0
+margin_right = 292.0
+margin_bottom = 180.0
+texture = ExtResource( 6 )
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="DescriptionPanel" parent="DescBox" instance=ExtResource( 1 )]
+margin_right = 264.0
+script = ExtResource( 3 )
+
+[node name="DescriptionDialog" parent="DescBox" instance=ExtResource( 8 )]
+visible = false
+margin_right = 264.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
+
+[connection signal="cancel" from="StorageBox/ItemsOnHand/arrow" to="StorageBox/ItemsOnHand" method="_on_arrow_cancel"]
+[connection signal="failed_move" from="StorageBox/ItemsOnHand/arrow" to="." method="_on_arrow_failed_move"]
+[connection signal="cancel" from="StorageBox/ItemsStored/arrow" to="StorageBox/ItemsStored" method="_on_arrow_cancel"]
+[connection signal="failed_move" from="StorageBox/ItemsStored/arrow" to="." method="_on_arrow_failed_move"]

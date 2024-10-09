@@ -1,0 +1,243 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Scripts/Main/Mirror.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Angle Down"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Angle DownLeft"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 45.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Angle DownRight"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 315.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Angle Left"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Angle Right"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 270.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Angle Up"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 180.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Angle UpLeft"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 135.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Angle UpRight"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 225.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 8, 3.5 )
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Angle Up"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Angle Down"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Angle Right"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Angle Left"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Angle DownLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Angle DownRight"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Angle UpRight"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Angle UpLeft"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=20]
+blend_point_0/node = SubResource( 12 )
+blend_point_0/pos = Vector2( 0, -1 )
+blend_point_1/node = SubResource( 13 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 14 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 15 )
+blend_point_3/pos = Vector2( -1, 0 )
+blend_point_4/node = SubResource( 16 )
+blend_point_4/pos = Vector2( -0.8, 0.8 )
+blend_point_5/node = SubResource( 17 )
+blend_point_5/pos = Vector2( 0.8, 0.8 )
+blend_point_6/node = SubResource( 18 )
+blend_point_6/pos = Vector2( 0.8, -0.8 )
+blend_point_7/node = SubResource( 19 )
+blend_point_7/pos = Vector2( -0.8, -0.8 )
+blend_mode = 1
+
+[node name="Mirror" type="Sprite"]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 10.0
+margin_left = -8.0
+margin_top = -1.0
+margin_right = -2.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( -32, -6 )
+color = Color( 0.658824, 0.956863, 0.937255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 10.0
+margin_left = -8.0
+margin_top = -8.0
+margin_right = -2.0
+margin_bottom = -1.0
+rect_pivot_offset = Vector2( -32, -6 )
+color = Color( 0.12549, 0.25098, 0.54902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Angle Down" = SubResource( 2 )
+"anims/Angle DownLeft" = SubResource( 3 )
+"anims/Angle DownRight" = SubResource( 4 )
+"anims/Angle Left" = SubResource( 5 )
+"anims/Angle Right" = SubResource( 6 )
+"anims/Angle Up" = SubResource( 7 )
+"anims/Angle UpLeft" = SubResource( 8 )
+"anims/Angle UpRight" = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, -4.5 )
+shape = SubResource( 11 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 20 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = Vector2( 0, 0 )

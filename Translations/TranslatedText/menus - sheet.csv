@@ -1,0 +1,312 @@
+key,en,fr,it,ja,ko,es,es_ES,pt_BR,pl,de,ru
+DISCLAIMER_TITLE,DISCLAIMER,AVERTISSEMENT,DISCLAIMER,ちゅうい,주의,ATENCIÓN,ATENCIÓN ,AVISO,OŚWIADCZENIE,HINWEIS,ВНИМАНИЕ!
+DISCLAIMER_PART_1,"MOTHER: Encore is a free, unofficial fan reimagining of MOTHER 1 and is not affiliated with Nintendo or Shigesato Itoi. This game offers a uniquely different experience from the original and should not be seen as a replacement for it.","MOTHER: Encore est une réinterprétation de MOTHER 1 proposée par des fans. C'est un jeu gratuit, non officiel et non affilié à Nintendo et Shigesato Itoi. Il offre une expérience unique et ne se substitue pas à l'original.",MOTHER: Encore è un rifacimento gratuito e non ufficiale di MOTHER 1 e non è in alcun modo affiliato con Nintendo o Shigesato Itoi. Questo gioco offre un'esperienza totalmente diversa dall'originale e non va visto come suo sostituto.,このゲームは　ファンメイドのリメイクさくひんです。\nニンテンドー、いといしげさと　とは　いっさいかんけい\nありません。げんさくとは　ちがうたいけんを　おとどけし、\nだいたいひん　ではありません。,"MOTHER: 앙코르는 무료이며, MOTHER1을 재구성한 비공식 팬\n게임으로, 닌텐도 또는 이토이 시게사토와 제휴하지 않습니다.\n이 게임은 원작과 다른 경험을 제공하므로 원작을 대체하는\n게임으로 간주되어서는 안 됩니다.",MOTHER: Encore es una reinvención no oficial y gratuita de MOTHER 1 realizada por fans y no está afiliada a Nintendo ni a Shigesato Itoi. Este juego ofrece una experiencia distinta a la del original y no debe considerarse un sustituto del mismo.,MOTHER: Encore es una reimaginación no oficial y gratuita de MOTHER 1 creada por fans y no está afiliado con Nintendo ni Shigesato Itoi. Este juego ofrece una experiencia distinta a la del original y no debe considerarse un reemplazo del mismo.,MOTHER Encore é uma reimaginação gratuita e não-oficial de MOTHER 1 e não é afiliada à Nintendo ou Shigesato Itoi. Este jogo oferece uma experiência única e diferente do original e não deve ser considerado um substituto para ele.,"MOTHER: Encore jest darmowym, nieoficjalnym, fanowskim odświeżeniem MOTHER 1 i nie jest powiązane z Nintendo ani Shigesato Itoim. Ta gra oferuje zupełnie inne doświadczenie niż oryginał i nie powinna być postrzegana jako jego zamiennik.","MOTHER: Encore ist eine kostenlose, inoffizielle\nFan-Neuinterpretation von MOTHER 1 und steht in keinem Bezug zu Nintendo oder Shigesato Itoi. Dieses Spiel soll als eine neue Erfahrung und nicht als Ersatz für das Original gesehen werden.","MOTHER: Encore — бесплатное, неофициальное переосмысление MOTHER 1, не связанное с Nintendo или Сигэсато Итои. Данная игра предоставляет совершенно другой опыт и не должна рассматриваться как замена оригинальной игры."
+DISCLAIMER_PART_2,We recommend supporting the MOTHER series by playing the games via official releases or by purchasing official merchandise.,Nous vous invitons à soutenir la série en jouant à des versions officielles de MOTHER 1 ou en achetant des produits dérivés officiels.,Vi invitiamo a supportare la serie di MOTHER giocando alle versioni ufficiali o acquistando merchandise ufficiale.,マザーシリーズを　しえんするために、こうしきばんの\nMOTHER1をプレイしたり、こうしきグッズを\nこうにゅうすることを　おススメします。,MOTHER 시리즈의 정식 발매를 통한 게임을 플레이하거나 공식\n상품을 구매하는 것을 권장합니다.,"Recomendamos que apoyen la saga original, jugando al MOTHER 1 original a través de las versiones oficiales o comprando la mercancía oficial.",Recomendamos que apoyes la saga original jugando al MOTHER 1 original a través de las versiones oficiales o comprando merchandising oficial.,Recomendamos que você apoie a série original jogando MOTHER 1 por meio de lançamentos oficiais ou comprando produtos oficiais.,"Zalecamy wspieranie oryginalnej serii, na przykład poprzez granie w oryginalną grę MOTHER 1 za pośrednictwem oficjalnych wydań lub kupowanie oficjalnych gadżetów i wytworów.",Wir empfehlen die Unterstützung der MOTHER-Reihe durch das Spielen der offiziellen Veröffentlichungen sowie dem Kauf von offiziellen Merchandise.,"Мы советуем поддержать серию MOTHER, поиграв в официальные выпуски игр или приобретя официальную продукцию."
+MENU_YES,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да
+MENU_NO,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет
+MENU_YEP,Yep,Ouaip,Sì sì,はい,네,Sip,Sip,Sim,Jest git,Jup,Ага
+MENU_NOPE,Nope,Nope,No no,いいえ,아니오,Nop,Nop,Não,Chyba nie,Nö,Не-а
+MENU_DONT_CARE,Don't care,Peu importe,Fai tu,おまかせ,맡기기,Decídelo,No me importa,Tanto Faz,Obojętnie,Mir egal,Без разницы
+MENU_BACKSPACE,Backspace,Effacer,Cancella,もどる,지우기,Borrar,Borrar,Apaga,Cofnij,Zurück,Назад
+MENU_OK,OK,OK,Fatto,ＯＫ,OK,Ok,Ok,OK,OK,OK,OK
+MENU_BACK,Back,Retour,Indietro,もどる,뒤로,Atrás,Atrás,Voltar,Powrót,Zurück,Назад
+MENU_PRESS,Press [color][ui_accept][/color],Appuyez sur [color][ui_accept][/color],Premi [color][ui_accept][/color],Press [color][ui_accept][/color],[color][ui_accept][/color][ko_part:ui_accept:2] 누르십시오,Presiona [color][ui_accept][/color],Pulsa [color][ui_accept][/color],Pressione [color][ui_accept][/color],Naciśnij [color][ui_accept][/color],Drücke [color][ui_accept][/color],Нажми [color][ui_accept][/color]
+MENU_SELECT,Select,Sélection,Seleziona,せんたく,선택,Selecciona,Seleccionar,Selecionar,Wybierz,Auswählen,Выбрать
+MENU_LV,LV,NV,Lv,LV,LV,NV,NV,NV,LV,LV,УР
+MENU_SKIP,Skip,Passer,Salta,SKIP,스킵,Saltar,Saltar,Pular,Pomiń,Überspringen,Пропустить
+MENU_HP,HP,PV,PS,HP,HP,PV,PV,HP,HP,KP,ОЗ
+MENU_PP,PP,PP,PP,PP,PP,PP,PP,PP,PP,PP,ОП
+STAT_LEVEL,Level,Niveau,Livello,ＬＶ,Level,Nivel,Nivel,Nível,Poziom,Level,Уровень
+STAT_EXP,EXP,EXP,Esp.,ＥＸ,EXP,EXP,EXP,EXP,EXP,Erf.,Опыт
+STAT_HP,HP,PV,PS,ＨＰ,HP,PV,PV,HP,HP,KP,ОЗ
+STAT_PP,PP,PP,PP,ＰＰ,PP,PP,PP,PP,PP,PP,ОП
+STAT_MAXHP,Max. HP,PV max.,PS max.,ＭＡＸ　ＨＰ,MAX HP,PV máx.,PV máx.,HP máx.,Maks. HP,Max. KP,Макс. ОЗ
+STAT_MAXPP,Max. PP,PP max.,PP max.,ＭＡＸ　ＰＰ,MAX HP,PP máx.,PP máx.,PP máx.,Maks. PP,Max. PP,Макс. ОП
+STAT_OFFENSE,Offense,Attaque,Attacco,オフェンス,오펜스,Ofensa,Fuerza,Ataque,Ofensywa,Angriff,Атака
+STAT_DEFENSE,Defense,Défense,Difesa,ディフェンス,디펜스,Defensa,Defensa,Defesa,Obrona,Verteidigung,Защита
+STAT_SPEED,Speed,Vitesse,Velocità,スピード,스피드,Velocidad,Velocidad,Agilidade,Szybkość,Geschwindigkeit,Скорость
+STAT_IQ,IQ,QI,QI,ＩＱ,IQ,IQ,CI,QI,IQ,IQ,IQ
+STAT_GUTS,Guts,Fougue,Combattività,ガッツ,용기,Agallas,Agallas,Coragem,Odwaga,Mut,Воля
+STAT_SHORT_OFFENSE,OFE,ATT,ATT,OFE,OFE,OFE,FUE,ATQ,OFE,ANG,АТК
+STAT_SHORT_DEFENSE,DEF,DEF,DIF,DEF,DEF,DEF,DEF,DEF,OBR,VER,ЗЩТ
+STAT_SHORT_SPEED,SPD,VIT,VEL,SPD,SPD,VEL,VEL,AGI,SZB,GES,СКР
+STAT_SHORT_IQ,IQ,QI,QI,IQ,IQ,IQ,CI,QI,IQ,IQ,IQ
+STAT_SHORT_GUTS,GUT,FGE,CMB,GUT,GUT,GAL,GAL,COR,ODW,MUT,ВОЛ
+SKILLS_FIELD,Field,Terrain,Terreno,ワールド,필드,Campo,Campo,Campo,Pole,Feld,Мир
+SKILLS_BATTLE,Battle,Combat,Lotta,せんとう,배틀,Combate,Combate,Combate,Walka,Kampf,Битва
+SKILLS_PSI,PSI,PSI,PSI,PSI,PSI,PSI,PSI,PSI,PSI,PSI,ПСИ
+SAVE_TIME,Time,Temps,Tempo,TIME,Time,Tiempo,Tiempo,Tempo,Czas,Zeit,Время
+SAVE_TIME_TOO_MUCH,{time} Go outside,{time} d'arrêter,Esci di casa,{time} あそびすぎ,{time} 현생도 살자,Toca pasto,Sal a la calle,Sai da toca,Wyjdź na dwór,{time} Fühle Gras,Выйди на улицу
+SAVE_PLAY,Play,Jouer,Gioca,つづき,이어서,Jugar,Jugar,Jogar,Graj,Start,Играть
+SAVE_COPY,Copy,Copier,Copia,うつす,복사,Copiar,Copiar,Copiar,Kopiuj,Kopieren,Копир.
+SAVE_DELETE,Delete,Effacer,Elimina,けす,삭제,Eliminar,Eliminar,Deletar,Usuń,Löschen,Удалить
+SAVE_SETTINGS,Settings,Configuration,Impostazioni,せってい,설정,Ajustes,Configuración,Ajustes,Ustawienia,Einstellungen,Настройки
+SAVE_SAVECONFIRM,OK to overwrite this file?,Écraser le fichier de sauvegarde ?,Vuoi sovrascrivere questo salvataggio?,データを　うわがきしますか？,파일을 덮어씌우시겠습니까?,¿Sobrescribir archivo?,¿Quieres sobreescribir el archivo?,Salvar por cima?,Czy chcesz nadpisać ten plik?,Datei wirklich überschreiben?,Перезаписать этот файл?
+SAVE_DELETECONFIRM,This will erase this save file.\nIs that okay?,Cette sauvegarde va être supprimée.\nÊtes-vous sûr ?,Questo salvataggio sarà eliminato.\nVa bene?,データは　さくじょされます。\nよろしいでしょうか？,파일을 삭제하시겠습니까?,Borrarás la partida guardada.\n¿Está bien?,Se borrará la partida guardada.\n¿Estás seguro?,Isso vai apagar o arquivo.\nTudo bem?,Spowoduje to usunięcie zapisanego pliku.\nCzy jesteś pewien?,Dies wird diese Speicherdatei löschen.\nIst das in Ordnung?,Файл сохранения будет стёрт.\nПродолжить?
+SAVE_NODATA,No Data,Aucune donnée,Nessun salvataggio,データなし,데이터 없음,No hay datos,No hay datos,Vazio,Brak danych,Keine Daten,Пусто
+MENU_CAPITALSMALL,Capital/Small,Maj/min,Maiuscole/Minuscole,かな・カナ・ＡＢＣ,,Mayús/Min,Mayús/Min,GRANDES/pequenas,Duże/Małe,Groß/Klein,Заглавные/Строчные
+MENU_TEXTSPEED,Text Speed,Vitesse du texte,Velocità del testo,メッセージスピード,글자 속도,Velocidad del texto,Velocidad del texto,Velocidade do texto,Szybkość tekstu,Textgeschwindigkeit,Скорость текста
+MENU_FLAVORS,Menu Flavors,Couleur des menus,Gusto delle finestre,ウィンドウタイプ,메뉴 타입,Sabor del menú,Sabor del menú,Sabor da janela,Smaki menu,Menü-Geschmack,Оттенок окон меню
+MENU_PROMPTS,Button Prompts,Indications de touches,Indicatori dei pulsanti,ボタンひょうじ,버튼 표시,Indicadores de botón,Indicadores de botón,Indicadores,Polecenia przycisków,Knopfanzeige,Подсказки кнопок
+MENU_END,End,Terminé,Fine,すすむ,완료,Terminar,Terminar,Fim,Zakończ,Ende,Закончить
+MENU_CERTAINTY,Are you sure?,C'est bien ça ?,Va bene così?,よろしいですか？,이걸로 좋습니까?,¿Está bien?,¿Está bien?,Tem certeza?,Na pewno?,Bist du sicher?,Ты уверен?
+MENU_BOTH,Both,Toutes,Entrambi,りょうほう,둘 다,Ambos,Ambos,Ambos,Oba,Beide,Оба
+MENU_OBJECTS,Objects,Objets,Oggetti,モノ,오브젝트,Objetos,Objetos,Objetos,Przedmioty,Objekte,Предметы
+MENU_NPCS,NPCs,PNJ,NPC,ＮＰＣ,NPC,NPCs,NPCs,NPCs,NPC,NPCs,НИПы
+MENU_NONE,None,Aucune,Nessuno,なし,없음,Ninguno,Ninguno,Nenhum,Nic,Keine,Нет
+MENU_FAST,Fast,Rapide,Veloce,はやい,빠름,Rápida,Rápida,Rápido,Szybka,Flott,Быстрая
+MENU_MEDIUM,Medium,Moyenne,Media,ふつう,보통,Mediana,Normal,Médio,Średnia,Mittel,Средняя
+MENU_SLOW,Slow,Lente,Lenta,おそい,느림,Lenta,Lenta,Lento,Wolna,Lahm,Медленная
+MENU_FASTSPD,Fast Speed,Vitesse rapide,Testo veloce,はやいそくど,빠른 속도,Velocidad rápida,Velocidad rápida,Rápido,Szybka prędkość,Flotte Geschwindigkeit,Быстрая скорость
+MENU_MEDIUMSPD,Medium Speed,Vitesse moyenne,Testo normale,ふつうのそくど,보통 속도,Velocidad mediana,Velocidad normal,Médio,Średnia prędkość,Mittlere Geschwindigkeit,Средняя скорость
+MENU_SLOWSPD,Slow Speed,Vitesse lente,Testo lento,おそいそくど,느린 속도,Velocidad lenta,Velocidad lenta,Lento,Wolna prędkość,Lahme Geschwindigkeit,Медленная скорость
+FLAVOR_PLAIN,Plain,Nature,Naturale,プレーン,플레인,Natural,Básico,Básico,Zwykły,Natürlich,Обычный
+FLAVOR_MINT,Mint,Menthe,Menta,ミント,민트,Menta,Menta,Menta,Miętowy,Minze,Мятный
+FLAVOR_STRAWBERRY,Strawberry,Fraise,Fragola,ストロベリー,스트로베리,Fresa,Fresa,Morango,Truskawkowy,Erdbeere,Клубничный
+FLAVOR_BANANA,Banana,Banane,Banana,バナナ,바나나,Banana,Plátano,Banana,Bananowy,Banane,Банановый
+FLAVOR_PEANUT,Peanut,Cacahuète,Arachide,ナッツ,피넛,Maní,Cacahuete,Amendoim,Fistaszkowy,Erdnuss,Арахисовый
+FLAVOR_GRAPE,Grape,Raisin,Uva,グレープ,그레이프,Uva,Uva,Uva,Winogronowy,Traube,Виноградный
+FLAVOR_MELON,Melon,Melon,Melone,メロン,메론,Melón,Sandía,Melancia,Melonowy,Melone,Дынный
+NAME_NINTEN0,Ninten,Ninten,Ninten,ニンテン,닌텐,Ninten,Ninten,Ninten,Ninten,Ninten,Нинтен
+NAME_NINTEN1,Ken,Ken,Ken,ケン,켄,Ken,Ken,Ken,Ken,Ken,Кен
+NAME_NINTEN2,Douglas,Douglas,Douglas,ダグラス,더글러스,Douglas,Douglas,Douglas,Douglas,Don,Дуглас
+NAME_NINTEN3,Jeremy,Jeremy,Jeremy,ジェレミー,제레미,Jeremy,Jeremy,Guri,Jeremy,Jeremy,Джереми
+NAME_NINTEN4,Mark,Mark,Mark,マーク,마크,Mark,Mark,Marcos,Mark,Mark,Марк
+NAME_NINTEN5,Ryu,Ryu,Ryu,リュウ,류,Ryu,Ryu,Gonzaga,Ryu,Ryu,Рю
+NAME_NINTEN6,Colin,Colin,Colin,コリン,콜린,Colin,Colin,Colin,Pegaz,Collin,Колин
+NAME_ANA0,Ana,Ana,Ana,アナ,아나,Ana,Ana,Ana,Ana,Ana,Ана
+NAME_ANA1,Jill,Jill,Jill,ジル,질,Jill,Jill,Rita,Jill,Jill,Джилл
+NAME_ANA2,Sylvia,Sylvia,Sylvia,シルビア,실비아,Sylvia,Sylvia,Alice,Sylwia,Sylvia,Сильвия
+NAME_ANA3,Catrine,Catrine,Catrine,カトリーヌ,카트린,Catrine,Catrine,Catrine,Catrine,Catrina,Кэтрин
+NAME_ANA4,Carrie,Carrie,Carrie,キャリー,캐리,Carrie,Carrie,Mariana,Carrie,Carrie,Кэрри
+NAME_ANA5,Nina,Nina,Nina,ニーナ,니나,Nina,Nina,Sofia,Nina,Nina,Нина
+NAME_ANA6,Emily,Emily,Emily,エミリー,에밀리,Emily,Emily,Aurora,Emilia,Emily,Эмили
+NAME_LLOYD0,Lloyd,Lloyd,Lloyd,ロイド,로이드,Lloyd,Lloyd,Lloyd,Lloyd,Lloyd,Ллойд
+NAME_LLOYD1,Brian,Brian,Brian,ブライアン,브라이언,Brian,Brian,Bruno,Brajan,Brian,Брейн
+NAME_LLOYD2,Albert,Albert,Albert,アルバート,알버트,Albert,Albert,Alberto,Albert,Albert,Альберт
+NAME_LLOYD3,Louis,Louis,Louis,ルイ,루이스,Louis,Louis,Luís,Louis,Luis,Льюис
+NAME_LLOYD4,Kenny,Kenny,Kenny,ケニー,케니,Kenny,Kenny,Kenny,Kenny,Kenny,Кенни
+NAME_LLOYD5,Jean,Jean,Jean,ジーン,진,Jean,Jean,Gustavo,Jean,Jean,Джин
+NAME_LLOYD6,Maxwell,Maxwell,Maxwell,ジャック,맥스웰,Maxwell,Maxwell,Santos,Maxwell,Maxwell,Макс
+NAME_PIPPI0,Pippi,Fifi,Pippi,ピッピ,삐삐,Pippi,Pippi,Pippi,Pippi,Pippi,Пеппи
+NAME_PIPPI1,Alex,Alex,Alex,アン,알렉스,Alex,Alex,Alex,Alex,Alexa,Алекс
+NAME_PIPPI2,Penny,Penny,Penny,ペニー,페니,Penny,Penny,Penny,Penny,Penny,Пэнни
+NAME_PIPPI3,Ferris,Ferris,Ferris,フェリス,페리스,Ferris,Ferris,Emília,Ferris,Lilli,Феррис
+NAME_PIPPI4,Natalie,Natalie,Natalie,ナタリー,나탈리,Natalie,Natalie,Natália,Natalia,Natalie,Натали
+NAME_PIPPI5,Katt,Katt,Katt,ケイティ,캣,Katt,Katt,Katt,Katt,Katt,Кэтт
+NAME_PIPPI6,Ashley,Ashley,Ashley,アシュリー,애슐리,Ashley,Ashley,Ashley,Ashley,Ashley,Эшли
+NAME_TEDDY0,Teddy,Teddy,Teddy,テディ,테디,Teddy,Teddy,Teddy,Teddy,Teddy,Тэдди
+NAME_TEDDY1,Joe,Joe,Joe,ジョー,조,Joe,Joe,João,Joe,Joe,Джо
+NAME_TEDDY2,Leo,Leo,Leo,レオ,레오,Leo,Leo,Briggs,Leon,Leo,Лео
+NAME_TEDDY3,Jeb,Jeb,Jeb,ジェブ,젭,Jeb,Jeb,Madruga,Jeb,Jeb,Джеб
+NAME_TEDDY4,Alec,Alec,Alec,アレック,알렉,Alec,Alec,Thomas,Alec,Alex,Алек
+NAME_TEDDY5,Rand,Rand,Rand,ランド,랜드,Rand,Rand,Roberto,Rand,Randy,Ранд
+NAME_TEDDY6,Dallas,Dallas,Dallas,ダラス,댈러스,Dallas,Dallas,Damião,Dallas,Dallas,Даллас
+NAME_FLYINGMAN,Flying Man,Garuda,Flying Man,フライングマン,플라잉 맨,Hombre volador,Hombre volador,Homem Voador,Latający Pan,Fliegender Mann,Полётчик
+NAME_CANARYCHICK,Canary Chick,Bébé canari,Pulcino di canarino,カナリアのヒナ,아기 카나리아,Canario bebé,Cría de canario,Canário Filhote,Kanarek,Kanarienküken,Канарёнок
+NAME_EVE,EVE,ÈVE,EVE,イヴ,이브,EVE,EVE,EVA,EVE,EVE,ЕВА
+FAVFOOD0,Prime Rib,Côte de bœuf,Costolette,プライムリブ,소갈비,Bistec,Costillas,Costeleta,Żeberka,Rostbraten,Рёбрышки
+FAVFOOD1,Bean Paste,Perles coco,Marmellata,あんパン,단팥빵,Frijoles,Judías,Feijoada,Pasta z fasoli,Apfelmus,Лобио
+FAVFOOD2,Creme Cookies,Macaron,Biscotti,クリームクッキー,크림 쿠키,Galletas,Galletas,Cookies,Ciastka z kremem,Creme-Kekse,Печенье
+FAVFOOD3,Pasta,Pâtes,Pasta,パスタ,파스타,Fideos,Pasta,Macarrão,Makaron,Nudeln,Макароны
+FAVFOOD4,Omelets,Omelette,Omelette,オムレツ,오믈렛,Tortillas,Tortilla,Omelete,Omlety,Omelett,Омлет
+FAVFOOD5,Custard,Crème brûlée,Budino,おこさまランチ,커스타드,Budín,Natillas,Pavê,Budyń,Pudding,Крем-брюле
+FAVFOOD6,Salmon,Saumon,Salmone,サーモン,연어,Salmón,Salmón,Tilápia,Łosoś,Lachs,Лосось
+LONGEST_POSSIBLE_NAME,ŒŒŒŒŒŒŒ,,,ああああああ,절절절절절절,,,,,,ЩЩЩЩЩЩЩ
+LONGEST_POSSIBLE_FOOD,ŒŒŒŒŒŒŒŒŒŒŒŒŒ,,,ああああああああああ,절절절절절절절절절절,,,,,,ЩЩЩЩЩЩЩЩЩЩЩЩЩ
+LONGEST_POSSIBLE_PLAYER_NAME,ŒŒŒŒŒŒŒŒŒŒŒŒŒ,,,ああああああああああ,절절절절절절절절절절,,,,,,ЩЩЩЩЩЩЩЩЩЩЩЩЩ
+NAME_BIO0,What is this boy's name?,Comment s'appelle ce garçon ?,Come si chiama questo ragazzo?,なまえを　つけてください,남자아이의 이름은?,¿Cúal es el nombre de este chico?,¿Cúal es el nombre de este chico?,Qual é o nome deste garoto?,Jak ma na imię ten chłopiec?,Wie heißt dieser Junge?,Как зовут этого пацана?
+NAME_BIO1,What is this girl's name?,Comment s'appelle cette fille ?,E questa ragazza?,おんなのこの　なまえは？,여자아이의 이름은?,¿Cúal es el nombre de esta chica?,¿Cuál es el nombre de esta chica?,Qual é o nome desta garota?,Jak ma na imię ta dziewczyna?,Wie heißt dieses Mädchen?,А как зовут эту девочку?
+NAME_BIO2,This other boy's name?,Et cet autre garçon ?,"Quest'altro ragazzo, invece?",ともだちの　なまえは？,친구의 이름은?,¿Y el de este chico?,¿Y el de este chico?,O nome deste outro garoto?,Jak ma ten chłopiec na imię?,Und der Name des anderen Jungen?,Какое имя у этого мальчика?
+NAME_BIO3,This other girl's name?,Et cette autre fille ?,E quest'altra ragazza?,もうひとりの　おんなのこは？,다른 여자아이의 이름은?,¿Y el de esta chica?,¿Y el nombre de esta otra chica?,O nome desta outra garota?,Imię drugiej dziewczyny?,Und der Name des anderen Mädchens?,А у этой девчушки?
+NAME_BIO4,This last boy's name?,Et ce dernier garçon ?,E il nome di quest'ultimo?,もうひとりの　ともだちは？,다른 친구의 이름은?,¿Cómo se llama este último chico?,¿Cómo se llama este último chico?,O nome deste homem?,Imię ostatniego chłopca?,Und der Name des letzten Jungen?,Как назовёшь этого парня?
+NAME_BIO5,What is your favorite homemade food?,Qu'est-ce que vous adorez manger ?,Qual è il tuo cibo preferito?,すきなこんだては　なに？,가장 좋아하는 음식은?,¿Cúal es tu plato favorito?,¿Cuál es tu comida favorita?,Qual é a sua comida favorita?,Jakie jest twoje ulubione jedzenie?,Was ist dein Leibgericht?,Какая твоя любимая домашняя еда?
+BLACKLISTED_NAMES,"george,minnie,mimmie,duncan,abbot,abbé,laura,gyiyg,giegue,giygas,mary,maria,maría,eve,ève",,,"ジョージ,ミニー,ミミー,アボット！,ローラ,ギーグ,マリー,マリア,イヴ,ｇｅｏｒｇｅ,ｍｉｎｎｉｅ,ｍｉｍｍｉｅ,ｄｕｎｃａｎ,ａｂｂｏｔ,ｌａｕｒａ,ｇｙｉｙｇ,ｇｉｅｇｕｅ,ｇｉｙｇａｓ,ｍａｒｙ,ｍａｒｉａ,ｅｖｅ","조지,미니,미미,애봇,로라,기그,마리,마리아,이브,george,minnie,mimmie,duncan,abbot,laura,gyiyg,giegue,giygas,mary,maria,eve",,,,,,"джордж,минни,мимми,данкан,аббот,абботт,лаура,лора,гигу,гийгас,гайгас,мэри,мария,ева,george,minnie,mimmie,duncan,abbot,laura,gyiyg,giegue,giygas,mary,maria,maría,eve"
+NAME_BLOCKED,Please change this name.,Veuillez changer ce nom.,"Per favore, cambia nome.",この　なまえは　つけれない,이름을 변경해 주십시오.,No puedes poner este nombre.,No puedes poner este nombre.,"Por favor, mude esse nome.","Proszę, zmień to imię.",Bitte nimm einen anderen Namen.,"Пожалуйста, измени имя."
+NAME_DUPLICATED,This name's already taken!,Ce nom est déjà pris !,Questo nome è già stato usato!,おなじ　なまえは　つけれない,이 이름은 사용 중입니다.,¡Ya has elegido este nombre!,¡Ya has elegido este nombre!,Esse nome já foi usado!,To imię jest już zajęte!,Der Name wird bereits verwendet!,Это имя уже выбрано!
+MENU_MENU,Menu,Menu,Menù,メニュー,메뉴,Menú,Menú,Menu,Menu,Menü,Меню
+MENU_GOODS,Goods,Objets,Oggetti,グッズ,소지품,Objetos,Objetos,Itens,Przedmioty,Items,Вещи
+MENU_PSI,PSI,PSI,PSI,ＰＳＩ,PSI,PSI,PSI,PSI,PSI,PSI,ПСИ
+MENU_EQUIP,Equip,Équip.,Equipagg.,そうび,장비,Equipar,Equipar,Equipar,Ekwipunek,Ausrüsten,Снаряж.
+MENU_STATUS,Status,Statut,Stato,つよさ,상태,Estado,Estado,Condições,Status,Status,Характер.
+MENU_MAP,Map,Carte,Mappa,マップ,지도,Mapa,Mapa,Mapa,Mapa,Karte,Карта
+MENU_OPTIONS,Options,Options,Opzioni,せってい,옵션,Opciones,Opciones,Opções,Opcje,Optionen,Настройки
+MENU_SKILLS,Skills,Talents,Abilità,スキル,스킬,Habilidades,Habilidades,Habilidades,Umiejętności,Fähigkeiten,Навыки
+EQUIP_WEAPON,Weapon,Arme,Arma,ぶき,무기,Arma,Arma,Arma,Broń,Waffe,Оружие
+EQUIP_BODY,Body,Corps,Corpo,からだ,몸,Cuerpo,Cuerpo,Corpo,Ciało,Körper,Тело
+EQUIP_HEAD,Head,Tête,Testa,あたま,머리,Cabeza,Cabeza,Cabeça,Głowa,Kopf,Голова
+EQUIP_OTHER,Other,Autre,Altro,そのた,기타,Otro,Otro,Outro,Inne,Anderes,Прочее
+EQUIP_NONE,None,Aucun,Niente,なし,없음,Nada,Nada,Nada,Nic,Nichts,Ничего
+EQUIP_EMPTY,______,,,－－－－－－,______,,,,,,______
+MENU_AILMENTS_SEPARATOR,", ",", ",", ",、,", ",", ",", ",", ",", ",", ",", "
+MENU_AILMENTS_AND, and , et , e ,と, 그리고 , y , y , e , i , und , и 
+MENU_AILMENTS_AND_MORE, and more, et..., e altro,など, 등, y..., y..., e..., i więcej, und weitere, и ещё...
+MAP_404,No map available,Aucune carte disponible,Mappa non disponibile,マップがない,지도가 존재하지 않습니다.,Mapa no disponible,Mapa no disponible,Mapa indisponível,Mapa niedostępna,Keine Karte verfügbar,Карта недоступна
+MAP_FASTSCROLL,Speed Up,Défilement rapide,Velocizza,SPEED UP,스피드 업,Acelerar,Acelerar,Acelerar,Przyspiesz,Schneller,Ускорить
+MAP_MARKERS,Markers,Marqueurs,Indicatori,ICON,마커,Marcadores,Marcadores,Marcadores,Znaczniki,Symbole,Метки
+MENU_TITLE_GOODS,Goods,Objets,Oggetti,グッズ,소지품,Objetos,Objetos,Itens,Przedmioty,Items,Вещи
+MENU_TITLE_PSI,PSI,PSI,PSI,ＰＳＩ,PSI,PSI,PSI,PSI,PSI,PSI,ПСИ
+MENU_TITLE_EQUIP,Equip,Équipement,Equipaggiamento,そうび,장비,Equipamiento,Equipo,Equipar,Ekwipunek,Ausrüsten,Снаряжение
+MENU_TITLE_STATUS,Status,Statut,Stato,ステータス,상태,Estado,Estado,Condições,Status,Status,Характеристика
+MENU_TITLE_OPTIONS,Options,Options,Opzioni,せってい,옵션,Opciones,Opciones,Opções,Opcje,Optionen,Настройки
+MENU_TITLE_STORAGE,Storage,Stockage,Deposito,あずけや,창고,Almacenamiento,Almacenamiento,Armazenamento,Magazyn,Lager,Кладовка
+INVENTORY_SWAP,Swap Items,Échanger,Scambia oggetti,いれかえ,아이템 교체,Intercambiar,Intercambiar,Trocar itens,Zamień przedmioty,Item tauschen,Обмен предметов
+INVENTORY_DESCRIPTION,Description,Description,Descrizione,INFO,설명,Descripción,Descripción,Descrição,Opis,Beschreibung,Описание
+INVENTORY_ACTION_GIVE,Give,Donner,Dai,わたす,건네주기,Dar,Dar,Dar,Daj,Geben,Дать
+INVENTORY_ACTION_SORT,Sort,Trier,Ordina,ならびかえ,정렬,Ordenar,Ordenar,Organizar,Sortuj,Sortieren,Упорядочить
+INVENTORY_ACTION_DROP,Drop,Jeter,Butta,すてる,버리기,Soltar,Soltar,Jogar fora,Wyrzuć,Wegwerfen,Выбросить
+INVENTORY_ACTION_USE,Use,Utiliser,Usa,つかう,사용하기,Usar,Usar,Usar,Użyj,Benutzen,Использовать
+INVENTORY_ACTION_EQUIP,Equip,Équiper,Equipaggia,そうび,장비,Equipar,Equipar,Equipar,Wyposaż,Ausrüsten,Экипировать
+INVENTORY_ACTION_UNEQUIP,Unequip,Retirer,Disequipaggia,はずす,장비 해제,Desequipar,Quitar,Desequipar,Zdejmij,Abnehmen,Убрать
+INVENTORY_ACTION_GIVE_TARGET,To whom?,À qui ?,A chi?,だれに？,누구에게?,¿A quién?,¿A quién?,Para quem?,Komu?,Zu wem?,Кому?
+INVENTORY_ACTION_USE_TARGET,On whom?,Sur qui ?,Su chi?,だれに？,누구에게?,¿En quién?,¿En quién?,Em quem?,Na kim?,Auf wen?,На ком?
+INVENTORY_ACTION_TARGET,Who?,Qui ?,Chi?,だれ？,누가?,¿Quién?,¿Quién?,Quem?,Kto?,Wer?,Кто?
+INVENTORY_ACTION_TARGET_ALL,All,Tout le monde,Tutti,ぜんいん,모두,Todos,Todos,Todos,Wszyscy,Alle,Всем
+INVENTORY_ACTION_SORT_HOW,How?,Comment ?,Come?,どうやって？,어떻게?,¿Cómo?,¿Cómo?,Como?,Jak?,Wie?,Как?
+INVENTORY_ACTION_SORT_MANUAL,Manual,Manuellement,Manualmente,マニュアル,수동,Manualmente,Manual,Manual,Ręcznie,Manuell,Вручную
+INVENTORY_ACTION_SORT_AUTO,Auto,Automatiquement,Automaticamente,オート,자동,Auto,Automático,Automático,Automatycznie,Auto,Авто
+INVENTORY_ACTION_EQUIP_CONFIRM,Equip?,Équiper ?,Equipaggiare?,そうびする？,장비할까?,¿Equipar?,¿Equipar?,Equipar?,Wyposażyć?,Ausrüsten?,Экипировать?
+INVENTORY_ACTION_SWAP_CONFIRM,Swap?,Échanger ?,Scambiare?,いれかえる？,건네줄까?,¿Intercambiar?,¿Intercambiar?,Trocar?,Zamienić?,Geben?,Обменять?
+INVENTORY_ACTION_DROP_CONFIRM,Drop?,Jeter ?,Buttare?,すてる？,버릴까?,¿Soltar?,¿Soltar?,Jogar fora?,Wyrzucić?,Wegwerfen?,Выбросить?
+ATM_BALANCE,Balance,Solde,Saldo,ザンダカ,잔액,Banco,Saldo,Saldo,Saldo,Kontostand,Баланс
+ATM_ONHAND,On Hand,En main,Contanti,テモチ,소지금,En mano,En mano,Na mão,Przy sobie,Zur Hand,Наличные
+ATM_WITHDRAW,Withdraw,Retirer,Ritira,ヒキダス,출금,Retirar,Retirar,Sacar,Wypłata,Abheben,Снять
+ATM_DEPOSIT,Deposit,Déposer,Deposita,アズケイレ,입금,Depositar,Depositar,Depositar,Wpłata,Einzahlen,Внести
+SHOP_SHOP,Shop,Magasin,Negozio,ショップ,샵,Tienda,Tienda,Loja,Sklep,Laden,Магазин
+SHOP_BUY,Buy,Acheter,Compra,かう,사기,Comprar,Comprar,Comprar,Kup,Kaufen,Купить
+SHOP_SELL,Sell,Vendre,Vendi,うる,팔기,Vender,Vender,Vender,Sprzedaj,Verkaufen,Продать
+SHOP_ASK_BUY,Buy {i3}{item}?,Acheter {i3}{item} ?,Compri {i3}{item}?,{item}を　かいますか？,{item}{i2} 구매하시겠습니까?,¿Comprar {i3}{item}?,¿Comprar {i3}{item}?,Comprar {i3}{item}?,Kupić {i3}?,{i5}{item} kaufen?,Купить {i3}?
+SHOP_ASK_EQUIP,Equip now?,Équiper {i1}{item} ?,Equipaggi subito?,そうびしますか？,지금 장비하시겠습니까?,¿Equipar ahora?,¿Equipar ahora?,Equipar de uma vez?,Wyposażyć teraz?,Direkt ausrüsten?,Экипироваться сразу?
+SHOP_ASK_SELL_OLD,Sell your old {item}?,Revendre {i7}{item} ?,Vendi {i1}{item} vecchi{i5}?,そうびしていた　{item}を　うりますか？,낡은 {item}{i2} 판매하시겠습니까?,¿Revender tu{i6} {item}?,¿Vender tu{i6} {item}?,Vender {i1}{item} que você tinha?,Odsprzedać {i3}?,{i7}{i11} {item} verkaufen?,Продать {i3}?
+SHOP_ASK_SELL,Sell your {item}?,Vendre {i7}{item} ?,Vendi {i7} tu{i5} {item}?,{item}を　うりますか？,{item}{i2} 판매하시겠습니까?,¿Vender tu{i6} {item}?,¿Vender tu{i6} {item}?,Vender {i1}{i7}{item}?,Sprzedać {i3}?,{i7}{item} verkaufen?,Продать {i3}?
+SHOP_ASK_SELL_FOR_SPACE,Your inventory is full.\nSell your {item}?,Votre inventaire est plein.\nVendre {i7}{item} ?,Inventario pieno.\nVendi {i1}{item}?,バッグが　いっぱいです。\n{item}を　うりますか？,인벤토리가 가득 찼습니다.\n{item}{i2} 판매하시겠습니까?,Tu inventario está lleno.\n¿Vender tu{i6} {item}?,Tu inventario está lleno.\n¿Quieres vender tu{i6} {item}?,Seu inventário está cheio.\nVender {i1}{i7}{item}?,Twój ekwipunek jest pełny.\nSprzedać {i3}?,Dein Inventar ist voll.\n{i7}{item} verkaufen?,Твой инвентарь полон.\nПродать {i3}?
+SHOP_ASK_SELL_FOR_CASH,You don't have enough cash.\nSell something?,Vous n'avez pas assez d'argent.\nVendre quelque chose ?,Non hai abbastanza soldi.\nVuoi vendere qualcosa?,おかねが　たりません。\nなにか　うりますか？,현금이 부족합니다.\n무언가 판매하시겠습니까?,No tienes suficiente dinero.\n¿Vendes algo?,No tienes dinero suficiente.\n¿Quieres vender algo?,Você não tem o suficiente.\nVender alguma coisa?,Nie masz wystarczającej ilości\ngotówki. Sprzedać coś?,Du hast nicht genug Geld.\nWillst du was verkaufen?,У тебя недостаточно денег.\nХочешь продать что-нибудь?
+TRANSACTION_ASK_UNEQUIP,Unequip {i1}{item}?,Retirer {i1}{item} équipé{i5} ?,Rimuovi {i1}{item}?,{item}を　はずしますか？,{item}{i2} 해제하겠습니까?,¿Desequipar {i1}{item}?,¿Quitar {i1}{item}?,Desequipar {i1}{item}?,Zdjąć {i3}?,{i7}{item} ablegen?,Убрать {i3}?
+TRANSACTION_FULL,Your inventory is full.,Votre inventaire est plein.,Inventario pieno.,バッグが　いっぱいです。,인벤토리가 가득 찼습니다.,Tu inventario está lleno.,Tu inventario está lleno.,Seu inventário está cheio.,Twój ekwipunek jest pełny.,Dein Inventar ist voll.,Твой инвентарь полон.
+TRANSACTION_STORAGE_FULL,The storage is full.,Le stockage est plein.,Deposito pieno.,あずけやが　いっぱいです。,창고가 가득 찼습니다.,El almacenamiento está lleno.,El almacén está lleno.,O armazém está cheio.,Magazyn jest pełny.,Das Lager ist voll.,В кладовке нет места.
+PSI_WHOM,To whom?,À qui ?,A chi?,だれに？,누구에게?,¿A quién?,¿A quién?,A quem?,Komu?,Auf wen?,Кому?
+PSI_CONFIRM,You sure?,Êtes-vous sûr ?,Confermi?,ほんとうに？,확실합니까?,¿Estás seguro?,¿Estás seguro?,Tem certeza?,Na pewno?,Sicher?,Ты уверен?
+PSI_PP_NOTENOUGH,Not enough pp!,Pas assez de PP ¦,Non hai abbastanza PP!,ＰＰがたりない。,PP가 부족합니다!,¡No hay suficiente PP!,¡No tienes suficientes PP!,PP insuficiente!,Za mało PP!,Nicht genug PP!,Недостаточно ОП!
+PSI_HP_MAXEDOUT,{target}'s HP was maxed out!,Tous les PV {t4}{target} ont été récupérés ¦,{target} recupera tutti i PS!,{target}の　ＨＰがまんたんになった！,{target}의 HP가 가득 찼다!,¡Los PV {t4}{target} están al máximo!,¡Los PV {t4}{target} están al máximo!,O HP de {target} foi completamente recuperado!,HP {t1} zostało wypełnione!,KP von {target} sind voll!,{target} полностью восстановил{t6} ОЗ!
+PSI_HP_RECOVERED,{target} recovered {value} HP!,{t0}{target} récupère {value} PV ¦,{target} recupera il {value} dei PS!,{target}は　ＨＰを{value}　かいふくした！,{target}의 HP가 {value} 회복되었다!,¡{t0}{target} recuperó {value} PV!,¡{t0}{target} recuperó {value} PV!,{target} recuperou {value} HP!,{target} odzyskał{t4} {value} HP!,{target} heilte {value} KP!,{target} восстановил{t6} {value} ОЗ!
+PSI_STATUS_HEALED,{target} was healed of {0}!,{t0}{target} n'est plus {0} ¦,{target} guarisce da {0}!,{target}は　{0}から　かいふくした！,{target}(이)가 {0} 회복되었다!,¡{t0}{target} ha sido curad{t6} {0}!,¡{t0}{target} ha sido curad{t6} {0}!,{target} foi curad{t4} {0}!,{target} został{t4} wyleczon{t5} z {0}!,{t11} {0} wurde geheilt!,{target} избавил{t8} от {0}!
+PSI_STATUS_FULL,{target} was healed of all statuses!,{t0}{target} est guéri{t6} de toutes ses altérations d'état ¦,{target} guarisce da tutti gli stati alterati!,{target}の　じょうたいいじょうが　きえた！,{target}의 상태가 완전히 회복되었다!,¡{t0}{target} fue curad{t6} de todos sus estados!,¡{t0}{target} ha sido curad{t6} de todos sus estados!,{target} foi curad{t4} de todas as condições!,{target} został{t4} wyleczon{t5} ze swoich statusów!,{t11} ganzen Zustände wurden geheilt!,{target} избавил{t8} от всех недугов!
+TELEPORT_WHERE,Where to?,Où ça ?,Dove?,どこに？,어디로?,¿A dónde?,¿A dónde?,Para onde?,Dokąd?,Wohin?,Куда?
+TITLE_FNKEYS,{0} – Fullscreen\n{1} – Window Size,{0} – Plein écran\n{1} – Taille de la fenêtre,{0} – Schermo intero\n{1} – Risoluzione,{0}　フルスクリーン　\n{1}　ウィンドウサイズ,{0} – 전체화면\n{1} – 창 모드,{0} – Pantalla completa\n{1} – Tamaño de ventana,{0} – Pantalla completa\n{1} – Tamaño de ventana,{0} – Tela cheia\n{1} – Ajustar janela,{0} – Pełny ekran\n{1} – Rozmiar okna,{0} – Vollbild/Fenster\n{1} – Fenstergröße,{0} — Полноэкранный режим\n{1} — Оконный режим
+TITLE_DEMO,Demo,Démo,Demo,DEMO Ver.,Demo,Demo,Demo,Demo,Demo,Demo,Демо
+TITLE_NINTENDO,Originally Produced by,Initialement produit par,Originariamente prodotto da,Originally Produced by,Originally Produced by,Originalmente producido por,Originalmente producido por,Produzido originalmente pela,Oryginalnie wyprodukowane przez,Original produziert von,Оригинал произведён
+TITLE_ITOI,Originally Presented by,Initialement présenté par,Originariamente presentato da,Originally Presented by,Originally presented by,Originalmente presentado por,Originalmente presentado por,Apresentado originalmente por,Oryginalnie zaprezentowane przez,Original präsentiert von,Оригинал представлен
+TITLE_TEAMENCORE,Presented by,Présenté par,Presentato da,Presented by,Presented by,Presentado por,Presentado por el,Apresentado por,Zaprezentowane przez,Präsentiert von,Представлено
+OPTIONS_FILESETTINGS,File settings,Configuration de la sauvegarde,Impostazioni della partita,こじん　せってい,파일 설정,Ajustes de archivo,Configuración del archivo,Ajustes,Ustawienia pliku,Dateieinstellungen,Настройки файла
+OPTIONS_SETTINGS,Settings,Réglages,Impostazioni,オプション,설정,Ajustes,Ajustes,Configurações,Ustawienia,Einstellungen,Общие настройки
+OPTIONS_TITLESCREEN,Return to Title Screen,Retour à l'écran-titre,Torna allo schermo del titolo,タイトルへもどる,타이틀로 돌아가기,Volver a la pantalla de inicio,Volver a la pantalla del título,Voltar à tela de início,Powrót do ekranu tytułowego,Zum Titelbildschirm zurückkehren,Вернуться на главный экран
+OPTIONS_QUIT,Close game,Quitter le jeu,Chiudi il gioco,ゲームしゅうりょう,게임 종료,Cerrar el juego,Cerrar el juego,Fechar o jogo,Zamknij grę,Spiel beenden,Выйти из игры
+OPTIONS_RESOLUTION,Window resolution,Définition,Risoluzione,かいぞうど,해상도,Resolución,Resolución,Resolução da tela,Rozdzielczość okna,Fensterauflösung,Разрешение окна
+OPTIONS_FULLSCREEN,Fullscreen,Plein écran,Schermo intero,フルスクリーン,전체화면,Pantalla completa,Pantalla completa,Tela cheia,Pełny ekran,Vollbild,Полноэкран. режим
+OPTIONS_LANGUAGE,Language,Langue,Lingua,げんご,언어,Idioma,Idioma,Idioma,Język,Sprache,Язык
+OPTIONS_LANGUAGE_EN,English,,,,,,,,,,
+OPTIONS_LANGUAGE_FR,Français,,,,,,,,,,
+OPTIONS_LANGUAGE_ES,Español latino,,,,,,,,,,
+OPTIONS_LANGUAGE_ES_ES,Español castellano,,,,,,,,,,
+OPTIONS_LANGUAGE_JA,にほんご,,,,,,,,,,
+OPTIONS_LANGUAGE_KO,한국어,,,,,,,,,,
+OPTIONS_LANGUAGE_IT,Italiano,,,,,,,,,,
+OPTIONS_LANGUAGE_PL,Polski,,,,,,,,,,
+OPTIONS_LANGUAGE_PT_BR,Português brasileiro,,,,,,,,,,
+OPTIONS_LANGUAGE_DE,Deutsch,,,,,,,,,,
+OPTIONS_LANGUAGE_RU,Русский,,,,,,,,,,
+LANGUAGE_CODE,en,fr,it,ja,ko,es,es_ES,pt_BR,pl,de,ru
+OPTIONS_TITLESCREEN_CONFIRM,Return to title screen?\nAny unsaved progress will be lost.,Retourner à l'écran-titre ?\nToute progression non sauvegardée sera perdue.,Tornare allo schermo del titolo?\nI progressi non salvati saranno perduti.,タイトルに　もどりますか？\nほぞんされていない　データは　うしなわれます。,타이틀로 돌아가시겠습니까?\n저장되지 않은 파일은 사라집니다.,¿Volver a la pantalla de inicio?\nSe perderá el progreso que no haya sido guardado.,¿Quieres volver a la pantalla del título?\nSe perderá el progreso que no haya sido guardado.,Tem certeza?\nQualquer progresso não salvo será perdido.,Wrócić do ekranu tytułowego?\nUtracisz wszelkie niezapisane postępy.,Zum Titelbildschirm zurückkehren?\nJeglicher ungespeicherter Fortschritt geht verloren.,Вернуться на главный экран?\nВесь несохранённый прогресс будет утерян.
+OPTIONS_QUIT_CONFIRM,Close the game?\nAny unsaved progress will be lost.,Quitter le jeu ?\nToute progression non sauvegardée sera perdue.,Chiudere il gioco?\nI progressi non salvati saranno perduti.,ゲームを　しゅうりょうしますか？\nほぞんされていない　データは　うしなわれます。,게임을 종료하시겠습니까?\n저장되지 않은 파일은 사라집니다.,¿Cerrar el juego?\nSe perderá el progreso que no haya sido guardado.,¿Quieres cerrar el juego?\nSe perderá el progreso que no haya sido guardado.,Tem certeza?\nQualquer progresso não salvo será perdido.,Zamknąć grę?\nUtracisz wszelkie niezapisane postępy.,Das Spiel beenden?\nJeglicher ungespeicherter Fortschritt geht verloren.,Выйти из игры?\nВесь несохрананённый прогресс будет утерян.
+OPTIONS_VOLUME,Volume,Volume,Volume,おんりょう,볼륨,Volumen,Volumen,Volume,Głośność,Lautstärke,Громкость
+OPTIONS_VOLUME_MUSIC,Music Volume,Volume des musiques,Volume della musica,ＢＧＭおんりょう,음악 볼륨,Volumen de la música,Volumen de la música,Volume da música,Głośność muzyki,Musiklautstärke,Музыка
+OPTIONS_VOLUME_SFX,SFX Volume,Volume des bruitages,Volume degli effetti,ＳＥおんりょう,효과음 볼륨,Volumen de efectos,Volumen de efectos,Volume de efeitos,Głośność SFX,Soundeffektlautstärke,Звук
+OPTIONS_CONTROLS,Controls,Commandes,Controlli,そうさ,조작,Controles,Controles,Controles,Sterowanie,Steuerung,Управление
+OPTIONS_ON,On,Oui,Sì,オン,On,Sí,Sí,Ligado,Wł.,An,Вкл.
+OPTIONS_OFF,Off,Non,No,オフ,Off,No,No,Desligado,Wył.,Aus,Выкл.
+KEYBOARD_ESCAPE,Esc,Échap,Esc,ESC,Esc,Esc,Esc,Esc,Esc,Esc,Esc
+KEYBOARD_TAB,Tab,Tab,Tab,TAB,Tab,Tab,Tab,Tab,Tab,Tab,Tab
+KEYBOARD_BACKSPACE,BKSP,Retour,Backsp.,BACK,Backsp,Retroc.,Retroc.,Apagar,Backsp.,Rück,Пробел
+KEYBOARD_ENTER,Enter,Entrée,Enter,ENTER,Enter,Enter,Enter,Enter,Enter,Enter,Enter
+KEYBOARD_INSERT,Insert,Inser,Insert,INSERT,Insert,Insert,Ins,Insert,Insert,Einfg,Insert
+KEYBOARD_DELETE,Del,Suppr,Canc,DEL,Del,Supr,Supr,Delete,Del,Entf,Del
+KEYBOARD_PAUSE,Pause,Pause,Pausa,PAUSE,Pause,Pausa,Pausa,Pause,Pauza,Pause,Pause
+KEYBOARD_HOME,Home,Orig,Home,HOME,Home,Inicio,Inicio,Home,Home,Home,Home
+KEYBOARD_END,End,Fin,Fine,END,End,Fin,Fin,End,End,Ende,End
+KEYBOARD_PAGEUP,PgUp,Préc,PagSu,PGUP,PgUp,Subir,Subir,PgUp,PgUp,PgUp,PgUp
+KEYBOARD_PAGEDOWN,PgDn,Suiv,PagGiù,PGDN,PgDn,Bajar,Bajar,PgDn,PgDn,PgDn,PgDn
+KEYBOARD_SHIFT,Shift,Maj,Shift,SHIFT,Shift,Shift,Shift,Shift,Shift,Shift,Shift
+KEYBOARD_CONTROL,Ctrl,Ctrl,Ctrl,CTRL,Ctrl,Ctrl,Ctrl,Ctrl,Ctrl,Strg,Ctrl
+KEYBOARD_META,Meta,Méta,Meta,META,Meta,Meta,Meta,Meta,Meta,Meta,Meta
+KEYBOARD_COMMAND,Cmd,Cmd,Cmd,CMD,Cmd,Cmd,Cmd,Cmd,Cmd,Cmd,Cmd
+KEYBOARD_ALT,Alt,Alt,Alt,ALT,Alt,Alt,Alt,Alt,Alt,Alt,Alt
+KEYBOARD_SUPER_L,Super L,Super G,Super Sx,スーパーL,Super L,Súper I,Súper I,Super E,Super L,Super L,Super L
+KEYBOARD_SUPER_R,Super R,Super D,Super Dx,スーパーR,Super R,Súper D,Súper D,Super D,Super R,Super R,Super R
+KEYBOARD_MENU,Menu,Menu,Menu,MENU,Menu,Menú,Menú,Menu,Menu,Menü,Menu
+KEYBOARD_SPACE,Space,Espace,Spazio,SPACE,Space,Espacio,Espacio,Espaço,Spacja,Leer,Пробел
+CONTROLS_HEADER_MOVEMENT,Movement,Déplacement,Movimento,いどう,이동,Movimiento,Movimiento,Movimento,Poruszanie,Bewegung,Движение
+CONTROLS_UP,Up,Haut,Su,うえ,위,Arriba,Arriba,Cima,Góra,Hoch,Вверх
+CONTROLS_DOWN,Down,Bas,Giù,した,아래,Abajo,Abajo,Baixo,Dół,Runter,Вниз
+CONTROLS_LEFT,Left,Gauche,Sinistra,ひだり,좌,Izquierda,Izquierda,Esquerda,Lewo,Links,Влево
+CONTROLS_RIGHT,Right,Droite,Destra,みぎ,우,Derecha,Derecha,Direita,Prawo,Rechts,Вправо
+CONTROLS_HEADER_ACTIONS,Actions,Actions,Azioni,アクション,액션,Acciones,Acciones,Ações,Akcje,Aktionen,Действия
+CONTROLS_INTERACT,Interact/Accept,Interagir/Accepter,Interagisci/Accetta,かいわ・けってい,상호작용,Interactuar/Aceptar,Interactuar/Aceptar,Interagir/Aceitar,Interakcja/Zaakceptuj,Interagieren/Akzeptieren,Взаимодейств./Принять
+CONTROLS_SKILL,Skill/Cancel,Talent/Annuler,Abilità/Annulla,スキル・キャンセル,스킬/취소,Habilidad/Cancelar,Habilidad/Cancelar,Habilidade/Cancelar,Umiejętność/Anuluj,Fähigkeit/Abbrechen,Навык/Отмена
+CONTROLS_RUN,Crouch/Run,S'accroupir/Courir,Accovacciati/Corri,しゃがむ・ダッシュ,웅크리기/달리기,Agacharse/Correr,Agacharse/Correr,Agachar/Correr,Kucnij/Biegnij,Hocke/Rennen,Пригнуться/Бежать
+CONTROLS_SCOPE,Scope/Description,Scruter/Description,Esamina/Descrizione,みわたす・しょうさい,전망/설명,Mirar/Descripción,Explorar/Descripción,Analisar/Descrição,Zbadaj/Opis,Spähen/Beschreibung,Осмотреться/Описание
+CONTROLS_PREV,Previous,Précédent,Indietro,まえ,이전,Anterior,Anterior,Anterior,Poprzednie,Zurück,Предыдущее
+CONTROLS_NEXT,Next,Suivant,Avanti,つぎ,다음,Siguiente,Siguiente,Próximo,Następne,Weiter,Следующее
+CONTROLS_MENU,Menu,Menu,Menu,メニュー,메뉴,Menú,Menú,Menu,Menu,Menü,Меню
+CONTROLS_HEADER_MISC,Others,Divers,Altro,そのた,기타,Otros,Otros,Outros,Inne,Anderes,Другое
+CONTROLS_FULLSCREEN,Fullscreen,Plein écran,Schermo intero,フルスクリーン,전체화면,Pantalla completa,Pantalla completa,Tela cheia,Pełny ekran,Vollbild/Fenster,Полноэкранный режим
+CONTROLS_WINDOW_SIZE,Window Size,Taille de la fenêtre,Risoluzione,ウィンドウサイズ,창 모드,Tamaño de ventana,Tamaño de ventana,Ajustar janela,Rozmiar okna,Fenstergröße,Размер окна
+CONTROLS_RUMBLE,Rumble,Vibrations,Vibrazione,しんどう,진동,Vibración,Vibración,Vibração,Wibracje,Rumble,Вибрация
+CONTROLS_BUTTON_STYLE,Button Naming,Nom des boutons,Nome dei pulsanti,ボタンレイアウト,버튼 설정,Nombre de los botones,Nombre de los botones,Nome dos botões,Nazwy przycisków,Knopf-Layout,Стиль кнопок геймпада
+CONTROLS_BUTTON_STYLE_NINTENDO,Nintendo Style,Façon Nintendo,Stile Nintendo,NINTENDO,NINTENDO,Estilo Nintendo,Estilo Nintendo,Estilo Nintendo,Styl Nintendo,Nintendo,Nintendo
+CONTROLS_BUTTON_STYLE_PLAYSTATION,PlayStation Style,Façon PlayStation,Stile PlayStation,PS,PS,Estilo PlayStation,Estilo PlayStation,Estilo PlayStation,Styl PlayStation,PlayStation,PlayStation
+CONTROLS_BUTTON_STYLE_XBOX,Xbox Style,Façon Xbox,Stile Xbox,XBOX,XBOX,Estilo Xbox,Estilo Xbox,Estilo Xbox,Styl Xbox,Xbox,Xbox
+CONTROLS_BUTTON_STYLE_DETECT,Auto Detect,Automatique,Rileva in automatico,じどうけんち,자동 감지,Auto,Automático,Detectar automaticamente,Autowykrywanie,Automatisch,Автоопределение
+CONTROLS_DEFAULT,Reset to defaults,Retour à la configuration d'origine,Ripristina default,デフォルトにもどす,초기화,Restablecer configuración,Restablecer configuración,Redefinir,Przywróć ustawienia domyślne,Auf Standard zurücksetzen,Настройки по умолчанию
+CONTROLS_DEFAULT_CONFIRM,Reset to default controls?,Voulez-vous revenir aux réglages d'origine ?,Ritorni ai controlli di default?,デフォルトにもどしますか？,초기화 하시겠습니까?,¿Deseas volver a la configuración original?,¿Quieres restablecer a los controles por defecto?,Redefinir para os comandos padrão?,Przywrócić domyślne ustawienia sterowania?,Auf Standardbelegung zurücksetzen?,Сбросить настройки управления? 
+CONTROLS_PRESS_KEY,Press any key to rebind.,Veuillez appuyer sur la touche de votre choix.,Premi un tasto per associare.,キーをおして　わりあてる。,키를 지정하십시오.,Pulsa cualquier tecla para reenlazar.,Pulsa cualquier tecla para reenlazar.,Pressione qualquer tecla para definir.,"Naciśnij dowolny klawisz, aby go przypisać.",Drücke eine Taste zum Umbinden.,"Нажми любую клавишу, чтобы переназначить."
+CONTROLS_PRESS_BUTTON,Press any button to rebind.,Veuillez appuyez sur le bouton de votre choix.,Premi un pulsante per associare.,ボタンをおして　わりあてる。,버튼을 지정하십시오.,Pulsa cualquier botón para reenlazar.,Pulsa cualquier botón para reenlazar.,Pressione qualquer botão para definir.,"Naciśnij dowolny przycisk, aby go przypisać.",Drücke einen Knopf zum Umbinden.,"Нажми любую кнопку, чтобы переназначить. "
+CONTROLS_PRESS_DUPLICATE_KEY,This key is already assigned to another action.,Cette touche est déjà assignée à une autre action.,Questo tasto è già associato a un'altra azione.,キーが　べつのアクションに　わりあてられている。,이 키는 이미 사용되고 있습니다.,Esta tecla ya está asignada a otra acción.,Esta tecla ya está asignada a otra acción.,Esta tecla já está sendo usada em outra ação.,Ten klawisz jest już przypisany do innej akcji.,Die Taste ist bereits zugewiesen.,Эта клавиша уже выполняет другую функцию.
+CONTROLS_PRESS_DUPLICATE_BUTTON,This button is already assigned to another action.,Ce bouton est déjà assigné à une autre action.,Questo pulsante è già associato a un'altra azione.,ボタンが　べつのアクションに　わりあてられている。,이 버튼은 이미 사용되고 있습니다.,Este botón ya está asignado a otra acción.,Este botón ya está asignado a otra acción.,Este botão já está sendo usado em outra ação.,Ten przycisk jest już przypisany do innej akcji.,Der Knopf ist bereits zugewiesen.,Эта кнопка уже выполняет другую функцию.
+AILMENT_ASTHMA,Asthma,en pleine crise d'asthme,In crisi d'asma,ぜんそく,천식,asma,asma,Asma,Astma,Asthma,астма
+AILMENT_BLINDED,Blinded,aveuglé{t6},Accecat{t6},もうもく,시야 방해,ceguera,ceguera,Cegueira,Oślepienie,Blind,слепота
+AILMENT_BURNED,Burned,brûlé{t6},Scottat{t6},やけど,화상,quemad{t6},quemad{t6},Queimad{t4},Oparzenie,Verbrannt,горение
+AILMENT_COLD,Cold,enrhumé{t6},Raffreddat{t6},かぜ,감기,resfriad{t6},resfriad{t6},Resfriado,Przeziębienie,Erkältet,простуда
+AILMENT_CONFUSED,Confused,confus{t6},Confus{t6},こんらん,당황,confusión,confus{t6},Confus{t4},Zdezorientowanie,Verwirrt,смятение
+AILMENT_FORGETFUL,Forgetful,oublieu{t8},Smemorat{t6},どわすれ,망각,olvido,olvido,Esquecid{t4},Zapomnienie,Vergesslich,забывчивость
+AILMENT_NAUSEA,Nausea,nauséeu{t8},Nauseat{t6},どんより,구역질,náusea,náuseas,Enjoad{t4},Mdłości,Schwindel,тошнота
+AILMENT_NUMB,Numb,engourdi{t6},Intorpidit{t6},しびれ,마비,adormecimiento,entumecid{t6},Dormente,Odrętwienie,Betäubt,онемение
+AILMENT_POISONED,Poisoned,empoisonné{t6},Avvelenat{t6},どく,독,envenenad{t6},envenenad{t6},Envenenad{t4},Zatrucie,Vergiftet,отравление
+AILMENT_SLEEPING,Sleeping,endormi{t6},Addormentat{t6},ねむり,수면,somnolencia,dormid{t6},Dormindo,Senność,Schläft,сон
+AILMENT_SUNSTROKED,Sunstroked,frappé{t6} d'insolation,Ustionat{t6},にっしゃびょう,일사병,insolad{t6},insolación,Insolação,Udar słoneczny,Sonnenstich,солнечный удар
+AILMENT_MUSHROOMIZED,Mushroomized,champignonneu{t8},Funghizzat{t6},キノコ,버섯화,champiñonizad{t6},champiñonizad{t6},Cogumelizad{t4},Zagrzybienie,Verpilzt,грибомизация
+AILMENT_UNCONSCIOUS,Unconscious,évanoui{t6},Priv{t6} di sensi,きぜつ,기절,inconsciente,incapacitad{t6},Inconsciente,Nieprzytomność,Bewusstlos,обморок
+INLINE_STAT_OFFENSE,Offense,L'attaque,L'Attacco,オフェンス,오펜스,La ofensa,La fuerza,O Ataque,Ofensywa,Der Angriff,Атака
+INLINE_STAT_DEFENSE,Defense,La défense,La Difesa,ディフェンス,디펜스,La defensa,La defensa,A Defesa,Obrona,Die Verteidigung,Защита
+INLINE_STAT_SPEED,Speed,La vitesse,La Velocità,スピード,스피드,La velocidad,La velocidad,A Agilidade,Szybkość,Die Geschwindigkeit,Скорость
+INLINE_STAT_IQ,IQ,Le QI,Il QI,ＩＱ,IQ,El IQ,El CI,O QI,IQ,IQ,IQ
+INLINE_STAT_GUTS,Guts,La fougue,La Combattività,ガッツ,용기,Las agallas,Las agallas,A Coragem,Odwaga,Mut,Воля
+INLINE_STAT_HP,HP,Les PV,I PS,ＨＰ,HP,Los PV,Los PV,O PV,HP,KP,ОЗ
+INLINE_STAT_PP,PP,Les PP,I PP,ＰＰ,PP,Los PP,Los PP,O PP,PP,PP,ОП
+INLINE_AILMENT_ASTHMA,Asthma,en pleine crise d'asthme,In crisi d'asma,ぜんそく,천식,del asma,del asma,da Asma,Astma,Asthma,астмы
+INLINE_AILMENT_BLINDED,Blind,aveuglé{t6},Accecat{t6},もうもく,시야방해,de la ceguera,de la ceguera,da Cegueira,Oślepienie,Blindheit,слепоты
+INLINE_AILMENT_BURNED,Burned,brûlé{t6},Scottat{t6},やけど,화상,del quemado,del quemado,da Queimadura,Oparzenie,Verbennung,горения
+INLINE_AILMENT_COLD,Cold,enrhumé{t6},Raffreddat{t6},かぜ,감기,del resfriado,del resfriado,do Resfriado,Przeziębienie,Erkältung,простуды
+INLINE_AILMENT_CONFUSED,Confused,confus{t6},Confus{t6},こんらん,당황,de la confusión,de la confusión,da Confusão,Zdezorientowanie,Verwirrung,смятения
+INLINE_AILMENT_FORGETFUL,Forgetful,oublieu{t8},Smemorat{t6},どわすれ,망각,del olvido,del olvido,do Esquecimento,Zapomnienie,Vergesslichkeit,забывчивости
+INLINE_AILMENT_NAUSEA,Nausea,nauséeu{t8},Nauseat{t6},どんより,구역질,de la náusea,de las náuseas,da Náusea,Mdłości,Schwindel,тошноты
+INLINE_AILMENT_NUMB,Numb,engourdi{t6},Intorpidit{t6},しびれ,마비,del adormecimiento,del entumecimiento,da Dormência,Odrętwienie,Betäubung,онемения
+INLINE_AILMENT_POISONED,Poisoned,empoisonné{t6},Avvelenat{t6},どく,중독,del envenenamiento,del envenenamiento,do Envenenamento,Zatrucie,Vergiftung,отравления
+INLINE_AILMENT_SLEEPING,Sleeping,endormi{t6},Addormentat{t6},ねむり,수면,de la somnolencia,de la somnolencia,do Sono,Senność,Schlaf,сна
+INLINE_AILMENT_SUNSTROKED,Sunstroked,frappé{t6} d'insolation,Ustionat{t6},にっしゃびょう,일사병,de la insolación,de la insolación,da Insolação,Udar słoneczny,Sonnenstich,солнечного удара
+INLINE_AILMENT_MUSHROOMIZED,Mushroomized,champignonneu{t8},Funghizzat{t6},キノコ,버섯화,de la champiñonización,de la champiñonización,do Cogumelo,Zagrzybienie,Verpilzung,грибомизации
+INLINE_AILMENT_UNCONSCIOUS,Unconscious,évanoui{t6},Priv{t6} di sensi,きぜつ,기절,inconsciente,de la inconsciencia,Inconsciente,Nieprzytomność,Bewusstlosigkeit,обморока
+SYMBOL_BULLET_MAIN,@ ,@ ,@ ,[color=#ea8b2c]＠[/color],[color=#ea8b2c]＠[/color],@ ,@ ,@ ,@ ,@ ,@ 
+SYMBOL_BULLET_BATTLE,@ ,@ ,@ ,[color=#ea8b2c]＠[/color],[color=#ea8b2c]＠[/color],@ ,@ ,@ ,@ ,@ ,@ 
+SYMBOL_BULLET_NAMING,@,@,@,￢,￢,@,@,@,@,@,@
+SYMBOL_DOT,`,,,｀,｀,,,,,,
+SYMBOL_ELLIPIS,…,,,⋯,…,,,,,,

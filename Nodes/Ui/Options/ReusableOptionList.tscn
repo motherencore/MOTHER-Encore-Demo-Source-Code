@@ -1,0 +1,233 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Graphics/UI/Inventory/cursor.png" type="Texture" id=1]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/UI/Options/ReusableOptionList.gd" type="Script" id=3]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=4]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=7]
+
+[sub_resource type="StyleBoxTexture" id=21]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 7.0
+expand_margin_left = 15.0
+expand_margin_right = 7.0
+expand_margin_top = 10.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="Theme" id=27]
+VScrollBar/styles/grabber = SubResource( 22 )
+VScrollBar/styles/grabber_highlight = SubResource( 22 )
+VScrollBar/styles/grabber_pressed = SubResource( 22 )
+VScrollBar/styles/scroll = SubResource( 22 )
+VScrollBar/styles/scroll_focus = SubResource( 22 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[node name="GenericOption" type="PanelContainer"]
+light_mask = 0
+material = ExtResource( 4 )
+margin_top = -17.0
+margin_right = 40.0
+margin_bottom = 17.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 21 )
+script = ExtResource( 3 )
+_cursor = NodePath("HBoxContainer/arrow")
+scroll_view = NodePath("HBoxContainer/ScrollContainer")
+list = NodePath("HBoxContainer/ScrollContainer/ListValues")
+scrollbar = NodePath("HBoxContainer/VBoxContainer/Scrollbar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 38.0
+margin_bottom = 34.0
+size_flags_horizontal = 0
+custom_constants/separation = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_right = 28.0
+margin_bottom = 34.0
+theme = SubResource( 27 )
+scroll_horizontal_enabled = false
+
+[node name="ListValues" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+margin_right = 28.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Item 1" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+margin_right = 28.0
+margin_bottom = 12.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 1"
+valign = 1
+
+[node name="Item 2" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+margin_top = 16.0
+margin_right = 28.0
+margin_bottom = 28.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 2"
+valign = 1
+
+[node name="Item 3" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+margin_top = 32.0
+margin_right = 28.0
+margin_bottom = 44.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 4" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+margin_top = 48.0
+margin_right = 28.0
+margin_bottom = 60.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 5" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 64.0
+margin_right = 28.0
+margin_bottom = 76.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 6" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 80.0
+margin_right = 28.0
+margin_bottom = 92.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 7" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 96.0
+margin_right = 28.0
+margin_bottom = 108.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 8" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 112.0
+margin_right = 28.0
+margin_bottom = 124.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 9" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 128.0
+margin_right = 28.0
+margin_bottom = 140.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 10" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 11" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="arrow" parent="HBoxContainer" instance=ExtResource( 2 )]
+position = Vector2( 11, 16 )
+frames = SubResource( 4 )
+menu_parent_path = NodePath("../ScrollContainer/ListValues")
+consume_input_events = true
+loop_around = true
+skip_hidden_items = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 30.0
+margin_right = 38.0
+margin_bottom = 34.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="Scrollbar" parent="HBoxContainer/VBoxContainer" instance=ExtResource( 7 )]
+margin_left = 0.0
+margin_right = 8.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 8, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+position = 1
+
+[node name="Spacer" type="Control" parent="HBoxContainer/VBoxContainer"]
+margin_top = 31.0
+margin_right = 8.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 3 )
+size_flags_vertical = 0
+
+[connection signal="cancel" from="HBoxContainer/arrow" to="." method="_on_arrow_cancel"]
+[connection signal="moved" from="HBoxContainer/arrow" to="." method="_on_arrow_moved"]
+[connection signal="selected" from="HBoxContainer/arrow" to="." method="_on_arrow_selected"]

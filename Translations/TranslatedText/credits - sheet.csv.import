@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Translations/TranslatedText/credits - sheet.en.translation", "res://Translations/TranslatedText/credits - sheet.fr.translation", "res://Translations/TranslatedText/credits - sheet.it.translation", "res://Translations/TranslatedText/credits - sheet.ja.translation", "res://Translations/TranslatedText/credits - sheet.ko.translation", "res://Translations/TranslatedText/credits - sheet.es.translation", "res://Translations/TranslatedText/credits - sheet.es_ES.translation", "res://Translations/TranslatedText/credits - sheet.pt_BR.translation", "res://Translations/TranslatedText/credits - sheet.pl.translation", "res://Translations/TranslatedText/credits - sheet.de.translation", "res://Translations/TranslatedText/credits - sheet.ru.translation" ]
+
+source_file="res://Translations/TranslatedText/credits - sheet.csv"
+dest_files=[ "res://Translations/TranslatedText/credits - sheet.en.translation", "res://Translations/TranslatedText/credits - sheet.fr.translation", "res://Translations/TranslatedText/credits - sheet.it.translation", "res://Translations/TranslatedText/credits - sheet.ja.translation", "res://Translations/TranslatedText/credits - sheet.ko.translation", "res://Translations/TranslatedText/credits - sheet.es.translation", "res://Translations/TranslatedText/credits - sheet.es_ES.translation", "res://Translations/TranslatedText/credits - sheet.pt_BR.translation", "res://Translations/TranslatedText/credits - sheet.pl.translation", "res://Translations/TranslatedText/credits - sheet.de.translation", "res://Translations/TranslatedText/credits - sheet.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

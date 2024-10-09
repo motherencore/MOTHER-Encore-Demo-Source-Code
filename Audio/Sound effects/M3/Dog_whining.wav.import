@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dog_whining.wav-a142b18be56fc6735e86b9911f3524fd.sample"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Dog_whining.wav"
+dest_files=[ "res://.import/Dog_whining.wav-a142b18be56fc6735e86b9911f3524fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

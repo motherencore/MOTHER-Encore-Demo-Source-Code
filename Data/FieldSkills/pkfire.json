@@ -1,0 +1,12 @@
+{
+	"name": "FIELD_PK_FIRE",
+	"description": "FIELD_PK_FIRE_DESC",
+	"flag": "PKfire",
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    }
+}

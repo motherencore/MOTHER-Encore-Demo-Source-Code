@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/PassiveHeal.mp3-a701b8e98a2d63239f7f0f4cf7388451.mp3str"
+
+[deps]
+
+source_file="res://Nodes/Overworld/Enemies/PassiveHeal.mp3"
+dest_files=[ "res://.import/PassiveHeal.mp3-a701b8e98a2d63239f7f0f4cf7388451.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

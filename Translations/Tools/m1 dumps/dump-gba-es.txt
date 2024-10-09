@@ -1,0 +1,2172 @@
+000: Error del sistema![BREAK][END]
+001: @¡Hermano! ¡Tengo mucho [BREAK]miedo![BREAK][PAUSE]¡Mi lámpara ha empezado a[BREAK]moverse![BREAK][END]
+002: @¡Hermano! ¡Que se nos[BREAK]cae la casa encima![BREAK][END]
+003: @¡Aah![BREAK][END]
+004: @¡Toma, un poco de zumo,[BREAK]hermano![BREAK][PAUSE]Debes de estar sediento.[BREAK][END]
+005: @¡Eek![BREAK]¡Mi muñeca se está moviendo![BREAK][END]
+006: @Vaya, eso dio miedo.[BREAK][PAUSE]@¡Oh! ¡Creo que hay algo[BREAK]dentro de la muñeca![BREAK][END]
+007: 
+008: @Soy Mimmie.[BREAK]¡No me confundas con[BREAK]Minnie![BREAK][END]
+009: @¿Estás bien, [03 10]?[BREAK][PAUSE]@¿Qué demonios le está[BREAK]pasando a nuestra casa?[BREAK][PAUSE]Estoy muy asustada...[BREAK][PAUSE]@Si tu padre estuviese[BREAK]aquí...[BREAK][END]
+00A: @Eres más valiente de lo[BREAK]que pensaba.[BREAK][PAUSE]@Pero no puedes ir de[BREAK]aventuras sin comer nada.[BREAK][END]
+00B: @¡Oh, no! ¡Estás herido![BREAK][END]
+00C: @Veamos... para subir de[BREAK]nivel...[BREAK][END]
+00D: @Vuelve a casa cuando tengas[BREAK]hambre de [03 15].[BREAK][END]
+00E: @Mmm, ya veo. Parece que[BREAK]es un poltergeist o[BREAK]algo así.[BREAK][PAUSE]@Yo tampoco sé muy bien[BREAK]lo que hacer. Pero[BREAK][PAUSE]@tu bisabuelo estudió PSI[BREAK]en un momento de su vida.[BREAK][PAUSE]@Puede que haya algo en el[BREAK]sótano que pueda ayudar a[BREAK]darle sentido a las cosas.[BREAK][PAUSE]@Sé que puse la llave del[BREAK]sótano en alguna parte...[BREAK][PAUSE]Pero no recuerdo dónde.[BREAK][PAUSE]@Eres nuestra única[BREAK]esperanza. Es el momento[BREAK]para una aventura.[BREAK][PAUSE]¡Adelante, [03 10]![BREAK]¡Protégenos![BREAK][END]
+00F: 
+010: 
+011: 
+012: 
+013: @(¡Clic! Biip-biip-biip...)[BREAK][END]
+014: @¿[03 10]? Soy tu padre.[BREAK][END]
+015: @He depositado $[03 18][BREAK]en tu cuenta bancaria.[BREAK][PAUSE]@Quitando lo que has[BREAK]sacado, deberías de tener[BREAK]$[03 19] en el banco.[BREAK][PAUSE]@Úsalo con cabeza.[BREAK][END]
+016: @Me he dado cuenta que esto[BREAK]no es cosa mía pero, ¿por[BREAK]qué no descansas un rato?[BREAK][END]
+017: @Vale. Entonces[BREAK]guardaré tu progreso.[BREAK][END]
+018: @Vale. La Tierra[BREAK]SIGUE en peligro.[BREAK][END]
+019: 
+01A: 
+01B: @Vale.[BREAK][PAUSE]@Tu viejo padre estaba[BREAK]a punto de irse a[BREAK]dormir por hoy.[BREAK][PAUSE]@He creado un guardado[BREAK]de tu aventura hasta[BREAK]ahora.[BREAK][PAUSE]@Creo que es buen momento[BREAK]para descansar. ¿Qué vas a[BREAK]hacer?[BREAK][END]
+01C: @Somos un gran equipo,[BREAK]¿no?[BREAK][PAUSE]@Bueno, deberías[BREAK]apagar por hoy.[BREAK][PAUSE]@¿Vale?[BREAK][END]
+01D: @[03 16], te gusta trabajar[BREAK]duro, como tu madre.[BREAK][PAUSE]@Pero no creo que sea[BREAK]bueno trabajar tanto.[BREAK][END]
+01E: @Pero ¿quieres GUARDAR[BREAK]la partida?[BREAK][END]
+01F: 
+020: 
+021: @¡Buena suerte![BREAK][END]
+022: 
+023: @Hola.[BREAK][PAUSE]¡Pippi y yo somos muy[BREAK]elegantes![BREAK][END]
+024: @No has venido del[BREAK]cementerio del sur[BREAK]¿a que no?[BREAK][PAUSE]¡Por favor, dime que no![BREAK][END]
+025: @Eres asombroso.[BREAK][END]
+026: @¡Por favor, dime que[BREAK]no eres un zombi![BREAK][PAUSE]...¿Lo eres?[BREAK][END]
+027: @Oh, ¿sí? B-b-bueno...[BREAK][PAUSE]¡Eres un zombi estúpido[BREAK]y cabezota! ¡Aaaaah! ¡Ajj![BREAK][END]
+028: @¿De verdad eres humano?[BREAK][END]
+029: @Me impresiona que hayas[BREAK]llegado tan lejos.[BREAK][END]
+02A: @Lo sabía...[BREAK][END]
+02B: @Tengo miedo, voy a mearme[BREAK]en los pantalones...[BREAK][END]
+02C: @Tío, eso da miedo...[BREAK][END]
+02D: @¡ZOMBI![END]
+02E: @¡Je, je, je...! Tú también[BREAK]puedes ser un zombi![BREAK][END]
+02F: @Tiene que haber alguien[BREAK]dirigiendo a los zombis...[BREAK][END]
+030: @¡Nada mal, joven![BREAK][END]
+031: @¿Los zombis vienen a[BREAK]por nosotros?[BREAK][END]
+032: @Oh, es una cría de canario.[BREAK][PAUSE]¿Lo encontraste en Villa[BREAK]Canary?[BREAK][END]
+033: @Mmm. No te creo...[BREAK][END]
+034: @Los pájaros de Villa Canary[BREAK]cantan tales canciones de[BREAK]amor.[BREAK][END]
+035: @Admiro mucho al hombre[BREAK]que vive en Villa Canary.[BREAK][END]
+036: @El alcalde está buscando[BREAK]a alguien valiente[BREAK]que le ayude.[BREAK][END]
+037: @Escuché que una niña[BREAK]se perdió en el cementerio.[BREAK][PAUSE]Espero que ya la hayan[BREAK]rescatado...[BREAK][END]
+038: @Dime... No estarás[BREAK]pensando en ir al[BREAK]cementerio, ¿no?[BREAK][END]
+039: @Pensaba que eras[BREAK]un chico prudente.[BREAK][END]
+03A: @Los animales se han vuelto[BREAK]violentos de repente,[BREAK][PAUSE]y al morir han vuelto[BREAK]como zombis para[BREAK]atacarnos...[BREAK][PAUSE]@¿Qué se supone que hagamos?[BREAK]Tengo tanto miedo que me[BREAK]cuesta respirar... (jadeo)[BREAK][END]
+03B: @¡Eres increíble![BREAK][END]
+03C: 
+03D: @¿Un poltergeist atacó[BREAK]tu casa?[BREAK][PAUSE]La mía la destrozó.[BREAK][END]
+03E: @Dijeron que cerraron el zoo[BREAK]para impedir que[BREAK]escapen más animales.[BREAK][PAUSE]@Todos se volvieron locos,[BREAK]todos lo vimos...[BREAK][END]
+03F: @El pan es genial cuando[BREAK]tienes hambre,[BREAK][PAUSE]pero seguro que podrías[BREAK]usar las migas para marcar[BREAK]tu camino.[BREAK][PAUSE]@Aunque, no tiene[BREAK]que ver conmigo.[BREAK][END]
+040: @No sé, esta tarea podría[BREAK]ser demasiado para que[BREAK]puedas realizarla,[BREAK][PAUSE]de todas formas, tengo[BREAK]muchas esperanzas en ti.[BREAK][END]
+041: @Bueno, ya lo sabes...[BREAK][PAUSE]@Una niña se perdió en el[BREAK]cementerio.[BREAK][PAUSE]@Y, por suerte, dentro[BREAK]de poco seré reelegido.[BREAK][PAUSE]@Así que... ¡Por favor,[BREAK] ayúdame![BREAK][END]
+042: @¡Oh! ¡¿Lo harás?![BREAK][PAUSE]@¡¿Irás a rescatarla?![BREAK][END]
+043: @Oh, ¿esta es Pippi,[BREAK]la niña que se perdió?[BREAK][PAUSE]@¡Impresionante, chaval![BREAK][PAUSE]@¡Desde el principio[BREAK]supe que apuntabas maneras![BREAK][PAUSE](aplausos)[BREAK][PAUSE]@Eres muy afortunada, Pippi.[BREAK]A parte de simpática.[BREAK][PAUSE]@Y recuerda decirle a tu[BREAK]madre que el alcalde[BREAK]te rescató.[BREAK][PAUSE]@Y para ti, [03 16]... Una[BREAK]recompensa de $[03 1E]. Toma.[BREAK][END]
+044: 
+045: 
+046: @Dime, ya que estás aquí[BREAK]y tal, ¿nos ayudarás también[BREAK]con el problema del zoo?[BREAK][END]
+047: @Oh, ¿lo intentarás?[BREAK]¡Eso es genial![BREAK][PAUSE][03 16], ¡te gusta[BREAK]mucho la aventura![BREAK][PAUSE]@Mi asistente, Abbot[BREAK]te dará la llave del zoo.[BREAK][END]
+048: @Aqui tienes. Esta es la[BREAK]llave del zoo.[BREAK][END]
+049: @¡Vuelve vivo y serás[BREAK]un héroe![BREAK][PAUSE]@Iría contigo, pero[BREAK]umm, no me siento bien...[BREAK][END]
+04A: @Oh, ¡es [03 16], el héroe![BREAK][PAUSE]@Tienes excrementos de tigre[BREAK]en tu ropa, ¿lo sabías?[BREAK][PAUSE]@¡Es broma![BREAK][PAUSE]@Lo siento, esta vez[BREAK]no tengo nada para[BREAK]darte...[BREAK][PAUSE]¡Ja, ja, ja![BREAK][END]
+04B: @Todos están hablando de la[BREAK]niña con poderes[BREAK]especiales.[BREAK]¿Te han hablado de ella?[BREAK][PAUSE]@Seguro que te es de mucha[BREAK]ayuda en tu aventura.[BREAK][END]
+04C: @Tengo muchas llaves extras[BREAK]del zoo.[BREAK][PAUSE]@Toma, te doy otra.[BREAK][END]
+04D: @Como ves, todos los[BREAK]animales han escapado.[BREAK][END]
+04E: @Lo único que nos queda es[BREAK]este pequeño canario.[BREAK][PAUSE]¿Te interesa en comprarlo?[BREAK][END]
+04F: @¿Qué te parece $[03 1E]?[BREAK][END]
+050: @Sí, no te culpo.[BREAK][PAUSE]Ni siquiera se sabe ninguna[BREAK]canción.[BREAK][END]
+051: @¡Gracias! ¡Cuida mucho[BREAK]de él![BREAK][END]
+052: @¿Y si te lo doy gratis?[BREAK]Vamos, cógelo.[BREAK][END]
+053: @Dime, ¿qué tal le va[BREAK]al canario?[BREAK][END]
+054: @Estoy casi segura de que[BREAK]algo está controlando[BREAK]a todos los animales...[BREAK][END]
+055: @Los animales son muy[BREAK]bonitos. ¿No te parece?[BREAK][END]
+056: @Jeejee.[BREAK][END]
+057: @¡Estúpido![BREAK][END]
+058: @¡Bienvenido! ¿Quieres[BREAK]vender algún objeto?[BREAK][END]
+059: @Alguien está hablando a la[BREAK]mente de [03 16].[BREAK][END]
+05A: @Fiu, que alivio.[BREAK][END]
+05B: @Por favor, ¡vuelve cuando[BREAK]necesites comprar algo![BREAK](risita)[BREAK][END]
+05C: @Está bien que haya una[BREAK]máquina en la primera[BREAK]planta de la tienda que te[BREAK][PAUSE]permita sacar dinero de tu[BREAK]cuenta bancaria. Pero[BREAK][PAUSE]necesitas una tarjeta[BREAK]de crédito para usarla.[BREAK][PAUSE]Para mí, no es muy útil.[BREAK][END]
+05D: 
+05E: @Hace buen tiempo.[BREAK][PAUSE]Pero, ¿a quién le importa?[END]
+05F: @Oh, el canario es de Laura,[BREAK]¡la cría de pájaro cantor![BREAK][PAUSE]@¡Dáselo![BREAK][END]
+060: @Parece que has olvidado[BREAK]algo importante sobre[BREAK]la vida.[BREAK][PAUSE]Que triste.[BREAK][END]
+061: @¿Dónde fue la última vez[BREAK]que vi a Laura?...[BREAK][END]
+062: @Parece que Laura,[BREAK]el pájaro cantor ha recordado su[BREAK]canción.[BREAK][PAUSE]@¿Aprendiste su melodía?[BREAK][END]
+063: @Vaya, eso no es bueno.[BREAK][END]
+064: @Hay fuerza en la canción.[BREAK][PAUSE]Dice cosas sinceras.[BREAK][END]
+065: @Soy Pippi. Me perdí.[BREAK]Eres muy valiente, ¿no?[BREAK][END]
+066: @¡Eres tonto![BREAK]¡Ja, ja, ja![BREAK][END]
+067: @Eres muy valiente.[BREAK]Espero que nos veamos[BREAK]de nuevo, ¿tú no?[BREAK][END]
+068: @Oh, ¡Estoy muy feliz![BREAK][PAUSE]@Toma, esta insignia puede[BREAK]ser un símbolo de amistad.[BREAK][PAUSE]Llévatelo.[BREAK][END]
+069: @Creo que ya tienes a[BREAK]alguien especial...[BREAK][END]
+06A: @Hasta luego.[BREAK][PAUSE]@Pásate por mi casa[BREAK]y te daré algo mío.[BREAK][PAUSE]@Oye... ¿crees que mis[BREAK]calzas son muy cortas?[BREAK][END]
+06B: 
+06C: @Oh, no tenías que[BREAK]responder.[BREAK][PAUSE]Eres un amor...[BREAK][END]
+06D: @¡Kyakyakya![BREAK](¡Eres muy muy[BREAK]idiota!)[BREAK][END]
+06E: @[03 16] escucha una voz...[BREAK][PAUSE]@"¿Dónde está la cola de[BREAK]Dios?"[BREAK][END]
+06F: @Vaya, llevas ropa un poco[BREAK]rara.[BREAK][PAUSE]@¡Seguro que atraes a los[BREAK]monstruos vestido así![BREAK][END]
+070: 
+071: @La felicidad no va llegar[BREAK]de repente a tu vida.[BREAK][PAUSE]@Pero tampoco la[BREAK]infelicidad.[BREAK][PAUSE]@¿No piensas igual?[BREAK][END]
+072: @Así que si no quieres[BREAK]problemas en tu vida...[BREAK][PAUSE]Quédate quieto y no muevas[BREAK]ni un músculo.[BREAK][END]
+073: @¿En serio? ¿La infelicidad[BREAK]PUEDE andar?[BREAK][PAUSE]No tengo ni idea.[BREAK][END]
+074: @Así que, ¿admites que tengo[BREAK]buen gusto?[BREAK][PAUSE]@Pues seguro que tú también[BREAK]quieres un apodo chulo.[BREAK][END]
+075: @Vale, ya lo tengo.[BREAK][PAUSE]@A partir de ahora, serás[BREAK]Cara Estúpida [03 16].[BREAK][PAUSE]@Es un buen nombre.[BREAK][END]
+076: @Oh, vaya...[BREAK][END]
+077: @¡Hey, Cara estúpida [03 16]![BREAK][END]
+078: @¿Conociste el tipo que[BREAK]filosofa sobre la[BREAK]felicidad?[BREAK][END]
+079: @Es un maestro apodador.[BREAK]Tiene maña para poner[BREAK]motes.[BREAK][END]
+07A: @La gente no puede partir[BREAK]si no le conocen.[BREAK][END]
+07B: @¿Conociste al tipo que[BREAK]dice que no puedes irte[BREAK]si no le conoces?[BREAK][END]
+07C: @Estoy de acuerdo con él.[BREAK][END]
+07D: @Deberías conocerlo.[BREAK]¡Seguro que serás una mejor[BREAK]persona![BREAK][END]
+07E: @¡Me siento renovado tras[BREAK]detenerme en la fuente de[BREAK]la Reina Mary![BREAK][END]
+07F: @Llegar la fuente de[BREAK]la Reina Mary es muy duro.[BREAK][PAUSE]No solo está lejos,[BREAK]también es difícil de encontrarla.[BREAK][END]
+080: @Lanzaré este[BREAK]pendiente roto a la[BREAK]fuente para convertirlo en[BREAK]un pendiente mágico.[BREAK][END]
+081: @Me siento muy relajado[BREAK]escuchando el misterioso[BREAK]sonido de la fuente.[BREAK][END]
+082: @Oh, ¿te has perdido?[BREAK]Tienes que seguir al sur.[BREAK][PAUSE]@Oops, lo siento. Pensé[BREAK]que buscabas[BREAK]un baño.[BREAK][PAUSE]@Si buscas la fuente de la[BREAK]Reina Mary, tienes que ir[BREAK]hacia el oeste del castillo.[BREAK][END]
+083: 
+084: @Doblé mi cuchara, y ahora[BREAK]es difícil comer con ella.[BREAK][PAUSE]@¿Podrías ponerla recta[BREAK]de nuevo?[BREAK][END]
+085: @Por favor, date prisa.[BREAK][PAUSE]@([03 10] usó el poder PSI[BREAK]para arreglar la cuchara.)[BREAK][PAUSE]@¡Gracias![BREAK](come come)[BREAK][PAUSE]@¿Quieres quedarte[BREAK]esta noche?[BREAK][END]
+086: @¡¿Por qué no?![BREAK][END]
+087: @Eres muy raro,[BREAK]¿sabías?[BREAK][PAUSE]Pero creo que podrías[BREAK]agradarme...[BREAK][END]
+088: @¡Genial![BREAK][END]
+089: @¡Waaah! ¡Se supone que[BREAK]aceptes la amabilidad![END]
+08A: @Oh, ¡un viajero! ¿Por qué[BREAK]no comes con nosotros?[BREAK][PAUSE]@¿Sabes que[BREAK]estamos haciendo hoy?[BREAK][END]
+08B: @¿Huh? ¿Por qué no lo dices?[BREAK]¡Eres muy sospechoso![BREAK][END]
+08C: @Así es, [03 15].[BREAK][PAUSE]@Leí tu mente y decidí[BREAK]cocinar [03 15].[BREAK][PAUSE]@¿Cómo sabe? ¿Te[BREAK]gusta?[BREAK][END]
+08D: 
+08E: 
+08F: @Solía tener una tienda[BREAK]de instrumentos musicales[BREAK]pero la ocarina que compré[BREAK]nunca llegó.[BREAK][PAUSE]@Así que me rendí.[BREAK][END]
+090: @Oh. Ya veo.[BREAK][END]
+091: @¡Gracias![BREAK][PAUSE]@Tu cama está lista.[BREAK]¡Dulces sueños![BREAK][END]
+092: @¡Vuelve cuando quieras![BREAK][END]
+093: @No encajas en este sitio,[BREAK]que lo sepas.[BREAK][END]
+094: @Acabé de fabricar la[BREAK]ocarina de la esperanza.[BREAK][PAUSE]@Puedes tocar las melodías[BREAK]que conoces.[BREAK][PAUSE]@¿la quieres?[BREAK][END]
+095: 
+096: @Ja, ja, ja. Eres[BREAK]un chico muy sencillo.[BREAK][PAUSE]@Aquí tienes.[BREAK][END]
+097: @¡Ja, ja ja![BREAK]Se te ve en la cara que[BREAK]piensas "¡la quiero!"[BREAK][PAUSE]@Toma, llévatela.[BREAK][END]
+098: @¡Hola, niño! ¿Qué tal?[BREAK][END]
+099: @¿Dejar Magicant?[BREAK]¡Eso sería genial![BREAK][PAUSE]@¡Ja, ja, ja![BREAK][END]
+09A: @¿Fuera?[BREAK][PAUSE]¿Qué es ese "fuera" del[BREAK]que hablas?[BREAK][END]
+09B: @Me avergüenza tanto[BREAK]que me gustaría esconderme.[BREAK][PAUSE]@Si hubiese algún agujero en[BREAK]el que ocultarse...[BREAK][END]
+09C: @Soy la misteriosa[BREAK]guarda objetos.[BREAK][PAUSE]@¿Puedo ayudarte?[BREAK][END]
+09D: @Soy bueno imitando,[BREAK]¡ahora verás![BREAK][END]
+09E: @Hay un montón de agujeros[BREAK]al este de la ciudad.[BREAK][PAUSE]@No me acuerdo del agujero[BREAK]que es, pero puedes oir[BREAK]sonidos raros que salen[BREAK]de uno de los agujeros.[BREAK][END]
+09F: 
+0A0: 
+0A1: @Si sacas una hoja roja[BREAK]y la pones en la fuente,[BREAK][PAUSE]se convertirá en una hoja[BREAK]mágica... ¡así de repente![BREAK][END]
+0A2: @¿Podría interesarte[BREAK]un mochilón?[BREAK][END]
+0A3: @En ese caso, ¿podrías[BREAK]prestarme tu tarjeta de[BREAK]crédito durante un rato?[BREAK][END]
+0A4: @Hay 30 hojas mágicas[BREAK]dentro, por si no[BREAK]lo sabías.[BREAK][END]
+0A5: @Gracias. Te prometo que[BREAK]te la devolveré.[BREAK][PAUSE]@Parece... muy[BREAK]guay.[BREAK][END]
+0A6: @No confíes en nadie.[BREAK][PAUSE]@Podría ser lo mejor.[BREAK]Bueno, nunca se sabe...[BREAK][END]
+0A7: @Oh, es cierto, tengo que[BREAK]devolverte tu tarjeta.[BREAK][END]
+0A8: @La Reina no se siente muy[BREAK]bien en este momento...[BREAK][END]
+0A9: @Pareces sospechoso.[BREAK][PAUSE]@Te dejaré pasar si puedes[BREAK]resolver mi pequeño[BREAK]acertijo...[BREAK][END]
+0AA: @Eso es. La respuesta es[BREAK]"dos caimanes".[BREAK][PAUSE]@Todavía no había ideado la[BREAK]pregunta, pero bueno.[BREAK][PAUSE]Je, je, je.[BREAK][END]
+0AB: @¡Ten cuidado![BREAK][END]
+0AC: 
+0AD: @Ojalá escuchase otra vez[BREAK]la canción de la Reina...[BREAK][END]
+0AE: @Oh, ¡hola![BREAK][PAUSE]@Estaba en medio de una[BREAK]reflexión de cuestiones[BREAK]filosóficas.[BREAK][PAUSE]@Me es difícil concentrarme[BREAK]con toda esta música de[BREAK]guitarra.[BREAK][PAUSE]@¡Oh! ¡Vaya![BREAK][PAUSE]¡No me había dado cuenta[BREAK]que era yo el que tocaba[BREAK]la guitarra! ¡Que descuido![BREAK][PAUSE]@...[BREAK][PAUSE]@Este es nuestro[BREAK]secreto: vuelve cuando[BREAK]seas más fuerte.[BREAK][PAUSE]@Probablemente tomarás[BREAK]nota de esto, así que[BREAK]mejor que no te olvides.[BREAK][END]
+0AF: 
+0B0: @Intentaste ignorarme,[BREAK]¿no?[BREAK][PAUSE]@Es tan solitario, salir[BREAK]por mi cuenta.[BREAK][PAUSE]@Si hay algo que puedo[BREAK]hacer, lo hago.[BREAK][PAUSE]@¡Aquí![BREAK][END]
+0B1: @¡Me alegra que vinieses![BREAK][PAUSE]@Sé lo que necesitas.[BREAK][PAUSE]@¡Aquí tienes![BREAK][END]
+0B2: @¡Por fin escribí una[BREAK]canción! Escucha,[BREAK]¡aventurero amante de la[BREAK]música![BREAK][PAUSE]@Oh, muñeca, ¿por qué[BREAK]lloras?[BREAK][PAUSE]El canario triste no[BREAK]volverá a trinar.[BREAK][PAUSE]El mono puede cantar,[BREAK]el piano; resonador.[BREAK][PAUSE]Aunque a veces tocan[BREAK]los fantasmas del interior.[BREAK][PAUSE]Cada noche en el desierto,[BREAK]el cáctus solitario[BREAK]tararea.[BREAK][PAUSE]El dragón, al ser golpeado,[BREAK]dice algunas melodías.[BREAK][PAUSE]Mientras escala la montaña,[BREAK]la noche canta solitaria.[BREAK][PAUSE]¿La Reina Mary escuchó la[BREAK]última canción de la[BREAK]lápida de XX?[BREAK][PAUSE]Lalala, que misteriosa[BREAK]canción triste.[BREAK][PAUSE]Adiós, canción triste.[BREAK]Adiós.[BREAK][PAUSE]@¿Qué te parece? Una buena[BREAK]canción, ¿no?[BREAK][PAUSE]@Es buena, ¿no?[BREAK][END]
+0B3: @En el interior del bosque[BREAK]hay un guitarrista al que[BREAK]le gusta la soledad.[BREAK][PAUSE]@Es un poco guapo...[BREAK]y un gran poeta.[END]
+0B4: @Me han hablado de un[BREAK]hombre que fue olvidado...[BREAK][PAUSE]@Pero olvidé su historia.[BREAK][END]
+0B5: @Aunque no te lo[BREAK]creas, soy un[BREAK]curandero.[BREAK][PAUSE]@Puedo recuperarte[BREAK]tus PP o curar a[BREAK]los convertidos[BREAK]en piedra.[BREAK][PAUSE]@¿Qué puedo hacer[BREAK]por ti?[BREAK][END]
+0B6: @...Lo que pensaba.[BREAK][END]
+0B7: @No lleves mucho dinero[BREAK]encima.[BREAK][PAUSE]@Piensa en las cosas.[BREAK]Nos vemos.[BREAK][END]
+0B8: @Soy un mono que no canta.[BREAK][PAUSE]@Aunque, los monos no[BREAK]suelen cantar.[BREAK][PAUSE]@¿Tienes alguna pregunta?[BREAK][END]
+0B9: @Yo también pienso que es[BREAK]una pregunta estúpida.[BREAK][END]
+0BA: @Fiu, que alivio.[BREAK][PAUSE]@Me preocupaba que fueses[BREAK]a preguntarme algo mucho[BREAK]más difícil.[BREAK][PAUSE]@Pero te pareces a la[BREAK]Reina Mary.[BREAK][PAUSE]@¿Por qué será?...[END]
+0BB: @Quería decírtelo en cuanto[BREAK]te viese...[BREAK][PAUSE]@Las vías del tren han sido[BREAK]arregladas, así que el tren[BREAK]puede venir hasta aquí.[BREAK][END]
+0BC: @Por una vez, me gustaría ir[BREAK]dentro del castillo y ver[BREAK]como es la Reina Mary.[BREAK][END]
+0BD: @La Reina Mary siempre[BREAK]tiene pesadillas.[BREAK][PAUSE]@Habla como si estuviese[BREAK]castigando a un niño[BREAK][PAUSE]travieso, que grita[BREAK]por miedo.[BREAK][PAUSE]@Después, empieza a cantar[BREAK]una canción, pero solo una[BREAK]pequeña parte.[BREAK][PAUSE]@Parece que sufre al no[BREAK]recordarla del todo.[BREAK][PAUSE]@Y se levanta cubierta[BREAK]de sudor.[BREAK][PAUSE]@Algo muy triste debe[BREAK]pasarle a la Reina Mary[BREAK]desde hace mucho tiempo...[BREAK][END]
+0BE: @Pero es solo para chicas.[BREAK][END]
+0BF: @Zzzzz...[BREAK][END]
+0C0: 
+0C1: @¡Maldito mentiroso![BREAK][END]
+0C2: @Ya sabemos que no eres de[BREAK]aquí, pero te consideramos[BREAK]uno de los nuestros.[BREAK][PAUSE]@Con el gancho de ónice,[BREAK]puedes volver cuando[BREAK]quieras.[BREAK][END]
+0C3: @No dudes en volver[BREAK]a visitarnos cuando estés[BREAK]en una situación difícil.[BREAK][PAUSE]@Aquí todos te apreciamos.[BREAK][END]
+0C4: @Bienvenido, [03 16].[BREAK][PAUSE]@Aquí en la tierra de[BREAK]Magicant, todos son[BREAK]tus amigos[BREAK][PAUSE]y puedes tener todo lo que[BREAK]quieras de cualquier[BREAK]cosa.[BREAK][PAUSE]@¿Oh? ¿Quieres escuchar mi[BREAK]canción?[BREAK][PAUSE]@Lo siento. No sé por qué,[BREAK]pero no puedo recordarla.[BREAK][PAUSE]@Seguro que algún día[BREAK]podré recordarla...[BREAK][PAUSE]@Si pudiese cantarla de[BREAK]nuevo, algo sucedería...[BREAK][PAUSE]Simplemente, lo sé.[BREAK][END]
+0C5: 
+0C6: 
+0C7: 
+0C8: 
+0C9: 
+0CA: @...[END]
+0CB: @Deja que escuche las[BREAK]melodías que te sabes...[BREAK][END]
+0CC: @Sí... Esa es...[BREAK]Esa es la canción...[BREAK][END]
+0CD: @Oh... Giygas...[BREAK][END]
+0CE: 
+0CF: @Soñé que Magicant[BREAK]desaparecía de repente.[BREAK][PAUSE]@Mi corazón todavía late[BREAK]fuertemente.[BREAK][END]
+0D0: 
+0D1: @Soy un gato que nada en[BREAK]la tierra.[BREAK][PAUSE]@¿Puedes adivinar qué[BREAK]tengo en la pata?[BREAK][END]
+0D2: @¿Viste lo que tengo[BREAK]en mi pata?[BREAK][PAUSE]@Eso es. Una cinta.[BREAK][PAUSE]@Esta cinta rebosa[BREAK]un poder especial.[BREAK][END]
+0D3: @Solo le daré esta cinta[BREAK]mágica a una chica.[BREAK][END]
+0D4: @Soy un gato nadador.[BREAK][PAUSE]@¿Has oído de un dulce[BREAK]que le da coraje y[BREAK]fuerza a los debiluchos?[BREAK][END]
+0D5: @Ya veo. Pero tú eres un[BREAK]chico fuerte, así que dudo[BREAK]que necesites ese dulce.[BREAK][END]
+0D6: @Ese chico de gafas[BREAK]parece muy débil. Le daré[BREAK]el dulce.[BREAK][END]
+0D7: 
+0D8: @Un dulce rico, ¿no?[BREAK][END]
+0D9: @Si necesitas ver al[BREAK]anciano amable, ve a la[BREAK]fuente de Mary.[BREAK][PAUSE]@Irá si escucha un[BREAK]corazón inquieto.[BREAK][PAUSE]@Recuerda, ¡un corazón[BREAK]inquieto![BREAK][END]
+0DA: 
+0DB: @(El gentío se inquieta.)[BREAK][PAUSE]@¡No hemos venido a ver[BREAK]a pesimistas con sombrero![BREAK][PAUSE]¡Boo! ¡Boo![BREAK][END]
+0DC: @¿Necesitas algo?[BREAK][END]
+0DD: @Oh, vale. Adiós.[BREAK][END]
+0DE: @¿Necesitas dinero?[BREAK][END]
+0DF: @¿Qué pasa? ¿Te parece[BREAK]útil?[BREAK][END]
+0E0: @Ya veo.[BREAK][PAUSE]@Parece que tienes $[03 19][BREAK]en tu cuenta.[BREAK][PAUSE]@¿Cuánto sacarás?[BREAK][END]
+0E1: @¡Abracadabra, allakazam![BREAK][PAUSE]@Úsalo sabiamente. Adiós.[BREAK][END]
+0E2: @No puedes sacar esa[BREAK]cantidad.[BREAK][PAUSE]@Inténtalo de nuevo.[BREAK]Adiós.[BREAK][END]
+0E3: @Soy un hombre olvidado.[BREAK]Puede que ni exista.[BREAK][PAUSE]@No tenías que hacerme[BREAK]caso, ¿sabes?...[BREAK][PAUSE]@Vete e ignórame.[BREAK][END]
+0E4: @Soy alguien sin identidad.[BREAK][PAUSE]@Será mejor que no seas[BREAK]amable conmigo.[BREAK][PAUSE]@No puedo vivir así[BREAK]si empiezo a perder[BREAK]a la gente...[BREAK][END]
+0E5: @Mis conversaciones siempre[BREAK]son un monólogo.[BREAK][PAUSE]@Siempre he estado solo,[BREAK]desde el momento que nací.[BREAK][END]
+0E6: @Buena o mala suerte...[BREAK][PAUSE]Ninguna me es[BREAK]diferente.[BREAK][PAUSE]@A veces, respirar me es[BREAK]demasiado.[BREAK][END]
+0E7: @¿Por qué insistes en[BREAK]hablarme?[BREAK][PAUSE]@¿Tú también eres una[BREAK]persona olvidada?[BREAK][END]
+0E8: @¡Mentiroso! ¡Sé que hay una[BREAK]chica que te espera![BREAK][PAUSE]¡Déjame solo y vuelve[BREAK]con ella![BREAK][END]
+0E9: @Sí. Me lo imaginaba. Sí.[BREAK][PAUSE]@Ahora, date prisa[BREAK]e ignórame de una vez.[BREAK][END]
+0EA: @Bien. Gracias.[BREAK][END]
+0EB: @Parece que llevas[BREAK]demasiadas cosas.[BREAK][PAUSE]@Vuelve luego a recogerlo.[END]
+0EC: @¿Es cierto que están[BREAK]pasando cosas muy raras[BREAK]en Mother's Day?...[BREAK][END]
+0ED: @Algo sobre un zombie[BREAK]raptado y animales haciendo[BREAK]algo raro...[BREAK][PAUSE]Parece cosa de locos.[BREAK][END]
+0EE: ¡¡Bienvenido a la ciudad[BREAK]Thanksgiving!![BREAK][PAUSE][BREAK]Advertencia:¡Barato, rápido[BREAK]y bonito![BREAK][PAUSE]¡Big Ben Casey puede[BREAK]curar tus dolores![BREAK][PAUSE]¡Visítalo ya para una[BREAK]revisión con descuentazo![BREAK][PAUSE]Protege tu vida...[BREAK]¡de la muerte![BREAK][END]
+0EF: 
+0F0: 
+0F1: @Primero, a ver el dinero.[BREAK]Entonces, empezaré.[BREAK][PAUSE]@Si no, te cobraré[BREAK]lo que a mí me parezca.[BREAK][PAUSE]@Curaré por $[03 1E].[BREAK][PAUSE]@Este es mi trato especial[BREAK]solo para ti. En realidad,[BREAK]pierdo dinero con esto.[BREAK][END]
+0F2: 
+0F3: @Gracias por los $[03 1E].[BREAK][PAUSE]@Vale, ya está.[BREAK][PAUSE]@Vuelve cuando quieras.[BREAK]Tendré otro buen trato[BREAK]la próxima vez.[BREAK][END]
+0F4: @Oh, ya veo.[BREAK][PAUSE]@En ese caso, llamaré a[BREAK]los funerarios y les[BREAK]avisaré.[BREAK][END]
+0F5: @Por orden del alcalde,[BREAK]nadie cruzará el puente[BREAK]hasta que deroguen la ley.[BREAK][PAUSE]@Te recomiendo usar el[BREAK]puente al este del zoo.[BREAK][END]
+0F6: @Hey, niño, ¿por qué no[BREAK]estás en la escuela?[BREAK][PAUSE]@Estoy seguro de que hoy es[BREAK]día de escuela.[BREAK][END]
+0F7: @Saqué una batería de la[BREAK]Fábrica Duncan, al norte[BREAK]de aquí.[BREAK][END]
+0F8: @Esta fábrica es propiedad[BREAK]privada del señor Duncan.[BREAK][PAUSE]@¿Tienes un pase?[BREAK][END]
+0F9: @Lo siento niño, pero ese es[BREAK]antigüo.[BREAK][PAUSE]@Te quieres colar, ¿no?[BREAK][PAUSE]@Pareces sospechoso...[BREAK][PAUSE]@¡Mírame a los ojos![BREAK][END]
+0FA: 
+0FB: @Algunos monstruos muy[BREAK]fuertes me han vencido.[BREAK][PAUSE]@Si te diriges a la[BREAK]estación de tren, deberías[BREAK]tener mucho cuidado...[BREAK][END]
+0FC: 
+0FD: @Escuché que derogaron[BREAK]la ley marcial en Mother's[BREAK]Day.[BREAK][PAUSE]@Significa que ya podemos[BREAK]cruzar ese puente...[BREAK][PAUSE]@¿Me sigues?[BREAK][END]
+0FE: 
+0FF: 
+100: @Me burlaba del debilucho de[BREAK][03 11], pero ha huído.[BREAK][END]
+101: @Hey, ¡debilucho,[BREAK]y hediondo [03 11]![BREAK][END]
+102: @Has estado abusando del[BREAK]debilucho [03 11], ¿no?[BREAK][END]
+103: @¡¿Qué?! ¡¿Eso solo era[BREAK]una broma?![BREAK][END]
+104: @Escuché que [03 11][BREAK]huyó con varios explosivos.[BREAK][PAUSE]@Estará en problemas si le[BREAK]ve un profesor...[BREAK][END]
+105: @[03 11]. Se te caen[BREAK]las gafas.[BREAK][END]
+106: @Soy Suzy. Gané el certamen[BREAK]de Miss de Nowhere.[BREAK]¿Crees que soy guapa?[BREAK][END]
+107: @Tú también eres guapo.[BREAK][END]
+108: @¡Eres mucho más feo que yo![BREAK][PAUSE]@¡Cara estúpida es como[BREAK]debería llamarte![BREAK][END]
+109: @La puerta de la azotea[BREAK]está cerrada.[BREAK][PAUSE]@¡Yo también pensaba en[BREAK]hacer pellas y escuchar[BREAK]la radio en la azotea![BREAK][PAUSE]¡¿Tú no?![BREAK][END]
+10A: @Vaya, no hablas mucho,[BREAK]¿no?[BREAK][END]
+10B: @El profesor de gimnasia me[BREAK]golpeó.[BREAK][PAUSE]@A lo mejor debería dejar[BREAK]las clases y ser un[BREAK]matón...[BREAK][END]
+10C: @Perderme en mi[BREAK]colegio...[PAUSE]@¡¿Podría ser más penosa?![BREAK][END]
+10D: @Oh, ¿la puerta de la azotea[BREAK]está cerrada?[BREAK][END]
+10E: 
+10F: @No hace más que ponerse[BREAK]más y más gorda.[BREAK][PAUSE]@¿No es una mala mujer?[BREAK][END]
+110: @Un niño como tú no[BREAK]entendería las penas de[BREAK]la vida...[BREAK][END]
+111: @¡Cómo te atreves a hablar[BREAK]así de mi mujer![BREAK][PAUSE]@¡Sal de aquí![BREAK][END]
+112: @Era preciosa cuando era[BREAK]joven.[BREAK][PAUSE]@Sí, ahora que lo pienso,[BREAK]también tiene sus cosas[BREAK]buenas.[BREAK][PAUSE]@Oye, ¿quieres un té?[BREAK][END]
+113: 
+114: @Eres un niño muy listo.[BREAK][PAUSE]@Oh, es verdad, quieres[BREAK]ir a la azotea.[BREAK][PAUSE]@Vale, sígueme.[BREAK][END]
+115: @¡Aprecia a tus mayores o[BREAK]lo lamentarás cuando SEAS[BREAK]adulto![BREAK][END]
+116: @Espera. ¿Qué haces[BREAK]con algo tan peligroso[BREAK]como eso?[BREAK][PAUSE]@Creo que te COGERÉ esto.[BREAK][END]
+117: @Deberías quedarte un rato[BREAK]y beber un poco de té.[BREAK][END]
+118: @¡No corras en los pasillos![BREAK][END]
+119: @¡Hey! ¡Niño no te había[BREAK]visto con anterioridad![BREAK][PAUSE]@¿Acaso vienes a esta[BREAK]escuela?[BREAK][END]
+11A: @Oh, vale. Simplemente no[BREAK]corras en los pasillos.[BREAK][END]
+11B: @Enséñame lo que llevas.[BREAK][PAUSE]@Espero que no cargues con[BREAK]algo peligroso...[BREAK][END]
+11C: 
+11D: @¡¿Quién anda ahí?![BREAK][PAUSE]@¡No voy a salir![BREAK][PAUSE]@¡Vas a pegarme[BREAK]si salgo![BREAK][END]
+11E: @¡¿Quieres ser mi amigo?![BREAK][PAUSE]@Prométeme que no dirás que[BREAK]que cogí los explosivos del[BREAK]laboratorio de ciencias.[BREAK][END]
+11F: @Voy a salir.[BREAK][END]
+120: @Soy [03 11].[BREAK][PAUSE]@Me han dicho que hacen[BREAK]cohetes de botellas en la[BREAK]pequeña fábrica al sur...[BREAK][PAUSE]¡Quiero hacer volar[BREAK]unos cuantos![BREAK][END]
+121: @Debéis de estar agotados.[BREAK]¡Descansad aquí esta noche![BREAK][END]
+122: 
+123: @¡Wow![BREAK][PAUSE]@¡Esto es un cohete de[BREAK]botella![BREAK]¡Me han hablado de ellos![BREAK][PAUSE]@Ahora podré fabricarlos[BREAK]por mi cuenta.[BREAK][PAUSE]@Acompáñame al laboratorio[BREAK]de ciencias.[BREAK][END]
+124: @[03 11]: ¡OK! Solo tengo que[BREAK]pulsar aquí y... ¡Oh![END]
+125: @[03 11]: Podré ser un enano,[BREAK]pero, ¡es mi momento de[BREAK]luchar![BREAK][PAUSE]@¡[03 13]! Puedes[BREAK]quedarte y relajarte.[BREAK][END]
+126: @Soy un profesor raro que[BREAK]vive en secreto en la[BREAK]escuela.[BREAK][PAUSE]Sí, admito que soy raro.[BREAK][PAUSE]@Necesito fondos para mi[BREAK]investigación.[BREAK][PAUSE]@¿Os gustaría comprarme[BREAK]uno de mis inventos?[BREAK][END]
+127: 
+128: @Entonces, mira lo que[BREAK]tengo.[BREAK][END]
+129: @Vamos, al menos deberías[BREAK]tener ALGO del dinero de[BREAK]la paga...[BREAK][END]
+12A: 
+12B: @Vuelve cuando quieras.[BREAK][PAUSE]@Tendré cosas buenas[BREAK]listas para tu uso.[BREAK][END]
+12C: @No he progresado en mis[BREAK]inventos desde la última[BREAK]vez que viniste.[BREAK][PAUSE]@¿Quieres ver mis[BREAK]objetos antigüos?[BREAK][END]
+12D: @Acabo de escuchar en la[BREAK]radio que el pánico se ha[BREAK]extendido a todas partes.[BREAK][PAUSE]@¡PROTEGERÉ esta estación[BREAK]de tren a toda costa![BREAK][END]
+12E: 
+12F: @No garantizo que este[BREAK]tren vaya muy lejos, pero[BREAK]tienes que pagar.[BREAK][PAUSE]@¿Vas a montarte en el[BREAK]tren?[BREAK][END]
+130: @(El arma de [03 16] fue[BREAK]confiscada.)[BREAK][END]
+131: 
+132: 
+133: 
+134: @Entonces, serán $[03 1E].[BREAK][END]
+135: 
+136: 
+137: @Parece que ese sombrero que[BREAK]llevas pertenece a una[BREAK]chica llamada [03 12],[BREAK]de Snowman.[BREAK][PAUSE]@Deberías ir y devolvérselo.[BREAK][END]
+138: @Que tengas una larga vida.[END]
+139: @Iba de camino a la ciudad[BREAK]de Easter ha buscar a[BREAK]mi mujer.[BREAK][PAUSE]@Pero con los carriles[BREAK]destrozados, es imposible[BREAK]ir hasta allí...[BREAK][END]
+13A: @¡Meter las narices en los[BREAK]asuntos de otra gente es lo[BREAK]que hace que los juegos[BREAK]sean tan divertidos![BREAK][END]
+13B: 
+13C: @Aquí tienes.[BREAK][END]
+13D: @¿Has visto a un hombre con[BREAK]un bigote siniestro?[BREAK][END]
+13E: @Parece que ha huído.[BREAK][PAUSE]@Entonces, iré a multar[BREAK]ha algunos infractores[BREAK]del parking.[BREAK][END]
+13F: @Es un gran artista[BREAK]estafador.[BREAK][PAUSE]@Si le ves, ¡házmelo saber[BREAK]de inmediato![BREAK][END]
+140: @¡Vaya, hey, niño![BREAK][PAUSE]Guárdame este dinero,[BREAK]¿lo harás?[BREAK][PAUSE]@Si te pregunta la poli,[BREAK]tu no me conoces.[BREAK][END]
+141: @Aunque, ¡no huyas con eso![BREAK][END]
+142: @¡Harás lo que te dicho![BREAK][END]
+143: @¡Deja de  molestarme![BREAK][PAUSE]¡Estoy intentando[BREAK]irme de aquí![BREAK][END]
+144: @¿Has visto a un hombre[BREAK]con un tripón?[BREAK][END]
+145: @Parece que escapó.[BREAK][PAUSE]@Entonces, iré a multar a[BREAK]conductores imprudentes...[BREAK][END]
+146: @Se comió cinco platos de[BREAK][03 15] y escapó[BREAK]sin pagar.[BREAK][PAUSE]@Si le ves, ¡házmelo saber[BREAK]de inmediato![BREAK][END]
+147: @Oof, estoy muy lleno.[BREAK](eructo)[END]
+148: @Las cosas se han vuelto[BREAK]peligrosas en esta ciudad.[BREAK][PAUSE]@Pero se está mucho mejor[BREAK]que en la ciudad de[BREAK]Valentine, eso te lo[BREAK]aseguro.[BREAK][END]
+149: @Oh, ¡¡sí!! ¡¿Lo sientes?![BREAK][END]
+14A: @¡Justo a tiempo![BREAK][PAUSE]¡¿Quieres escucharme cantar?![BREAK][END]
+14B: @Me siento triste.[BREAK][END]
+14C: @¿Ya es hora de decir[BREAK]adiós?[BREAK][END]
+14D: 
+14E: @¿Has escuchado la nana del[BREAK]dragón?[BREAK][END]
+14F: @Escuché que hay una casa[BREAK]e-e-encantada en la[BREAK]ciudad de Halloween.[BREAK][PAUSE]@No sé tú, ¡pero yo no[BREAK]voy a acercarme a ese[BREAK]sitio![BREAK][END]
+150: 
+151: @Dame algo.[BREAK]Cualquier cosa.[BREAK][PAUSE]@Dame.[BREAK][PAUSE]@Por favor.[BREAK][PAUSE]@¿Porfa?[BREAK][END]
+152: @Obviamente, te daré algo a[BREAK]cambio.[BREAK][END]
+153: @También te daré algo bueno[BREAK]a cambio de lo que me[BREAK]des...[BREAK][END]
+154: @¿Qué me darás?[BREAK][END]
+155: @Gracias. A cambio, toma[BREAK]algunos piojos y pulgas.[BREAK][PAUSE]@Llévalos contigo.[BREAK][END]
+156: @Últimamente ha empezado[BREAK]a hacer frío...[BREAK][PAUSE]@¡Achís![BREAK][PAUSE]@¡Argh! ¡Esto es malo![BREAK][END]
+157: @Escuché que hay un viejo[BREAK]profeta en las montañas[BREAK][PAUSE]que ha vivido 300 años[BREAK]sin tener ni un simple[BREAK]resfriado.[BREAK][END]
+158: @A aann aak eey ell iiow ma[BREAK]ennas.[BREAK][END]
+159: @En su estado, ni siquiera[BREAK]podemos tener una[BREAK]conversación normal...[BREAK][END]
+15A: @¡Oh! Por encontrar mi[BREAK]dentadura postiza,[BREAK][PAUSE]compartiré contigo mi[BREAK]secreto para tener una[BREAK]larga vida.[BREAK][PAUSE]@Y ese secreto es...[BREAK][PAUSE]...siempre hacer gárgaras.[BREAK][PAUSE]@Si te resfrías, ven y haz[BREAK]gárgaras hasta que pase.[BREAK][PAUSE]@Toma. Llévate algún[BREAK]colutorio.[BREAK][END]
+15B: 
+15C: @Oh, ¿quieres más enjuague[BREAK]bucal?[BREAK][PAUSE]@Vale, aquí tienes.[BREAK][PAUSE]@Desde ahora, te costará[BREAK]$[03 1E].[BREAK][PAUSE](gárgara gárgara escupir)[BREAK][END]
+15D: @Escuché que hay personas[BREAK]que murieron por pillar[BREAK]un resfriado.[BREAK][PAUSE]¡Solo un resfriado![BREAK][END]
+15E: @¿Has oído sobre la casa[BREAK]encantada de Halloween?[BREAK][END]
+15F: @Dicen que puedes escuchar[BREAK]melodía de piano que sale[BREAK]del interior,[BREAK][PAUSE]aunque la casa está vacía.[BREAK][END]
+160: @En ese caso, será mejor que[BREAK]no lo sepas.[BREAK][END]
+161: @Jej jej jej jej.[BREAK][END]
+162: @No hay nadie en casa.[BREAK]Keejeejee...[BREAK][END]
+163: @Esto es una pesadilla.[BREAK][PAUSE]@Un mal sueño del que nunca,[BREAK]volverás a levantarte...[BREAK][PAUSE]@Jee jee jee...[END]
+164: @V U E L V E[BREAK][END]
+165: @¡Gyaaaa![BREAK][END]
+166: @[03 16].[BREAK][PAUSE]@Vas a morir.[BREAK][PAUSE]@¡Jee, jee, jee, je, je, je![BREAK][PAUSE]...¡Jee, jee, jee![BREAK][END]
+167: @Una rata sospechosa... Yo[BREAK]no.[BREAK][PAUSE]@La sala con el piano...[BREAK][PAUSE]@¡Je, je, je...![BREAK][END]
+168: @La casa encantada pertenece[BREAK]a la familia Rosemary.[BREAK][END]
+169: @En mi casa también apareció[BREAK]un fantasma.[BREAK][PAUSE]@Al final se fue porque[BREAK]odiaba lo pequeña que es.[BREAK][END]
+16A: @Más bien soy una asistente[BREAK]de juegos que una ciudadana[BREAK]de esta ciudad.[BREAK][PAUSE]@Seguro que hay cosas[BREAK]que te has olvidado y no[BREAK]has apuntado, ¿no?[BREAK][PAUSE]@Puedo darte una pista por[BREAK]$[03 1E]. ¿Qué te parece?[BREAK][END]
+16B: 
+16C: @Oh. Tienes mucha confianza[BREAK]en ti mismo.[BREAK][PAUSE]@Entonces me aseguraré de[BREAK]que no volvamos a vernos.[END]
+16D: @Puedo darte hasta tres[BREAK]pistas.[BREAK][PAUSE]@Todo lo demás es un[BREAK]S-E-C-R-E-T-O.[BREAK][END]
+16E: @Soy la persona más[BREAK]optimista de Halloween.[BREAK][PAUSE]@Los demás están muy[BREAK]melancólicos, ¿no crees?[BREAK][END]
+16F: @Sí, así es.[BREAK][PAUSE]@Para ser honesto, tampoco[BREAK]soy alguien muy alegre...[BREAK][END]
+170: @No sé.[BREAK][PAUSE]@Puede YO sea el más[BREAK]melancólico.[BREAK][END]
+171: @Nuestra casa era un nido de[BREAK]fantasmas y monstruos...[BREAK][PAUSE]@Así que ahora vivimos aquí.[BREAK][END]
+172: @[03 11]: Usaré del cohete[BREAK]el combustible y...[BREAK][PAUSE]Si lo uso con esto[BREAK]otro...[BREAK][PAUSE]@Mola mucho, ¿eh?[BREAK][PAUSE]¡Ahh![BREAK][END]
+173: 
+174: @Está demasiado oscuro, pero[BREAK]¿no eres la chica de la[BREAK]iglesia de Snowman?[BREAK][PAUSE]@[03 12], ¿no?[BREAK][PAUSE]@Tú mamá está retenida en la[BREAK]otra caverna.[BREAK][PAUSE]@Pero no puedes salvarnos[BREAK]en este momento.[BREAK][PAUSE]@Primero, tendrás que[BREAK]encargarte de la nave[BREAK]nodriza...[BREAK][END]
+175: @¡Oh! Voló hacia el espacio[BREAK]exterior.[BREAK][PAUSE]@Un gran éxito... algo así.[BREAK][END]
+176: @¡Oh! ¡eres un niño muy[BREAK]guapo![BREAK][PAUSE]@Podría pasarme el día[BREAK]mirándote...[BREAK][PAUSE]@Si alguien puede devolver[BREAK]nuestra mansión a la[BREAK]normalidad, ese eres tú.[BREAK][PAUSE]@Toma. Esta es la llave[BREAK]para entrar.[BREAK][PAUSE](risita)[BREAK][END]
+177: @Me llamo [03 10].[BREAK][PAUSE]@Aunque antes era Bugerror[BREAK]Rosemary.[BREAK][END]
+178: @¡[03 10]! ¡Idiota![BREAK][PAUSE]@Oh, perdón, hablaba con[BREAK]mi hijo, no contigo.[END]
+179: @Los fantasmas todavía[BREAK]no se han ido, pero, ¡eres[BREAK]chico valiente![BREAK][PAUSE]@De hecho, he rebautizado a[BREAK]mi hijo con tu nombre.[BREAK][END]
+17A: @Estamos en la estación de[BREAK]Snowman, la última parada.[BREAK][END]
+17B: @Dicen que desaparecieron[BREAK]los habitantes de Easter.[BREAK][END]
+17C: @Mi mami está en la ciudad[BREAK]de Easter.[BREAK][PAUSE]@No sabemos nada de ella[BREAK]desde hace varios días,[BREAK][PAUSE]así que papi y yo vamos[BREAK]allí a buscarla.[BREAK][END]
+17D: @¿Estuviste en la casa[BREAK]encantada de Halloween?[BREAK][END]
+17E: @TIENES que contarme todo[BREAK]lo que viste.[BREAK][PAUSE]@¡Amo los cuentos de miedo![END]
+17F: @No quiero visitarla,[BREAK]pero tú deberías ir.[BREAK][END]
+180: @En Snowman siempre está[BREAK]nevado. Ten cuidado[BREAK]y no te resfríes.[BREAK][PAUSE]@Y acuérdate de lavarte los[BREAK]dientes.[BREAK][PAUSE]@(cough cough)[BREAK][END]
+181: 
+182: @La vida es un juego.[BREAK][PAUSE]@A veces es importante[BREAK]descansar y dejar las cosas[BREAK]para después.[BREAK][END]
+183: @[03 12] últimamente no[BREAK]ha ido a la escuela.[BREAK][PAUSE]Me preocupa mucho.[BREAK][END]
+184: @Me preocupa tanto [03 12][BREAK]que no puedo dormir por[BREAK]la noche.[BREAK][END]
+185: 
+186: @No tienes suficiente[BREAK]dinero.[BREAK][END]
+187: @Oh, ¡Dios! ¡Te sangra[BREAK]la nariz![BREAK][END]
+188: @Dime, ¿puedo hablar con la[BREAK]persona que está jugando[BREAK]a este juego?[BREAK][END]
+189: @Es muy importante.[BREAK][END]
+18A: @Hola, soy el padre de[BREAK][03 10]. Gracias por[BREAK]cuidar siempre de él.[BREAK][PAUSE]@Encantado de conocerte,[BREAK]quiero saber más de ti.[BREAK][PAUSE]@Así que, ¿me podrías decir[BREAK]tu nombre?[BREAK][END]
+18B: @Gracias por tu tiempo.[BREAK][PAUSE]@Soy un hombre ocupado, me[BREAK]tengo que ir. ¡Adiós![BREAK][END]
+18C: @[03 16]... ¿cierto?[BREAK][END]
+18D: @Vamos, déja de[BREAK]bromear.[BREAK][END]
+18E: @Te he estado esperando.[BREAK][PAUSE]@Necesito tu ayuda para[BREAK]encontrar a mi madre.[BREAK][PAUSE]@Empecemos viendo que[BREAK]está pasando en la[BREAK]ciudad de Easter.[BREAK][END]
+18F: @Oye, tuve un sueño[BREAK]de alguien que se te[BREAK]parecía...[BREAK][END]
+190: @[03 10]...[BREAK]Quédate conmigo.[BREAK][END]
+191: @¡No! Quédate conmigo...[BREAK][PAUSE]Por favor...[BREAK][END]
+192: @Esto está muy silencioso.[BREAK][PAUSE]@¿Quieres bailar?[BREAK][END]
+193: @...Tienes razón. No es el[BREAK]momento para eso.[BREAK][PAUSE]Olvida lo que dije.[BREAK][END]
+194: @[03 10]...[BREAK][PAUSE]@¿Te gusto?[BREAK][END]
+195: @Qué pasa, [03 11]?[BREAK][END]
+196: @El dragón está dormido.[BREAK][PAUSE]@[03 16] todavía no[BREAK]puede despertarle.[BREAK][END]
+197: @El dragón sintió la[BREAK]presencia de [03 16].[BREAK][PAUSE]@"NADIE MÁS DÉBIL QUE YO[BREAK]VA A TENER ESTA PARTITURA."[BREAK][END]
+198: 
+199: @Mi hija [03 12] es[BREAK]tímida, pero es buena de[BREAK]corazón y con un poder[BREAK]misterioso.[BREAK][END]
+19A: @Tu hija SALDRÁ[BREAK]victoriosa.[BREAK][PAUSE]@Tengo fe en que nuestras[BREAK]plegarias serán escuchadas.[BREAK][PAUSE]@Ahora, descansad.[BREAK][END]
+19B: @[03 3E] encontró un[BREAK]pase que se le cayó a[BREAK]alguien.[BREAK][END]
+19C: @[03 16] [03 17] sube[BREAK]al cohete.[BREAK][END]
+19D: @Mi abuelo viven en el[BREAK]Desierto Advent.[BREAK][PAUSE]@Si le ves, salúdale[BREAK]de mi parte.[BREAK][END]
+19E: @Soy el cadáver de un tipo[BREAK]bueno.[BREAK][PAUSE]@No te preocupes, no te[BREAK]atacaré ni nada[BREAK]de eso.[BREAK][END]
+19F: @Soy un poste útil,[BREAK]¿no crees?[BREAK][END]
+1A0: @Eres un niño valiente,[BREAK]hablando con los muertos...[BREAK][END]
+1A1: @Soy los huesos de camello.[BREAK][PAUSE]@¿Te gustaría que te de[BREAK]algunos consejos para[BREAK]ir por el desierto?[BREAK][END]
+1A2: @Mueve tu pie izquierdo[BREAK]antes de que tu pie derecho[BREAK]se hunda.[BREAK][PAUSE]@Y adelanta tu pie derecho[BREAK]antes de que tu pie[BREAK]izquierdo se hunda.[BREAK][PAUSE]@Me tomó 100 años darme[BREAK]cuenta de ello.[BREAK][END]
+1A3: @Oh, pero quiero decírtelo.[BREAK][PAUSE]@¿No te gustaría saberlo?[BREAK][END]
+1A4: @El desierto Advent es la[BREAK]parte más aburrida de este[BREAK]juego.[BREAK][PAUSE]@Ten cuidado con las minas[BREAK]terrestres...[BREAK][END]
+1A5: "Desierto Advent"[BREAK]¿Por qué no tomas un vuelo[BREAK]turístico?[BREAK][END]
+1A6: @Puse minas terrestres en[BREAK]este desierto antes de que[BREAK]terminase la guerra.[BREAK][PAUSE]@Creía que las había[BREAK]desenterrado todas, pero[BREAK]no encontré la última.[BREAK][PAUSE]@Mejor que tengas cuidado.[BREAK][END]
+1A7: @Oh, ¿quieres subir a mi[BREAK]avión?[BREAK][END]
+1A8: @Os costará $[03 1E] en[BREAK]total.[BREAK][PAUSE]@Guardad el resguardo de[BREAK]vuestros tickets.[BREAK][PAUSE]@¡Conseguid diez y os[BREAK]ganaréis un viaje en mi[BREAK]tanque![BREAK][PAUSE]@¡Ja, ja, ja! ¡Parece que os[BREAK]gusta lo que he dicho![BREAK][END]
+1A9: @ES bastante caro, así que[BREAK]no puedo reprocharos nada.[BREAK][END]
+1AA: @¡Oh! ¡Habéis conseguido[BREAK]diez resguardos de tickets![BREAK][PAUSE]@Vale, ¡entonces os dejaré[BREAK]mi tanque![BREAK][PAUSE]@¡Ja, ja, ja! ¡Parecéis animados[BREAK]de escucharlo![BREAK][END]
+1AB: @Destrozásteis mi tanque.[BREAK]Mi amado, amado tanque...[BREAK](sollozo)[BREAK][PAUSE]@Más os vale pagar para[BREAK]lo que cuesta el arreglo.[BREAK][PAUSE]@Asciende a $[03 1E].[BREAK][PAUSE]@¿Pagaréis ahora mismo?[BREAK][END]
+1AC: 
+1AD: @Oh, genial.[BREAK]Bueno, ¡nos vemos![BREAK][END]
+1AE: @¡Ahora estoy enfadado![BREAK]Grrrrrrr...[BREAK][END]
+1AF: 
+1B0: @Mami y papi desaparecieron.[BREAK][END]
+1B1: @Vigilo esta puerta.[BREAK][PAUSE]¡¿Qué ocurre por ahí?![BREAK][END]
+1B2: @¡E-eres sospesocho![BREAK][PAUSE]¡N-no me hagas que te[BREAK]peue...![BREAK](tiembla tiembla)[BREAK][END]
+1B3: @El bebé de los Garricksons[BREAK]es raro. Muy, MUY raro.[BREAK][END]
+1B4: @A ver...[BREAK]Dos más tres son cinco.[BREAK][PAUSE]Ocho menos cuatro son[BREAK]cuatro...[BREAK][PAUSE]Siempre estoy estudiando.[BREAK][END]
+1B5: @¡Mami! ¡te echo de menos![BREAK][END]
+1B6: @¡Papi! ¡Te echo de menos![BREAK][END]
+1B7: @Un barco volador gigante[BREAK]cogió a los adultos.[BREAK][END]
+1B8: @¡Es genial que no hayan[BREAK]adultos por aquí![BREAK][PAUSE](sollozo sollozo)[BREAK][END]
+1B9: @¡Quiero leche![BREAK][END]
+1BA: @¡Yo también quiero leche![BREAK][END]
+1BB: @¡Leche![BREAK][END]
+1BC: @Devuélveme a mi mami y a mi[BREAK]papi. Por favor.[BREAK][END]
+1BD: @Oh, hola.[BREAK]Me llamo Tom Garrickson.[BREAK][PAUSE]@Presentarme es mi afición.[BREAK][END]
+1BE: @Mi mami me dijo que este[BREAK]bebé tiene un poder[BREAK]especial.[BREAK][END]
+1BF: 
+1C0: @Gaga googoo.[BREAK][END]
+1C1: @Soy la conciencia[BREAK]de este bebé.[BREAK][PAUSE]@Tengo poderes psíquicos,[BREAK]al igual que tú.[BREAK][PAUSE]@Poseo la habilidad del[BREAK]regreso.[BREAK][PAUSE]@Con él, puedes volver a[BREAK]cualquier sitio en el[BREAK]que ya has estado.[BREAK][PAUSE]@(La mente del bebé enseñó a[BREAK][03 10] como usar el PSI[BREAK]de regreso.)[BREAK][END]
+1C2: 
+1C3: 
+1C4: 
+1C5: 
+1C6: @Creo que he escuchado las[BREAK]voces de mi padre y los[BREAK]otros desde la montaña.[BREAK][PAUSE]@Las montañas están pasando[BREAK]la ciudad de Valentine.[BREAK][PAUSE]@Está demasiado lejos para[BREAK]que pueda ir allí.[BREAK][END]
+1C7: @Aww, vaya. No te lo puedo[BREAK]dar. Llevas demasiadas[BREAK]cosas.[BREAK][END]
+1C8: @Ha pasado mucho tiempo,[BREAK]pero sigues siendo pequeño.[BREAK][END]
+1C9: @Deberías mirar por dónde[BREAK]estás caminando.[BREAK][PAUSE]@Je, je, je...[BREAK][END]
+1CA: @Oh, esa maldita Banda de[BREAK]Sangre Negra...[END]
+1CB: @"Banda de Sangre Negra" es[BREAK]un nombre largo, así que[BREAK]les llamamos la Banda SN.[BREAK][END]
+1CC: @Espero que no estés con[BREAK]la Banda SN...[BREAK][END]
+1CD: @Todo está más extraño de lo[BREAK]normal desde que las nubes[BREAK]negras aparecieron sobre[BREAK]las montañas.[BREAK][PAUSE]La ciudad y su gente[BREAK]han empezado a volverse[BREAK]locas.[BREAK][END]
+1CE: @¡Hey! ¡Vosotros![BREAK][PAUSE]@¡Los dos de allí![BREAK]¿Sois novios?[BREAK][END]
+1CF: @¿Os amáis?[BREAK]¡Hurra![BREAK][END]
+1D0: @No sé, ¿seguros de que el[BREAK]amor no está brotando en el[BREAK]fondo de vuestros[BREAK]corazones?[BREAK][END]
+1D1: @Hey, tengo entradas del[BREAK]concierto.[BREAK][PAUSE]@Cuestan $[03 1E]. ¿Compras?[BREAK][END]
+1D2: @¡Aquí tienes![BREAK][PAUSE]@Tienes suerte. Ya está[BREAK]todo vendido en la[BREAK]tienda.[BREAK][END]
+1D3: @Que niños tan tacaños.[BREAK][END]
+1D4: @Tengo información secreta[BREAK]que te puede interesar.[BREAK][PAUSE]@¿Quieres escucharla?[BREAK][END]
+1D5: @El nombre del jefe de la[BREAK]Banda SN es [03 13] de 3er[BREAK]año universitario.[BREAK][PAUSE]@Aunque solo es un rumor.[BREAK][END]
+1D6: @Seguro que luego te[BREAK]arrepientes.[BREAK][END]
+1D7: @Nada de espiar en los[BREAK]cambiadores.[BREAK][PAUSE]@Te meterás en un montón de[BREAK]problemas si lo haces.[BREAK][END]
+1D8: 
+1D9: @Eres muy guapo.[BREAK][PAUSE]@Oh, ¿te llamas [03 16]?[BREAK][PAUSE]@Toma, una cerveza de mi[BREAK]parte. ¡Bebe![BREAK][END]
+1DA: @Oh, ¿que eres un niño?[BREAK][PAUSE]@Entonces, vuelve cuando[BREAK]seas mayor.[BREAK][END]
+1DB: @Déjalo. No quiero beber[BREAK]nada más.[BREAK][END]
+1DC: @¿Te arrepientes de lo que[BREAK]hiciste?[BREAK][END]
+1DD: @Si prometes no hacerlo de[BREAK]nuevo, te podrás ir.[BREAK][PAUSE]@Pero me quedaré tus objetos[BREAK]peligrosos.[BREAK][END]
+1DE: @Puedes quedarte otro día[BREAK]más para relajarte.[BREAK][END]
+1DF: @Je, je, je.[BREAK][PAUSE]@Conseguí [03 1D][BREAK]hace unos días.[BREAK][PAUSE]@¿Quieres uno por $[03 1E]?[BREAK][END]
+1E0: @No tienes tanto dinero.[BREAK][PAUSE]@Grrrr...[BREAK][END]
+1E1: @Los padres de [03 13][BREAK]fueron asesinados por[BREAK]monstruos en las montañas.[BREAK][PAUSE]@Antes de eso, era un chico[BREAK]muy bueno.[BREAK][END]
+1E2: @Ojalá [03 13] volviese[BREAK]a ser así, gentil.[BREAK][END]
+1E3: @¿Tú también quieres cantar?[BREAK][END]
+1E4: @¡Vale! ¡Haz algo que[BREAK]nos asombre![BREAK][END]
+1E5: @Eres un niño tímido,[BREAK]¿no?[BREAK][END]
+1E6: 
+1E7: @¡[03 12]![BREAK][PAUSE]@Oh, nada. Vi tu nombre[BREAK]escrito en tu sombrero,[BREAK]nada más.[BREAK][END]
+1E8: @La chica que trajiste era[BREAK]muy linda.[BREAK][END]
+1E9: @Gracias, fue una canción[BREAK]increíble.[BREAK][PAUSE]@Dime, ¿sois los tipos[BREAK]que habéis estado jugando[BREAK]con mis colegas?[BREAK][END]
+1EA: @¡Vais a caer![BREAK][END]
+1EB: @¡Sé que fuísteis vosotros![BREAK][END]
+1EC: @Ja, ja, ja, ¡eres muy[BREAK]raro![BREAK][PAUSE]@[03 10], ¿no?[BREAK][PAUSE]@¿Podemos decir que es un[BREAK]empate?[BREAK][PAUSE]@De verdad quiero vengar[BREAK]a mis padres.[BREAK][PAUSE]@¿Y si vamos juntos a las[BREAK]montañas?[BREAK][END]
+1ED: 
+1EE: @Por favor dale a [03 10][BREAK]toda la ayuda que puedas.[END]
+1EF: @[03 3E] usó la tarjeta[BREAK]telefónica.[BREAK][END]
+1F0: @¡Genial! ¡Seremos un gran[BREAK]equipo de macarras![BREAK]¡Salud![BREAK][END]
+1F1: 
+1F2: 
+1F3: @¡Por favor! ¡Sé que puedo[BREAK]ayudaros![BREAK][END]
+1F4: @Hola, soy tu padre.[BREAK][PAUSE]@No quiero entrometerme ni[BREAK]nada por el estilo...[BREAK][PAUSE]Pero, ¡¿qué te pasa?![BREAK][PAUSE]@¡Presiona el botón A[BREAK]de una vez![BREAK][END]
+1F5: @Hey, tú. Cuatro ojos.[BREAK][PAUSE]@No estás hecho para[BREAK]pelear.[BREAK][PAUSE]@Descansa y ten cuidado.[BREAK][PAUSE]@Me ocuparé de tus cosas.[BREAK][END]
+1F6: 
+1F7: @Es imposible que les[BREAK]venzamos con pura fuerza[BREAK]bruta.[BREAK][PAUSE]@Pero PODEMOS traer la paz[BREAK]al mundo.[BREAK][PAUSE]@Simplemente, lo sé.[BREAK][END]
+1F8: @[03 13]: Vosotros,[BREAK]¿por qué os sonrojáis?[BREAK][PAUSE]@¡Vámonos de una vez![END]
+1F9: @¡Estoy cambiándome de ropa![BREAK]¡Pervertido![BREAK][END]
+1FA: @Soy el padre de [03 11].[BREAK][PAUSE]@El padre de [03 10] preguntó[BREAK]por tu nombre. ¿Le diste[BREAK]el nombre correcto?[BREAK][END]
+1FB: @Vale, fenomenal.[BREAK][PAUSE]@Por favor mantén a [03 11][BREAK]a salvo, ¿vale?[BREAK][PAUSE]@Ya sabes que ES débil...[BREAK][END]
+1FC: @Entonces, pasemos de nuevo[BREAK]por ese proceso.[BREAK][END]
+1FD: @Deberías visitar el puerto[BREAK]antes de ir a la Montaña[BREAK]Holy Loly.[BREAK][PAUSE]@Lo digo en serio.[BREAK][END]
+1FE: @...¿Acaso has traído[BREAK]tofu con sabor a fresa?[BREAK][END]
+1FF: @Si encuentras más,[BREAK]¿podrías traérmelo?[BREAK][PAUSE]Te daré algo bueno a[BREAK]cambio.[BREAK][END]
+200: @Oh. Ojalá empezasen a[BREAK]venderlo en esta zona...[BREAK][END]
+201: @Oh, ¡tofu con sabor a fresa[BREAK]¡Gracias![BREAK][PAUSE]@Espera que a cambio te de[BREAK]un bonito regalo.[BREAK][END]
+202: 
+203: 
+204: @Pásate por aquí si te[BREAK]hieren.[BREAK][PAUSE]@No es mucho, pero tengo[BREAK]comida, medicina, y algunas[BREAK]camas.[BREAK][END]
+205: 
+206: @Dime, [03 11].[BREAK][PAUSE]@Parece que finalmente[BREAK]es hora de usar el poco[BREAK]coraje que tienes.[BREAK][END]
+207: @Hola, niños.[BREAK][PAUSE]@¿Qué necesitáis?[BREAK][END]
+208: @MI NOMBRE ES EVE.[BREAK][PAUSE]TE HE ESTADO ESPERANDO.[BREAK][PAUSE]@MI PADRE FUE GEORGE.[BREAK][PAUSE]FUE LLEVADO AL CONFÍN DEL[BREAK]UNIVERSO,[BREAK][PAUSE]Y DESPUÉS, REGRESO AQUÍ.[BREAK][PAUSE]@MI DEBER ES PROTEGERTE.[BREAK][END]
+209: 
+20A: 
+20B: 
+20C: 
+20D: @Debe de ser muy [BREAK]difícil cargar[BREAK]tantas cosas...[BREAK][END]
+20E: @¡[03 10]! ¡[03 10]![BREAK][PAUSE]@Parecía que te dolía la[BREAK]cabeza.[BREAK][PAUSE]@Así que, ¿quieres volver[BREAK]a intentarlo?[BREAK][END]
+20F: @[03 10] decidió volver[BREAK]tras reunir todo el[BREAK]valor y energía que tenía.[BREAK][PAUSE]@¡Buena suerte, [03 10]![END]
+210: @[03 10] se dio cuenta que[BREAK]solo fue una pesadilla.[BREAK][PAUSE]@¡Buena suerta, [03 10]![END]
+211: @¿Dárselo a quién?[BREAK][END]
+212: @No puede[BREAK]llevar más cosas.[BREAK][PAUSE]@¿Dárselo a otra[BREAK]persona?[BREAK][END]
+213: @Todavía hay cosas aquí,[BREAK]vuelve luego a por ello.[BREAK][END]
+214: @¿Eres amigo de[BREAK][03 10]?[BREAK][PAUSE]@¿En serio? Ya veo.[BREAK][PAUSE]@Pero esos objeto son de[BREAK][03 10], así que no puedo[BREAK][PAUSE]dárselos a nadie más.[BREAK][END]
+215: @¿Ese debilucho de [03 11][BREAK]ha pateado el cubo?[BREAK][END]
+216: Bienvenido a Mother's Day[BREAK][END]
+217: Zoo de Cream Puff[BREAK]  Oficina del gerente[BREAK][END]
+218: Vista al mar[BREAK][END]
+219: @No creo que[BREAK]haya alguien aquí[BREAK]con ese nombre,[BREAK][PAUSE]pero puede que[BREAK]me equivoque...[BREAK][END]
+21A: @Tras dejarla en la fuente,[BREAK][PAUSE]la hoja roja se convirtió[BREAK]en una hoja mágica[BREAK]muy estimulante.[BREAK][END]
+21B: @¡Aquí no hay[BREAK]nadie así![BREAK][END]
+21C: @[03 1D], ¿cierto?[BREAK][PAUSE]¡Gracias! ¡Lo aprecio[BREAK]mucho![BREAK][END]
+21D: @Es fácil perder objetos[BREAK]cerca de esta señal, así[BREAK]que ten cuidado.[BREAK][END]
+21E: @¡Es impresionante, que[BREAK]encontrases la dentadura[BREAK]bajo la señal![BREAK][END]
+21F: @¡Hey, hola! No[BREAK]te sientes bien,[BREAK]¿no?[BREAK][PAUSE]@¡Puedo curarte[BREAK]en un periquete![BREAK][END]
+220: @Ven al laboratorio de[BREAK]ciencias.[BREAK][END]
+221: 
+222: @Por ahora, se detuvo el[BREAK]misterioso fenómeno...[BREAK][END]
+223: @Escucha atentamente. Voy a[BREAK]explicarte como se usa[BREAK]esto.[BREAK][PAUSE]@Vale. Hagas lo que hagas,[BREAK]no pulses...[BREAK][PAUSE]@¡Oh, mierda! ¡Lo pulsé![BREAK][END]
+224: @Te haré algo de [03 15],[BREAK][03 10].[BREAK][PAUSE]@Come algo y ve derecho[BREAK]a la cama.[BREAK][END]
+225: 
+226: 
+227: 
+228: @¡Oh, Dios mío![BREAK] ¡Oh, Dios mío![BREAK]  ¡Oh, Dios mío![BREAK][PAUSE]@Mi querida Pippi se ha[BREAK]perdido.[BREAK][PAUSE]@Si vas a la ciudad, por[BREAK]favor cuéntale al alcalde[BREAK]mi problema, ¿vale?[BREAK][PAUSE](sollozo sollozo)[BREAK][END]
+229: @¿Qué quieres vender?[BREAK][END]
+22A: @Puedo comprarte tu[BREAK][03 1D] por $[03 1E].[BREAK][PAUSE]@¿Te parece bien?[BREAK][END]
+22B: @[03 3E] sacó el diario[BREAK]de su bisabuelo y leyó[BREAK]esas palabras en alto:[BREAK][PAUSE]"...Eso fue lo que dejó[BREAK]atrás el barco que[BREAK]remonta los cielos."[BREAK][END]
+22C: 
+22D: 
+22E: @Mientes.[BREAK][PAUSE]@Puedo ver a través de[BREAK]tus trucos.[BREAK][END]
+22F: @(La audiencia está triste.)[BREAK][PAUSE]@¡Dijiste que serían tres![BREAK]¡Aquí no hay tres[BREAK]personas![BREAK][PAUSE]¡Buu! ¡Buu![BREAK][END]
+230: @¿Qué objeto[BREAK]quieres dejarme?[BREAK][END]
+231: 
+232: @El dragón estaba en un[BREAK]sueño profundo.[BREAK][END]
+233: @([03 3E] buscó la[BREAK]partitura.)[BREAK][END]
+234: @¿Puedo ayudarte?[BREAK][END]
+235: 
+236: @¿[03 1D]?[BREAK][PAUSE]@Lo pondré a buen[BREAK]recaudo.[BREAK][PAUSE]@¿Quieres que te[BREAK]guarde algo más?[BREAK][END]
+237: @Vale. Ten[BREAK]cuidado ahí fuera.[BREAK][END]
+238: @¿Tu [03 1D]?[BREAK][PAUSE]@Claro.[BREAK]úsalo con cuidado,[BREAK]¿vale?[BREAK][PAUSE]@¿Quieres sacar [BREAK]algo más?[BREAK][END]
+239: @Hubo un deslizamiento de[BREAK]tierra en la estación de[BREAK]Santa Claus, así que el[BREAK]tren no puede salir.[BREAK][END]
+23A: @[03 1D], ¿no?[BREAK][END]
+23B: @Parece que no puedes llevar[BREAK]más objetos.[BREAK][END]
+23C: 
+23D: @Oh. No tienes[BREAK]el dinero[BREAK]necesario.[BREAK][END]
+23E: @Oh, vaya. Parece que no[BREAK]puedes llevar más objetos.[BREAK][END]
+23F: @No tienes[BREAK]dinero.[BREAK][PAUSE]@Vuelve cuando[BREAK]lo consigas.[BREAK][END]
+240: @¡Adiós! ¡Cuídate![BREAK][END]
+241: 
+242: @Oh, vaya. No puedes llevar[BREAK]más cosas.[BREAK][PAUSE]@In ese caso, te lo daré[BREAK]la próxima vez que te vea.[BREAK][END]
+243: @¡Aquí tienes! ¡Medicina![BREAK][END]
+244: @¡Perfecto! ¡Buenas noches![BREAK][END]
+245: 
+246: @¿CUÁNTO RETIRAS?[BREAK][END]
+247: @¿CUÁNTO DEPOSITAS?[BREAK][END]
+248: @¡Vale, volvamos ya a la[BREAK]ciudad![BREAK][END]
+249: @Parece que no[BREAK]puedes llevar más[BREAK]objetos.[BREAK][PAUSE]@Esto es malo.[BREAK][END]
+24A: @¿No puedes llevar más[BREAK]cosas?[BREAK][PAUSE]@Esto es malo.[BREAK][END]
+24B: @Parece que no puedes llevar[BREAK]nada. Vuelve cuando tengas[BREAK]espacio libre.[BREAK][END]
+24C: 
+24D: @¿Qué ruta quieres?[BREAK][END]
+24E: 
+24F: 
+250: @No puedo hablar bien[BREAK]sin mi dentadura postiza.[BREAK][END]
+251: @Parece que todavía no[BREAK]tienes suficiente.[BREAK][END]
+252: 
+253: 
+254: 
+255: 
+256: 
+257: 
+258: @Parece que estás pasando[BREAK]por algo duro...[BREAK][PAUSE]Me preocupas...[BREAK][END]
+259: @¡Buena suerte![BREAK][END]
+25A: @¡¿Quién es el líder?![BREAK][PAUSE]¡¡Le daré una lección!![BREAK][END]
+25B: @La Banda SN lo está[BREAK]haciendo bien.[BREAK][END]
+25C: 
+25D: @Por favor, no me enfades.[BREAK][END]
+25E: @[03 3E] lo recoge[BREAK]discretamente.[BREAK][END]
+25F: @Oh, parece que no tienes[BREAK]el dinero necesario.[BREAK][END]
+260: @Oh, parece que no puedes[BREAK]llevar más cosas.[BREAK][END]
+261: @Soy el asistente A del[BREAK]profesor.[BREAK][PAUSE]@Yo también quiero probar[BREAK]algo de tofu con sabor a[BREAK]fresa.[BREAK][END]
+262: @Oh, ¡está muy bueno![BREAK][PAUSE]@Gracias, te lo agradezco.[BREAK][PAUSE]Como muestra de gratitud,[BREAK]compartiré contigo[BREAK]cierta información.[BREAK][PAUSE]@Hay un increíble robot en[BREAK]el fondo del lago de la[BREAK]Montaña Holy Loly.[BREAK][PAUSE]@¡Seguro que se puede usar![BREAK][END]
+263: @Sé que me parezco al[BREAK]asistente A, pero yo soy[BREAK]el asistente B.[BREAK][PAUSE]@De verdad, ansío probar el[BREAK]tofu con sabor a fresa.[BREAK][END]
+264: @¡Oh! ¡Oh! ¡Me has alegrado![BREAK][PAUSE]@Por favor, llévate esas[BREAK]letras malditas.[BREAK][END]
+265:   Medicina  Dormir[END]
+266: @No puedes llevar más[BREAK]cosas...[BREAK][PAUSE]@Vuelve luego a recogerlo.[BREAK]¡No lo olvides![BREAK][END]
+267: @Estás aquí por tu[BREAK]mochilón, ¿verdad?[BREAK][PAUSE]Te he estado esperando.[BREAK][END]
+268: @Toma, esto es para ti.[BREAK]Es un mochilón.[BREAK][END]
+269: @No es importante.[BREAK][PAUSE]@El verdadero problema es[BREAK]mi esposa.[BREAK][PAUSE]@Duerme hasta el mediodía[BREAK]y nunca me prepara el[BREAK]almuerzo.[BREAK][PAUSE]@¿No te parece increíble?[BREAK][END]
+26A: @¡Oh! ¡[03 12] está muerto![BREAK][END]
+26B: @Gracias por todo.[BREAK][PAUSE]@Como muestra de mi[BREAK]gratitud...[BREAK][PAUSE]Rezaré por que tengas[BREAK]éxito.[BREAK][END]
+26C: @Soy Laura.[BREAK][END]
+26D: 
+26E: 
+26F: 
+270: @Oh, ¡Dios mío! ¡Es [03 10],[BREAK]el héroe![BREAK][PAUSE]No esperaba que[BREAK]volvieses solo...[BREAK][PAUSE]@¿Estás tomando un descanso?[BREAK][END]
+271: @Oh, niñita.[BREAK][PAUSE]@Este no es sitio  para[BREAK]los niños.[BREAK][END]
+272: 
+273: @Oh, ¡[03 16]![BREAK]¿Qué tal andas?[BREAK][END]
+274: @Buenos días. Parece que[BREAK]dormiste bien.[BREAK][END]
+275: @Por favor vuelve, ¿vale?[BREAK]¿Lo prometes?[BREAK][END]
+276: @¡Buenos días![BREAK][END]
+277: @Ten cuidado. A muchos[BREAK]monos les gusta mentir.[BREAK][END]
+278: @Je, je, je. ¿Me parezco a un[BREAK]mono?[BREAK][END]
+279: @...Soy un tanuki, también[BREAK]llamado perro mapache.[BREAK][PAUSE]@Estoy disfrazado.[BREAK][END]
+27A: @Maldito seas.[BREAK][PAUSE]@¿Te han dicho que tienes[BREAK]buena vista?[BREAK][END]
+27B: @Deberías dejar de jugar.[BREAK][END]
+27C: @¿Estás seguro de lo[BREAK]que haces?[BREAK][END]
+27D: @Oh. Oh, bueno, vale.[BREAK][END]
+27E: @Pudiste atraparme.[BREAK][PAUSE]Eres increíble.[BREAK][PAUSE]@Toma, quédate con esto.[BREAK][END]
+27F: @Gira a la derecha y luego[BREAK]a la izquierda para[BREAK]encontrar algo chulo.[BREAK][END]
+280: @Este sitio es tranquilo,[BREAK]pero también es muy oscuro.[BREAK][END]
+281: @¡De frente![BREAK]¡Sigue de frente![BREAK][PAUSE]La verdad está siguiendo[BREAK]recto.[BREAK][END]
+282: @Soy una señorita.[BREAK][PAUSE]No deberías ir y empezar a[BREAK]hablar tan casualmente con[BREAK]una señorita.[BREAK][PAUSE]¿No piensas lo mismo?[BREAK][END]
+283: @En realidad, soy un hombre.[BREAK][END]
+284: 
+285: @La-la la la-la, la la la la[BREAK]la...[BREAK][PAUSE]@Oh, no prestes atención a[BREAK]esta melodía.[BREAK][END]
+286: @¿Cuánto has tardado en[BREAK]llegar tan lejos?[BREAK][PAUSE]@Oh, pensé que tenía[BREAK]que preguntar.[BREAK][END]
+287: @Tengo buena información que[BREAK]te será útil. ¿Te interesa?[BREAK][END]
+288: @Bueno, básicamente...[BREAK]Atesora a tus amigos.[BREAK][PAUSE]@Es lo que tenía que decir.[BREAK][END]
+289: @¡Vale![BREAK][PAUSE]@¡Al fin y al cabo no tienes[BREAK]ningún interés intelectual![BREAK][END]
+28A: @¡Detente! ¡No debes ir por[BREAK]este camino![BREAK][END]
+28B: @No me fío de ninguno de[BREAK]los monos. Lo único[BREAK][PAUSE]que hacen es mentir.[BREAK][PAUSE]@Ve a la derecha, izquierda,[BREAK]izquierda y derecha.[BREAK][END]
+28C: @¡Retrocede![BREAK][PAUSE]@O, ¡si no quieres[BREAK]volver, entonces sigue[BREAK]adelante![BREAK][END]
+28D: @Creo que conocerás a un[BREAK]nuevo amigo en una ciudad[BREAK]con vistas al océano.[BREAK][END]
+28E: @Soy un mono tímido.[BREAK][PAUSE]@Hablar no es mi fuerte.[BREAK][PAUSE]@...¿Vale?[BREAK][PAUSE]@...[BREAK][END]
+28F: @Me enamora. El cielo ha[BREAK]perdido a un ángel.[BREAK][END]
+290: @No asumas que todos los[BREAK]monos son mentirosos.[BREAK][END]
+291: @Soy el mono alfa. Me[BREAK]molesta que el resto mienta[BREAK]a todas horas.[BREAK][PAUSE]@Sigue de frente y[BREAK]llegarás a la salida a tu[BREAK]derecha.[BREAK][END]
+292: @Chico, me equivoqué...[BREAK][PAUSE]@Debo de haberme equivocado[BREAK]mucho para terminar aquí.[BREAK][END]
+293: @¡Ayuda![BREAK][END]
+294: @Oh, ¡el teléfono![BREAK]¿Puedes cogerlo, [03 10]?[BREAK][END]
+295: @Soy Abbot, el asistente del[BREAK]alcalde...[BREAK][PAUSE]@El alcalde está ahí.[BREAK][END]
+296: @Luego te contaré un[BREAK]secreto.[BREAK][END]
+297: @Oh, ¿vuelves a quedarte[BREAK]esta noche?[BREAK][END]
+298: @Oh, ¡un viajero![BREAK][END]
+299: @Si crees que vas a acabar[BREAK]con los fantasmas de la[BREAK]casa encantada...[BREAK][PAUSE]Estás muy equivocado.[BREAK][PAUSE]@No, allí todavía queda una[BREAK]melodía.[BREAK][END]
+29A: 
+29B: @Tengo fe en que [03 12] lo[BREAK]está haciendo bien ahí[BREAK]fuera.[END]
+29C: @Hey, eres menor. Te[BREAK]tomaré bajo custodia.[BREAK][END]
+29D: 
+29E: 
+29F: @Dijeron que pisaste una[BREAK]mina terrestre.[BREAK][PAUSE]@Yo una vez pisé una mierda[BREAK]de perro.[BREAK][END]
+2A0: @Dijeron que pisaste una[BREAK]mierda de perro en un sitio[BREAK]llamado desierto Advent.[BREAK][PAUSE]@¡¿Puedes ser más patético?![BREAK][END]
+2A1: Certificado[BREAK][PAUSE]Por la presente certifica[BREAK]que:[BREAK]   [03 14][BREAK][PAUSE]ha pisado una mina[BREAK]terrestre en el desierto[BREAK]Advent.[BREAK][PAUSE]Por favor mantén este sitio[BREAK]en secreto de los demás[BREAK]jugadores.[BREAK][PAUSE]   -Shigesato Itoi[BREAK][BREAK][END]
+2A2: @Parece que dormiste bien.[BREAK][PAUSE]@¿Hoy a dónde vas?[BREAK][PAUSE]@Bueno, ¡ten cuidado![BREAK][END]
+2A3: @Oh, ¿no has venido[BREAK]de visita?[BREAK][PAUSE]@Si eres el [BREAK]enfermo, ve por la[BREAK]puerta contigua.[BREAK][END]
+2A4: @No hay alguien[BREAK]llamado así en[BREAK]este hospital.[BREAK][END]
+2A5: @Este año, las temperaturas[BREAK]son especialmente bajas.[BREAK][PAUSE]@Me pondré enfermo...[BREAK][END]
+2A6: @No estoy resfriado.[BREAK][PAUSE](Cough cough).[BREAK][PAUSE]@Oh, no fue tos.[BREAK][PAUSE]Es algo que digo que está[BREAK]fuera de lo normal.[BREAK][PAUSE]@(Cough cough).[BREAK][END]
+2A7: @¿Cansado? Ve al hotel.[BREAK][PAUSE]@¿Con sueño? Ve al hotel.[BREAK][PAUSE]@En realidad, no hay nada[BREAK]más que decir.[BREAK][END]
+2A8: @Oh, hola. Jej jej.[BREAK][END]
+2A9: @Esto es un restaurante,[BREAK]¡tra-la-la![BREAK][PAUSE]@Un restaurante feliz,[BREAK]¡ja-ja-ja![BREAK][PAUSE]@¿Te sientes feliz?[BREAK][END]
+2AA: @Parece que a los dueños[BREAK]del restaurante les gusta[BREAK]mucho la música.[BREAK][END]
+2AB: @Yo también creo que [03 15][BREAK]está muy bueno.[BREAK][END]
+2AC: @Los hoteles de aquí no[BREAK]son diferentes de los que[BREAK]hay en Mother's Day, aunque[BREAK][PAUSE]son mucho más caros.[BREAK][PAUSE](queja y farfullo)[BREAK][END]
+2AD: @Este hotel es barato.[BREAK][PAUSE]@Pero es lo único que tiene[BREAK]para que alguien venga.[BREAK][END]
+2AE: @Hubo un deslizamiento de[BREAK]tierra y rocas gigantes[BREAK]bloqueando los raíles.[BREAK][PAUSE]@El tren no podrá[BREAK]atraversarlas.[BREAK][END]
+2AF: @Entiendes a los animales,[BREAK]¿cierto?[BREAK][PAUSE]@Pues, te daré una pista:[BREAK]intenta registrarme.[BREAK][PAUSE]@¡Guau![BREAK][END]
+2B0: @No tienes suficiente[BREAK]dinero. Eso es malo.[BREAK][PAUSE]@Por favor, vuelve cuando[BREAK]quieras.[BREAK][END]
+2B1: @¡Bienvenido![BREAK][PAUSE]Por favor, mira el menú.[BREAK][END]
+2B2: @Gracias.[BREAK][PAUSE]¡Un pedido de [03 1D][BREAK]para llevar![BREAK][END]
+2B3: 
+2B4: 
+2B5: @El...[BREAK][PAUSE]...puede que nunca vuelva.[BREAK][END]
+2B6: @¡Que os divirtáis![BREAK][END]
+2B7: @¡Hey, camarero![BREAK]¿Dónde está la lista de[BREAK]vinos que he pedido?[BREAK][END]
+2B8: @Quiero un poco de [03 15].[BREAK][END]
+2B9: 
+2BA: 
+2BB: @Me gustaría ayudar a los[BREAK]zombis a ser más amigables[BREAK]enseñándoles sobre Dios.[BREAK][PAUSE]@Pero...[BREAK]¡Los zombis me asustan![BREAK][END]
+2BC: @¡Soy yo, Pippi![BREAK][PAUSE]@¡Nos encontramos de nuevo,[BREAK][03 16]![BREAK][PAUSE]@Salí a jugar otra vez.[BREAK]Por eso estoy aquí.[BREAK][PAUSE]Pero no se lo digas a mi[BREAK]madre.[BREAK][END]
+2BD: @Oh, ¿no eres [03 16], ese[BREAK]mocoso que se sentaba a mi[BREAK]lado en infantil?[BREAK][PAUSE]@¿O eres otra persona?[BREAK][END]
+2BE: @Por favor no te vayas sin[BREAK]pagar.[BREAK][PAUSE]Perdona si parece que[BREAK]desconfiamos de ti...[BREAK][END]
+2BF: @Parece que tienes mucho[BREAK]apetito.[BREAK][END]
+2C0: 
+2C1: @Con las vías destrozadas,[BREAK]el tren se ha detenido.[BREAK][PAUSE]@No preguntes tonterías,[BREAK]¿vale?[BREAK][PAUSE]@Vaya, eres persistente.[BREAK][PAUSE]@Harás que llore con todo[BREAK]lo que me preguntas.[BREAK][END]
+2C2: @¡No te quedes pasmado![BREAK]¡Muévete![BREAK][END]
+2C3: @Parece que has pasado por[BREAK]muchas cosas duras.[BREAK][PAUSE]@Bueno, ya puedes sentarte,[BREAK]relajarte, y lamentarte.[BREAK][END]
+2C4: @He oído todas las grandes[BREAK]cosas que has hecho hasta[BREAK]ahora.[BREAK][PAUSE]@Debes de ser muy valiente,[BREAK]¿no?[BREAK][END]
+2C5: @Villa Canary está al[BREAK]noroeste de esta ciudad.[BREAK][PAUSE]@Definitivamente deberías ir[BREAK]a visitarla; ¡la entrada[BREAK]es gratis![BREAK][END]
+2C6: @Hay una secretaria muy[BREAK]guapa en el ayuntamiento.[BREAK][PAUSE]@Está en la primera planta,[BREAK]en la recepción.[BREAK][END]
+2C7: @Tengo hambre.[BREAK][END]
+2C8: @Como le dije a mi hijo,[BREAK]"Si tienes tiempo para los[BREAK]juegos de Nintendo...[BREAK][PAUSE]¡También tienes tiempo[BREAK]para estudiar!"[BREAK][END]
+2C9: @Se te nota en la cara que[BREAK]estás muy animado.[BREAK][END]
+2CA: @Duncan quiere abrir un club[BREAK]de striptease en la ciudad.[BREAK][PAUSE]@¡Estoy totalmente en[BREAK]contra![BREAK][END]
+2CB: @De mayor quiero ser doctor,[BREAK]así ayudaré a la gente.[BREAK][PAUSE]@Y también ganaré mucho[BREAK]dinero.[BREAK][END]
+2CC: @¿Huh? ¿En serio?[BREAK][PAUSE]Aunque es una encuesta[BREAK]importante...[BREAK][END]
+2CD: @¡Tú, a la escuela![BREAK][PAUSE]@Eres un estudiante, ¡¿no?![BREAK][END]
+2CE: @¿Cómo vas a quitar las[BREAK]rocas de los raíles?[BREAK][PAUSE]@Si dejamos que lo haga el[BREAK]ayuntamiento, ¡no lo harán[BREAK]hasta el año que viene![BREAK][END]
+2CF: @He oído que hay un cohete[BREAK]gigante en la Fábrica[BREAK]Duncan, al norte de aquí.[BREAK][END]
+2D0: @No asumas que soy un viejo[BREAK]normal.[BREAK][PAUSE]@Aunque, lo soy.[BREAK][END]
+2D1: @Ya sabes...[BREAK][PAUSE]@Si fuera por mi...[BREAK][PAUSE]@Usaría un cohete de la[BREAK]Fábrica Duncan para volar[BREAK]las rocas de los raíles.[BREAK][END]
+2D2: @Mi esposo es un hombre[BREAK]importante en la Escuela[BREAK]Primaria Twinkle.[BREAK][PAUSE]@Es tan importante que ni[BREAK]tiene tiempo para comerse[BREAK]el almuerzo.[BREAK][END]
+2D3: @¿Has estado en la Fábrica[BREAK]Sweet Little?[BREAK][END]
+2D4: @¿Sabes por qué hay[BREAK]monstruos terroríficos al[BREAK]salir de la ciudad?[BREAK][PAUSE]@Me preocupa mucho que[BREAK]me vayan a robar el dinero.[BREAK][END]
+2D5: @La-la-laaa...[BREAK][PAUSE]En el gran cielo azul...[BREAK][PAUSE]vuela el diente de león...[BREAK][PAUSE]¡La-la-laaa![BREAK][PAUSE]@¡Me gusta más la música que[BREAK]cualquier otra cosa![BREAK][END]
+2D6: @El conserje del colegio[BREAK]tiene la llave de la azotea[BREAK][PAUSE]pero no se la dará a nadie.[BREAK][END]
+2D7: @El viejo adivino en la cima[BREAK]de la montaña es muy[BREAK]amigable.[BREAK][PAUSE]@¡Te dará tantas cosas hasta[BREAK]que no puedas llevar más![BREAK][END]
+2D8: @Cuando era pequeño, pasé[BREAK]por el túnel.[BREAK][PAUSE]@Quería ver un cadáver.[BREAK][END]
+2D9: @Es un área residencial.[BREAK][PAUSE]Intenta hacer el menor[BREAK]posible mientras estés por[BREAK]aquí.[BREAK][END]
+2DA: @Seguro que tú has tirado la[BREAK]comida al campo para[BREAK]deshecharla,¿no?[BREAK][PAUSE]@Bueno, no tiene mucha[BREAK]importancia, ya que esto ES[BREAK]un juego.[BREAK][END]
+2DB: @¡¡¡Hala...!!![BREAK][PAUSE]@Estoy... investigando[BREAK]los baños.[BREAK][PAUSE]@Es para un proyecto[BREAK]universitario.[BREAK][PAUSE]@...¡Es cierto! ¡Lo juro![BREAK][END]
+2DC: @Con una bicicleta iría[BREAK]mucho más cómodo.[BREAK][END]
+2DD: @Tengo hambre...[BREAK][PAUSE]...Esperabas que dijese[BREAK]eso, ¿eh?[BREAK][PAUSE]@Bueno, pues no lo diré.[BREAK][PAUSE]Pero TENGO hambre.[END]
+2DE: @Me encanta la ciudad.[BREAK][PAUSE]@Me gusta el estilo de vida[BREAK]tan moderno.[BREAK][END]
+2DF: @No creo en absoluto en los[BREAK]poderes psíquicos.[BREAK][END]
+2E0: @Paso desapercibido.[BREAK][PAUSE]@A veces, parece que no[BREAK]existo para nadie.[BREAK][END]
+2E1: @Me encanta esta ciudad.[BREAK][PAUSE]@Halloween, la ciudad[BREAK]de al lado, da miedo.[BREAK][END]
+2E2: @¿Crees en Dios?[BREAK][END]
+2E3: @Si tienes medicina fuerte[BREAK]para la tos, en la tienda[BREAK]te comprarán muchas.[BREAK][END]
+2E4: @Soy un cartero alegre,[BREAK]¡la-la-la![BREAK][PAUSE]@¿Sabes a dónde se han[BREAK]mudado los Rosemary,[BREAK]la-la-la?[BREAK][END]
+2E5: @El cartero intenta[BREAK]encontrar la nueva[BREAK]dirección de los Rosemary.[BREAK][PAUSE]@Si le ves, dile que viven[BREAK]mucho más lejos hacia el[BREAK]este.[BREAK][PAUSE]@¡La-la-la![BREAK][END]
+2E6: @¡Esa chica Rosemary me[BREAK]da grima![BREAK][END]
+2E7: @La zona del centro estaba[BREAK]tan llena de monstruos que[BREAK]todos vinieron aquí.[BREAK][END]
+2E8: @¿Puedo ayudarte?[BREAK][END]
+2E9: @Soy un futuro adivino en[BREAK]entrenamiento.[BREAK][PAUSE]@Puedo verte volviendo a la[BREAK]Estación de Santa Claus[BREAK]desde esta estación.[BREAK][PAUSE]@Pero no estoy segura al[BREAK]100 por ciento.[BREAK][END]
+2EA: @[03 12] vive en un templo...[BREAK]Quiero decir, una iglesia.[BREAK][PAUSE]@Oh, ¿ya lo sabías?[BREAK][END]
+2EB: @Hay una iglesia en las[BREAK]montañas más allá al este.[BREAK][PAUSE]@(cough... cough...)[BREAK][END]
+2EC: @¡Los niños sois energéticos[BREAK]y despreocupados, vistiendo[BREAK]ese tipo de ropa![BREAK][PAUSE](cough... cough...)[BREAK][END]
+2ED: @Si te encuentras unos[BREAK]huesos de camello en el[BREAK]Desierto Advent, salúdalos[BREAK]de mi parte.[BREAK][PAUSE]@Ese camello y yo nos[BREAK]volveremos a ver.[BREAK][END]
+2EE: @Aquí puedo tratar heridas[BREAK]menores.[BREAK][PAUSE]@Pero si estás enfermo,[BREAK]tendrás que visitar algún[BREAK]hospital, ¿vale?[BREAK][PAUSE][END]
+2EF: @Seguro que [03 11] tendrá[BREAK]en el futuro un trabajo[BREAK]relacionado con los PCs.[BREAK][END]
+2F0: @¡Shh! ¡Estate en silencio[BREAK]en la biblioteca![BREAK][PAUSE]@¡A-a-a-CHÚÚ![BREAK][END]
+2F1: @Oh, estarás aquí[BREAK]porque has oído que soy el[BREAK]mejor pescador del mundo.[BREAK][PAUSE]@Bueno, no diría que soy TAN[BREAK]bueno, pero...[BREAK][PAUSE]@Oh, ¿y si te cuento sobre[BREAK]algunas de mis grandes[BREAK]hazañas durante una hora?[BREAK][END]
+2F2: @¡Fuera de mi vista, tontos![BREAK][END]
+2F3: @¡Hey, tú![BREAK][END]
+2F4: @Mi PV será bajo, pero,[BREAK]¡le pondré todas las ganas[BREAK]que tengo![BREAK][END]
+2F5: @En una lucha entre tú y[BREAK]yo...[BREAK][PAUSE]Estoy muy seguro de que[BREAK]perdería.[BREAK][END]
+2F6: @Soy duro.[BREAK][PAUSE]@Pero no soy muy agresivo.[BREAK][END]
+2F7: @¡Nuestro jefe [03 13] si[BREAK]quisiera, podría vencerte[BREAK]solo con su meñique![BREAK][END]
+2F8: @¿Seguro que has leído[BREAK]la señal?[BREAK][END]
+2F9: @Si te enfrentas a un cáctus[BREAK]en algún desierto...[BREAK][PAUSE]...podría ser muy[BREAK]terrorífico.[BREAK][END]
+2FA: @Habla con el pescador y te[BREAK]hablará hasta que se te[BREAK]caigan las orejas.[BREAK][END]
+2FB: @Cualquier niño puede hacer[BREAK]una rueda de coche, ¿no[BREAK]crees?[BREAK][END]
+2FC: @Por favor, toma este[BREAK]ascensor hasta la[BREAK]plataforma de observación.[BREAK][END]
+2FD: @He visto humo de una isla[BREAK]que puedes ver desde la[BREAK]plataforma de observación.[BREAK][PAUSE]@Me pregunto si alguien vive[BREAK]en esa isla.[BREAK][PAUSE]@Vaya, se me olvidó mirar[BREAK]por el telescopio...[BREAK][END]
+2FE: @No puedo hacer una rueda.[BREAK][END]
+2FF: @Si todavía ni sé cómo[BREAK]hacer bien las restas.[BREAK][END]
+300: @He oído que el tofu sabor a[BREAK]fresa está de moda en las[BREAK]grandes ciudades.[BREAK][PAUSE]@Me gustaría probarlo.[BREAK][END]
+301: @Tengo hambre.[BREAK][END]
+302: @No asumas que soy un viejo[BREAK]normal.[BREAK][PAUSE]@...Es lo que le gusta decir[BREAK]a mi padre todo el rato.[BREAK][END]
+303: @¡Llegas tarde a clase![BREAK][END]
+304: @¿Viste a un profesor[BREAK]desconocido en el[BREAK]laboratorio de ciencias?[BREAK][PAUSE]@...Porque yo sí.[END]
+305: @¿Has jugado Dragon[BREAK]Quest 4?[BREAK][PAUSE]@Me está siendo difícil[BREAK]pasarme el tercero.[BREAK][END]
+306: @Bienvenido.[BREAK][PAUSE]@¿En qué puedo ayudarte?[BREAK][END]
+307: @Lo siento mucho. Ese objeto[BREAK]está agotado.[BREAK][END]
+308: @Oh, ¿has cambiado de idea?[BREAK][PAUSE]@¡Espero que vuelvas dentro[BREAK]de poco![BREAK][END]
+309: @Gracias.[BREAK][PAUSE]@Por favor, vuelve de nuevo.[BREAK][END]
+30A: @Oh, ¿has cambiado de[BREAK]idea?[BREAK][PAUSE]@Por favor, vuelve de nuevo.[BREAK][END]
+30B: @Me alegra de que[BREAK]te recuperases,[BREAK][03 1B].[BREAK][PAUSE]@Vuelve cuando lo[BREAK]necesites.[BREAK][END]
+30C: @Oh, ¿ese no es tu[BREAK]amigo?[BREAK][PAUSE]@¿Sabes?, podrían[BREAK]haber muerto...[BREAK][END]
+30D: @Sí, sí.[BREAK][PAUSE]@Puedo examinar[BREAK]por $[03 1E] por[BREAK]persona.[BREAK][PAUSE]@¿Estás de[BREAK]acuerdo?[BREAK][END]
+30E: @¿No necesitáis[BREAK]tratamiento?[BREAK][PAUSE]@Vale.[BREAK][END]
+30F: @No veo nada raro[BREAK]en esta persona.[BREAK][END]
+310: @¡Mucho mejor![BREAK][END]
+311: 
+312: @Aunque no lo creas,[BREAK]soy curandero.[BREAK][PAUSE]@¿Qué necesitas que[BREAK]haga?[BREAK][END]
+313: @Oh, vale.[BREAK]Si no quieres...[BREAK][END]
+314: @Tendrás que pagar[BREAK]$[03 1E]. ¿Vale?[BREAK][END]
+315: @Bienvenido.[BREAK]@Son $[03 1E] por noche.[BREAK][PAUSE]@¿Te quedarás?[BREAK][END]
+316: @Oh, vaya.[BREAK][PAUSE]@Bueno, vuelve de nuevo.[BREAK][END]
+317: @¡Felices sueños![BREAK][END]
+318: @Buenos días.[BREAK][PAUSE]@Vuelve cuando quieras.[BREAK]Te estaremos esperando.[BREAK][END]
+319: @[03 1B] acaba de[BREAK]venir, y sigue[BREAK]inconsciente.[BREAK][PAUSE]@Paga $[03 1E] por[BREAK]adelantado.[BREAK][END]
+31A: @¿A quién visitas?[BREAK][END]
+31B: 
+31C: @Papá no está en casa.[BREAK][PAUSE]@No sé nada de dinero, pero[BREAK]puedo hacer otras cosas.[BREAK][PAUSE]@Así que no te preocupes.[BREAK]Quédate a dormir si te[BREAK]apetece.[BREAK][END]
+31D: @Buenos días.[BREAK][PAUSE]@Quédate otro día, ¿vale?[BREAK][PAUSE]@Estoy muy solo...[BREAK][END]
+31E: @¿Oh? ¿No te vas a quedar?[BREAK][PAUSE]@Puedo hacer este trabajo[BREAK]aunque papá se haya ido...[BREAK][END]
+31F: @Oh, no puedo dejaros entrar[BREAK]sin los tickets.[BREAK][END]
+320: @Pero...[BREAK]Ahí no había nada.[BREAK][END]
+321: 
+322:   Guardar   Sacar[END]
+323: @No tienes ningún[BREAK]objeto.[BREAK][END]
+324: @No me has dejado[BREAK]ningún objeto.[BREAK][END]
+325: @Espera...[BREAK][PAUSE]@El trastero está[BREAK]lleno,[BREAK][PAUSE]así que no puedo[BREAK]guardar nada más.[BREAK][END]
+326: @BIENVENIDO[BREAK][END]
+327: @AHORROS INSUFICIENTE[BREAK][END]
+328: 
+329: @NO HAY TANTO DINERO[BREAK][END]
+32A: @LO SIENTO, PERO LA CANTIDAD[BREAK]SELECCIONADA EXCEDE EL[BREAK]SALDO DE LA CUENTA[BREAK][END]
+32B: @GRACIAS[BREAK][END]
+32C: @Hay una vieja caja de[BREAK]música dentro de la muñeca.[BREAK][PAUSE]@[03 3E] abre la caja de[BREAK]música.[BREAK][PAUSE]@Empieza a sonar una melodía[BREAK]triste.[BREAK][END]
+32D: @ ¿¿¿???[BREAK][END]
+32E: @Gracias.[BREAK][END]
+32F: @Tengo un contacto[BREAK]importante para las armas.[BREAK][PAUSE]@Uno de estos días, puede[BREAK]que me agencie algunas de[BREAK]las más impresionantes...[BREAK][END]
+330: 
+331: @El grupo de [03 16] ganó la[BREAK]batalla.[BREAK][END]
+332:   RETIRAR   DEPOSITAR[END]
+333: @SALDO ACTUAL: $[03 19][DOUBLEZERO][BREAK][END]
+334: @Está cerrado.[BREAK][END]
+335: @La llave no encaja.[BREAK][END]
+336: @[03 16] [03 17] abre[BREAK]la puerta y se mete.[BREAK][END]
+337:   Guardar   No[END]
+338:   Seguir    Descansar[END]
+339: @[03 3E] descolgó el[BREAK]teléfono.[BREAK][END]
+33A: @Vaya, no[BREAK]tienes suficiente[BREAK]dinero.[BREAK][END]
+33B: @Oh, lo siento mucho. No[BREAK]tienes suficiente dinero.[BREAK][END]
+33C: @Es solo mi humilde opinión,[BREAK]pero probablemente no[BREAK]deberías cargar con más[BREAK]cosas.[BREAK][END]
+33D: @¡Vale! ¡Muy bien![BREAK][PAUSE]@Increíble, ¿eh?[BREAK][END]
+33E: @Lo siento mucho. No puedo[BREAK]comprar tu [03 1D].[BREAK][END]
+33F: @Laura el ave cantora estaba[BREAK]tan feliz de volver a ver a[BREAK]su cría que cantó.[BREAK][END]
+340: @[03 16] aprende la melodía.[BREAK][END]
+341: @El canario está cantando.[BREAK][END]
+342: @El mono robó la llave[BREAK] del zoo.[BREAK][END]
+343: @El robot es viejo y[BREAK]está oxidado.[BREAK][END]
+344: @Al momento que sintió a[BREAK][03 10], el robot volvió[BREAK]a la vida.[BREAK][END]
+345: @A [03 1B] le faltan [03 1E][BREAK]puntos.[BREAK][END]
+346: @Buena suerte.[BREAK][END]
+347: 
+348: @Tocar el agua de la fuente[BREAK]te ha revitalizado.[BREAK][END]
+349: 
+34A: @¡Pippi![BREAK][PAUSE]@Oh, ¡gracias a Dios![BREAK]¡Ella está bien![BREAK][PAUSE]@Creo que el alcalde también[BREAK]la está buscando.[BREAK][PAUSE]@Deberías visitarle y[BREAK]decirle que la encontraste.[BREAK][END]
+34B: @¡Hay alguien aquí![BREAK]...Espera, esto no es un[BREAK]baño.[BREAK][PAUSE]@Ahora mismo estoy ocupado.[BREAK]Vuelve más tarde.[BREAK][END]
+34C: @¿Quién ha sido[BREAK]envenenado?[BREAK][END]
+34D: @¿A quién hay que[BREAK]despetrificar?[BREAK][END]
+34E: @¡No han sido[BREAK]envenenados![BREAK][END]
+34F: @Espera, ¡no han[BREAK]sido convertidos[BREAK]en piedra![BREAK][END]
+350: @La usaban para cargar[BREAK]los cohetes en botellas.[BREAK][END]
+351: @Mi esposa fue la primera[BREAK]Miss de Nowhere.[BREAK][END]
+352: @Vale, abrí la puerta.[BREAK][PAUSE]@Además, las vistas desde la[BREAK]azotea son increíbles.[BREAK][END]
+353: @Luego iremos a la Fábrica[BREAK]Ducan.[BREAK][PAUSE]@Escuché que tienen un[BREAK]increíble cohete.[BREAK][END]
+354: @Seguro que la gente está[BREAK]esparciendo rumores de que[BREAK]soy un "apestoso debilucho"[BREAK]o un "estúpido"...[BREAK][END]
+355: @Oh... Ya es de día.[BREAK][END]
+356: @Aprecia a tus mayores,[BREAK]¿me escuchas?[BREAK][PAUSE](cough cough)[BREAK][END]
+357: @¡Hey, insignificante![BREAK][PAUSE]¡¿Quién te ha dicho que[BREAK]puedes hablarme?![BREAK][END]
+358: @Escuché que hay un juego de[BREAK]Famicom llamado "MOTHER".[BREAK][PAUSE]@Han copiado eso de[BREAK]John Lennon, ¿no?[BREAK][END]
+359: 
+35A: @Una señorita mayor en la[BREAK]estación de Reindeer tiene[BREAK]algo muy importante que[BREAK]darte.[BREAK][PAUSE]@¿Ya la conoces?[BREAK][END]
+35B: @Esta es mi última pista.[BREAK][PAUSE]@¿Conoces al guitarrista de[BREAK]Magicant?[BREAK][PAUSE]¡Asegúrate de escuchar su[BREAK]canción![BREAK][END]
+35C: @Si sientes algo extraño,[BREAK]asegúrate de "Mirar" todo[BREAK]a tu alrededor.[BREAK][END]
+35D: @El mono cantante, cantó[BREAK]con pasión.[BREAK][END]
+35E: @El cáctus cantó.[BREAK][PAUSE]@Por alguna razón, cantó.[BREAK][PAUSE]@Continuó cantando[BREAK]emocionado.[BREAK][END]
+35F: @Las teclas del piano[BREAK]empezaron a sonar todas de[BREAK]repente.[BREAK][END]
+360: @Sin dudarlo ni un poco,[BREAK]el dragón mostró su vieja[BREAK]partitura.[BREAK][PAUSE]@La canción es algo así...[BREAK][END]
+361: @EVE fue destruido y[BREAK]dejó de funcionar.[BREAK][PAUSE]@La música empezó a emanar[BREAK]del pecho de EVE.[BREAK][END]
+362: ¡El único mono cantante del[BREAK]mundo! ¡Aquí, en el[BREAK][PAUSE]Zoo Cream Puff![BREAK][END]
+363: @Hay un gran candado en la[BREAK]puerta de las escaleras a[BREAK]la azotea.[BREAK][END]
+364: @Me quedaré aquí y ayudaré[BREAK]a la gente de Snowman.[BREAK][PAUSE]Por favor, tened cuidado en[BREAK]vuestro viaje...[BREAK][END]
+365: @No tienes suficiente[BREAK]dinero.[BREAK][END]
+366: @Tengo mucho miedo.[BREAK][PAUSE]@Ve tú el primero, [03 10].[BREAK][END]
+367: @Al mirar de cerca, se ve[BREAK]que el candado está roto.[BREAK][PAUSE]@[03 3E] abrió la puerta.[BREAK][END]
+368: @¡Oh! ¡[03 13]! ¿Qué tal?[BREAK][END]
+369: @¡Date prisa y sigue los[BREAK]pasos de [03 13]![BREAK][END]
+36A: @Oh, vaya.[BREAK][PAUSE]@No puedo guardar[BREAK]tu [03 1D].[BREAK][PAUSE]@No quiero tocar[BREAK]eso.[BREAK][END]
+36B: Aquí yace el Hombre[BREAK]Volador, el valiente[BREAK]guerrero y eterno sirviente[BREAK]de [03 10].[BREAK][END]
+36C: Aquí yace el Hombre[BREAK]Volador, el valiente[BREAK]guerrero y la fuerza[BREAK]interna de [03 10].[BREAK][END]
+36D: Aquí yace el Hombre[BREAK]Volador, el valiente[BREAK]guerrero y el virtuoso[BREAK]corazón de [03 10].[BREAK][END]
+36E: Aquí yace el Hombre[BREAK]Volador, el valiente[BREAK]guerrero y la angustia[BREAK]de [03 10].[BREAK][END]
+36F: Aquí yace el Hombre[BREAK]Volador, el valiente[BREAK]guerrero y la carne y[BREAK]sangre de [03 10].[BREAK][END]
+370: @Nadie puede pasar por aquí[BREAK]hasta que se resuelva el[BREAK]incidente del zoo.[BREAK][PAUSE]@Esas son las órdenes del[BREAK]alcalde.[BREAK][PAUSE]@Si me preguntas, me parece[BREAK]una forma drástica de[BREAK]las cosas.[BREAK][END]
+371: @Hay una roca extraña en una[BREAK]cueva en la montaña.[BREAK][PAUSE]@De hecho, es tan extraña[BREAK]que deberías ir allí para[BREAK]mirarla.[BREAK][END]
+372: @Dime... Sabes usar[BREAK]telepatía o algo así,[BREAK]¿cierto?[BREAK][PAUSE]@¡Todos hablan de ti![BREAK][PAUSE]@¡Eres una celebridad![BREAK][END]
+373: @Por casualidad, ¿no irás a[BREAK]Snowman?[BREAK][END]
+374: @Encontré este sombrero.[BREAK]Creo que es de una chica de[BREAK]Snowman.[BREAK][PAUSE]@Si eres tan amable, por[BREAK]favor, llévaselo.[BREAK][END]
+375: @Oh, vaya. Quería pedirte[BREAK]un favor.[BREAK][END]
+376: @El chico chulo cantó una...[BREAK]canción muy única.[BREAK][PAUSE]@Ni siquiera [03 16] podría[BREAK]aprender esta melodía.[BREAK][END]
+377: @Perdona que te moleste,[BREAK]pero, ¿puedo hacerte una[BREAK]encuesta?[BREAK][END]
+378: 
+379: @¿Crees que los tickets del[BREAK]tren son muy caros?[BREAK][END]
+37A: @¿Alguna vez has usado un[BREAK]megáfono?[BREAK][END]
+37B: @Gracias por tu cooperación.[BREAK][PAUSE]@Toma esta tarjeta[BREAK]telefónica por los[BREAK]incovenientes.[BREAK][END]
+37C: @Perdona que te moleste,[BREAK]pero... ¿podrías...[BREAK][PAUSE]@¡Oh! Ya has hecho la[BREAK]encuesta, ¿no?[BREAK][END]
+37D: @Oyendo tu corazón inquieto,[BREAK]un anciano servicial[BREAK]apareció.[BREAK][END]
+37E: @[03 3E] abrió el ataud.[BREAK][PAUSE]@¡¡Dentro había...!![BREAK][END]
+37F: @[03 16] miró por el[BREAK]telescopio.[BREAK][END]
+380: @El océano estaba precioso.[BREAK][END]
+381: @¡Algo brilló en la isla[BREAK]a lo lejos![BREAK][END]
+382: @¡Algo salió de la cápsula![BREAK][END]
+383: @[03 12]: Papá...[BREAK]Me despido por ahora...[BREAK][PAUSE]¡La próxima vez que te vea[BREAK]mamá estará conmigo![BREAK][PAUSE]...Reza por nosotros.[BREAK][END]
+384: [END]
+385: @¿Con quién hablas?[BREAK][END]
+386: @¿Qué?[BREAK][END]
+387: @Aquí no pasa nada.[BREAK][END]
+388: @(The voice of Queen[BREAK]Mary speaks)[BREAK][PAUSE]@I am the[BREAK]consciousness of[BREAK]Maria.[BREAK][PAUSE]@[03 10][03 3F] use my[BREAK]last power![BREAK][PAUSE]@Then[03 3F] as the voice[BREAK]became a whisper of[BREAK]wind...[BREAK][PAUSE]@The rock[BREAK]disintegrated.[BREAK][PAUSE]@Leaving only a[BREAK]pile of very fine[BREAK]sand at their feet.[BREAK][END]
+389: 
+38A: 
+38B: @¡Si buscas un arma,[BREAK]mira estas![BREAK][END]
+38C: @¡Gracias![BREAK][END]
+38D: 
+38E: @[03 1A] usó[BREAK][03 1C].[BREAK][END]
+38F: @[03 1A] no puede usar[BREAK][03 1C].[BREAK][END]
+390: @Por favor, no hagas eso.[BREAK][END]
+391: @[03 1A] se equipó con[BREAK][03 1C].[BREAK][END]
+392: @[03 1A] no puede equiparse[BREAK][03 1C].[BREAK][END]
+393: @[03 1A] tiró[BREAK][03 1C].[BREAK][END]
+394: @No deberías tirar[BREAK][03 1C].[BREAK][END]
+395: @[03 1A] le dió[BREAK][03 1C] a [03 1B].[BREAK][END]
+396: @[03 1C] no puede ser[BREAK]regalado.[BREAK][END]
+397: @[03 1B] no puede llevar[BREAK]más cosas.[BREAK][END]
+398: @No pasó nada.[BREAK][END]
+399: @[03 3E] abrió el regalo.[BREAK][END]
+39A: @Encontrado: [03 1D].[BREAK][END]
+39B: @[03 16] [03 17] recoge:[BREAK][03 1D].[BREAK][END]
+39C: 
+39D: @Pero no puedes llevar nada[BREAK]más.[BREAK][END]
+39E: 
+39F: 
+3A0: 
+3A1: @Está vacío...[BREAK][END]
+3A2: Cura Veneno  Despetrifica[END]
+3A3: Sur: Mother's Day[BREAK]Norte: Zoo Cream Puff [BREAK][END]
+3A4: Villa Canary de frente[BREAK][BREAK]¡Cultivemos juntos la[BREAK]naturaleza![BREAK][END]
+3A5: Ayuntamiento de Mother's[BREAK]Day[BREAK][END]
+3A6: Oeste:Observatorio Oceánico[BREAK]Norte: Puerto Valentine[BREAK][BREAK]¡Manten limpio el océano![BREAK][END]
+3A7: Oeste: Valentine[BREAK]Este: Montaña Holy Loly[BREAK][END]
+3A8: Oeste:   Casa del curandero[BREAK]Puente: Cementerio[BREAK][BREAK]¡Caminar solo es peligroso![BREAK][END]
+3A9: Oeste: Mother's Day[BREAK]Este: Thanksgiving[BREAK][END]
+3AA: Zoo Cream Puff[BREAK]  A 700 metros al oeste[BREAK][END]
+3AB: Iglesia de Snowman adelante[BREAK][END]
+3AC: Oeste:  Valentine[BREAK]Sur: Pantano[BREAK][END]
+3AD: Calle princ. Thanksgiving[BREAK]Sur: Escuela Prim. Twinkle[BREAK][END]
+3AE: Casa de [03 10][BREAK][END]
+3AF: ¡Bienvenido a Thanksgiving![BREAK][BREAK]Oeste:  Mother's Day[BREAK]Norte: Estación Santa Claus[BREAK][END]
+3B0: Oeste:  Casa del curandero[BREAK]Este:  Estación Reindeer[BREAK]Sur: Reindeer[BREAK][END]
+3B1: Oeste: Centro de Halloween[BREAK]Este: Área residencial[BREAK]      de Halloween[BREAK][END]
+3B2: Este: Pantano[BREAK][END]
+3B3: Propiedad privada de la[BREAK]familia Rosemary[BREAK][END]
+3B4: Departamento Policial de[BREAK]Valentine[BREAK][END]
+3B5: Pronto: Teatro Striptease[BREAK][BREAK]     -Construcciones Duncan[BREAK][END]
+3B6: @ESCUCHÉ QUE MI HERMANO CAYÓ[BREAK]HONORABLEMENTE EN COMBATE.[BREAK][PAUSE]@FUE ENTERRADO Y HUBO[BREAK]UN EMOCIONANTE FUNERAL.[BREAK][PAUSE]@YO SOY EL SIGUIENTE.[BREAK][END]
+3B7: @NO PUEDO ESPERAR PARA[BREAK]SERVIRTE.[BREAK][END]
+3B8: @SOY el Hombre Volador.[BREAK][PAUSE]@SERÉ TU FUERZA.[BREAK][PAUSE]ESE ES EL POR QUÉ NACÍ.[BREAK][END]
+3B9: @Finalmente han derogado[BREAK]la ley marcial.[BREAK][PAUSE]@Opino que, se ha[BREAK]sobreactuado un poquito.[BREAK][END]
+3BA: @Aquí hay un viejo cohete.[BREAK][END]
+3BB: @Has venido a[BREAK]por tu objeto, ¿no?[BREAK][PAUSE]@¡Vale, aquí tienes![BREAK][END]
+3BC: @Te he dado tu[BREAK]objeto.[BREAK][PAUSE]Pero, ¡vuelve[BREAK]cuando quieras![BREAK][END]
+3BD: @Soy Minnie.[BREAK][END]
+3BE:   Cura      Despetrifica[END]
+3BF: @[03 13]: Vosotros dos[BREAK]queréis estar a solas, ¿no?[BREAK][PAUSE]Entonces, me iré a planchar[BREAK]la oreja.[BREAK][END]
+3C0: @¡Oh, no! ¡Es muy tarde![BREAK][END]
+3C1: @...Eso me hace muy feliz.[BREAK][END]
+3C2: @[03 13]: ¡Vaya! ¡¿Qué[BREAK]fue ese ruido?![BREAK][END]
+3C3: @[03 13]: ¡Tienes que[BREAK]estar de broma![BREAK][END]
+3C4: @El motor del barco parece[BREAK]que está en malas[BREAK]condiciones.[BREAK][END]
+3C5: @[03 16] no puede hacerlo[BREAK]funcionar.[BREAK][END]
+3C6: @Pero [03 11] pudo hacer[BREAK]que funcionase.[BREAK][END]
+3C7: @[03 1D],[BREAK]¿cierto?[BREAK][PAUSE]@Me aseguraré de[BREAK]enviarlo a casa[BREAK]de [03 10].[BREAK][PAUSE]@¿Hay algo más[BREAK]que quieras[BREAK]almacenar?[BREAK][END]
+3C8: @¿Y si estamos atrapados[BREAK]dentro de eso tan pequeño?[BREAK][PAUSE]@¿Qué nos pasará?[BREAK][END]
+3C9: Fábrica Sweet Little[BREAK][END]
+3CA: @La nave nodriza nos trajo a[BREAK]a la cima de la montaña,[BREAK][PAUSE]y cuando llegamos, nos[BREAK]atraparon en estas cosas...[BREAK][PAUSE]@¡Por favor, haz algo![BREAK][END]
+3CB: @¿Estás seguro de que está[BREAK]bien escrito?[BREAK][END]
+3CC: @El extraño sonido que[BREAK]volvía loco a los animales,[BREAK]ha parado.[BREAK][PAUSE]@EL zoo vuelve a ser seguro.[BREAK][END]
+3CD: 
+3CE: @Este tanque es mi posesión[BREAK]más preciada. Intenta no[BREAK]romperlo, ¿vale?[BREAK][END]
+3CF: @Hay una llave al sótano[BREAK]colgando del collar[BREAK]del perro.[BREAK][END]
+3D0: @¡Jej jej jej! ¡Soy un ratón[BREAK]entrometido![BREAK][PAUSE]@En las ciudades, hay casas[BREAK]en las que puedes meterte[BREAK]y en las que no.[BREAK][PAUSE]@Las casas con puertas[BREAK]redondeadas o con carteles[BREAK]son en las que puedes[BREAK]entrar.[BREAK][PAUSE]@Si intentas meterte en las[BREAK]otras, te darás con la[BREAK]puerta en las narices.[BREAK][PAUSE]@¡Bueno, adiós![BREAK][END]
+3D1: 
+3D2: @Recuerda, el PSI regreso[BREAK]no es algo con lo que[BREAK]jugar.[BREAK][END]
+3D3: @Yo también le quería como[BREAK]si fuese mi hijo...[BREAK][END]
+3D4: @Siempre movía la cola[BREAK]como un bebé...[BREAK][PAUSE]@Le cantaría una nana, pero[BREAK]ya no...[BREAK][END]
+3D5: @¡Oh, George![BREAK][PAUSE]Soy tu mujer, María.[BREAK][PAUSE]@Sé que me has estado[BREAK]esperando...[BREAK][PAUSE]Ya voy a unirme a ti[BREAK]en el cielo...[BREAK][END]
+3D6: @INSERTE TARJETA DE CRÉDITO[BREAK][END]
+3D7: @No deberías llevar encima[BREAK]tanto dinero.[BREAK][END]
+3D8: @Esto te devolverá a tu[BREAK]anterior guardado.[BREAK]¿Te parece bien?[BREAK][END]
+3D9: @Dices que sí, ¡per no tienes[BREAK]un guardado![BREAK][PAUSE]¡Ja, ja, ja![BREAK][END]
+3DA: @Respira con dificultad.[BREAK]Parece que le duele.[BREAK][END]
+3DB: @Todavía no tienes[BREAK]amigos a los que[BREAK]dar objetos.[BREAK][END]
+3DC: @Oh,[BREAK]¿[03 1D]?[BREAK][PAUSE]@Toma. Cuídalo[BREAK]bien.[BREAK][PAUSE]@¿Hay algo más[BREAK]que te quieras[BREAK]llevar?[BREAK][END]
+3DD: @Parece que no[BREAK]puedes llevar[BREAK]más cosas.[BREAK][PAUSE]@¿Debería dárselo[BREAK]a alguien más?[BREAK][END]
+3DE: @El trastero está[BREAK]lleno.[BREAK][END]
+3DF: @Cuando la Reina Mary acabó[BREAK]de hablar con [03 10],[BREAK]desapareció en el viento.[BREAK][PAUSE]Y entonces, la tierra de[BREAK]Magicant se desvaneció sin[BREAK]dejar rastro.[BREAK][PAUSE]@Magicant fue una ilusión[BREAK]nacida de la conciencia de[BREAK]Mary.[BREAK][END]
+3E0: @Fui yo quien os llamó[BREAK]aquí.[BREAK][PAUSE]@¡[03 10]![BREAK][PAUSE]¡[03 12]![BREAK][PAUSE]¡[03 11]![BREAK][PAUSE]¡[03 13]![BREAK][PAUSE]@Y todos los niños valientes[BREAK]de ahí fuera...[BREAK][PAUSE]@¡Llegó la hora![BREAK][END]
+3E1: @¡Shh! ¡Soy como tú![BREAK]¡Soy del otro mundo![BREAK][PAUSE]@A cambio de dinero, te daré[BREAK]algunos recuerdos de[BREAK]Magicant.[BREAK][PAUSE]@¡Jee jee jee![BREAK][END]
+3E2: @Si no coges el tren,[BREAK]acabarás como yo...[BREAK][END]
+3E3: @¿Necesitas algo más?[BREAK][END]
+3E4: @Bienvenido, [03 16]...[BREAK][PAUSE]@Tuve fe en que llegarías[BREAK]tan lejos.[BREAK][PAUSE]@Hace mucho tiempo, tu[BREAK]bisabuela María[BREAK]imbuyó sus ocho melodías[BREAK][PAUSE]con todo el amor que pudo[BREAK]y las dispersó por el mundo[BREAK]como regalos para ti,[BREAK][PAUSE]aunque ella sabía que no[BREAK]volvería a verte...[BREAK][PAUSE][END]
+3E5: @¡Bañados en el resplandor[BREAK]del cristal, todos se[BREAK]curaron cumpletamente![BREAK][END]
+3E6: 
+3E7: [END]
+3E8: [END]
+3E9: Mochilón[END]
+3EA: Bono Teléf.[END]
+3EB: Migajas[END]
+3EC: Protector[END]
+3ED: ITEM 05[END]
+3EE: Memoria ROM[END]
+3EF: [END]
+3F0: [END]
+3F1: [END]
+3F2: Cuchillo[END]
+3F3: Daga[END]
+3F4: Espada[END]
+3F5: Katana[END]
+3F6: Táser[END]
+3F7: Arma falsa[END]
+3F8: Bate roto[END]
+3F9: Minibate[END]
+3FA: Bate bueno[END]
+3FB: Bate famoso[END]
+3FC: Sartén[END]
+3FD: Sartén DX[END]
+3FE: Sartenaza[END]
+3FF: Honda[END]
+400: Búmerang[END]
+401: Pesticida[END]
+402: Pesticida [END]
+403: Bomba pulga[END]
+404: Letras amor[END]
+405: Letras mal.[END]
+406: Crea-limos[END]
+407: Foco negro[END]
+408: Endurecedor[END]
+409: Aguijón[END]
+40A: Lanzallamas[END]
+40B: Bomba[END]
+40C: Super bomba[END]
+40D: Rayo láser[END]
+40E: Rayo mortal[END]
+40F: OBJETO 39[END]
+410: Cuerda[END]
+411: [END]
+412: [END]
+413: [END]
+414: [END]
+415: Moneda paz[END]
+416: Moneda pro.[END]
+417: Moneda mág.[END]
+418: Mitón hada[END]
+419: Mitón ángel[END]
+41A: Mitón diosa[END]
+41B: Aro lluvia[END]
+41C: Aro fuego[END]
+41D: Aro tierra[END]
+41E: Aro marino[END]
+41F: Facilitador[END]
+420: Objeto 56[END]
+421: Objeto 57[END]
+422: [END]
+423: [END]
+424: Zumo[END]
+425: Patatas[END]
+426: Hoja mágica[END]
+427: Hamburgesa[END]
+428: Refresco[END]
+429: Medicina[END]
+42A: Espray asma[END]
+42B: Antídoto[END]
+42C: Colutorio[END]
+42D: Tofu fresa[END]
+42E: Objeto 70[END]
+42F: Pan[END]
+430: Pipa ángel[END]
+431: Piedra PSI[END]
+432: [END]
+433: Tira mágica[END]
+434: Dulce raro[END]
+435: Objeto 77[END]
+436: Gragea vel.[END]
+437: Gragea sab.[END]
+438: Gragea Fue.[END]
+439: Gragea CI[END]
+43A: Gragea Luc.[END]
+43B: [END]
+43C: [END]
+43D: Llave casa[END]
+43E: Llave zoo[END]
+43F: Llave rara[END]
+440: Diario[END]
+441: Pase[END]
+442: Ticket show[END]
+443: [END]
+444: [END]
+445: [END]
+446: [END]
+447: Bebé pájaro[END]
+448: OBJETO 96[END]
+449: Cohete[END]
+44A: Sombrero[END]
+44B: Dentadura[END]
+44C: Resguardo[END]
+44D: Memoria CI[END]
+44E: Ocarina[END]
+44F: Objeto 103[END]
+450: Med. Frank.[END]
+451: Anillo fiel[END]
+452: Objeto 106[END]
+453: Gancho ónix[END]
+454: Arma final[END]
+455: Regla[END]
+456: Tarjeta ATM[END]
+457: Hoja roja[END]
+458: Megáfono[END]
+459: Mapa[END]
+45A: [END]
+45B: [END]
+45C: [END]
+45D: [END]
+45E: [END]
+45F: [END]
+460: [END]
+461: [END]
+462: [END]
+463: [END]
+464: [END]
+465: [END]
+466: [END]
+467: Coordenadas[END]
+468: [END]
+469: Telepatía[END]
+46A: Regreso[END]
+46B: [END]
+46C: [END]
+46D: [END]
+46E: [END]
+46F: [END]
+470: Vida [ALPHA][END]
+471: Vida [BETA][END]
+472: Vida [GAMMA][END]
+473: Vida [PIZ][END]
+474: Vida [OMEGA][END]
+475: [END]
+476: [END]
+477: [END]
+478: Cura [ALPHA][END]
+479: Cura [BETA][END]
+47A: Cura [GAMMA][END]
+47B: Cura [PIZ][END]
+47C: Super cura[END]
+47D: Égida PSI [ALPHA][END]
+47E: Égida PSI [BETA][END]
+47F: ÉgidaPodero[END]
+480: Confusión[END]
+481: ConfusióMax[END]
+482: Hipnosis[END]
+483: Parálisis[END]
+484: Oscuridad[END]
+485: Imán PSI[END]
+486: Quita Égida[END]
+487: Bloquea PSI[END]
+488: Sube ataq.[END]
+489: Sube Def. [ALPHA][END]
+48A: Sube Def. [BETA][END]
+48B: Sube Rap.[END]
+48C: Baja Def. [ALPHA][END]
+48D: Baja Def. [BETA][END]
+48E: DeformDimen[END]
+48F: Hipnosis[END]
+490: PK Frío [ALPHA][END]
+491: PK Frío [BETA][END]
+492: PK Frío [GAMMA][END]
+493: PK Frío [OMEGA][END]
+494: PK Fuego [ALPHA][END]
+495: PK Fuego [BETA][END]
+496: PK Fuego [GAMMA][END]
+497: PK Fuego [OMEGA][END]
+498: PK Luz [ALPHA][END]
+499: PK Luz [BETA][END]
+49A: PK Luz [GAMMA][END]
+49B: PK Luz [OMEGA][END]
+49C: PK Rayo [ALPHA][END]
+49D: PK Rayo [BETA][END]
+49E: PK Rayo [GAMMA][END]
+49F: [END]
+4A0: [END]
+4A1: [END]
+4A2: [END]
+4A3: [END]
+4A4: [END]
+4A5: [END]
+4A6: [END]
+4A7: [END]
+4A8: Incon.[END]
+4A9: Petr.[END]
+4AA: Paral.[END]
+4AB: Duerme[END]
+4AC: Aturd.[END]
+4AD: Confu.[END]
+4AE: Veneno[END]
+4AF:   Frío[END]
+4B0: [END]
+4B1: Ruta A[END]
+4B2: Ruta B[END]
+4B3: Ruta C[END]
+4B4: Pista 1[END]
+4B5: Pista 2[END]
+4B6: Pista 3[END]
+4B7: Antídoto[END]
+4B8: Antídoto[END]
+4B9: Antídoto[END]
+4BA: Antídoto[END]
+4BB: Cohete real[END]
+4BC: Máq. tiempo[END]
+4BD: 
+4BE: 
+4BF: 
+4C0: 
+4C1: 
+4C2: 
+4C3: 
+4C4: 
+4C5: 
+4C6: 
+4C7: 
+4C8: 
+4C9: 
+4CA: 
+4CB: 
+4CC: 
+4CD: 
+4CE: [END]
+4CF: A Casa[END]
+4D0: Mother'sDay[END]
+4D1: Thanksgiv.[END]
+4D2: Reindeer[END]
+4D3: Halloween[END]
+4D4: Snowman[END]
+4D5: Easter[END]
+4D6: Valentine[END]
+4D7: Santa Claus[END]
+4D8: 
+4D9: 
+4DA: 
+4DB: 
+4DC: 
+4DD: 
+4DE: 
+4DF: 
+4E0: 
+4E1: 
+4E2: 
+4E3: 
+4E4: 
+4E5: 
+4E6: 
+4E7: 
+4E8: 
+4E9: 
+4EA: 
+4EB: 
+4EC: 
+4ED: 
+4EE: 
+4EF: 
+4F0: 
+4F1: 
+4F2: 
+4F3: 
+4F4: 
+4F5: 
+4F6: 
+4F7: 
+4F8: 
+4F9: 
+4FA: 
+4FB: 
+4FC: 
+4FD: 
+4FE: 
+4FF: 
+500: 
+501: 
+502: 
+503: 
+504: 
+505: 
+506: 
+507: 
+508: 
+509: 
+50A: 
+50B: 
+50C: 
+50D: 
+50E: 
+50F: 
+510: 
+511: 
+512: 
+513: 
+514: [END]
+515: ¿Deberías luchar?[BREAK]¿O deberías huir?[END]
+516: Parece que contiene un secreto muy importante.[END]
+517: Ralmente, ¿hay forma de vencer a esta cosa?[END]
+518: ¡A veces te golpeará con su pesado cuerpo o con su largo tronco![END]
+519: ¡Alguien se comió su comida y no está feliz![END]
+51A: ¿Sorprendido? ¡En realidad, no existe![END]
+51B: ¡Observa cuando se canse! ¡Puede causar ataque de asma![END]
+51C: La hipnosis no funcionará con robots, ¿no?[END]
+51D: Lleva una armadura especial para protegerse de ataques PSI.[END]
+51E: Esto tiene el poder de petrificar a la gente.[END]
+51F: Las criaturas como esta no existen en la Tierra, pero...[END]
+520: ¡No es momento de ser atrapado por un simio macarra![END]
+521: La única que no tiene miedo de su cara, es su madre.[END]
+522: ¡Mira esos terroríficos ojos![END]
+523: ¡Hala, el asiento del conductor está vacío![END]
+524: Tiene amigos fuertes.[END]
+525: El caparazón de esta cosa es muy duro.[END]
+526: Cuidado. Intentará hipnotizarte.[END]
+527: [END]
+528: Este animal es tan rápido como el resto.[END]
+529: ¡Cuidado con esas blancas perlas![END]
+52A: Tú, ¡sucia ladrona![END]
+52B: Siempre rechaza la invitación de un caimán a cenar.[END]
+52C: Es un tanque de combustible con patas.[END]
+52D: Parece que protege algo.[END]
+52E: Este tipo está entre los más buscados por el FBI.[END]
+52F: En el fondo, puede que sea buen tipo.[END]
+530: ¿Un robot desnutrido?[END]
+531: ¡Que no te engañe su sonrisa![END]
+532: Un hombre de una estrella lejana.[END]
+533: Esta criatura no existe en el mundo real.[END]
+534: Un cerebro móvil es el resultado de un experimento malvado.[END]
+535: Esta criatura domina varios tipos de PSI.[END]
+536: Estaría bien que tuvieses alguna armadura.[END]
+537: Un extraño y móvil árbol.[END]
+538: Parece que está enfadado, ten cuidado.[END]
+539: Probablemente puedes plantar flores en su pelo y crecerán.[END]
+53A: Tiene un cuerpo como el frigorífico y un corazón de hielo.[END]
+53B: Vencer al líder de los macarras les dará una buena lección.[END]
+53C: Su corazón está tan deformado como su cara.[END]
+53D: [END]
+53E: ¡Cuidado cuand impacte el SMAAAASH de este tipo![END]
+53F: ¡Cuidado con los constantes ataques furtivos de este tipo![END]
+540: ¡Cuida tus objetos! Este tipo es un ladrón...[END]
+541: Esto no es venenoso.[BREAK]O eso espero...[END]
+542: El que ríe el último, ríe mejor.[END]
+543: Este animal es un poco diferente de tu gato de mascota.[END]
+544: ¡Mátalo con el pesticida![END]
+545: ¡¡Aaaachúú!![END]
+546: ¡El pesticida funciona de maravilla![END]
+547: ¿Por qué no pruebas el pesticida?[END]
+548: Es venenoso, pero puedes matarlo con un espray de insectos.[END]
+549: Intenta que no te aten.[END]
+54A: Parece que este tipo se ha escapado de algún cómic.[END]
+54B: La cara de este tipo es fácil de dibujar.[END]
+54C: Si este tipo se pusiese una máscara, sería imposible de reconocerlo.[END]
+54D: Un fantasma bastante corriente.[END]
+54E: Es tan grande como un plato...[END]
+54F: Parece que para él, la vida es como un enigma.[END]
+550: Será pequeño, pero claramente es un extraterrestre.[END]
+551: ¡Tápate la nariz![END]
+552: Da miedo el exterior, pero un ataque final da todavía más miedo.[END]
+553: Una rata grande con una larga cola.[END]
+554: Parece un huevo pero más fuerte.[END]
+555: [END]
+556: Te mira desde lo lejos...[END]
+557: ¡Está volando por todas partes![END]
+558: [END]
+559: [END]
+55A: Al parecer, le dieron un poderoso veneno en algún laboratorio.[END]
+55B: ¡Cuidado con los ataques pretificantes y venenosos![END]
+55C: [END]
+55D: [END]
+55E: ¡No dejes que huya! ¡Es una mina de puntos de experiencia![END]
+55F: Parece que no tiene amigos.[END]
+560: @¡Se rompió su silla y ahora está de MUY mal humor![END]
+561: [END]
+562: [END]
+563: [END]
+564: [END]
+565: ¿Tienes algún antídoto a mano?[END]
+566: Veneno Vene no Vene nooooo[END]
+567: No le devuelvas la sonrisa a este caimán.[END]
+568: [END]
+569: Incluso su padre tiene miedo de su cara.[END]
+56A: [END]
+56B: Ten cuidado de no ser petrificado...[END]
+56C: Espero que este no tenga pulgas...[END]
+56D: La hipnosis no funcionará en coches, ¿no?[END]
+56E: La hipnosis no funcionará en camiones, ¿no?[END]
+56F: ¡¿Cómo vendrá ahora?! ¡¿De frente, o haciendo eses?![END]
+570: ¡Cuidado, llamará a sus amigos si se asusta![END]
+571: [END]
+572: El favorito de los optometristas.[END]
+573: No bajes la guardia. Este papi siempre te está mirando...[END]
+574: ¡Esta mami puede ver a través de tus trucos![END]
+575: [END]
+576: [END]
+577: ¡Esta cosa hará cualquier cosa por sus amigos![END]
+578: [END]
+579: Parece qeu solo usa PK Rayo...[END]
+57A: Esta cosa es endiabladamente fuerte.[END]
+57B: Parece un montón de basura, pero, ¡no lo subestimes![END]
+57C: Un robot de vanguardia fabricado en serie.[END]
+57D: Es tan grande como una tapa de alcantarilla...[END]
+57E: No dejes que su belleza te atonte...[END]
+57F: Lleva bombas... y siempre las usa.[END]
+580: Este robot tiene mucho combustible en su cuerpo.[END]
+581: ¡Cuidado! ¡No dudará en usar poderosos ataques PSI![END]
+582: Su misión es impedir que cualquiera entre en las cuevas...[END]
+583: Prefiere usar PK Frío.[END]
+584: Si puedes vencer a esto, eres increíble.[END]
+585: INo solo usa PSI; ¡también le gusta robar cosas![END]
+586: [END]
+587: ¡Cuidado con sus ataques de confusión![END]
+588: Un tipo violento que golpea a la primera de cambios.[END]
+589: Su precioso pelaje plateado brilla en la luz.[END]
+58A: ¡Esta cosa es GIGANTE![END]
+58B: ¡No duermas en la cama de este tipo, no importa lo cansado que estés![END]
+58C: ¡Este robot ha sido remodelado para ser más fuerte![END]
+58D: El Starman más fuerte de todos.[END]
+58E: 
+58F: 
+590: 
+591: 
+592: 
+593: [END]
+594: 
+595: 
+596: 
+597: 
+598: 
+599: 
+59A: 
+59B: 
+59C: 
+59D: 
+59E: 
+59F: 
+5A0: 
+5A1: 
+5A2: 
+5A3: 
+5A4: 
+5A5: 
+5A6: 
+5A7: 
+5A8: 
+5A9: 
+5AA: 
+5AB: 
+5AC: 
+5AD: 
+5AE: 
+5AF: 
+5B0: 
+5B1: 
+5B2: 
+5B3: 
+5B4: 
+5B5: 
+5B6: 
+5B7: 
+5B8: 
+5B9: 
+5BA: 
+5BB: 
+5BC: 
+5BD: 
+5BE: 
+5BF: 
+5C0: 
+5C1: 
+5C2: 
+5C3: 
+5C4: 
+5C5: 
+5C6: 
+5C7: 
+5C8: 
+5C9: 
+5CA: 
+5CB: 
+5CC: 
+5CD: 
+5CE: 
+5CF: 
+5D0: 
+5D1: 
+5D2: 
+5D3: 
+5D4: 
+5D5: 
+5D6: 
+5D7: 
+5D8: 
+5D9: 
+5DA: 
+5DB: 
+5DC: [END]
+5DD: Roble cerval[END]
+5DE: Dragón[END]
+5DF: R-7038[END]
+5E0: Elefante[END]
+5E1: Oso[END]
+5E2: Pie grande[END]
+5E3: Camión loco[END]
+5E4: Robot viejo[END]
+5E5: Mega-Borg[END]
+5E6: Gárgola[END]
+5E7: Gabilan[END]
+5E8: Gorila[END]
+5E9: Bisonte[END]
+5EA: Tigre[END]
+5EB: Coche loco[END]
+5EC: Otiso Aplef[END]
+5ED: Mágicol[END]
+5EE: Titani[END]
+5EF: Giygas[END]
+5F0: Ágila[END]
+5F1: Lobo[END]
+5F2: Gaviota[END]
+5F3: Caimán[END]
+5F4: Robot atómico[END]
+5F5: Sr. de cueva[END]
+5F6: Fugitivo[END]
+5F7: Jefe banda SN[END]
+5F8: Barbot[END]
+5F9: Jane[END]
+5FA: Starman[END]
+5FB: Ulrich[END]
+5FC: Cerebrer[END]
+5FD: Mook[END]
+5FE: Armadura[END]
+5FF: Roble[END]
+600: Campesino[END]
+601: Hippie[END]
+602: Sra. bolsas[END]
+603: Miembro banda[END]
+604: Dr. Distorsión[END]
+605: [END]
+606: ZombiDeBanda[END]
+607: Casi zombi[END]
+608: Cuervo[END]
+609: Serpiente[END]
+60A: Hiena[END]
+60B: Lince[END]
+60C: Ciempiés[END]
+60D: Polvoriento[END]
+60E: Mosca[END]
+60F: ¡Arácnido![END]
+610: Escorpión[END]
+611: Cuerda[END]
+612: Bola Ígnea[END]
+613: Ojos[END]
+614: Ojos Abuelo[END]
+615: Fantasma[END]
+616: Nave Eeana[END]
+617: Sr. murciél.[END]
+618: Starman Jr.[END]
+619: Mofeta[END]
+61A: Zombi atroz[END]
+61B: Rata[END]
+61C: Torpedo[END]
+61D: [END]
+61E: Muñeca[END]
+61F: Lámpara[END]
+620: [END]
+621: [END]
+622: Biópedo[END]
+623: Bio-Escorpión[END]
+624: [END]
+625: [END]
+626: Serpiente roja[END]
+627: Lobo aislado[END]
+628: Oso polar[END]
+629: [END]
+62A: [END]
+62B: [END]
+62C: [END]
+62D: Víbora[END]
+62E: Tarántula[END]
+62F: Caimán duro[END]
+630: [END]
+631: Búfalo[END]
+632: [END]
+633: Bio-Murcié.[END]
+634: Perro perdido[END]
+635: Coche maligno[END]
+636: Camión maligno[END]
+637: Camión mortal[END]
+638: AlarmaFantasma[END]
+639: [END]
+63A: Cuatro ojos[END]
+63B: Ojos papá[END]
+63C: Ojos mamá[END]
+63D: [END]
+63E: [END]
+63F: Otiso Celeste[END]
+640: [END]
+641: Giga-Borg[END]
+642: Omega-Borg[END]
+643: Peleón[END]
+644: Barbot mortal[END]
+645: Nave omega[END]
+646: Caroline[END]
+647: Mina estrella[END]
+648: Robot nuclear[END]
+649: Suzie[END]
+64A: Starman azul[END]
+64B: Satania[END]
+64C: Titanian[END]
+64D: Mook mayor[END]
+64E: [END]
+64F: Zombi[END]
+650: Zombi malo[END]
+651: LoboPlateado[END]
+652: R-7037[END]
+653: Oso Pardo[END]
+654: R-7038XX[END]
+655: StarmanFinal[END]
+656: [END]
+657: [END]
+658: [END]
+659: [END]
+65A: [END]
+65B: [END]
+65C: 
+65D: 
+65E: 
+65F: 
+660: 
+661: 
+662: 
+663: 
+664: 
+665: 
+666: 
+667: 
+668: 
+669: 
+66A: 
+66B: 
+66C: 
+66D: 
+66E: 
+66F: 
+670: 
+671: 
+672: 
+673: 
+674: 
+675: 
+676: 
+677: 
+678: 
+679: 
+67A: 
+67B: 
+67C: 
+67D: 
+67E: 
+67F: 
+680: 
+681: 
+682: 
+683: 
+684: 
+685: 
+686: 
+687: 
+688: 
+689: 
+68A: 
+68B: 
+68C: 
+68D: 
+68E: 
+68F: 
+690: 
+691: 
+692: 
+693: 
+694: 
+695: 
+696: 
+697: 
+698: 
+699: 
+69A: 
+69B: 
+69C: 
+69D: 
+69E: 
+69F: 
+6A0: 
+6A1: 
+6A2: 
+6A3: 
+6A4: [END]
+6A5: @[03 1A] decidió no[BREAK]dar ningún objeto.[BREAK][END]
+6A6: @[03 1A] dio [03 1C][BREAK]a [03 1B].[BREAK][END]
+6A7: @[03 1A] pusoe [03 1C][BREAK]en la mochila de [03 1B].[BREAK][END]
+6A8: @[03 1B] cogió [03 1C][BREAK]de la mochila de [03 1A].[BREAK][END]
+6A9: @[03 3E] tiró[BREAK][03 1C] que estaba en[BREAK]la mochila de [03 1A].[BREAK][END]
+6AA: @[03 3E] cogió [03 1C][BREAK]de la mochila de [03 1A][BREAK][PAUSE]y lo puso en la mochila[BREAK]de [03 1B].[BREAK][END]
+6AB: 
+6AC: 
+6AD: 
+6AE: @[03 1A] se tragó la[BREAK][03 1C].[BREAK][END]
+6AF: @[03 1A] come [03 1C].[BREAK][END]
+6B0: @[03 1A] bebe[BREAK][03 1C].[BREAK][END]
+6B1: se recuperan [03 1E] puntos.[BREAK][END]
+6B2: subió a [03 1E].[BREAK][END]
+6B3: @Los PV de [03 1A][BREAK][END]
+6B4: @El PP de [03 1A][BREAK][END]
+6B5: @Lucha de [03 1A][BREAK][END]
+6B6: @Rapidez de [03 1A][BREAK][END]
+6B7: @Saber de [03 1A][BREAK][END]
+6B8: @Fuerza de [03 1A][BREAK][END]
+6B9: @CI de [03 1A][BREAK][END]
+6BA: @[03 1A] cogió una[BREAK]hoja mágica del mochilón[BREAK]y la usó.[BREAK][END]
+6BB: @[03 1A] hizo migas con[BREAK]el pan y empezó a hacer un[BREAK]camino con ellas.[BREAK][END]
+6BC: @Tienes que tirar tus otras[BREAK]migajas antes de usar[BREAK]otro pan.[BREAK][END]
+6BD: @[03 16] siguió el camino[BREAK]de migajas de vuelta[BREAK]a donde empieza.[BREAK][END]
+6BE: @[03 1A] se puso la cinta[BREAK]en el pelo.[BREAK][END]
+6BF: @"¡Solo pulsa el apagado!"[BREAK][END]
+6C0: @Pudiste averiguar el tamaño[BREAK]de varias cosas.[BREAK][END]
+6C1: @El mochilón desapareció[BREAK]tras vaciarlo.[BREAK][END]
+6C2: @Usaste todas las llamadas[BREAK]de tu tarjeta telefónica.[BREAK][END]
+6C3: @El veneno ha sido eliminado[BREAK]del cuerpo de [03 1A].[BREAK][END]
+6C4: @Curado el resfriado de[BREAK][03 1A].[BREAK][END]
+6C5: @[03 1A] sujetó la[BREAK]piedra PSI.[BREAK][END]
+6C6: @La piedra PSI se convirtió[BREAK]en una piedra normal.[BREAK][END]
+6C7: @[03 1A] usó [03 1C].[BREAK][END]
+6C8: @No te queda poder necesario[BREAK]para poder usarlo.[BREAK][END]
+6C9: @¡[03 1A] revivió![BREAK][END]
+6CA: @La mayor parte del diario[BREAK]es ilegible, pero una parte[BREAK]destaca:[BREAK][PAUSE]@"La contraseña...[BREAK][PAUSE]¿Dónde está la cola divina,[BREAK][PAUSE]que fue dejada por el barco[BREAK]que se eleva sobre los[BREAK]cielos?"[BREAK][END]
+6CB: @El cuerpo de [03 1A] volvió[BREAK]a ser blando.[BREAK][END]
+6CC: @Has toca la ocarina de la[BREAK]esperanza.[BREAK][END]
+6CD: @¿Te gustó?[BREAK][END]
+6CE: @Este lugar no está en el[BREAK]mapa.[BREAK][END]
+6CF: @[03 1A] miró el mapa.[BREAK][END]
+6D0: @Algún tipo de fuerza está[BREAK]haciendo retroceder a[BREAK][03 16][03 17].[BREAK][END]
+6D1: @Desapareció el poder[BREAK]misterioso del[BREAK]amuleto protector.[BREAK][END]
+6D2: 
+6D3: 
+6D4: 
+6D5: 
+6D6: @[03 1A] se quitó[BREAK][03 1C] y lo guardó[BREAK]de nuevo.[BREAK][END]
+6D7: @[03 1A] está inconsciente.[BREAK][END]
+6D8: @¡Todo el grupo fue[BREAK]curado![BREAK][END]
+6D9: @¡[03 10] percibió[BREAK]un leve recuerdo de su[BREAK]bisabuelo![BREAK][END]
+6DA: @¿Huh? Parece que hay[BREAK]algo dentro del cuerpo[BREAK]de EVE...[BREAK][END]
+6DB: @Encontré tu tarjeta de[BREAK]crédito en el suelo de tu[BREAK]cuarto.[BREAK][END]
+6DC: @Oh, parece que no puedes[BREAK]llevar más cosas.[BREAK][END]
+6DD: 
+6DE: 
+6DF: 
+6E0: @El peligro acecha[BREAK]constantemente...[BREAK] [END]
+6E1: @¡Todo está patas arriba![BREAK] [END]
+6E2: 
+6E3: 
+6E4: 
+6E5: 
+6E6: 
+6E7: 
+6E8: 
+6E9: 
+6EA: 
+6EB: 
+6EC: 
+6ED: 
+6EE: 
+6EF: 
+6F0: 
+6F1: 
+6F2: 
+6F3: 
+6F4: [END]
+6F5: Derechos del juego[03 3F] escenario[03 3F][BREAK][BREAK]música[03 3F] excepto la que[BREAK][BREAK]tiene derechos y compuesta por[BREAK][BREAK]Keiichi Suzuki[03 3F] propiedad de[BREAK][BREAK]SHIGESATO ITOI y NINTENDO.[BREAK][BREAK]NINTENDO se reserva los[BREAK][BREAK]derechos del programa.[BREAK][END]
+6F6: 
+6F7: 
+6F8: 
+6F9: 
+6FA: 
+6FB: 
+6FC: 
+6FD: 
+6FE: [BREAK][BREAK][BREAK][BREAK][END]
+6FF: [03 12] se reunió con su[BREAK]madre, y como el resto de[BREAK]la gente liberada, salen de[BREAK]la cueva.[BREAK][END]
+700: [03 13], se recuperó[BREAK]totalmente, y ahora es un[BREAK]cantante popular en Live[BREAK]House.[BREAK][END]
+701: Los adultos abducidos[BREAK]volvieron con sus hijos en[BREAK]Easter. ¡Bien hecho, niños![BREAK][END]
+702: [03 12]: Prometo que nunca[BREAK]os olvidaré. Así que no me[BREAK]despediré... Solo un,[BREAK]"¡Hasta luego!"[BREAK][END]
+703: [03 11] vuelve como un[BREAK]héroe a la Escuela Primaria[BREAK]Twinkle.[BREAK][END]
+704: ¡Bienvenido, [03 10]![BREAK]Estamos muy contentas de[BREAK]que vuelvas sano y salvo.[BREAK]¡Debes de estar hambriento![BREAK][END]
+705: Oh, una carta de [03 10].[BREAK]Le echo mucho de menos.[BREAK]Espero que pronto podamos[BREAK]estar juntos de nuevo...[BREAK][END]
+706: Bueno, ahora que la crisis[BREAK]de la Tierra acabó,[BREAK]descansaré un momento[BREAK]y... Zzzzzzz...[END]
+707: Oh, soy tu padre.[BREAK]Odio levantarte, pero puede[BREAK]que sea un poco pronto[BREAK]para descansar...[END]
+708: 
+709: "Mochilón"[BREAK]@Una mochilla llena de[BREAK]hojas mágicas.[END]
+70A: "Bono telefónico"[BREAK]@Con esto puedes hacer 50[BREAK]llamadas en teléfonos[BREAK]públicos.[END]
+70B: "Migajas"[BREAK]@Con ellas, puedes volver al[BREAK]punto exacto en el que[BREAK]empezaste a esparcirlas.[END]
+70C: "Amuleto de protección"[BREAK]@Cuando se usa, este objeto[BREAK]aleja a los enemigos[BREAK]débiles durante un rato.[END]
+70D: [END]
+70E: "Memoria ROM"[BREAK]@Parte de los recuerdos del[BREAK]bisabuelo George están[BREAK]almacenados en esto.[BREAK][PAUSE]@[03 10] puede usarlo para[BREAK]volver a donde está EVE.[END]
+70F: [END]
+710: [END]
+711: [END]
+712: "Cuchillo"[BREAK]@Un arma en la que [03 13][BREAK]puede usar hábilmente.[END]
+713: "Daga"[BREAK]@Una arma con la que [03 13][BREAK]será mas fuerte que[BREAK]con un cuchillo normal.[END]
+714: "Espada"[BREAK]@Probablemente solo unos[BREAK]pocos elegidos, pueden[BREAK]dominarla.[END]
+715: "Katana"[BREAK]@[03 13] puede usar esta[BREAK]espada Japonesa.[BREAK][PAUSE]@Es el arma más fuerte de[BREAK]todas.[END]
+716: "Táser"[BREAK]@[03 11] probablemente pueda[BREAK]usarla.[END]
+717: "Arma falsa"[BREAK]@Es un arma muy fuerte,[BREAK]pero solo [03 11][BREAK]puede usarla.[END]
+718: "Bate roto"[BREAK]@¡[03 10]! ¡Intenta usar[BREAK]esto como arma![END]
+719: "Minibate"[BREAK]@Debería funcionar bien[BREAK]contra enemigos débiles,[BREAK][03 10].[END]
+71A: "Bate bueno"[BREAK]@Con esto, [03 10] puede[BREAK]luchar contra poderosos[BREAK]enemigos.[END]
+71B: "Bate del salón de la fama"[BREAK]@Un espectacular bate con[BREAK]el autógrafo de un[BREAK]beisbolista famoso.[END]
+71C: "Sartén"[BREAK]@[03 12] puede usarla[BREAK]como arma.[END]
+71D: "Sartén deluxe"[BREAK]@Esta sartén no quema la[BREAK]comida,[BREAK][PAUSE]y [03 12] puede usarla[BREAK]como arma.[END]
+71E: "Sartenaza"[BREAK][PAUSE]@Ni siquiera los tipos duros[BREAK]pueden mantenerse en pie[BREAK]tras un golpe de esta[BREAK]pesada sartén.[END]
+71F: "Honda"[BREAK]@Un arma simple que[BREAK]todos pueden usar.[END]
+720: "Búmerang"[BREAK]@Usar con precaución. Esto[BREAK]no es un juguete.[BREAK][PAUSE]Todos pueden usar el arma.[END]
+721: "Pesticida"[BREAK]@Efectivo contra insectos y[BREAK]cosas del estilo.[END]
+722: "Pesticida [END]
+723: "Bomba de pulgas"[BREAK]@Relleno de pulgas y piojos.[BREAK]¡Tíraselo al enemigo y[BREAK]mira que pasa![END]
+724: "Letras de amor"[BREAK]@¿¿¿???[END]
+725: "Letras malditas"[BREAK]@¿¿¿???[END]
+726: "Creador de limos"[BREAK]@PARECE que puede ser[BREAK]útil en combate, pero...[END]
+727: "Foco negro"[BREAK]@Exáctamente el opuesto de[BREAK]de una linterna.[END]
+728: [END]
+729: [END]
+72A: "Lanzallamas"[BREAK]@Quema enemigos hasta que[BREAK]estén crujientes, solo[BREAK][03 11] puede usarlo.[END]
+72B: "Bomba"[BREAK]@Probablemente solo [03 11][BREAK]pueda usarlo.[END]
+72C: "Super bomba"[BREAK]@Tiene escrito:[BREAK]"¡Peligro! ¡Explosivo!"[BREAK][PAUSE]@Deja esto en manos de[BREAK][03 11].[END]
+72D: "Rayo láser"[BREAK]@Si el debilucho de [03 11][BREAK]llevase esto...[END]
+72E: "Rayo de la muerte"[BREAK]@Si el cobarde de [03 11][BREAK]llevase esto, sería[BREAK]una amenaza.[END]
+72F: [END]
+730: "Cuerda"[BREAK]@Usa esto para atar[BREAK]al enemigo.[END]
+731: [END]
+732: [END]
+733: [END]
+734: [END]
+735: "Moneda de la paz"[BREAK]@Aumenta tu defensa[BREAK]ligeramente cuando está[BREAK]equipada.[END]
+736: "Moneda de protección"[BREAK]@Aumenta tu defensa[BREAK]un poco cuando está[BREAK]equipada.[END]
+737: "Moneda mágica"[BREAK]@Aumenta un poco más tu[BREAK]defensa cuando está[BREAK]equipada.[END]
+738: "Mitón de hada"[BREAK]@Aumenta tu defensa un[BREAK]poquito cuando está[BREAK]equipado.[END]
+739: "Mitón de ángel"[BREAK]@Aumenta tu defensa una[BREAK]buena cantidad cuando[BREAK]está equipado.[END]
+73A: "Mitón de Diosa"[BREAK]@Aumenta tu defensa un[BREAK]montón cuando está[BREAK]equipado.[END]
+73B: "Aro de lluvia"[BREAK]@Reduce el daño de PK fuego[BREAK]cuando se equipa.[END]
+73C: "Aro de fuego"[BREAK]@Reduce el daño de PK frío[BREAK]cuando se equipa.[END]
+73D: "Aro de tierra"[BREAK]@Reduce el daño de PK rayo[BREAK]cuando se equipa.[END]
+73E: "Aro marino"[BREAK]@Reduce el daño de PK fuego,[BREAK]PK frío, y PK rayo cuando[BREAK]se equipa.[END]
+73F: "Facilitador"[BREAK]@Equipa este objeto para[BREAK]aumentar la EXP y el dinero[BREAK]y reducir los combates[BREAK]aleatorios.[END]
+740: [END]
+741: [END]
+742: [END]
+743: [END]
+744: "Zumo de naranja"[BREAK]@Rico en vitamina C.[BREAK]Recupera un poco de PV.[END]
+745: "Patatas fritas"[BREAK]@Recupera PV con o sin[BREAK]ketchup.[END]
+746: "Hoja mágica"[BREAK]@Por favor, usa esto cuando[BREAK]estés cansado o herido.[END]
+747: "Hamburgesa"[BREAK]@Comida rápida para[BREAK]recuperar PV rápidamente.[END]
+748: "Refresco"[BREAK]@Bébelo para sentirte[BREAK]mejor, no importa lo[BREAK]cansado que estés.[END]
+749: "Medicina"[BREAK]@Úsalo para curar heridas.[END]
+74A: "Espray para el asma"[BREAK]@Si [03 10] empieza a tener[BREAK]un ataque de asma, esto[BREAK]lo detendrá.[END]
+74B: "Antídoto"[BREAK]@Contraresta rápidamente[BREAK]el veneno.[END]
+74C: "Colutorio"[BREAK]@Haz gárgaras con esto[BREAK]cuando estés resfriado.[END]
+74D: "Tofu sabor a fresa"[BREAK]@¿No te gustaría probarlo?[END]
+74E: [END]
+74F: "Pan"[BREAK]@Está bien para comer,[BREAK][PAUSE]pero puedes usar sus migas[BREAK]para marcar el camino para[BREAK]volver más tarde.[END]
+750: "Pipa de ángel"[BREAK]@Elimina la maldición de una[BREAK]pipa de demonio.[END]
+751: "Piedra de poder PSI"[BREAK]@Poder PSI se oculta dentro[BREAK]de esta piedra.[END]
+752: [END]
+753: "Tira mágica"[BREAK]@Aumenta el CI un poco[BREAK]cuando se ata en el pelo[BREAK]de una chica.[END]
+754: "Dulce raro"[BREAK]@Aumenta la Lucha un poco[BREAK]cuando un debilucho[BREAK]se lo come.[END]
+755: [END]
+756: "Gragea de velocidad"[BREAK]@Aumenta la Rapidez.[END]
+757: "Gragea de saber"[BREAK]@Aumenta el Saber.[END]
+758: "Gragea de fuerza"[BREAK]@Aumenta la Fuerza.[END]
+759: "Gragea de CI"[BREAK]@Aumenta el CI.[END]
+75A: "Gragea de lucha"[BREAK]@Aumenta la Lucha.[END]
+75B: [END]
+75C: [END]
+75D: "Llave de casa"[BREAK]@Es necesaria para entrar[BREAK]al sótano.[END]
+75E: "Llave del zoo"[BREAK]@Debería abrir la puerta[BREAK]principal del zoo.[END]
+75F: "Llave de casa encantada"[BREAK]@La llave a la mansión de la[BREAK]familia Rosemary.[END]
+760: "Diario del bisabuelo"[BREAK]@El diario del bisabuelo de[BREAK][03 10].[BREAK][PAUSE]@Está lleno de escritos,[BREAK]pero está en tan mal estado[BREAK]que la mayoría es ilegible.[END]
+761: "Pase"[BREAK]@Tiene escrito:[BREAK]"Empleado Fábrica Duncan".[END]
+762: "Ticket de espectáculo"[BREAK]@"El espectáculo diario de[BREAK]Rock 'n' Roll"[BREAK]tiene escrito.[END]
+763: [END]
+764: [END]
+765: [END]
+766: [END]
+767: "Bebé pájaro"[BREAK]@Tiene una mirada solitaria[BREAK]en sus ojos.[END]
+768: [END]
+769: "Cohete en botella"[BREAK]@[03 11] debería saber[BREAK]cómo usarlo.[END]
+76A: "Sombrero"[BREAK]@Un bonito sombrero con el[BREAK]nombre "[03 12]"[BREAK]bordado en él.[END]
+76B: "Dentadura"[BREAK]@Inútil si tienes cuidado[BREAK]con tus dientes y te los[BREAK]cepillas asiduamente.[END]
+76C: "Resguardo de ticket"[BREAK]@Tiene escrito:[BREAK]"¡Consigue 10 resguardos[BREAK]para un viaje en tanque!"[END]
+76D: [END]
+76E: "Ocarina de la esperanza"[BREAK]@Puedes usar esto para[BREAK]escuchar las melodías que[BREAK]has ido consiguiendo.[END]
+76F: [END]
+770: "Medalla Franklin"[BREAK]@Dicen que Benjamin Franklin[BREAK]la llevó de protección[BREAK]durante sus experimentos[BREAK]con rayos.[END]
+771: [END]
+772: [END]
+773: "Gancho de ónix"[BREAK]@Puedes regresar a Magicant[BREAK]desde cualquier parte.[END]
+774: "Arma definitiva"[BREAK]@¿¿¿???[END]
+775: "Regla"[BREAK]@Una regla de casi 30 cm[BREAK]de largo.[END]
+776: "Tarjeta de crédito"[BREAK]@Úsala para acceder a tu[BREAK]cuenta bancaria y[BREAK]depositar o retirar dinero.[END]
+777: "Hoja roja"[BREAK]@De primeras, parece una[BREAK]hoja normal,[BREAK]pero...[END]
+778: "Megáfono mágico"[BREAK]@Úsalo para asustar enemigos[BREAK]con tus gritos.[END]
+779: [END]
+77A: [END]
+77B: [END]
+77C: [END]
+77D: [END]
+77E: [END]
+77F: [END]
+780: [END]
+781: [END]
+782: [END]
+783: [END]
+784: [END]
+785: [END]
+786: [END]
+787: "Debug"[BREAK]@.......[BREAK][END]
+788: 
+789: 
+78A: [03 14][END]
+78B: SHIGESATO ITOI[END]
+78C: MIYUKI KURE[END]
+78D: AKIO OHMORI[END]
+78E: RITSUO KAMIMURA[END]
+78F: KEIICHI SUZUKI[END]
+790: HIROKAZU TANAKA[END]
+791: SHINBO MINAMI[END]
+792: TATSUYA ISHII[END]
+793: TOTTORI[END]
+794: KAZUYA NAKATANI[END]
+795: TAKAYUKI ONODERA[END]
+796: MOTOO YASUMA[END]
+797: MASAYUKI KAMEYAMA[END]
+798: HIDEO KON[END]
+799: KATSUTOMO MAEIWA[END]
+79A: KUNIKO SAKURAI[END]
+79B: MASAHIRO TATEMOTO[END]
+79C: TAKASHI KAWAGUCHI[END]
+79D: KEIZOH KATOH[END]
+79E: MOTOHIRO ISHII[END]
+79F: AKIHITO TODA[END]
+7A0: YUKARI SAITOH[END]
+7A1: PHIL SANDHOP[END]
+7A2: TOSHIKO WATSON[END]
+7A3: YUKA NAKATA[END]
+7A4: HIROKO FAULKNER[END]
+7A5: TONY HARMAN[END]
+7A6: DAYV BROOKS[END]
+7A7: NORIYUKI MINAMI[END]
+7A8: BIN OHGAWARA[END]
+7A9: YOSHIHISA WADA[END]
+7AA: HIKONORI SUZUKI[END]
+7AB: TAKAO SHIMIZU[END]
+7AC: SHIGERU MIYAMOTO[END]
+7AD: HIROSHI YAMAUCHI[END]
+7AE: 
+7AF: 
+7B0: 
+7B1: 
+7B2: 
+7B3: 
+7B4: 
+7B5: 
+7B6: 
+7B7: 
+7B8: 
+7B9: 
+7BA: 
+7BB: 
+7BC: 
+7BD: 
+7BE: 
+7BF: 
+7C0: 
+7C1: 
+7C2: 
+7C3: 
+7C4: 
+7C5: 
+7C6: 
+7C7: 
+7C8: 
+7C9: 
+7CA: 
+7CB: 
+7CC: 
+7CD: 
+7CE: 
+7CF: [END]
+7D0: [END]
+7D1: [END]
+7D2: [03 03]Á¿[03 04]É [03 03]ÁÀ[03 04]É [END]
+7D3: ¡[03 20] ataca de repente![END]
+7D4: ¡[03 20] ataca![END]
+7D5: ¡[03 20] usó el cañón del tanque![END]
+7D6: ¡[03 21] lo esquiva![END]
+7D7: ¡Ataque combinado![END]
+7D8: ¡[03 20] mordió a [03 21]![END]
+7D9: ¡[03 20] arañó a [03 21]![END]
+7DA: ¡[03 20] derribó a [03 21]![END]
+7DB: [03 2C][END]
+7DC: ¡[03 21] pierde [03 23] PV![END]
+7DD: [BREAK]         [5A][59][55]%[55][5B][5D][5E][5F][BREAK][END]
+7DE: [BREAK][03 16] fue vencido...[BREAK][END]
+7DF: ¡[03 21] fue vencido![END]
+7E0: [03 21] se cansó y se desmayó...[END]
+7E1: Pero [03 21] ya no está.[END]
+7E2: ¡No tiene efecto en [03 21]![END]
+7E3: ¡[03 20] se desquició![END]
+7E4: ¡[03 20] se quedó sin fuerzas![END]
+7E5: ¡¡¡Ataque desesperado de [03 20]!!![END]
+7E6: ¡No captas la forma del ataque de [03 20]![END]
+7E7: ¡A [03 21] le rodea una barrera![END]
+7E8: "¡Eres una desgracia para tu madre!"[END]
+7E9: ¡[03 21] se petrificó![END]
+7EA: ¡[03 20] lanzó una sustancia pegajosa![END]
+7EB: ¡Ataron a [03 21]![END]
+7EC: [03 20] sigue con el enredo...[END]
+7ED: ¡[03 20] suelta un gruñido raro![END]
+7EE: ¡[03 20] explotó![END]
+7EF: ¡[03 20] ardió en llamas![END]
+7F0: ¡El Ataque de [03 21] aumentó en [03 23]![END]
+7F1: ¡El Ataque de [03 21]disminuyó en [03 23]![END]
+7F2: ¡La Defensa de [03 21] aumentó en [03 23]![END]
+7F3: ¡La velocidad de [03 21] aumentó en [03 23]![END]
+7F4: [03 3C] Ataque [03 23][END]
+7F5: [03 3C] Defensa [03 23][END]
+7F6: ¡La Lucha de [03 21] disminuyó en [03 23]![END]
+7F7: ¡La Defensa de [03 21] disminuyó en [03 23]![END]
+7F8: ¡[03 20] sonríe con valentía![END]
+7F9: ¡La Lucha de [03 21] aumentó en [03 23]![END]
+7FA: ¡[03 20] se enfureció![END]
+7FB: ¡La Velocidad de [03 21] disminuyó en [03 23]![END]
+7FC: ¡[03 20] hizo algo perturbador![END]
+7FD: ¡[03 20] pidió ayuda![END]
+7FE: ¡[03 20] sembró semillas![END]
+7FF: ¡Los puntos de experiencia de [03 21] aumentaron![END]
+800: ¡[03 20] se echó a reir![END]
+801: El tanque fue destrozado...[END]
+802: ¡[03 20] dijo algo aterrador![END]
+803: ¡[03 20] dijo algo desagradable![END]
+804: [03 20] intenta hacerse el muerto...[END]
+805: ¡Fue efectivo![END]
+806: No fue muy convincente.[END]
+807: ¡[03 21] se enfadó![END]
+808: ¡[03 21] está en estado crítico![END]
+809: ¡[03 21] perdió el sentido de la situación![END]
+80A: [03 20] perdió el sentido de la situación.[END]
+80B: ¡[03 21] se durmió![END]
+80C: [03 20] está durmiendo...[END]
+80D: ¡[03 21] recuperó [03 23] PP![END]
+80E: ¡[03 21] recuperó [03 23] PV![END]
+80F: ¡[03 20] recuperó energía![END]
+810: Pero nadie vino.[END]
+811: (silencio...)[END]
+812: ¡[03 21] se unió al combate![END]
+813: ¡[03 20] huyó![END]
+814: ...No lo consiguió.[END]
+815: ¡[03 20] se tropezó y cayó![END]
+816: [03 20] no puede moverse...[END]
+817: [03 20] está de piedra...[END]
+818: ¡Robados [03 23] PP de [03 21]![END]
+819: ¡[03 21] está inmóvil![END]
+81A: ¡[03 20] emitió vapores![END]
+81B: ¡A [03 21] le envenaron![END]
+81C: ¡A [03 21] le deshidrataron![END]
+81D: ¡Los poderes de [03 21] fueron bloqueados![END]
+81E: ¡A [03 21] le ataron con cuerda![END]
+81F: ¡A [03 21] le protege un escudo![END]
+820: ¡Falló![END]
+821: ¡Pero el PSI fue bloqueado![END]
+822: ¡Pero el broche Franklin de [03 21] reflejó el rayo![END]
+823: ¡[03 21] reflejó el ataque![END]
+824: ¡No tienes suficiente PP![END]
+825: ¡No fue efectivo en [03 21]![END]
+826: ¡[03 20] tuvo un[BREAK]ataque de asma!...(Cough cough cough)[END]
+827: ¡[03 20] está rezando![END]
+828: [03 20] saludó educadamente y se fue.[END]
+829: ¡[03 20] está en posición defensiva![END]
+82A: ¡[03 20] cantó![END]
+82B: [03 20] se defiende.[END]
+82C: ¡[03 20] se acercó![END]
+82D: ¡Se fue el veneno del cuerpo de [03 21]![END]
+82E: ¡[03 21] volvió a la normalidad![END]
+82F: ¡[03 21] se retorció de dolor![END]
+830: ¡[03 21] ya se puede mover![END]
+831: ¡[03 21] despertó![END]
+832: ¡¡¡[03 21] revivió!!![END]
+833: ¡[03 20] usó [03 F0][03 22]![END]
+834: ¡[03 20] usó [03 22]![END]
+835: ¡[03 20] no puede usar [03 22]![END]
+836: [03 20] evalúa la situación...[END]
+837: ¡[03 20] hizo algo raro![END]
+838: [03 20] está retrocediendo.[END]
+839: ¡El escudo de [03 21] fue destruido![END]
+83A: ¡[03 20] analiza al enemigo![END]
+83B: [03 3C] resiste el calor[END]
+83C: [03 3C] resiste el frío[END]
+83D: [03 3C] resiste el rayo[END]
+83E: [03 3C] resiste la luz[END]
+83F: [03 3C] resiste a los esprays[END]
+840: ¡Acabó el ataque de asma de [03 21]![END]
+841: ¡[03 21] se ablandó![END]
+842: "¡Me gustas!"[END]
+843: "¡Te odio!"[END]
+844: ¡[03 21] tiene un ataque de asma![END]
+845: [03 22] se rompió...[END]
+846: ¡[03 20] usó una semilla de demonio![END]
+847: ¡[03 20] usó gas paralizante![END]
+848: La [03 22] se volvió una piedra normal...[END]
+849: ¡[03 21] volvió a la normalidad![END]
+84A: ¡[03 21] se calmó![END]
+84B: ¡[03 21] fue vencido![END]
+84C: ¡Destrucción de [03 21]![END]
+84D: ¡[03 21] volvió al polvo de la tierra![END]
+84E: ¡[03 21] deja de moverse![END]
+84F: ¡[03 21] fue desguazado![END]
+850: ¡[03 21] desapareció en el aire![END]
+851: [03 20] roba [03 21] a [03 22]![END]
+852: ¡[03 20] sube de nivel![BREAK][PAUSE][03 01][END]
+853: ¡[03 20] aprendió un PSI para luchar![BREAK][PAUSE][03 01][END]
+854: ¡PV Max aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+855: ¡PP Max aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+856: ¡Lucha aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+857: ¡Rapidez aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+858: ¡Saber aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+859: ¡Fuerza aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+85A: ¡CI aumenta en [03 23]![BREAK][PAUSE][03 01][END]
+85B: ¡[03 20] se suelta de la cuerda![END]
+85C: ¡Recoges [03 F1][03 1D]![BREAK][PAUSE][03 01][END]
+85D: ¡[03 21] deja de estar confuso![END]
+85E: ¡[03 20] despierta![END]
+85F: ¡[03 20] hizo un agujero en el espacio![BREAK][END]
+860: ¡Pero fue ineficaz![END]
+861: El [03 22] ya estaba vacío...[END]
+862: [BREAK]No se avista el final del combate...[BREAK][END]
+863: (De algún lugar,[BREAK][PAUSE][03 16] oye a la Reina Mary...)[BREAK][PAUSE]No puedes vencer a Giygas con fuerza bruta...[BREAK][PAUSE]Dudo que cualquier arma pueda vencerlo...[BREAK][PAUSE]Pero la nana...[BREAK][PAUSE]¡Puede que la canción que le canté le detenga![BREAK][PAUSE][03 01][END]
+864: ¡[03 21] se recuperó del todo![END]
+865: [END]
+866: "¡[03 10]! ¡Le debo mucho a tu árbol familiar!"[BREAK][PAUSE][03 01][END]
+867: "María, la esposa de George, me[BREAK][PAUSE]crió cuando era pequeño..."[BREAK][PAUSE][03 01][END]
+868: "Mientras tanto, George robó información vital[BREAK][PAUSE]de nuestro planeta e intentó usarla en nuestra contra..."[BREAK][PAUSE][03 01][END]
+869: "Y ahora, su descendiente[BREAK][PAUSE]intenta impedir nuestros planes...[BREAK][PAUSE]¡[03 10]! ¡Me refiero a ti!"[BREAK][PAUSE][03 01][END]
+86A: "¡Ahora, vete![BREAK][PAUSE]¡Puedes ser destruido[BREAK][PAUSE]con el resto de los repugnantes terrestres!"[BREAK][PAUSE][03 01][END]
+86B: "¡Eres demasiado débil para hacer algo![BREAK][PAUSE]¡Para mí, sois insectos!"[BREAK][PAUSE][03 01][END]
+86C: "[03 10]...[BREAK][PAUSE]Solo quiero dejarte a ti, y solo a ti, con vida.[BREAK][PAUSE]Sube a la nave conmigo."[BREAK][PAUSE][03 01][END]
+86D: "...Entonces, ¡puedes perecer con tus amigos[BREAK][PAUSE]y el resto de la horrible gente de la Tierra!"[BREAK][PAUSE][03 01][END]
+86E: "¡Dejad de cantar!"[END]
+86F: "¡Dejad de... cantar...!"[END]
+870: "¡D-dejad de cantar!"[END]
+871: "¡Dejad de cantar!"[END]
+872: "¡Insectos terrícolas![BREAK]¡Callaros! ¡Dejar de cantar!"[END]
+873: "¡Dejad de..."[END]
+874: "...cantar!"[END]
+875: "¡¡¡!!!"[END]
+876: "Dejad de..."[END]
+877: "¡¡¡!!!"[END]
+878: "... ... ..."[END]
+879: "¿CÓMO ME HA VENCIDO ESTA CANCIÓN?..."[BREAK][PAUSE][03 01][END]
+87A: "¡VOLVERÉ Y... Y... HARÉ QUE..."[BREAK][PAUSE][03 01][END]
+87B: "¡[03 10]! ¡Nos volveremos a ver!"[BREAK][PAUSE][03 01][END]

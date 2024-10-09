@@ -1,0 +1,37 @@
+{
+    "0": {
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_0",
+        "goto": "1"
+    },
+    "1": {
+        "font": "EBZ",
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_1",
+        "goto": "2"
+    },
+    "2": {
+        "font": "EBZ",
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_2",
+        "goto": "3"
+    },
+    "3": {
+        "font": "EBZ",
+        "emoteplayer": "question",
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_3",
+        "goto": "4"
+    },
+    "4": {
+        "font": "EBZ",
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_4",
+        "goto": "5"
+    },
+    "5": {
+        "font": "EBZ",
+        "sound": "Adult",
+        "text": "DIALOGUE_SHITPOST_DIALOGUE_VENT_5"
+    }
+}
