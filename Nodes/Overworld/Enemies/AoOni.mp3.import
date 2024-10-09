@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/AoOni.mp3-c7fe3d60e3d3ca615a998e4a2d373f93.mp3str"
+
+[deps]
+
+source_file="res://Nodes/Overworld/Enemies/AoOni.mp3"
+dest_files=[ "res://.import/AoOni.mp3-c7fe3d60e3d3ca615a998e4a2d373f93.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
