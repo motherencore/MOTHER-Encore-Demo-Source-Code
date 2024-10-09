@@ -26,9 +26,10 @@ func _ready():
 func _physics_process(delta):
 	move_vec = Input.get_vector("ui_key_left", "ui_key_right", "ui_key_up", "ui_key_down").round()
 	move_vec += Input.get_vector("ui_dpad_left", "ui_dpad_right", "ui_dpad_up", "ui_dpad_down").round()
-	move_vec += Input.get_vector("ui_lstick_left", "ui_lstick_right", "ui_lstick_up", "ui_lstick_down", 0.5).round()
-	move_vec += Input.get_vector("ui_rstick_left", "ui_rstick_right", "ui_rstick_up", "ui_rstick_down", 0.5).round()
-	move_vec = -sign_vector(move_vec)
+	move_vec += Input.get_vector("ui_lstick_left", "ui_lstick_right", "ui_lstick_up", "ui_lstick_down").round()
+	move_vec += Input.get_vector("ui_rstick_left", "ui_rstick_right", "ui_rstick_up", "ui_rstick_down").round()
+	var threshold = InputMap.action_get_deadzone("ui_lstick_left")
+	move_vec = -sign_vector(move_vec, threshold)
 	#print(move_vec)
 	# these are reversed because i'm moving the sprite itself, not a camera around it.
 	
@@ -53,9 +54,9 @@ func _physics_process(delta):
 		
 		if move_vec != Vector2.ZERO:
 			if (move_vec.x < 0 and not limits_reached[3]) or (move_vec.x > 0 and not limits_reached[0]):
-				map_offset.x += move_vec.x * (int(Input.is_action_pressed("ui_select")) + 1)
+				map_offset.x += move_vec.x * (int(Input.is_action_pressed("ui_toggle")) + 1)
 			if (move_vec.y < 0 and not limits_reached[2]) or (move_vec.y > 0 and not limits_reached[1]):
-				map_offset.y += move_vec.y * (int(Input.is_action_pressed("ui_select")) + 1)
+				map_offset.y += move_vec.y * (int(Input.is_action_pressed("ui_toggle")) + 1)
 		
 		$MapArrows/arrowL.visible = not limits_reached[0]
 		$MapArrows/arrowU.visible = not limits_reached[1]
@@ -73,20 +74,19 @@ func _physics_process(delta):
 		$MapImage/PlayerMarker.position = player_pos
 		
 		if marker_time >= 0.5:
-			if $MapImage/MapMarkers.offset.y == 0: # marker flash logic
-				$MapImage/MapMarkers.offset.y = -1
-			elif $MapImage/MapMarkers.offset.y == -1:
-				$MapImage/MapMarkers.offset.y = 0
+			if $MapImage/MapMarkers.position.y == 0: # marker flash logic
+				$MapImage/MapMarkers.position.y = -1
+			elif $MapImage/MapMarkers.position.y == -1:
+				$MapImage/MapMarkers.position.y = 0
 			marker_time = 0
 		marker_time += delta
 		
-		if Input.is_action_just_pressed("ui_ctrl") and loaded_map != "404":
+		if Input.is_action_just_pressed("ui_scope", true) and loaded_map != "404":
 			$MapImage/MapMarkers.visible = !$MapImage/MapMarkers.visible 
 			$MapImage/PlayerMarker.visible = !$MapImage/PlayerMarker.visible 
 		
-		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"): #returning to pause menu if player presses cancel
+		if Input.is_action_just_pressed("ui_cancel"): #returning to pause menu if player presses cancel
 			Input.action_release("ui_cancel")
-			Input.action_release("ui_toggle")
 			active = false
 			uiManager.commandsMenuActive = true
 			emit_signal("back")
@@ -99,31 +99,31 @@ func load_map(areaName: String, dontUpdate := false):
 	var dir := Directory.new()
 	
 	var map_tex_path : String = "res://Graphics/UI/Maps/" + areaName + "_map.png"
-	var mark_tex_path : String = "res://Graphics/UI/Maps/" + areaName + "_markers.png"
 	var name_tex_path : String = "res://Graphics/UI/Maps/" + areaName + "_namePlate.png"
 	
 	var map_tex : Texture
-	var mark_tex : Texture
 	var name_tex : Texture
-	
+	var map_markers : Array
 	
 	if areaName != loaded_map:
 		if areaName != "": 
 			map_tex = load(map_tex_path)
-			mark_tex = load(mark_tex_path)
 			name_tex = load(name_tex_path)
 			loaded_map = areaName
 			$MapImage/PlayerMarker.show()
 			$MapImage/MapMarkers.show()
+			$MapImage/Label.hide()
+			map_markers = globaldata.mapMarkers[areaName]
 		else: 
 			map_tex = load("res://Graphics/UI/Maps/404_map.png")
-			mark_tex = load("res://Graphics/UI/Maps/404_markers.png")
-			name_tex = load("res://Graphics/UI/Maps/404_namePlate.png") 
+			name_tex = load("res://Graphics/UI/Maps/404_namePlate.png")
 			loaded_map = "404"
 			update_player = true
 			$MapImage/PlayerMarker.hide()
 			$MapImage/MapMarkers.hide()
+			$MapImage/Label.show()
 			$MapImage.position = Vector2.ZERO
+			map_markers = []
 			#print("no map found ( " + areaName + " )")
 		
 		if global.currentScene.get_script() != null:
@@ -135,11 +135,33 @@ func load_map(areaName: String, dontUpdate := false):
 			focus_to_player()
 		
 		$MapImage.texture = map_tex
-		$MapImage/MapMarkers.texture = mark_tex
 		$MapNamePlate.texture = name_tex
+
+		for node in $MapImage/MapMarkers.get_children():
+			$MapImage/MapMarkers.remove_child(node)
+			node.queue_free()
+
+		for marker_data in map_markers:
+			match marker_data.type:
+				"label":
+					var marker = $MapImage/LabelMarkerSample.duplicate()
+					marker.text = marker_data.value
+					marker.rect_position = Vector2(marker_data.position.x, marker_data.position.y)
+					marker.show()
+					$MapImage/MapMarkers.add_child(marker)
+				"icon":
+					var marker = $MapImage/IconMarkerSample.duplicate()
+					marker.texture = load("res://Graphics/UI/Maps/marker_%s.png" % marker_data.value)
+					marker.offset = Vector2(marker_data.position.x, marker_data.position.y)
+					marker.flip_h = "flip_h" in marker_data and marker_data.flip_h
+					marker.flip_v = "flip_v" in marker_data and marker_data.flip_v
+					marker.show()
+					$MapImage/MapMarkers.add_child(marker)
+
 		map_size = $MapImage.texture.get_size()
 		
 		focus_to_player()
+
 	if dontUpdate == true:
 		if global.currentScene.get_script() != null:
 			if global.currentScene.get("player_map_offset") != null:
@@ -175,10 +197,10 @@ func focus_to_player():
 	$MapArrows/arrowD.visible = not limits_reached[2]
 	$MapArrows/arrowR.visible = not limits_reached[3]
 
-func sign_vector(vector2):
-	if vector2.x != 0:
+func sign_vector(vector2, threshold = 0):
+	if abs(vector2.x) > threshold:
 		vector2.x = sign(vector2.x)
-	if vector2.y != 0:
+	if abs(vector2.y) > threshold:
 		vector2.y = sign(vector2.y)
 	return vector2
 

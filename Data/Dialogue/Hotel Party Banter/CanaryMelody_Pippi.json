@@ -1,25 +1,25 @@
 {
-	"0": {
-		"name": "[Pippi]",
-		"text": "I'm glad we were able to find that canary's mother.",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "[Pippi]",
-		"text": "There's something about seeing a mother reunite with her child that just warms my heart.",
-		"sound": "Kid",
-		"goto": "2"
-	},
-	"2": {
-		"name": "[Pippi]",
-		"text": "Anyway, my mom asked us to go see the mayor.",
-		"sound": "Kid",
-		"goto": "3"
-	},
-	"3": {
-		"name": "[Pippi]",
-		"text": "I wonder what he has to say.",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYMELODY_PIPPI_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYMELODY_PIPPI_1",
+        "sound": "Kid",
+        "goto": "2"
+    },
+    "2": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYMELODY_PIPPI_2",
+        "sound": "Kid",
+        "goto": "3"
+    },
+    "3": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYMELODY_PIPPI_3",
+        "sound": "Kid"
+    }
 }

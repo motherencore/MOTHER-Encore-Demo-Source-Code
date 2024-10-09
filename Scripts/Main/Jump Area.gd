@@ -56,7 +56,7 @@ func jump(jumper):
 	for i in $"Jump Points".get_children():
 		if i.get_class() == "Position2D":
 			if jumper.get("direction"):
-				Input.start_joy_vibration(0, 0.4, 0, 0.2)
+				global.start_joy_vibration(0, 0.4, 0, 0.2)
 				jumper.direction = jumper.global_position.direction_to(i.global_position)
 				if !player_turn.x:
 					jumper.direction.x = 0
@@ -80,7 +80,7 @@ func jump(jumper):
 				Tween.TRANS_LINEAR,Tween.EASE_IN, 0.1)
 			tween.start()
 			if jumper == global.persistPlayer:
-				Input.start_joy_vibration(0, 0.4, 0, 0.2)
+				global.start_joy_vibration(0, 0.4, 0, 0.2)
 				if i.get_index() != $"Jump Points".get_child_count() -1:
 					var nextPoint = $"Jump Points".get_child(i.get_index() + 1)
 					global.currentCamera.move_camera((i.global_position.x + nextPoint.global_position.x) / 2, (i.global_position.y + nextPoint.global_position.y) / 2 - 7, 0.6)
@@ -89,7 +89,7 @@ func jump(jumper):
 			yield(tween,"tween_completed")
 	
 	if jumper == global.persistPlayer:
-		Input.start_joy_vibration(0, 0.4, 0, 0.2)
+		global.start_joy_vibration(0, 0.4, 0, 0.2)
 		jumper.direction.x = round(jumper.direction.x)
 		jumper.direction.y = round(jumper.direction.y)
 		if wasRunning == true:
@@ -103,10 +103,7 @@ func jump(jumper):
 		jumper.state = jumper.MOVE
 		jumping = false
 		emit_signal("jump")
-		if global.partySize > 1:
-			for i in global.partySpace.size():
-				global.partySpace.push_front(global.persistPlayer.position)
-				global.partySpace.pop_back()
+		global.reset_party_positions()
 	else:
 		jumper.animationState.travel("Idle")
 		jumper.active = true

@@ -10,14 +10,13 @@ onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
 
 onready var ConfirmationSelect = $ConfirmationSelect
 
+onready var arrow = $arrow
+
 var current_character = "ninten"
 var current_item = -1
-var other_characters_list = []
-var other_characters_nickname_list = []
-var max_item_rows = 4
+var _char_list = [] # list of names
 
 var active = false
-var selected_item_nb = 0
 var action = ""
 
 # Called when the node enters the scene tree for the first time.
@@ -28,51 +27,47 @@ func _ready():
 #clear the list before filling it again
 func _empty_list():
 	var labels = $MarginContainer/VBoxContainer.get_children()
-	for label in labels:
-		label.queue_free()
+	if labels.empty():
+		yield(get_tree(), "idle_frame") # to always return an object
+	else:
+		for label in labels:
+			label.queue_free()
+		for label in labels:
+			yield(label, "tree_exited")
 	
 
 #process data to update the available character list	
 func _update_character_list():
-	var party = global.party
-	var name_list = []
-	other_characters_list.clear()
-	other_characters_nickname_list.clear()
+	var nickname_list = []
 	#creating the character list by comparing the party with the full ordered list
 	
-	for character in party:
-		name_list.append(character.name.to_lower())
-		other_characters_nickname_list.append(character.nickname)
-	#remove current character which is giving something
+	for char_name in _char_list:
+		for party_member in global.party:
+			if party_member.name == char_name:
+				nickname_list.append(party_member.nickname)
 	
-	other_characters_list = name_list
-	max_item_rows = other_characters_list.size()
-	
-	
-	_empty_list()
-	
-	yield(get_tree(), "idle_frame")
+	yield(_empty_list(), "completed")
 	
 	#display the list as several labels
-	for chara_name in other_characters_nickname_list:
-		
+	for chara_name in nickname_list:
 		var label = item_label_template.instance()
 		label.text = chara_name
 		$MarginContainer/VBoxContainer.add_child(label)
 	
-	$arrow.on = true
-	$arrow.set_cursor_from_index(0, false)
-	$arrow.turn_on_highlight()
+	arrow.on = true
+	arrow.set_cursor_from_index(0, false)
 	
 #used to make the box appear with the right parameters
-func Show_target_chara_select(pos, cur_char, item_idx, action_type):
-	selected_item_nb = 0
+# LOCALIZATION Code change: Added title parameter, to differentiate "Who"/"To whom"
+func show_target_chara_select(pos, cur_char, item_idx, action_type, char_list, title = "INVENTORY_ACTION_TARGET"):
 	current_item = item_idx
 	current_character = cur_char
-	_update_character_list()
 	visible = true
 	active = true
+	_char_list = char_list
+	_update_character_list()
 	action = action_type
+	$ToWhomLabel.text = title
 
 
 #cb function to chain with equip
@@ -82,87 +77,69 @@ func _on_chain_with_equip():
 func chain_with_equip():
 	connect("chain_with_equip", self, "_on_chain_with_equip")
 	emit_signal("chain_with_equip")
-	
 
 func _physics_process(_delta):
 	if active:
-		_inputs()
-
-
-func _inputs():
-	if Input.is_action_just_pressed("ui_up") and selected_item_nb != 0:
-		selected_item_nb -=1
-	elif Input.is_action_just_pressed("ui_down") and selected_item_nb != max_item_rows - 1:
-		selected_item_nb +=1
-			
-	if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[current_character][current_item].ItemName, "equip"):
-		if other_characters_list.has(selected_item_nb):
-			if InventoryManager.Inventories[other_characters_list[selected_item_nb]][current_item].equiped == false:
-				emit_signal("show_statsbar", other_characters_list[selected_item_nb])
-			else:
-				emit_signal("show_statsbar", other_characters_list[selected_item_nb], true)
+		if arrow.cursor_index < _char_list.size():
+			var target = _char_list[arrow.cursor_index]
+			var item_name = InventoryManager.Inventories[current_character][current_item].ItemName
+			if InventoryManager.doesItemHaveFunction(item_name, "equip")\
+			and InventoryManager.Load_item_data(item_name)["usable"][target]\
+			and arrow.cursor_index < _char_list.size():
+				emit_signal("show_statsbar", target)
 		
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
-		Input.action_release("ui_cancel")
-		Input.action_release("ui_toggle")
-		visible = false
-		active = false
-		$arrow.on = false
-		emit_signal("hide_statsbar")
-		emit_signal("back", false)
-		return
-		
-	if Input.is_action_just_pressed("ui_accept"):
-		Input.action_release("ui_accept")
-		$arrow.on = false
-		bounce()
-		var target = other_characters_list[selected_item_nb]
-		var source = current_character
-		var item = current_item
-		if action == "give":
-			if InventoryManager.isInventoryFull(target):
-				#propose to switch an item
-				active = false
-				ConfirmationSelect.Show_confirmation_select(rect_position, "swap", "back", source, target, item)
-				yield(self, "chain_with_equip")
-				if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[target][InventoryManager.Inventories[target].size()-1].ItemName, "equip"):
-					visible = true
-					#propose to equip on target
-					active = false
-					ConfirmationSelect.Show_confirmation_select(rect_position, "equip", "swap", source, target, InventoryManager.Inventories[target].size()-1)
-					yield(ConfirmationSelect, "back")
-				else:
-					emit_signal("back", true)
-					emit_signal("hide_statsbar")
-					
-			else:
-				#test if item is equipable
-				if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[source][item].ItemName, "equip") and InventoryManager.Load_item_data(InventoryManager.Inventories[source][item].ItemName)["usable"][target] and source != target:
-					#propose to equip on target
-					active = false
-					ConfirmationSelect.Show_confirmation_select(rect_position, "equipgive", "cancel", source, target, item)
-					yield(ConfirmationSelect, "back")
-					pass
-				else: #give
-					InventoryManager.giveItem(source, target, item)
-					visible = false
-					active = false
-					emit_signal("hide_statsbar")
-					emit_signal("back", true)
-		else:
+		if Input.is_action_just_pressed("ui_cancel"):
+			Input.action_release("ui_cancel")
 			visible = false
 			active = false
-			consume_item(source, item, target)
-			emit_signal("back", true)
-		
-	
-	#highlight item
-	var items = $MarginContainer/VBoxContainer.get_children()
-	for item_idx in items.size():
-		if item_idx == selected_item_nb:
-			items[selected_item_nb].highlight(1)
-		else:
-			items[item_idx].highlight(0)
+			arrow.on = false
+			emit_signal("hide_statsbar")
+			emit_signal("back", false)
+			return
+			
+		if Input.is_action_just_pressed("ui_accept"):
+			Input.action_release("ui_accept")
+			arrow.on = false
+			bounce()
+			var target = _char_list[arrow.cursor_index]
+			var source = current_character
+			var item = current_item
+			if action == "give":
+				if InventoryManager.isInventoryFull(target):
+					#propose to switch an item
+					active = false
+					ConfirmationSelect.Show_confirmation_select(rect_position, "swap", "back", source, target, item)
+					yield(self, "chain_with_equip")
+					if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[target][InventoryManager.Inventories[target].size()-1].ItemName, "equip"):
+						visible = true
+						#propose to equip on target
+						active = false
+						ConfirmationSelect.Show_confirmation_select(rect_position, "equip", "swap", source, target, InventoryManager.Inventories[target].size()-1)
+						yield(ConfirmationSelect, "back")
+					else:
+						emit_signal("back", true)
+						emit_signal("hide_statsbar")
+						
+				else:
+					#test if item is equipable
+					if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[source][item].ItemName, "equip") and InventoryManager.Load_item_data(InventoryManager.Inventories[source][item].ItemName)["usable"][target] and source != target:
+						#propose to equip on target
+						active = false
+						ConfirmationSelect.Show_confirmation_select(rect_position, "equipgive", "cancel", source, target, item)
+						yield(ConfirmationSelect, "back")
+						pass
+					else: #give
+						InventoryManager.giveItem(source, target, item)
+						visible = false
+						active = false
+						emit_signal("hide_statsbar")
+						emit_signal("back", true)
+			else:
+				visible = false
+				active = false
+				consume_item(source, item, target)
+				emit_signal("back", true)
+			
 
 func consume_item(source, item, target):
 	var current_item_name = InventoryManager.Inventories[source][item].ItemName
@@ -188,10 +165,10 @@ func consume_item(source, item, target):
 					useItem = false
 	if useItem:
 		InventoryManager.consumeItem(source, current_item, target)
-		emit_signal("show_dialogbox", item_data[action]["text"][globaldata.language], target)
+		emit_signal("show_dialogbox", item_data[action]["text"], target)
 		audioManager.play_sfx(load("res://Audio/Sound effects/EB/eat.wav"), "menu")
 	else:
-		emit_signal("show_dialogbox", item_data[action]["textfail"][globaldata.language], target)
+		emit_signal("show_dialogbox", item_data[action]["textfail"], target)
 
 func _on_ConfirmationSelect_back(accept, current_action, _current_character, _target_character, _current_item):
 	if accept == false:
@@ -209,4 +186,10 @@ func bounce():
 	$Tween.start()
 
 
-
+# LOCALIZATION Code added: The box changes size to fit content dynamically
+func _on_VBoxContainer_resized():
+	yield(get_tree(), "idle_frame")
+	$MarginContainer.set_size(Vector2(0, 0))
+	rect_size.x = $MarginContainer.rect_size.x
+	rect_size.y = $MarginContainer.rect_size.y
+	ConfirmationSelect.rect_position.x = $MarginContainer.rect_size.x

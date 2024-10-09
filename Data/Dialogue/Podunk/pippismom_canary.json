@@ -1,25 +1,25 @@
 {
-	"0": {
-		"name": "Mrs. Lindgren",
-		"text": "I don't think Laura's [color]inside the village[/color], but she's definitely [color]somewhere on this island[/color].",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mrs. Lindgren",
-		"text": "I suggest you try [color]scoping[/color] the area.",
-		"sound": "Sexy",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Mrs. Lindgren",
-		"text": "You can easily do so by imagining a [color][ui_ctrl][/color] button and holding it down.",
-		"sound": "Sexy",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Mrs. Lindgren",
-		"text": "This will help you view [color]places you can't normally see[/color].",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_1",
+        "sound": "Sexy",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_2",
+        "sound": "Sexy",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_CANARY_3",
+        "sound": "Sexy"
+    }
 }

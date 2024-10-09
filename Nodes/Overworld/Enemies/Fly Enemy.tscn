@@ -392,8 +392,6 @@ collision_layer = 516
 collision_mask = 512
 collision/safe_margin = 0.4
 script = ExtResource( 5 )
-Return = false
-max_speed = 128
 acceleration = 800
 friction = 800
 walk_frequency = 0.5
@@ -520,6 +518,7 @@ parameters/Walk/blend_position = Vector2( -0.544253, 0.277344 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Enemy_tree_exiting"]
 [connection signal="body_entered" from="Position2D/ViewArea" to="." method="_on_ViewArea_body_entered"]

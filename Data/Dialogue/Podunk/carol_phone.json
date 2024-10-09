@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Carol",
-		"text": "Telephone! [Ninten], would you please get it?",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_CAROL_PHONE_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_PHONE_0",
+        "sound": "Sexy"
+    }
 }

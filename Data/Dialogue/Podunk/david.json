@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "David",
-		"text": "I've got a weird disease where my coins keep disappearing.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "David",
-		"text": "The doctor says I have to stay away from arcades.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "David",
-		"text": "Who would've known I've got Pac-Man Fever.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_DAVID_SPEAKER_David",
+        "text": "DIALOGUE_PODUNK_DAVID_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_DAVID_SPEAKER_David",
+        "text": "DIALOGUE_PODUNK_DAVID_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_DAVID_SPEAKER_David",
+        "text": "DIALOGUE_PODUNK_DAVID_2",
+        "sound": "Adult"
+    }
 }

@@ -60,4 +60,7 @@ func start_blinking():
 		$Tween.start()
 
 func show_equiped(val):
-	$Equiped_spr.visible = val
+
+	if get_node_or_null("Equiped_spr"):
+		$Equiped_spr.visible = val
+

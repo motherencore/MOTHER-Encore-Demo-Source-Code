@@ -71,11 +71,6 @@ func _process(delta):
 
 func setHP(value: int, setNumbers := false):
 	HP = int(clamp(value, 0, maxHP))
-	if HP == 0:
-		$HPExclamation.show()
-		$HPExclamation/AnimationPlayer.play("Shake")
-	else:
-		hide_exclamation()
 	if setNumbers:
 		DHP = value
 		var ones = DHP % 10
@@ -95,6 +90,11 @@ func setHP(value: int, setNumbers := false):
 			hunsDigitHP.sprite.show()
 	else:
 		# hp is increasing IF current HP is BIGGER than display!
+		if HP == 0:
+			$HPExclamation.show()
+			$HPExclamation/AnimationPlayer.play("Shake")
+		else:
+			hide_exclamation()
 		HP_increasing = HP > DHP
 		processHP = true
 	print(pName, "'s HP has been set to ", value, ". (setNumbers = ", setNumbers, ")")
@@ -267,11 +267,15 @@ func show_maxNum():
 		$BasicPlate/MaxPP.text = str(PP) + "/" + str(maxPP)
 		$BasicPlate/MaxPP.show()
 	$BasicPlate.show()
+	$Highlight.rect_position = $BasicPlate.rect_position
+	$Highlight.rect_size = $BasicPlate.rect_size
 
 func hide_maxNum():
 	$BasicPlate.hide()
 	$BasicPlate/MaxHP.hide()
 	$BasicPlate/MaxPP.hide()
+	$Highlight.rect_position = self.rect_position
+	$Highlight.rect_size = self.rect_size
 
 func stopScrolling():
 	#set to 1 if it stops at 0

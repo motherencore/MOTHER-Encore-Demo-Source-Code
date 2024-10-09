@@ -49,10 +49,8 @@ func interact():
 	uiManager.open_dialogue_box()
 
 func open():
-	var ItemName = InventoryManager.Load_item_data(item)["name"][globaldata.language]
-	var ItemArt = InventoryManager.Load_item_data(item)["article"][globaldata.language]
-	global.itemname = ItemName
-	global.itemart = ItemArt
+	# LOCALIZATION Code change: Removed use of globaldata.language (storing the csv key id) × 2
+	global.item = InventoryManager.Load_item_data(item)
 	$AnimationPlayer.play("Unwrapped")
 	if (InventoryManager.hasInventorySpace() or InventoryManager.Load_item_data(item)["keyitem"]) and !opened:
 		InventoryManager.giveItemAvailable(item)

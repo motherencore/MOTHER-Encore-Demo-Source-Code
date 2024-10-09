@@ -7,20 +7,21 @@ const partyInfoTscn = preload("res://Nodes/Ui/Battle/PartyInfoPlate.tscn")
 
 #external paths and references
 onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
-onready var SelectPanel = $InventorySelect
+onready var SelectPanel = $Inventory/InventorySelect
 onready var StatsBar = $StatsBar
 onready var DialogBox = $DialogBox
 onready var ActionSelect = $ActionSelect
 onready var arrow = $Inventory/ColorRect
 onready var itemsGrid = $Inventory/CenterContainer/Items/GridContainer 
 onready var arrow_init_pos = arrow.rect_position
-
+onready var scrollbar = $Inventory/DescriptionPanel/Scrollbar
 
 const max_item_collumns = 2
 const offset_list_threshold = 5
 const arrow_move_offset_x = 123
 const arrow_move_offset_y = 12
 const MAX_SUBMENU_POSITION = 60
+const ITEM_LABEL_SIZE = 98
 
 var active = false setget _setActive
 func _setActive(val):
@@ -29,6 +30,7 @@ func _setActive(val):
 
 var current_character = "ninten"
 var current_inventory = []
+var current_scroll_pos = 1
 var selected_item_nb = 0
 var item_to_hl = 0
 var idx_x = 1
@@ -51,20 +53,21 @@ var sort_source_idx = 0
 func Show_inventory(party_member):
 	current_character = party_member["name"].to_lower()
 	SelectPanel.InitFromCharacter(current_character)
+	_show_hide_description(globaldata.description)
+	scrollbar.nb_visible_rows = offset_list_threshold
 	_update_inventory(current_character, true)
 	updatePartyInfos()
 	active = true
 	$AnimationPlayer.play("Open")
 	$Inventory.visible = true
 	SelectPanel.visible = true
-	$Inventory/DescriptionPanel.visible = globaldata.description
-	offset_list = $Inventory/DescriptionPanel.visible
 	
 	
 func _update_inventory(character, reset_select):
 	current_inventory = InventoryManager.getInventory(character)
 	if reset_select:
 		selected_item_nb = 0
+		current_scroll_pos = 1
 		idx_x = 1
 		idx_y = 1
 	_update_list()
@@ -73,13 +76,19 @@ func _update_inventory(character, reset_select):
 func _ready():
 	$Inventory.visible = false
 	_update_list()
+	global.connect("locale_changed", self, "_update_description")
 	
 func _physics_process(_delta):
 	if active:
-		_inputs()
+		$Inventory/ColorRect/Arrow.on = true
 		if !swapmode:
 			_update_description()
 			_update_portraits()
+		controls()
+		highlight()
+		
+	else:
+		$Inventory/ColorRect/Arrow.on = false
 		
 
 #empty list before updating
@@ -101,51 +110,48 @@ func _update_list():
 		is_inventory_empty = false
 		for item in current_inventory:
 			var item_in_row = item_cnt / max_item_collumns
-			var selected_item_in_row = selected_item_nb / max_item_collumns
-			if ((item_in_row > (selected_item_in_row - offset_list_threshold)) and offset_list) or !offset_list:
+			if ((item_in_row >= current_scroll_pos - 1) and offset_list) or !offset_list:
 				var item_label = item_label_template.instance()
-				item_label.rect_min_size.x = 109
-				var item_data = InventoryManager.Load_item_data(item.ItemName) 
-				item_label.text = item_data["name"][globaldata.language]
+				item_label.rect_min_size.x = ITEM_LABEL_SIZE
+				var item_data = InventoryManager.Load_item_data(item.ItemName)
+				# LOCALIZATION Code change: Removed use of globaldata.language
+				item_label.text = item_data["name"]
 				item_label.show_equiped(item.equiped)
 				itemsGrid.add_child(item_label)
 			item_cnt+=1
 			
+	var total_rows = ceil(item_cnt * 1.0 / max_item_collumns)
+
+	# In case scrolling goes above the last row (like, because an item was deleted and the last row is empty)
+	if total_rows < current_scroll_pos - 1 + offset_list_threshold:
+		total_rows = current_scroll_pos - 1 + offset_list_threshold
+		
+	scrollbar.nb_rows = total_rows
+	scrollbar.position = current_scroll_pos - 1
+
+func _update_scroll():
+	#updates the scrolling position if the selected item is out of visibility area
+	if idx_y < current_scroll_pos:
+		current_scroll_pos = idx_y
+	if idx_y > current_scroll_pos + offset_list_threshold - 1:
+		current_scroll_pos = idx_y - offset_list_threshold + 1
+
+	#calculate the item selected according to the xy coordinates
+	selected_item_nb = 2*(idx_y-1)+(idx_x-1)
+	selected_item_nb = clamp(selected_item_nb, 0, current_inventory.size()-1)
 	if offset_list:
-		var selected_item_in_row = selected_item_nb / max_item_collumns
-		if (item_cnt / max_item_collumns > offset_list_threshold ) and (selected_item_in_row - offset_list_threshold < 2):
-			$Inventory/DescriptionPanel/cursor_down.visible = true
-		else:
-			$Inventory/DescriptionPanel/cursor_down.visible = false
-			
-		if selected_item_in_row + 1 > offset_list_threshold:
-			$Inventory/DescriptionPanel/cursor_up.visible = true
-		else:
-			$Inventory/DescriptionPanel/cursor_up.visible = false
+		item_to_hl = 2*(idx_y - current_scroll_pos)+(idx_x-1)
 	else:
-		$Inventory/DescriptionPanel/cursor_up.visible = false
-		$Inventory/DescriptionPanel/cursor_down.visible = false
-	
-	
+		item_to_hl = selected_item_nb
+
 func _update_description():
 	#get the name of the selected items
-	if !is_inventory_empty:
+	if selected_item_nb < current_inventory.size():
 		var selected_item_name = current_inventory[selected_item_nb].ItemName
 		var item = InventoryManager.Load_item_data(selected_item_name)
-		$Inventory/DescriptionPanel/ColorRect/HBoxContainer/CenterContainer2/Desc.text = globaldata.replaceText(item["description"][globaldata.language])
-		var path := str("res://Graphics/Objects/Items/" + current_inventory[selected_item_nb].ItemName + ".png")
-		if ResourceLoader.exists(path) == true :
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer/CenterContainer/TextureRect/Item.texture =  ResourceLoader.load(path)
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer.alignment = BoxContainer.ALIGN_BEGIN
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer/CenterContainer.visible = true
-		else:
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer/CenterContainer/TextureRect/Item.texture = null
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer.alignment = BoxContainer.ALIGN_CENTER
-			$Inventory/DescriptionPanel/ColorRect/HBoxContainer/CenterContainer.visible = false
+		$Inventory/DescriptionPanel.setItem(current_inventory[selected_item_nb].ItemName)
 	else:
-		$Inventory/DescriptionPanel.visible = false
-		offset_list = $Inventory/DescriptionPanel.visible
-		_update_inventory(current_character, false)
+		$Inventory/DescriptionPanel.setItem("")
 
 func _update_portraits():
 	#update portrait modifiers
@@ -157,10 +163,10 @@ func _update_portraits():
 		var is_lower = false
 		#	- item is suitable for the character
 		var chara_nam = character["name"].to_lower()
-		if chara_nam in ["flyingman", "eve", "canarychick"]:
+		if chara_nam in ["flyingman", "eve", "canarychick"]: # Useless? Same condition just below
 			return
-		if !(chara_nam in InventoryManager.no_inventory_characters):
-			if current_inventory.empty() != true:
+		if !(chara_nam in InventoryManager.no_inventory_characters): # Same condition just above
+			if selected_item_nb < current_inventory.size():
 				var current_item_name = current_inventory[selected_item_nb].ItemName
 				var current_item_data = InventoryManager.Load_item_data(current_item_name)
 				
@@ -209,144 +215,157 @@ func updatePartyInfos(set=true):
 		partyInfo.setPP(global.party[i].pp, set)
 		partyInfo.show_maxNum()
 
-func _inputs():
-	var pos = arrow.rect_position
-	var update_flag = false
-	
-	#check for inputs for selecting items in the inventory
-	if !is_inventory_empty:
-		if Input.is_action_just_pressed("ui_up"):
-			$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-			idx_y -=1
-			update_flag = true
-		elif Input.is_action_just_pressed("ui_down"):
-			$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-			idx_y +=1
-			update_flag = true
-		elif Input.is_action_just_pressed("ui_left"):
-			$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-			idx_x -=1 
-			if idx_x < 1:
-				idx_x = max_item_collumns
-			update_flag = true
-		elif Input.is_action_just_pressed("ui_right"):
-			$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-			idx_x +=1 
-			if idx_x > max_item_collumns:
+
+func controls():
+	if active:
+		var pos = arrow.rect_position
+		var update_flag = false
+		
+		#check for inputs for selecting items in the inventory
+		if !is_inventory_empty:
+			var input = controlsManager.get_controls_vector(true)
+			if input.y < 0:
+				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
+				idx_y -=1
+				update_flag = true
+			elif input.y > 0:
+				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
+				idx_y +=1
+				update_flag = true
+			if input.x < 0:
+				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
+				idx_x -=1 
+				if idx_x < 1:
+					idx_x = max_item_collumns
+				update_flag = true
+			elif input.x > 0:
+				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
+				idx_x +=1 
+				if idx_x > max_item_collumns:
+					idx_x = 1
+				update_flag = true
+			
+			if current_inventory.size() == 1:
 				idx_x = 1
-			update_flag = true
-			
 				
-		if current_inventory.size() == 1:
-			idx_x = 1
+			#calculate new max items in the current collumn for this inventory
+			max_item_rows = ((current_inventory.size()/2)+((1-idx_x)*(current_inventory.size()%2)))+(current_inventory.size()%2)
 			
-		#calculate new max items in the current collumn for this inventory
-		max_item_rows = ((current_inventory.size()/2)+((1-idx_x)*(current_inventory.size()%2)))+(current_inventory.size()%2)
-		
-		#check for vertical boundaries with newly calculated max
-		if idx_y < 1:
-			idx_y = max_item_rows
-		if idx_y > max_item_rows:
-			idx_y = 1
-		
-		#calculate the item selected according to the xy coordinates
-		selected_item_nb = 2*(idx_y-1)+(idx_x-1)
-		selected_item_nb = clamp(selected_item_nb, 0, current_inventory.size()-1)
-		if offset_list and (idx_y > offset_list_threshold):
-			item_to_hl = 2*(offset_list_threshold-1)+(idx_x-1)
-		else:
-			item_to_hl = selected_item_nb
-			
-		#don't update if no changes
-		if update_flag == true:
-			_update_list()
-			update_flag = false
-
-		#item selected and validated, show actions box at the right place
-		if Input.is_action_just_pressed(("ui_accept")):
-			Input.action_release("ui_accept")
-			$Inventory/ColorRect/Arrow.play_sfx("cursor2")
-			var item = current_inventory[selected_item_nb].ItemName
-			var item_data = InventoryManager.Load_item_data(item)
-			var side = ""
-			if !swapmode:
-				if sort_mode:
-					var target_idx = selected_item_nb
-					InventoryManager.switchItems(current_character, sort_source_idx, target_idx)
-					_update_inventory(current_character,false)
-					sort_mode = false
-					SelectPanel.active = true
-					
-				else:
-					if selected_item_nb%2 == 1:
-						side = -1.5#"right"
-					else:
-						side = 1#"left"
-					var submenu_position = $Inventory/ColorRect/Arrow/Position2D.global_position
-					if submenu_position.y > arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y):
-						submenu_position.y = arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y)
-					submenu_position.x = submenu_position.x + 25*side
-					submenu_position.y = min(MAX_SUBMENU_POSITION, submenu_position.y)
-					if current_character != "key":
-						ActionSelect.Set_for_new_item(submenu_position, item, side, current_character,selected_item_nb)
-						active = false
-						SelectPanel.active = false
+			#check for vertical boundaries with newly calculated max
+			#only cycling if updated by user
+			if update_flag:
+				if idx_y < 1:
+					idx_y = max_item_rows
+				if idx_y > max_item_rows:
+					idx_y = 1
 			else:
-				#sound here?
-				InventoryManager.swapBetweenCharacters(swap_source, swap_target, swap_source_item,  selected_item_nb)
-				swapmode = false
-				active = false
-				selected_item_nb = swap_source_item
-				current_character = swap_source
-				SelectPanel.setSwapmode(false, swap_source, swap_target )
-				_update_inventory(current_character, false)
-				_update_list()
-				ActionSelect.visible = true
-				ActionSelect.chain_with_equip()
-			return
-
-	else:
-		selected_item_nb = 0 #temp?
-		
-	if Input.is_action_just_pressed("ui_ctrl"):
-		Input.action_release("ui_ctrl")
-		if !is_inventory_empty and !swapmode and !sort_mode:
-			globaldata.description = !globaldata.description
-			$Inventory/DescriptionPanel.visible = globaldata.description
-			offset_list = globaldata.description
-			_update_inventory(current_character, false)
-		
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
-		Input.action_release("ui_cancel")
-		Input.action_release("ui_toggle")
-		if sort_mode:
-			sort_mode = false
-			SelectPanel.active = true
-			return
-		else:
-			$AnimationPlayer.play("Close")
-			active = false
-			SelectPanel.active = false
-			emit_signal("back")
-			return
+				idx_y = clamp(idx_y, 1, max_item_rows)
 			
-	
-	pos.x = arrow_init_pos.x + (idx_x-1)*arrow_move_offset_x
-	pos.y = arrow_init_pos.y + (idx_y-1)*arrow_move_offset_y
-	
-	if $Inventory/DescriptionPanel.visible:
-		if idx_y >= 5:
-			pos.y = arrow_init_pos.y + (5-1)*arrow_move_offset_y
-	
-	if offset_list:
-		pos.y = clamp(pos.y, arrow_init_pos.y,arrow_init_pos.y +(offset_list_threshold*arrow_move_offset_y))
-	
-	
-	
-	
-	arrow.rect_position = pos
+			_update_scroll()
+
+			#don't update if no changes
+			if update_flag == true:
+				_update_list()
+				update_flag = false
+			
+		pos.x = arrow_init_pos.x + (item_to_hl % max_item_collumns) * arrow_move_offset_x
+		pos.y = arrow_init_pos.y + (item_to_hl / max_item_collumns) * arrow_move_offset_y
+		
+		arrow.rect_position = pos
+
+func _input(event):
+	if active:
+		var pos = arrow.rect_position
+		var update_flag = false
+		if !is_inventory_empty:
+			if event.is_action_pressed("ui_scope"):
+				Input.action_release("ui_scope")
+				if !is_inventory_empty and !swapmode and !sort_mode:
+					globaldata.description = !globaldata.description
+					_show_hide_description(globaldata.description)
+					_update_inventory(current_character, false)
+				
+					
+			
+
+			#item selected and validated, show actions box at the right place
+			if Input.is_action_just_pressed(("ui_accept")):
+				Input.action_release("ui_accept")
+				$Inventory/ColorRect/Arrow.play_sfx("cursor2")
+				var item = current_inventory[selected_item_nb].ItemName
+				var item_data = InventoryManager.Load_item_data(item)
+				var side = ""
+				if !swapmode:
+					if sort_mode:
+						var target_idx = selected_item_nb
+						InventoryManager.switchItems(current_character, sort_source_idx, target_idx)
+						_update_inventory(current_character,false)
+						sort_mode = false
+						_show_hide_description(globaldata.description)
+						_update_list()
+						SelectPanel.active = true
+						
+					else:
+						if selected_item_nb%2 == 1:
+							side = -1.5#"right"
+						else:
+							side = 1#"left"
+						var submenu_position = $Inventory/ColorRect/Arrow/Position2D.global_position
+						if submenu_position.y > arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y):
+							submenu_position.y = arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y)
+						submenu_position.x = submenu_position.x + 25*side
+						submenu_position.y = min(MAX_SUBMENU_POSITION, submenu_position.y)
+						if current_character != "key":
+							ActionSelect.set_for_new_item(submenu_position, item, side, current_character,selected_item_nb)
+							active = false
+							SelectPanel.active = false
+				else:
+					#sound here?
+					InventoryManager.swapBetweenCharacters(swap_source, swap_target, swap_source_item,  selected_item_nb)
+					swapmode = false
+					active = false
+					selected_item_nb = swap_source_item
+					current_character = swap_source
+					SelectPanel.setSwapmode(false, swap_source, swap_target )
+					_show_hide_description(globaldata.description)
+					_update_inventory(current_character, false)
+					ActionSelect.visible = true
+					ActionSelect.chain_with_equip()
+				return
+
+		else:
+			selected_item_nb = 0 #temp?
+						
+		if Input.is_action_just_pressed("ui_cancel"):
+			Input.action_release("ui_cancel")
+			if sort_mode:
+				$Inventory/ColorRect/Arrow.play_sfx("back")
+				sort_mode = false
+				_show_hide_description(globaldata.description)
+				highlight()
+				SelectPanel.active = true
+				return
+			elif swapmode:
+				$Inventory/ColorRect/Arrow.play_sfx("back")
+				swapmode = false
+				_show_hide_description(globaldata.description)
+				highlight()
+				SelectPanel.setSwapmode(false, swap_source, swap_target )
+				current_character = swap_source
+				_update_inventory(current_character, false)
+				return
+			else:
+				$AnimationPlayer.play("Close")
+				active = false
+				SelectPanel.active = false
+				emit_signal("back")
+				return
+				
+
+		
 	
 	#highlight item
+func highlight():	
 	var items = itemsGrid.get_children()
 	for item_idx in items.size():
 		if item_idx == item_to_hl:
@@ -361,13 +380,17 @@ func _inputs():
 			else:
 				items[item_idx].highlight(0)
 
+func _show_hide_description(value):
+	$Inventory/DescriptionPanel.visible = value
+	offset_list = value
+	_update_scroll()
+
 func _on_InventorySelect_character_changed(character):
 	current_character = character
 	_update_inventory(character, true)
 
 
 func _on_ActionSelect_back():
-	_update_list()
 	_update_inventory(current_character, false)
 	active = true
 	if !sort_mode:
@@ -375,8 +398,7 @@ func _on_ActionSelect_back():
 
 
 func _on_ActionSelect_swapmode(target):
-	$Inventory/DescriptionPanel.visible = false
-	offset_list = false
+	_show_hide_description(false)
 	swap_source = current_character
 	swap_source_item = selected_item_nb
 	current_character = target
@@ -387,12 +409,10 @@ func _on_ActionSelect_swapmode(target):
 
 
 func _on_ActionSelect_sortmode():
-	$Inventory/DescriptionPanel.visible = false
-	offset_list = false
+	_show_hide_description(false)
 	sort_source_idx = selected_item_nb
 	sort_mode = true
 	SelectPanel.active = false
-
 
 func _on_ActionSelect_show_statsbar(character, unequip = false):
 	
@@ -405,7 +425,10 @@ func _on_ActionSelect_show_statsbar(character, unequip = false):
 	
 	#test if item equiped:
 	var projected_stat
-	if chara_data["equipment"][item_slot] != item:
+	
+	if chara_data == null:
+		StatsBar.hide_statsBar()
+	elif chara_data["equipment"][item_slot] != item:
 		for stat in StatsBar.stats_list:
 			if item_stats["boost"].has(stat):
 				var boost = int(item_stats["boost"][stat])
@@ -429,9 +452,8 @@ func _on_ActionSelect_show_statsbar(character, unequip = false):
 					projected_stat = chara_data[stat] + chara_data["boosts"][stat] - equiped_boost
 						
 					modifiersDic[stat] = projected_stat
-		
-		
-	StatsBar.show_statsBar(character, modifiersDic)
+				
+	StatsBar.show_statsBar(chara_data, modifiersDic)
 
 
 func _on_ActionSelect_hide_statsbar():

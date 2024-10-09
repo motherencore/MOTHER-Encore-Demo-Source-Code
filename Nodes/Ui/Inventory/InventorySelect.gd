@@ -1,4 +1,4 @@
-extends TextureRect
+extends NinePatchRect
 
 signal character_changed (character)
 
@@ -7,7 +7,9 @@ var inhibit_chara_change = false
 var swapmode = false
 
 export var psiOnly = false
-export var noKey = false
+export var noKey = false setget _set_no_key
+export var include_storage = false setget _set_include_storage
+export var playSfx = true
 export var menuName = ""
 
 onready var portraits_texture = [
@@ -19,7 +21,8 @@ onready var portraits_texture = [
 	preload("res://Graphics/UI/Inventory/characters/flyingman.png"),
 	preload("res://Graphics/UI/Inventory/characters/eve.png"),
 	preload("res://Graphics/UI/Inventory/characters/canarychick.png"),
-	preload("res://Graphics/UI/Inventory/characters/key.png")
+	preload("res://Graphics/UI/Inventory/characters/key.png"),
+	preload("res://Graphics/UI/Inventory/characters/storage.png")
 ]
 
 onready var hl_portraits_texture = [
@@ -31,7 +34,8 @@ onready var hl_portraits_texture = [
 	preload("res://Graphics/UI/Inventory/characters/flyingman_hl.png"),
 	preload("res://Graphics/UI/Inventory/characters/eve_hl.png"),
 	preload("res://Graphics/UI/Inventory/characters/canarychick_hl.png"),
-	preload("res://Graphics/UI/Inventory/characters/key_hl.png")
+	preload("res://Graphics/UI/Inventory/characters/key_hl.png"),
+	preload("res://Graphics/UI/Inventory/characters/storage_hl.png")
 ]
 
 onready var gr_portraits_texture = [
@@ -39,10 +43,11 @@ onready var gr_portraits_texture = [
 	preload("res://Graphics/UI/Inventory/characters/ana_gr.png"),
 	preload("res://Graphics/UI/Inventory/characters/lloyd_gr.png"),
 	preload("res://Graphics/UI/Inventory/characters/teddy_gr.png"),
+	preload("res://Graphics/UI/Inventory/characters/pippi_gr.png"),
 	preload("res://Graphics/UI/Inventory/characters/flyingman_gr.png"),
 	preload("res://Graphics/UI/Inventory/characters/eve_gr.png"),
-	preload("res://Graphics/UI/Inventory/characters/canarychick_gr.png"),
-	preload("res://Graphics/UI/Inventory/characters/pippi_gr.png")
+	preload("res://Graphics/UI/Inventory/characters/canarychick_gr.png")
+	
 ]
 
 onready var portrait_nodes = [
@@ -54,7 +59,8 @@ onready var portrait_nodes = [
 	$CharacterPortraits/FlyingMan,
 	$CharacterPortraits/Eve,
 	$CharacterPortraits/CanaryChick,
-	$CharacterPortraits/Key
+	$CharacterPortraits/Key,
+	$CharacterPortraits/Storage
 ]
 
 var presence = {
@@ -66,23 +72,22 @@ var presence = {
 	"flyingman": false,
 	"eve": false,
 	"canarychick": false,
-	"key": true
+	"key": true,
+	"storage": false
 }
 func _reset_presence():
 	presence = {
-	"ninten": false,
-	"ana": false,
-	"lloyd": false,
-	"teddy": false,
-	"pippi": false,
-	"flyingman": false,
-	"eve": false,
-	"canarychick": false,
-	"key": true
+		"ninten": false,
+		"ana": false,
+		"lloyd": false,
+		"teddy": false,
+		"pippi": false,
+		"flyingman": false,
+		"eve": false,
+		"canarychick": false,
+		"key": !noKey,
+		"storage": include_storage
 	}
-	if noKey:
-		presence["key"] = false
-
 
 var inv_indexes = {
 		"ninten": 0,
@@ -93,7 +98,8 @@ var inv_indexes = {
 		"flyingman": 5,
 		"eve": 6,
 		"canarychick": 7,
-		"key": 8
+		"key": 8,
+		"storage": 9
 }
 
 var show_inv = {}
@@ -103,7 +109,6 @@ func _get_inv_name(idx):
 	return names[idx]
 
 const INV_OFFSET = 1
-const MAX_INV = 7
 
 var inv_nb = 2
 var current_inv_idx = 0
@@ -114,10 +119,11 @@ var party = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if noKey:
-		portrait_nodes.pop_back()
-		presence["key"] = false
-	$CenterContainer/MenuName.text = menuName
+	#if noKey:
+	#	#portrait_nodes.pop_back()
+	#	presence["key"] = false
+	_reset_presence()
+	_refresh_title()
 		
 	visible = false
 	_update_portraits()
@@ -125,7 +131,15 @@ func _ready():
 func _get_global_data():
 	party = global.party
 	inv_nb = party.size()-1
-	
+
+func _set_no_key(val):
+	noKey = val
+	_reset_presence()
+
+func _set_include_storage(val):
+	include_storage = val
+	_reset_presence()
+
 func setSwapmode(val, source, target):
 	
 	swapmode = val
@@ -133,19 +147,22 @@ func setSwapmode(val, source, target):
 		InitFromCharacter(target)
 		portrait_nodes[inv_indexes[source]].texture = gr_portraits_texture[inv_indexes[source]]
 		portrait_nodes[inv_indexes[target]].texture = hl_portraits_texture[inv_indexes[target]]
-		$CenterContainer/GoodsTxt.text = "Swap Items"
 	else:
 		InitFromCharacter(source)
-		$CenterContainer/GoodsTxt.text = "Goods"
+
+	_refresh_title()
+
+func _refresh_title():
+	if swapmode:
+		$CenterContainer/MenuName.text = "INVENTORY_SWAP"
+	else:
+		$CenterContainer/MenuName.text = menuName
 	
+	$CenterContainer.visible = ($CenterContainer/MenuName.text != "")
+
 	
 func _physics_process(_delta):
 	_get_global_data()
-	if !swapmode:
-		if (active and !inhibit_chara_change):
-			_inputs()
-		_update_portraits()
-
 	
 	
 func InitFromCharacter(character):
@@ -205,34 +222,40 @@ func Update_portrait_modifiers(character, is_suitable, is_equiped, is_better, is
 	portrait_nodes[presence.keys().find(character)].show_is_item_lower(is_lower)
 	
 
-func _inputs():
-	var portraitsVisible = 0
-	for character in presence.keys():
-		if presence[character] == true:
-			portraitsVisible += 1
-			portrait_nodes[presence.keys().find(character)].visible = true
-			show_inv[presence.keys().find(character)] = character
-	if portraitsVisible > 1 and active:
-		if Input.is_action_just_pressed("ui_focus_next"):
-			current_inv_idx += 1
-			if current_inv_idx > show_inv.size()-1:
-				current_inv_idx = 0
-			if show_inv[show_inv.keys()[current_inv_idx]] in ["flyingman", "eve", "canarychick"]:
-				current_inv_idx += 1
-				if current_inv_idx > show_inv.size()-1:
-					current_inv_idx = 0
-			audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_open.wav"), "menu")
-			current_inventory = show_inv.keys()[current_inv_idx]
-			emit_signal("character_changed", show_inv[current_inventory])
-		if Input.is_action_just_pressed("ui_focus_prev"):
-			current_inv_idx -=1
-			if current_inv_idx < 0:
-				current_inv_idx = show_inv.size()-1
-			if show_inv[show_inv.keys()[current_inv_idx]] in ["flyingman", "eve", "canarychick"]:
-				current_inv_idx -= 1
-				if current_inv_idx < 0:
-					current_inv_idx = show_inv.size()-1
-			audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_open.wav"), "menu")
-			current_inventory = show_inv.keys()[current_inv_idx]
-			emit_signal("character_changed", show_inv[current_inventory])
+func _input(event):
+	if !swapmode:
+		if (active and !inhibit_chara_change):
 
+			var portraitsVisible = 0
+			for character in presence.keys():
+				if presence[character] == true:
+					portraitsVisible += 1
+					portrait_nodes[presence.keys().find(character)].visible = true
+					show_inv[presence.keys().find(character)] = character
+			if portraitsVisible > 1 and active:
+				if event.is_action_pressed("ui_focus_next"):
+					current_inv_idx += 1
+					if current_inv_idx > show_inv.size()-1:
+						current_inv_idx = 0
+					if show_inv[show_inv.keys()[current_inv_idx]] in ["flyingman", "eve", "canarychick"]:
+						current_inv_idx += 1
+						if current_inv_idx > show_inv.size()-1:
+							current_inv_idx = 0
+					if playSfx:
+						audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_open.wav"), "menu")
+					current_inventory = show_inv.keys()[current_inv_idx]
+					emit_signal("character_changed", show_inv[current_inventory])
+				if event.is_action_pressed("ui_focus_prev"):
+					current_inv_idx -=1
+					if current_inv_idx < 0:
+						current_inv_idx = show_inv.size()-1
+					if show_inv[show_inv.keys()[current_inv_idx]] in ["flyingman", "eve", "canarychick"]:
+						current_inv_idx -= 1
+						if current_inv_idx < 0:
+							current_inv_idx = show_inv.size()-1
+					if playSfx:
+						audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_open.wav"), "menu")
+					current_inventory = show_inv.keys()[current_inv_idx]
+					emit_signal("character_changed", show_inv[current_inventory])
+
+		_update_portraits()

@@ -1,83 +1,96 @@
 {
-	"0": {
-		"actors": {
-			"ninten": "leader",
-			"dog": "Objects/NPCS/npc41"
-		},
-		"actorsdir": {
-			"ninten": {
-				"x": 1,
-				"y": 0
-			},
-			"dog": {
-				"x": -1,
-				"y": 0
-			}
-		},
-		"emoteactors": {
-			"dog": "exclamation"
-		},
-		"actorsjump": {
-			"dog": {
-				"height": 4,
-				"speed": 0.2
-			}
-		},
-		"movecam": {
-			"x": 488
-		},
-		"wait": 1,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "1"
-	},
-	"1": {
-		"emoteactors": {
-			"ninten": "sweat",
-			"dog": "angry"
-		},
-		"actorsshake": {
-			"dog": {
-				"x": 1,
-				"length": 0.8
-			}
-		},
-		"actorsmove": {
-			"ninten": {
-				"movement": [{"wait": 0.2},{"x": -8, "y": 0}],
-				"speed": 16,
-				"type": "step",
-				"animation": "Walk",
-				"moonwalk": "true"
-			}
-		},
-		"soundeffect": "M3/Growl 2.mp3",
-		"wait": 1.6,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "2"
-	},
-	"2": {
-		"actorsjump": {
-			"dog": {
-				"height": 12,
-				"length": 0.4
-			}
-		},
-		"actorsmove": {
-			"dog": {
-				"movement": [{"x": -64, "y": 0}],
-				"speed": 112,
-				"type": "step"
-			}
-		},
-		"battler": {
-			"actor": "dog",
-			"enemy": "straydog"
-		},
-		"batwinflag": "beat_dog_bridge",
-		"wait": 0.4,
-		"autoadvance": true,
-		"caninput": false
-	}
+    "0": {
+        "actors": {
+            "ninten": "leader",
+            "dog": "Objects/NPCS/npc41"
+        },
+        "actorsdir": {
+            "ninten": {
+                "x": 1,
+                "y": 0
+            },
+            "dog": {
+                "x": -1,
+                "y": 0
+            }
+        },
+        "emoteactors": {
+            "dog": "exclamation"
+        },
+        "actorsjump": {
+            "dog": {
+                "height": 4,
+                "speed": 0.2
+            }
+        },
+        "movecam": {
+            "x": 488
+        },
+        "wait": 1,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "1"
+    },
+    "1": {
+        "emoteactors": {
+            "ninten": "sweat",
+            "dog": "angry"
+        },
+        "actorsshake": {
+            "dog": {
+                "x": 1,
+                "length": 0.8
+            }
+        },
+        "actorsmove": {
+            "ninten": {
+                "movement": [
+                    {
+                        "wait": 0.2
+                    },
+                    {
+                        "x": -8,
+                        "y": 0
+                    }
+                ],
+                "speed": 16,
+                "type": "step",
+                "animation": "Walk",
+                "moonwalk": "true"
+            }
+        },
+        "soundeffect": "M3/Growl 2.mp3",
+        "wait": 1.6,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "2"
+    },
+    "2": {
+        "actorsjump": {
+            "dog": {
+                "height": 12,
+                "length": 0.4
+            }
+        },
+        "actorsmove": {
+            "dog": {
+                "movement": [
+                    {
+                        "x": -64,
+                        "y": 0
+                    }
+                ],
+                "speed": 112,
+                "type": "step"
+            }
+        },
+        "battler": {
+            "actor": "dog",
+            "enemy": "straydog"
+        },
+        "batwinflag": "beat_dog_bridge",
+        "wait": 0.4,
+        "autoadvance": true,
+        "caninput": false
+    }
 }

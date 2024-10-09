@@ -6,13 +6,13 @@
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 3 )
-shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 0.0
+shader_param/color = Color( 0.999998, 0.999998, 1, 1 )
+shader_param/width = 1.0
 shader_param/pattern = 0
 shader_param/inside = false
 
 [sub_resource type="Animation" id=5]
-resource_name = "idle"
+resource_name = "lookIntoYourSoul"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -78,6 +78,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 24, 25, 26 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.972549, 0.0627451, 0.439216, 1 ), Color( 0.341176, 0.341176, 0.941176, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:material:shader_param/width")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [node name="BattleSprite" type="Control"]
 show_behind_parent = true
@@ -94,7 +118,7 @@ hframes = 10
 vframes = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 5 )
+anims/lookIntoYourSoul = SubResource( 5 )
 anims/psi = SubResource( 6 )
 anims/psiPrep = SubResource( 8 )
 anims/psiPrep2 = SubResource( 9 )

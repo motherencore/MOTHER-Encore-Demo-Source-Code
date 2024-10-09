@@ -1,23 +1,23 @@
 {
-	"0": {
-		"name": "Mick",
-		"text": "Woof!",
-		"goto": "1"
-	},
-	"1":{
-		"name": "Mick",
-		"text": "(Woah, are those Dog Treats? Give them to me!)",
-		"goto": "2"
-	},
-	"2":{
-		"text": "PartyLead gave Mick the Dog Treats.",
-		"goto": "3"
-	},
-	"3":{
-		"flag": "gave_treats",
-		"emotenpc": "heart",
-		"name": "Mick",
-		"text": "(It's a secret to everybody.)",
-		"removeitem": "DogTreats"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WOOF_TREATS_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_TREATS_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WOOF_TREATS_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_TREATS_1",
+        "goto": "2"
+    },
+    "2": {
+        "text": "DIALOGUE_PODUNK_WOOF_TREATS_2",
+        "goto": "3"
+    },
+    "3": {
+        "flag": "gave_treats",
+        "emotenpc": "heart",
+        "name": "DIALOGUE_PODUNK_WOOF_TREATS_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_TREATS_3",
+        "removeitem": "DogTreats"
+    }
 }

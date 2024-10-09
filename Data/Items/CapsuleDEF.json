@@ -1,53 +1,36 @@
 {
-	"name": {
-		"english": "Defense Capsule",
-		"french": "Capsule de Défense"
-	},
-	"article" : {
-		"english": "a",
-		"french": "une"
-	},
-	"keyitem": false,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User's maximum defense increased by 3!",
-			"french": "La défense maximum de User a augmenté par 3!"
-		},
-		"textfail": {
-			"english": "User won't eat the Defense Capsule.",
-			"french": "User ne veut pas manger la Capsule de Défense."
-		}
-	},
-	"action_two": null,
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 3, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Increases your maximum defense by 3.",
-		"french": "Augmente ta défense maximum par 3."
-	}
+    "name": "CAPSULEDEF",
+    "article": "CAPSULEDEF_ART",
+    "keyitem": false,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": {
+        "name": "CAPSULEDEF_ACT1_NAME",
+        "function": "consume",
+        "text": "CAPSULEDEF_ACT1_TEXT",
+        "textfail": "CAPSULEDEF_ACT1_FAIL"
+    },
+    "action_two": null,
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 3,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "CAPSULEDEF_DESC",
+    "short_name": "CAPSULEDEF_SHORT"
 }

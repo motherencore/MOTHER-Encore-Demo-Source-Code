@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=2]
@@ -6,6 +6,116 @@
 [ext_resource path="res://Scripts/UI/PSISelect.gd" type="Script" id=4]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultlabel.png" type="Texture" id=5]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=6]
+[ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "HidePP"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PP/PPCost:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0.5, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 9 ), Vector2( 0, 19 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PP/PPCost:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PP:show_behind_parent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PP/PPCost:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PP:show_behind_parent")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "ShowPP"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("PP/PPCost:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 0.5, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 19 ), Vector2( 0, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PP/PPCost:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PP:show_behind_parent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="PSILevelSelect" type="NinePatchRect"]
 material = ExtResource( 6 )
@@ -23,64 +133,81 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 18
 custom_constants/margin_top = 10
-custom_constants/margin_left = 22
+custom_constants/margin_left = 16
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 22.0
+margin_left = 16.0
 margin_top = 10.0
 margin_right = 189.0
 margin_bottom = 56.0
 
 [node name="Arrow" parent="." instance=ExtResource( 2 )]
 position = Vector2( 100, 16 )
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
+loop_around = true
 skip_empty_labels = true
 skip_hidden_items = true
 move_sfx = true
 select_sfx = true
 reset_on_show = false
 
-[node name="DownArrow" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 198, 13 )
-rotation = 1.5708
+[node name="Scrollbar" parent="." instance=ExtResource( 7 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -15.0
+margin_top = 9.0
+margin_right = -15.0
+margin_bottom = 56.0
 
-[node name="UpArrow" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 198, 6 )
-rotation = -1.5708
-
-[node name="PPCost" type="NinePatchRect" parent="."]
-material = ExtResource( 6 )
+[node name="PP" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -48.0
-margin_top = -9.0
+margin_top = -18.0
 margin_right = -8.0
-margin_bottom = 9.0
+margin_bottom = 22.0
+
+[node name="PPCost" type="NinePatchRect" parent="PP"]
+show_behind_parent = true
+material = ExtResource( 6 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -31.0
+margin_bottom = -12.9999
 texture = ExtResource( 5 )
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Label" type="Label" parent="PPCost"]
+[node name="Label" type="Label" parent="PP/PPCost"]
 margin_left = 4.0
 margin_top = 2.0
 margin_right = 21.0
 margin_bottom = 16.0
 custom_fonts/font = ExtResource( 1 )
-text = "PP"
+text = "MENU_PP"
 
-[node name="Label2" type="Label" parent="PPCost"]
+[node name="Label2" type="Label" parent="PP/PPCost"]
 margin_left = 23.0
 margin_top = 2.0
 margin_right = 37.0
 margin_bottom = 16.0
+grow_horizontal = 0
 custom_fonts/font = ExtResource( 1 )
 text = "0"
-align = 1
+align = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PP"]
+root_node = NodePath("../..")
+anims/HidePP = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/ShowPP = SubResource( 3 )
+
+[connection signal="failed_move" from="Arrow" to="." method="_on_Arrow_failed_move"]

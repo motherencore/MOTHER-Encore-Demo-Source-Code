@@ -28,7 +28,8 @@ func _on_Area2D_body_entered(body):
 func _on_MusicArea_body_exited(body):
 	if body == global.persistPlayer and !global.cutscene:
 		playerInside = false
-		get_tree().create_timer(0.1).connect(\"timeout\", self, \"check_player_and_stop\")
+		check_player_and_stop()
+		#get_tree().create_timer(0.1).connect(\"timeout\", self, \"check_player_and_stop\")
 
 
 
@@ -40,15 +41,21 @@ func play_music():
 	if get_tree().is_connected(\"idle_frame\", self, \"play_music\"):
 		get_tree().disconnect(\"idle_frame\", self, \"play_music\")
 	var sameSong = false
-	var musicPlayer = 0
+	var musicPlayer = audioManager.get_audio_player_count() - 1
+	#To check if the music area the player is going into has the same loop and song as the one the player was in before
+	#Music Changers are Music Areas
 	if audioManager.musicChangers[0] != self:
 		if music != \"\":
-			if audioManager.musicChangers[0].music == music:
+			if audioManager.musicChangers[0].music == music or audioManager.get_audio_player_from_song(music):
 				sameSong = true
+				if audioManager.get_audio_player_from_song(music):
+					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music))
 		if loop != \"\":
-			if audioManager.musicChangers[0].loop == loop:
+			if audioManager.musicChangers[0].loop == loop or audioManager.get_audio_player_from_song(loop):
 				sameSong = true
-				
+				if audioManager.get_audio_player_from_song(loop):
+					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop))
+	#Otherwise it's different
 	else:
 		if music != \"\":
 			if audioManager.get_audio_player(musicPlayer).stream == load(\"res://Audio/Music/\" + music):
@@ -56,7 +63,6 @@ func play_music():
 		if loop != \"\":
 			if audioManager.get_audio_player(musicPlayer).stream == load(\"res://Audio/Music/\" + loop):
 				sameSong = true
-		
 	if !sameSong and audioManager.get_audio_player(audioManager.get_audio_player_count() - 1).playing: #Checks if it isn't the same song playing
 		audioManager.add_audio_player()
 		var start = 0
@@ -70,11 +76,10 @@ func play_music():
 		
 	else:
 		var was_playing = true
-		musicPlayer = audioManager.get_audio_player_count() - 1
+		#musicPlayer = audioManager.get_audio_player_count() - 1
 		if !audioManager.get_audio_player(musicPlayer).playing or audioManager.get_audio_player(musicPlayer).volume_db == -80:
 			was_playing = false
 		if was_playing:
-			musicPlayer = audioManager.get_audio_player_count() - 1
 			attachedPlayer = audioManager.get_audio_player(musicPlayer)
 			audioManager.music_fadeto(musicPlayer, volume_db)
 		else:
@@ -89,27 +94,26 @@ func check_player_and_stop():
 func stop_music(fadeoutLength = 1.5):
 	if self in audioManager.musicChangers:
 		audioManager.musicChangers.erase(self)
-	var sameSong = false
-	var musicPlayer = audioManager.get_audio_player_id(attachedPlayer)
-	if audioManager.musicChangers.size() > 0:
-		print(\"huh?\")
-		if music != \"\":
-			if audioManager.get_audio_player_from_song(music, self) != null:
-				musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music, self))
-				sameSong = true
-		if loop != \"\":
-			print(audioManager.get_audio_player_from_song(loop, self))
-			if audioManager.get_audio_player_from_song(loop, self) != null:
-				musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop, self))
-				sameSong = true
-		if diegetic:
-			sameSong = false
-	if musicPlayer != -1 and !sameSong:
-		if fadeoutLength == 0:
-			audioManager.stop_audio_player(musicPlayer)
-		else:
-			audioManager.music_fadeout(musicPlayer, fadeoutLength)
-	attachedPlayer = null
+	if attachedPlayer != null:
+		var sameSong = false
+		var musicPlayer = audioManager.get_audio_player_id(attachedPlayer)
+		if audioManager.musicChangers.size() > 0:
+			if music != \"\":
+				if audioManager.get_audio_player_from_song(music, self) != null:
+					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music, self))
+					sameSong = true
+			if loop != \"\":
+				if audioManager.get_audio_player_from_song(loop, self) != null:
+					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop, self))
+					sameSong = true
+			if diegetic:
+				sameSong = false
+		if musicPlayer != -1 and !sameSong:
+			if fadeoutLength == 0:
+				audioManager.stop_audio_player(musicPlayer)
+			else:
+				audioManager.music_fadeout(musicPlayer, fadeoutLength)
+		attachedPlayer = null
 
 func stop_music_immediately():
 	stop_music(0)

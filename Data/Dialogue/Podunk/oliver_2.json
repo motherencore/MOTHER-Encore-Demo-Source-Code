@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Oliver",
-		"text": "You did it!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_OLIVER_2_SPEAKER_Oliver",
+        "text": "DIALOGUE_PODUNK_OLIVER_2_0",
+        "sound": "Adult"
+    }
 }

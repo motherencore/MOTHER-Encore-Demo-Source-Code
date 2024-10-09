@@ -20,10 +20,31 @@ color = Color( 0.109804, 0.109804, 0.109804, 1 )
 visible = false
 position = Vector2( 160, 90 )
 
-[node name="MapMarkers" type="Sprite" parent="MapImage"]
-
 [node name="PlayerMarker" type="Sprite" parent="MapImage"]
 texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="MapImage"]
+margin_left = -160.0
+margin_top = -7.0
+margin_right = 160.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 5 )
+text = "MAP_404"
+align = 1
+
+[node name="IconMarkerSample" type="Sprite" parent="MapImage"]
+
+[node name="LabelMarkerSample" type="Label" parent="MapImage"]
+margin_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/line_spacing = -3
+custom_fonts/font = ExtResource( 5 )
+align = 1
+
+[node name="MapMarkers" type="Node2D" parent="MapImage"]
 
 [node name="MapArrows" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -38,15 +59,17 @@ margin_left = 222.0
 margin_top = 151.0
 margin_right = 318.0
 margin_bottom = 191.0
+grow_horizontal = 0
 alignment = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 27.0
+margin_left = 1.0
 margin_top = 14.0
 margin_right = 84.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 5 )
-text = "Markers"
+text = "MAP_MARKERS"
+align = 2
 
 [node name="Button" parent="HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 88.0
@@ -54,7 +77,7 @@ margin_top = 14.0
 margin_right = 96.0
 margin_bottom = 25.0
 text = "z"
-key = "ui_ctrl"
+key = "ui_scope"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 visible = false
@@ -65,18 +88,18 @@ margin_bottom = 191.0
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 margin_top = 14.0
-margin_right = 57.0
+margin_right = 80.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 5 )
-text = "Speed Up"
+text = "MAP_FASTSCROLL"
 
 [node name="Button" parent="HBoxContainer2" instance=ExtResource( 6 )]
-margin_left = 61.0
+margin_left = 84.0
 margin_top = 14.0
-margin_right = 69.0
+margin_right = 92.0
 margin_bottom = 25.0
 text = "z"
-key = "ui_select"
+key = "ui_toggle"
 
 [node name="Tween" type="Tween" parent="."]
 

@@ -6,11 +6,14 @@ export (String) var dialog
 export (String) var thoughts
 export var appear_flag = ""
 export var disappear_flag = ""
+export (Array, PoolStringArray) var event_dialog
 export var player_turn = { 
 	"y": true, #Make "x" true if you want the player to turn left/right to face npc
 	"x": true #Make "y" true if you want the player to turn up/down to face npc
 }
 export (Vector2) var button_offset = Vector2.ZERO setget set_button_offset
+
+
 
 func _ready():
 	check_flags()
@@ -36,7 +39,7 @@ func set_button_offset(offset):
 	$ButtonPrompt.offset = button_offset
 
 func interact():
-	$ButtonPrompt.press_button()
+	set_dialog()
 	global.set_dialog(dialog, null)
 	uiManager.open_dialogue_box()
 
@@ -44,6 +47,15 @@ func telepathy():
 	global.set_dialog(thoughts, null)
 	uiManager.set_telepathy_effect(true)
 	uiManager.open_dialogue_box()
+
+func set_dialog():
+	for flags in event_dialog:
+		var flag = flags[0]
+		var newdialog = flags[1]
+		if flag != "":
+			if globaldata.flags.has(flag):
+				if globaldata.flags[flag]:
+					dialog = newdialog
 
 func show_button():
 	$ButtonPrompt.show_button()

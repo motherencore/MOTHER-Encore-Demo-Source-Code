@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "Mrs. Lindgren",
-		"text": "Thank you for finding my daughter, [Ninten].",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mrs. Lindgren",
-		"text": "By the way, the [color]mayor[/color] is itching to see you, [Ninten]...",
-		"sound": "Sexy",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Mrs. Lindgren",
-		"text": "[Pippi], go with [Ninten] and help straighten this out.",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_1",
+        "sound": "Sexy",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_MAYOR_2",
+        "sound": "Sexy"
+    }
 }

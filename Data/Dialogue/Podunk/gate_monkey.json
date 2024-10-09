@@ -1,116 +1,121 @@
 {
-	"0": {
-		"actors": {
-			"player": "leader",
-			"monkey": "Objects/NPCS/npc23"
-		},
-		"name":"Monkey",
-		"text":"EEE, EE EEK, EEK EEK!",
-		"sound": "Strange",
-		"if": {
-			"hasitem": "KeyZoo",
-			"goto": "1"
-		}
-	},
-	"1": {
-		"actorsjump": {
-			"monkey": {
-				"height": 8
-			}
-		},
-		"name":"Monkey",
-		"text":"(Look, pal! Your momma's over there!)",
-		"goto": "2"
-	},
-	"2": {
-		"showbox": false,
-		"actorsturn": {
-			"player": {
-				"x": 0,
-				"y": 1,
-				"speed": 0.07
-			}
-		},
-		"emoteactors": {
-			"player": "question"
-		},
-		"movecam": {
-			"y": -760,
-			"length": 0.8
-		},
-		"wait": 2,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "3"
-	},
-	"3": {
-		"movecam": {
-			"y": -808,
-			"length": 1.2
-		},
-		"wait": 1,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "4"
-	},
-	"4": {
-		"actorsjump": {
-			"monkey": {
-				"height": 8,
-				"times": 2
-			}
-		},
-		"actorsturn": {
-			"monkey": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.1,
-				"queue": true
-			}
-		},
-		"wait": 1.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "5"
-	},
-	"5": {
-		"objectfunction": {
-			"BelowPlayer2/Zoo Opened Flag/Zoo Gate": "queue_free"
-		},
-		"actorsmove": {
-			"monkey": {
-				"movement": [{"x": 100, "y": -100}],
-				"speed": 96,
-				"type": "step"
-			}
-		},
-		"actorsjump": {
-			"monkey": {
-				"height": 10,
-				"length": 0.3,
-				"times": 5
-			}
-		},
-		"actorsturn": {
-			"player": {
-				"actor": "monkey",
-				"speed": 0.1
-			}
-		},
-		"emoteactors": {
-			"player": "surprise"
-		},
-		"wait": 1.8,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "6"
-	},
-	"6": {
-		"eraseactors": {
-			"monkey": true
-		},
-		"flag": "zoo_key_stolen",
-		"removeitem": "KeyZoo",
-		"text":"The monkey stole the Zoo Key!"
-	}
+    "0": {
+        "actors": {
+            "player": "leader",
+            "monkey": "Objects/NPCS/npc23"
+        },
+        "name": "DIALOGUE_PODUNK_GATE_MONKEY_SPEAKER_Monkey",
+        "text": "DIALOGUE_PODUNK_GATE_MONKEY_0",
+        "sound": "Strange",
+        "if": {
+            "hasitem": "KeyZoo",
+            "goto": "1"
+        }
+    },
+    "1": {
+        "actorsjump": {
+            "monkey": {
+                "height": 8
+            }
+        },
+        "name": "DIALOGUE_PODUNK_GATE_MONKEY_SPEAKER_Monkey",
+        "text": "DIALOGUE_PODUNK_GATE_MONKEY_1",
+        "goto": "2"
+    },
+    "2": {
+        "showbox": false,
+        "actorsturn": {
+            "player": {
+                "x": 0,
+                "y": 1,
+                "speed": 0.07
+            }
+        },
+        "emoteactors": {
+            "player": "question"
+        },
+        "movecam": {
+            "y": -760,
+            "length": 0.8
+        },
+        "wait": 2,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "3"
+    },
+    "3": {
+        "movecam": {
+            "y": -808,
+            "length": 1.2
+        },
+        "wait": 1,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "4"
+    },
+    "4": {
+        "actorsjump": {
+            "monkey": {
+                "height": 8,
+                "times": 2
+            }
+        },
+        "actorsturn": {
+            "monkey": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.1,
+                "queue": true
+            }
+        },
+        "wait": 1.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "5"
+    },
+    "5": {
+        "objectfunction": {
+            "BelowPlayer2/Zoo Opened Flag/Zoo Gate": "queue_free"
+        },
+        "actorsmove": {
+            "monkey": {
+                "movement": [
+                    {
+                        "x": 100,
+                        "y": -100
+                    }
+                ],
+                "speed": 96,
+                "type": "step"
+            }
+        },
+        "actorsjump": {
+            "monkey": {
+                "height": 10,
+                "length": 0.3,
+                "times": 5
+            }
+        },
+        "actorsturn": {
+            "player": {
+                "actor": "monkey",
+                "speed": 0.1
+            }
+        },
+        "emoteactors": {
+            "player": "surprise"
+        },
+        "wait": 1.8,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "6"
+    },
+    "6": {
+        "eraseactors": {
+            "monkey": true
+        },
+        "flag": "zoo_key_stolen",
+        "removeitem": "KeyZoo",
+        "text": "DIALOGUE_PODUNK_GATE_MONKEY_6"
+    }
 }

@@ -1,26 +1,30 @@
 {
-	"name": "Ghost",
-	"maxhp": 70,
-	"hp": 70,
-	"maxpp": 0,
-	"pp": 0,
-	"speed": 7,
-	"offense": 22,
-	"defense": 28,
-	"iq": 5,
-	"guts": 0,
-	"level": 4,
-	"exp": 10,
-	"cash": 20,
-	"skills": [
-		{"skill" : "bash", "weight" : 4},
-		{"skill" : "ventOdor", "weight" : 1},
-		{"skill" : "bigGrin", "weight" : 1}
-	],
-	"description": "Just an ordinary ghost.",
-	"boss": false,
-	"sprite": "ghost",
-	"ovsprite": "GhostOV",
-	"music": "Unsettling Opponent.mp3",
-	"bg": "ghost"
+    "name": "GHOST",
+    "description": "GHOST_DESC",
+    "article": "GHOST_ART",
+    "maxhp": 70,
+    "hp": 70,
+    "maxpp": 0,
+    "pp": 0,
+    "speed": 7,
+    "offense": 20,
+    "defense": 12,
+    "iq": 5,
+    "guts": 0,
+    "level": 5,
+    "exp": 13,
+    "cash": 20,
+    "skills": [
+        { "skill": "bash", "weight": 7 },
+        { "skill": "ventOdor", "weight": 1 },
+        { "skill": "bigGrin", "weight": 1 }
+    ],
+    "boss": false,
+    "sprite": "ghost",
+    "music": "Unsettling Opponent.mp3",
+    "bg": "ghost",
+    "ov": {
+        "sprite": "GhostOV",
+        "anim": "BasicEnemy"
+    }
 }

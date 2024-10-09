@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Graphics/Cutscenes/Mt Itoi Landscape/Mt_Itoi_Landscape_0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Cutscenes/Mt Itoi Landscape.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Nodes/Ui/Borders.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Ui/Blackbars.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Audio/Sound effects/text/Kid.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=11]
+[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/UI/Reusables/ButtonLabel.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Introduction"
@@ -21,8 +24,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 2.5, 5, 9, 9.5, 17.4, 21.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 2.5, 5.5, 9, 9.5, 17.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "next_text"
@@ -38,9 +41,6 @@ tracks/0/keys = {
 }, {
 "args": [  ],
 "method": "next_text"
-}, {
-"args": [  ],
-"method": "hide_text"
 } ]
 }
 tracks/1/type = "animation"
@@ -263,6 +263,33 @@ custom_fonts/font = ExtResource( 4 )
 text = "text"
 align = 1
 
+[node name="Skip" type="HBoxContainer" parent="Text"]
+margin_left = 232.0
+margin_right = 316.0
+margin_bottom = 11.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource( 13 )
+show_on_press = true
+
+[node name="Label" type="Label" parent="Text/Skip"]
+margin_left = 1.0
+margin_right = 72.0
+margin_bottom = 11.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 11 )
+text = "MENU_SKIP"
+align = 2
+
+[node name="Button" parent="Text/Skip" instance=ExtResource( 12 )]
+margin_left = 76.0
+margin_right = 84.0
+grow_horizontal = 0
+align = 2
+key = "ui_select"
+
+[node name="Tween" type="Tween" parent="Text/Skip"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Introduction = SubResource( 4 )
 anims/RESET = SubResource( 6 )
@@ -275,7 +302,8 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+bus = "SFX"
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 
 [editable path="Images/Cloud"]

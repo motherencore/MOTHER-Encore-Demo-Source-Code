@@ -1,167 +1,206 @@
 {
-	"0": {
-		"actors": {
-			"doll": "Objects/npcdoll",
-			"mimmie": "Objects/npc2",
-			"minnie": "Objects/npc3",
-			"ninten": "leader"
-		},
-		"teleportactors": {
-			"minnie": {"x": 472, "y": 88}
-		},
-		"unflag": "poltergeist",
-		"flag": "doll_defeated",
-		"ovbattlemusic": false,
-		"actorsdir": {
-			"ninten": {
-				"x": 0,
-				"y": -1
-			},
-			"mimmie": {
-				"x": 0,
-				"y": -1
-			}
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": -1,
-				"y": -1,
-				"speed": 1
-			}
-		},
-		"actorsanim": {
-			"doll": {"anim": "Idle", "type": 1}
-		},
-		"actorsmove": {
-			"doll": {
-				"movement": [{"x":64, "y": 48}],
-				"speed": 200,
-				"type": "position"
-			}
-		},
-		"actorsjump": {
-			"doll": {"height": 48, "speed": 0.42}
-		},
-		"soundeffect": "M3/SMAAAASH.wav",
-		"changecam": "doll",
-		"returncam": 1,
-		"wait": 0.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "1"
-	},
-	"1": {
-		"flag": "pillow_attack",
-		"actorsmove": {
-			"doll": {
-				"movement": [{"x":40, "y": 40}],
-				"speed": 100,
-				"type": "position"
-			}
-		},
-		"actorsjump": {
-			"doll": {"height": 10, "speed": 0.3}
-		},
-		"wait": 0.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "2"
-	},
-	"2": {
-		"changecam": "mimmie",
-		"returncam": 1,
-		"actorsshake": {
-			"mimmie": {"x": 2, "length": 0.2}
-		},
-		"emoteactors": {
-			"mimmie": "dot"
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.5
-			}
-		},
-		"talker": "mimmie",
-		"name": "Mimmie",
-		"text": "Is it over?",
-		"sound": "Kid",
-		"goto": "3"
-	},
-	"3": {
-		"showbox": false,
-		"actorsmove": {
-			"mimmie": {
-				"movement": [{"x":-16, "y": 0}, {"x":0, "y": -72}],
-				"speed": 64,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": -1,
-				"y": -1,
-				"speed": 0.5
-			}
-		},
-		"wait": 1.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "4"
-	},
-	"4": {
-		"actorsdir": {
-			"mimmie": {
-				"x": -1,
-				"y": 0
-			}
-		},
-		"wait": 0.4,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "5"
-	},
-	"5": {
-		"actorsjump": {
-			"mimmie": {"height": 10, "length": 0.2}
-		},
-		"wait": 0.3,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "6"
-	},
-	"6": {
-		"actorsjump": {
-			"mimmie": {"height": 10, "length": 0.2}
-		},
-		"wait": 0.3,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "7"
-	},
-	"7": {
-		"actorsdir": {
-			"mimmie": {
-				"x": 0,
-				"y": 1
-			}
-		},
-		"name": "Mimmie",
-		"text": "It doesn't seem to be moving...",
-		"sound": "Kid",
-		"goto": "8"
-	},
-	"8": {
-		"name": "Mimmie",
-		"text": "But I can still hear something coming out of it.",
-		"sound": "Kid",
-		"goto": "9"
-	},
-	"9": {
-		"name": "Mimmie",
-		"text": "[Ninten], can you check it to make sure it's dead?",
-		"sound": "Kid"
-	}
+    "0": {
+        "actors": {
+            "doll": "Objects/npcdoll",
+            "mimmie": "Objects/npc2",
+            "minnie": "Objects/npc3",
+            "ninten": "leader"
+        },
+        "teleportactors": {
+            "minnie": {
+                "x": 472,
+                "y": 88
+            }
+        },
+        "unflag": "poltergeist",
+        "flag": "doll_defeated",
+        "ovbattlemusic": false,
+        "actorsdir": {
+            "ninten": {
+                "x": 0,
+                "y": -1
+            },
+            "mimmie": {
+                "x": 0,
+                "y": -1
+            }
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": -1,
+                "y": -1,
+                "speed": 1
+            }
+        },
+        "actorsanim": {
+            "doll": {
+                "anim": "Idle"
+            }
+        },
+        "actorsmove": {
+            "doll": {
+                "movement": [
+                    {
+                        "x": 64,
+                        "y": 48
+                    }
+                ],
+                "speed": 200,
+                "type": "position"
+            }
+        },
+        "actorsjump": {
+            "doll": {
+                "height": 48,
+                "speed": 0.42
+            }
+        },
+        "soundeffect": "M3/SMAAAASH.wav",
+        "changecam": "doll",
+        "returncam": 1,
+        "wait": 0.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "1"
+    },
+    "1": {
+        "flag": "pillow_attack",
+        "actorsmove": {
+            "doll": {
+                "movement": [
+                    {
+                        "x": 40,
+                        "y": 40
+                    }
+                ],
+                "speed": 100,
+                "type": "position"
+            }
+        },
+        "actorsjump": {
+            "doll": {
+                "height": 10,
+                "speed": 0.3
+            }
+        },
+        "wait": 0.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "2"
+    },
+    "2": {
+        "changecam": "mimmie",
+        "returncam": 1,
+        "actorsshake": {
+            "mimmie": {
+                "x": 2,
+                "length": 0.2
+            }
+        },
+        "emoteactors": {
+            "mimmie": "dot"
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.5
+            }
+        },
+        "talker": "mimmie",
+        "name": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_2",
+        "sound": "Kid",
+        "goto": "3"
+    },
+    "3": {
+        "showbox": false,
+        "actorsmove": {
+            "mimmie": {
+                "movement": [
+                    {
+                        "x": -16,
+                        "y": 0
+                    },
+                    {
+                        "x": 0,
+                        "y": -72
+                    }
+                ],
+                "speed": 64,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": -1,
+                "y": -1,
+                "speed": 0.5
+            }
+        },
+        "wait": 1.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "4"
+    },
+    "4": {
+        "actorsdir": {
+            "mimmie": {
+                "x": -1,
+                "y": 0
+            }
+        },
+        "wait": 0.4,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "5"
+    },
+    "5": {
+        "actorsjump": {
+            "mimmie": {
+                "height": 10,
+                "length": 0.2
+            }
+        },
+        "wait": 0.3,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "6"
+    },
+    "6": {
+        "actorsjump": {
+            "mimmie": {
+                "height": 10,
+                "length": 0.2
+            }
+        },
+        "wait": 0.3,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "7"
+    },
+    "7": {
+        "actorsdir": {
+            "mimmie": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        "name": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_7",
+        "sound": "Kid",
+        "goto": "8"
+    },
+    "8": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_8",
+        "sound": "Kid",
+        "goto": "9"
+    },
+    "9": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_9",
+        "sound": "Kid"
+    }
 }

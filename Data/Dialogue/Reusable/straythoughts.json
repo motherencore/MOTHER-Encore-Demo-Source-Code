@@ -1,6 +1,6 @@
 {
-	"0": {
-		"text":"Nothing but stray thoughts.",
-		"emoteplayer": "dot"
-	}
+    "0": {
+        "text": "DIALOGUE_REUSABLE_STRAYTHOUGHTS_0",
+        "emoteplayer": "dot"
+    }
 }

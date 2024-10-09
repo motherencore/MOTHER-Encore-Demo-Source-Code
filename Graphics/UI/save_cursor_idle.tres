@@ -5,8 +5,8 @@ resource_name = "idle"
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 0
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -14,11 +14,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 28, 17 ), Vector2( 27, 16 ), Vector2( 26, 15 ), Vector2( 27, 16 ) ]
+"values": [ -4.0, -5, -6, -5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_size")
-tracks/1/interp = 0
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -26,5 +26,29 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 264, 77 ), Vector2( 266, 79 ), Vector2( 268, 81 ), Vector2( 266, 79 ) ]
+"values": [ 4, 5, 6, 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17.0, 16, 15, 16 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 94, 95, 96, 95 ]
 }

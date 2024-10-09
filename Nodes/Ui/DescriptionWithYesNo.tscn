@@ -1,62 +1,118 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Graphics/Objects/Items/Wooden Bat.png" type="Texture" id=2]
-[ext_resource path="res://Nodes/Ui/Description.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Graphics/Objects/Items/BatWooden.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI/Reusables/DescriptionWithYesNo.gd" type="Script" id=3]
 [ext_resource path="res://Graphics/UI/Inventory/item_icon.png" type="Texture" id=4]
+[ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=7]
+[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=8]
 
 [node name="DescriptionPanel" type="Control"]
+margin_right = 256.0
+margin_bottom = 48.0
 script = ExtResource( 3 )
+DescText = NodePath("HBox/MarginContainer/Desc")
+DescSpriteRect = NodePath("HBox/TextureRect")
+DescSprite = NodePath("HBox/TextureRect/Item")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 248.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 242, 36 )
+margin_right = -6.0
+margin_bottom = -6.0
 rect_pivot_offset = Vector2( 176, 12 )
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 8 )
 
-[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
-margin_left = -1.0
-margin_right = 31.0
-margin_bottom = 36.0
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 6.0
+margin_right = -54.0
+margin_bottom = -6.0
+custom_constants/separation = 5
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBox"]
+material = ExtResource( 7 )
 margin_top = 7.0
-margin_right = 32.0
+margin_right = 22.0
 margin_bottom = 29.0
-rect_min_size = Vector2( 32, 20 )
+size_flags_vertical = 4
 texture = ExtResource( 4 )
 stretch_mode = 4
 
-[node name="Item" type="Sprite" parent="ColorRect/CenterContainer/TextureRect"]
-position = Vector2( 16, 11 )
+[node name="Item" type="Sprite" parent="HBox/TextureRect"]
+position = Vector2( 11, 11 )
 texture = ExtResource( 2 )
 
-[node name="CenterContainer2" type="CenterContainer" parent="ColorRect"]
-margin_left = 31.0
-margin_right = 173.0
-margin_bottom = 36.0
-size_flags_horizontal = 0
+[node name="MarginContainer" type="MarginContainer" parent="HBox"]
+margin_left = 27.0
+margin_top = 4.0
+margin_right = 191.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_constants/margin_top = 2
 
-[node name="Desc" type="RichTextLabel" parent="ColorRect/CenterContainer2"]
-margin_top = 5.0
-margin_right = 142.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 142, 13 )
+[node name="Desc" type="RichTextLabel" parent="HBox/MarginContainer"]
+margin_top = 2.0
+margin_right = 164.0
+margin_bottom = 28.0
+grow_vertical = 2
+rect_clip_content = false
+size_flags_horizontal = 3
+size_flags_vertical = 4
 custom_fonts/normal_font = ExtResource( 1 )
 meta_underlined = false
 text = "Not AmongUsNot AmongUsNot AmongUsNot"
 fit_content_height = true
 scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Divider2" type="ColorRect" parent="ColorRect"]
-margin_left = 174.0
-margin_top = 3.0
-margin_right = 175.0
-margin_bottom = 33.0
-color = Color( 0.952941, 0.94902, 0.956863, 0.329412 )
+[node name="Divider2" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -53.0
+margin_top = 9.0
+margin_right = -52.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 1, 0 )
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 8 )
+
+[node name="YesNoDialog" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -42.0
+margin_top = 11.0
+margin_right = -10.0
+margin_bottom = 37.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/separation = 2
+
+[node name="CharaLabel1" parent="YesNoDialog" instance=ExtResource( 5 )]
+margin_right = 48.0
+text = "MENU_YES"
+
+[node name="CharaLabel2" parent="YesNoDialog" instance=ExtResource( 5 )]
+margin_top = 14.0
+margin_right = 48.0
+margin_bottom = 26.0
+text = "MENU_NO"
+
+[node name="arrow" parent="." instance=ExtResource( 6 )]
+position = Vector2( 187, 15 )
+menu_parent_path = NodePath("../YesNoDialog")
+consume_input_events = true
+highlight = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true

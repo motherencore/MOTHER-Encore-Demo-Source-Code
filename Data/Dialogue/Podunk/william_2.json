@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "William",
-		"text": "It was dreadful...",
-		"sound": "Adult"
-	}
-} 
+    "0": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_2_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_2_0",
+        "sound": "Adult"
+    }
+}

@@ -1,21 +1,21 @@
 {
-	"0": {
-		"name": "Iris",
-		"sound": "Sexy",
-		"text": "Welcome! What would you like?",
-		"goto" : "1"
-	},
-	"1": {
-		"text": "",
-		"cleardialog": true,
-		"caninput": false,
-		"showbox": false,
-		"openshop": "podunk_sports_shop",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Iris",
-		"sound": "Sexy",
-		"text": "Have a nice day!"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PODUNK_SPORTS_SHOP_SPEAKER_Iris",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_SPORTS_SHOP_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "",
+        "cleardialog": true,
+        "caninput": false,
+        "showbox": false,
+        "openshop": "podunk_sports_shop",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PODUNK_SPORTS_SHOP_SPEAKER_Iris",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_SPORTS_SHOP_2"
+    }
 }

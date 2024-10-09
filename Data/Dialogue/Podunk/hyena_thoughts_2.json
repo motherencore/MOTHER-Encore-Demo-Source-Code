@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Hyena",
-		"text": "(I don't know what to say, it was all in the heat of the moment.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_HYENA_THOUGHTS_2_SPEAKER_Hyena",
+        "text": "DIALOGUE_PODUNK_HYENA_THOUGHTS_2_0"
+    }
 }

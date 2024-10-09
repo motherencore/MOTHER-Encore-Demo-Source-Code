@@ -1,43 +1,43 @@
 {
-	"0": {
-		"name": "Alfred",
-		"text": "It's fine weather today.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Alfred",
-		"text": "But... I don't care.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Alfred",
-		"text": "You see, the famous Songbird Laura just lost her baby...",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Alfred",
-		"text": "What? No, it's not dead.",
-		"sound": "Adult",
-		"goto": "4"
-	},
-	"4": {
-		"name": "Alfred",
-		"text": "Some jerks just stole it.",
-		"sound": "Adult",
-		"goto": "5"
-	},
-	"5": {
-		"name": "Alfred",
-		"text": "And now, none of the birds want to sing.",
-		"sound": "Adult",
-		"goto": "6"
-	},
-	"6": {
-		"name": "Alfred",
-		"text": "At this rate, no-one will want to visit Canary Village anymore...",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_3",
+        "sound": "Adult",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_4",
+        "sound": "Adult",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_5",
+        "sound": "Adult",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WEATHER_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WEATHER_6",
+        "sound": "Adult"
+    }
 }

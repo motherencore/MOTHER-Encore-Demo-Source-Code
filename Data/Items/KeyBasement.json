@@ -1,40 +1,32 @@
 {
-	"name": {
-		"english": "Basement Key",
-		"french": "Clé du Sous-Sol"
-	},
-	"article" : {
-		"english": "the",
-		"french": "la"
-	},
-	"keyitem": true,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": false,
-		"lloyd": false,
-		"ana": false,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": null,
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0,
-	},
-	"description": {
-		"english": "Mick was carrying this.\nIt's the key for your house's basement.",
-		"french": "Mick portait cette clé. \nC'est une clé pour le sous-sol de ta maison.",
-	},
+    "name": "KEYBASEMENT",
+    "article": "KEYBASEMENT_ART",
+    "keyitem": true,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": null,
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "KEYBASEMENT_DESC",
+    "short_name": "KEYBASEMENT_SHORT"
 }

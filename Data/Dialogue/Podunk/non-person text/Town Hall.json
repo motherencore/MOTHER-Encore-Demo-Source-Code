@@ -1,9 +1,9 @@
 {
-	"0": {
-		"text": "Welcome to Town hall.",
-		"goto": "1"
-	},
-	"1": {
-		"text": "Please keep any grievances to yourself. - Mayor"
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_TOWN_HALL_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_TOWN_HALL_1"
+    }
 }

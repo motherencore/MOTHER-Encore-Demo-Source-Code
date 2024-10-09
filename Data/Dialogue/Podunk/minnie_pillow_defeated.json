@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Minnie",
-		"text": "Oh my! Our house is falling apart!",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MINNIE_PILLOW_DEFEATED_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_PILLOW_DEFEATED_0",
+        "sound": "Kid"
+    }
 }

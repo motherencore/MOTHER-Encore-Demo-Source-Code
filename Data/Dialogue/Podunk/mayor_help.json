@@ -1,70 +1,70 @@
 {
-	"0": {
-		"name":"Mayor Goodman",
-		"text":"Citizen, I know you'd like to help your town.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Mayor Goodman",
-		"text":"Well...",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name":"Mayor Goodman",
-		"text":"A child has strayed into the [color]cemetery to the south of town[/color].",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name":"Mayor Goodman",
-		"text":"And...",
-		"sound": "Adult",
-		"goto": "4"
-	},
-	"4": {
-		"name":"Mayor Goodman",
-		"text":"I'm up for re-election soon.",
-		"sound": "Adult",
-		"goto": "5"
-	},
-	"5": {
-		"name":"Mayor Goodman",
-		"text":"You must help!",
-		"sound": "Adult",
-		"goto": "6"
-	},
-	"6": {
-		"name":"Mayor Goodman",
-		"text":"Please, help me!",
-		"sound": "Adult",
-		"options": {
-			"Yes": "7",
-			"No": "10",
-			"cancel": "10"
-		}
-	},
-	"7": {
-		"name":"Mayor Goodman",
-		"text":"Oh!? You'll go there and save her?",
-		"sound": "Adult",
-		"goto": "8"
-	},
-	"8": {
-		"name":"Mayor Goodman",
-		"text":"Return her to me alive, and surely I'll be a hero...",
-		"sound": "Adult",
-		"goto": "9"
-	},
-	"9": {
-		"name":"Mayor Goodman",
-		"text":"Er, umh, I mean... You'll be a hero!",
-		"sound": "Adult"
-	},
-	"10": {
-		"name":"Mayor Goodman",
-		"text":"How could you do this to me?!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_3",
+        "sound": "Adult",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_4",
+        "sound": "Adult",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_5",
+        "sound": "Adult",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_6",
+        "sound": "Adult",
+        "options": {
+            "DIALOGUE_PODUNK_MAYOR_HELP_6-OPT_0": "7",
+            "DIALOGUE_PODUNK_MAYOR_HELP_6-OPT_1": "10",
+            "cancel": "10"
+        }
+    },
+    "7": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_7",
+        "sound": "Adult",
+        "goto": "8"
+    },
+    "8": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_8",
+        "sound": "Adult",
+        "goto": "9"
+    },
+    "9": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_9",
+        "sound": "Adult"
+    },
+    "10": {
+        "name": "DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_HELP_10",
+        "sound": "Adult"
+    }
 }

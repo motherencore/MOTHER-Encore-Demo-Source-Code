@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Gorilla",
-		"text": "(I don't know what came over me, I am currently working to better myself.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_GORILLA_THOUGHTS_1_SPEAKER_Gorilla",
+        "text": "DIALOGUE_PODUNK_GORILLA_THOUGHTS_1_0"
+    }
 }

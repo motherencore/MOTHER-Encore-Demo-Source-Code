@@ -1,40 +1,32 @@
 {
-	"name": {
-		"english": "GGF Diary",
-		"french": "Journal de George"
-	},
-	"article" : {
-		"english": "his",
-		"french": "le"
-	},
-	"keyitem": true,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": false,
-		"lloyd": false,
-		"ana": false,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": null,
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0,
-	},
-	"description": {
-		"english": "It is old, ragged and filled with entries.",
-		"french": "Il est vieux, fourbu et rempli de notes.",
-	},
+    "name": "GGFDIARY",
+    "article": "GGFDIARY_ART",
+    "keyitem": true,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": null,
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "GGFDIARY_DESC",
+    "short_name": "GGFDIARY_SHORT"
 }

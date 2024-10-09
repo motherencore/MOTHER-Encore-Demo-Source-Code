@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Stephen",
-		"text": "I always believed in you!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_STEPHEN_2_SPEAKER_Stephen",
+        "text": "DIALOGUE_PODUNK_STEPHEN_2_0",
+        "sound": "Adult"
+    }
 }

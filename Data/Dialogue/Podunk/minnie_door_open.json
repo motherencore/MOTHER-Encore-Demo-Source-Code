@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Minnie",
-		"text": "Woah! You got the door to open!",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Minnie",
-		"text": "Now hurry up and check if Mimmie's okay!",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MINNIE_DOOR_OPEN_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_DOOR_OPEN_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MINNIE_DOOR_OPEN_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_DOOR_OPEN_1",
+        "sound": "Kid"
+    }
 }

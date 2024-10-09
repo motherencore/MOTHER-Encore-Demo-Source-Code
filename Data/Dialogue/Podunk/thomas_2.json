@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Thomas",
-		"text": "Who could have known the hero of our town would end up being a child!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_THOMAS_2_SPEAKER_Thomas",
+        "text": "DIALOGUE_PODUNK_THOMAS_2_0",
+        "sound": "Adult"
+    }
 }

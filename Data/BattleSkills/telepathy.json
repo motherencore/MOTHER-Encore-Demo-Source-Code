@@ -1,12 +1,13 @@
 {
-	"name" : "Telepathy",
-	"level" : 0,
-	"description" : "Read the thoughts of others.",
+    "name": "TELEPATHY",
+    "level": 0,
+    "description": "TELEPATHY_DESC",
+    "article": "TELEPATHY_ART",
     "category": "Assist",
-	"skillType" : "psi",
-	"targetType" : 5,
-	"useCases" : -1,
-	"ppCost" : 0,
-	"useSound" : "",
-	"hitSound" : ""
+    "skillType": "psi",
+    "targetType": 5,
+    "useCases": -1,
+    "ppCost": 0,
+    "useSound": "",
+    "hitSound": ""
 }

@@ -1,4 +1,4 @@
-extends NinePatchRect
+extends Control
 
 signal back
 signal swapmode (target_character)
@@ -8,12 +8,12 @@ signal hide_statsbar
 signal show_dialogbox (dialog, character, action)
 
 enum ACTIONS {EQUIP=0, CHECK, USE, CONSUME, TRANSFORM, GIVE, SORT, DROP}
-const base_actions = [
-]
 
-
-const arrow_move_offset_y = 15
-var max_item_rows = 4
+export (NodePath) onready var drop_label = get_node(drop_label) as Label
+export (NodePath) onready var give_label = get_node(give_label) as Label
+export (NodePath) onready var sort_label = get_node(sort_label) as Label
+export (NodePath) onready var action_one_label = get_node(action_one_label) as Label
+export (NodePath) onready var action_two_label = get_node(action_two_label) as Label
 
 onready var arrow = $arrow
 onready var arrow_init_pos = arrow.position
@@ -21,7 +21,6 @@ onready var arrow_init_pos = arrow.position
 var item_side_on_screen = 1
 var is_equipable = false
 var active = false
-var selected_item_nb = 0
 var current_char = "ninten"
 var current_item = -1
 var current_item_name = ""
@@ -29,15 +28,14 @@ var current_item_name = ""
 var waiting_drop_confirmation = false
 
 
-var possible_actions = []
+var possible_actions
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
 	pass
 	
-func Set_for_new_item(pos, item_name, item_side, curr_char, item_idx):
-	selected_item_nb = 0
+func set_for_new_item(pos, item_name, item_side, curr_char, item_idx):
 	current_item = item_idx
 	current_item_name = item_name
 	current_char = curr_char
@@ -49,24 +47,23 @@ func Set_for_new_item(pos, item_name, item_side, curr_char, item_idx):
 		is_equipable = InventoryManager.doesItemHaveFunction(item_name, "equip")
 	else:
 		is_equipable = false
-	possible_actions = base_actions.duplicate()
+	possible_actions = {}
 	
 	if InventoryManager.Load_item_data(item_name).value != 0:
-		possible_actions.push_front(ACTIONS.DROP)
-		$MarginContainer/VBoxContainer/DropLabel.visible = true
+		possible_actions[drop_label.name] = ACTIONS.DROP
+		drop_label.visible = true
 	else:
-		$MarginContainer/VBoxContainer/DropLabel.visible = false
+		drop_label.visible = false
 	
-	possible_actions.push_front(ACTIONS.SORT)
+	possible_actions[sort_label.name] = ACTIONS.SORT
 	
 	if global.party.size()>1:
-		possible_actions.push_front(ACTIONS.GIVE)
-		$MarginContainer/VBoxContainer/GiveLabel.visible = true
+		possible_actions[give_label.name] = ACTIONS.GIVE
+		give_label.visible = true
 	else:
-		$MarginContainer/VBoxContainer/GiveLabel.visible = false
+		give_label.visible = false
 	
 	_set_actions()
-	max_item_rows = possible_actions.size()
 	
 	arrow.cursor_index = 0
 	arrow.set_cursor_from_index(0, false)
@@ -81,103 +78,73 @@ func _set_actions():
 		if item_data["action_two"]["function"] == "equip":
 			if is_equipable:
 				if InventoryManager.Inventories[current_char][current_item].equiped == true:
-					$MarginContainer/VBoxContainer/ActionTwoLabel.text = item_data["action_two"]["nametwo"][globaldata.language]
+					action_two_label.text = item_data["action_two"]["nametwo"]
 				else:
-					$MarginContainer/VBoxContainer/ActionTwoLabel.text = item_data["action_two"]["name"][globaldata.language]
-				$MarginContainer/VBoxContainer/ActionTwoLabel.visible = true
-				_push_action(item_data["action_two"])
+					action_two_label.text = item_data["action_two"]["name"]
+				action_two_label.visible = true
+				_push_action(item_data["action_two"], action_two_label)
 			else:
-				$MarginContainer/VBoxContainer/ActionOneLabel.visible = false
+				action_one_label.visible = false
 		else:
-			$MarginContainer/VBoxContainer/ActionTwoLabel.text = item_data["action_two"]["name"][globaldata.language]
-			$MarginContainer/VBoxContainer/ActionTwoLabel.visible = true
-			_push_action(item_data["action_two"])
+			action_two_label.text = item_data["action_two"]["name"]
+			action_two_label.visible = true
+			_push_action(item_data["action_two"], action_two_label)
 	else:
-		$MarginContainer/VBoxContainer/ActionTwoLabel.visible = false
+		action_two_label.visible = false
 	
 	if item_data["action_one"] != null:
 		if item_data["action_one"]["function"] == "equip":
 			if is_equipable:
 				if InventoryManager.Inventories[current_char][current_item].equiped == true:
-					$MarginContainer/VBoxContainer/ActionOneLabel.text = item_data["action_one"]["nametwo"][globaldata.language]
+					action_one_label.text = item_data["action_one"]["nametwo"]
 				else:
-					$MarginContainer/VBoxContainer/ActionOneLabel.text = item_data["action_one"]["name"][globaldata.language]
-				$MarginContainer/VBoxContainer/ActionOneLabel.visible = true
-				_push_action(item_data["action_one"])
+					action_one_label.text = item_data["action_one"]["name"]
+				action_one_label.visible = true
+				_push_action(item_data["action_one"], action_one_label)
 			else:
-				$MarginContainer/VBoxContainer/ActionOneLabel.visible = false
+				action_one_label.visible = false
 		else:
-			$MarginContainer/VBoxContainer/ActionOneLabel.text = item_data["action_one"]["name"][globaldata.language]
-			$MarginContainer/VBoxContainer/ActionOneLabel.visible = true
-			_push_action(item_data["action_one"])
+			action_one_label.text = item_data["action_one"]["name"]
+			action_one_label.visible = true
+			_push_action(item_data["action_one"], action_one_label)
 	else:
-		$MarginContainer/VBoxContainer/ActionOneLabel.visible = false
+		action_one_label.visible = false
 	yield(get_tree(), "idle_frame")
 	$arrow.set_cursor_to_front()
 	
 
 
-func _push_action(action):
+func _push_action(action, node):
 	match action["function"]:
 		"equip":
-			possible_actions.push_front(ACTIONS.EQUIP)
+			possible_actions[node.name] = ACTIONS.EQUIP
 		"consume":
-			possible_actions.push_front(ACTIONS.CONSUME)
+			possible_actions[node.name] = ACTIONS.CONSUME
 		"use":
-			possible_actions.push_front(ACTIONS.USE)
+			possible_actions[node.name] = ACTIONS.USE
 		"transform":
-			possible_actions.push_front(ACTIONS.TRANSFORM)
-		
+			possible_actions[node.name] = ACTIONS.TRANSFORM
 
-	
 func _physics_process(_delta):
 	if active:
-		_inputs()
-
-#to highlight the correct label with idx the selected item
-func _highlight_label(idx):
-	var actions = $MarginContainer/VBoxContainer.get_children()
-	var to_highlight = idx
-	for i in actions.size():
-		if !actions[i].visible:
-			to_highlight += 1
-		if i == to_highlight:
-			actions[i].highlight(1)
+		if (possible_actions[arrow.get_current_item().name] == ACTIONS.EQUIP):
+			if InventoryManager.Inventories[current_char][current_item].equiped == false:
+				emit_signal("show_statsbar", current_char)
+			else:
+				emit_signal("show_statsbar", current_char, true)
 		else:
-			actions[i].highlight(0)
-	
-
-func _inputs():
-	var pos = arrow.position
-	
-	if Input.is_action_just_pressed("ui_up") and selected_item_nb != 0:
-		selected_item_nb -=1
-	elif Input.is_action_just_pressed("ui_down") and selected_item_nb != max_item_rows - 1:
-		selected_item_nb +=1
-			
-	if(possible_actions[selected_item_nb] == ACTIONS.EQUIP):
-		if InventoryManager.Inventories[current_char][current_item].equiped == false:
-			emit_signal("show_statsbar", current_char)
-		else:
-			emit_signal("show_statsbar", current_char, true)
-	else:
-		emit_signal("hide_statsbar")
-			
-	
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
-		visible = false
-		active = false
-		arrow.on = false
-		arrow.play_sfx("back")
-		emit_signal("hide_statsbar")
-		emit_signal("back")
-		return
+			emit_signal("hide_statsbar")
 		
-	pos.y = arrow_init_pos.y +((selected_item_nb % max_item_rows)*arrow_move_offset_y)
-	
-	
-	#arrow.position = pos
-	_highlight_label(selected_item_nb)
+		
+		if Input.is_action_just_pressed("ui_cancel"):
+			visible = false
+			active = false
+			arrow.on = false
+			arrow.play_sfx("back")
+			emit_signal("hide_statsbar")
+			emit_signal("back")
+			return
+		
 	
 func chain_with_equip():
 	$TargetCharaSelect.chain_with_equip()
@@ -285,11 +252,12 @@ func _on_arrow_selected(cursor_index):
 	active = false
 	arrow.on = false
 	var action = ""
-	if selected_item_nb == 0:
+	if arrow.get_current_item() == action_one_label:
 		action = "action_one"
-	elif selected_item_nb == 1:
+	elif arrow.get_current_item() == action_two_label:
 		action = "action_two"
-	match(possible_actions[selected_item_nb]):
+	var item_data = InventoryManager.Load_item_data(current_item_name)
+	match(possible_actions[arrow.get_current_item().name]):
 		ACTIONS.EQUIP:
 			#equips an item
 			if InventoryManager.Inventories[current_char][current_item].equiped == false:
@@ -304,8 +272,18 @@ func _on_arrow_selected(cursor_index):
 			emit_signal("hide_statsbar")
 			emit_signal("back")
 		ACTIONS.CONSUME:
+			# LOCALIZATION Code added: Using a different title for the target box depending on the action
+			# (give => to whom, use => on whom, eat => who)
+			var title = "INVENTORY_ACTION_TARGET"
+			var action_name = item_data[action]["name"]
+			if action_name == "INVENTORY_ACTION_USE":
+				title = action_name + "_TARGET"
 			#consume an item to recover hp and pp and boost some stats
-			$TargetCharaSelect.Show_target_chara_select(rect_position, current_char, current_item, action)
+			var targets_list = []
+			for party_mem in global.party:
+				if _can_item_target(item_data[action], party_mem):
+					targets_list.append(party_mem.name)
+			$TargetCharaSelect.show_target_chara_select(rect_position, current_char, current_item, action, targets_list, title)
 			
 		ACTIONS.USE:
 			#use an item to check something in front of you
@@ -313,7 +291,8 @@ func _on_arrow_selected(cursor_index):
 			visible = false
 			active = false
 			arrow.on = false
-			emit_signal("show_dialogbox", InventoryManager.Load_item_data(current_item_name)[action]["text"][globaldata.language], current_char)
+			# LOCALIZATION Code change: Removed use of globaldata.language
+			emit_signal("show_dialogbox", item_data[action]["text"], current_char)
 			
 		ACTIONS.TRANSFORM:
 			#transforms an item into another
@@ -321,11 +300,19 @@ func _on_arrow_selected(cursor_index):
 			visible = false
 			active = false
 			arrow.on = false
-			emit_signal("show_dialogbox", InventoryManager.Load_item_data(current_item_name)[action]["text"][globaldata.language])
+			# LOCALIZATION Code change: Removed use of globaldata.language
+			emit_signal("show_dialogbox", item_data[action]["text"])
 		
 		ACTIONS.GIVE:
 			#summon targetCharaSelect
-			$TargetCharaSelect.Show_target_chara_select(rect_position, current_char, current_item, "give")
+			# LOCALIZATION Code added: Using a different title for the target box depending on the action
+			# (give => to whom, use => on whom, eat => who)
+			var targets_list = []
+			for partyMem in global.party:
+				if partyMem.name != current_char:
+					targets_list.append(partyMem.name)
+
+			$TargetCharaSelect.show_target_chara_select(rect_position, current_char, current_item, "give", targets_list, "INVENTORY_ACTION_GIVE_TARGET")
 		
 		ACTIONS.SORT:
 			#sort
@@ -335,3 +322,9 @@ func _on_arrow_selected(cursor_index):
 			#drop
 			$ConfirmationSelect.Show_confirmation_select(rect_position, "drop", "back", current_char, null, current_item)
 	get_parent().updatePartyInfos()
+
+
+func _can_item_target(item_action, character):
+	return !character.status.has(globaldata.ailments.Unconscious)\
+		or item_action.has("targetUnconscious") and item_action["targetUnconscious"] == true
+

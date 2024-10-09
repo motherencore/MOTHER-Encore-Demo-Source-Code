@@ -1,53 +1,53 @@
 {
-	"0": {
-		"name": "Minnie",
-		"text": "I can't get the door to open!",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Minnie",
-		"text": "Looks like we'll need to use brute force.",
-		"sound": "Kid",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Minnie",
-		"text": "[Ninten], do you need a reminder on how to run?",
-		"options": {
-			"Yes": "3",
-			"No": "7",
-			"cancel": "7"
-		},
-		"sound": "Kid"
-	},
-	"3": {
-		"name": "Minnie",
-		"text": "This might sound odd, but imagine something called a [color][ui_toggle][/color] button.",
-		"sound": "Kid",
-		"goto": "4"
-	},
-	"4": {
-		"name": "Minnie",
-		"text": "Then, [color]hold[/color] that button down [color]without moving to crouch.[/color]",
-		"sound": "Kid",
-		"goto": "5"
-	},
-	"5": {
-		"name": "Minnie",
-		"text": "Once you're in that position, [color]release the button to start running.[/color]",
-		"sound": "Kid",
-		"goto": "6"
-	},
-	"6": {
-		"name": "Minnie",
-		"text": "You can also just [color]hold down[/color] the [color][ui_toggle][/color] button while moving to run.",
-		"sound": "Kid",
-		"goto": "7"
-	},
-	"7": {
-		"name": "Minnie",
-		"text": "Try ramming into the door!",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_1",
+        "sound": "Kid",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_2",
+        "options": {
+            "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_2-OPT_0": "3",
+            "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_2-OPT_1": "7",
+            "cancel": "7"
+        },
+        "sound": "Kid"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_3",
+        "sound": "Kid",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_4",
+        "sound": "Kid",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_5",
+        "sound": "Kid",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_6",
+        "sound": "Kid",
+        "goto": "7"
+    },
+    "7": {
+        "name": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_RUN_TUTORIAL_7",
+        "sound": "Kid"
+    }
 }

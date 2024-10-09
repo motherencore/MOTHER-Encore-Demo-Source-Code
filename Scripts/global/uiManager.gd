@@ -2,21 +2,22 @@ extends Node
 
 signal menuFlavorUpdated
 
-const gameover = preload("res://Nodes/Ui/GameOver.tscn")
+const _game_over_node = preload("res://Nodes/Ui/GameOver.tscn")
 
-onready var commandsMenuNode = preload("res://Nodes/Ui/Pause menu.tscn")
-var dialogueBoxNode = preload("res://Nodes/Ui/DialogueBox.tscn")
-var battleMenuNode = preload("res://Nodes/Ui/Battle/Battle.tscn")
-var battleBGNode = preload("res://Nodes/Ui/Battle/BattleBG.tscn")
-var blackBarsNode = preload("res://Nodes/Ui/Blackbars.tscn")
-var atmMenuNode = preload("res://Nodes/Ui/ATM/ATM Menu.tscn")
-var cashNode = preload("res://Nodes/Ui/CashBox.tscn")
-var keyNode = preload("res://Nodes/Ui/KeyCount.tscn")
-var shopNode = preload("res://Nodes/Ui/Shop/ShopUI.tscn")
-var saveNode = preload("res://Maps/SaveSelect.tscn")
-onready var cash = cashNode.instance()
-onready var key = keyNode.instance()
-onready var blackBars = blackBarsNode.instance()
+onready var _commands_menu_node = preload("res://Nodes/Ui/Pause menu.tscn")
+var _dialogue_box_node = preload("res://Nodes/Ui/DialogueBox.tscn")
+var _battle_menu_node = preload("res://Nodes/Ui/Battle/Battle.tscn")
+var _battle_bg_node = preload("res://Nodes/Ui/Battle/BattleBG.tscn")
+var _black_bars_node = preload("res://Nodes/Ui/Blackbars.tscn")
+var _atm_menu_node = preload("res://Nodes/Ui/ATM/ATM Menu.tscn")
+var _cash_node = preload("res://Nodes/Ui/CashBox.tscn")
+var _key_node = preload("res://Nodes/Ui/KeyCount.tscn")
+var _shop_node = preload("res://Nodes/Ui/Shop/ShopUI.tscn")
+var _storage_node = preload("res://Nodes/Ui/Storage.tscn")
+var _save_node = preload("res://Maps/SaveSelect.tscn")
+onready var cash = _cash_node.instance()
+onready var key = _key_node.instance()
+onready var _black_bars = _black_bars_node.instance()
 var menuFlavorShader = preload("res://Shaders/MenuFlavors.tres")
 var battleTransitionNode = preload("res://Nodes/Ui/Battle/Battle Transition.tscn")
 var battleBGs = {}
@@ -25,9 +26,11 @@ var battleWinCutscene = ""
 var battleFleeCutscene = ""
 var battleLoseCutscene = ""
 var battleWinFlag = ""
+var battleRematchFlag = ""
 var battleLoseHeal = ""
 var queueSetCrumbs = false
 
+var _fixed_camera
 
 var commandsMenu
 var commandsMenuActive = false
@@ -65,7 +68,7 @@ func _ready():
 		stableCanvasLayer = canvasLayerNode.instance()
 		global.currentScene.add_child(stableCanvasLayer)
 		global.add_persistent(stableCanvasLayer)
-		add_to_canvas(blackBars, 0)
+		add_to_canvas(_black_bars, 0)
 		add_to_canvas(cash, 1)
 		add_to_canvas(key, 2)
 	
@@ -77,13 +80,8 @@ func _ready():
 		fade = transition
 
 func set_menu_flavors(flavor):
-	menuFlavorShader.set_shader_param("NEWCOLOR1", Color(menuFlavors[flavor][0]))
-	menuFlavorShader.set_shader_param("NEWCOLOR2", Color(menuFlavors[flavor][1]))
-	menuFlavorShader.set_shader_param("NEWCOLOR3", Color(menuFlavors[flavor][2]))
-	menuFlavorShader.set_shader_param("NEWCOLOR4", Color(menuFlavors[flavor][3]))
-	menuFlavorShader.set_shader_param("NEWCOLOR5", Color(menuFlavors[flavor][4]))
-	menuFlavorShader.set_shader_param("NEWCOLOR6", Color(menuFlavors[flavor][5]))
-	menuFlavorShader.set_shader_param("NEWCOLOR7", Color(menuFlavors[flavor][6]))
+	for i in 7:
+		menuFlavorShader.set_shader_param("NEWCOLOR%s" % (i+1), Color(menuFlavors[flavor][i]))
 	emit_signal("menuFlavorUpdated")
 
 func add_ui(ui, addChild = true):
@@ -100,6 +98,12 @@ func remove_ui(ui=uiStack[0]):
 	if uiStack.empty():
 		uiActive = false
 
+func get_fixed_camera():
+	if _fixed_camera == null:
+		_fixed_camera = preload("res://Nodes/Ui/Camera.tscn").instance()
+		get_tree().get_root().add_child(_fixed_camera)
+	return _fixed_camera
+
 func close_current():
 	remove_ui()
 
@@ -110,7 +114,7 @@ func close_item(item): #Calls a function in the menu that closes it
 		item.queue_free()
 
 func open_dialogue_box():
-	dialogueBox = dialogueBoxNode.instance()
+	dialogueBox = _dialogue_box_node.instance()
 	add_ui(dialogueBox)
 	commandsMenuActive = false
 	return dialogueBox
@@ -124,18 +128,22 @@ func check_keys(scene): #Returns the amount of keys collected in a scene. If you
 
 func open_commands_menu():
 	global.persistPlayer.pause()
-	commandsMenu = commandsMenuNode.instance()
+	commandsMenu = _commands_menu_node.instance()
 	add_ui(commandsMenu)
 	commandsMenuActive = true
 
-func close_commands_menu(unpause = true):
-	audioManager.set_audio_player_bus(0, "Master")
+func close_commands_menu(keep_pause = false, remove_bars = false):
+	audioManager.music_muffle(0, 0)
 	remove_ui(commandsMenu)
 	commandsMenuActive = false
 	commandsMenu.queue_free()
-	print(unpause)
-	if unpause:
+	if !keep_pause:
 		global.persistPlayer.unpause()
+	if remove_bars:
+		toggle_black_bars(false)
+
+func toggle_black_bars(show):
+	_black_bars.toggle(show)
 
 func start_battle(type = 0, canRun = true):
 	if global.inBattle:
@@ -146,7 +154,7 @@ func start_battle(type = 0, canRun = true):
 	
 	# hoooo boy this is gonna be some funky code right here.
 	var root = get_tree().root
-	var battleui = battleMenuNode.instance()
+	var battleui = _battle_menu_node.instance()
 	
 	# add enemies to battle and an enemyTransition sprite
 	for enemy in onScreenEnemies:
@@ -282,18 +290,24 @@ func scene_changed():
 		key.open()
 
 func open_shop(shop):
-	var shopui = shopNode.instance()
+	var shopui = _shop_node.instance()
 	shopui.shopJsonName = shop
 	commandsMenuActive = false
 	add_ui(shopui)
 
+func open_storage(god_mode = false):
+	var storageui = _storage_node.instance()
+	storageui.god_mode = god_mode
+	commandsMenuActive = false
+	add_ui(storageui)
+
 func open_atm():
-	var atmui = atmMenuNode.instance()
+	var atmui = _atm_menu_node.instance()
 	commandsMenuActive = false
 	add_ui(atmui)
 
 func open_save():
-	var saveui = saveNode.instance()
+	var saveui = _save_node.instance()
 	commandsMenuActive = false
 	saveui.state = 1
 	saveui.index = globaldata.saveFile
@@ -322,8 +336,9 @@ func create_flying_num(text, targetPos):
 func clearOnScreenEnemies():
 	onScreenEnemies.clear()
 
-func game_over():
-	audioManager.play_sfx(load("res://Audio/Sound effects/PartyLose.mp3"), "PartyLose")
-	var gameOver = gameover.instance()
-	uiManager.add_ui(gameOver)
+func game_over(play_sfx = true):
+	if play_sfx:
+		audioManager.play_sfx(load("res://Audio/Sound effects/PartyLose.mp3"), "PartyLose")
+	var gameOver = _game_over_node.instance()
+	add_ui(gameOver)
 	yield(gameOver, "fade_done")

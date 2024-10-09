@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Matt",
-		"text": "If you head north and then west, you'll find the Canary Village.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Matt",
-		"text": "You should check it out, it's free!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MATT_SPEAKER_Matt",
+        "text": "DIALOGUE_PODUNK_MATT_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MATT_SPEAKER_Matt",
+        "text": "DIALOGUE_PODUNK_MATT_1",
+        "sound": "Adult"
+    }
 }

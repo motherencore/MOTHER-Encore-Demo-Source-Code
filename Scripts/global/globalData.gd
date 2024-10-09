@@ -10,33 +10,44 @@ const persistentAilments = [
 	ailments.Poisoned,
 	ailments.Sunstroked,
 ]
-const languages = ["english", "french"]
+
+const PSI_LEVELS = "αβγΩΣ"
+
+# LOCALIZATION Code added for Polish grammar needs
+var polishDeclension = load("Scripts/languages/PolishDeclension.gd").new()
+var russianDeclension = load("Scripts/languages/RussianDeclension.gd").new()
+var hangul = load("Scripts/languages/Hangul.gd").new()
+
 var saveFile = 0
 var playtime = 0
-var language = "english"
 var winSize = 3
 var musicVolume = 0
 var sfxVolume = 0
 var earned_cash: int = 0
-var cash: int = 0
+var cash: int = 200
 var bank: int = 0
 var levelCap = 20
 var respawnPoint = Vector2.ZERO
 var respawnScene = ""
 var description = true
+var rumble = true
 var favoriteFood = "Oreos"
 var menuFlavor = "Plain"
 var textSpeed = 0.02
 var buttonPrompts = "Both"
 var dialogHintColor = "ea8b2c"
 var playerName = "You"
+var rareDrops = {}
+enum BTN_STYLES {NINTENDO, PLAYSTATION, XBOX, DETECT}
+var buttonsStyle = BTN_STYLES.DETECT
+# LOCALIZATION Code change: Added article field for each party member
 var ninten = {
 	"name": "ninten",
 	"nickname": "ryu",
 	"sprite": "Ninten", 
 	"status": [], 
 	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
-	"learnedSkills": ["lifeUpA", "lifeUpB"],
+	"learnedSkills": ["telepathy", "lifeUpA", "lifeUpB", "healingA"],
 	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0,
@@ -46,7 +57,7 @@ var ninten = {
 	"maxpp": 30, 
 	"offense": 10, 
 	"defense": 12, 
-	"speed": 8,
+	"speed": 1,
 	"iq": 5, 
 	"guts": 8,
 	"boosts": {
@@ -58,7 +69,7 @@ var ninten = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "his",
+	"article": "ARTICLES_NINTEN"
 	} 
 var ana = {
 	"name": "ana",
@@ -66,11 +77,11 @@ var ana = {
 	"sprite": "Ana", 
 	"status": [], 
 	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
-	"learnedSkills": ["pkFireA", "pkFreezeA"],
+	"learnedSkills": [],
 	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0,
-	"hp": 40, 
+	"hp": 1, 
 	"maxhp": 40, 
 	"pp": 30, 
 	"maxpp": 30, 
@@ -88,14 +99,14 @@ var ana = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "her"} 
+	"article": "ARTICLES_ANA"}
 var lloyd = {
 	"name": "lloyd", 
 	"nickname": "Lloyd", 
 	"sprite": "Lloyd", 
 	"status": [], 
 	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
-	"learnedSkills": ["spy"],
+	"learnedSkills": [],
 	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0,
@@ -117,7 +128,7 @@ var lloyd = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "his"} 
+	"article": "ARTICLES_LLOYD"}
 var teddy = {
 	"name": "teddy", 
 	"nickname": "Teddy",
@@ -146,7 +157,7 @@ var teddy = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "his"} 
+	"article": "ARTICLES_TEDDY"}
 var pippi = {
 	"name": "pippi", 
 	"nickname": "Child", 
@@ -175,10 +186,10 @@ var pippi = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "her"} 
+	"article": "ARTICLES_PIPPI"}
 var flyingman = {
 	"name": "flyingman", 
-	"nickname": "Flying Man", 
+	"nickname": tr("NAME_FLYINGMAN"), 
 	"sprite": "FlyingMan", 
 	"status": [], 
 	"learnedSkills": [""],
@@ -203,10 +214,10 @@ var flyingman = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "his"} 
+	"article": "ARTICLES_FLYINGMAN"}
 var canarychick = {
 	"name": "canarychick", 
-	"nickname": "Canary Chick", 
+	"nickname": tr("NAME_CANARYCHICK"),
 	"sprite": "CanaryChick", 
 	"status": [], 
 	"passiveSkills": [],
@@ -230,7 +241,34 @@ var canarychick = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"pronoun": "its"} 
+	"article": "ARTICLES_CANARYCHICK"}
+var eve = {
+	"name": "eve", 
+	"nickname": tr("NAME_EVE"),
+	"sprite": "", 
+	"status": [], 
+	"passiveSkills": [],
+	"level": 1, 
+	"exp": 0, 
+	"hp": 0, 
+	"maxhp": 0, 
+	"pp": 0, 
+	"maxpp": 0, 
+	"speed": 1, 
+	"offense": 1, 
+	"defense": 1, 
+	"iq": 1, 
+	"guts": 1, 
+	"boosts": {
+		"maxhp": 0,
+		"maxpp": 0, 
+		"offense": 0, 
+		"defense": 0, 
+		"speed": 0, 
+		"iq": 0, 
+		"guts": 0,
+	},
+	"article": "ARTICLES_EVE"}
 
 # The stat target table is a dictionary with stats that each have an array
 # Each stat array represents where a stat should be at that (index * 10) level
@@ -335,114 +373,337 @@ const player_learn_skill_table = {
 }
 
 const skills = {}
+const fieldSkills = {}
 const items = {}
 const shopLists = {}
+const mapMarkers = {}
 
-func replaceText(string):
-	if "[Ninten]" in string:
-		string = string.replace("[Ninten]", ninten["nickname"])
-		
-	if "[Ana]" in string:
-		string = string.replace("[Ana]", ana["nickname"])
+# LOCALIZATION Code change: Rewrote this methode to make it more effective, more consistent
+# Also included more tags for articles and specific language needs
+func replaceText(string, context = self, without_brackets = false):
+	string = tr(string)
+	string = _replace_ifs(string)
+	string = _replace_tags(string, context, without_brackets)
+	var substitutions = {" - ": " – " , "(\\d+) (\\$)": '$1 $2',  "([   ])!": "$1¦" }
+	var regex = RegEx.new()
+	for pattern in substitutions:
+		regex.compile(pattern)
+		string = regex.sub(string, substitutions[pattern], true)
+	return string
+	
+# General syntax: [Tag], [Tag:Param1,Param2,...], or [Tag123] (numeric parameter)
+func _replace_tags(string, context = self, without_brackets = false):
+	var startIndex = 0
+	var regex = RegEx.new()
+	if !without_brackets:
+		regex.compile("\\[([A-Za-z_]+)(:[^\\]]+|\\d+)?\\]")
+	else:
+		regex.compile("^([A-Za-z_]+)(:[^\\]]+|\\d+)?$")
+	var tag = regex.search(string)
+	while tag:
+		var result = tag.get_string()
+		var tagContent = tag.get_string(1)
+		var tagParam = tag.get_string(2).trim_prefix(":")
+		match tagContent:
+			"N":			# [N] returns Ninten's initial, for the NES joke in other languages
+				result = context.ninten["nickname"][0]
+			"PartyLead":	# [PartyLead] returns the party leader's nickname
+				result = global.party[0]["nickname"]
+			"FavFood":		# [FavFood] returns the favorite food
+				result = context.favoriteFood
+			"ItemName": 	# [ItemName] returns the current item name
+				result = tr(global.item["name"]) if global.item else ""
+			"ItemReceiver":	# [ItemReceiver] returns the nickname of the party member receiving an item
+				result = global.receiver["nickname"] if global.receiver else ""
+			"User":			# [User] returns the nickname of the party member who's using an item
+				result = global.itemUser["nickname"] if global.itemUser else ""
+			"LeadArt":		# [LeadArt0], [LeadArt1], etc., return the party leader's articles
+				result = get_battler_articles(global.party[0], int(tagParam))
+			"ReceiverArt":	# [ReceiverArt0], [ReceiverArt1], etc., return the item receiver's articles
+				result = get_battler_articles(global.receiver, int(tagParam))
+			"UserArt":		# [UserArt0], [UserArt1], etc., return the item user's articles
+				result = get_battler_articles(global.itemUser, int(tagParam))
+			"ItemArt":		# [ItemArt0], [ItemArt1], etc., return the current item articles
+				if global.item and tagParam:
+					result = get_item_or_skill_articles(global.item, int(tagParam))
+				else:
+					result = ""
+			"EarnedCash":	# [EarnedCash] returns - and resets - the amount of money you've just earned
+				result = var2str(context.earned_cash) # Dollar sign not included
+				context.earned_cash = 0
+				context.flags["earned_cash"] = false
+			"CurrentCash":	# [CurrentCash] returns the amount of money on hand (without dollar sign)
+				result = var2str(context.cash)
+			"BankCash":		# [BankCash] returns the amount of money on bank (without dollar sign)
+				result = var2str(context.bank)
+			"color":		# [color] returns the opening tag to set the text color to hint color
+				result = "[color=#"+ dialogHintColor + "]"
+			"br":			# [br] returns a new line (it can )
+				result = "\n"
+			"fr_eli":		# [fr_eli] returns French elision ("e " or "'" if followed by vowel)
+							# [fr_eli:***] returns French elision where the next word is ***
+				if tagParam:
+					var nickname = _replace_tags(tagParam, context, true)
+					result = get_french_elision(nickname)
+				else:
+					result = get_french_elision(string.substr(tag.get_end()))
+			"de_gen":		# [de_gen] returns German genitive suffix ("s" or "'" if after an s or x)
+							# [de_gen:***] returns German genitive suffix where the previous word is ***
+				if tagParam:
+					var nickname = _replace_tags(tagParam, context, true)
+					result = get_german_genitive(nickname)
+				else:
+					result = get_german_genitive(string.substr(0, tag.get_start()))
+			"pl_decl":		# [pl_decl:name:gender:case] returns Polish declension for name
+							# where "gender" is M or F and "case" is the index of the grammar case
+				var params = tagParam.split(":")
+				var nickname = _replace_tags(params[0], context, true)
+				result = get_polish_declension(nickname, params[1], int(params[2]))
+			"ru_decl":		# [ru_decl:name:gender:case] returns Russian declension for name
+							# where "gender" is M or F and "case" is the index of the grammar case
+				var params = tagParam.split(":")
+				var nickname = _replace_tags(params[0], context, true)
+				result = get_russian_declension(nickname, params[1], int(params[2]))
+			"ko_part":
+				var params = tagParam.split(":")
+				if params.size() > 1:
+					var nickname = _replace_tags(params[0], context, true)
+					result = get_korean_particle(nickname, int(params[1]))
+				else:
+					result = get_korean_particle(string.substr(0, tag.get_start()), int(params[0]))
 
-	if "[Lloyd]" in string:
-		string = string.replace("[Lloyd]", lloyd["nickname"])
+			_:
+				if tagContent.begins_with("ui_"):	# [ui_accept], [ui_cancel], etc., returns control keys
+					result = get_key_name(tagContent)
+				elif tagContent.to_lower() in global.POSSIBLE_PARTY_MEMBERS:
+					result = context[tagContent.to_lower()]["nickname"]
+					var max_length = len(tr("LONGEST_POSSIBLE_NAME"))
+					result = result.substr(0, max_length)
+				elif status_name_to_enum(tagContent.to_lower()) != -1:
+					result = "[font=res://Graphics/UI/Ailments/Ailments.tres][img]res://Graphics/UI/Ailments/%s.png[/img][/font]" % tagContent.capitalize()
+				else:								# Unknown tags: doing nothing, moving the start index to prevent looping indefinitely
+					startIndex = tag.get_start() + 1
+					if not tagContent in ["img", "i", "b"]:
+						push_warning("UNKNOWN TAG: %s" % tagContent)
 
-	if "[Teddy]" in string:
-		string = string.replace("[Teddy]", teddy["nickname"])
+		var strBefore = string.substr(0, tag.get_start())
+		var strAfter = string.substr(tag.get_end())
+		string = strBefore + result + strAfter
 
-	if "[Pippi]" in string:
-		string = string.replace("[Pippi]", pippi["nickname"])
-	
-	if "PartyLeadPrn" in string:
-		string = string.replace("PartyLeadPrn", global.party[0]["pronoun"])
-	
-	if "PartyLead" in string:
-		string = string.replace("PartyLead", global.party[0]["nickname"])
-	
-	if "FavFood" in string:
-		string = string.replace("FavFood", favoriteFood)
-	
-	if "ItemName" in string:
-		string = string.replace("ItemName", global.itemname)
-	
-	if "ItemReceiver" in string:
-		string = string.replace("ItemReceiver", global.receiver)
-	
-	if "ItemArt" in string:
-		string = string.replace("ItemArt", global.itemart)
-	
-	if "EarnedCash" in string:
-		string = string.replace("EarnedCash", "$" + var2str(earned_cash))
-		earned_cash = 0
-		flags["earned_cash"] = false
-		
-	if "CurrentCash" in string:
-		string = string.replace("CurrentCash", "$" + var2str(cash))
-	
-	if "BankCash" in string:
-		string = string.replace("BankCash", "$" + var2str(bank))
-	
-	#replace User Input keys
-	if "[ui_accept]" in string:
-		string = string.replace("[ui_accept]", get_key_name("ui_accept"))
-	
-	if "[ui_cancel]" in string:
-		string = string.replace("[ui_cancel]", get_key_name("ui_cancel"))
-	
-	if "[ui_select]" in string:
-		string = string.replace("[ui_select]", get_key_name("ui_select"))
-	
-	if "[ui_toggle]" in string:
-		string = string.replace("[ui_toggle]", get_key_name("ui_toggle"))
-	
-	if "[ui_ctrl]" in string:
-		string = string.replace("[ui_ctrl]", get_key_name("ui_ctrl"))
-	
-	if "[ui_up]" in string:
-		string = string.replace("[ui_up]", get_key_name("ui_up"))
-	
-	if "[ui_down]" in string:
-		string = string.replace("[ui_down]", get_key_name("ui_down"))
-	
-	if "[ui_left]" in string:
-		string = string.replace("[ui_left]", get_key_name("ui_left"))
-	
-	if "[ui_right]" in string:
-		string = string.replace("[ui_right]", get_key_name("ui_right"))
-	
-	if "[color]" in string:
-		string = string.replace("[color]", "[color=#"+ dialogHintColor + "]")
+		if without_brackets:
+			break
+
+		tag = regex.search(string, startIndex)
 	
 	return string
 
-func get_key_name(key):
+
+func _replace_ifs(string):
+	var regex = RegEx.new()
+	regex.compile("\\[if (\\w+)(:\\w+)?\\]((?:(?!\\[/?if [\\w:]+\\]).)*?)(\\[else\\]((?:(?!\\[/?if [\\w:]+\\]).)*?))?\\[/if\\]")
+	var tag = regex.search(string)
+	
+	if tag:
+		var condition = tag.get_string(1)
+		var params = tag.get_string(2).trim_prefix(":").split(":")
+		var content_if = tag.get_string(3)
+		var content_else = tag.get_string(5)
+		var before = string.substr(0, tag.get_start())
+		var after = string.substr(tag.get_end())
+		var condition_res = true
+		match condition:
+			"input":
+				for param in params:
+					match param:
+						"gamepad":
+							condition_res = condition_res if global.device == global.GAMEPAD else false
+						"keyboard":
+							condition_res = condition_res if global.device == global.KEYBOARD else false
+						_:
+							push_warning("UNKNOWN CONDITION: %s=%s" % [condition, param])
+			"party":
+				for param in params:
+					match param:
+						"plural":
+							condition_res = condition_res if global.party.size() > 1 else false
+						"singular":
+							condition_res = false if global.party.size() > 1 else condition_res
+						"female_lead":
+							condition_res = condition_res if global.party[0] in [globaldata.ana, globaldata.pippi] else false
+						"male_lead":
+							condition_res = false if global.party[0] in [globaldata.ana, globaldata.pippi] else condition_res
+			_:
+				push_warning("UNKNOWN CONDITION: %s" % condition)
+				condition_res = null
+		var res
+		if condition_res == null:
+			res = before + after
+		elif condition_res:
+			res = before + content_if + after
+		else:
+			res = before + content_else + after
+		if string == res:
+			return res
+		else:
+			return _replace_ifs(res)
+	
+	else:
+		return string
+
+# LOCALIZATION Code added to handle multiple item articles
+func get_item_or_skill_articles(item, articleIdx: int = -1):
+	var articleStr = tr(item.article)
+	var articleArray = articleStr.split(",")
+	
+	if articleIdx == -1:
+		return Array(articleArray)
+	else:
+		return articleArray[articleIdx]
+
+# LOCALIZATION Code added to handle multiple articles for battlers (includes pronouns, suffixes, etc.)
+func get_battler_articles(battler, articleIdx : int = -1):
+	var articleStr
+	if battler.has("article"):
+		articleStr = tr(battler.article)
+	else:
+		articleStr = tr("ARTICLES_DEFAULT")
+
+	var articleArray = articleStr.split(",")
+
+	for i in articleArray.size():
+		# In case the "articles" are actually alternative names, [name] reverts to the actual nickname (useful for Polish)
+		articleArray[i] = articleArray[i].replace("[name]", battler.nickname)
+		# French elision in the case of articles (for user-defined party member names)
+		articleArray[i] = replaceText(articleArray[i])
+	
+	if articleIdx == -1:
+		return Array(articleArray)
+	else:
+		return articleArray[articleIdx]
+	
+func get_skill_level(skill):
+	if skill.has("level") and skill.get("skillType") == "psi":
+		var skill_level = int(skill["level"])
+		if skill_level in range(0, PSI_LEVELS.length()):
+			return tr("BATTLE_LETTER_WHITESPACE") + PSI_LEVELS[skill_level]
+	return ""
+
+func get_number_articles(number, article_idx: int = -1):
+	var article_array = tr("ARTICLES_NUMBERS").split(",")
+
+	for i in article_array.size():
+		article_array[i] = article_array[i].format([number])
+		article_array[i] = replaceText(article_array[i])
+		
+	if article_idx == -1:
+		return Array(article_array)
+	else:
+		return article_array[article_idx]
+
+
+func get_french_elision(nextWord):
+	nextWord = replaceText(nextWord)
+	var vowels = "aeiouáàâäæéèêëíìîïóòôöœúùûü"
+	if nextWord.length() > 0 and nextWord[0].to_lower() in vowels:
+		return "'"
+	else:
+		return "e "
+
+func get_german_genitive(prevWord):
+	prevWord = replaceText(prevWord)
+	if prevWord.ends_with('s') or prevWord.ends_with('x'):
+		return "'"
+	else:
+		return "s"
+
+func get_polish_declension(name, gender, case):
+	return polishDeclension.get_polish_declension(name, gender, case)
+	
+func get_russian_declension(name, gender, case):
+	return russianDeclension.get_russian_declension(name, gender, case)
+
+func get_korean_particle(prevWord, type):
+	if hangul.ends_with_vowel(prevWord, type == 4):
+		return ["는","가","를","와","로"][type]
+	else:
+		return ["은","이","을","과","으로"][type]
+
+func get_key_name(key, device = global.device):
 	var keyname = ""
-	for action in InputMap.get_action_list(key):
-		if global.device == "Keyboard":
-			if action is InputEventKey:
-				keyname = OS.get_scancode_string(action.scancode)
-				if keyname == "Control":
-					keyname = "CTRL"
-				return keyname
-		if global.device == "Gamepad":
-			if action is InputEventJoypadButton:
-				keyname = get_button_name(Input.get_joy_button_string(action.button_index))
-				return keyname
-	return keyname
+	for event in InputMap.get_action_list(key):
+		if (device == global.KEYBOARD and event is InputEventKey)\
+		or (device == global.GAMEPAD and event is InputEventJoypadButton)\
+		or (device == global.GAMEPAD and event is InputEventJoypadMotion):
+			return get_key_name_from_event(event)
+
+func is_key_allowed(event):
+	return get_key_name_from_event(event) != null
+
+func get_key_name_from_event(event):
+	if event is InputEventKey:
+		return get_key_from_scancode(event.scancode)
+	elif event is InputEventJoypadButton:
+		return get_button_name(Input.get_joy_button_string(event.button_index))
+	elif event is InputEventJoypadMotion:
+		return
+
+func get_key_from_scancode(scancode):
+	var SPECIAL_KEY_LABELS = {KEY_UP: "↑", KEY_DOWN: "↓", KEY_LEFT: "←", KEY_RIGHT: "→", KEY_KP_MULTIPLY: "*", KEY_KP_DIVIDE: "/", KEY_KP_SUBTRACT: "-", KEY_KP_PERIOD: ".", KEY_KP_ADD: "+", KEY_KP_0: "0", KEY_KP_1: "1", KEY_KP_2: "2", KEY_KP_3: "3", KEY_KP_4: "4", KEY_KP_5: "5", KEY_KP_6: "6", KEY_KP_7: "7", KEY_KP_8: "8", KEY_KP_9: "9", KEY_SPACE: "KEYBOARD_SPACE"}
+
+	var ALLOWED_KEYS = SPECIAL_KEY_LABELS.keys() + [KEY_ESCAPE, KEY_TAB, KEY_BACKSPACE, KEY_ENTER, KEY_INSERT, KEY_DELETE, KEY_PAUSE, KEY_HOME, KEY_END, KEY_PAGEUP, KEY_PAGEDOWN, KEY_SHIFT, KEY_CONTROL, KEY_META, KEY_ALT, KEY_SUPER_L, KEY_SUPER_R, KEY_MENU, KEY_F1, KEY_F2, KEY_F3, KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_F13, KEY_F14, KEY_F15, KEY_F16]
+
+	if scancode in SPECIAL_KEY_LABELS:
+		return tr(SPECIAL_KEY_LABELS[scancode])
+	
+	elif OS.is_scancode_unicode(scancode):
+		if char(scancode) in "            ​  　﻿\t": # Filtering out non-printable characters
+			return
+		else:
+			return char(scancode)
+	
+	elif scancode in ALLOWED_KEYS:
+		var key_str = OS.get_scancode_string(scancode)
+		var key_translated = tr("KEYBOARD_" + key_str.to_upper().replace(" ", "_"))
+		if key_translated.begins_with("KEYBOARD_"):
+			return key_str
+		else:
+			return key_translated
 
 func get_button_name(button_string):
+	var current_style = buttonsStyle
+	if current_style == BTN_STYLES.DETECT:
+		current_style = global.detect_buttons_style()
 	match button_string:
 		"Face Button Bottom":
-			return("A")
+			return "B✖A"[current_style]
 		"Face Button Left":
-			return("X")
+			return "Y■X"[current_style]
 		"Face Button Right":
-			return("B")
+			return "A●B"[current_style]
 		"Face Button Top":
-			return("Y")
+			return "X▲Y"[current_style]
+		"DPAD Up":
+			return "↑"
+		"DPAD Down":
+			return "↓"
+		"DPAD Left":
+			return "←"
+		"DPAD Right":
+			return "→"
+		"L2":
+			return ["ZL", "L2", "L2"][current_style]
+		"R2":
+			return ["ZR", "R2", "R2"][current_style]
+		"L3":
+			return ["LS", "L3", "L3"][current_style]
+		"R3":
+			return ["RS", "R3", "R3"][current_style]
+		"Select":
+			return ["-", "Share", "Select"][current_style]
+		"Start":
+			return ["+", "Optns", "Start"][current_style]
 		_:
-			return(button_string)
+			return(button_string.replace(" ", "").substr(0, 6))
 
 var text = {
 	"actions":{
@@ -494,7 +755,7 @@ var keys = {"Catacombs": 0}
 
 var flags = {
 	##################
-	#melodies
+	#Melodies
 	##################
 	"doll_melody": false,
 	"canary_melody": false,
@@ -505,7 +766,7 @@ var flags = {
 	"eve_melody": false,
 	"grave_melody": false,
 	##################
-	#abilities
+	#Abilities
 	##################
 	"switch_leader": true,
 	"bat": true,
@@ -514,15 +775,17 @@ var flags = {
 	"PKfreeze": true,
 	"PKthunder": true,
 	"eagle_feather": true,
+	"teleport": true,
 	##################
 	#Misc
 	##################
 	"earned_cash": false,
 	"good_morning": false,
+	"saved": false,
 	##################
 	#Debug
 	##################
-	"npc_appear_1": true,
+	"npc_appear_1": false,
 	"npc_disappear_1": false,
 	"npc_dialog_1": false,
 	"npc_dialog_2": false,
@@ -547,7 +810,7 @@ var flags = {
 	"debug_present_19": false,
 	"debug_present_20": false,
 	##################
-	#ninten's house
+	#Ninten's House
 	##################
 	"poltergeist": false,
 	"mimmie_door_opened": false,
@@ -571,7 +834,7 @@ var flags = {
 	"gave_treats": false,
 	
 	##################
-	#podunk
+	#Podunk
 	##################
 	"podunk_pres_1": false,
 	"podunk_pres_2": false,
@@ -583,7 +846,7 @@ var flags = {
 	"pippis_mom_call": false,
 	"pippis_mom_help": false,
 	##################
-	#Podunk Cemetary
+	#Podunk Cemetery
 	##################
 	"disguised_zombie_defeated": false,
 	"cem_roots_grown": false,
@@ -603,6 +866,7 @@ var flags = {
 	"pippi_rescued": false,
 	"courage_badge_received": false,
 	"church_door_opened": false,
+	"church_exited": false,
 	
 	"catac_pres_1": false,
 	"catac_pres_2": false,
@@ -613,6 +877,14 @@ var flags = {
 	"catac_pres_7": false,
 	"catac_pres_8": false,
 	"catac_pres_9": false,
+	
+	"catac_item_1": false,
+	"catac_item_2": false,
+	"catac_item_3": false,
+	"catac_item_4": false,
+	"catac_item_5": false,
+	"catac_item_6": false,
+	"catac_item_7": false,
 	
 	"catac_plate_1": false,
 	"catac_plate_2": false,
@@ -657,57 +929,57 @@ var flags = {
 	##################
 	#Snowman
 	##################
-	"snow_pres_1": false
+	"snow_pres_1": false,
+	
+	##################
+	#Rematches
+	##################
+	"pippi_rematch": false,
+	"wally_rematch": false,
+	"starman_jr_rematch": false,
+
+	##################
+	#Exploration
+	##################
+	"visited_podunk": true,
+	"visited_magicant": false,
+	"visited_merrysville": false,
+	"visited_reindeer": false,
+	"visited_spookane": false,
+	"visited_snowman": false,
+	"visited_yucca": false,
+	"visited_youngtown": false,
+	"visited_ellay": false,
+	"visited_mtitoi": false
 }
 
 func _init():
-	# load battle skills
-	var path = "res://Data/BattleSkills/"
+	var dir = Directory.new()
+	
+	_load_data("res://Data/BattleSkills/", skills)
+	_load_data("res://Data/FieldSkills/", fieldSkills)
+	_load_data("res://Data/Items/", items)
+	_load_data("res://Data/Shops/", shopLists)
+	_load_data("res://Data/MapMarkers/", mapMarkers)
+
+
+func _load_data(path, dest, sub_dir = ""):
 	var dir = Directory.new()
 	if dir.open(path) == OK:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				pass
+				if not file_name in [".", ".."]:
+					_load_data("%s/%s/" % [path, file_name], dest, "%s%s/" % [sub_dir, file_name])
 			else:
 				if file_name.ends_with(".json"):
-					print(file_name)
-					var skillData = get_json_file(path + file_name)
-					skills[file_name.replace(".json", "")] = skillData
+					var json_data = get_json_file(path + file_name)
+					dest[sub_dir + file_name.replace(".json", "")] = json_data
 			file_name = dir.get_next()
 	else:
-		print("An error occurred when trying to access the path.")
-	
-	path = "res://Data/Items/"
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-			else:
-				if file_name.ends_with(".json"):
-					var itemData = get_json_file(path + file_name)
-					items[file_name.replace(".json", "")] = itemData
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the items directory.")
-	
-	path = "res://Data/Shops/"
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				pass
-			else:
-				if file_name.ends_with(".json"):
-					var shopListData = get_json_file(path + file_name)
-					shopLists[file_name.replace(".json", "")] = shopListData
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the shops directory.")
+		print("An error occurred when trying to access %s." % path)
+
 
 func reset_data():
 	playtime = 0
@@ -724,7 +996,7 @@ func reset_data():
 	buttonPrompts = "Both"
 	description = true
 	InventoryManager.resetInventories()
-	global.persistPlayer.run_sound = "wood.wav"
+	global.persistPlayer.run_sound = "wood.mp3"
 	global.party.clear()
 	global.partyNpcs.clear()
 	global.party.append(ninten)
@@ -754,6 +1026,12 @@ func reset_data():
 	for flag in flags:
 		flags[flag] = false
 
+func upgrade_from_old_save():
+	for i in [ninten, ana, lloyd, pippi, teddy, flyingman, canarychick, eve]:
+		if not "article" in i:
+			i["article"] = "ARTICLES_%s" % i["name"].to_upper()
+	flags["visited_podunk"] = true
+
 func get_json_file(filepath: String):
 	var file = File.new()
 	if file.file_exists(filepath):
@@ -774,79 +1052,37 @@ func give_status(character, status):
 		get(character)["status"].append(status_name_to_enum(status))
 
 func status_name_to_enum(status_name):
-	match(status_name):
-		"asthma": return ailments.Asthma
-		"blinded": return ailments.Blinded
-		"burned": return ailments.Burned
-		"cold": return ailments.Cold
-		"confused": return ailments.Confused
-		"forgetful": return ailments.Forgetful
-		"nausea": return ailments.Nausea
-		"numb": return ailments.Numb
-		"poisoned": return ailments.Poisoned
-		"sleeping": return ailments.Sleeping
-		"sunstroked": return ailments.Sunstroked
-		"mushroomized": return ailments.Mushroomized
-		"unsconcious": return ailments.Unconscious
-		_: return -1
+	var res = ailments.get(status_name.capitalize())
+	return -1 if res == null else res
 
 func status_enum_to_name(status) -> String:
-	match(status):
-		ailments.Asthma: return "asthma"
-		ailments.Blinded: return "blinded"
-		ailments.Burned: return "burned"
-		ailments.Cold: return "cold"
-		ailments.Confused: return "confused"
-		ailments.Forgetful: return "forgetful"
-		ailments.Nausea: return "nausea"
-		ailments.Numb: return "numb"
-		ailments.Poisoned: return "poisoned"
-		ailments.Sleeping: return "sleeping"
-		ailments.Sunstroked: return "sunstroked"
-		ailments.Mushroomized: return "mushroomized"
-		ailments.Unconscious: return "unsconcious"
-		_: return ""
+	if status < ailments.size():
+		return ailments.keys()[status].to_lower()
+	else:
+		return ""
 
-func status_int_to_enum(number):
-	number = int(number)
-	match(number):
-		0: return ailments.Asthma
-		1: return ailments.Blinded
-		2: return ailments.Burned
-		3: return ailments.Cold
-		4: return ailments.Confused
-		5: return ailments.Forgetful
-		6: return ailments.Nausea
-		7: return ailments.Numb
-		8: return ailments.Poisoned
-		9: return ailments.Sleeping
-		10: return ailments.Sunstroked
-		11: return ailments.Mushroomized
-		12: return ailments.Unconscious
-		_: return -1
-func get_psi_level_ascii(level: int):
-	match(level):
-		0: #alpha
-			return "¢"
-		1: #beta
-			return "\\"
-		2: #gamma
-			return "£"
-		3: #omega
-			return "€‎"
-		4: #theta?
-			return "^"
-		_:
-			return ""
-		
+func get_inline_stat(stat):
+	return tr("INLINE_STAT_" + stat.to_upper())
 
-func capitalize_stat(stat):
-	match stat:
-		"hp":
-			return "HP"
-		"pp":
-			return "PP"
-		"iq":
-			return "IQ"
-		_:
-			return stat.capitalize()
+# LOCALIZATION Code added: Shortens item names to fit and adds ellipsis (for equip and status screens)
+#func fit_item_name_to_label(label, item):
+#	# First, trying to fit the full name...
+#	label.text = tr(item.name)
+#	if label.get_line_count() == 1:
+#		return
+#	# If the full name is too long, let's try with the shorter one
+#	text = tr(get_item_short_name(item))
+#	label.text = text
+#	# And if needed, let's try to shorten it further...
+#	while len(text) > 0 && label.get_line_count() > 1:
+#		text = text.rstrip(text[-1])
+#		while len(text) > 0 && text[-1] == " ":
+#			text = text.rstrip(" ")
+#		label.text = text + tr("SYMBOL_ELLIPIS")
+#
+#func get_item_short_name(item):
+#	# Making sure the corresponding key has a translation (I couldn't find a better way)
+#	if "short_name" in item and tr(item["short_name"]) != item["short_name"]:
+#		return item["short_name"]
+#	else:
+#		return item["name"]

@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name":"Celine",
-		"text":"It's easy as pie to use the ATM.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Celine",
-		"text":"All you need is a cash card and a dad with deep pockets!",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name":"Celine",
-		"text":"By the way, I heard that your victories in battle will motivate your father to work even harder.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_OLD_WOMAN_SPEAKER_Celine",
+        "text": "DIALOGUE_PODUNK_OLD_WOMAN_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_OLD_WOMAN_SPEAKER_Celine",
+        "text": "DIALOGUE_PODUNK_OLD_WOMAN_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_OLD_WOMAN_SPEAKER_Celine",
+        "text": "DIALOGUE_PODUNK_OLD_WOMAN_2",
+        "sound": "Adult"
+    }
 }

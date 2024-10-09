@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name":"Celeste",
-		"text":"Dead people don't just get up and walk for no reason.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Celeste",
-		"text":"I bet someone's controlling them.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_CELESTE_SPEAKER_Celeste",
+        "text": "DIALOGUE_PODUNK_CELESTE_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CELESTE_SPEAKER_Celeste",
+        "text": "DIALOGUE_PODUNK_CELESTE_1",
+        "sound": "Adult"
+    }
 }

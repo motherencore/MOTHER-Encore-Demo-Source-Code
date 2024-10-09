@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Natalia",
-		"text": "Oh, looks like you found the lost girl!",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Natalia",
-		"text": "Great job!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_NATALIA_2_SPEAKER_Natalia",
+        "text": "DIALOGUE_PODUNK_NATALIA_2_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_NATALIA_2_SPEAKER_Natalia",
+        "text": "DIALOGUE_PODUNK_NATALIA_2_1",
+        "sound": "Adult"
+    }
 }

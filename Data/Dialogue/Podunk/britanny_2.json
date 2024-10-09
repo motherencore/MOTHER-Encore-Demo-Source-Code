@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Britanny",
-		"text": "Apparently poltergeist attacks aren't covered by insurance.",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Britanny",
-		"text": "How dreadful...",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_BRITANNY_2_SPEAKER_Britanny",
+        "text": "DIALOGUE_PODUNK_BRITANNY_2_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_BRITANNY_2_SPEAKER_Britanny",
+        "text": "DIALOGUE_PODUNK_BRITANNY_2_1",
+        "sound": "Sexy"
+    }
 }

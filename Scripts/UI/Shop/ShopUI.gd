@@ -35,14 +35,13 @@ onready var shopBox = {
 	"sell": $ShopBox/SellMenu
 }
 onready var buySellCursor = $BuySellDialog/arrow
-onready var descDialogCursor = $DescBox/DescriptionDialog/arrow
 onready var characterPortraits = $CharacterSelect/CharacterPortraits
 
 # Common
 var _currentCharacter
 var _selectedItem
 var _prevEquip
-var _characterOrder = ["ninten", "llyod", "ana", "teddy", "pippi", "flyingman", "eve", "canarychick"]
+var _characterOrder = ["ninten", "lloyd", "ana", "teddy", "pippi", "flyingman", "eve", "canarychick"]
 var _characterIdx = 0
 
 # Buy or Sell Menu State
@@ -52,8 +51,6 @@ var shopList = []
 # Sell state
 var currentInv = []
 # Description Dialog State
-var descInput = false
-var descDialogState = -1
 enum DialogState {
 	BUY,
 	EQUIP_BOUGHT,
@@ -93,8 +90,6 @@ func _ready():
 	shopBox.sell.connect("entered", self, "_on_enter_sell")
 	shopBox.sell.connect("moved", self, "_on_sell_cursor_moved")
 	shopBox.sell.connect("selected", self, "_on_sell_item_selected")
-	descDialogCursor.connect("selected", self, "_on_desc_dialog_select")
-	descDialogCursor.connect("cancel", self, "_on_desc_dialog_cancel")
 	
 	# set up character order
 	_characterOrder.clear()
@@ -104,8 +99,10 @@ func _ready():
 	# init shop
 	if shopJsonName in globaldata.shopLists:
 		shopList = globaldata.shopLists[shopJsonName]
-		shopBox.buy.itemList = shopList
-		#shopBox.buy.restrictions = [?]
+		shopBox.buy.item_list.clear()
+		shopBox.buy.restriction_func = funcref(self, "_is_purchasable_cb")
+		for item_name in shopList:
+			shopBox.buy.item_list.append(InventoryManager.Item.new(item_name, false))
 	
 	enter_buysell()
 	#set up highlights for buy/sell
@@ -116,11 +113,11 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_focus_next"):
 		get_tree().set_input_as_handled()
-		if !descDialogCursor.on:
+		if !descDialog.open:
 			changeCharacter(1)
 	elif event.is_action_pressed("ui_focus_prev"):
 		get_tree().set_input_as_handled()
-		if !descDialogCursor.on:
+		if !descDialog.open:
 			changeCharacter(-1)
 
 func close():
@@ -130,14 +127,14 @@ func close():
 
 func _update_cash():
 	$ShopBox/Header/CashBox/Label.text = str(globaldata.cash).pad_zeros(6)
-	# update what is purchasable....
-	shopBox.buy.restrictions.clear()
-	# if inv aint full
-	for itemName in shopList:
-		if itemName in globaldata.items:
-			if InventoryManager.isInventoryFull(_currentCharacter.name) \
-			  or globaldata.items[itemName].cost > globaldata.cash:
-				shopBox.buy.restrictions.append(itemName)
+
+func _is_purchasable_cb(item_instance):
+	return !InventoryManager.isInventoryFull(_currentCharacter.name) \
+		and globaldata.items[item_instance.ItemName].cost <= globaldata.cash
+
+func _is_sellable_cb(item_instance):
+	return globaldata.items[item_instance.ItemName].value > 0
+
 
 func enter_buysell():
 	# hide non-used menus
@@ -159,63 +156,56 @@ func enter_buy(reset=true):
 	$DescBox.show()
 	descNoDialog.show()
 	shopBox.separater.show()
+	shopBox.buy.show()
 	shopBox.buy.enter(reset)
-	descNoDialog.setItem(shopBox.buy.get_current_item())
-	updatePortraits(shopBox.buy.get_current_item())
+	_update_desc_and_portraits(shopBox.buy)
 
 func enter_sell(reset=true):
 	# some bs to make sure you know what menu ur in lol
 	buySellCursor.set_cursor_from_index(1, false)
 	buySellCursor.on = false
-	shopBox.sell.itemList.clear()
+	shopBox.sell.restriction_func = funcref(self, "_is_sellable_cb")
 	var inv = InventoryManager.getInventory(_currentCharacter.name)
-	for item in inv:
-		var itemData = globaldata.items[item.ItemName]
-		if itemData.value <= 0:
-			shopBox.sell.restrictions.append(item.ItemName)
-		shopBox.sell.itemList.append(item.ItemName)
+	shopBox.sell.item_list = inv
 	$DescBox.show()
 	descNoDialog.show()
 	shopBox.separater.show()
+	shopBox.sell.show()
 	shopBox.sell.enter(reset)
-	descNoDialog.setItem(shopBox.sell.get_current_item())
-	updatePortraits(shopBox.sell.get_current_item())
+	_update_desc_and_portraits(shopBox.sell)
 
 func enter_desc_dialog(state: int):
-	$DescBox/DescriptionDialog/YesNoDialog.get_child(0).highlight(1)
-	$DescBox/DescriptionDialog/YesNoDialog.get_child(1).highlight(0)
-	descDialogState = state
-	descDialogCursor.on = true
-	descDialog.show()
 	if _selectedItem == "":
 		_selectedItem = "error"
-	descDialog.setItem(_selectedItem)
-	var item = globaldata.items[_selectedItem]
+	var item = _selectedItem
+	var question
 	match(state):
 		DialogState.BUY:
-			descDialog.setText("Buy %s %s?" % [item.article.english, item.name.english])
+			question = "SHOP_ASK_BUY"
 		DialogState.EQUIP_BOUGHT:
-			descDialog.setText("Equip now?")
+			question = "SHOP_ASK_EQUIP"
 		DialogState.SELL_OLD_EQUIP:
-			item = globaldata.items[_prevEquip]
+			item = _prevEquip
 			descNoDialog.setItem(_prevEquip)
-			descDialog.setText("Sell your old %s?" % item.name.english)
+			question = "SHOP_ASK_SELL_OLD"
 		DialogState.SELL:
-			descDialog.setText("Sell your %s?" % item.name.english)
+			question = "SHOP_ASK_SELL"
 		DialogState.SELL_EQUIP_NO_SPACE:
-			item = globaldata.items[_prevEquip]
+			item = _prevEquip
 			descNoDialog.setItem(_prevEquip)
-			descDialog.setText("Your inventory is full.\nSell %s?" % item.name.english)
+			question = "SHOP_ASK_SELL_FOR_SPACE"
 		DialogState.SELL_FOR_CASH:
-			descDialog.setText("You don't have enough cash.\nSell something?")
+			question = "SHOP_ASK_SELL_FOR_CASH"
+	
+	question = _format_text_with_item(question, globaldata.items[item])
+	descDialog.ask(question, item, funcref(self, "desc_dialog_answer"), [state])
+	
 
-func desc_dialog_answer(yes: bool):
-	descDialogCursor.on = false
-	descDialog.hide()
+func desc_dialog_answer(state: int, yes: bool):
 	if _selectedItem == "":
 		_selectedItem = "error"
 	var item = globaldata.items[_selectedItem]
-	match(descDialogState):
+	match(state):
 		DialogState.BUY:
 			if yes:
 				buy_something()
@@ -262,6 +252,7 @@ func desc_dialog_answer(yes: bool):
 		DialogState.SELL_FOR_CASH:
 			if yes:
 				shopBox.buy.exit()
+				shopBox.buy.hide()
 				enter_sell()
 			else:
 				enter_buy(false)
@@ -330,6 +321,11 @@ func updatePortraits(highlighted_item=null):
 		portraitNode.show_is_item_better(is_better)
 		portraitNode.show_is_item_lower(is_lower)
 
+func _update_desc_and_portraits(current_menu):
+	var item_id = current_menu.get_current_item_id()
+	updatePortraits(item_id)
+	descNoDialog.setItem(item_id)
+
 func changeCharacter(dir):
 	_characterIdx = wrapi(_characterIdx + dir, 0, _characterOrder.size())
 	# change _currentCharacter
@@ -339,10 +335,15 @@ func changeCharacter(dir):
 	#if in "sell" phase, reenter it to refresh items
 	if shopBox.sell.visible:
 		shopBox.sell.exit()
+		shopBox.sell.hide()
 		buySellCursor.on = false
 		enter_sell()
-	
-	updatePortraits()
+	elif shopBox.buy.visible:
+		#updatePortraits(shopBox.buy.get_current_item_id())
+		enter_buy(false)
+	#Trust me this is helpful
+	else:
+		updatePortraits()
 
 func checkCanEquip(itemname, character):
 	var itemdata = globaldata.items[itemname]
@@ -367,52 +368,54 @@ func _on_exit_sell():
 	$AudioStreamPlayer.stream = cursorCloseSfx
 	$AudioStreamPlayer.play()
 
-func _on_buy_cursor_moved(item):
-	updatePortraits(item)
-	descNoDialog.setItem(item)
+func _on_buy_cursor_moved(itemIdx):
+	_update_desc_and_portraits(shopBox.buy)
 
-func _on_buy_item_selected(item):
-	var itemData = globaldata.items[item]
+func _on_buy_item_selected(itemIdx):
+	var item_id = shopBox.buy.get_current_item_id()
+	var itemData = globaldata.items[item_id]
 	if InventoryManager.isInventoryFull(_currentCharacter.name):
-		if checkCanEquip(item, _currentCharacter) and InventoryManager.doesItemHaveFunction(item, "equip") \
-		  and _currentCharacter.equipment[itemData.slot] != "":
-			_prevEquip = _currentCharacter.equipment[itemData.slot]
-			_selectedItem = item
+		_prevEquip = _currentCharacter.equipment[itemData.slot] if (itemData.slot in _currentCharacter["equipment"]) else ""
+		# For SELL_EQUIP_NO_SPACE: The party member should be able to equip the item,
+		# they should have another equippable item in the same slot, it should be different,
+		# and they should have enough money to buy it after selling the current one
+		if checkCanEquip(item_id, _currentCharacter) and InventoryManager.doesItemHaveFunction(item_id, "equip") \
+		  and _prevEquip != "" and _prevEquip != item_id \
+		  and itemData.cost - globaldata.items[_prevEquip].value <= globaldata.cash:
+			_selectedItem = item_id
 			shopBox.buy.cursor.on = false
 			enter_desc_dialog(DialogState.SELL_EQUIP_NO_SPACE)
+		else:
+			descNoDialog.warn(tr("TRANSACTION_FULL"), 1)
 	elif itemData.cost > globaldata.cash:
-		_selectedItem = item
+		_selectedItem = item_id
 		shopBox.buy.cursor.on = false
 		enter_desc_dialog(DialogState.SELL_FOR_CASH)
 	else:
-		_selectedItem = item
+		_selectedItem = item_id
 		shopBox.buy.cursor.on = false
 		enter_desc_dialog(DialogState.BUY)
 
-func _on_sell_cursor_moved(item):
-	updatePortraits(item)
-	descNoDialog.setItem(item)
+func _on_sell_cursor_moved(itemIdx):
+	_update_desc_and_portraits(shopBox.sell)
 
-func _on_sell_item_selected(item):
-	var itemData = globaldata.items[item]
+func _on_sell_item_selected(itemIdx):
+	var item_id = shopBox.sell.get_current_item_id()
+	var itemData = globaldata.items[item_id]
 	if itemData.value <= 0:
 		return
-	_selectedItem = item
+	_selectedItem = item_id
 	shopBox.sell.cursor.on = false
 	enter_desc_dialog(DialogState.SELL)
 
-func _on_desc_dialog_select(idx):
-	# we assume yes is first index, aka idx 0 = yes
-	desc_dialog_answer(idx == 0)
-
 func _on_enter_buy():
-	if shopBox.buy.itemList.empty():
+	if shopBox.buy.item_list.empty():
 		$DescBox.hide()
 	else:
 		$DescBox.show()
 
 func _on_enter_sell():
-	if shopBox.sell.itemList.empty():
+	if shopBox.sell.item_list.empty():
 		$DescBox.hide()
 	else:
 		$DescBox.show()
@@ -420,5 +423,11 @@ func _on_enter_sell():
 func _on_arrow_cancel():
 	uiManager.remove_ui(self)
 
-func _on_desc_dialog_cancel():
-	desc_dialog_answer(false)
+# LOCALIZATION Code added: New method to handle formatting of items and articles in text
+# Same method in Storage.gd
+func _format_text_with_item(text, item):
+	return tr(text).format({
+		"item": tr(item.name)
+		}).format(
+			globaldata.get_item_or_skill_articles(item), "{i_}"
+		)

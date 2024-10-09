@@ -1,55 +1,56 @@
 {
-	"0": {
-		"name": "Mick",
-		"text": "Woof woof!",
-		"soundeffect": "M3/Woof Woof!.wav",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mick",
-		"text": "(Grrr, my butt is so itchy!",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Mick",
-		"text": "Stop standing there and lend me a hand!)",
-		"options": {
-			"Yes": "3",
-			"No": "9",
-			"cancel": "9"
-		}
-	},
-	"3": {
-		"text": "[Ninten] gave Mick a good scratch!",
-		"goto": "4"
-	},
-	"4": {
-		"name": "Mick",
-		"text": "(Ahhh, many thanks.",
-		"goto": "5"
-	},
-	"5": {
-		"name": "Mick",
-		"text": "Wait a minute, you can understand me?",
-		"goto": "6"
-	},
-	"6": {
-		"name": "Mick",
-		"text": "You must have learned [color]Telepathy[/color]!",
-		"goto": "7"
-	},
-	"7": {
-		"name": "Mick",
-		"text": "That's great and all, but don't you dare use it on me by pressing [color][ui_select][/color] and selecting it within the [color]PSI menu[/color].",
-		"goto": "8"
-	},
-	"8": {
-		"name": "Mick",
-		"text": "And don't even think of using it by simply holding down [color][ui_toggle][/color] and pressing [color][ui_accept][/color].)",
-		"flag": "mick_scratch"
-	},
-	"9": {
-		"name": "Mick",
-		"text": "Whimper..."
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_0",
+        "soundeffect": "M3/Woof Woof!.wav",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_1",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_2",
+        "options": {
+            "DIALOGUE_PODUNK_WOOF_2-OPT_0": "3",
+            "DIALOGUE_PODUNK_WOOF_2-OPT_1": "9",
+            "cancel": "9"
+        }
+    },
+    "3": {
+        "text": "DIALOGUE_PODUNK_WOOF_3",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_4",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_5",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_6",
+        "goto": "7"
+    },
+    "7": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_7",
+        "goto": "8"
+    },
+    "8": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_8",
+        "flag": "mick_scratch"
+    },
+    "9": {
+        "name": "DIALOGUE_PODUNK_WOOF_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_9",
+        "soundeffect": "M3/Dog_whining.wav"
+    }
 }

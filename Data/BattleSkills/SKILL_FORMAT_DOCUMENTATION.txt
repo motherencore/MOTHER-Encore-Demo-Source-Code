@@ -68,6 +68,6 @@ Using the "Bash" skill as a reference.
 
 "useSound" : "bash",   # Sound to play when using the skill. Leave blank for none.
 
-"hitSound" : "bash"   # Sound to play when the enemy is hit with the skill. Leave blank for none.
+"hitSound" : "bash",   # Sound to play when the enemy is hit with the skill. Leave blank for none.
 
-
+"targetUnconscious": false   # Ability to target unconscious characters

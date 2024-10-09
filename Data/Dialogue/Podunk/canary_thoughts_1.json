@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Canary",
-		"text": "(I hope Laura is doing okay.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_CANARY_THOUGHTS_1_SPEAKER_Canary",
+        "text": "DIALOGUE_PODUNK_CANARY_THOUGHTS_1_0"
+    }
 }

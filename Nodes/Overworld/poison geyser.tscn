@@ -133,6 +133,7 @@ anims/Spewing = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_distance = 180.0
+bus = "SFX"
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 

@@ -9,11 +9,13 @@ var move = true
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var spark = preload("res://Nodes/Reusables/Overlap/LaserSpark.tscn")
+onready var sfx = load("res://Audio/Sound effects/Lloyd Laser.mp3")
+
 
 func _ready():
 	animationTree.active = true
 	animationTree.set("parameters/shoot/blend_position", inputVector)
-	$AudioStreamPlayer.play()
+	audioManager.play_sfx(sfx, "laser")
 	
 	
 	
@@ -36,7 +38,6 @@ func _on_Area2D_area_entered(area):
 	if "reflect" in mirror:
 		var wait = Timer.new()
 		$AnimatedSprite.hide()
-		$AudioStreamPlayer2D.play()
 		move = false
 		wait.set_wait_time(0.05)
 		wait.set_one_shot(true)
@@ -59,7 +60,7 @@ func _on_Area2D2_body_entered(_body):
 func disappear():
 	gone = true
 	$AnimatedSprite.hide()
-	$Area2D/CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 
 func create_spark(animation):
 	var sparkle = spark.instance()

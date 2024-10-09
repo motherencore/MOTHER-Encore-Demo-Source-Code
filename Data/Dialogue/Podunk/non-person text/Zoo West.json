@@ -1,13 +1,13 @@
 {
-	"0": {
-		"text": "Podunk Cliffside.",
-		"goto": "1"
-	},
-	"1": {
-		"text": "It's hard work adventuring. so why not sit back and enjoy the view?",
-		"goto": "2"
-	},
-	"2": {
-		"text": "Have a picnic, read a book, think about deep stuff. Whatever takes your fancy."
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_WEST_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_WEST_1",
+        "goto": "2"
+    },
+    "2": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_WEST_2"
+    }
 }

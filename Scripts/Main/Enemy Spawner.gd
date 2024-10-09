@@ -12,7 +12,7 @@ var attachedEnemy = null
 
 
 func _ready():
-	$TextureRect.queue_free()
+	$Sprite.queue_free()
 	var enemyData = Load_enemy_data(enemy)
 	if enemyData.has("ovtype"):
 		enemyPath = load("res://Nodes/Overworld/Enemies/" + enemyData["ovtype"] + ".tscn")
@@ -32,7 +32,7 @@ func create_enemy():
 	var new_parent = global.currentScene.get_node("Objects")
 	var Enemy = enemyPath.instance()
 	Enemy.enemy = enemy
-	Enemy.Return = Return
+	Enemy.returning = Return
 	Enemy.global_position = self.global_position
 	new_parent.add_child(Enemy)
 	Enemy.start_pos = Enemy.global_position

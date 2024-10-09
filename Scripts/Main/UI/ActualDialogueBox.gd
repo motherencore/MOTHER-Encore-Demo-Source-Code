@@ -3,8 +3,8 @@ extends Control
 export(float) var textSpeed = 0.01
 
 # node refs
-onready var dialogueLabel = $ClipBox/Dialogue
-onready var dotLabel = $ClipBox/DippinDots
+onready var dialogueLabel = $ClipBox/HBoxContainer/Dialogue
+onready var dotLabel = $ClipBox/HBoxContainer/DippinDots
 
 #dialog and timing vars
 var dialog := {}
@@ -18,6 +18,8 @@ var methodTarget = self
 
 var autoAdvanced = true
 var autoAdvanceDelay = 1.25
+
+var dotString = "[right]%s[/right]" % tr("SYMBOL_BULLET_BATTLE")
 
 #dialog signals
 signal done
@@ -33,10 +35,14 @@ func _process(delta):
 		if t > textSpeed:
 			t -= textSpeed
 			dialogueLabel.visible_characters += 1
+			if $AudioStreamPlayer.stream != null:
+				$AudioStreamPlayer.set_pitch_scale(rand_range(0.85,1.0))
+				$AudioStreamPlayer.play()
 		if dialogueLabel.visible_characters >= len(dialogueLabel.text):
 			t = 0
 			finished = true
 			$Cursor_Down.show()
+			$AudioStreamPlayer.stop()
 	elif autoAdvanced:
 		t += delta
 		if t > autoAdvanceDelay:
@@ -121,7 +127,8 @@ func nextPhrase():
 		dialogueLabel.bbcode_text += "\n" + currPhrase["text"]
 		
 		# add dot, assuming no options on this
-		dotLabel.bbcode_text += "\n@"
+		# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+		dotLabel.bbcode_text += "\n" + dotString
 		adjustDotSpacing(currPhrase["text"])
 	
 	# Parse Commands
@@ -150,6 +157,11 @@ func nextPhrase():
 	if currPhrase.has("soundeffect"):
 		$SoundEffect.stream = load("res://Audio/Sound effects/" + currPhrase["soundeffect"])
 		$SoundEffect.play()
+	
+	if currPhrase.has("sound"):
+		$AudioStreamPlayer.stream = load("res://Audio/Sound effects/text/" + currPhrase["sound"] + ".mp3")
+	else:
+		$AudioStreamPlayer.stream = null
 
 func adjustDotSpacing(line):
 	var font = dialogueLabel.get_font("normal_font")
@@ -178,5 +190,6 @@ func end():
 	emit_signal("done")
 
 func playWin():
+	$ClipBox/HBoxContainer.hide()
 	show()
 	$AnimationPlayer.play("YouWin")

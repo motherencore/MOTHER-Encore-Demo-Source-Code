@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=177 format=2]
+[gd_resource type="TileSet" load_steps=181 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/TilCatacombs.png" type="Texture" id=1]
 [ext_resource path="res://Tilesets/Catacombs_Lantern.tres" type="Texture" id=2]
@@ -272,7 +272,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=153]
-points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 77, 80, 66, 84, 60, 84, 47, 72, 47, 1, 32, 1, 32, 72, 20, 84, 14, 84, 2, 80, 0, 80 )
+points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 77, 80, 66, 84, 60, 84, 49, 72, 47, 1, 32, 1, 30, 72, 20, 84, 14, 84, 2, 80, 0, 80 )
 
 [sub_resource type="ConvexPolygonShape2D" id=142]
 points = PoolVector2Array( 0, 48, 0, 0, 48, 0, 48, 48, 40, 48, 40, 32, 8, 32, 8, 48 )
@@ -466,6 +466,18 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=83]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=199]
+points = PoolVector2Array( 16, 16, 4, 16, 4, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=200]
+points = PoolVector2Array( 0, 0, 12, 0, 12, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=201]
+points = PoolVector2Array( 4, 0, 16, 0, 16, 16, 4, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=202]
+points = PoolVector2Array( 0, 0, 12, 0, 12, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=84]
 points = PoolVector2Array( 16, 48, 0, 48, 0, 0, 16, 0 )
@@ -1109,6 +1121,30 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 83 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 199 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 200 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 201 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 202 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 6/z_index = 0

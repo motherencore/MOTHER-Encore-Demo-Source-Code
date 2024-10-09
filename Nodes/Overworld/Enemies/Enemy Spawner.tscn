@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Main/Enemy Spawner.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Character Sprites/Enemies/DollOV.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/1dir/doll/main.png" type="Texture" id=2]
 
 [node name="Enemy Spawner" type="Position2D"]
 script = ExtResource( 1 )
@@ -14,12 +14,10 @@ visible = false
 position = Vector2( -2.86102e-06, 2.86102e-06 )
 scale = Vector2( 4.8, 4.8 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -8.0
-margin_top = -16.0
-margin_right = 9.0
-margin_bottom = 6.0
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, -5 )
 texture = ExtResource( 2 )
+hframes = 4
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 120.0

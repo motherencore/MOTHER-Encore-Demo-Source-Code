@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "???",
-		"text": "What do you want?",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WALLY_HIDDEN_SPEAKER_???",
+        "text": "DIALOGUE_PODUNK_WALLY_HIDDEN_0",
+        "sound": "Adult"
+    }
 }

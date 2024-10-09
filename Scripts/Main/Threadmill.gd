@@ -1,6 +1,7 @@
 extends Area2D
 
 export var movement_direction = Vector2.ZERO
+var wasRunning = false
 var movingActors = []
 
 func _ready():
@@ -24,6 +25,7 @@ func _on_Threadmill_body_entered(body):
 		set_physics_process(true)
 	movingActors.append(body)
 	if body == global.persistPlayer:
+		wasRunning = global.persistPlayer.tap_run
 		global.persistPlayer.pause()
 	else:
 		body.animationState.travel("Idle")
@@ -34,7 +36,10 @@ func _on_Threadmill_body_exited(body):
 	if movingActors.size() == 0:
 		set_physics_process(false)
 	if body == global.persistPlayer:
+		global.persistPlayer.tap_run = wasRunning
 		global.persistPlayer.unpause()
+		global.persistPlayer.direction = movement_direction.round()
 	else:
 		body.set_physics_process(true)
 		body.find_path()
+	

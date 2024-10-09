@@ -1,12 +1,10 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=44 format=2]
 
-[ext_resource path="res://Graphics/Character Sprites/Enemies/MookOV.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/Reusables/Overlap/Hurtbox.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Nodes/Ui/emotes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Main/Basic Enemy.gd" type="Script" id=5]
-[ext_resource path="res://Shaders/Flash.tres" type="Material" id=6]
 [ext_resource path="res://Audio/Sound effects/M3/bash.wav" type="AudioStream" id=7]
+[ext_resource path="res://Nodes/Reusables/character_sprite.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=151]
 extents = Vector2( 7.87464, 5.31516 )
@@ -22,24 +20,12 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -51,24 +37,12 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 4 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -80,24 +54,12 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -109,24 +71,12 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 10 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -137,24 +87,12 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -165,24 +103,12 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 3, 4, 5, 4 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -193,24 +119,12 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 6, 7, 8, 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -221,24 +135,12 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 9, 10, 11, 10 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -248,36 +150,12 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=145]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:visible")
+tracks/0/path = NodePath("Position2D:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("main:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -287,121 +165,13 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=153]
 length = 0.166667
 step = 0.0416667
-tracks/0/type = "value"
-tracks/0/path = NodePath("main:material:shader_param/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.125, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 1.0, 1.0, 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0416667, 0.0833334, 0.125 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.12549, 0.12549, 0.12549, 1 ), Color( 0.709804, 0.027451, 0.172549, 1 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=154]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("main:material:shader_param/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("main:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -7 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("main:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=155]
 resource_name = "Stun"
 step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("main:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_modifier")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 1.0, 1.0, 0.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("main:material:shader_param/flash_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="AnimationNodeAnimation" id=116]
 animation = "Idle Down"
@@ -503,22 +273,13 @@ collision_layer = 516
 collision_mask = 512
 collision/safe_margin = 0.4
 script = ExtResource( 5 )
-Return = false
 
 [node name="Shadow" type="Sprite" parent="."]
 position = Vector2( 0, 6 )
 texture = ExtResource( 4 )
 
-[node name="main" type="Sprite" parent="."]
-material = ExtResource( 6 )
-position = Vector2( 0, -7 )
-texture = ExtResource( 1 )
-hframes = 3
-vframes = 4
-frame = 1
-
-[node name="emotes" parent="main" instance=ExtResource( 3 )]
-position = Vector2( 0, -33 )
+[node name="CharacterSprite" parent="." instance=ExtResource( 8 )]
+position = Vector2( 0, 8 )
 
 [node name="Position2D" type="Position2D" parent="."]
 rotation = 1.5708
@@ -630,6 +391,7 @@ parameters/Walk/blend_position = Vector2( -0.544253, 0.277344 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [connection signal="tree_exiting" from="." to="." method="_on_Enemy_tree_exiting"]
 [connection signal="body_entered" from="Position2D/ViewArea" to="." method="_on_ViewArea_body_entered"]

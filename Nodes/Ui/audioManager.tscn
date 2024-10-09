@@ -12,6 +12,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioPlayers"]
+bus = "Music"
 
 [node name="Sfx" type="Node" parent="."]
 

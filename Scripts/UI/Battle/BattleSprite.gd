@@ -3,29 +3,34 @@ extends Control
 signal apply_damage
 
 export (int) var hits = 0
-var shown = false
+export var distanceToShown = 20
 var shownPos = Vector2()
 var hidePos = Vector2()
-const distanceToShown = 20
+enum states {HIDDEN, SHOWN, BOUNCING}
+var state = states.HIDDEN
+var dead = false
 
 onready var animationPlayer = $AnimationPlayer
 
 func _ready():
 	hidePos = rect_position.y
-#	shownPos = rect_position.y - 36
 	shownPos = rect_position.y - distanceToShown
-	animationPlayer.play("idle")
+	animationPlayer.play("lookIntoYourSoul")
+	
 
 func play(anim, override = false):
-	if !animationPlayer.has_animation(anim):
-		anim = "idle"
 	if !animationPlayer.is_playing() or override:
-#		animationPlayer.clear_queue()
+		animationPlayer.clear_queue()
 		animationPlayer.play(anim)
-	else:
+	elif !override:
 		animationPlayer.queue(anim)
 	if !"psi" in anim:
 		$Sprite.material.set_shader_param("width", 0)
+		
+func set_psi_colors(colors: Array):
+	var animation = animationPlayer.get_animation("psiPrep2")
+	for i in range(3):
+		animation.track_set_key_value(1, i, Color(colors[i]))
 
 func apply_damage():
 	emit_signal("apply_damage")
@@ -37,21 +42,23 @@ func showIn():
 	$Tween.interpolate_property(self, "rect_position:y", \
 		rect_position.y, shownPos, 0.16)
 	$Tween.start()
-	shown = true
+	state = states.SHOWN
 
 func showAndPlay(anim):
 	showIn()
 	play(anim)
 	#$Tween.connect("tween_all_completed", animationPlayer, "play", [anim], CONNECT_ONESHOT)
 
-func hideAway(anim = ""):
+func hideAway(anim = "", override = false):
+	if anim != "":
+		play(anim, override)
 	$Tween.reset_all()
 	for connection in $Tween.get_incoming_connections():
 		$Tween.disconnect(connection.signal_name, connection.source, connection.method_name)
 	$Tween.interpolate_property(self, "rect_position:y", \
 		rect_position.y, hidePos, 0.16)
 	$Tween.start()
-	shown = false
+	state = states.HIDDEN
 
 func dodge():
 	var movement = 8
@@ -79,7 +86,7 @@ func bounceUpHit(intensity = 1):
 	for connection in $Tween.get_incoming_connections():
 		$Tween.disconnect(connection.signal_name, connection.source, connection.method_name)
 	var toAdd = 0
-	if !shown:
+	if state == states.HIDDEN:
 		toAdd = distanceToShown
 	$Tween.interpolate_property($Sprite, "scale", \
 		Vector2(0.6,1.6), Vector2(1,1), 0.2, \
@@ -92,25 +99,35 @@ func bounceUpHit(intensity = 1):
 		Tween.TRANS_CIRC, Tween.EASE_IN, 0.32)
 	$Tween.start()
 	
+	var prev_state = state
+	state = states.BOUNCING
+	
 	var prev_anim
+	var prev_anim_colors = []
 	if !animationPlayer.get_queue().empty():
 		prev_anim = animationPlayer.get_queue()[-1]
 	else:
 		prev_anim = animationPlayer.assigned_animation
+		if prev_anim == "psiPrep2":
+			for i in range(3):
+				prev_anim_colors.append(animationPlayer.get_animation("psiPrep2").track_get_key_value(1, i))
 	
 	var hitAnim = "hit"
 	if hits > 0:
 		hitAnim = "hit" + var2str(int(round(rand_range(1, hits))))
 	play(hitAnim, true)
-	$Tween.connect("tween_all_completed", self, "playAfterHit", [prev_anim], CONNECT_ONESHOT)
+	if prev_anim == "psiPrep2":
+		set_psi_colors(prev_anim_colors)
+	$Tween.connect("tween_all_completed", self, "playAfterHit", [prev_anim, prev_state], CONNECT_ONESHOT)
 
-func playAfterHit(prev):
-#	play("hitIdle", true)
-	animationPlayer.clear_queue()
-	animationPlayer.play(prev)
-	var anim = animationPlayer.get_animation(prev)
-	animationPlayer.seek(anim.length, true)
-	if prev != "idle":
-		showIn()
-#	play(prev)
-
+func playAfterHit(prev, prevState):
+	if dead:
+		play("lookIntoYourSoul", true)
+	else:
+		animationPlayer.clear_queue()
+		play(prev, true)
+		var anim = animationPlayer.get_animation(prev)
+		if prev != "psiPrep2":
+			animationPlayer.seek(anim.length, true)
+		if prevState == states.SHOWN:
+			showIn()

@@ -1,64 +1,40 @@
 {
-	"name": {
-		"english": "Bread",
-		"french": "Pain"
-	},
-	"article" : {
-		"english": "some",
-		"french": "du"
-	},
-	"keyitem": false,
-	"cost": 20,
-	"value": 10,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": true,
-		"pippi": true
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User recovered 15 HP!",
-			"french": "User a récupéré 15 PV!"
-		}
-	},
-	"action_two": {
-		"name": {
-			"english": "Use", 
-			"french": "Utiliser"
-		},
-		"function": "transform",
-		"text": {
-			"english": "The Bread turned into Crumbs!",
-			"french": "Le Pain s'est transformé en Miettes!"
-		},
-		"textfail": {
-			"english": "You already have Crumbs.",
-			"french": "Tu as déjà des Miettes."
-		}
-	},
-	"battle_action": "",
-	"transform": "Crumbs",
-	"slot": "",
-	"HPrecover": 15,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Its Crumbs can help you flee from battle.\nRestores 15 HP.",
-		"french": "Ses Miettes peuvent t'aider à s'enfuir en combat.\nRécupère 15 PV."
-	}
+    "name": "BREAD",
+    "article": "BREAD_ART",
+    "keyitem": false,
+    "cost": 20,
+    "value": 10,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": true,
+        "pippi": true
+    },
+    "action_one": {
+        "name": "BREAD_ACT1_NAME",
+        "function": "consume",
+        "text": "BREAD_ACT1_TEXT"
+    },
+    "action_two": {
+        "name": "BREAD_ACT2_NAME",
+        "function": "transform",
+        "text": "BREAD_ACT2_TEXT"
+    },
+    "battle_action": "",
+    "transform": "Crumbs",
+    "slot": "",
+    "HPrecover": 15,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "BREAD_DESC",
+    "short_name": "BREAD_SHORT"
 }

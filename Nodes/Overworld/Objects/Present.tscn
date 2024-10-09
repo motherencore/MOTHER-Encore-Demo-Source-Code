@@ -106,7 +106,7 @@ hframes = 5
 
 [node name="Sparkles" parent="." instance=ExtResource( 6 )]
 position = Vector2( 5, -4 )
-frame = 11
+frame = 19
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
@@ -137,3 +137,4 @@ anims/Wrapped = SubResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"

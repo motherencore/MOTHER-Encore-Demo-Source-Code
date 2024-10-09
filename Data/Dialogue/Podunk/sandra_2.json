@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name":"Sandra",
-		"text":"I can sense God loves you!",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_SANDRA_2_SPEAKER_Sandra",
+        "text": "DIALOGUE_PODUNK_SANDRA_2_0",
+        "sound": "Sexy"
+    }
 }

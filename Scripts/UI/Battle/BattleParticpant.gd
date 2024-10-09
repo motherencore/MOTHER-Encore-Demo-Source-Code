@@ -47,7 +47,9 @@ func defeat():
 	stats.status = [globaldata.ailments.Unconscious]
 	if !isEnemy:
 		partyInfo.modulate = Color(0.4, 0.4, 0.4)
-		battleSprite.hideAway()
+		battleSprite.dead = true
+		if battleSprite.state == battleSprite.states.SHOWN:
+			battleSprite.hideAway()
 	else:
 		if statusBubble:
 			statusBubble.hide()
@@ -79,6 +81,11 @@ func setStatus(status, on):
 		if statusBubble:
 			statusBubble.remove_status(status)
 		stats.status.erase(status)
+		if stats.has("statusCountup") and stats.statusCountup.has(globaldata.status_enum_to_name(status)):
+			stats.statusCountup[globaldata.status_enum_to_name(status)] = 0
+	if !isEnemy and status == globaldata.ailments.Unconscious and !on:
+		battleSprite.dead = false
+		
 
 func get_base_stat(stat: String):
 	return stats[stat] + stats.boosts[stat]

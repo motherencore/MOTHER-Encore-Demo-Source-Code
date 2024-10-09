@@ -11,5 +11,5 @@ dest_files=[ "res://.import/House.mp3-44c48b4daac2b158b44a618832589d1e.mp3str" ]
 
 [params]
 
-loop=false
-loop_offset=0
+loop=true
+loop_offset=2.035

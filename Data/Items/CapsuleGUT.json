@@ -1,53 +1,36 @@
 {
-	"name": {
-		"english": "Guts Capsule",
-		"french": "Capsule de Courage"
-	},
-	"article" : {
-		"english": "a",
-		"french": "une"
-	},
-	"keyitem": false,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User's maximum guts increased by 3!",
-			"french": "Le courage maximum de User a augmenté par 3!"
-		},
-		"textfail": {
-			"english": "User won't eat the Guts Capsule.",
-			"french": "User ne veut pas manger la Capsule de Courage."
-		}
-	},
-	"action_two": null,
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 3
-	},
-	"description": {
-		"english": "Increases your maximum guts by 3.",
-		"french": "Augmente ton courage maximum par 3."
-	}
+    "name": "CAPSULEGUT",
+    "article": "CAPSULEGUT_ART",
+    "keyitem": false,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": {
+        "name": "CAPSULEGUT_ACT1_NAME",
+        "function": "consume",
+        "text": "CAPSULEGUT_ACT1_TEXT",
+        "textfail": "CAPSULEGUT_ACT1_FAIL"
+    },
+    "action_two": null,
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 3
+    },
+    "description": "CAPSULEGUT_DESC",
+    "short_name": "CAPSULEGUT_SHORT"
 }

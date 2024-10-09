@@ -77,7 +77,7 @@ texture = ExtResource( 2 )
 
 [node name="Sparkles" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4, -4 )
-frame = 24
+frame = 34
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false

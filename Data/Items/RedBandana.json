@@ -1,50 +1,36 @@
 {
-	"name": {
-		"english": "Red Bandana",
-		"french": "Foulard Rouge"
-	},
-	"article" : {
-		"english": "a",
-		"french": "un"
-	},
-	"keyitem": false,
-	"cost": 40,
-	"value": 20,
-	"usable": {
-		"ninten": true,
-		"lloyd": false,
-		"ana": false,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": {
-		"name": {
-			"english": "Equip", 
-			"french": "Équipper"
-		},
-		"nametwo": {
-			"english": "Unequip", 
-			"french": "Déséquipper"
-		},
-		"function": "equip"
-	},
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "body",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 3, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "A bandana for the adventurous type.\nBody @ Defense +3.",
-		"french": "Un foulard pour les types aventureux.\nCorps @ Défense +3."
-	}
+    "name": "REDBANDANA",
+    "article": "REDBANDANA_ART",
+    "keyitem": false,
+    "cost": 40,
+    "value": 20,
+    "usable": {
+        "ninten": true,
+        "lloyd": false,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": {
+        "name": "INVENTORY_ACTION_EQUIP",
+        "nametwo": "INVENTORY_ACTION_UNEQUIP",
+        "function": "equip"
+    },
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "body",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 3,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "REDBANDANA_DESC",
+    "short_name": "REDBANDANA_SHORT"
 }

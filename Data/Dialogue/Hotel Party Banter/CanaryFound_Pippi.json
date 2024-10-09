@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "[Pippi]",
-		"text": "That chick's mom must be worried sick.",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "[Pippi]",
-		"text": "Let's hurry up and reunite them, okay?",
-		"sound": "Kid",
-		"goto": "2"
-	},
-	"2": {
-		"name": "[Pippi]",
-		"text": "If I remember correctly, Canary Village should be to the north west of town.",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYFOUND_PIPPI_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYFOUND_PIPPI_1",
+        "sound": "Kid",
+        "goto": "2"
+    },
+    "2": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYFOUND_PIPPI_2",
+        "sound": "Kid"
+    }
 }

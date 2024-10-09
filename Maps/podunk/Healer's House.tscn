@@ -2,14 +2,15 @@
 
 [ext_resource path="res://Shaders/Color Replacer.shader" type="Shader" id=1]
 [ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=2]
-[ext_resource path="res://Graphics/Rooms/Podunk_Healer_House.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Healer_House.png" type="Texture" id=3]
 [ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Graphics/Rooms/Podunk_Healer_House_Above.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Healer_House_Above.png" type="Texture" id=5]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=9]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true

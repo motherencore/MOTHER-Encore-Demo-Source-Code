@@ -1,20 +1,20 @@
 {
-	"0": {
-		"actors": {
-			"leader": "leader"
-		},
-		"actorsjump": {
-			"leader": {
-				"height": 16,
-				"times": 2,
-				"speed": 0.25,
-				"crouch": true
-			}
-		},
-		"text": "Nobody's home...",
-		"goto": "1"
-	},
-	"1": {
-		"text": "You can feel a slight breeze coming from behind the birdhouse."
-	}
+    "0": {
+        "actors": {
+            "leader": "leader"
+        },
+        "actorsjump": {
+            "leader": {
+                "height": 16,
+                "times": 2,
+                "speed": 0.25,
+                "crouch": true
+            }
+        },
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_CANARY_HOUSE_EMPTY_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_CANARY_HOUSE_EMPTY_1"
+    }
 }

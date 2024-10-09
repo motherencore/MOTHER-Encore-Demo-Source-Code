@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Main/Openable Door.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 19 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 4 )
@@ -72,18 +75,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("StaticBody2D/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -134,16 +125,15 @@ position = Vector2( 0, -32 )
 offset = Vector2( 0, 8 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 0, 2 )
 collision_layer = 6144
 collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+position = Vector2( 0, -15 )
+shape = SubResource( 7 )
 
 [node name="interact" type="Area2D" parent="."]
-position = Vector2( 0, 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
 shape = SubResource( 3 )
@@ -155,6 +145,7 @@ offset = Vector2( 0, -32 )
 enabled = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Action = SubResource( 1 )

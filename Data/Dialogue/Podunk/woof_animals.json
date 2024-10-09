@@ -1,12 +1,12 @@
 {
-	"0": {
-		"name": "Mick",
-		"text": "Woof woof!",
-		"soundeffect": "M3/Woof Woof!.wav",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mick",
-		"text": "(If you see any other animals, try listening to their thoughts.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WOOF_ANIMALS_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_ANIMALS_0",
+        "soundeffect": "M3/Woof Woof!.wav",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WOOF_ANIMALS_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_ANIMALS_1"
+    }
 }

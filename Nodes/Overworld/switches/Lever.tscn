@@ -78,6 +78,7 @@ anims/Right = SubResource( 26 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

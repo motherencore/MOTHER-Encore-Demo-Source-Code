@@ -23,6 +23,7 @@ position = Vector2( 4, 4 )
 shape = SubResource( 1 )
 
 [node name="Pippi Rescued" parent="." instance=ExtResource( 2 )]
+visible = false
 appear_flag = "pippi_rescued"
 disappear_flag = "canary_found"
 
@@ -34,9 +35,11 @@ player_turn = {
 "x": true,
 "y": true
 }
+initial_dir = Vector2( 0, 1 )
 staring = true
 
 [node name="Canary Found" parent="." instance=ExtResource( 2 )]
+visible = false
 appear_flag = "canary_found"
 disappear_flag = "canary_melody"
 
@@ -59,9 +62,11 @@ player_turn = {
 "x": true,
 "y": true
 }
+initial_dir = Vector2( 1, 0 )
 staring = true
 
 [node name="Canary Melody" parent="." instance=ExtResource( 2 )]
+visible = false
 appear_flag = "canary_melody"
 disappear_flag = "pippi_delivered"
 
@@ -73,9 +78,11 @@ player_turn = {
 "x": true,
 "y": true
 }
+initial_dir = Vector2( 0, 1 )
 staring = true
 
 [node name="Flag Landmark10" parent="." instance=ExtResource( 2 )]
+visible = false
 appear_flag = "lloyd"
 
 [node name="npc_Lloyd" parent="Flag Landmark10" instance=ExtResource( 1 )]

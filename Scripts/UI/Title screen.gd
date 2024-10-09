@@ -15,7 +15,10 @@ var soundEffects = {
 
 func _ready():
 	global.persistPlayer.pause()
-	label.text = "Originally Produced by"
+
+	# LOCALIZATION Use of csv key for "Originally Produced by"
+	label.text = "TITLE_NINTENDO"
+	
 	$CanvasLayer/Title/Earth.playing = true
 	audioManager.add_at_zero()
 	if audioManager.get_audio_player(audioManager.get_audio_player_count() - 1).stream != load("res://Audio/Music/Mother Earth.mp3"):
@@ -27,9 +30,18 @@ func _ready():
 	else:
 		animationPlayer.play("Instant Start")
 		
+	_update_text()
+	global.connect("locale_changed", self, "_update_text")
+	global.connect("inputs_changed", self, "_update_text")
 #	set_physics_process(false)
 #	yield(get_tree(), "idle_frame")
 #	set_physics_process(true)
+
+func _update_text():
+	var pressText = "[center]%s[/center]" % globaldata.replaceText("MENU_PRESS")
+	$CanvasLayer / Title / PressButton.bbcode_text = pressText
+
+	$CanvasLayer / Title / Version2.text = tr("TITLE_FNKEYS").format([globaldata.get_key_name("ui_fullscreen", global.KEYBOARD), globaldata.get_key_name("ui_winsize", global.KEYBOARD)])
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -40,14 +52,28 @@ func _input(event):
 		elif $CanvasLayer/Title/PressButton.modulate == Color.white:
 			show_menu()
 			audioManager.play_sfx(soundEffects["cursor2"], "cursor")
+	
+	if OS.is_debug_build():
+		if active:
+			if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
+				audioManager.fadeout_all_music(1)
+				Input.action_release("ui_cancel")
+				Input.action_release("ui_toggle")
+				globaldata.flags["bat"] = true
+				globaldata.flags["switch_leader"] = true
+				globaldata.flags["eagle_feather"] = true
+				#globaldata.ninten["learnedSkills"].append("telepathy")
+				$Objects/DoorToDebug.enter()
 
 func _physics_process(delta):
 	if active:
-		if Input.is_action_just_pressed("ui_down"):
+		var input = controlsManager.get_controls_vector(true)
+		
+		if input.y > 0:
 			option += 1
 			optionChanged()
 			audioManager.play_sfx(soundEffects["cursor1"], "cursor")
-		elif Input.is_action_just_pressed("ui_up"):
+		elif input.y < 0:
 			option -= 1
 			optionChanged()
 			audioManager.play_sfx(soundEffects["cursor1"], "cursor")
@@ -60,14 +86,23 @@ func _physics_process(delta):
 					audioManager.fadeout_all_music(0.5)
 					set_saveFile()
 					globaldata.reset_data()
-					$Objects/Door2.enter()
+					$Objects/DoorToNewGame.enter()
 				1:
-					$Objects/Door3.enter()
+					$Objects/DoorToSaveSelect.enter()
 				2:
+					#$OptionsUI.Show_options()
+					$Objects/DoorToSettings.enter()
+				3:
 					global.save_settings()
 					get_tree().quit()
 		
+		if OS.is_debug_build() and Input.is_action_just_pressed("ui_cancel"):
+			$Objects/DoorToDebug.enter()
 
+
+func _on_OptionsUI_back():
+	audioManager.play_sfx(soundEffects["back"], "cursor")
+	active = true
 
 func set_saveFile():
 	var saveGame = File.new()
@@ -82,8 +117,8 @@ func set_saveFile():
 func optionChanged():
 	match(option):
 		-1:
-			option = 2
-		3:
+			option = 3
+		4:
 			option = 0
 		
 	for i in $CanvasLayer/Title/Menu.get_child_count():
@@ -98,10 +133,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match(anim_name):
 		"nintendo":
 			animationPlayer.play("itoi")
-			label.text = "Originally Presented by"
+			# LOCALIZATION Use of csv key for "Originally Presented by"
+			label.text = "TITLE_ITOI"
 		"itoi":
 			animationPlayer.play("Team Encore")
-			label.text = "Presented by"
+			# LOCALIZATION Use of csv key for "Presented by"
+			label.text = "TITLE_TEAMENCORE"
 		"Team Encore":
 			$CanvasLayer/Aboveground/Base.hide()
 			animationPlayer.play("Fade")
@@ -109,6 +146,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		#	canSkip = false
 
 func show_menu():
+	if globaldata.saveFile != 0:
+		option = 1
 	optionChanged()
 	$CanvasLayer/Title/Menu.show()
 	$Tween.interpolate_property($CanvasLayer/Title/PressButton, "modulate",

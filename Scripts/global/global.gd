@@ -2,6 +2,9 @@ extends Node2D
 
 signal cutscene_ended
 signal scene_changed
+signal locale_changed
+signal inputs_changed
+signal settings_changed
 
 onready var tween = $Tween
 var party =  []
@@ -14,28 +17,36 @@ var currentScene = null
 var previousScene = null
 var persistPlayer = null
 var currentCamera = null
-onready var dialogueBox = load("res://Nodes/Ui/DialogueBox.tscn")
+var debugMenu = load("res://Nodes/Ui/debug/debug.tscn")
 var maxInventorySlots = 10
-var dialogue = ""
-var receiver = ""
-var itemname = ""
-var itemart = ""
-var device = "Keyboard"
+var dialogue = []
+var receiver = null
+var itemUser = null
+var item = null
+enum {KEYBOARD, GAMEPAD}
+var device = KEYBOARD
 var cutscene = false
 var talker = null
 var inBattle = false
 var queuedBattle = false
 var gameover = false
 var fadeout = 0
+var phoneLocation
+var mousePosition
+var mouseShownTime: float = 0.0
+var mouseHiddenTime: float = 0.0
 
+var LANGUAGES_DEBUG = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de", "ru"]
+var LANGUAGES_RELEASE = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de"]
+var LANGUAGE_DEFAULT = "en"
 
 onready var playerNode = load("res://Nodes/Reusables/Player.tscn")
 
-const partyMembers = ["ninten", "lloyd", "ana", "teddy", "pippi", "canarychick", "flyingman", "eve"]
+const POSSIBLE_PARTY_MEMBERS = ["ninten", "lloyd", "ana", "teddy", "pippi", "canarychick", "flyingman", "eve"]
 
 func _ready():
+	set_localized_default_inputs()
 	load_settings()
-	set_dialog("noproblem", null)
 	partySpace.resize(partySize)
 	var root = get_tree().get_root()
 	
@@ -59,18 +70,109 @@ func _ready():
 		player.position.y = 0
 		create_party_followers()
 		set_respawn()
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	mousePosition = Input.get_last_mouse_speed()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	#print(party)
 	if uiManager.uiStack.size() == 0:
 		if Input.is_action_just_pressed("ui_select") and !persistPlayer.paused and persistPlayer.state == persistPlayer.MOVE:
 			uiManager.open_commands_menu()
-	
-	if Input.is_action_just_pressed("ui_F4"):
-		OS.window_fullscreen = !OS.window_fullscreen
 		
-	if Input.is_action_just_pressed("ui_F5"):
-		increase_win_size(1)
+	if mousePosition != Input.get_last_mouse_speed():
+		mouseShownTime = 0
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
+			mouseHiddenTime += delta
+			if mouseHiddenTime >= 0.05:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				mouseHiddenTime = 0
+		
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+		mouseShownTime += delta
+		
+	mousePosition = Input.get_last_mouse_speed()
+	
+	if mouseShownTime >= 1.5:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		mouseShownTime = 0
+	
+	if OS.is_debug_build():
+		if Input.is_action_just_pressed("ui_g"):
+			Engine.time_scale = 2.0
+		elif Input.is_action_just_released("ui_g"):
+			Engine.time_scale = 1.0
+		
+		if Input.is_action_just_pressed("ui_F2") and !persistPlayer.paused and persistPlayer.state == persistPlayer.MOVE and !global.inBattle:
+			uiManager.onScreenEnemies.append(["TEST", null])
+			uiManager.onScreenEnemies.append(["TEST", null])
+			uiManager.onScreenEnemies.append(["TEST", null])
+			uiManager.start_battle()
+		
+		if Input.is_action_just_pressed("ui_F6"):
+			global.persistPlayer.pause()
+			uiManager.open_storage()
+
+		if Input.is_action_just_pressed("ui_F7"):
+			global.persistPlayer.pause()
+			uiManager.open_storage(true)
+
+		if Input.is_action_just_pressed("ui_L"):
+			audioManager.fadeout_all_music(0.5)
+			load_game(globaldata.saveFile)
+		
+		# LOCALIZATION Code added: Debug feature to quickly translate the UI
+		if Input.is_action_just_pressed("ui_translate"):
+			toggle_language(LANGUAGES_DEBUG)
+			save_settings()
+		for i in LANGUAGES_DEBUG.size():
+			if Input.is_action_just_pressed("ui_lang%s" % i):
+				set_language(LANGUAGES_DEBUG[i])
+				save_settings()
+		
+		if !persistPlayer.paused:
+			if Input.is_action_just_pressed("ui_q"):
+				party_call("set_all_collisions", false)
+			if Input.is_action_just_released("ui_q"):
+				party_call("set_all_collisions", true)
+			
+			if Input.is_action_pressed("ui_e"):
+				persistPlayer.speed = 600
+			elif !persistPlayer.running:
+				persistPlayer.speed = persistPlayer.SPEED_WALKING
+				
+		if Input.is_action_just_pressed("ui_F12"):
+			goto_scene("res://Maps/Testing/Debug world.tscn")
+			persistPlayer.position = Vector2.ZERO
+		
+		if Input.is_action_just_pressed("ui_backtick"):
+			if uiManager.uiStack.size() == 0:
+				var dm = debugMenu.instance()
+				uiManager.add_ui(dm)
+		
+		var party_keys = ["one", "two", "three", "four", "five", "six", "seven"]
+		for i in party_keys.size():
+			if Input.is_action_just_pressed("ui_%s" % party_keys[i], true):
+				var party_member = globaldata.get(POSSIBLE_PARTY_MEMBERS[i])
+				if party_member in party:
+					if party_member.status.has(globaldata.ailments.Unconscious):
+						if partyObjects.size() > 1:
+							party.erase(party_member)
+							if party_member != globaldata.ninten:
+								party_member.status.clear()
+						else: 
+							party_member.status.clear()
+					else: 
+						party_member.status.append(globaldata.ailments.Unconscious)
+				else:
+					party.append(party_member) 
+					if party_member == globaldata.ninten:
+						party_member.status.clear()
+				create_party_followers()
+				persistPlayer._spritesheet()
+			
+		if Input.is_action_just_pressed("ui_mute"):
+			audioManager.stop_all_music()
+	
 
 func start_slowmo(speed, length):
 	$Slowmo.start_slowmo(speed, length)
@@ -81,16 +183,20 @@ func add_persistent(node_to_persist):
 func remove_persistent(node_to_remove):
 	persistArray.erase(node_to_remove)
 
-func goto_scene(path, playerPosition = Vector2.ZERO):
-	call_deferred("_deferred_goto_scene", path, playerPosition)
+func goto_scene(path, playerPosition = Vector2.ZERO, playerDirection = Vector2(0,1)):
+	call_deferred("_deferred_goto_scene", path, playerPosition, playerDirection)
 
-func _deferred_goto_scene(path, playerPosition = Vector2.ZERO):
+func _deferred_goto_scene(path, playerPosition, playerDirection):
+	var PassiveHealer
 	if currentScene.has_node("YSort"):
 		currentScene.get_node("YSort").remove_child(persistPlayer)
 	else:
 		currentScene.get_node("Objects").remove_child(persistPlayer)
+	PassiveHealer = currentScene.get_node("Objects").get_node_or_null("PassiveHeal")
+	if PassiveHealer != null:
+		PassiveHealer = PassiveHealer.duplicate()
 	
-	persistPlayer.collision.disabled = true
+	persistPlayer.set_all_collisions(false)
 	
 	for node in persistArray:
 		if node != null:
@@ -108,8 +214,10 @@ func _deferred_goto_scene(path, playerPosition = Vector2.ZERO):
 		currentScene.get_node("Objects").add_child(persistPlayer)
 	
 	create_party_followers()
-	set_party_position(playerPosition)
+	set_party_position(playerPosition, playerDirection)
 	
+	if PassiveHealer != null:
+		currentScene.get_node("Objects").add_child(PassiveHealer)
 	
 	for node in persistArray:
 		currentScene.add_child(node)
@@ -118,7 +226,7 @@ func _deferred_goto_scene(path, playerPosition = Vector2.ZERO):
 	uiManager.scene_changed()
 	yield(get_tree(), "idle_frame")
 	
-	persistPlayer.collision.disabled = false
+	persistPlayer.set_all_collisions(true)
 
 func add_map(scene):
 	call_deferred("_deferred_goto_zone", scene)
@@ -156,7 +264,7 @@ func _deferred_goto_zone(scene):
 		persistPlayer.costume = "Snow"
 		persistPlayer._spritesheet()
 
-func set_party_position(position):
+func set_party_position(position, direction):
 	persistPlayer.position = position
 	if partySize > 1:
 		for i in global.partySpace.size():
@@ -164,9 +272,22 @@ func set_party_position(position):
 			partySpace.pop_back()
 	for i in partyObjects:
 		if i.get("direction") != null:
-			i.direction = Vector2(0, 1)
+			i.direction = direction
 		elif i.get("inputVector") != null:
-			i.inputVector = Vector2(0, 1)
+			i.inputVector = direction
+
+func reset_party_positions():
+	if partySize > 1:
+		for i in partySpace.size():
+			partySpace.push_front(persistPlayer.position)
+			partySpace.pop_back()
+
+
+
+func set_party_spacing(spacing):
+	for i in range(partyObjects.size()):
+		if partyObjects[i] != persistPlayer and is_instance_valid(partyObjects[i]):
+			partyObjects[i].set_spacing(spacing)
 
 func create_party_followers():
 	var active = party + partyNpcs
@@ -194,6 +315,15 @@ func set_follower_index():
 			partyObjects[i].followerIdx = i
 			partyObjects[i].initiate()
 
+func party_call(function, value = null):
+	for i in partyObjects:
+		if is_instance_valid(i):
+			if i.has_method(function):
+				if value != null:
+					i.call(function, value)
+				else:
+					i.call(function)
+
 func get_conscious_party():
 	var arr = []
 	for partyMember in party:
@@ -202,8 +332,7 @@ func get_conscious_party():
 	return arr
 
 func set_dialog(path, npc):
-	dialogue = "res://Data/Dialogue/" + path +".json"
-	talker = npc
+	dialogue.append(["res://Data/Dialogue/" + path +".json", npc])
 
 func set_respawn():
 	globaldata.respawnPoint = persistPlayer.position
@@ -217,26 +346,168 @@ func goto_respawn():
 	persistPlayer.direction = Vector2(0, 1)
 	persistPlayer.blend_position(persistPlayer.direction)
 
+func get_location():
+	if phoneLocation == "":
+		return currentScene.name
+	else:
+		return phoneLocation
+
 func _input(event):
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion :
-		device = "Gamepad"
+		device = GAMEPAD
 	elif event is InputEventKey:
-		device = "Keyboard"
+		device = KEYBOARD
+	
+	if event.is_action_pressed("ui_fullscreen"):
+		toggle_fullscreen()
+		global.emit_signal("settings_changed")
+		
+	if event.is_action_pressed("ui_winsize"):
+		increase_win_size(1)
 
+func start_joy_vibration(device_id: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0):
+	if globaldata.rumble:
+		Input.start_joy_vibration(device_id, weak_magnitude, strong_magnitude, duration)
+
+func detect_buttons_style():
+	var joy_name = Input.get_joy_name(0)
+	var NINTENDO_PATTERNS = ["nintendo", "switch", "joy-con", "snes", "famicom", "pro controller", "gamecube"]
+	var PLAYSTATION_PATTERNS = ["playstation", "sony", "ps5", "ps4", "ps3", "ps2", "dualsense", "dualshock"]
+	for pattern in NINTENDO_PATTERNS:
+		if pattern in joy_name.to_lower():
+			return globaldata.BTN_STYLES.NINTENDO
+
+	for pattern in PLAYSTATION_PATTERNS:
+		if pattern in joy_name.to_lower():
+			return globaldata.BTN_STYLES.PLAYSTATION
+
+	return globaldata.BTN_STYLES.XBOX
+
+# LOCALIZATION Code added: New method "set_win_size" to set window size to any value
+# (especially from the options UI)
 func increase_win_size(amount):
-	globaldata.winSize += amount
-	
-	if globaldata.winSize < 1:
-		globaldata.winSize = int(OS.get_screen_size().x / 320)
-	
-	if OS.get_screen_size() < Vector2(320 * globaldata.winSize, 180 * globaldata.winSize):
-		globaldata.winSize = 1
-	
-	OS.window_borderless = false
-	OS.window_fullscreen = false
-	OS.set_window_size(Vector2(320 * globaldata.winSize, 180 * globaldata.winSize))
-	OS.set_window_position(OS.get_screen_size()*0.5 - OS.get_window_size()*0.5)
+	var newWinSize = globaldata.winSize + amount
 
+	if newWinSize < 1:
+		newWinSize = int(OS.get_screen_size().x / 320)
+
+	if OS.get_screen_size() < Vector2(320 * newWinSize, 180 * newWinSize):
+		newWinSize = 1
+	
+	set_win_size(newWinSize)
+	
+
+func toggle_fullscreen(value = !OS.window_fullscreen):
+	set_win_size(globaldata.winSize, value)
+
+func set_win_size(newSizeNum, fullscreen = false):
+	# Everything here needs to happen asynchronously: sometimes resizing the window hangs the system for a few milliseconds, causing issues
+	yield(get_tree(), "idle_frame")
+
+	if fullscreen != OS.window_fullscreen:
+		OS.window_fullscreen = fullscreen
+
+	if not fullscreen:
+		var oldSize = OS.window_size
+		var newSize = Vector2(320 * newSizeNum, 180 * newSizeNum)
+		globaldata.winSize = newSizeNum
+		if newSize != oldSize:
+			OS.window_borderless = false
+			var newPos = OS.window_position - (newSize - oldSize) / 2
+			# We don’t want the title bar to be out of screen
+			var topLeft = OS.get_screen_position() + Vector2(OS.get_screen_size().x * .1, 0)
+			var bottomRight = OS.get_screen_position() + OS.get_screen_size() * .9
+			newPos.x = clamp(newPos.x, topLeft.x - newSize.x, bottomRight.x)
+			newPos.y = clamp(newPos.y, topLeft.y, bottomRight.y)
+			OS.set_window_size(newSize)
+			OS.set_window_position(newPos)
+
+	global.emit_signal("settings_changed")
+
+func set_music_volume(volume):
+	globaldata.musicVolume = volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), volume)
+	global.emit_signal("settings_changed")
+
+func set_sfx_volume(volume):
+	globaldata.sfxVolume = volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), volume)
+	global.emit_signal("settings_changed")
+
+func toggle_language(ordered_languages, direction = 1):
+	direction = sign(direction)
+	# Obtaining the language code the game falls back to (ex: "fr" if locale is "fr_BE")
+	var lang = tr("LANGUAGE_CODE")
+	var index = ordered_languages.find(lang)
+	var newIndex = fposmod(index + direction, ordered_languages.size())
+	set_language(ordered_languages[newIndex])
+
+func set_language(lang_code):
+	TranslationServer.set_locale(lang_code)
+	global.emit_signal("locale_changed")
+
+# Sets the default language based on the OS, in cases where the automatic selection fails
+func set_language_default():
+	print("OS locale code: %s" % OS.get_locale())
+	if OS.get_locale_language() == "es":
+		if OS.get_locale() in ["es", "es_ES", "es_GQ", "es_IC"]:
+			print("Switching to Spain Spanish")
+			TranslationServer.set_locale("es_ES")
+		else:
+			print("Switching to American Spanish")
+			TranslationServer.set_locale("es")
+	else:
+		var language_code = tr("LANGUAGE_CODE")
+		if not language_code in get_supported_languages():
+			language_code = LANGUAGE_DEFAULT
+		TranslationServer.set_locale(language_code)
+
+func get_supported_languages():
+	if OS.is_debug_build():
+		return LANGUAGES_DEBUG
+	else:
+		return LANGUAGES_RELEASE
+
+func serialize_inputs() -> Dictionary:
+	var controls = {}
+	for action in InputMap.get_actions():
+		controls[action] = []
+		for event in InputMap.get_action_list(action):
+			controls[action].append(var2str(event))
+	return controls
+
+func deserialize_inputs(controls) -> void:
+	if controls != null:
+		for action in controls:
+			InputMap.action_erase_events(action)
+			for event in controls[action]:
+				InputMap.action_add_event(action, str2var(event))
+
+# Default action keys adapted to various keyboard layouts
+func set_localized_default_inputs():
+	var actions = ["ui_accept", "ui_cancel", "ui_select", "ui_focus_prev", "ui_focus_next"]
+	var all_layouts = {
+		"QWERTY": "ZXCAS", "AZERTY": "WXCQS", "BÉPO": "ZYXAU", "QWERTZ": "YXCAS",
+		"QZERTY": "WXCAS", "DVORAK": ";QJAO", "COLEMAK": "ZXCAR", "NEO": "ZXCUI"
+	}
+	
+	var user_layout_type = OS.get_latin_keyboard_variant()
+	if user_layout_type in ["QWERTY", "ERROR"]:
+		# workaround for BÉPO layout not recognized natively
+		var os_layout_index = OS.keyboard_get_current_layout()
+		var os_layout_name = OS.keyboard_get_layout_name(os_layout_index).to_upper()
+		if ("BÉPO" in os_layout_name or "BEPO" in os_layout_name) \
+			or (OS.keyboard_get_layout_language(os_layout_index) == "fr" and ("FRANCE" in os_layout_name) and not ("AZERTY" in os_layout_name)):
+			user_layout_type = "BÉPO"
+		else:
+			user_layout_type = "QWERTY"
+	
+	for i in actions.size():
+		var events = InputMap.get_action_list(actions[i])
+		for event in events:
+			if event is InputEventKey:
+				event.scancode = ord(all_layouts[user_layout_type][i])
+	
 func start_playtime():
 	$Playtimer.start()
 
@@ -247,12 +518,17 @@ func _on_Playtimer_timeout():
 	globaldata.playtime += 1
 
 func save_settings():
+	# LOCALIZATION Code change: Language isn't stored in globaldata anymore
 	var saveDict = {
-		"language": globaldata.language,
+		"language": TranslationServer.get_locale(),
 		"winsize": globaldata.winSize,
 		"fullscreen": OS.window_fullscreen,
 		"musicvolume": globaldata.musicVolume,
-		"sfxvolume": globaldata.sfxVolume
+		"sfxvolume": globaldata.sfxVolume,
+		"savefile": globaldata.saveFile,
+		"inputmap": serialize_inputs(),
+		"rumble": globaldata.rumble,
+		"buttonsStyle": globaldata.buttonsStyle
 	}
 	
 
@@ -264,26 +540,38 @@ func save_settings():
 func load_settings():
 	var saveGame = File.new()
 	if not saveGame.file_exists("user://settings.save"):
+		set_language_default()
 		return 
 	
 	saveGame.open_encrypted_with_pass("user://settings.save", File.READ,"ENCORE")
 	
 	var saveData = parse_json(saveGame.get_line())
 	
-	globaldata.language = saveData["language"]
-	globaldata.winSize = saveData["winsize"]
-	OS.window_fullscreen = saveData["fullscreen"]
-	globaldata.musicVolume = saveData["musicvolume"]
-	globaldata.sfxVolume = saveData["sfxvolume"]
+	var language = saveData["language"]
+	var winSize = saveData["winsize"]
+	var fullscreen = saveData["fullscreen"]
+	var musicVolume = saveData["musicvolume"]
+	var sfxVolume = saveData["sfxvolume"]
+	deserialize_inputs(saveData.get("inputmap"))
+	globaldata.rumble = saveData.get("rumble", true)
+	globaldata.buttonsStyle = saveData.get("buttonsStyle", globaldata.BTN_STYLES.DETECT)
+	globaldata.saveFile = int(saveData.get("savefile", 0))
+
+	if language in get_supported_languages():
+		TranslationServer.set_locale(language)
+	else:
+		set_language_default()
+
+	set_win_size(winSize, fullscreen)
+	set_music_volume(musicVolume)
+	set_sfx_volume(sfxVolume)
 	
-	OS.set_window_size(Vector2(320 * globaldata.winSize, 180 * globaldata.winSize))
-	OS.set_window_position(OS.get_screen_size()*0.5 - OS.get_window_size()*0.5)
 	saveGame.close()
 
 func save():
 	var saveDict = {
 		"scene": currentScene.get_filename(),
-		"scenename": currentScene.name,
+		"scenename": get_location(),
 		"posX": persistPlayer.position.x, 
 		"posY": persistPlayer.position.y,
 		"playtime": globaldata.playtime,
@@ -301,6 +589,7 @@ func save():
 		"lloyd": globaldata.lloyd,
 		"teddy": globaldata.teddy,
 		"pippi": globaldata.pippi,
+		"eve": globaldata.eve,
 		"favoritefood": globaldata.favoriteFood,
 		"flying": globaldata.flyingman,
 		"runsound": persistPlayer.run_sound,
@@ -308,7 +597,8 @@ func save():
 		"dirY": persistPlayer.direction.y,
 		"party": party,
 		"partyNpcs": partyNpcs,
-		"inventories": InventoryManager._save_inventories(),
+		"inventories": InventoryManager.save_inventories(),
+		"rareDrops": globaldata.rareDrops
 	}
 	return saveDict
 
@@ -327,6 +617,7 @@ func save_game(num):
 	saveGame.store_line(to_json(saveData))
 	saveGame.close()
 	set_respawn()
+	globaldata.flags["saved"] = true
 
 func load_game(num, goto_game = true):
 	var saveGame = File.new()
@@ -359,6 +650,8 @@ func load_game(num, goto_game = true):
 		globaldata.favoriteFood = saveData["favoritefood"]
 	if saveData.has("flying"):
 		globaldata.flyingman = saveData["flying"]
+	if saveData.has("eve"):
+		globaldata.flyingman = saveData["eve"]
 	if saveData.has("textspeed"):
 		globaldata.textSpeed = saveData["textspeed"]
 	if saveData.has("menuflavor"):
@@ -374,9 +667,11 @@ func load_game(num, goto_game = true):
 	if saveData.has("description"):
 		globaldata.description = saveData["description"]
 	if saveData.has("inventories"):
-		InventoryManager._load_inventories(saveData["inventories"])
+		InventoryManager.load_inventories(saveData["inventories"])
 	if saveData.has("keys"):
 		globaldata.keys = saveData["keys"]
+	if saveData.has("rareDrops"):
+		globaldata.rareDrops = saveData["rareDrops"]
 	
 	#reappend party
 	global.party.clear()
@@ -389,30 +684,36 @@ func load_game(num, goto_game = true):
 	uiManager.set_menu_flavors(globaldata.menuFlavor)
 	
 	#reappend statuses
-	for partyMem in [globaldata.ninten, globaldata.ana, globaldata.lloyd, globaldata.teddy, globaldata.pippi, globaldata.flyingman]:
+	for partyMem in POSSIBLE_PARTY_MEMBERS:
 		var tempstatus = []
-		for i in partyMem.status:
-			tempstatus.append(globaldata.status_int_to_enum(i))
-		partyMem.status.clear()
-		partyMem.status.append_array(tempstatus)
+		for i in globaldata.get(partyMem).status:
+			tempstatus.append(int(i))
+		globaldata.get(partyMem).status.clear()
+		globaldata.get(partyMem).status.append_array(tempstatus)
 		
 	
-	for i in saveData["flags"]:
-		if globaldata.flags.get(i) != null:
-			globaldata.flags[i] = saveData["flags"][i]
+	for flag in globaldata.flags:
+		if saveData["flags"].get(flag) != null:
+			globaldata.flags[flag] = saveData["flags"][flag]
+		else:
+			globaldata.flags[flag] = false
 	
+	globaldata.upgrade_from_old_save()
 	
 	if goto_game:
 		persistPlayer.pause()
-		goto_scene(saveData["scene"], globaldata.respawnPoint)
+		goto_scene(saveData["scene"], globaldata.respawnPoint, Vector2(saveData["dirX"], saveData["dirY"]))
 		create_party_followers()
 		persistPlayer.inputVector = Vector2(saveData["dirX"], saveData["dirY"])
 		persistPlayer.direction = Vector2(saveData["dirX"], saveData["dirY"])
+		persistPlayer.eventRayCaster.rotation = persistPlayer.direction.angle() - TAU/4
 		persistPlayer.animationTree.active = true
 		persistPlayer.blend_position(persistPlayer.direction)
 		persistPlayer.travel_fainted("Idle", "FaintedIdle")
 		if saveData.has("runsound"):
+			saveData["runsound"] = saveData["runsound"].replace(".wav", "")
 			persistPlayer.run_sound = saveData["runsound"]
+			
 		
 		yield(get_tree(), "idle_frame")
 		persistPlayer.unpause()

@@ -37,6 +37,7 @@ margin_left = -4.0
 margin_top = -4.0
 margin_right = 36.0
 margin_bottom = 15.0
+grow_horizontal = 2
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

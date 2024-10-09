@@ -1,21 +1,21 @@
 {
-	"0": {
-		"name": "Katie",
-		"text": "Welcome! Would you like to see what's on our menu?",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"text": "",
-		"cleardialog": true,
-		"caninput": false,
-		"showbox": false,
-		"openshop": "podunk_burger_shop",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Katie",
-		"sound": "Sexy",
-		"text": "Thank you for coming!"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_SPEAKER_Katie",
+        "text": "DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "text": "",
+        "cleardialog": true,
+        "caninput": false,
+        "showbox": false,
+        "openshop": "podunk_burger_shop",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_SPEAKER_Katie",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_2"
+    }
 }

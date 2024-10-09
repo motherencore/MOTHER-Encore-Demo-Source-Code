@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name": "Noisy Mouse",
-		"text": "Squeeeak squeak.",
-		"soundeffect": "M3/Critter Cry.mp3"
-	}
+    "0": {
+        "name": "DIALOGUE_REUSABLE_SQUEAK_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_REUSABLE_SQUEAK_0",
+        "soundeffect": "M3/Critter Cry.mp3"
+    }
 }

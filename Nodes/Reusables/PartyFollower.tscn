@@ -1,10 +1,11 @@
-[gd_scene load_steps=166 format=2]
+[gd_scene load_steps=174 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Pippi/main.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/testing/party/party.gd" type="Script" id=2]
 [ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=3]
 [ext_resource path="res://Shaders/Flash.tres" type="Material" id=4]
 [ext_resource path="res://Graphics/Character Sprites/Water_Ripple.png" type="Texture" id=5]
+[ext_resource path="res://Nodes/Reusables/Effects/AfterImageCreator.tscn" type="PackedScene" id=6]
 
 [sub_resource type="AtlasTexture" id=354]
 atlas = ExtResource( 5 )
@@ -336,6 +337,9 @@ blend_point_7/node = SubResource( 262 )
 blend_point_7/pos = Vector2( -0.6, -0.7 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=358]
+animation = "Soot"
+
 [sub_resource type="AnimationNodeAnimation" id=272]
 animation = "Move Down"
 
@@ -410,6 +414,12 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=353]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=359]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=360]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=361]
+
 [sub_resource type="AnimationNodeStateMachine" id=32]
 states/Blink/node = SubResource( 165 )
 states/Blink/position = Vector2( 92.6979, 123.431 )
@@ -425,11 +435,13 @@ states/Jump/node = SubResource( 291 )
 states/Jump/position = Vector2( 528.948, -87.4671 )
 states/Run/node = SubResource( 18 )
 states/Run/position = Vector2( 732.146, 123.252 )
+states/Soot/node = SubResource( 358 )
+states/Soot/position = Vector2( 531.433, -184.025 )
 states/Walk/node = SubResource( 27 )
 states/Walk/position = Vector2( 524.878, 122.981 )
-transitions = [ "Idle", "Walk", SubResource( 28 ), "Walk", "Idle", SubResource( 29 ), "Walk", "Run", SubResource( 30 ), "Run", "Walk", SubResource( 31 ), "Idle", "Crouch", SubResource( 280 ), "Crouch", "Idle", SubResource( 281 ), "Crouch", "Run", SubResource( 282 ), "Blink", "Idle", SubResource( 166 ), "Idle", "Blink", SubResource( 167 ), "Crouch", "Jump", SubResource( 292 ), "Jump", "Crouch", SubResource( 293 ), "Idle", "FaintedIdle", SubResource( 330 ), "FaintedIdle", "Idle", SubResource( 331 ), "FaintedIdle", "FaintedWalk", SubResource( 352 ), "FaintedWalk", "FaintedIdle", SubResource( 353 ) ]
+transitions = [ "Idle", "Walk", SubResource( 28 ), "Walk", "Idle", SubResource( 29 ), "Walk", "Run", SubResource( 30 ), "Run", "Walk", SubResource( 31 ), "Idle", "Crouch", SubResource( 280 ), "Crouch", "Idle", SubResource( 281 ), "Crouch", "Run", SubResource( 282 ), "Blink", "Idle", SubResource( 166 ), "Idle", "Blink", SubResource( 167 ), "Crouch", "Jump", SubResource( 292 ), "Jump", "Crouch", SubResource( 293 ), "Idle", "FaintedIdle", SubResource( 330 ), "FaintedIdle", "Idle", SubResource( 331 ), "FaintedIdle", "FaintedWalk", SubResource( 352 ), "FaintedWalk", "FaintedIdle", SubResource( 353 ), "Run", "Soot", SubResource( 359 ), "Soot", "Idle", SubResource( 360 ), "Idle", "Soot", SubResource( 361 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -47.6354, -93.2571 )
+graph_offset = Vector2( -47.6354, -276.358 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=33]
 
@@ -1829,6 +1841,23 @@ tracks/0/keys = {
 "values": [ 74, 75, 76, 77, 78, 79 ]
 }
 
+[sub_resource type="Animation" id=362]
+resource_name = "Soot"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 99 ]
+}
+
 [sub_resource type="Animation" id=79]
 resource_name = "Flash"
 length = 0.833333
@@ -1907,6 +1936,101 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Position/main:material:shader_param/glow_modifier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=499]
+resource_name = "TeleportFlash"
+length = 0.125
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position/main:material:shader_param/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.042, 0.084 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.807843, 0.92549, 1 ), Color( 0.352941, 0.360784, 0.87451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=500]
+resource_name = "TeleportPulse"
+length = 0.208334
+loop = true
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0416667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.807843, 0.92549, 1 ), Color( 0.352941, 0.360784, 0.87451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position/main:material:shader_param/glow_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.2 ]
 }
 
 [node name="PartyFollower" type="KinematicBody2D"]
@@ -2031,10 +2155,13 @@ anims/RESET = SubResource( 66 )
 "anims/Run Up" = SubResource( 55 )
 "anims/Run UpLeft" = SubResource( 56 )
 "anims/Run UpRight" = SubResource( 57 )
+anims/Soot = SubResource( 362 )
 
-[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+[node name="FlashAnim" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 79 )
 anims/RESET = SubResource( 80 )
+anims/TeleportFlash = SubResource( 499 )
+anims/TeleportPulse = SubResource( 500 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -2048,6 +2175,9 @@ wait_time = 0.25
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AfterImageCreator" parent="." instance=ExtResource( 6 )]
+spritePath = NodePath("../Position/main")
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Dust_time" to="." method="_on_Timer_timeout"]

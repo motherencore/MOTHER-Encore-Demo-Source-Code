@@ -1,6 +1,6 @@
 {
-	"0": {
-		"text": "This canary is singing!",
-		"soundeffect": "M3/Critter Cry.mp3"
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_CANARY_SING_0",
+        "soundeffect": "M3/Critter Cry.mp3"
+    }
 }

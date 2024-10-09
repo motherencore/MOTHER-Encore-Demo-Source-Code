@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name":"Jonathan",
-		"text":"You ever think about how the menu calls it a hamburger when it's clearly a cheeseburger?",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Jonathan",
-		"text":"Honestly, that's just blatant false advertising.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_JONATHAN_SPEAKER_Jonathan",
+        "text": "DIALOGUE_PODUNK_JONATHAN_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_JONATHAN_SPEAKER_Jonathan",
+        "text": "DIALOGUE_PODUNK_JONATHAN_1",
+        "sound": "Adult"
+    }
 }

@@ -1,81 +1,86 @@
 {
-	"0": {
-		"actors": {
-			"leader": "leader",
-			"william": "talker"
-		},
-		"name": "William",
-		"text": "Please be honest.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "William",
-		"text": "You're not a z-zombie... Right?",
-		"sound": "Adult",
-		"emotenpc": "sweat",
-		"options": {
-			"Yes": "2",
-			"No": "4",
-			"cancel": "4"
-		}
-	},
-	"2": {
-		"name": "William",
-		"text": "Uh oh. I heard there's no cure for zombies!",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name": "William",
-		"text": "AAAAAAAHHH!",
-		"sound": "Adult",
-		"actorsmove": {
-			"william": {
-				"movement": [{"x": -320, "y": 0}],
-				"speed": 128,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"actorsturn": {
-			"leader": {
-				"x": -1,
-				"y": 0,
-				"speed": 0.15
-			}
-		},
-		"shakecam": {
-			"size": 1,
-			"x": 1,
-			"y": 0
-		},
-		"wait": 1,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "7"
-	},
-	"4": {
-		"name": "William",
-		"text": "Ah, so you're really a human? That's a relief.",
-		"sound": "Adult",
-		"emotenpc": "heart",
-		"goto": "5"
-	},
-	"5": {
-		"name": "William",
-		"text": "Just don't look at my pants...",
-		"sound": "Adult",
-		"goto": "6"
-	},
-	"6": {
-		"name": "William",
-		"text": "I've got bladder issues, alright!?",
-		"sound": "Adult"
-	},
-	"7": {
-		"eraseactors":{
-			"william": true
-		}
-	}
-} 
+    "0": {
+        "actors": {
+            "leader": "leader",
+            "william": "talker"
+        },
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_1",
+        "sound": "Adult",
+        "emotenpc": "sweat",
+        "options": {
+            "DIALOGUE_PODUNK_WILLIAM_1-OPT_0": "2",
+            "DIALOGUE_PODUNK_WILLIAM_1-OPT_1": "4",
+            "cancel": "4"
+        }
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_3",
+        "sound": "Adult",
+        "actorsmove": {
+            "william": {
+                "movement": [
+                    {
+                        "x": -320,
+                        "y": 0
+                    }
+                ],
+                "speed": 128,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "actorsturn": {
+            "leader": {
+                "x": -1,
+                "y": 0,
+                "speed": 0.15
+            }
+        },
+        "shakecam": {
+            "size": 1,
+            "x": 1,
+            "y": 0
+        },
+        "wait": 1,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "7"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_4",
+        "sound": "Adult",
+        "emotenpc": "heart",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_5",
+        "sound": "Adult",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_WILLIAM_SPEAKER_William",
+        "text": "DIALOGUE_PODUNK_WILLIAM_6",
+        "sound": "Adult"
+    },
+    "7": {
+        "eraseactors": {
+            "william": true
+        }
+    }
+}

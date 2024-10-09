@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Mimmie",
-		"text": "Hurry up!",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mimmie",
-		"text": "I won't be able to sleep at night knowing it might still be alive...",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_DOLL_DEFEATED_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_DOLL_DEFEATED_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_DOLL_DEFEATED_1",
+        "sound": "Kid"
+    }
 }

@@ -27,7 +27,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "idle"
+resource_name = "lookIntoYourSoul"
 length = 0.0714286
 step = 0.0714286
 tracks/0/type = "value"
@@ -45,21 +45,21 @@ tracks/0/keys = {
 
 [node name="BattleSprite" type="Control"]
 show_behind_parent = true
-margin_top = -16.0
+margin_top = -15.0
 margin_right = 64.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 script = ExtResource( 2 )
+distanceToShown = 21
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 10 )
-position = Vector2( 32, 32 )
+position = Vector2( 32, 35 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 13
-frame = 38
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 9 )
-anims/idle = SubResource( 5 )
+anims/lookIntoYourSoul = SubResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]

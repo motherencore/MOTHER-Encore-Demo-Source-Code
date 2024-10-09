@@ -11,9 +11,10 @@ func _process(delta):
 		if t > textSpeed:
 			dialogueLabel.visible_characters += 1
 			t = 0
-		if dialogueLabel.visible_characters >= len(dialogueLabel.text):
+		# LOCALIZATION Code change: Animation was left incomplete if the translated text was long
+		if dialogueLabel.visible_characters >= len(tr(dialogueLabel.text)):
 			finished = true
-			dialogueLabel.visible_characters = len(dialogueLabel.text)
+			dialogueLabel.visible_characters = len(tr(dialogueLabel.text))
 			t = 0
 
 func _on_TextSpeedArrow_moved(dir):
@@ -28,5 +29,18 @@ func _on_TextSpeedArrow_moved(dir):
 		2:
 			textSpeed = 0.06
 			dialogueLabel = $VBoxContainer/Slow
-	dialogueLabel.percent_visible = 0
-	finished = false
+	
+	# LOCALIZATION Code change: Disable animation if the text speed label is too short
+	# (Only 3 characters or less in certain languages)
+	if !_isAnimationWorthIt():
+		dialogueLabel.percent_visible = 1
+		finished = true
+	else:
+		dialogueLabel.percent_visible = 0
+		finished = false
+
+
+func _isAnimationWorthIt():
+	return len(tr($VBoxContainer/Fast.text)) > 3 \
+		and len(tr($VBoxContainer/Medium.text)) > 3 \
+		and len(tr($VBoxContainer/Slow.text)) > 3

@@ -1,53 +1,36 @@
 {
-	"name": {
-		"english": "Speed Capsule",
-		"french": "Capsule de Vitesse"
-	},
-	"article" : {
-		"english": "a",
-		"french": "une"
-	},
-	"keyitem": false,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User's maximum speed increased by 3!",
-			"french": "La vitesse maximum de User a augmenté par 3!"
-		},
-		"textfail": {
-			"english": "User won't eat the Speed Capsule.",
-			"french": "User ne veut pas manger la Capsule de Vitesse."
-		}
-	},
-	"action_two": null,
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 3, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Increases your maximum speed by 3.",
-		"french": "Augmente ta vitesse maximum par 3."
-	}
+    "name": "CAPSULESPD",
+    "article": "CAPSULESPD_ART",
+    "keyitem": false,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": {
+        "name": "CAPSULESPD_ACT1_NAME",
+        "function": "consume",
+        "text": "CAPSULESPD_ACT1_TEXT",
+        "textfail": "CAPSULESPD_ACT1_FAIL"
+    },
+    "action_two": null,
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 3,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "CAPSULESPD_DESC",
+    "short_name": "CAPSULESPD_SHORT"
 }

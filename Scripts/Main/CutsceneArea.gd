@@ -8,26 +8,29 @@ func _ready():
 	set_process(false)
 
 func _process(delta):
-	if !global.cutscene and !global.inBattle and check_flags() and !uiManager.commandsMenuActive:
-		start_cutscene()
-		set_process(false)
-	if global.cutscene:
-		_on_Cutscene_Area_body_exited(global.persistPlayer)
+	if !global.cutscene and !global.inBattle and !uiManager.commandsMenuActive:
+		if check_flags():
+			start_cutscene()
+			set_process(false)
+		else:
+			set_process(false)
 
 func _on_Cutscene_Area_body_entered(body):
 	if body == global.persistPlayer:
-		if dialog != "":
-			if check_flags():
-				if !global.cutscene and !global.inBattle:
-					print("yippie")
-					set_process(true)
-			else:
-				#start checking when player becomes unpaused again
-				set_process(true)
+		check_start()
 
 func _on_Cutscene_Area_body_exited(body):
 	if body == global.persistPlayer and !global.inBattle:
 		set_process(false)
+
+func check_start():
+	if dialog != "":
+		if check_flags():
+			print("yippie")
+			set_process(true)
+		else:
+			#start checking when player becomes unpaused again
+			set_process(true)
 
 func start_cutscene():
 	global.persistPlayer.pause()

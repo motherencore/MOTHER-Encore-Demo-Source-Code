@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/UI/Inventory/characters/ninten.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/UI/Misc/save_menu_time.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/UI/SaveSelection/saveFile.gd" type="Script" id=6]
 [ext_resource path="res://Shaders/MenuFlavorShader.gdshader" type="Shader" id=7]
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=8]
@@ -36,74 +35,102 @@ patch_margin_bottom = 8
 script = ExtResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 23.0
+anchor_right = 1.0
+margin_left = 24.0
 margin_top = 51.0
-margin_right = 249.0
+margin_right = -15.0
 margin_bottom = 62.0
-custom_constants/separation = 20
+grow_horizontal = 2
+custom_constants/separation = 5
 
 [node name="Play" type="Label" parent="HBoxContainer"]
-margin_right = 30.0
+margin_right = 68.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
-text = "Play"
+text = "SAVE_PLAY"
+
+[node name="Spacer" type="Label" parent="HBoxContainer"]
+margin_left = 73.0
+margin_right = 73.0
+margin_bottom = 11.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 
 [node name="Copy" type="Label" parent="HBoxContainer"]
-margin_left = 50.0
-margin_right = 81.0
+margin_left = 78.0
+margin_right = 147.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
-text = "Copy"
+text = "SAVE_COPY"
+
+[node name="Spacer2" type="Label" parent="HBoxContainer"]
+margin_left = 152.0
+margin_right = 152.0
+margin_bottom = 11.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 
 [node name="Delete" type="Label" parent="HBoxContainer"]
-margin_left = 101.0
-margin_right = 144.0
+margin_left = 157.0
+margin_right = 238.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
-text = "Delete"
+text = "SAVE_DELETE"
+
+[node name="Spacer3" type="Label" parent="HBoxContainer"]
+margin_left = 243.0
+margin_right = 243.0
+margin_bottom = 11.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 
 [node name="Options" type="Label" parent="HBoxContainer"]
-margin_left = 164.0
-margin_right = 225.0
+margin_left = 248.0
+margin_right = 347.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
-text = "Settings"
+text = "SAVE_SETTINGS"
 
 [node name="Name" type="Label" parent="."]
-margin_left = 45.0
+margin_left = 43.0
 margin_top = 17.0
-margin_right = 93.0
+margin_right = 91.0
 margin_bottom = 29.0
 custom_fonts/font = ExtResource( 1 )
 text = "Player"
 
 [node name="Level" type="Label" parent="."]
-margin_left = 103.0
+margin_left = 101.0
 margin_top = 14.0
-margin_right = 135.0
+margin_right = 136.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
 text = "LV100"
 
 [node name="Title" type="Label" parent="."]
-margin_left = 142.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -116.0
 margin_top = 10.0
-margin_right = 190.0
+margin_right = -68.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 1 )
 text = "Location"
 
-[node name="Time" type="Sprite" parent="."]
-position = Vector2( 157, 32 )
-texture = ExtResource( 5 )
-
-[node name="Disp" type="Label" parent="Time"]
-margin_left = 19.0
-margin_top = -8.0
-margin_right = 56.0
-margin_bottom = 6.0
-custom_fonts/font = ExtResource( 2 )
-text = "999 : 99"
+[node name="Time" type="RichTextLabel" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -116.0
+margin_top = 24.0
+margin_right = 1.0
+margin_bottom = 50.0
+size_flags_vertical = 0
+custom_constants/line_separation = -1
+custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "SAVE_TIME"
+text = "SAVE_TIME"
+scroll_active = false
 
 [node name="icons" type="HBoxContainer" parent="."]
 margin_top = 5.0
@@ -115,7 +142,7 @@ custom_constants/separation = 20
 margin_bottom = 40.0
 
 [node name="picon1" type="Sprite" parent="icons/Control1"]
-position = Vector2( 32, 16 )
+position = Vector2( 30, 16 )
 texture = ExtResource( 4 )
 
 [node name="Control2" type="Control" parent="icons"]
@@ -125,7 +152,7 @@ margin_right = 20.0
 margin_bottom = 40.0
 
 [node name="picon2" type="Sprite" parent="icons/Control2"]
-position = Vector2( 12, 36 )
+position = Vector2( 10, 36 )
 texture = ExtResource( 4 )
 
 [node name="Control3" type="Control" parent="icons"]
@@ -135,7 +162,7 @@ margin_right = 20.0
 margin_bottom = 40.0
 
 [node name="picon3" type="Sprite" parent="icons/Control3"]
-position = Vector2( 12, 36 )
+position = Vector2( 10, 36 )
 texture = ExtResource( 4 )
 
 [node name="Control4" type="Control" parent="icons"]
@@ -145,7 +172,7 @@ margin_right = 20.0
 margin_bottom = 40.0
 
 [node name="picon4" type="Sprite" parent="icons/Control4"]
-position = Vector2( 12, 36 )
+position = Vector2( 10, 36 )
 texture = ExtResource( 4 )
 
 [node name="Control5" type="Control" parent="icons"]
@@ -155,28 +182,34 @@ margin_right = 20.0
 margin_bottom = 40.0
 
 [node name="picon5" type="Sprite" parent="icons/Control5"]
-position = Vector2( 12, 36 )
+position = Vector2( 10, 36 )
 texture = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 139.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -119.0
 margin_top = 8.0
-margin_right = 140.0
+margin_right = -118.0
 margin_bottom = 50.0
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = 139.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -119.0
 margin_top = 23.0
-margin_right = 249.0
+margin_right = -7.0
 margin_bottom = 24.0
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 
 [node name="Options" type="ColorRect" parent="."]
 visible = false
-margin_left = 140.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -118.0
 margin_top = 7.0
-margin_right = 250.0
+margin_right = -6.0
 margin_bottom = 52.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
@@ -191,46 +224,50 @@ custom_constants/separation = 2
 margin_right = 97.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 1 )
-text = "Text Speed"
+text = "MENU_TEXTSPEED"
 
 [node name="MenuFlavor" type="Label" parent="Options/VBoxContainer"]
 margin_top = 14.0
 margin_right = 97.0
 margin_bottom = 26.0
 custom_fonts/font = ExtResource( 1 )
-text = "Menu Flavor"
+text = "MENU_FLAVORS"
 
 [node name="ButtonPrompts" type="Label" parent="Options/VBoxContainer"]
 margin_top = 28.0
 margin_right = 97.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 1 )
-text = "Button Prompts"
+text = "MENU_PROMPTS"
 
 [node name="arrow" parent="." instance=ExtResource( 8 )]
 position = Vector2( 18, 58 )
 menu_parent_path = NodePath("../HBoxContainer")
 cursor_offset = Vector2( -4, 3 )
 consume_input_events = true
+loop_around = true
+skip_empty_labels = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="NoData" type="ColorRect" parent="."]
 visible = false
+anchor_right = 1.0
 margin_left = 13.0
 margin_top = 6.0
-margin_right = 250.0
+margin_right = -6.0
 margin_bottom = 63.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="Label" type="Label" parent="NoData"]
+anchor_right = 1.0
 margin_left = -7.0
-margin_right = 237.0
 margin_bottom = 56.0
 custom_fonts/font = ExtResource( 2 )
-text = "No Data"
+text = "SAVE_NODATA"
 align = 1
 valign = 1
 

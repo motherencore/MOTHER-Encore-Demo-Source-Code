@@ -1,21 +1,21 @@
 {
-	"0": {
-		"name": "Marcie",
-		"sound": "Sexy",
-		"text": "Welcome! What would you like?",
-		"goto" : "1"
-	},
-	"1": {
-		"text": "",
-		"cleardialog": true,
-		"caninput": false,
-		"showbox": false,
-		"openshop": "podunk_food_store",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Marcie",
-		"sound": "Sexy",
-		"text": "Have a nice day!"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PODUNK_FOOD_STORE_SPEAKER_Marcie",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_FOOD_STORE_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "",
+        "cleardialog": true,
+        "caninput": false,
+        "showbox": false,
+        "openshop": "podunk_food_store",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PODUNK_FOOD_STORE_SPEAKER_Marcie",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_FOOD_STORE_2"
+    }
 }

@@ -1,150 +1,150 @@
 {
-	"0": {
-		"actors": {
-			"ninten": "ninten",
-			"pippi": "pippi",
-			"marshal": "talker",
-			"canary": "npc"
-		},
-		"actorsturn": {
-			"ninten": {
-				"actor": "marshal"
-			},
-			"pippi": {
-				"actor": "marshal"
-			}
-		},
-		"name":"Marshal",
-		"text":"Look for yourself, all the animals have escaped.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Marshal",
-		"text":"Only this Canary Chick is left.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name":"Marshal",
-		"text":"We found this poor bird alone without its mommy at Canary Village, so we rescued it.",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name":"Marshal",
-		"text":"Yeah, I know, we're sort of like heroes.",
-		"sound": "Adult",
-		"goto": "4"
-	},
-	"4": {
-		"name":"Marshal",
-		"text":"Anyway, do you want it?",
-		"sound": "Adult",
-		"goto": "5"
-	},
-	"5": {
-		"actorsturn": {
-			"ninten": {
-				"actor": "pippi"
-			},
-			"pippi": {
-				"actor": "ninten"
-			}
-		},
-		"talker": "pippi",
-		"name":"[Pippi]",
-		"text":"Oh, we gotta help it.",
-		"sound": "Kid",
-		"goto": "6"
-	},
-	"6": {
-		"name":"[Pippi]",
-		"text":"It must be so sad without its mommy.",
-		"sound": "Kid",
-		"goto": "7"
-	},
-	"7": {
-		"actorsturn": {
-			"ninten": {
-				"actor": "marshal"
-			},
-			"pippi": {
-				"actor": "marshal"
-			}
-		},
-		"talker": "marshal",
-		"cash": true,
-		"name":"Marshal",
-		"text":"You heard the little girl. Well, how about $55?",
-		"sound": "Adult",
-		"options": {
-			"Yes": "8",
-			"No": "10",
-			"cancel": "10"
-		}
-	},
-	"8": {
-		"name":"Marshal",
-		"if": {
-			"hascash": 55,
-			"goto": "11"
-		},
-		"goto": "9"
-	},
-	"9": {
-		"cash": false,
-		"name":"Marshal",
-		"text":"You don't have enough money?",
-		"sound": "Adult",
-		"goto": "10"
-	},
-	"10": {
-		"cash": false,
-		"name":"Marshal",
-		"text":"Well, if it's free, do you want it? Then take it!",
-		"sound": "Adult",
-		"goto": "12"
-	},
-	"11": {
-		"givecash": -55,
-		"name":"Marshal",
-		"text":"Take care of it. Come see us again!",
-		"sound": "Adult",
-		"goto": "12"
-	},
-	"12": {
-		"cash": false,
-		"setpartynpcs": {
-			"canarychick": true
-		},
-		"changereplaced": {
-			"canary": "canarychick",
-			"pippi": "pippi"
-		},
-		"musicvolume": -20,
-		"flag": "canary_found",
-		"talker": "none",
-		"text":"You got the Canary Chick!",
-		"item": "CanaryChick",
-		"soundeffect": "Party Fanfare.mp3",
-		"wait": 5,
-		"goto": "13"
-	},
-	"13": {
-		"actorsturn": {
-			"ninten": {
-				"actor": "pippi"
-			},	
-			"pippi": {
-				"actor": "ninten"
-			}
-		},
-		"musicvolume": 0,
-		"setcrumbs": true,
-		"talker": "pippi",
-		"name":"[Pippi]",
-		"text":"Come on, let's go to Canary Village to see if we can find its mom!",
-		"sound": "Kid"
-	}
+    "0": {
+        "actors": {
+            "ninten": "ninten",
+            "pippi": "pippi",
+            "marshal": "talker",
+            "canary": "npc"
+        },
+        "actorsturn": {
+            "ninten": {
+                "actor": "marshal"
+            },
+            "pippi": {
+                "actor": "marshal"
+            }
+        },
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_3",
+        "sound": "Adult",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_4",
+        "sound": "Adult",
+        "goto": "5"
+    },
+    "5": {
+        "actorsturn": {
+            "ninten": {
+                "actor": "pippi"
+            },
+            "pippi": {
+                "actor": "ninten"
+            }
+        },
+        "talker": "pippi",
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_5",
+        "sound": "Kid",
+        "goto": "6"
+    },
+    "6": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_6",
+        "sound": "Kid",
+        "goto": "7"
+    },
+    "7": {
+        "actorsturn": {
+            "ninten": {
+                "actor": "marshal"
+            },
+            "pippi": {
+                "actor": "marshal"
+            }
+        },
+        "talker": "marshal",
+        "cash": true,
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7",
+        "sound": "Adult",
+        "options": {
+            "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7-OPT_0": "8",
+            "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7-OPT_1": "10",
+            "cancel": "10"
+        }
+    },
+    "8": {
+        "name": "Marshal",
+        "if": {
+            "hascash": 55,
+            "goto": "11"
+        },
+        "goto": "9"
+    },
+    "9": {
+        "cash": false,
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_9",
+        "sound": "Adult",
+        "goto": "10"
+    },
+    "10": {
+        "cash": false,
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_10",
+        "sound": "Adult",
+        "goto": "12"
+    },
+    "11": {
+        "givecash": -55,
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_11",
+        "sound": "Adult",
+        "goto": "12"
+    },
+    "12": {
+        "cash": false,
+        "setpartynpcs": {
+            "canarychick": true
+        },
+        "changereplaced": {
+            "canary": "canarychick",
+            "pippi": "pippi"
+        },
+        "musicvolume": -20,
+        "flag": "canary_found",
+        "talker": "none",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_12",
+        "item": "CanaryChick",
+        "soundeffect": "Party Fanfare.mp3",
+        "wait": 5,
+        "goto": "13"
+    },
+    "13": {
+        "actorsturn": {
+            "ninten": {
+                "actor": "pippi"
+            },
+            "pippi": {
+                "actor": "ninten"
+            }
+        },
+        "musicvolume": 0,
+        "setcrumbs": true,
+        "talker": "pippi",
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_13",
+        "sound": "Kid"
+    }
 }

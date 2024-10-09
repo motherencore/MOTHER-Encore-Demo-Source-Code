@@ -1,7 +1,17 @@
-[gd_resource type="TileSet" load_steps=491 format=2]
+[gd_resource type="TileSet" load_steps=502 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/TilPodunk.png" type="Texture" id=1]
 [ext_resource path="res://Tilesets/PodunkWater.tres" type="Texture" id=2]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_BurgerBuilding.png" type="Texture" id=3]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_StoreBuilding.png" type="Texture" id=4]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_HospitalBuilding.png" type="Texture" id=5]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_HotelBuilding.png" type="Texture" id=6]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_Stop.png" type="Texture" id=7]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_Hotel.png" type="Texture" id=8]
+[ext_resource path="res://Translations/TranslatedTiles/Podunk_Canary.png" type="Texture" id=9]
+[ext_resource path="res://Translations/TranslatedTiles/Podunk_Zoo.png" type="Texture" id=10]
+[ext_resource path="res://Translations/TranslatedTiles/Podunk_Welcome.png" type="Texture" id=11]
+[ext_resource path="res://Translations/TranslatedTiles/Podunk_ZooBuilding.png" type="Texture" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
@@ -816,11 +826,14 @@ points = PoolVector2Array( 8, 0, 72, 0, 88, 32, 112, 64, 152, 96, 64, 96, 40, 32
 [sub_resource type="ConvexPolygonShape2D" id=533]
 points = PoolVector2Array( 8, 96, 16, 80, 120, 8, 160, 8, 160, 24, 96, 96 )
 
-[sub_resource type="ConvexPolygonShape2D" id=541]
-points = PoolVector2Array( 32, 32, 0, 32, 0, 16, 32, 16 )
-
 [sub_resource type="ConvexPolygonShape2D" id=542]
 points = PoolVector2Array( 32, 48, 8, 48, 8, 32, 32, 32 )
+
+[sub_resource type="OccluderPolygon2D" id=544]
+polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=543]
+points = PoolVector2Array( 0, 16, 16, 32, 32, 32, 32, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=140]
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
@@ -3075,62 +3088,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 49/z_index = 0
-50/name = "BuildingBurgerSign"
-50/texture = ExtResource( 1 )
-50/tex_offset = Vector2( 0, 0 )
-50/modulate = Color( 1, 1, 1, 1 )
-50/region = Rect2( 0, 416, 80, 32 )
-50/tile_mode = 0
-50/occluder_offset = Vector2( 0, 0 )
-50/navigation_offset = Vector2( 0, 0 )
-50/shape_offset = Vector2( 0, 0 )
-50/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-50/shape_one_way = false
-50/shape_one_way_margin = 0.0
-50/shapes = [  ]
-50/z_index = 0
-51/name = "BuildingStoreSign"
-51/texture = ExtResource( 1 )
-51/tex_offset = Vector2( 0, 0 )
-51/modulate = Color( 1, 1, 1, 1 )
-51/region = Rect2( 0, 448, 80, 32 )
-51/tile_mode = 0
-51/occluder_offset = Vector2( 0, 0 )
-51/navigation_offset = Vector2( 0, 0 )
-51/shape_offset = Vector2( 0, 0 )
-51/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-51/shape_one_way = false
-51/shape_one_way_margin = 0.0
-51/shapes = [  ]
-51/z_index = 0
-52/name = "BuildingHotelSign"
-52/texture = ExtResource( 1 )
-52/tex_offset = Vector2( 0, 0 )
-52/modulate = Color( 1, 1, 1, 1 )
-52/region = Rect2( 80, 432, 64, 16 )
-52/tile_mode = 0
-52/occluder_offset = Vector2( 0, 0 )
-52/navigation_offset = Vector2( 0, 0 )
-52/shape_offset = Vector2( 0, 0 )
-52/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-52/shape_one_way = false
-52/shape_one_way_margin = 0.0
-52/shapes = [  ]
-52/z_index = 0
-53/name = "BuildingHospitalSign"
-53/texture = ExtResource( 1 )
-53/tex_offset = Vector2( 0, 0 )
-53/modulate = Color( 1, 1, 1, 1 )
-53/region = Rect2( 80, 464, 80, 16 )
-53/tile_mode = 0
-53/occluder_offset = Vector2( 0, 0 )
-53/navigation_offset = Vector2( 0, 0 )
-53/shape_offset = Vector2( 0, 0 )
-53/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-53/shape_one_way = false
-53/shape_one_way_margin = 0.0
-53/shapes = [  ]
-53/z_index = 0
 54/name = "BuildingBrown"
 54/texture = ExtResource( 1 )
 54/tex_offset = Vector2( 0, 0 )
@@ -6964,27 +6921,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 186/shape_one_way_margin = 0.0
 186/shapes = [  ]
 186/z_index = 0
-187/name = "Hotel Sign"
-187/texture = ExtResource( 1 )
-187/tex_offset = Vector2( 0, -16 )
-187/modulate = Color( 1, 1, 1, 1 )
-187/region = Rect2( 336, 128, 32, 32 )
-187/tile_mode = 0
-187/occluder_offset = Vector2( 0, 0 )
-187/navigation_offset = Vector2( 0, 0 )
-187/shape_offset = Vector2( 0, -16 )
-187/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
-187/shape = SubResource( 541 )
-187/shape_one_way = false
-187/shape_one_way_margin = 1.0
-187/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 541 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
-} ]
-187/z_index = 0
 188/name = "Flamingo"
 188/texture = ExtResource( 1 )
 188/tex_offset = Vector2( 0, -32 )
@@ -7034,3 +6970,151 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 190/shape_one_way_margin = 0.0
 190/shapes = [  ]
 190/z_index = 0
+191/name = "BuildingBurgerSignTRANSLATED"
+191/texture = ExtResource( 3 )
+191/tex_offset = Vector2( -32, 0 )
+191/modulate = Color( 1, 1, 1, 1 )
+191/region = Rect2( 0, 0, 128, 32 )
+191/tile_mode = 0
+191/occluder_offset = Vector2( 0, 0 )
+191/navigation_offset = Vector2( 0, 0 )
+191/shape_offset = Vector2( 0, 0 )
+191/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+191/shape_one_way = false
+191/shape_one_way_margin = 0.0
+191/shapes = [  ]
+191/z_index = 0
+192/name = "BuildingStoreSignTRANSLATED"
+192/texture = ExtResource( 4 )
+192/tex_offset = Vector2( -40, 0 )
+192/modulate = Color( 1, 1, 1, 1 )
+192/region = Rect2( 0, 0, 160, 32 )
+192/tile_mode = 0
+192/occluder_offset = Vector2( 0, 0 )
+192/navigation_offset = Vector2( 0, 0 )
+192/shape_offset = Vector2( 0, 0 )
+192/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+192/shape_one_way = false
+192/shape_one_way_margin = 0.0
+192/shapes = [  ]
+192/z_index = 0
+193/name = "BuildingHospitalSignTRANSLATED"
+193/texture = ExtResource( 5 )
+193/tex_offset = Vector2( 0, -16 )
+193/modulate = Color( 1, 1, 1, 1 )
+193/region = Rect2( 0, 0, 112, 32 )
+193/tile_mode = 0
+193/occluder_offset = Vector2( 0, 0 )
+193/navigation_offset = Vector2( 0, 0 )
+193/shape_offset = Vector2( 0, 0 )
+193/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+193/shape_one_way = false
+193/shape_one_way_margin = 0.0
+193/shapes = [  ]
+193/z_index = 0
+194/name = "BuildingHotelSignTRANSLATED"
+194/texture = ExtResource( 6 )
+194/tex_offset = Vector2( 0, 0 )
+194/modulate = Color( 1, 1, 1, 1 )
+194/region = Rect2( 0, 0, 64, 32 )
+194/tile_mode = 0
+194/occluder_offset = Vector2( 0, 0 )
+194/navigation_offset = Vector2( 0, 0 )
+194/shape_offset = Vector2( 0, 0 )
+194/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+194/shape_one_way = false
+194/shape_one_way_margin = 0.0
+194/shapes = [  ]
+194/z_index = 0
+195/name = "StopSignTRANSLATED"
+195/texture = ExtResource( 7 )
+195/tex_offset = Vector2( -4, -4 )
+195/modulate = Color( 1, 1, 1, 1 )
+195/region = Rect2( 0, 0, 32, 32 )
+195/tile_mode = 0
+195/occluder_offset = Vector2( 0, 0 )
+195/occluder = SubResource( 544 )
+195/navigation_offset = Vector2( 0, 0 )
+195/shape_offset = Vector2( 0, 0 )
+195/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+195/shape_one_way = false
+195/shape_one_way_margin = 0.0
+195/shapes = [  ]
+195/z_index = 0
+196/name = "HotelSignTRANSLATED"
+196/texture = ExtResource( 8 )
+196/tex_offset = Vector2( 0, 0 )
+196/modulate = Color( 1, 1, 1, 1 )
+196/region = Rect2( 0, 0, 32, 32 )
+196/tile_mode = 0
+196/occluder_offset = Vector2( 0, 0 )
+196/navigation_offset = Vector2( 0, 0 )
+196/shape_offset = Vector2( 0, 0 )
+196/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+196/shape = SubResource( 543 )
+196/shape_one_way = false
+196/shape_one_way_margin = 1.0
+196/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 543 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+196/z_index = 0
+197/name = "CanarySignTRANSLATED"
+197/texture = ExtResource( 9 )
+197/tex_offset = Vector2( 0, 0 )
+197/modulate = Color( 1, 1, 1, 1 )
+197/region = Rect2( 0, 0, 62, 32 )
+197/tile_mode = 0
+197/occluder_offset = Vector2( 0, 0 )
+197/navigation_offset = Vector2( 0, 0 )
+197/shape_offset = Vector2( 0, 0 )
+197/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+197/shape_one_way = false
+197/shape_one_way_margin = 0.0
+197/shapes = [  ]
+197/z_index = 1
+198/name = "ZooSignTRANSLATED"
+198/texture = ExtResource( 10 )
+198/tex_offset = Vector2( 0, 0 )
+198/modulate = Color( 1, 1, 1, 1 )
+198/region = Rect2( 0, 0, 48, 32 )
+198/tile_mode = 0
+198/occluder_offset = Vector2( 0, 0 )
+198/navigation_offset = Vector2( 0, 0 )
+198/shape_offset = Vector2( 0, 0 )
+198/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+198/shape_one_way = false
+198/shape_one_way_margin = 0.0
+198/shapes = [  ]
+198/z_index = 0
+199/name = "WelcomeTRANSLATED"
+199/texture = ExtResource( 11 )
+199/tex_offset = Vector2( -3, -16 )
+199/modulate = Color( 1, 1, 1, 1 )
+199/region = Rect2( 0, 0, 51, 32 )
+199/tile_mode = 0
+199/occluder_offset = Vector2( 0, 0 )
+199/navigation_offset = Vector2( 0, 0 )
+199/shape_offset = Vector2( 0, 0 )
+199/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+199/shape_one_way = false
+199/shape_one_way_margin = 0.0
+199/shapes = [  ]
+199/z_index = 0
+200/name = "BuildingZooTRANSLATED"
+200/texture = ExtResource( 12 )
+200/tex_offset = Vector2( 0, 0 )
+200/modulate = Color( 1, 1, 1, 1 )
+200/region = Rect2( 0, 0, 64, 32 )
+200/tile_mode = 0
+200/occluder_offset = Vector2( 0, 0 )
+200/navigation_offset = Vector2( 0, 0 )
+200/shape_offset = Vector2( 0, 0 )
+200/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+200/shape_one_way = false
+200/shape_one_way_margin = 0.0
+200/shapes = [  ]
+200/z_index = 0

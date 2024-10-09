@@ -10,7 +10,7 @@
 [ext_resource path="res://Scripts/UI/TargetCharacter.gd" type="Script" id=8]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=9]
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=10]
-[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=11]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=11]
 [ext_resource path="res://Scripts/UI/PSIMenuUI.gd" type="Script" id=13]
 [ext_resource path="res://Nodes/Ui/PSISelect.tscn" type="PackedScene" id=17]
 
@@ -203,70 +203,81 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -49.0
+margin_top = 131.0
+margin_bottom = 180.0
 custom_constants/separation = 9
 alignment = 1
 
 [node name="PartyInfoPlate" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
 material = SubResource( 3 )
-margin_left = 16.0
-margin_right = 81.0
+margin_left = 160.0
+margin_right = 225.0
 
 [node name="PartyInfoPlate2" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
 material = SubResource( 4 )
-margin_left = 90.0
-margin_right = 155.0
+margin_left = 234.0
+margin_right = 299.0
 
 [node name="PartyInfoPlate3" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
 material = SubResource( 5 )
-margin_left = 164.0
-margin_right = 229.0
+margin_left = 308.0
+margin_right = 373.0
 
 [node name="PartyInfoPlate4" parent="PSIMenu/PartyInfoHBox" instance=ExtResource( 2 )]
 material = SubResource( 6 )
-margin_left = 238.0
-margin_right = 303.0
+margin_left = 382.0
+margin_right = 447.0
 
 [node name="PSISelect" parent="PSIMenu" instance=ExtResource( 17 )]
 margin_left = 31.0
 margin_top = 23.0
 margin_right = 286.0
 margin_bottom = 123.0
+linesPerPage = 4
 psiType = -1
 
 [node name="PSICharacterTab" parent="PSIMenu" instance=ExtResource( 4 )]
 psiOnly = true
-menuName = "PSI"
+menuName = "MENU_TITLE_PSI"
 
-[node name="Description" type="Control" parent="PSIMenu"]
-margin_left = 52.0
-margin_top = 100.0
-margin_right = 266.0
-margin_bottom = 114.0
-
-[node name="Desc" type="Label" parent="PSIMenu/Description"]
+[node name="Description" type="VBoxContainer" parent="PSIMenu"]
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 1.0
+margin_left = 37.0
+margin_top = -84.0
+margin_right = -39.0
+margin_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Divider2" type="ColorRect" parent="PSIMenu/Description"]
+margin_left = 4.0
+margin_right = 239.0
 margin_bottom = 1.0
+rect_min_size = Vector2( 235, 1 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_horizontal = 4
+color = Color( 0.478431, 0.423529, 0.52549, 1 )
+script = ExtResource( 10 )
+
+[node name="Desc" type="Label" parent="PSIMenu/Description"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 234.0
+margin_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+rect_min_size = Vector2( 224, 0 )
+size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 11 )
 text = "This is a PSI Skill. This is a PSI Skill. This is a PSI S-"
 valign = 1
-autowrap = true
-clip_text = true
+max_lines_visible = 2
 __meta__ = {
-"_edit_lock_": true,
 "_editor_description_": ""
 }
-
-[node name="Divider2" type="ColorRect" parent="PSIMenu"]
-margin_left = 44.0
-margin_top = 96.0
-margin_right = 274.0
-margin_bottom = 97.0
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.478431, 0.423529, 0.52549, 1 )
-script = ExtResource( 10 )
 
 [node name="TargetCharacterMenu" type="NinePatchRect" parent="PSIMenu"]
 material = ExtResource( 9 )
@@ -288,11 +299,12 @@ margin_right = 56.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/normal = SubResource( 1 )
-text = "To whom?"
+text = "PSI_WHOM"
 
 [node name="MarginContainer" type="MarginContainer" parent="PSIMenu/TargetCharacterMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 55, 0 )
 custom_constants/margin_right = 6
 custom_constants/margin_top = 15
 custom_constants/margin_left = 13
@@ -305,6 +317,7 @@ margin_right = 68.0
 margin_bottom = 69.0
 grow_horizontal = 0
 grow_vertical = 0
+rect_clip_content = true
 size_flags_vertical = 0
 custom_constants/separation = 2
 
@@ -333,7 +346,6 @@ text = "lloyd"
 [node name="arrow2" parent="PSIMenu/TargetCharacterMenu" instance=ExtResource( 7 )]
 position = Vector2( 7, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 skip_empty_labels = true
@@ -363,32 +375,32 @@ margin_top = 2.0
 margin_right = 56.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "You sure?"
+text = "PSI_CONFIRM"
 
 [node name="MarginContainer" type="MarginContainer" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -1.0
-custom_constants/margin_right = 7
+custom_constants/margin_right = 6
 custom_constants/margin_top = 15
 custom_constants/margin_left = 13
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer"]
 margin_left = 13.0
 margin_top = 15.0
-margin_right = 52.0
+margin_right = 61.0
 margin_bottom = 47.0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 39.0
-text = "Yes"
+margin_right = 48.0
+text = "MENU_YES"
 
 [node name="CharaLabel2" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
-margin_right = 39.0
+margin_right = 48.0
 margin_bottom = 26.0
-text = "No"
+text = "MENU_NO"
 
 [node name="arrow" type="TextureRect" parent="PSIMenu/TargetCharacterMenu/ConfirmationSelect"]
 visible = false
@@ -403,6 +415,7 @@ anims/Close = SubResource( 7 )
 anims/Open = SubResource( 8 )
 anims/RESET = SubResource( 9 )
 
+[connection signal="character_changed" from="PSIMenu/PSICharacterTab" to="." method="_on_PSICharacterTab_character_changed"]
 [connection signal="show_statsbar" from="PSIMenu/TargetCharacterMenu" to="." method="_on_TargetCharacterMenu_show_statsbar"]
 [connection signal="resized" from="PSIMenu/TargetCharacterMenu/MarginContainer/VBoxContainer" to="PSIMenu/TargetCharacterMenu" method="_on_VBoxContainer_resized"]
 [connection signal="back" from="PSIMenu/TargetCharacterMenu/ConfirmationSelect" to="PSIMenu/TargetCharacterMenu" method="_on_ConfirmationSelect_back"]

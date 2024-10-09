@@ -1,26 +1,26 @@
 {
-	"0": {
-		"name":"Mayor Goodman",
-		"text":"Why if it isn't our hero, [Ninten]?",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Mayor Goodman",
-		"text":"Now that the commotion at the zoo is over, the bridge at the [color]northeast[/color] of town is now open.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"emoteplayer": "question",
-		"name":"Mayor Goodman",
-		"text":"By the way... You have some tiger droppings on your clothes.",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name":"Mayor Goodman",
-		"text":"Haha, just joking. Now run along, kid.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "emoteplayer": "question",
+        "name": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_ZOO_FREED_3",
+        "sound": "Adult"
+    }
 }

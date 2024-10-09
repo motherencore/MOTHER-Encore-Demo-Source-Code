@@ -1,14 +1,15 @@
 extends Control
 
-onready var savesList = $CanvasLayer/Saves/SaveList
-onready var menusCursor = $CanvasLayer/Cursor
+onready var savesList = $CanvasLayer/Body/Saves/SaveList
+onready var menusCursor = $CanvasLayer/Body/Cursor
 var cursorTop = true
 var saveFileNode = preload("res://Nodes/Ui/Saves/saveFile.tscn")
 var files = []
 var party = global.party
-var index = 1
 var maxFiles = 10
+var index = clamp(globaldata.saveFile, 1, maxFiles)
 var savesOffset = 21
+var saveFileHeight = 76
 var active = false
 var copying = false
 var state = 0
@@ -23,8 +24,8 @@ var soundEffects = {
 }
 
 func _ready():
-	savesOffset = $CanvasLayer/Saves.rect_position.y
-	$CanvasLayer/Cursor/cursor_menu/AnimationPlayer.play("idle")
+	savesOffset = $CanvasLayer/Body/Saves.rect_position.y
+	$CanvasLayer/Body/Cursor/cursor_menu/AnimationPlayer.play("idle")
 	$CanvasLayer/SaveConfirmation.hide()
 	$CanvasLayer/DeleteConfirmation.hide()
 	$CanvasLayer/ButtonPrompts.hide()
@@ -43,9 +44,11 @@ func _ready():
 		saveFile.set_type(state)
 	if state == 1:
 		$Background.hide()
-		audioManager.set_audio_player_bus(0, "Filter")
-	$CanvasLayer/Saves.rect_position.y = savesOffset - (index - 1) * 76
-	savesOffset = $CanvasLayer/Saves.rect_position.y
+		audioManager.music_muffle(0, 1)
+		$CanvasLayer/Body.margin_left = 32
+		$CanvasLayer/Body.margin_right = -32
+	$CanvasLayer/Body/Saves.rect_position.y = savesOffset - (index - 1) * 76
+	savesOffset = $CanvasLayer/Body/Saves.rect_position.y
 	yield(get_tree().create_timer(0.5), "timeout")
 	active = true
 
@@ -66,7 +69,7 @@ func _input(event):
 						if saveFile.saveData != null:
 							play_sfx("cursor2")
 							deactivate()
-							saveFile.activate()
+							saveFile.activate(true)
 						else:
 							play_sfx("invalid")
 					1:
@@ -76,62 +79,99 @@ func _input(event):
 						else:
 							show_save_confirm()
 		
-		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
+		if event.is_action_pressed("ui_cancel"):
 			if copying:
 				play_sfx("back")
 				copying = false
-				$CanvasLayer/Saves/CopyCursor.hide()
+				$CanvasLayer/Body/Saves/CopyCursor.hide()
 			else:
 				match state:
 					0:
 						active = false
 						$Objects/Door.enter()
 					1:
-						audioManager.set_audio_player_bus(0, "Master")
+						audioManager.music_muffle(0, 0)
 						uiManager.remove_ui(self)
 						uiManager.dialogueBox.next_dialog()
 					
 func _physics_process(delta):
 	if active:
-		if Input.is_action_just_pressed("ui_up") and index != 1:
+		
+		var direction = controlsManager.get_controls_vector(true).y
+		
+		if direction < 0 and index > 1:
 			play_sfx("cursor1")
 			index -= 1
 			if !cursorTop:
 				cursorTop = true
-				$Tween.interpolate_property(menusCursor, "position:y",
-					menusCursor.position.y, 0, 0.2, 
+				$Tween.interpolate_property(menusCursor, "rect_position:y",
+					menusCursor.rect_position.y, 0, 0.2, 
 					Tween.TRANS_QUART, Tween.EASE_OUT)
 				$Tween.start()
 			else:
-				$Tween.interpolate_property($CanvasLayer/Saves, "rect_position:y",
-					$CanvasLayer/Saves.rect_position.y, savesOffset + 76, 0.2, 
+				var newSavesOffset = savesOffset + saveFileHeight
+				$Tween.interpolate_property($CanvasLayer/Body/Saves, "rect_position:y",
+					$CanvasLayer/Body/Saves.rect_position.y, newSavesOffset, 0.2, 
 					Tween.TRANS_QUART, Tween.EASE_OUT)
 				$Tween.start()
-				savesOffset += 76
+				savesOffset = newSavesOffset
 				
-		if Input.is_action_just_pressed("ui_down") and index != maxFiles:
+		elif direction < 0 and index == 1:
+			play_sfx("cursor1")
+			index = maxFiles
+			cursorTop = false
+			$Tween.interpolate_property(menusCursor, "rect_position:y",
+				menusCursor.rect_position.y, saveFileHeight, 0.2, 
+				Tween.TRANS_QUART, Tween.EASE_OUT)
+			var newSavesOffset = savesOffset - (saveFileHeight * (maxFiles - 2))
+			$Tween.interpolate_property($CanvasLayer/Body/Saves, "rect_position:y",
+				$CanvasLayer/Body/Saves.rect_position.y, newSavesOffset, 0.2, 
+				Tween.TRANS_QUART, Tween.EASE_OUT)
+			savesOffset = newSavesOffset
+			$Tween.start()
+			
+		elif direction > 0 and index < maxFiles:
 			play_sfx("cursor1")
 			index += 1
 			if cursorTop:
 				cursorTop = false
-				$Tween.interpolate_property(menusCursor, "position:y",
-					menusCursor.position.y, 76, 0.2, 
+				$Tween.interpolate_property(menusCursor, "rect_position:y",
+					menusCursor.rect_position.y, saveFileHeight, 0.2, 
 					Tween.TRANS_QUART, Tween.EASE_OUT)
 				$Tween.start()
 			else:
-				$Tween.interpolate_property($CanvasLayer/Saves, "rect_position:y",
-					$CanvasLayer/Saves.rect_position.y, savesOffset - 76, 0.2, 
+				var newSavesOffset = savesOffset - saveFileHeight
+				$Tween.interpolate_property($CanvasLayer/Body/Saves, "rect_position:y",
+					$CanvasLayer/Body/Saves.rect_position.y, newSavesOffset, 0.2, 
 					Tween.TRANS_QUART, Tween.EASE_OUT)
 				$Tween.start()
-				savesOffset -= 76
+				savesOffset = newSavesOffset
+
+		elif direction > 0 and index == maxFiles:
+			play_sfx("cursor1")
+			$Tween.interpolate_property(menusCursor, "rect_position:y",
+				menusCursor.rect_position.y, 0, 0.2, 
+				Tween.TRANS_QUART, Tween.EASE_OUT)
+			var newSavesOffset
+			if cursorTop:
+				newSavesOffset = savesOffset + (saveFileHeight * (maxFiles - 1))
+			else:
+				newSavesOffset = savesOffset + (saveFileHeight * (maxFiles - 2))
+			$Tween.interpolate_property($CanvasLayer/Body/Saves, "rect_position:y",
+				$CanvasLayer/Body/Saves.rect_position.y, newSavesOffset, 0.2, 
+				Tween.TRANS_QUART, Tween.EASE_OUT)
+			index = 1
+			cursorTop = true
+			savesOffset = newSavesOffset
+			$Tween.start()
 
 func activate():
 	active = true
-	$CanvasLayer/Cursor/cursor_menu/AnimationPlayer.play("idle")
+	$CanvasLayer/Body/Cursor/cursor_menu/AnimationPlayer.play("idle")
 
 func deactivate():
 	active = false
-	$CanvasLayer/Cursor/cursor_menu/AnimationPlayer.play("select")
+	$CanvasLayer/Body/Cursor/cursor_menu/AnimationPlayer.play("select")
 
 func does_save_exist(num):
 	var saveGame = File.new()
@@ -162,7 +202,8 @@ func overwrite_save(fromDict = false):
 		saveFile.set_info()
 	globaldata.saveFile = index
 	copying = false
-	$CanvasLayer/Saves/CopyCursor.hide()
+	global.save_settings()
+	$CanvasLayer/Body/Saves/CopyCursor.hide()
 
 func erase_save():
 	global.erase_save(index)
@@ -245,8 +286,8 @@ func set_copy_mode():
 	load_saveDict(index)
 	copying = true
 	activate()
-	$CanvasLayer/Saves/CopyCursor.show()
-	$CanvasLayer/Saves/CopyCursor.global_position = $CanvasLayer/Cursor.global_position
+	$CanvasLayer/Body/Saves/CopyCursor.show()
+	$CanvasLayer/Body/Saves/CopyCursor.rect_global_position = $CanvasLayer/Body/Cursor.rect_global_position
 
 func _on_arrow_selected(cursor_index):
 	if cursor_index == 0:
@@ -274,14 +315,12 @@ func _on_deleteArrow_selected(cursor_index):
 			play_sfx("back")
 			var saveFile = savesList.get_child(index - 1)
 			saveFile.activate()
-			saveFile.arrow.set_cursor_from_index(2, false)
 	$CanvasLayer/DeleteConfirmation/deleteArrow.on = false
 	$CanvasLayer/DeleteConfirmation.hide()
 
 func _on_deleteArrow_cancel():
 	var saveFile = savesList.get_child(index - 1)
 	saveFile.activate()
-	saveFile.arrow.set_cursor_from_index(2, false)
 	$CanvasLayer/DeleteConfirmation/deleteArrow.on = false
 	$CanvasLayer/DeleteConfirmation.hide()
 
@@ -302,7 +341,6 @@ func _on_TextSpeedArrow_cancel():
 func hide_textSpeedOption():
 	var saveFile = savesList.get_child(index - 1)
 	saveFile.activate()
-	saveFile.arrow.set_cursor_from_index(0, false)
 	$CanvasLayer/TextSpeed/TextSpeedArrow.on = false
 	$CanvasLayer/TextSpeed.hide()
 
@@ -331,12 +369,19 @@ func _on_FlavorsArrow_cancel():
 func hide_menuFlavorsOption():
 	var saveFile = savesList.get_child(index - 1)
 	saveFile.activate()
-	saveFile.arrow.set_cursor_from_index(1, false)
 	$CanvasLayer/Flavors/FlavorsArrow.on = false
 	$CanvasLayer/Flavors.hide()
 
 func _on_ButtonPromptsArrow_selected(cursor_index):
-	saveDict["buttonprompts"] = $CanvasLayer/ButtonPrompts/ButtonPromptsArrow.get_menu_item_at_index(cursor_index).text
+	match cursor_index:
+		0:
+			saveDict["buttonprompts"] = "Both" #Leave in english
+		1:
+			saveDict["buttonprompts"] = "Objects" #Leave in english
+		2:
+			saveDict["buttonprompts"] = "NPCs" #Leave in english
+		3:
+			saveDict["buttonprompts"] = "None" #Leave in english
 	overwrite_save(true)
 	hide_buttonPromptsOption()
 
@@ -346,6 +391,5 @@ func _on_ButtonPromptsArrow_cancel():
 func hide_buttonPromptsOption():
 	var saveFile = savesList.get_child(index - 1)
 	saveFile.activate()
-	saveFile.arrow.set_cursor_from_index(2, false)
 	$CanvasLayer/ButtonPrompts/ButtonPromptsArrow.on = false
 	$CanvasLayer/ButtonPrompts.hide()

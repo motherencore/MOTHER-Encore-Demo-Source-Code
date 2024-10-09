@@ -1,43 +1,35 @@
 {
-	"name": {
-		"english": "Franklin Badge v0.8",
-		"french": "Badge Franklin v0.8"
-	},
-	"article" : {
-		"english": "the",
-		"french": "le"
-	},
-	"keyitem": false,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": false,
-		"lloyd": false,
-		"ana": false,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": null,
-	"action_two": null,
-	"battle_action": "",
-	"passive_skills": [
-		"reflect_beam"
-	],
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "A gift from [Pippi]. By holding it on you,\nit can reflect PK Beam £.",
-		"french": "Un cadeau de [Pippi]. En le tenant en main,\nil peut reflèter PK Beam £."
-	}
+    "name": "FRANKLINBADGE0.8",
+    "article": "FRANKLINBADGE0.8_ART",
+    "keyitem": false,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": null,
+    "action_two": null,
+    "battle_action": "",
+    "passive_skills": [
+        "reflect_beam"
+    ],
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "FRANKLINBADGE0.8_DESC",
+    "short_name": "FRANKLINBADGE0.8_SHORT"
 }

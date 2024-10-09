@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Mimmie",
-		"text": "It's dead? What a relief!",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mimmie",
-		"text": "I knew we shouldn't have taken that doll from the basement...",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_DEAD_DOLL_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_DEAD_DOLL_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_DEAD_DOLL_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_DEAD_DOLL_1",
+        "sound": "Kid"
+    }
 }

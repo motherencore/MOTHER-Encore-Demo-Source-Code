@@ -1,20 +1,20 @@
 {
-	"0": {
-		"name": "Jane",
-		"sound": "Sexy",
-		"text": "Welcome! What would you like?",
-		"goto" : "1"
-	},
-	"1": {
-		"text": "",
-		"caninput": false,
-		"showbox": false,
-		"openshop": "podunk_drug_store",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Jane",
-		"sound": "Sexy",
-		"text": "Have a nice day!"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PODUNK_DRUG_STORE_SPEAKER_Jane",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_DRUG_STORE_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "",
+        "caninput": false,
+        "showbox": false,
+        "openshop": "podunk_drug_store",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PODUNK_DRUG_STORE_SPEAKER_Jane",
+        "sound": "Sexy",
+        "text": "DIALOGUE_PODUNK_PODUNK_DRUG_STORE_2"
+    }
 }

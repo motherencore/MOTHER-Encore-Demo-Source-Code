@@ -30,29 +30,29 @@ const stats = [
 onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
 
 
-onready var SelectPanel = $EquipMenu/InventorySelect
-onready var SlotArrow = $EquipMenu/Slots/EquippeditemsNames/SlotArrow
-onready var ItemArrow = $EquipMenu/Slots/ItemListPanel/ItemArrow
-onready var ItemPanel = $EquipMenu/Slots/ItemListPanel
-onready var ItemPanelList = $EquipMenu/Slots/ItemListPanel/ItemList
+onready var SelectPanel = $EquipMenu/Box/InventorySelect
+onready var SlotArrow = $EquipMenu/Box/Panels/Slots/SlotArrow
+onready var ItemArrow = $EquipMenu/Box/Panels/Slots/ItemListPanel/ItemArrow
+onready var ItemPanel = $EquipMenu/Box/Panels/Slots/ItemListPanel
+onready var ItemPanelList = $EquipMenu/Box/Panels/Slots/ItemListPanel/ItemList
 onready var Description = $EquipMenu/Description/DescriptionPanel
 onready var BoostStatsValueElements = {
-					"maxhp":$EquipMenu/Stats/BoostStatsValue/MaxHPValue,
-					"maxpp":$EquipMenu/Stats/BoostStatsValue/MaxPPValue,
-					"offense":$EquipMenu/Stats/BoostStatsValue/OffenseValue,
-					"defense":$EquipMenu/Stats/BoostStatsValue/DefenseValue,
-					"iq":$EquipMenu/Stats/BoostStatsValue/IQValue,
-					"speed":$EquipMenu/Stats/BoostStatsValue/SpeedValue,
-					"guts":$EquipMenu/Stats/BoostStatsValue/GutsValue
+					"maxhp":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/MaxHPValue,
+					"maxpp":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/MaxPPValue,
+					"offense":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/OffenseValue,
+					"defense":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/DefenseValue,
+					"iq":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/IQValue,
+					"speed":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/SpeedValue,
+					"guts":$EquipMenu/Box/Panels/Stats/Columns/BoostValues/GutsValue
 					}
 onready var BoostIconsElements = {
-					"maxhp":$EquipMenu/Stats/BoostIcons/MaxHPIcon,
-					"maxpp":$EquipMenu/Stats/BoostIcons/MaxPPIcon,
-					"offense":$EquipMenu/Stats/BoostIcons/OffenseIcon,
-					"defense":$EquipMenu/Stats/BoostIcons/DefenseIcon,
-					"iq":$EquipMenu/Stats/BoostIcons/IQIcon,
-					"speed":$EquipMenu/Stats/BoostIcons/SpeedIcon,
-					"guts":$EquipMenu/Stats/BoostIcons/GutsIcon
+					"maxhp":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/MaxHPIcon,
+					"maxpp":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/MaxPPIcon,
+					"offense":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/OffenseIcon,
+					"defense":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/DefenseIcon,
+					"iq":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/IQIcon,
+					"speed":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/SpeedIcon,
+					"guts":$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/GutsIcon
 					}
 					
 var current_character = globaldata.ninten
@@ -85,40 +85,43 @@ func update_description():
 	if item_selection:
 		var selected_item = itemList[ItemArrow.cursor_index]
 		
-		if selected_item != "None":
-			Description.Set_item(selected_item)
+		# LOCALIZATION Code change from 'if selected_item != "None"'
+		# Actually in itemList, the list can contain "", but never "None", so the old line was useless.
+		# But we've left "None" among the possible values, just in case.
+		if !selected_item in ["None","EQUIP_EMPTY", ""]:
+			Description.setItem(selected_item)
 		else: 
-			Description.Set_item("")
+			Description.setItem("")
 	else:
 		
 		var selected_item = current_character["equipment"][InventoryManager.slots[SlotArrow.cursor_index]]
-		if selected_item != "______":
-			Description.Set_item(selected_item)
+		if selected_item != "EQUIP_EMPTY":
+			Description.setItem(selected_item)
 		else: 
-			Description.Set_item("")
+			Description.setItem("")
 		
 
 #Update stats number depending on the current character
 #manage also the stat boost column when an item is about to be equip
 func update_stats():
-	$EquipMenu/Stats/StatsLabels/CharacterName.text = current_character["nickname"]
-	$EquipMenu/Stats/StatsValue/LevelValue.text = str(current_character["level"])
-	$EquipMenu/Stats/StatsValue/MaxHPValue.text = str(current_character["maxhp"] + current_character["boosts"]["maxhp"])
-	$EquipMenu/Stats/StatsValue/MaxPPValue.text = str(current_character["maxpp"] + current_character["boosts"]["maxpp"])
-	$EquipMenu/Stats/StatsValue/OffenseValue.text = str(current_character["offense"] + current_character["boosts"]["offense"])
-	$EquipMenu/Stats/StatsValue/DefenseValue.text = str(current_character["defense"] + current_character["boosts"]["defense"])
-	$EquipMenu/Stats/StatsValue/IQValue.text = str(current_character["iq"] + current_character["boosts"]["iq"])
-	$EquipMenu/Stats/StatsValue/SpeedValue.text = str(current_character["speed"] + current_character["boosts"]["speed"])
-	$EquipMenu/Stats/StatsValue/GutsValue.text = str(current_character["guts"] + + current_character["boosts"]["guts"])
+	$EquipMenu/Box/CharacterName.text = current_character["nickname"]
+	$EquipMenu/Box/Panels/Stats/Columns/Values/LevelValue.text = str(current_character["level"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/MaxHPValue.text = str(current_character["maxhp"] + current_character["boosts"]["maxhp"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/MaxPPValue.text = str(current_character["maxpp"] + current_character["boosts"]["maxpp"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/OffenseValue.text = str(current_character["offense"] + current_character["boosts"]["offense"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/DefenseValue.text = str(current_character["defense"] + current_character["boosts"]["defense"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/IQValue.text = str(current_character["iq"] + current_character["boosts"]["iq"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/SpeedValue.text = str(current_character["speed"] + current_character["boosts"]["speed"])
+	$EquipMenu/Box/Panels/Stats/Columns/Values/GutsValue.text = str(current_character["guts"] + + current_character["boosts"]["guts"])
 	
-	$EquipMenu/Stats/BoostIcons/MaxHPIcon.texture_normal = boost_icon_empty
+	$EquipMenu/Box/Panels/Stats/Columns/BoostIcons/MaxHPIcon.texture_normal = boost_icon_empty
 	
 	for icon in BoostIconsElements.values():
 		icon.texture_normal = boost_icon_empty
 	
 	if item_selection:
 		var current_item_name = itemList[ItemArrow.cursor_index]
-		var uid = ItemArrow.get_menu_item_at_index(ItemArrow.cursor_index).uid
+		var uid = ItemArrow.get_current_item().uid
 		var item_data = InventoryManager.Load_item_data(current_item_name)
 		
 		if current_item_name != "":
@@ -181,10 +184,10 @@ func update_stats():
 func update_slots():
 	var index = 0
 	var equipment = current_character["equipment"]
-	var slots_texts = $EquipMenu/Slots/EquippeditemsNames.get_children()
-	#reset slots to "______"
+	var slots_texts = $EquipMenu/Box/Panels/Slots/EquippeditemsNames.get_children()
+	#reset slots to "EQUIP_EMPTY"
 	for i in slots_texts.size() - 1:
-		slots_texts[i].text = "______"
+		slots_texts[i].text = "EQUIP_EMPTY"
 	#set slot names
 	for piece in equipment.values():
 		if piece != "":
@@ -197,7 +200,7 @@ func update_slots():
 					index = 2
 				"other":
 					index = 3
-			slots_texts[index].text = InventoryManager.Load_item_data(piece)["name"][globaldata.language]
+			slots_texts[index].text = InventoryManager.Load_item_data(piece).name
 
 
 #used by the general menu to show the equip menu
@@ -218,24 +221,24 @@ func _inputs():
 	if Input.is_action_just_pressed(("ui_accept")):
 		Input.action_release("ui_accept")
 		if item_selection:
-			# equip the selected item or unequip of "None"
-			if ItemArrow.get_menu_item_at_index(ItemArrow.cursor_index).text == "None":
+			# LOCALIZATION Use of csv key
+			if ItemArrow.get_current_item().text == "EQUIP_NONE":
 				InventoryManager.unequip_slot(current_character, InventoryManager.slots[current_slot])
 				audioManager.play_sfx(load("res://Audio/Sound effects/EB/close.wav"), "menu")
 			else:
-				InventoryManager.equipItemFromUID(current_character, ItemArrow.get_menu_item_at_index(ItemArrow.cursor_index).uid)
+				InventoryManager.equipItemFromUID(current_character, ItemArrow.get_current_item().uid)
 				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
 			update_stats()
 			item_selection = false
 			SlotArrow.on = true
 			ItemPanel.visible = false
 			ItemArrow.on = false
-			$EquipMenu/InventorySelect.inhibit_chara_change = false
+			$EquipMenu/Box/InventorySelect.inhibit_chara_change = false
 			pass
 		else:
 			pause_description_update = true
 			item_selection = true
-			$EquipMenu/InventorySelect.inhibit_chara_change = true
+			$EquipMenu/Box/InventorySelect.inhibit_chara_change = true
 			current_slot = SlotArrow.cursor_index
 			show_items_for_slot(current_character["name"], InventoryManager.slots[current_slot])
 			pause_description_update = false
@@ -246,18 +249,17 @@ func _inputs():
 			
 			
 		
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		if item_selection:
 			item_selection = false
 			SlotArrow.on = true
 			ItemPanel.visible = false
 			ItemArrow.play_sfx("back")
 			ItemArrow.on = false
-			$EquipMenu/InventorySelect.inhibit_chara_change = false
+			$EquipMenu/Box/InventorySelect.inhibit_chara_change = false
 			pass
 		else:
 			Input.action_release("ui_cancel")
-			Input.action_release("ui_toggle")
 			SelectPanel.visible = false
 			SelectPanel.active = false
 			SlotArrow.on = false
@@ -293,13 +295,14 @@ func show_items_for_slot(character, slot):
 		if is_suitable:
 			var item_label =item_label_template.instance()
 			itemList.append(item.ItemName)
-			item_label.text = item_data["name"][globaldata.language]
 			item_label.uid = item.uid
 			ItemPanelList.add_child(item_label)
+			item_label.text = item_data.name
 	
 	var item_label = item_label_template.instance()
 	itemList.append("")
-	item_label.text = "None"
+	# LOCALIZATION Use of csv key
+	item_label.text = "EQUIP_NONE"
 	ItemPanelList.add_child(item_label)
 		
 #update portrait modifier according to selected items (both mode)
@@ -311,7 +314,10 @@ func _update_portraits():
 		selected_item = itemList[ItemArrow.cursor_index]
 	else:
 		selected_item = current_character["equipment"][InventoryManager.slots[SlotArrow.cursor_index]]
-	if !selected_item in ["None","______", ""]:
+	
+	# LOCALIZATION: Actually itemList can contain "", but never "None".
+	# But we've left the value in the array, just in case.
+	if !selected_item in ["None","EQUIP_EMPTY", ""]:
 		#valid item, check if suitable, equiped, ....
 		current_item_name = selected_item
 	else:

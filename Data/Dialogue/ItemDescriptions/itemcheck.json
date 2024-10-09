@@ -1,6 +1,6 @@
 {
-	"0": {
-		"text":"ItemReceiver got the ItemName!",
-		"soundeffect":"Item Received.mp3"
-	}
+    "0": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_ITEMCHECK_0",
+        "soundeffect": "Item Received.mp3"
+    }
 }

@@ -1,14 +1,18 @@
 extends Sprite
 
 export var contents : NodePath
+export (bool) var Drop_item_if_hidden
 export var Drop_where : NodePath
 export var New_parent : NodePath
+export var appear_flag = ""
+export var disappear_flag = ""
 export var interact_content = false
 onready var item = get_node_or_null(contents)
 onready var dropOff = get_node_or_null(Drop_where)
 onready var newParent = get_node_or_null(New_parent)
 
 func _ready():
+	check_flags()
 	set_item()
 	#if item != null:
 	#	item.connect("tree_exited", self, "set_item")
@@ -23,7 +27,7 @@ func _on_Hurtbox_area_entered(_area):
 	
 	yield(get_tree().create_timer(delay), "timeout")
 	
-	Input.start_joy_vibration(0, 0.5, 0.8, 0.2)
+	global.start_joy_vibration(0, 0.5, 0.8, 0.2)
 	$AnimationPlayer.play("Break")
 	$Hurtbox.set_collision_layer_bit(0, false)
 	$Hurtbox.set_collision_layer_bit(1, false)
@@ -43,8 +47,23 @@ func _on_Hurtbox_area_entered(_area):
 
 func set_item():
 	#yield(get_tree(), "idle_frame")
+	if !is_visible() and Drop_item_if_hidden:
+		item.position = position
 	item = get_node_or_null(contents)
 
+func check_flags():
+	if appear_flag != "":
+		if globaldata.flags.has(appear_flag):
+			if globaldata.flags[appear_flag]:
+				show()
+			else:
+				hide()
+	if disappear_flag != "":
+		if globaldata.flags.has(disappear_flag):
+			if globaldata.flags[disappear_flag]:
+				hide()
+	if !visible:
+		queue_free()
 
 func _drop():
 	if dropOff == null:

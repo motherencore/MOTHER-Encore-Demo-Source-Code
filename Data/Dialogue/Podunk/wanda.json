@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Wanda",
-		"text": "The animals have gone crazy, and the dead have risen...",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Wanda",
-		"text": "I knew we should've cremated Rex.",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WANDA_SPEAKER_Wanda",
+        "text": "DIALOGUE_PODUNK_WANDA_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WANDA_SPEAKER_Wanda",
+        "text": "DIALOGUE_PODUNK_WANDA_1",
+        "sound": "Sexy"
+    }
 }

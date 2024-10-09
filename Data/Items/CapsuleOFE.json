@@ -1,53 +1,36 @@
 {
-	"name": {
-		"english": "Offense Capsule",
-		"french": "Capsule d'Attaque"
-	},
-	"article" : {
-		"english": "an",
-		"french": "une"
-	},
-	"keyitem": false,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User's maximum offense increased by 3!",
-			"french": "L'attaque maximum de User a augmenté par 3!"
-		},
-		"textfail": {
-			"english": "User won't eat the Offense Capsule.",
-			"french": "User ne veut pas manger la Capsule d'Attaque."
-		}
-	},
-	"action_two": null,
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 3, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Increases your maximum offense by 3.",
-		"french": "Augmente ton attaque maximum par 3."
-	}
+    "name": "CAPSULEOFE",
+    "article": "CAPSULEOFE_ART",
+    "keyitem": false,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": {
+        "name": "CAPSULEOFE_ACT1_NAME",
+        "function": "consume",
+        "text": "CAPSULEOFE_ACT1_TEXT",
+        "textfail": "CAPSULEOFE_ACT1_FAIL"
+    },
+    "action_two": null,
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 3,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "CAPSULEOFE_DESC",
+    "short_name": "CAPSULEOFE_SHORT"
 }

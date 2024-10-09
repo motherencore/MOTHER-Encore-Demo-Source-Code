@@ -3,6 +3,7 @@ tool
 extends Sprite
 
 export (Texture) var sprite setget set_texture 
+export (Vector2) var door_offset = Vector2(0, -32) setget set_offset
 export var sound = ""
 export var end_sound = ""
 export var key = "" #leave null if there's no need for a key item
@@ -18,19 +19,19 @@ func set_texture(tex):
 	sprite = tex
 	$Sprite.texture = sprite
 
+func set_offset(off):
+	door_offset = off
+	$Sprite.position = door_offset
+	$Area2D.position.y = door_offset.y + 32
+	$interact.position.y = door_offset.y + 32
+	$StaticBody2D.position.y = door_offset.y + 32
+
 func _ready():
 	if !Engine.is_editor_hint():
-		if key == "":
+		if key != "" or blocked or one_way:
+			lock()
+		else:
 			unlock()
-			$interact/ButtonPrompt.enabled = false
-		else: 
-			lock()
-			$interact/ButtonPrompt.enabled = true
-		if blocked:
-			lock()
-			$interact/ButtonPrompt.enabled = true
-		if one_way:
-			lock()
 		if flag != "":
 			if globaldata.flags.has(flag):
 				unlocked = globaldata.flags[flag]
@@ -40,15 +41,10 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if touching == 0 and $Timer.time_left == 0 and unlocked == true and $AnimationPlayer.current_animation == "Normal" and !one_way:
 		open()
-	if one_way and global.persistPlayer.paused:
-		unlock()
-		open()
 	if blocked and global.persistPlayer.running and global.persistPlayer.direction.y == -1 and !unlocked:
 		global.currentCamera.shake_camera(1, 0.2, Vector2(2,0))
 		open()
 		unlock()
-		$interact/ButtonPrompt.hide_button()
-		$interact/ButtonPrompt.enabled = false
 		blocked = false
 		if flag != "":
 			if globaldata.flags.has(flag):
@@ -75,6 +71,8 @@ func _on_Timer_timeout():
 
 func open():
 	$AnimationPlayer.play("Action")
+	$interact/ButtonPrompt.hide()
+	$interact/ButtonPrompt.enabled = false
 	if sound != "" and !global.persistPlayer.paused:
 		if blocked and !unlocked:
 			$AudioStreamPlayer.stream = load("res://Audio/Sound effects/bash.mp3")
@@ -84,10 +82,12 @@ func open():
 
 func unlock():
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
+	$interact/ButtonPrompt.enabled = false
 	unlocked = true
 
 func lock():
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
+	$interact/ButtonPrompt.enabled = true
 	unlocked = false
 
 func interact():
@@ -98,13 +98,10 @@ func interact():
 			globaldata.flags[flag] = true
 			open()
 			unlock()
-			$interact/ButtonPrompt.enabled = false
 			if remove_key:
 				InventoryManager.removeItem(key)
-			var ItemName = InventoryManager.Load_item_data(key)["name"][globaldata.language]
-			var ItemArt = InventoryManager.Load_item_data(key)["article"][globaldata.language]
-			global.itemname = ItemName
-			global.itemart = ItemArt
+			# LOCALIZATION Code change: Removed use of globaldata.language (storing the csv key id) × 2
+			global.item = InventoryManager.Load_item_data(key)
 			global.set_dialog("Reusable/lockopened", null) 
 		else:
 			global.set_dialog("Reusable/locklocked", null)

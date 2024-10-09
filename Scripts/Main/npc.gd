@@ -3,6 +3,8 @@ extends KinematicBody2D
 export (String) var sprite #The npc's sprite
 export (String) var dialog #The normal spoken dialogue of the npc
 export (String) var thoughts #The dialog spoken when using telepathy
+export (String, FILE, "*.json") var json #The json file for animations
+export (Array, PoolStringArray) var connections = [["Talk", "Idle", 2]] 
 export var appear_flag = ""
 export var disappear_flag = ""
 export (Array, PoolStringArray) var event_dialog
@@ -23,11 +25,12 @@ export var staring = false #If the npc will turn to look at the player if they g
 export var wander = false #If the npc walks around in the overworld
 export var speed = 64 #The speed at which the npc walks
 export var walk_frequency = 2 #The amount of time inbetween each set of walk
-onready var main = $main
-onready var animationPlayer = $AnimationPlayer
-onready var animationTree = $AnimationTree
-onready var emotes = $main/emotes
-onready var animationState = animationTree.get("parameters/playback")
+#onready var animationPlayer = $AnimationPlayer
+#onready var animationTree = $AnimationTree
+onready var emotes = $CharacterSprite/emotes
+onready var characterSprite = $CharacterSprite
+#onready var animationState = animationTree.get("parameters/playback")
+
 var party_member = false
 var pause = false
 var startPos = null
@@ -45,10 +48,21 @@ func _ready():
 	set_dialog()
 	set_thoughts()
 	set_event_positions()
-	set_spritesheet()
+	characterSprite.set_sprite("res://Graphics/Character Sprites/" + sprite + "/main.png")
+	if !"Npcs" in sprite:
+		party_member = true
+		json = "res://Data/Animations/PartyMember.json"
+	elif json == "":
+		json = "res://Data/Animations/4dir.json"
+	if json != "":
+		characterSprite.set_animation(json, connections)
+	characterSprite.set_spritesheet()
+	characterSprite.set_sprite_offset(sprite_offset)
 	set_start_pos()
-	animationTree.active = true
-	animationState.travel(idle_animation)
+	#animationTree.active = true
+	characterSprite.travel(idle_animation)
+	
+	
 	newPos = global_position
 	if initial_dir == Vector2.ZERO:
 		inputVector = Vector2(0,1)
@@ -64,9 +78,13 @@ func _ready():
 		$Shadow.visible = true
 	if no_collision:
 		$CollisionShape2D.disabled = true
+	
+	if dialog == "":
+		$interact/CollisionShape2D.disabled = true
+	
 
 func _physics_process(_delta):
-	blend_position(inputVector)
+	characterSprite.blend_position(inputVector)
 	var old_Pos = position
 	if wander and newPos != null and !pause and !global.persistPlayer.paused and !global.inBattle and !global.queuedBattle:
 		var difference = max(ceil(abs(speed / int(Engine.get_frames_per_second()))), 1)
@@ -74,25 +92,25 @@ func _physics_process(_delta):
 			inputVector = position.direction_to(newPos)
 			velocity = move_and_slide(inputVector * speed)
 			if (abs(old_Pos.x - position.x) > 0.5 or abs(old_Pos.y - position.y) > 0.5):
-				animationState.travel("Walk")
+				characterSprite.travel("Walk")
 			else:
-				animationState.travel(idle_animation)
+				characterSprite.travel(idle_animation)
 				global_position = round_vector(global_position)
 		else:
-			animationState.travel(idle_animation)
+			characterSprite.travel(idle_animation)
 			global_position = round_vector(global_position)
 	else:
-		animationState.travel(idle_animation)
+		characterSprite.travel(idle_animation)
 	if looking and !talking and (abs(old_Pos.x - position.x) < 1 or abs(old_Pos.y - position.y) < 1):
 		inputVector = global_position.direction_to(global.persistPlayer.global_position)
 	if uiManager.uiStack.size() == 0:
 		talking = false
 		pause = false
 	else:
-		if talking == true and animationTree.get("parameters/Talk/blend_position") != null:
-			animationState.travel("Talk")
+		if talking == true:
+			characterSprite.travel("Talk")
 		else:
-			animationState.travel("Idle")
+			characterSprite.travel("Idle")
 
 func round_vector(pos):
 	pos.x = round(pos.x)
@@ -105,7 +123,9 @@ func interact():
 	pause = true
 	newPos = position
 	inputVector = global_position.direction_to(global.persistPlayer.global_position)
-	animationTree.set("parameters/Talk/blend_position", inputVector)
+	characterSprite.blend_position(inputVector)
+	
+	#animationTree.set("parameters/Talk/blend_position", inputVector)
 	global.set_dialog(dialog, self) 
 	uiManager.open_dialogue_box()
 	global.persistPlayer.pause()
@@ -115,7 +135,7 @@ func telepathy():
 	pause = true
 	newPos = position
 	inputVector = global_position.direction_to(global.persistPlayer.global_position)
-	animationTree.set("parameters/" + idle_animation + "/blend_position", inputVector)
+	characterSprite.blend_position(inputVector)
 	global.set_dialog(thoughts, null) 
 	uiManager.open_dialogue_box()
 	uiManager.set_telepathy_effect(true, self)
@@ -123,52 +143,52 @@ func telepathy():
 	
 
 func duplicate_sprite():
-	return $main.duplicate()
+	return characterSprite.duplicate()
 
 func blend_position(vector2):
 	vector2 = round_vector(vector2)
-	if vector2 != Vector2.ZERO:
-		animationTree.set("parameters/Idle/blend_position", vector2)
-		animationTree.set("parameters/Walk/blend_position", vector2)
-		animationTree.set("parameters/Talk/blend_position", vector2)
+	characterSprite.blend_position(vector2)
 
-func set_spritesheet():
-	if sprite != "null":
-		if !"Npcs" in sprite:
-			party_member = true
-		var sprite_path = "res://Graphics/Character Sprites/" + sprite + "/main.png"
-		if (sprite != "" or " ") and ResourceLoader.exists(sprite_path):
-			$main.texture = load(sprite_path)
-			if $main.texture != null:
-				animationTree.active = false
-				if party_member:
-					$main.offset.y = -$main.texture.get_height()/40 + 14
-					$main.offset += sprite_offset
-					$main.hframes = 10
-					$main.vframes = 20
-					$interact/ButtonPrompt.offset.y =  -$main.texture.get_height()/40 + 4
-					animationPlayer = $PartyMemberAnim
-					animationTree = $PartyMemberTree
-				elif "4dir" in sprite:
-					$main.offset.y = -$main.texture.get_height()/8 + 13
-					$main.offset += sprite_offset
-					$main.hframes = 5
-					$main.vframes = 4
-					$interact/ButtonPrompt.offset.y =  -$main.texture.get_height()/8 + 4
-					animationPlayer = $AnimationPlayer
-					animationTree = $AnimationTree
-				animationTree.active = true
-				animationState = animationTree.get("parameters/playback")
-			if no_shadow:
-				$Shadow.visible = false
-			else:
-				$Shadow.visible = true
-			show()
-		else:
-			hide()
+#func set_spritesheet():
+#	if sprite != "":
+#		if !"Npcs" in sprite:
+#			party_member = true
+#			json = "res://Data/Animations/PartyMember.json"
+#		else:
+#			json = "res://Data/Animations/4dir.json"
+#		var sprite_path = "res://Graphics/Character Sprites/" + sprite + "/main.png"
+#		if (sprite != "" or " ") and ResourceLoader.exists(sprite_path):
+#			$main.texture = load(sprite_path)
+#			if $main.texture != null:
+#				animationTree.active = false
+#				if party_member:
+#					$main.offset.y = -$main.texture.get_height()/40 + 14
+#					$main.offset += sprite_offset
+#					$main.hframes = 10
+#					$main.vframes = 20
+#					$interact/ButtonPrompt.offset.y =  -$main.texture.get_height()/40 + 4
+#					animationPlayer = $PartyMemberAnim
+#					animationTree = $PartyMemberTree
+#				elif "4dir" in sprite:
+#					$main.offset.y = -$main.texture.get_height()/8 + 13
+#					$main.offset += sprite_offset
+#					$main.hframes = 5
+#					$main.vframes = 4
+#					$interact/ButtonPrompt.offset.y =  -$main.texture.get_height()/8 + 4
+#					animationPlayer = $AnimationPlayer
+#					animationTree = $AnimationTree
+#				animationTree.active = true
+#				animationState = animationTree.get("parameters/playback")
+#			if no_shadow:
+#				$Shadow.visible = false
+#			else:
+#				$Shadow.visible = true
+#			show()
+#		else:
+#			hide()
 
 func get_sprite_texture():
-	return $main.texture
+	return characterSprite.texture
 
 func set_start_pos():
 	startPos = global_position
@@ -262,7 +282,7 @@ func move():
 func _on_VisibilityNotifier2D_screen_entered():
 	if !global.cutscene:
 		set_process(true)
-		set_spritesheet()
+		#set_spritesheet()
 		show()
 		if wander:
 			$WanderRadius/Timer.wait_time = rand_range(0.1,walk_frequency)

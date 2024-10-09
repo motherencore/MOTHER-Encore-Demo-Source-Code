@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Alligator",
-		"text": "(Are you angry at me? I'm sorry you feel that way.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ALLIGATOR_THOUGHTS_2_SPEAKER_Alligator",
+        "text": "DIALOGUE_PODUNK_ALLIGATOR_THOUGHTS_2_0"
+    }
 }

@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "Mrs. Lindgren",
-		"text": "I want to thank you again for your help.",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mrs. Lindgren",
-		"text": "[Pippi] is fine now, but all she talks about now is you!",
-		"sound": "Sexy",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Mrs. Lindgren",
-		"text": "You should play with her again someday.",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_1",
+        "sound": "Sexy",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_PIPPISMOM_THANKS_2",
+        "sound": "Sexy"
+    }
 }

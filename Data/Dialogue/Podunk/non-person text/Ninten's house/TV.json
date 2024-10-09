@@ -1,9 +1,9 @@
 {
-	"0": {
-		"text": "TV with a built-in VHS player.",
-		"goto": "1"
-	},
-	"1": {
-		"text": "Star Wars, Rambo and a bunch of other movie tapes are scrambled on the floor."
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_NINTEN_S_HOUSE_TV_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_NINTEN_S_HOUSE_TV_1"
+    }
 }

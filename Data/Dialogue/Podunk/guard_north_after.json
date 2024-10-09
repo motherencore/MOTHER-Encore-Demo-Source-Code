@@ -1,31 +1,31 @@
 {
-	"0": {
-		"name": "Guard",
-		"text": "The curfew has been lifted.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Guard",
-		"text": "I can't see why travel was ever restricted, though...",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Guard",
-		"text": "I heard that you can communicate with Telepathy.",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Guard",
-		"text": "Have you heard of all the people talking about you?",
-		"sound": "Adult",
-		"goto": "4"
-	},
-	"4": {
-		"name": "Guard",
-		"text": "Oh right, you probably don't even need to \"listen\" to them!",
-		"sound": "Adult",
-	},
+    "0": {
+        "name": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_3",
+        "sound": "Adult",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_NORTH_AFTER_4",
+        "sound": "Adult"
+    }
 }

@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="Mother: ENCORE"
 config/description="The original Mother returns but in a fresh and shiny new coat of paint that would make anyone swoon. A complete re-imagining that gives the old NES Classic a lot more pizzazz. MOTHER: Encore strives to shine a new light onto the game that started it all!"
-run/main_scene="res://Maps/Title screen.tscn"
+run/main_scene="res://Maps/Disclaimer.tscn"
 boot_splash/image="res://Nodes/Ui/effects/transition_masks/uniform.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
@@ -55,6 +55,7 @@ InventoryManager="*res://Scripts/UI/Inventory/InventoryManager.gd"
 BackgroundLoader="*res://addons/ZoneLoadingSystem/scripts/background_loader.gd"
 audioManager="*res://Nodes/Ui/audioManager.tscn"
 CacheLoader="*res://Scripts/global/cacheLoader.gd"
+controlsManager="*res://Scripts/global/controlsManager.tscn"
 
 [debug]
 
@@ -69,6 +70,7 @@ window/size/width=320
 window/size/height=180
 window/size/test_width=960
 window/size/test_height=540
+window/dpi/allow_hidpi=true
 window/vsync/vsync_via_compositor=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
@@ -81,6 +83,7 @@ enabled=PoolStringArray( "res://addons/BottomTextEditor/plugin.cfg", "res://addo
 
 layer=false
 back=false
+"Controls Manager"=false
 
 [importer_defaults]
 
@@ -109,6 +112,10 @@ mp3={
 "loop": false,
 "loop_offset": 0
 }
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 
@@ -122,8 +129,8 @@ ui_select={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 ui_cancel={
@@ -136,51 +143,236 @@ ui_focus_next={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":8,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":8,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 ui_focus_prev={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":9,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":9,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 ui_left={
 "deadzone": 0.65,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
  ]
 }
 ui_right={
 "deadzone": 0.65,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
  ]
 }
 ui_up={
 "deadzone": 0.65,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
  ]
 }
 ui_down={
 "deadzone": 0.65,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
+ui_page_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777236,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 ui_home={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_lstick_left={
+"deadzone": 0.7,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_lstick_right={
+"deadzone": 0.7,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
+ui_lstick_up={
+"deadzone": 0.7,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_lstick_down={
+"deadzone": 0.7,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+ui_rstick_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_rstick_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
+ ]
+}
+ui_rstick_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
+ ]
+}
+ui_rstick_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
+ui_toggle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_scope={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_backtick={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_test={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":79,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_one={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_two={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_three={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":51,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_four={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":52,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_five={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":53,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_six={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":54,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_seven={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":55,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777247,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_winsize={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F6={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777249,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F7={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777250,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_F12={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777255,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_mute={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_L={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_e={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_g={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_q={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_translate={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_dpad_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_dpad_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_dpad_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_dpad_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 ui_key_left={
@@ -203,182 +395,64 @@ ui_key_down={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_dpad_left={
+ui_sneak={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":86,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_dpad_right={
+ui_lang0={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":48,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_dpad_up={
+ui_lang1={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":49,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_dpad_down={
+ui_lang2={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":50,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_lstick_left={
+ui_lang3={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":51,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_lstick_right={
+ui_lang4={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":52,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_lstick_up={
+ui_lang5={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":53,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_lstick_down={
+ui_lang6={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":54,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_rstick_left={
+ui_lang7={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":55,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_rstick_right={
+ui_lang8={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":2,"axis_value":1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":56,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_rstick_up={
+ui_lang9={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":-1.0,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":57,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_rstick_down={
+ui_lang10={
 "deadzone": 0.5,
-"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":3,"axis_value":1.0,"script":null)
- ]
-}
-ui_toggle={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
- ]
-}
-ui_ctrl={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
- ]
-}
-ui_backtick={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":96,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_test={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":79,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_one={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":49,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_two={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_three={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":51,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_four={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":52,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_five={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":53,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_six={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":54,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_seven={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":55,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F1={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F2={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777245,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F3={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777246,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F4={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777247,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F5={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F6={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777249,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_F12={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777255,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_mute={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_L={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_e={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_g={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_q={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":45,"unicode":0,"echo":false,"script":null)
  ]
 }
 
@@ -397,6 +471,81 @@ ui_q={
 2d_physics/layer_11="Wall Collisions"
 2d_physics/layer_12="Party collisions"
 2d_physics/layer_13="Areas"
+
+[locale]
+
+translations=PoolStringArray( "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.de.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.en.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.es.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.it.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_shitpost dialogue - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Snowman - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Testing - sheet.pt_BR.translation", "res://Translations/TranslatedText/items - sheet.de.translation", "res://Translations/TranslatedText/items - sheet.en.translation", "res://Translations/TranslatedText/items - sheet.es_ES.translation", "res://Translations/TranslatedText/items - sheet.es.translation", "res://Translations/TranslatedText/items - sheet.fr.translation", "res://Translations/TranslatedText/items - sheet.it.translation", "res://Translations/TranslatedText/items - sheet.ja.translation", "res://Translations/TranslatedText/items - sheet.ko.translation", "res://Translations/TranslatedText/items - sheet.pl.translation", "res://Translations/TranslatedText/items - sheet.pt_BR.translation", "res://Translations/TranslatedText/keyboard - sheet.de.translation", "res://Translations/TranslatedText/keyboard - sheet.en.translation", "res://Translations/TranslatedText/keyboard - sheet.es_ES.translation", "res://Translations/TranslatedText/keyboard - sheet.es.translation", "res://Translations/TranslatedText/keyboard - sheet.fr.translation", "res://Translations/TranslatedText/keyboard - sheet.it.translation", "res://Translations/TranslatedText/keyboard - sheet.ja.translation", "res://Translations/TranslatedText/keyboard - sheet.ko.translation", "res://Translations/TranslatedText/keyboard - sheet.pl.translation", "res://Translations/TranslatedText/keyboard - sheet.pt_BR.translation", "res://Translations/TranslatedText/locations - sheet.de.translation", "res://Translations/TranslatedText/locations - sheet.en.translation", "res://Translations/TranslatedText/locations - sheet.es_ES.translation", "res://Translations/TranslatedText/locations - sheet.es.translation", "res://Translations/TranslatedText/locations - sheet.fr.translation", "res://Translations/TranslatedText/locations - sheet.it.translation", "res://Translations/TranslatedText/locations - sheet.ja.translation", "res://Translations/TranslatedText/locations - sheet.ko.translation", "res://Translations/TranslatedText/locations - sheet.pl.translation", "res://Translations/TranslatedText/locations - sheet.pt_BR.translation", "res://Translations/TranslatedText/menus - sheet.de.translation", "res://Translations/TranslatedText/menus - sheet.en.translation", "res://Translations/TranslatedText/menus - sheet.es_ES.translation", "res://Translations/TranslatedText/menus - sheet.es.translation", "res://Translations/TranslatedText/menus - sheet.fr.translation", "res://Translations/TranslatedText/menus - sheet.it.translation", "res://Translations/TranslatedText/menus - sheet.ja.translation", "res://Translations/TranslatedText/menus - sheet.ko.translation", "res://Translations/TranslatedText/menus - sheet.pl.translation", "res://Translations/TranslatedText/menus - sheet.pt_BR.translation", "res://Translations/TranslatedText/battleskills - sheet.de.translation", "res://Translations/TranslatedText/battleskills - sheet.en.translation", "res://Translations/TranslatedText/battleskills - sheet.es_ES.translation", "res://Translations/TranslatedText/battleskills - sheet.es.translation", "res://Translations/TranslatedText/battleskills - sheet.fr.translation", "res://Translations/TranslatedText/battleskills - sheet.it.translation", "res://Translations/TranslatedText/battleskills - sheet.ja.translation", "res://Translations/TranslatedText/battleskills - sheet.ko.translation", "res://Translations/TranslatedText/battleskills - sheet.pl.translation", "res://Translations/TranslatedText/battleskills - sheet.pt_BR.translation", "res://Translations/TranslatedText/story - sheet.de.translation", "res://Translations/TranslatedText/story - sheet.en.translation", "res://Translations/TranslatedText/story - sheet.es_ES.translation", "res://Translations/TranslatedText/story - sheet.es.translation", "res://Translations/TranslatedText/story - sheet.fr.translation", "res://Translations/TranslatedText/story - sheet.it.translation", "res://Translations/TranslatedText/story - sheet.ja.translation", "res://Translations/TranslatedText/story - sheet.ko.translation", "res://Translations/TranslatedText/story - sheet.pl.translation", "res://Translations/TranslatedText/story - sheet.pt_BR.translation", "res://Translations/TranslatedText/fieldskills - sheet.de.translation", "res://Translations/TranslatedText/fieldskills - sheet.en.translation", "res://Translations/TranslatedText/fieldskills - sheet.es.translation", "res://Translations/TranslatedText/fieldskills - sheet.es_ES.translation", "res://Translations/TranslatedText/fieldskills - sheet.fr.translation", "res://Translations/TranslatedText/fieldskills - sheet.it.translation", "res://Translations/TranslatedText/fieldskills - sheet.ja.translation", "res://Translations/TranslatedText/fieldskills - sheet.ko.translation", "res://Translations/TranslatedText/fieldskills - sheet.pl.translation", "res://Translations/TranslatedText/fieldskills - sheet.pt_BR.translation", "res://Translations/TranslatedText/battlescenes - sheet.de.translation", "res://Translations/TranslatedText/battlescenes - sheet.en.translation", "res://Translations/TranslatedText/battlescenes - sheet.es.translation", "res://Translations/TranslatedText/battlescenes - sheet.es_ES.translation", "res://Translations/TranslatedText/battlescenes - sheet.fr.translation", "res://Translations/TranslatedText/battlescenes - sheet.it.translation", "res://Translations/TranslatedText/battlescenes - sheet.ja.translation", "res://Translations/TranslatedText/battlescenes - sheet.ko.translation", "res://Translations/TranslatedText/battlescenes - sheet.pl.translation", "res://Translations/TranslatedText/battlescenes - sheet.pt_BR.translation", "res://Translations/TranslatedText/battlers - sheet.de.translation", "res://Translations/TranslatedText/battlers - sheet.en.translation", "res://Translations/TranslatedText/battlers - sheet.es.translation", "res://Translations/TranslatedText/battlers - sheet.es_ES.translation", "res://Translations/TranslatedText/battlers - sheet.fr.translation", "res://Translations/TranslatedText/battlers - sheet.it.translation", "res://Translations/TranslatedText/battlers - sheet.ja.translation", "res://Translations/TranslatedText/battlers - sheet.ko.translation", "res://Translations/TranslatedText/battlers - sheet.pl.translation", "res://Translations/TranslatedText/battlers - sheet.pt_BR.translation", "res://Translations/TranslatedText/battlers - sheet.ru.translation", "res://Translations/TranslatedText/battlescenes - sheet.ru.translation", "res://Translations/TranslatedText/battleskills - sheet.ru.translation", "res://Translations/TranslatedText/battletext - sheet.de.translation", "res://Translations/TranslatedText/battletext - sheet.en.translation", "res://Translations/TranslatedText/battletext - sheet.es.translation", "res://Translations/TranslatedText/battletext - sheet.es_ES.translation", "res://Translations/TranslatedText/battletext - sheet.fr.translation", "res://Translations/TranslatedText/battletext - sheet.it.translation", "res://Translations/TranslatedText/battletext - sheet.ja.translation", "res://Translations/TranslatedText/battletext - sheet.ko.translation", "res://Translations/TranslatedText/battletext - sheet.pl.translation", "res://Translations/TranslatedText/battletext - sheet.pt_BR.translation", "res://Translations/TranslatedText/battletext - sheet.ru.translation", "res://Translations/TranslatedText/credits - sheet.de.translation", "res://Translations/TranslatedText/credits - sheet.en.translation", "res://Translations/TranslatedText/credits - sheet.es.translation", "res://Translations/TranslatedText/credits - sheet.es_ES.translation", "res://Translations/TranslatedText/credits - sheet.fr.translation", "res://Translations/TranslatedText/credits - sheet.it.translation", "res://Translations/TranslatedText/credits - sheet.ja.translation", "res://Translations/TranslatedText/credits - sheet.ko.translation", "res://Translations/TranslatedText/credits - sheet.pl.translation", "res://Translations/TranslatedText/credits - sheet.pt_BR.translation", "res://Translations/TranslatedText/credits - sheet.ru.translation", "res://Translations/TranslatedText/dialogue - sheet.de.translation", "res://Translations/TranslatedText/dialogue - sheet.en.translation", "res://Translations/TranslatedText/dialogue - sheet.es.translation", "res://Translations/TranslatedText/dialogue - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue - sheet.fr.translation", "res://Translations/TranslatedText/dialogue - sheet.it.translation", "res://Translations/TranslatedText/dialogue - sheet.ja.translation", "res://Translations/TranslatedText/dialogue - sheet.ko.translation", "res://Translations/TranslatedText/dialogue - sheet.pl.translation", "res://Translations/TranslatedText/dialogue - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Hotel Party Banter - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.de.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.en.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.it.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_ItemDescriptions - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Magicant - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Magicant_descriptions - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Podunk - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.ja.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.ko.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.pl.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.pt_BR.translation", "res://Translations/TranslatedText/dialogue_Podunk_cutscenes - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.de.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.en.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.es.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.es_ES.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.fr.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.it.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Podunk_non-person text_Ninten\'s house - sheet.ru.translation", "res://Translations/TranslatedText/dialogue_Reusable - sheet.ru.translation", "res://Translations/TranslatedText/fieldskills - sheet.ru.translation", "res://Translations/TranslatedText/items - sheet.ru.translation", "res://Translations/TranslatedText/keyboard - sheet.ru.translation", "res://Translations/TranslatedText/locations - sheet.ru.translation", "res://Translations/TranslatedText/menus - sheet.ru.translation", "res://Translations/TranslatedText/story - sheet.ru.translation" )
+translation_remaps={
+"res://Fonts/EB0_la.tres": PoolStringArray( "res://Fonts/EB0_ja.tres:ja", "res://Fonts/EB0_ko.tres:ko" ),
+"res://Fonts/EBMain_la.tres": PoolStringArray( "res://Fonts/EBMain_ja.tres:ja", "res://Fonts/EBMain_ko.tres:ko" ),
+"res://Graphics/Battle Effects/Smaaaaash!.png": PoolStringArray( "res://Translations/TranslatedUI/Smaaaaash!_ru.png:ru", "res://Translations/TranslatedUI/Smaaaaash!_pl.png:pl" ),
+"res://Graphics/Rooms/DebugWorld.png": PoolStringArray( "res://Translations/TranslatedTiles/DebugWorld_fr.png:fr" ),
+"res://Graphics/UI/Ailments/Asthma.png": PoolStringArray( "res://Graphics/UI/Ailments/Asthma_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Blinded.png": PoolStringArray( "res://Graphics/UI/Ailments/Blinded_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Confused.png": PoolStringArray( "res://Graphics/UI/Ailments/Confused_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Forgetful.png": PoolStringArray( "res://Graphics/UI/Ailments/Forgetful_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Nausea.png": PoolStringArray( "res://Graphics/UI/Ailments/Nausea_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Numb.png": PoolStringArray( "res://Graphics/UI/Ailments/Numb_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Poisoned.png": PoolStringArray( "res://Graphics/UI/Ailments/Poisoned_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Sleeping.png": PoolStringArray( "res://Graphics/UI/Ailments/Sleeping_monospace.png:ja" ),
+"res://Graphics/UI/Ailments/Sunstroked.png": PoolStringArray( "res://Graphics/UI/Ailments/Sunstroked_monospace.png:ja" ),
+"res://Graphics/UI/Battle/PartyInfoPlate.png": PoolStringArray( "res://Translations/TranslatedUI/PartyInfoPlate_fr_es.png:fr", "res://Translations/TranslatedUI/PartyInfoPlate_fr_es.png:es", "res://Translations/TranslatedUI/PartyInfoPlate_de.png:de", "res://Translations/TranslatedUI/PartyInfoPlate_it.png:it", "res://Translations/TranslatedUI/PartyInfoPlate_ru.png:ru" ),
+"res://Graphics/UI/Battle/PartyInfoPlateBasic.png": PoolStringArray( "res://Translations/TranslatedUI/PartyInfoPlateBasic_fr_es.png:fr", "res://Translations/TranslatedUI/PartyInfoPlateBasic_fr_es.png:es", "res://Translations/TranslatedUI/PartyInfoPlateBasic_de.png:de", "res://Translations/TranslatedUI/PartyInfoPlateBasic_it.png:it", "res://Translations/TranslatedUI/PartyInfoPlateBasic_ru.png:ru" ),
+"res://Graphics/UI/Battle/PartyInfoPlate_NoPP.png": PoolStringArray( "res://Translations/TranslatedUI/PartyInfoPlate_NoPP_fr_es.png:fr", "res://Translations/TranslatedUI/PartyInfoPlate_NoPP_fr_es.png:es", "res://Translations/TranslatedUI/PartyInfoPlate_NoPP_de.png:de", "res://Translations/TranslatedUI/PartyInfoPlate_NoPP_it.png:it", "res://Translations/TranslatedUI/PartyInfoPlate_NoPP_ru.png:ru" ),
+"res://Graphics/UI/Battle/miss.png": PoolStringArray( "res://Translations/TranslatedUI/miss_fr.png:fr", "res://Translations/TranslatedUI/miss_es.png:es", "res://Translations/TranslatedUI/miss_es_ES.png:es_ES", "res://Translations/TranslatedUI/miss_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/miss_it.png:it", "res://Translations/TranslatedUI/miss_pl.png:pl", "res://Translations/TranslatedUI/miss_de.png:de", "res://Translations/TranslatedUI/miss_ru.png:ru" ),
+"res://Graphics/UI/Battle/youwin.png": PoolStringArray( "res://Translations/TranslatedUI/youwin_fr.png:fr", "res://Translations/TranslatedUI/youwin_es.png:es", "res://Translations/TranslatedUI/youwin_es_ES.png:es_ES", "res://Translations/TranslatedUI/youwin_ja.png:ja", "res://Translations/TranslatedUI/youwin_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/youwin_it.png:it", "res://Translations/TranslatedUI/youwin_pl.png:pl", "res://Translations/TranslatedUI/youwin_de.png:de", "res://Translations/TranslatedUI/youwin_ko.png:ko", "res://Translations/TranslatedUI/youwin_ru.png:ru" ),
+"res://Graphics/UI/Inventory/modifiers.png": PoolStringArray( "res://Translations/TranslatedUI/modifiers_ru.png:ru", "res://Translations/TranslatedUI/modifiers_de.png:de" ),
+"res://Graphics/UI/Maps/Podunk_namePlate.png": PoolStringArray( "res://Translations/TranslatedUI/Podunk_namePlate_ja_ko.png:ja", "res://Translations/TranslatedUI/Podunk_namePlate_ja_ko.png:ko", "res://Translations/TranslatedUI/Podunk_namePlate_ru.png:ru" ),
+"res://Graphics/UI/Title/TitleExit.png": PoolStringArray( "res://Translations/TranslatedUI/TitleExit_fr.png:fr", "res://Translations/TranslatedUI/TitleExit_es.png:es", "res://Translations/TranslatedUI/TitleExit_it.png:it", "res://Translations/TranslatedUI/TitleExit_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/TitleExit_de.png:de", "res://Translations/TranslatedUI/TitleExit_pl.png:pl", "res://Translations/TranslatedUI/TitleExit_ru.png:ru" ),
+"res://Graphics/UI/Title/TitleLoad.png": PoolStringArray( "res://Translations/TranslatedUI/TitleLoad_fr.png:fr", "res://Translations/TranslatedUI/TitleLoad_es.png:es", "res://Translations/TranslatedUI/TitleLoad_it.png:it", "res://Translations/TranslatedUI/TitleLoad_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/TitleLoad_de.png:de", "res://Translations/TranslatedUI/TitleLoad_pl.png:pl", "res://Translations/TranslatedUI/TitleLoad_ru.png:ru" ),
+"res://Graphics/UI/Title/TitleNewGame.png": PoolStringArray( "res://Translations/TranslatedUI/TitleNewGame_fr.png:fr", "res://Translations/TranslatedUI/TitleNewGame_es.png:es", "res://Translations/TranslatedUI/TitleNewGame_it.png:it", "res://Translations/TranslatedUI/TitleNewGame_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/TitleNewGame_de.png:de", "res://Translations/TranslatedUI/TitleNewGame_pl.png:pl", "res://Translations/TranslatedUI/TitleNewGame_ru.png:ru" ),
+"res://Graphics/UI/Title/TitleOptions.png": PoolStringArray( "res://Translations/TranslatedUI/TitleOptions_es.png:es", "res://Translations/TranslatedUI/TitleOptions_it.png:it", "res://Translations/TranslatedUI/TitleOptions_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/TitleOptions_de.png:de", "res://Translations/TranslatedUI/TitleOptions_pl.png:pl" ),
+"res://Graphics/UI/Title/TitleSettings.png": PoolStringArray( "res://Translations/TranslatedUI/TitleSettings_fr.png:fr", "res://Translations/TranslatedUI/TitleSettings_es.png:es", "res://Translations/TranslatedUI/TitleSettings_it.png:it", "res://Translations/TranslatedUI/TitleSettings_pt_BR.png:pt_BR", "res://Translations/TranslatedUI/TitleSettings_de.png:de", "res://Translations/TranslatedUI/TitleSettings_pl.png:pl", "res://Translations/TranslatedUI/TitleSettings_ja.png:ja", "res://Translations/TranslatedUI/TitleSettings_ru.png:ru" ),
+"res://Nodes/Ui/CashBox.tscn": PoolStringArray( "res://Translations/DollarPosition/CashBox_rightdollar.tscn:fr", "res://Translations/DollarPosition/CashBox_rightdollar.tscn:it", "res://Translations/DollarPosition/CashBox_rightdollar.tscn:es_ES", "res://Nodes/Ui/CashBox.tscn:es", "res://Translations/DollarPosition/CashBox_rightdollar.tscn:pl", "res://Translations/DollarPosition/CashBox_rightdollar.tscn:de", "res://Translations/DollarPosition/CashBox_rightdollar.tscn:ru" ),
+"res://Nodes/Ui/CashBoxPause.tscn": PoolStringArray( "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:fr", "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:it", "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:es_ES", "res://Nodes/Ui/CashBoxPause.tscn:es", "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:pl", "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:de", "res://Translations/DollarPosition/CashBoxPause_rightdollar.tscn:ru" ),
+"res://Nodes/Ui/Shop/CashBoxShop.tscn": PoolStringArray( "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:fr", "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:it", "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:es_ES", "res://Nodes/Ui/Shop/CashBoxShop.tscn:es", "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:pl", "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:de", "res://Translations/DollarPosition/CashBoxShop_rightdollar.tscn:ru" ),
+"res://Translations/TranslatedTiles/Merrysville_Twinkle.png": PoolStringArray( "res://Translations/TranslatedTiles/Merrysville_Twinkle_fr.png:fr", "res://Translations/TranslatedTiles/Merrysville_Twinkle_es.png:es", "res://Translations/TranslatedTiles/Merrysville_Twinkle_es_ES.png:es_ES", "res://Translations/TranslatedTiles/Merrysville_Twinkle_ja.png:ja", "res://Translations/TranslatedTiles/Merrysville_Twinkle_pl.png:pl", "res://Translations/TranslatedTiles/Merrysville_Twinkle_de.png:de", "res://Translations/TranslatedTiles/Merrysville_Twinkle_ko.png:ko", "res://Translations/TranslatedTiles/Merrysville_Twinkle_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_BigWelcome.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_BigWelcome_de.png:de", "res://Translations/TranslatedTiles/Podunk_BigWelcome_es.png:es", "res://Translations/TranslatedTiles/Podunk_BigWelcome_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_BigWelcome_it.png:it", "res://Translations/TranslatedTiles/Podunk_BigWelcome_ja_ko.png:ja", "res://Translations/TranslatedTiles/Podunk_BigWelcome_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_BigWelcome_ru.png:ru", "res://Translations/TranslatedTiles/Podunk_BigWelcome_ja_ko.png:ko" ),
+"res://Translations/TranslatedTiles/Podunk_Canary.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_Canary_de.png:de", "res://Translations/TranslatedTiles/Podunk_Canary_es.png:es", "res://Translations/TranslatedTiles/Podunk_Canary_es_ES.png:es_ES", "res://Translations/TranslatedTiles/Podunk_Canary_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_Canary_it.png:it", "res://Translations/TranslatedTiles/Podunk_Canary_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_Canary_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_Canary_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_Canary_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_es_it.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_es_it.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Food.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_es.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_it.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DeptStore_Food_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Mat.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_es.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_it.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DeptStore_Mat_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Pets.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_es.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_it.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_ja.png:ja", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Pets_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Sports.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_es.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_fr_it_pl.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_fr_it_pl.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_fr_it_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DeptStore_Sports_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DeptStore_Wall.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_de.png:de", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_es.png:es", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_it.png:it", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_ja.png:ja", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DeptStore_Wall_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_DrugStore_Sign.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_de.png:de", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_es_it.png:es", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_es_it.png:it", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_DrugStore_Sign_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_FoodShop_Sign.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_de.png:de", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_es_pt.png:es", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_es_pt.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_it.png:it", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_ja.png:ja", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_FoodShop_Sign_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_Welcome.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_Welcome_de.png:de", "res://Translations/TranslatedTiles/Podunk_Welcome_es.png:es", "res://Translations/TranslatedTiles/Podunk_Welcome_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_Welcome_it.png:it", "res://Translations/TranslatedTiles/Podunk_Welcome_ja_ko.png:ja", "res://Translations/TranslatedTiles/Podunk_Welcome_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_Welcome_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_Welcome_ru.png:ru", "res://Translations/TranslatedTiles/Podunk_Welcome_ja_ko.png:ko" ),
+"res://Translations/TranslatedTiles/Podunk_Zoo.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_Zoo_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Podunk_ZooBuilding.png": PoolStringArray( "res://Translations/TranslatedTiles/Podunk_ZooBuilding_de.png:de", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_es.png:es", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_fr.png:fr", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_it.png:it", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_ko.png:ko", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_pl.png:pl", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Podunk_ZooBuilding_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Reindeer_Station.png": PoolStringArray( "res://Translations/TranslatedTiles/Reindeer_Station_fr.png:fr", "res://Translations/TranslatedTiles/Reindeer_Station_ko.png:ko", "res://Translations/TranslatedTiles/Reindeer_Station_pl.png:pl", "res://Translations/TranslatedTiles/Reindeer_Station_de.png:de", "res://Translations/TranslatedTiles/Reindeer_Station_es.png:es", "res://Translations/TranslatedTiles/Reindeer_Station_it.png:it", "res://Translations/TranslatedTiles/Reindeer_Station_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Reindeer_Station_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_BurgerBuilding.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_BurgerBuilding_de.png:de", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_es.png:es", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_fr.png:fr", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_it.png:it", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_ko.png:ko", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_pl.png:pl", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Shared_BurgerBuilding_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_HospitalBuilding.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_HospitalBuilding_de.png:de", "res://Translations/TranslatedTiles/Shared_HospitalBuilding_fr.png:fr", "res://Translations/TranslatedTiles/Shared_HospitalBuilding_it.png:it", "res://Translations/TranslatedTiles/Shared_HospitalBuilding_ko.png:ko", "res://Translations/TranslatedTiles/Shared_HospitalBuilding_pl.png:pl", "res://Translations/TranslatedTiles/Shared_HospitalBuilding_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_HospitalSafety.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_HospitalSafety_de.png:de", "res://Translations/TranslatedTiles/Shared_HospitalSafety_es.png:es", "res://Translations/TranslatedTiles/Shared_HospitalSafety_fr.png:fr", "res://Translations/TranslatedTiles/Shared_HospitalSafety_it.png:it", "res://Translations/TranslatedTiles/Shared_HospitalSafety_ko.png:ko", "res://Translations/TranslatedTiles/Shared_HospitalSafety_pl.png:pl", "res://Translations/TranslatedTiles/Shared_HospitalSafety_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Shared_HospitalSafety_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_Hotel.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_Hotel_ko.png:ko", "res://Translations/TranslatedTiles/Shared_Hotel_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_HotelBuilding.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_HotelBuilding_ko.png:ko", "res://Translations/TranslatedTiles/Shared_HotelBuilding_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Shared_Stop.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_Stop_es_pt.png:es", "res://Translations/TranslatedTiles/Shared_Stop.png:es_ES", "res://Translations/TranslatedTiles/Shared_Stop_ko.png:ko", "res://Translations/TranslatedTiles/Shared_Stop_ru.png:ru", "res://Translations/TranslatedTiles/Shared_Stop_es_pt.png:pt_BR" ),
+"res://Translations/TranslatedTiles/Shared_StoreBuilding.png": PoolStringArray( "res://Translations/TranslatedTiles/Shared_StoreBuilding_de.png:de", "res://Translations/TranslatedTiles/Shared_StoreBuilding_es.png:es", "res://Translations/TranslatedTiles/Shared_StoreBuilding_fr.png:fr", "res://Translations/TranslatedTiles/Shared_StoreBuilding_it.png:it", "res://Translations/TranslatedTiles/Shared_StoreBuilding_ja.png:ja", "res://Translations/TranslatedTiles/Shared_StoreBuilding_ko.png:ko", "res://Translations/TranslatedTiles/Shared_StoreBuilding_pl.png:pl", "res://Translations/TranslatedTiles/Shared_StoreBuilding_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Shared_StoreBuilding_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Snowman_Inn.png": PoolStringArray( "res://Translations/TranslatedTiles/Snowman_Inn_fr.png:fr", "res://Translations/TranslatedTiles/Snowman_Inn_ko.png:ko", "res://Translations/TranslatedTiles/Snowman_Inn_ja.png:ja", "res://Translations/TranslatedTiles/Snowman_Inn_es.png:es", "res://Translations/TranslatedTiles/Snowman_Inn_de.png:de", "res://Translations/TranslatedTiles/Snowman_Inn_pl.png:pl", "res://Translations/TranslatedTiles/Snowman_Inn_it.png:it", "res://Translations/TranslatedTiles/Snowman_Inn_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Snowman_Inn_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Snowman_Shop.png": PoolStringArray( "res://Translations/TranslatedTiles/Snowman_Shop_fr.png:fr", "res://Translations/TranslatedTiles/Snowman_Shop_ko.png:ko", "res://Translations/TranslatedTiles/Snowman_Shop_es.png:es", "res://Translations/TranslatedTiles/Snowman_Shop_pl.png:pl", "res://Translations/TranslatedTiles/Snowman_Shop_de.png:de", "res://Translations/TranslatedTiles/Snowman_Shop_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Snowman_Shop_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Snowman_Station.png": PoolStringArray( "res://Translations/TranslatedTiles/Snowman_Station_fr.png:fr", "res://Translations/TranslatedTiles/Snowman_Station_ko.png:ko", "res://Translations/TranslatedTiles/Snowman_Station_pl.png:pl", "res://Translations/TranslatedTiles/Snowman_Station_de.png:de", "res://Translations/TranslatedTiles/Snowman_Station_es.png:es", "res://Translations/TranslatedTiles/Snowman_Station_it.png:it", "res://Translations/TranslatedTiles/Snowman_Station_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Snowman_Station_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Door_2F.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_altnum.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Door_2F_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Door_3F.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_altnum.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Door_3F_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Door_CEO.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Door_CEO_de.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Door_CEO_fr.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Door_CEO_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Exit.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Exit_de.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Exit_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Exit_fr.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Exit_it.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Exit_pl.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Exit_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Exit_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Poster.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Poster_de.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Poster_es_pl_pt.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Poster_fr.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Poster_it.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Poster_ko.png:ko", "res://Translations/TranslatedTiles/Zoo_Office_Poster_es_pl_pt.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Poster_es_pl_pt.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Poster_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_de.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_fr.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_it.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_pl.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_de.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_fr.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_it.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_pl.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_pt_BR.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_1F_Broken_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_generic.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_generic.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_generic.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_generic.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_generic.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_generic.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_generic.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_generic.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_generic.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_generic.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_2F_Broken_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_generic.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_generic.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_generic.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_generic.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_generic.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_ru.png:ru" ),
+"res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken.png": PoolStringArray( "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_generic.png:de", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_es.png:es", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_generic.png:fr", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_generic.png:it", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_generic.png:pl", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_generic.png:pt_BR", "res://Translations/TranslatedTiles/Zoo_Office_Stairs_3F_Broken_ru.png:ru" )
+}
+locale_filter=[ 1, [ "de", "en", "es", "es_ES", "fr", "it", "ja", "ko", "pl", "pt_BR", "ru" ] ]
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=16384
 
 [physics]
 

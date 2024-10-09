@@ -1,11 +1,11 @@
 {
-	"0": {
-		"name": "Mick",
-		"text": "(I can smell some Dog Treats in the basement.",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mick",
-		"text": "If you fetch them for me, I'll let you go.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WOOF_DEAL_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_DEAL_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_WOOF_DEAL_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_DEAL_1"
+    }
 }

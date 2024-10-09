@@ -92,24 +92,16 @@ centered = false
 hframes = 8
 vframes = 10
 
-[node name="Highlight" type="TextureRect" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.196078 )
-material = ExtResource( 5 )
-margin_right = 71.0
-margin_bottom = 49.0
-texture = ExtResource( 9 )
-
 [node name="BasicPlate" type="TextureRect" parent="."]
 visible = false
 material = ExtResource( 5 )
-margin_left = -3.0
+margin_left = -5.0
 margin_right = 68.0
 margin_bottom = 49.0
 texture = ExtResource( 8 )
 
 [node name="MaxHP" type="Label" parent="BasicPlate"]
-margin_left = 19.0
+margin_left = 23.0
 margin_top = 17.0
 margin_right = 66.0
 margin_bottom = 28.0
@@ -118,7 +110,7 @@ text = "200/900"
 align = 1
 
 [node name="MaxPP" type="Label" parent="BasicPlate"]
-margin_left = 19.0
+margin_left = 23.0
 margin_top = 29.0
 margin_right = 66.0
 margin_bottom = 40.0
@@ -126,13 +118,27 @@ custom_fonts/font = ExtResource( 7 )
 text = "20/900"
 align = 1
 
+[node name="Highlight" type="NinePatchRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.196078 )
+material = ExtResource( 5 )
+anchor_right = 1.0
+margin_bottom = 49.0
+texture = ExtResource( 9 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
 [node name="Name" type="Label" parent="."]
+margin_left = -4.0
 margin_top = 1.0
-margin_right = 65.0
+margin_right = 71.0
 margin_bottom = 16.0
+grow_horizontal = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
-text = "WWWWWWW"
+text = "ŒŒŒŒŒŒŒŒ"
 align = 1
 valign = 1
 

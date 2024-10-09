@@ -1,58 +1,58 @@
 {
     "0": {
-		"sound": "Adult",
-		"text": "PartyLead!",
-		"goto" : "1"
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_0",
+        "goto": "1"
     },
-	"1": {
-		"sound": "Adult",
-		"text": "It looks like you got your head handed to you.",
-		"goto" : "2"
+    "1": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_1",
+        "goto": "2"
     },
     "2": {
-		"sound": "Adult",
-		"text": "So, how about giving it another shot?",
-		"options": {
-			"Yes": "8",
-			"No": "3",
-			"cancel": "3"
-		}
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_2",
+        "options": {
+            "DIALOGUE_GAMEOVER_2-OPT_0": "8",
+            "DIALOGUE_GAMEOVER_2-OPT_1": "3",
+            "cancel": "3"
+        }
     },
-	"3": {
-		"sound": "Adult",
-		"text": "Are you sure?",
-		"goto": "4"
+    "3": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_3",
+        "goto": "4"
     },
     "4": {
-		"sound": "Adult",
-		"text": "The next time you start your adventure, you'll begin where you last saved.",
-		"goto": "5"
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_4",
+        "goto": "5"
     },
     "5": {
-		"sound": "Adult",
-		"text": "Is that okay?",
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_5",
         "options": {
-			"Yes": "6",
-			"No": "2",
-			"cancel": "2"
-		}
+            "DIALOGUE_GAMEOVER_5-OPT_0": "6",
+            "DIALOGUE_GAMEOVER_5-OPT_1": "2",
+            "cancel": "2"
+        }
     },
-	"6": {
-		"sound": "Adult",
-		"text": "It must have all just been a bad dream.",
-		"goto": "7"
+    "6": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_6",
+        "goto": "7"
     },
-	"7": {
-		"sound": "Adult",
-		"text": "See you, PartyLead!"
+    "7": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_7"
     },
-	"8": {
-		"sound": "Adult",
-		"text": "PartyLead decided to return after summoning all the courage and energy he had.",
-		"goto": "9"
+    "8": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_8",
+        "goto": "9"
     },
-	"9": {
-		"sound": "Adult",
-		"text": "Good luck, PartyLead!"
+    "9": {
+        "sound": "Adult",
+        "text": "DIALOGUE_GAMEOVER_9"
     }
 }

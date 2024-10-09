@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=2]
@@ -7,6 +7,69 @@
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Ui/SkillsMenuUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Graphics/UI/Ailments/Mushroomized.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/Ailments/Cold.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/UI/Ailments/Asthma_monospace.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/UI/Ailments/Nausea_monospace.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/UI/Ailments/Sunstroked_monospace.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/UI/Ailments/Confused_monospace.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/UI/Ailments/Poisoned_monospace.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/UI/Overworld/note.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/UI/Ailments/Numb_monospace.png" type="Texture" id=18]
+[ext_resource path="res://Graphics/UI/Ailments/Burned.png" type="Texture" id=19]
+[ext_resource path="res://Graphics/UI/Ailments/Blinded_monospace.png" type="Texture" id=20]
+[ext_resource path="res://Graphics/UI/Ailments/Sleeping_monospace.png" type="Texture" id=21]
+[ext_resource path="res://Graphics/UI/Ailments/Forgetful_monospace.png" type="Texture" id=22]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 12 )
+region = Rect2( 3, 0, 13, 11 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 20 )
+region = Rect2( 1, 0, 16, 11 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 19 )
+region = Rect2( 1, 0, 7, 11 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 11 )
+region = Rect2( 1, 0, 7, 12 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 3, 0, 13, 11 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 22 )
+region = Rect2( 4, 0, 10, 11 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 9, 10 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 13 )
+region = Rect2( 1, 0, 16, 12 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 18 )
+region = Rect2( 4, 0, 11, 12 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 16 )
+region = Rect2( 2, 0, 14, 12 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 21 )
+region = Rect2( 2, 0, 14, 12 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 14 )
+region = Rect2( 3, 0, 13, 11 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Close"
@@ -97,6 +160,18 @@ tracks/1/keys = {
 offset = Vector2( 0, -180 )
 transform = Transform2D( 1, 0, 0, 1, 0, -180 )
 script = ExtResource( 3 )
+anim = NodePath("AnimationPlayer")
+label_name = NodePath("Stats/Header/Name")
+label_hp = NodePath("Stats/Body/Left/Top/Values/HP")
+label_pp = NodePath("Stats/Body/Left/Top/Values/PP")
+box_stats = NodePath("Stats/Body/Left/Bottom/Values")
+label_level = NodePath("Stats/Body/Right/Top/Values/level")
+label_exp = NodePath("Stats/Body/Right/Top/Values/points")
+box_equip = NodePath("Stats/Body/Right/Middle/Values")
+box_ailments = NodePath("Stats/Header/Ailments")
+label_unconscious = NodePath("Stats/Header/unconscious")
+panel_select = NodePath("PartySelect")
+panel_skills = NodePath("Skills")
 
 [node name="Stats" type="NinePatchRect" parent="."]
 visible = false
@@ -104,7 +179,7 @@ material = ExtResource( 2 )
 margin_left = 33.0
 margin_top = 23.0
 margin_right = 288.0
-margin_bottom = 152.0
+margin_bottom = 166.0
 rect_pivot_offset = Vector2( 40, -10 )
 texture = ExtResource( 4 )
 patch_margin_left = 8
@@ -112,197 +187,654 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Name" type="Label" parent="Stats"]
-margin_left = 8.0
-margin_top = 10.0
-margin_right = 73.0
-margin_bottom = 24.0
+[node name="Header" type="HBoxContainer" parent="Stats"]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 6.0
+margin_right = -8.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="Name" type="Label" parent="Stats/Header"]
+margin_right = 27.0
+margin_bottom = 16.0
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "Ninten"
+valign = 2
 
-[node name="statuses" type="Label" parent="Stats/Name"]
-margin_left = 69.0
-margin_right = 241.0
+[node name="Spacer" type="Control" parent="Stats/Header"]
+margin_left = 31.0
+margin_right = 31.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="Ailments" type="HBoxContainer" parent="Stats/Header"]
+margin_left = 35.0
+margin_top = 2.0
+margin_right = 211.0
 margin_bottom = 14.0
-rect_pivot_offset = Vector2( 11, 9 )
+size_flags_vertical = 4
+custom_constants/separation = 3
+alignment = 2
+
+[node name="asthma" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_top = 1.0
+margin_right = 13.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 5 )
+stretch_mode = 3
+
+[node name="blinded" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 16.0
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 12 )
+stretch_mode = 3
+
+[node name="burned" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 35.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 13 )
+stretch_mode = 3
+
+[node name="cold" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 45.0
+margin_right = 52.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 10 )
+stretch_mode = 3
+
+[node name="confused" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 55.0
+margin_top = 1.0
+margin_right = 68.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 6 )
+stretch_mode = 3
+
+[node name="forgetful" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 71.0
+margin_top = 1.0
+margin_right = 81.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 14 )
+stretch_mode = 3
+
+[node name="mushroomized" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 84.0
+margin_top = 2.0
+margin_right = 93.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 11 )
+stretch_mode = 3
+
+[node name="nausea" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 96.0
+margin_right = 112.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 7 )
+stretch_mode = 3
+
+[node name="numb" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 115.0
+margin_right = 126.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 15 )
+stretch_mode = 3
+
+[node name="poisoned" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 129.0
+margin_right = 143.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 8 )
+stretch_mode = 3
+
+[node name="sleeping" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 146.0
+margin_right = 160.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 16 )
+stretch_mode = 3
+
+[node name="sunstroked" type="TextureRect" parent="Stats/Header/Ailments"]
+margin_left = 163.0
+margin_top = 1.0
+margin_right = 176.0
+margin_bottom = 12.0
+size_flags_vertical = 8
+texture = SubResource( 9 )
+stretch_mode = 3
+
+[node name="unconscious" type="Label" parent="Stats/Header"]
+margin_left = 215.0
+margin_top = 4.0
+margin_right = 322.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
 custom_fonts/font = ExtResource( 5 )
-text = "Statuses"
-align = 1
-autowrap = true
+text = "AILMENT_UNCONSCIOUS"
+valign = 2
 
-[node name="stats" parent="Stats" instance=ExtResource( 7 )]
-self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+[node name="Spacer2" type="Control" parent="Stats/Header"]
+visible = false
+margin_left = 253.0
+margin_right = 253.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="Melodies" type="HBoxContainer" parent="Stats/Header"]
+visible = false
+margin_left = 253.0
+margin_right = 337.0
+margin_bottom = 16.0
+
+[node name="Note1" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.972549, 0.784314, 0.658824, 1 )
+margin_top = 4.0
+margin_right = 7.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note2" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.972549, 0.972549, 0, 1 )
+margin_left = 11.0
+margin_top = 4.0
+margin_right = 18.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note3" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.635294, 0.313726, 0.266667, 1 )
+margin_left = 22.0
+margin_top = 4.0
+margin_right = 29.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note4" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.266667, 0.266667, 0.266667, 1 )
+margin_left = 33.0
+margin_top = 4.0
+margin_right = 40.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note5" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.333333, 0.521569, 0.121569, 1 )
+margin_left = 44.0
+margin_top = 4.0
+margin_right = 51.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note6" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.866667, 0.2, 0.12549, 1 )
+margin_left = 55.0
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note7" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.67451, 0.0235294, 0.184314, 1 )
+margin_left = 66.0
+margin_top = 4.0
+margin_right = 73.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Note8" type="TextureRect" parent="Stats/Header/Melodies"]
+modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+margin_left = 77.0
+margin_top = 4.0
+margin_right = 84.0
+margin_bottom = 12.0
+size_flags_vertical = 4
+texture = ExtResource( 17 )
+
+[node name="Body" type="HBoxContainer" parent="Stats"]
 margin_left = 10.0
-margin_top = 25.0
-margin_right = 60.0
-margin_bottom = 121.0
-custom_constants/line_spacing = 2
-text = "HP
-PP
-Offense
-Defense
-Speed
-IQ
-Guts"
+margin_top = 24.0
+margin_right = 249.0
+margin_bottom = 141.0
+custom_constants/separation = 14
 
-[node name="HP" type="Label" parent="Stats/stats"]
-margin_left = 39.0
-margin_top = -2.0
-margin_right = 111.0
-margin_bottom = 9.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999 / 999"
-align = 2
+[node name="Left" type="VBoxContainer" parent="Stats/Body"]
+margin_right = 115.0
+margin_bottom = 117.0
+rect_min_size = Vector2( 85, 0 )
+size_flags_horizontal = 3
+custom_constants/separation = 0
 
-[node name="PP" type="Label" parent="Stats/stats"]
-margin_left = 39.0
-margin_top = 12.0
-margin_right = 111.0
-margin_bottom = 23.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999 / 999"
-align = 2
+[node name="Top" type="HBoxContainer" parent="Stats/Body/Left"]
+margin_right = 115.0
+margin_bottom = 28.0
+size_flags_vertical = 0
+custom_constants/separation = 4
 
-[node name="offense" type="Label" parent="Stats/stats"]
-margin_left = 89.0
-margin_top = 26.0
-margin_right = 111.0
-margin_bottom = 37.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999"
-align = 2
+[node name="Labels" type="VBoxContainer" parent="Stats/Body/Left/Top"]
+margin_right = 43.0
+margin_bottom = 28.0
+size_flags_vertical = 0
+custom_constants/separation = 2
 
-[node name="defense" type="Label" parent="Stats/stats"]
-margin_left = 89.0
-margin_top = 40.0
-margin_right = 111.0
-margin_bottom = 51.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999"
-align = 2
+[node name="Spacer" type="Control" parent="Stats/Body/Left/Top/Labels"]
+margin_right = 43.0
 
-[node name="speed" type="Label" parent="Stats/stats"]
-margin_left = 89.0
-margin_top = 54.0
-margin_right = 111.0
-margin_bottom = 65.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999"
-align = 2
-
-[node name="IQ" type="Label" parent="Stats/stats"]
-margin_left = 89.0
-margin_top = 68.0
-margin_right = 111.0
-margin_bottom = 79.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999"
-align = 2
-
-[node name="guts" type="Label" parent="Stats/stats"]
-margin_left = 89.0
-margin_top = 82.0
-margin_right = 111.0
-margin_bottom = 93.0
-custom_constants/line_spacing = 2
-custom_fonts/font = ExtResource( 6 )
-text = "999"
-align = 2
-
-[node name="stats2" parent="Stats" instance=ExtResource( 7 )]
+[node name="HP" parent="Stats/Body/Left/Top/Labels" instance=ExtResource( 7 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
-margin_left = 127.0
-margin_top = 25.0
-margin_right = 177.0
-margin_bottom = 121.0
-custom_constants/line_spacing = 2
-text = "Level
-EXP
-Weapon
-Body
-Head
-Other
-"
+margin_top = 2.0
+margin_right = 43.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 1
+text = "STAT_HP"
 
-[node name="level" type="Label" parent="Stats/stats2"]
-margin_left = 99.0
-margin_top = -2.0
-margin_right = 121.0
-margin_bottom = 9.0
+[node name="PP" parent="Stats/Body/Left/Top/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 16.0
+margin_right = 43.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_PP"
+
+[node name="Values" type="VBoxContainer" parent="Stats/Body/Left/Top"]
+margin_left = 47.0
+margin_right = 115.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 68, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/separation = 2
+
+[node name="HP" type="Label" parent="Stats/Body/Left/Top/Values"]
+margin_right = 68.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_vertical = 6
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999 / 999"
+align = 2
+
+[node name="PP" type="Label" parent="Stats/Body/Left/Top/Values"]
+margin_top = 14.0
+margin_right = 68.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 3
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999 / 999"
+align = 2
+
+[node name="Bottom" type="HBoxContainer" parent="Stats/Body/Left"]
+margin_top = 28.0
+margin_right = 115.0
+margin_bottom = 98.0
+custom_constants/separation = 4
+
+[node name="Labels" type="VBoxContainer" parent="Stats/Body/Left/Bottom"]
+margin_right = 69.0
+margin_bottom = 70.0
+size_flags_vertical = 0
+custom_constants/separation = 2
+
+[node name="Spacer" type="Control" parent="Stats/Body/Left/Bottom/Labels"]
+margin_right = 69.0
+
+[node name="offense" parent="Stats/Body/Left/Bottom/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 2.0
+margin_right = 69.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_OFFENSE"
+
+[node name="defense" parent="Stats/Body/Left/Bottom/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 16.0
+margin_right = 69.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_DEFENSE"
+
+[node name="speed" parent="Stats/Body/Left/Bottom/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 30.0
+margin_right = 69.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_SPEED"
+
+[node name="iq" parent="Stats/Body/Left/Bottom/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 44.0
+margin_right = 69.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_IQ"
+
+[node name="guts" parent="Stats/Body/Left/Bottom/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 58.0
+margin_right = 69.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_GUTS"
+
+[node name="Values" type="VBoxContainer" parent="Stats/Body/Left/Bottom"]
+margin_left = 73.0
+margin_right = 115.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/separation = 2
+
+[node name="offense" type="Label" parent="Stats/Body/Left/Bottom/Values"]
+margin_right = 42.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="defense" type="Label" parent="Stats/Body/Left/Bottom/Values"]
+margin_top = 14.0
+margin_right = 42.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 3
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="speed" type="Label" parent="Stats/Body/Left/Bottom/Values"]
+margin_top = 28.0
+margin_right = 42.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 3
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="iq" type="Label" parent="Stats/Body/Left/Bottom/Values"]
+margin_top = 42.0
+margin_right = 42.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 3
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="guts" type="Label" parent="Stats/Body/Left/Bottom/Values"]
+margin_top = 56.0
+margin_right = 42.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 3
+custom_constants/line_spacing = 2
+custom_fonts/font = ExtResource( 6 )
+text = "999"
+align = 2
+
+[node name="Right" type="VBoxContainer" parent="Stats/Body"]
+margin_left = 129.0
+margin_right = 270.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Top" type="HBoxContainer" parent="Stats/Body/Right"]
+margin_right = 141.0
+margin_bottom = 28.0
+custom_constants/separation = 0
+
+[node name="Labels" type="VBoxContainer" parent="Stats/Body/Right/Top"]
+margin_right = 58.0
+margin_bottom = 28.0
+custom_constants/separation = 2
+
+[node name="Spacer" type="Control" parent="Stats/Body/Right/Top/Labels"]
+margin_right = 58.0
+
+[node name="level" parent="Stats/Body/Right/Top/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 2.0
+margin_right = 58.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 1
+text = "STAT_LEVEL"
+
+[node name="points" parent="Stats/Body/Right/Top/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 16.0
+margin_right = 58.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "STAT_EXP"
+
+[node name="Values" type="VBoxContainer" parent="Stats/Body/Right/Top"]
+margin_left = 58.0
+margin_right = 140.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_constants/separation = 2
+
+[node name="level" type="Label" parent="Stats/Body/Right/Top/Values"]
+margin_right = 82.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 0, 12 )
 custom_constants/line_spacing = 2
 custom_fonts/font = ExtResource( 6 )
 text = "99"
 align = 2
 
-[node name="points" type="Label" parent="Stats/stats2"]
-margin_left = 18.0
-margin_top = 12.0
-margin_right = 121.0
-margin_bottom = 26.0
+[node name="points" type="Label" parent="Stats/Body/Right/Top/Values"]
+margin_top = 14.0
+margin_right = 82.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 6 )
-text = "999999/999999"
+text = "99999/999999"
 align = 2
 
-[node name="weapon" type="Label" parent="Stats/stats2"]
-margin_left = 37.0
+[node name="Spacer" type="Control" parent="Stats/Body/Right/Top"]
+margin_left = 140.0
+margin_right = 141.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 1, 0 )
+
+[node name="Control" type="Control" parent="Stats/Body/Right"]
+visible = false
 margin_top = 28.0
-margin_right = 122.0
+margin_right = 141.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 0, 14 )
+
+[node name="Middle" type="HBoxContainer" parent="Stats/Body/Right"]
+margin_top = 28.0
+margin_right = 141.0
+margin_bottom = 84.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Labels" type="VBoxContainer" parent="Stats/Body/Right/Middle"]
+margin_right = 69.0
+margin_bottom = 56.0
+custom_constants/separation = 2
+
+[node name="Spacer" type="Control" parent="Stats/Body/Right/Middle/Labels"]
+margin_right = 69.0
+
+[node name="weapon" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 2.0
+margin_right = 69.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "EQUIP_WEAPON"
+
+[node name="body" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 16.0
+margin_right = 69.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "EQUIP_BODY"
+
+[node name="head" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 30.0
+margin_right = 69.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "EQUIP_HEAD"
+
+[node name="other" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
+self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
+margin_top = 44.0
+margin_right = 69.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 12, 0 )
+size_flags_vertical = 5
+text = "EQUIP_OTHER"
+
+[node name="Spacer" type="Control" parent="Stats/Body/Right/Middle"]
+margin_left = 69.0
+margin_right = 79.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 10, 0 )
+size_flags_horizontal = 0
+
+[node name="Values" type="VBoxContainer" parent="Stats/Body/Right/Middle"]
+margin_left = 79.0
+margin_right = 139.0
+margin_bottom = 56.0
+size_flags_horizontal = 11
+size_flags_vertical = 2
+custom_constants/separation = 2
+
+[node name="Spacer" type="Control" parent="Stats/Body/Right/Middle/Values"]
+size_flags_horizontal = 0
+
+[node name="weapon" type="Label" parent="Stats/Body/Right/Middle/Values"]
+margin_top = 2.0
+margin_right = 54.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 11, 9 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 5 )
+text = "EQUIP_NONE"
+
+[node name="body" type="Label" parent="Stats/Body/Right/Middle/Values"]
+margin_top = 16.0
+margin_right = 54.0
+margin_bottom = 28.0
+rect_pivot_offset = Vector2( 11, 9 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 5 )
+text = "EQUIP_NONE"
+
+[node name="head" type="Label" parent="Stats/Body/Right/Middle/Values"]
+margin_top = 30.0
+margin_right = 54.0
 margin_bottom = 42.0
 rect_pivot_offset = Vector2( 11, 9 )
+size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
-text = "None"
+text = "EQUIP_NONE"
 
-[node name="body" type="Label" parent="Stats/stats2"]
-margin_left = 37.0
-margin_top = 42.0
-margin_right = 122.0
+[node name="other" type="Label" parent="Stats/Body/Right/Middle/Values"]
+margin_top = 44.0
+margin_right = 54.0
 margin_bottom = 56.0
 rect_pivot_offset = Vector2( 11, 9 )
+size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
-text = "None"
+text = "EQUIP_NONE"
 
-[node name="head" type="Label" parent="Stats/stats2"]
-margin_left = 37.0
-margin_top = 56.0
-margin_right = 122.0
-margin_bottom = 70.0
-rect_pivot_offset = Vector2( 11, 9 )
-custom_fonts/font = ExtResource( 5 )
-text = "None"
+[node name="Spacer2" type="Control" parent="Stats/Body/Right/Middle"]
+margin_left = 139.0
+margin_right = 141.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 2, 0 )
 
-[node name="other" type="Label" parent="Stats/stats2"]
-margin_left = 37.0
-margin_top = 70.0
-margin_right = 122.0
-margin_bottom = 84.0
-rect_pivot_offset = Vector2( 11, 9 )
-custom_fonts/font = ExtResource( 5 )
-text = "None"
+[node name="Bottom" type="HBoxContainer" parent="Stats"]
+anchor_right = 1.0
+margin_top = 122.0
+margin_bottom = 133.0
+alignment = 1
 
-[node name="skills" type="Label" parent="Stats/stats2"]
-visible = false
-margin_top = 84.0
-margin_right = 122.0
-margin_bottom = 98.0
+[node name="skills" type="Label" parent="Stats/Bottom"]
+margin_left = 79.0
+margin_right = 164.0
+margin_bottom = 11.0
 rect_pivot_offset = Vector2( 11, 9 )
-custom_fonts/font = ExtResource( 5 )
-text = "Press Z to see Skills"
-align = 1
+custom_fonts/font = ExtResource( 6 )
+text = "MENU_SKILLS"
+align = 2
+
+[node name="ButtonText" parent="Stats/Bottom" instance=ExtResource( 8 )]
+margin_left = 168.0
+margin_right = 176.0
+key = "ui_accept"
 
 [node name="PartySelect" parent="." instance=ExtResource( 1 )]
 margin_left = 33.0
 margin_right = 288.0
-menuName = "Status"
+menuName = "MENU_TITLE_STATUS"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 2 )
 anims/Open = SubResource( 3 )
 anims/RESET = SubResource( 4 )
+
+[node name="Skills" parent="." instance=ExtResource( 9 )]
+visible = false
+margin_top = -90.0
+margin_bottom = 76.0
 
 [connection signal="character_changed" from="PartySelect" to="." method="_on_InventorySelect_character_changed"]

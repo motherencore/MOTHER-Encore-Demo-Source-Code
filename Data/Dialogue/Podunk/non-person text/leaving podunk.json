@@ -1,5 +1,5 @@
 {
-	"0": {
-		"text": "You are now leaving Podunk. Goodbye!"
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_LEAVING_PODUNK_0"
+    }
 }

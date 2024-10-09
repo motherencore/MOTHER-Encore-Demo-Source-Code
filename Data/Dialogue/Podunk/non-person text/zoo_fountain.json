@@ -1,19 +1,19 @@
 {
-	"0": {
-		"text": "Drink from the water fountain?",
-		"options": {
-			"Yes": "1",
-			"No": "2",
-			"cancel": "2"
-		}
-	},
-	"1": {
-		"givestatus":{
-			"ninten": "poisoned"
-		},
-		"text": "You suddenly don't feel well."
-	},
-	"2": {
-		"text": "That's probably for the best."
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_0",
+        "options": {
+            "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_0-OPT_0": "1",
+            "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_0-OPT_1": "2",
+            "cancel": "2"
+        }
+    },
+    "1": {
+        "givestatus": {
+            "ninten": "poisoned"
+        },
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_1"
+    },
+    "2": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_2"
+    }
 }

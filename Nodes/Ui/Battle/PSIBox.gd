@@ -1,80 +1,80 @@
 extends "res://Scripts/UI/Battle/BattleMenuBox.gd"
 
-export (NodePath) var infoBox
+export (NodePath) var info_box
 
-const skillList = {
-	"Offense": [],
-	"Recovery": [],
-	"Assist": []
+onready var animation_player = $AnimationPlayer
+
+const CAT_OFFENSE = "Offense"
+const CAT_RECOVERY = "Recovery"
+const CAT_ASSIST = "Assist"
+
+const skill_list = {
+	CAT_OFFENSE: [],
+	CAT_RECOVERY: [],
+	CAT_ASSIST: []
 }
 
-var soundEffects = {
+var sound_effects = {
 	"back": load("res://Audio/Sound effects/M3/curshoriz.wav")
 }
 
-var categories = ["Offense", "Recovery", "Assist"]
-var infoOnScreen = true
-var infoScreenPosition
+var categories = [CAT_OFFENSE, CAT_RECOVERY, CAT_ASSIST]
+
+var recent_choice_cat = {}
+var recent_choice_pagination = {}
+var recent_choice_psi = {}
+var current_chara
 
 func _ready():
-	infoBox = get_node_or_null(infoBox)
-	if infoBox:
-		infoScreenPosition = infoBox.rect_position 
+	info_box = get_node_or_null(info_box)
 	$PSISelect.connect("selected", self, "selectSkill")
-	$PSISelect.connect("moved", self, "updateInfoBox")
+	$PSISelect.connect("moved", self, "_on_cursor_moved_to_psi")
 
 func _input(event):
 	if visible and $PSISelect._active:
-		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
+		if Input.is_action_just_pressed("ui_cancel"):
 			Input.action_release("ui_cancel")
-			Input.action_release("ui_toggle")
 			get_tree().set_input_as_handled()
-			audioManager.play_sfx(soundEffects["back"], "BattleSfx")
+			audioManager.play_sfx(sound_effects["back"], "BattleSfx")
 			
-			$PSISelect.setActive(false)
+			$PSISelect.set_active(false)
 			$PSISelect.set_PP_visible(false)
 			cursor.on = true
-			if infoBox != null:
-				infoBox.hide()
-		if event.is_action_pressed("ui_ctrl") and infoBox:
-			if infoOnScreen:
-				# go off screen
-				$Tween.stop_all()
-				$Tween.remove_all()
-				$Tween.interpolate_property(infoBox, "rect_position:y", \
-					infoScreenPosition.y, infoScreenPosition.y + 60, 0.25, \
-					Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
-				$Tween.start()
-			else:
-				#go on screen
-				$Tween.stop_all()
-				$Tween.remove_all()
-				$Tween.interpolate_property(infoBox, "rect_position:y", \
-					infoBox.rect_position.y, infoScreenPosition.y, 0.25, \
-					Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
-				$Tween.start()
-			infoOnScreen = !infoOnScreen
+			if info_box != null and info_box.infoOnScreen:
+				info_box.deactivate()
+				#info_box.hide()
 
 func enter(reset = false, _action = null):
 	.enter(reset, _action)
+	animation_player.play("Open")
 	if reset:
 		# set user here so psi select knows when the user doesn't have enough pp
 		$PSISelect.user = action.user.stats
+		current_chara = action.user.stats.name
 		updatePSI(action.user.stats.learnedSkills)
-		if skillList.Offense.size() > 0:
-			cursor.set_cursor_from_index(0, false)
-		elif skillList.Recovery.size() > 0:
-			cursor.set_cursor_from_index(1, false)
-		elif skillList.Assist.size() > 0:
-			cursor.set_cursor_from_index(2, false)
+		
+		yield(get_tree(), "idle_frame")
+		
+		#Default on Recovery first for quick access to Lifeup (YOU'RE WELCOME)
+		var cur_idx = 0
+		if recent_choice_cat.has(current_chara):
+			cur_idx = recent_choice_cat[current_chara]
 		else:
-			cursor.set_cursor_from_index(0, false)
+			for i in [CAT_RECOVERY, CAT_OFFENSE, CAT_ASSIST]:
+				if skill_list[i].size() > 0:
+					cur_idx = categories.find(i)
+					break
+		cursor.set_cursor_from_index(cur_idx, false)
+		
 		updateSkillsBox()
-		$PSISelect.setActive(false)
-		$PSISelect.set_PP_visible(false)
+		$PSISelect.set_active(false)
+		$PSISelect.set_PP_visible(false, false)
+		if info_box != null:
+			info_box.deactivate()
 	else:
-		$PSISelect.setActive(true, false)
+		$PSISelect.set_active(true, false)
 		$PSISelect.set_PP_visible(true)
+		info_box.activate()
 		cursor.on = false
 
 func exit():
@@ -82,61 +82,83 @@ func exit():
 	$PSISelect.reset()
 
 func hide():
+	if visible:
+		animation_player.play("Close")
 	.hide()
-	if infoBox != null:
-		infoBox.hide()
+	if info_box != null:
+		info_box.deactivate()
+		#info_box.hide()
 
 func move(dir):
+	recent_choice_cat[current_chara] = cursor.cursor_index
 	updateSkillsBox()
 
 func select(idx):
 	# first, check if there's even a skill here lmao
-	if skillList[categories[cursor.cursor_index]].empty():
+	if skill_list[categories[cursor.cursor_index]].empty():
 		return
 	cursor.on = false
-	$PSISelect.setActive(true, false)
+	if recent_choice_psi.has(current_chara) and recent_choice_psi[current_chara].category == categories[cursor.cursor_index]:
+		$PSISelect.set_cursor_to_skill(recent_choice_psi[current_chara])
+	else:
+		$PSISelect.set_cursor_to_skill(null)
+	
+	$PSISelect.set_active(true, false)
 	$PSISelect.set_PP_visible(true)
-	if infoBox != null:
-		infoBox.show()
+	if info_box != null:
+		info_box.activate()
 
 func updatePSI(skills):
 	#clear skills
-	skillList["Offense"].clear()
-	skillList["Recovery"].clear()
-	skillList["Assist"].clear()
+	for i in skill_list:
+		skill_list[i].clear()
 	for skillName in skills:
 		var skill = globaldata.skills[skillName]
 		if skill.has("category"):
 			if skill.useCases > -1: # -1 is field only
-				skillList[skill.category].append(skillName)
-	if skillList["Offense"].empty():
-		$VBox/Label1.set_self_modulate(Color("bfb4cd"))
+				skill_list[skill.category].append(skillName)
+	if skill_list[CAT_OFFENSE].empty():
+		$VBox/Label1.hide()
+		#$VBox/Label1.set_self_modulate(Color("bfb4cd"))
 	else:
-		$VBox/Label1.set_self_modulate(Color.white)
-	if skillList["Recovery"].empty():
-		$VBox/Label2.set_self_modulate(Color("bfb4cd"))
+		$VBox/Label1.show()
+		#$VBox/Label1.set_self_modulate(Color.white)
+	if skill_list[CAT_RECOVERY].empty():
+		$VBox/Label2.hide()
+		#$VBox/Label2.set_self_modulate(Color("bfb4cd"))
 	else:
-		$VBox/Label2.set_self_modulate(Color.white)
-	if skillList["Assist"].empty():
-		$VBox/Label3.set_self_modulate(Color("bfb4cd"))
+		$VBox/Label2.show()
+		#$VBox/Label2.set_self_modulate(Color.white)
+	if skill_list[CAT_ASSIST].empty():
+		$VBox/Label3.hide()
+		#$VBox/Label3.set_self_modulate(Color("bfb4cd"))
 	else:
-		$VBox/Label3.set_self_modulate(Color.white)
+		$VBox/Label3.show()
+		#$VBox/Label3.set_self_modulate(Color.white)
 
 func updateSkillsBox():
+	var psi_select_page = 0
+	if recent_choice_pagination.has(current_chara) and recent_choice_psi[current_chara].category == categories[cursor.cursor_index]:
+		psi_select_page = recent_choice_pagination[current_chara]
 	var category = categories[cursor.cursor_index]
-	$PSISelect.updateSkills(skillList[category])
+	$PSISelect.updateSkills(skill_list[category], psi_select_page)
 
 func selectSkill(skill):
-	$PSISelect.setActive(false, false)
+	$PSISelect.set_active(false, false)
 	$PSISelect.set_PP_visible(false)
+	if info_box != null:
+		info_box.deactivate()
 	action.skill = skill
 	emit_signal("next")
 
-func updateInfoBox(skill):
-	if infoBox != null:
+func _on_cursor_moved_to_psi(skill):
+	if $PSISelect.is_active():
+		recent_choice_pagination[current_chara] = $PSISelect.page
+		recent_choice_psi[current_chara] = skill
+	if info_box != null:
 		var category = categories[cursor.cursor_index]
-		infoBox.get_child(0).text = skill.description
+		info_box.update_info(tr(skill.description))
 
-
-func _on_Arrow_moved_direction(dir):
-	move(dir)
+# useless?
+#func _on_Arrow_moved_direction(dir):
+#	move(dir)

@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name":"Marshal",
-		"text":"See for yourself, all the animals have escaped.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Marshal",
-		"text":"Sigh... Hopefully we'll have a new pet to sell soon.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MARSHAL_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_MARSHAL_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MARSHAL_SPEAKER_Marshal",
+        "text": "DIALOGUE_PODUNK_MARSHAL_1",
+        "sound": "Adult"
+    }
 }

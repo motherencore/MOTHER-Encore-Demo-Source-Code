@@ -3,5 +3,6 @@
 [ext_resource path="res://Fonts/saturnBoing.ttf" type="DynamicFontData" id=1]
 
 [resource]
-extra_spacing_bottom = 2
+extra_spacing_top = -2
+extra_spacing_bottom = -1
 font_data = ExtResource( 1 )

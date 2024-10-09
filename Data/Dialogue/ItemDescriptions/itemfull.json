@@ -1,5 +1,5 @@
 {
-	"0": {
-		"text":"Your inventory's full..."
-	}
+    "0": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_ITEMFULL_0"
+    }
 }

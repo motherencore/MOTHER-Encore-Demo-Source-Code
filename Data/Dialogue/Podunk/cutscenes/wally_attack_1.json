@@ -1,165 +1,190 @@
 {
-	"0": {
-		"actors": {
-			"wally": "Objects/NPCS/npc25",
-			"ninten": "leader",
-			"pippi": "pippi",
-			"chick": "canarychick"
-		},
-		"music": "",
-		"name": "???",
-		"text": "Who's there?!",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"actorsmove": {
-			"wally": {
-				"movement": [{"x": -36, "y": 0}, {"x": 0, "y": 32}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			},
-			"ninten": {
-				"movement": [{"x": -434, "y": 548}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "position"
-			},
-			"pippi": {
-				"movement": [{"x": -414, "y": 548}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "position"
-			},
-			"chick": {
-				"movement": [{"x": -424, "y": 554}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "position"
-			}
-		},
-		"changecam": "",
-		"movecam": {
-			"x": -424,
-			"y": 532,
-			"length": 1
-		},
-		"showbox": false,
-		"wait": 1,
-		"autoadvance": true,
-		"goto": "2"
-	},
-	"2": {
-		"actorsturn": {
-			"ninten": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.1
-			},
-			"pippi": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.1
-			},
-			"chick": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.1
-			}
-		},
-		"emoteactors": {
-			"pippi": "sweat"
-		},
-		"showbox": false,
-		"wait": 0.5,
-		"autoadvance": true,
-		"goto": "3"
-	},
-	"3": {
-		"talker": "pippi",
-		"emoteactors": {
-			"pippi": "sweat"
-		},
-		"name": "[Pippi]",
-		"text": "Uh oh, it's Wally!",
-		"sound": "Kid",
-		"goto": "4"
-	},
-	"4": {
-		"talker": "wally",
-		"name": "Wally",
-		"emoteactors": {
-			"wally": "exclamation"
-		},
-		"text": "Hey, I recognize that little ginger face!",
-		"sound": "Adult",
-		"goto": "5"
-	},
-	"5": {
-		"name": "Wally",
-		"text": "You're that kid who's been eating all my flowers!",
-		"sound": "Adult",
-		"goto": "6"
-	},
-	"6": {
-		"talker": "pippi",
-		"name": "[Pippi]",
-		"text": "Well excuuuse me, but there weren't any signs telling me NOT to eat them.",
-		"sound": "Kid",
-		"goto": "7"
-	},
-	"7": {
-		"name": "[Pippi]",
-		"emoteactors": {
-			"ninten": "dot"
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": 1,
-				"y": 0,
-				"speed": 0.1
-			}
-		},
-		"text": "Also, they weren't that good anyway...",
-		"sound": "Kid",
-		"goto": "8"
-	},
-	"8": {
-		"actorsturn": {
-			"ninten": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.05
-			}
-		},
-		"actorsjump": {
-			"wally": {
-				"height": 8,
-				"speed": 0.1
-			}
-		},
-		"actorsshake": {
-			"wally": {
-				"x": 1,
-				"length": 0.2
-			}
-		},
-		"talker": "wally",
-		"name": "Wally",
-		"text": "GRRR! I've had enough!",
-		"sound": "Adult",
-		"goto": "9"
-	},
-	"9": {
-		"name": "Wally",
-		"text": "It's about time I taught you brats a lesson!",
-		"sound": "Adult",
-		"flag": "wally_attack",
-		"batwinflag": "wally_defeat",
-		"battler": {
-			"enemy": "wally",
-			"actor": "wally"
-		}
-	}
+    "0": {
+        "actors": {
+            "wally": "Objects/NPCS/npc25",
+            "ninten": "leader",
+            "pippi": "pippi",
+            "chick": "canarychick"
+        },
+        "music": "",
+        "name": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_???",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "actorsmove": {
+            "wally": {
+                "movement": [
+                    {
+                        "x": -36,
+                        "y": 0
+                    },
+                    {
+                        "x": 0,
+                        "y": 32
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            },
+            "ninten": {
+                "movement": [
+                    {
+                        "x": -434,
+                        "y": 548
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "position"
+            },
+            "pippi": {
+                "movement": [
+                    {
+                        "x": -414,
+                        "y": 548
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "position"
+            },
+            "chick": {
+                "movement": [
+                    {
+                        "x": -424,
+                        "y": 554
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "position"
+            }
+        },
+        "changecam": "",
+        "movecam": {
+            "x": -424,
+            "y": 532,
+            "length": 1
+        },
+        "showbox": false,
+        "wait": 1,
+        "autoadvance": true,
+        "goto": "2"
+    },
+    "2": {
+        "actorsturn": {
+            "ninten": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.1
+            },
+            "pippi": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.1
+            },
+            "chick": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.1
+            }
+        },
+        "emoteactors": {
+            "pippi": "sweat"
+        },
+        "showbox": false,
+        "wait": 0.5,
+        "autoadvance": true,
+        "goto": "3"
+    },
+    "3": {
+        "talker": "pippi",
+        "emoteactors": {
+            "pippi": "sweat"
+        },
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_3",
+        "sound": "Kid",
+        "goto": "4"
+    },
+    "4": {
+        "talker": "wally",
+        "name": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally",
+        "emoteactors": {
+            "wally": "exclamation"
+        },
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_4",
+        "sound": "Adult",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_5",
+        "sound": "Adult",
+        "goto": "6"
+    },
+    "6": {
+        "talker": "pippi",
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_6",
+        "sound": "Kid",
+        "goto": "7"
+    },
+    "7": {
+        "name": "[Pippi]",
+        "emoteactors": {
+            "ninten": "dot"
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": 1,
+                "y": 0,
+                "speed": 0.1
+            }
+        },
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_7",
+        "sound": "Kid",
+        "goto": "8"
+    },
+    "8": {
+        "actorsturn": {
+            "ninten": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.05
+            }
+        },
+        "actorsjump": {
+            "wally": {
+                "height": 8,
+                "speed": 0.1
+            }
+        },
+        "actorsshake": {
+            "wally": {
+                "x": 1,
+                "length": 0.2
+            }
+        },
+        "talker": "wally",
+        "name": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_8",
+        "sound": "Adult",
+        "goto": "9"
+    },
+    "9": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_9",
+        "sound": "Adult",
+        "flag": "wally_attack",
+        "batwinflag": "wally_defeat",
+		"batrematchflag": "wally_rematch",
+        "battler": {
+            "enemy": "wally",
+            "actor": "wally"
+        }
+    }
 }

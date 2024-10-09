@@ -522,7 +522,6 @@ collision_layer = 516
 collision_mask = 512
 collision/safe_margin = 0.4
 script = ExtResource( 5 )
-Return = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/Fly Down" = SubResource( 129 )
@@ -651,6 +650,7 @@ polygon = PoolVector2Array( 9.5, 3, 0, 7, -9.5, 3, 0, -1 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [connection signal="animation_finished" from="DamageAnimation" to="." method="_on_DamageAnimation_animation_finished"]
 [connection signal="body_entered" from="interact" to="." method="_on_interact_body_entered"]

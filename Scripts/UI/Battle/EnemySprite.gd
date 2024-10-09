@@ -1,6 +1,8 @@
 extends TextureRect
 
 onready var transitionTween = $TransitionTween
+onready var sprite = $Sprite
+
 
 signal apply_damage
 
@@ -10,12 +12,24 @@ func _ready():
 	$AnimationPlayer.advance(0)
 	$AnimationPlayer.stop()
 
+func set_texture(fullSpritePath):
+	sprite.texture = load(fullSpritePath)
+	rect_size = sprite.texture.get_size()
+	sprite.position = rect_size/2
+
 func appear():
 	rect_pivot_offset = rect_size/2
 	$AnimationPlayer.play("appear")
 
 func flash():
 	$AnimationPlayer.play("flash")
+	
+func flash_psi():
+	$AnimationPlayer.play("psiFlash")
+
+func set_psi_flash_color(color):
+	var animation = $AnimationPlayer.get_animation("psiFlash")
+	animation.track_set_key_value(0, 0, Color(color))
 
 func disappear():
 	$AnimationPlayer.play_backwards("appear")
@@ -28,11 +42,11 @@ func deselect():
 	material.set_shader_param("glow_modifier", 0.0)
 
 func attack():
-	$Tween.interpolate_property(self, "rect_position:y",
-		rect_position.y, rect_position.y -10, 0.1,
+	$Tween.interpolate_property(sprite, "offset:y",
+		sprite.offset.y, -10, 0.1,
 		Tween.TRANS_QUART, Tween.EASE_OUT)
-	$Tween.interpolate_property(self, "rect_position:y",
-		rect_position.y - 12, rect_position.y, 0.1,
+	$Tween.interpolate_property(sprite, "offset:y",
+		-10, sprite.offset.y, 0.1,
 		Tween.TRANS_QUART, Tween.EASE_IN, 0.1)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")

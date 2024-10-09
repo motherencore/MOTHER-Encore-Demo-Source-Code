@@ -23,21 +23,18 @@ func _ready():
 	nameBox = get_node_or_null(nameBox)
 	bgDarkinator = get_node_or_null(bgDarkinator)
 
-func _input(event):
+func _process(delta):
 	if visible:
 		if !targetAll and targetables.size() > 1:
-			var direction = 0
-			if Input.is_action_just_pressed("ui_left"):
-				get_tree().set_input_as_handled()
-				direction = -1
-			elif Input.is_action_just_pressed("ui_right"):
-				get_tree().set_input_as_handled()
-				direction = 1
+			var direction = controlsManager.get_controls_vector(true).x
 			
 			if direction != 0 and pointer.get_node("Timer").time_left == 0:
 				pointerMove(direction)
 				pointer.get_node("Timer").start()
 				return
+
+func _input(event):
+	if visible:
 		if event.is_action_pressed("ui_accept"):
 			get_tree().set_input_as_handled()
 			pointerSelect()
@@ -48,23 +45,22 @@ func enter(reset = false, _action = null):
 	targetAll = false
 	match(int(_action.targetType)):
 		TargetType.ENEMY:
-			targetables.append_array(get_conscious_of_array(enemyBPs))
+			targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
 			nameBox.get_child(0).text = targetables.front().stats.nickname
 		TargetType.ALL_ENEMIES:
 			targetAll = true
-			targetables.append_array(get_conscious_of_array(enemyBPs))
-			nameBox.get_child(0).text = "All Enemies"
+			targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
+			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ENEMIES"
 		TargetType.SELF:
 			targetables.append_array([action.user])
 			nameBox.get_child(0).text = action.user.stats.nickname
 		TargetType.ALLY:
-			targetables.append_array(get_conscious_of_array(partyBPs))
+			targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
 			nameBox.get_child(0).text = targetables.front().stats.nickname
 		TargetType.ALL_ALLIES:
-			print(partyBPs)
 			targetAll = true
-			targetables.append_array(get_conscious_of_array(partyBPs))
-			nameBox.get_child(0).text = "All Allies"
+			targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
+			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ALLIES"
 	if reset:
 		pointerIndex = 0
 		nameBox.show()
@@ -111,10 +107,10 @@ func createOrGetPointer(num):
 	else:
 		return get_child(num)
 
-func get_conscious_of_array(bpArray):
+func _get_all_targetable(bpArray, target_unconscious):
 	var arr = []
 	for bp in bpArray:
-		if bp.isConscious():
+		if target_unconscious or bp.isConscious():
 			arr.append(bp)
 	return arr
 

@@ -1,7 +1,18 @@
 {
-	"0": {
-		"name":"[Pippi]",
-		"text":"Remember to come by [color]my house[/color], I'll be waiting there to see you again!",
+    "0": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_TOWN_HALL_0",
+        "sound": "Kid",
+	    "if": {
+		    "flags": {
+			    "courage_badge_received": false
+            },
+		    "goto": "1"
+		}
+    },
+	"1": {
+		"name": "[Pippi]",
+		"text": "DIALOGUE_PODUNK_PIPPI_TOWN_HALL_1",
 		"sound": "Kid"
 	}
 }

@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Mick",
-		"text": "(I hope they make more FavFood...)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WOOF_FOOD_SPEAKER_Mick",
+        "text": "DIALOGUE_PODUNK_WOOF_FOOD_0"
+    }
 }

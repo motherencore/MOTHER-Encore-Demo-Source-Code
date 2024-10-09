@@ -3,7 +3,14 @@ extends Node
 #Todo maybe:
 #Do everything (search, organize) with UID items
 
-const MAX_INVENTORY_SIZE = 16
+const _MAX_INVENTORY_SIZE = 16
+const _MAX_STORAGE_SIZE = 64
+const _MAX_STORAGE_SIZE_GOD = 99
+
+const ID_KEY = "key"
+const ID_STORAGE = "storage"
+const ID_STORAGE_GOD = "god_storage"
+
 const items_data_path = "res://Data/Items/"
 
 #existing IUDs to prevent having several items with same IUD
@@ -15,7 +22,7 @@ class Item:
 	var uid = 0
 	var equiped = false
 	
-	func _init(item_name, is_equiped, new_uid):
+	func _init(item_name, is_equiped, new_uid = Item.get_uid(InventoryManager.used_uids_tab)):
 		ItemName = item_name
 		equiped = is_equiped
 		uid = new_uid
@@ -49,7 +56,10 @@ var Inventories = {
 		Item.new("Bread", false, Item.get_uid(used_uids_tab)),
 		Item.new("Slingshot", false, Item.get_uid(used_uids_tab)),
 		Item.new("BatWooden", false, Item.get_uid(used_uids_tab)),
-		Item.new("CourageBadge", false, Item.get_uid(used_uids_tab))
+		Item.new("CourageBadge", false, Item.get_uid(used_uids_tab)),
+		Item.new("Antidote", false, Item.get_uid(used_uids_tab)),
+		Item.new("EyeDrops", false, Item.get_uid(used_uids_tab)),
+		Item.new("AsthmaSpray", false, Item.get_uid(used_uids_tab))
 		],
 	"lloyd": [
 		Item.new("Bread", false, Item.get_uid(used_uids_tab)),
@@ -72,14 +82,31 @@ var Inventories = {
 	"pippi": [],
 	"canarychick": [],
 	"flyingman": [],
+	"eve": [],
 	"key": [
 		Item.new("CashCard", false, Item.get_uid(used_uids_tab)),
-		]
+	],
+	"storage": [],
+	"god_storage": []
 }
 
+func _init():
+	_init_god_storage()
+
+func _init_inventories():
+	for inventory in Inventories.keys():
+		Inventories[inventory].clear()
+	_init_god_storage()
+
+func _init_god_storage():
+	for item_id in globaldata.items:
+		var inv_item = Item.new(item_id, false, Item.get_uid(used_uids_tab))
+		Inventories[ID_STORAGE_GOD].append(inv_item)
+	sortAuto(ID_STORAGE_GOD)
 
 #load inventories from savegame data
-func _load_inventories(serialized_inv):
+func load_inventories(serialized_inv):
+	_init_inventories()
 	for inventory in serialized_inv.keys():
 		var inv_content = []
 		for serialized_item in serialized_inv[inventory]:
@@ -89,7 +116,7 @@ func _load_inventories(serialized_inv):
 		Inventories[inventory] = inv_content
 	
 #save inventories into savegame data	
-func _save_inventories():
+func save_inventories():
 	var serialized_inv = {}
 	for inventory in Inventories.keys():
 		var inv_content = []
@@ -162,6 +189,9 @@ func checkItemForAll(itemName):
 					hasItem = true
 	return hasItem
 
+func checkItemInStorage(itemName):
+	checkItem(ID_STORAGE, itemName)
+
 func checkItem(character, itemName):
 	for item in Inventories[character]:
 		if item.ItemName == itemName:
@@ -199,10 +229,20 @@ func removeItemFromChar(character, itemName):
 
 #test if given character inventory is full
 func isInventoryFull(character)-> bool:
-	if Inventories[character.to_lower()].size() == MAX_INVENTORY_SIZE:
-		return true
+	character = character.to_lower()
+	var inv_size = get_inventory_size(character)
+	return inv_size > 0 and Inventories[character].size() >= inv_size
+
+func get_inventory_size(character):
+	character = character.to_lower()
+	if character == ID_STORAGE:
+		return _MAX_STORAGE_SIZE
+	elif character == ID_STORAGE_GOD:
+		return _MAX_STORAGE_SIZE_GOD
+	elif character == ID_KEY:
+		return 0
 	else:
-		return false
+		return _MAX_INVENTORY_SIZE
 
 #test if party has space in inventory
 func hasInventorySpace():
@@ -223,12 +263,12 @@ func giveItemAvailable(item):
 		if item_data["keyitem"]:
 			addItem("key",item)
 			item_given = true
-			global.receiver = global.party[0]["nickname"]
+			global.receiver = global.party[0]
 	if !item_given and hasInventorySpace():
 		for i in global.party.size():
 			if !isInventoryFull(global.party[i]["name"]) and !item_given:
 				addItem(global.party[i]["name"],item)
-				global.receiver = global.party[i]["nickname"]
+				global.receiver = global.party[i]
 				item_given = true
 
 func doesItemHaveFunction(item, function):
@@ -493,8 +533,10 @@ func giveItem(sourceCharacter, targetCharacter, Sourceitem_idx):
 		var item = Inventories[sourceCharacter][Sourceitem_idx]
 		if item.equiped == true:
 			unequip(sourceCharacter, item.ItemName)
-		addItem(targetCharacter,item.ItemName)
-		Inventories[sourceCharacter].remove(Sourceitem_idx)
+		if targetCharacter != ID_STORAGE_GOD:
+			addItem(targetCharacter,item.ItemName)
+		if sourceCharacter != ID_STORAGE_GOD:
+			Inventories[sourceCharacter].remove(Sourceitem_idx)
 		
 
 #use item in inventory
@@ -518,8 +560,10 @@ func consumeItem(character, item_idx, receiver = ""):
 	#heal statuses
 	if item_data.has("status_heals"):
 		for status in item_data["status_heals"]:
-			if characterHasStatus(character, globaldata.status_name_to_enum(status)):
+			if characterHasStatus(receiver, globaldata.status_name_to_enum(status)):
 				chara_data["status"].erase(globaldata.status_name_to_enum(status))
+				if chara_data.has("statusCountup") and chara_data.statusCountup.has(status):
+					chara_data.statusCountup[status] = 0
 	#do a lot of thing depending of the item, then
 	dropItem(character, item_idx)
 

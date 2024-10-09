@@ -1,26 +1,26 @@
 {
-	"0": {
-		"if": {
-			"invspace": true,
-			"goto": "1"
-		},
-		"goto": "3"
-	},
-	"1": {
-		"name": "Mimmie",
-		"text": "Here, have some Orange Juice.",
-		"sound": "Kid",
-		"goto": "2"
-	},
-	"2": {
-		"talker": "null",
-		"text": "You got some Orange Juice.",
-		"item": "OrangeJuice",
-		"soundeffect": "Item Received.mp3"
-	},
-	"3": {
-		"name": "Minnie",
-		"text": "You're carrying too much stuff.",
-		"sound": "Kid"
-	}
+    "0": {
+        "if": {
+            "invspace": true,
+            "goto": "1"
+        },
+        "goto": "3"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_JUICE_SPEAKER_Mimmie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_JUICE_1",
+        "sound": "Kid",
+        "goto": "2"
+    },
+    "2": {
+        "talker": "null",
+        "text": "DIALOGUE_PODUNK_MIMMIE_JUICE_2",
+        "item": "OrangeJuice",
+        "soundeffect": "Item Received.mp3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MIMMIE_JUICE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MIMMIE_JUICE_3",
+        "sound": "Kid"
+    }
 }

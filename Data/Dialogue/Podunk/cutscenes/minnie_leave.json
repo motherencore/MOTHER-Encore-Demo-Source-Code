@@ -1,110 +1,138 @@
 {
-	"0": {
-		"actors": {
-			"minnie": "Objects/npc3",
-			"ninten": "leader"
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": 1,
-				"y": -1,
-				"speed": 0.5
-			},
-			"minnie": {
-				"x": 0,
-				"y": 1
-			}
-		},
-		"actorsjump": {
-			"minnie": {
-				"height": 8,
-				"times": 2
-			}
-		},
-		"wait": 0.8,
-		"autoadvance": true,
-		"caninput": false,
-		"goto":"1"
-	},
-	"1": {
-		"talker": "minnie",
-		"name": "Minnie",
-		"text": "Way to go, [Ninten]!",
-		"sound": "Kid",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Minnie",
-		"text": "But our house is still falling apart!",
-		"sound": "Kid",
-		"goto": "3"
-	},
-	"3": {
-		"showbox": false,
-		"actorsturn": {
-			"ninten": {
-				"x": 1,
-				"y": 0,
-				"speed": 0.5
-			}
-		},
-		"actorsmove": {
-			"minnie": {
-				"movement": [{"x": 560, "y": 144}, {"x": 488, "y": 144}],
-				"speed": 64,
-				"animation": "Walk",
-				"type": "position"
-			}
-		},
-		"wait": 2.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto":"4"
-	},
-	"4": {
-		"name": "Minnie",
-		"text": "I wonder how Mimmie's doing. Let's go check if she's okay!",
-		"sound": "Kid",
-		"goto": "5"
-	},
-	"5": {
-		"showbox": false,
-		"actorsturn": {
-			"ninten": {
-				"x": 0,
-				"y": 1,
-				"speed": 0.6
-			},
-			"minnie": {
-				"x": 0,
-				"y": 1,
-				"speed": 0.1
-			}
-		},
-		"actorsmove": {
-			"minnie": {
-				"movement": [{"wait": 0.3}, {"x": 488, "y": 156}, {"x": 464, "y": 156}, {"x": 464, "y": 200}],
-				"speed": 64,
-				"animation": "Walk",
-				"type": "position",
-				"queue": true
-			}
-		},
-		"wait": 2,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "6"
-	},
-	"6": {
-		"flag": "minnie_leave",
-		"teleportactors": {
-			"minnie": {"x": 64, "y": 370}
-		},
-		"actorsdir": {
-			"minnie": {
-				"x": 1, 
-				"y": 0
-			}
-		}
-	}
+    "0": {
+        "actors": {
+            "minnie": "Objects/npc3",
+            "ninten": "leader"
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": 1,
+                "y": -1,
+                "speed": 0.5
+            },
+            "minnie": {
+                "x": 0,
+                "y": 1
+            }
+        },
+        "actorsjump": {
+            "minnie": {
+                "height": 8,
+                "times": 2
+            }
+        },
+        "wait": 0.8,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "1"
+    },
+    "1": {
+        "talker": "minnie",
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_1",
+        "sound": "Kid",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_2",
+        "sound": "Kid",
+        "goto": "3"
+    },
+    "3": {
+        "showbox": false,
+        "actorsturn": {
+            "ninten": {
+                "x": 1,
+                "y": 0,
+                "speed": 0.5
+            }
+        },
+        "actorsmove": {
+            "minnie": {
+                "movement": [
+                    {
+                        "x": 560,
+                        "y": 144
+                    },
+                    {
+                        "x": 488,
+                        "y": 144
+                    }
+                ],
+                "speed": 64,
+                "animation": "Walk",
+                "type": "position"
+            }
+        },
+        "wait": 2.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_4",
+        "sound": "Kid",
+        "goto": "5"
+    },
+    "5": {
+        "showbox": false,
+        "actorsturn": {
+            "ninten": {
+                "x": 0,
+                "y": 1,
+                "speed": 0.6
+            },
+            "minnie": {
+                "x": 0,
+                "y": 1,
+                "speed": 0.1
+            }
+        },
+        "actorsmove": {
+            "minnie": {
+                "movement": [
+                    {
+                        "wait": 0.3
+                    },
+                    {
+                        "x": 488,
+                        "y": 156
+                    },
+                    {
+                        "x": 464,
+                        "y": 156
+                    },
+                    {
+                        "x": 464,
+                        "y": 200
+                    }
+                ],
+                "speed": 64,
+                "animation": "Walk",
+                "type": "position",
+                "queue": true
+            }
+        },
+        "wait": 2,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "6"
+    },
+    "6": {
+        "flag": "minnie_leave",
+        "teleportactors": {
+            "minnie": {
+                "x": 64,
+                "y": 370
+            }
+        },
+        "actorsdir": {
+            "minnie": {
+                "x": 1,
+                "y": 0
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@
 [ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/Sound effects/M3/okdesuka.wav" type="AudioStream" id=8]
-[ext_resource path="res://Nodes/Reusables/actor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Audio/Sound effects/M3/error.wav" type="AudioStream" id=9]
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/Ui/Indicator.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=12]
@@ -104,40 +104,16 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=17]
 length = 3.0
 step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("Objects/Actors/actor:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.416667 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Objects/Actors/actor:position")
+tracks/0/path = NodePath("QMark:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -40, 32 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("QMark:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -147,91 +123,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=15]
 length = 3.0
 step = 0.0833333
-tracks/0/type = "method"
-tracks/0/path = NodePath("Objects/Actors/actor")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Objects/Actors/npc") ],
-"method": "replace_npc_from_path"
-}, {
-"args": [ "Walk", 0, 1.0, false ],
-"method": "play_anim"
-} ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("Objects/Actors/actor2")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Objects/Actors/npc2") ],
-"method": "replace_npc_from_path"
-}, {
-"args": [ "Walk", 0, 1, false ],
-"method": "play_anim"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("Objects/Actors/actor3")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Objects/Actors/npc3") ],
-"method": "replace_npc_from_path"
-}, {
-"args": [ "Walk", 0, 1, false ],
-"method": "play_anim"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("Objects/Actors/actor4")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Objects/Actors/npc4") ],
-"method": "replace_npc_from_path"
-}, {
-"args": [ "Walk", 0, 1, false ],
-"method": "play_anim"
-} ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("Objects/Actors/actor5")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.0833333 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ NodePath("Objects/Actors/npc5") ],
-"method": "replace_npc_from_path"
-}, {
-"args": [ "Walk", 0, 1, false ],
-"method": "play_anim"
-} ]
-}
 
 [sub_resource type="Animation" id=13]
 resource_name = "ConfirmationClose"
@@ -273,7 +164,7 @@ tracks/2/keys = {
 "values": [ Vector2( 140, 39 ), Vector2( 330, 39 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/PressButton:rect_position")
+tracks/3/path = NodePath("CanvasLayer/HBoxContainer:rect_position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -282,7 +173,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 0.4, 1 ),
 "update": 0,
-"values": [ Vector2( 124, 167 ), Vector2( 124, 184 ) ]
+"values": [ Vector2( 11, 167 ), Vector2( 11, 184 ) ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -358,7 +249,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 0.4, 1 ),
 "update": 0,
-"values": [ Vector2( 17, 11 ), Vector2( 17, 19 ) ]
+"values": [ Vector2( 15, 11 ), Vector2( 15, 19 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
@@ -597,7 +488,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 17, 11 ) ]
+"values": [ Vector2( 15, 11 ) ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
@@ -759,7 +650,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("CanvasLayer/PressButton:rect_position")
+tracks/10/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -780,7 +671,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 17, 11 ) ]
+"values": [ Vector2( 15, 11 ) ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
@@ -863,28 +754,14 @@ __meta__ = {
 
 [node name="Actors" type="YSort" parent="Objects"]
 
-[node name="actor" parent="Objects/Actors" instance=ExtResource( 9 )]
-position = Vector2( -40, 32 )
-
-[node name="actor2" parent="Objects/Actors" instance=ExtResource( 9 )]
-position = Vector2( 32, -80 )
-
-[node name="actor3" parent="Objects/Actors" instance=ExtResource( 9 )]
-position = Vector2( 136, -80 )
-
-[node name="actor4" parent="Objects/Actors" instance=ExtResource( 9 )]
-position = Vector2( 240, -80 )
-
-[node name="actor5" parent="Objects/Actors" instance=ExtResource( 9 )]
-position = Vector2( 328, -80 )
-
 [node name="npc" parent="Objects/Actors" instance=ExtResource( 10 )]
-position = Vector2( 64, 48 )
+position = Vector2( 64, 40 )
 sprite = "Ninten"
 player_turn = {
 "x": true,
 "y": true
 }
+idle_animation = "Walk"
 
 [node name="npc2" parent="Objects/Actors" instance=ExtResource( 10 )]
 position = Vector2( 384, 40 )
@@ -893,6 +770,7 @@ player_turn = {
 "x": true,
 "y": true
 }
+idle_animation = "Walk"
 
 [node name="npc3" parent="Objects/Actors" instance=ExtResource( 10 )]
 position = Vector2( 704, 40 )
@@ -901,6 +779,7 @@ player_turn = {
 "x": true,
 "y": true
 }
+idle_animation = "Walk"
 
 [node name="npc4" parent="Objects/Actors" instance=ExtResource( 10 )]
 position = Vector2( 1024, 40 )
@@ -909,6 +788,7 @@ player_turn = {
 "x": true,
 "y": true
 }
+idle_animation = "Walk"
 
 [node name="npc5" parent="Objects/Actors" instance=ExtResource( 10 )]
 position = Vector2( 1344, 40 )
@@ -917,6 +797,7 @@ player_turn = {
 "x": true,
 "y": true
 }
+idle_animation = "Walk"
 
 [node name="Plate" type="Sprite" parent="Objects/Actors"]
 position = Vector2( 1664, 40 )
@@ -946,38 +827,49 @@ texture = ExtResource( 20 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="PressButton" type="HBoxContainer" parent="CanvasLayer"]
-margin_left = 124.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+margin_left = 11.0
 margin_top = 167.0
 margin_right = 310.0
 margin_bottom = 178.0
+custom_constants/separation = 10
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/PressButton"]
-margin_left = 76.0
-margin_right = 108.0
+[node name="PressButton1" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 109.0
+margin_right = 193.0
+margin_bottom = 11.0
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/PressButton1"]
+margin_right = 72.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
-text = "Back"
+text = "MENU_BACK"
 align = 2
 
-[node name="Button" parent="CanvasLayer/PressButton" instance=ExtResource( 6 )]
-margin_left = 112.0
-margin_right = 120.0
+[node name="Button" parent="CanvasLayer/HBoxContainer/PressButton1" instance=ExtResource( 6 )]
+margin_left = 76.0
+margin_right = 84.0
 align = 2
 key = "ui_cancel"
 
-[node name="Label2" type="Label" parent="CanvasLayer/PressButton"]
-margin_left = 124.0
-margin_right = 174.0
+[node name="PressButton2" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 203.0
+margin_right = 299.0
+margin_bottom = 11.0
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/PressButton2"]
+margin_right = 84.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
-text = "  Select"
+text = "MENU_SELECT"
 align = 2
 
-[node name="Button2" parent="CanvasLayer/PressButton" instance=ExtResource( 6 )]
-margin_left = 178.0
-margin_right = 186.0
+[node name="Button" parent="CanvasLayer/HBoxContainer/PressButton2" instance=ExtResource( 6 )]
+margin_left = 88.0
+margin_right = 96.0
 align = 2
 key = "ui_accept"
 
@@ -999,7 +891,7 @@ margin_top = 8.0
 margin_right = 179.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 3 )
-text = "What is this boy's name?"
+text = "NAME_BIO0"
 align = 1
 
 [node name="name" type="ColorRect" parent="CanvasLayer/NameBox"]
@@ -1032,15 +924,19 @@ valign = 1
 [node name="Indicator" parent="CanvasLayer/NameBox" instance=ExtResource( 11 )]
 margin_left = 8.0
 margin_top = -1.0
-margin_right = -176.0
-margin_bottom = -48.0
+margin_right = 8.0
+margin_bottom = -1.0
+grow_horizontal = 1
 key = "ui_focus_prev"
+size_before_growing = 32
 
 [node name="Indicator2" parent="CanvasLayer/NameBox" instance=ExtResource( 11 )]
 margin_left = 176.0
 margin_top = -1.0
-margin_right = -8.0
+margin_right = 175.0
 margin_bottom = -48.0
+grow_horizontal = 0
+size_before_growing = 32
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/NameBox"]
 show_behind_parent = true
@@ -1074,15 +970,16 @@ custom_constants/hseparation = 17
 columns = 3
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
-margin_right = 89.0
+margin_right = 87.0
 margin_bottom = 68.0
 custom_constants/vseparation = 2
 custom_constants/hseparation = 9
 columns = 6
 
 [node name="A" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_right = 8.0
+margin_right = 7.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
 text = "A"
 align = 1
@@ -1091,11 +988,12 @@ __meta__ = {
 }
 
 [node name="B" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 17.0
+margin_left = 16.0
 margin_right = 23.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "B"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1105,8 +1003,9 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 39.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "C"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1116,8 +1015,9 @@ __meta__ = {
 margin_left = 48.0
 margin_right = 55.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "D"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1125,21 +1025,23 @@ __meta__ = {
 
 [node name="E" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_left = 64.0
-margin_right = 70.0
+margin_right = 71.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "E"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="F" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 79.0
-margin_right = 89.0
+margin_left = 80.0
+margin_right = 87.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "F"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1147,22 +1049,24 @@ __meta__ = {
 
 [node name="M" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_top = 14.0
-margin_right = 8.0
+margin_right = 7.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "M"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="N" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 17.0
+margin_left = 16.0
 margin_top = 14.0
 margin_right = 23.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "N"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1173,8 +1077,9 @@ margin_left = 32.0
 margin_top = 14.0
 margin_right = 39.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "O"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1185,8 +1090,9 @@ margin_left = 48.0
 margin_top = 14.0
 margin_right = 55.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "P"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1195,22 +1101,24 @@ __meta__ = {
 [node name="Q" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_left = 64.0
 margin_top = 14.0
-margin_right = 70.0
+margin_right = 71.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Q"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="R" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 79.0
+margin_left = 80.0
 margin_top = 14.0
-margin_right = 89.0
+margin_right = 87.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "R"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1218,22 +1126,24 @@ __meta__ = {
 
 [node name="Y" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_top = 28.0
-margin_right = 8.0
+margin_right = 7.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Y"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Z" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 17.0
+margin_left = 16.0
 margin_top = 28.0
 margin_right = 23.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Z"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1244,8 +1154,9 @@ margin_left = 32.0
 margin_top = 28.0
 margin_right = 39.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ä"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1256,8 +1167,9 @@ margin_left = 48.0
 margin_top = 28.0
 margin_right = 55.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Á"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1266,22 +1178,24 @@ __meta__ = {
 [node name="Ç" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_left = 64.0
 margin_top = 28.0
-margin_right = 70.0
+margin_right = 71.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ç"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ë" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 79.0
+margin_left = 80.0
 margin_top = 28.0
-margin_right = 89.0
+margin_right = 87.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ë"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1289,22 +1203,24 @@ __meta__ = {
 
 [node name="Î" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_top = 42.0
-margin_right = 8.0
+margin_right = 7.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Î"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ñ" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 17.0
+margin_left = 16.0
 margin_top = 42.0
 margin_right = 23.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ñ"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1315,8 +1231,9 @@ margin_left = 32.0
 margin_top = 42.0
 margin_right = 39.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ö"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1327,8 +1244,9 @@ margin_left = 48.0
 margin_top = 42.0
 margin_right = 55.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ó"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1337,22 +1255,24 @@ __meta__ = {
 [node name="Ò" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_left = 64.0
 margin_top = 42.0
-margin_right = 70.0
+margin_right = 71.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ò"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ô" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 79.0
+margin_left = 80.0
 margin_top = 42.0
-margin_right = 89.0
+margin_right = 87.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ô"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1360,22 +1280,24 @@ __meta__ = {
 
 [node name="=" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_top = 56.0
-margin_right = 8.0
+margin_right = 7.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "="
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="+" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 17.0
+margin_left = 16.0
 margin_top = 56.0
 margin_right = 23.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "+"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1386,8 +1308,9 @@ margin_left = 32.0
 margin_top = 56.0
 margin_right = 39.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "-"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1398,8 +1321,9 @@ margin_left = 48.0
 margin_top = 56.0
 margin_right = 55.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "*"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1408,62 +1332,67 @@ __meta__ = {
 [node name="slash" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
 margin_left = 64.0
 margin_top = 56.0
-margin_right = 70.0
+margin_right = 71.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "/"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="%" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer"]
-margin_left = 79.0
+margin_left = 80.0
 margin_top = 56.0
-margin_right = 89.0
+margin_right = 87.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "%"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GridContainer2" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
-margin_left = 106.0
-margin_right = 193.0
+margin_left = 104.0
+margin_right = 191.0
 margin_bottom = 68.0
 custom_constants/vseparation = 2
 custom_constants/hseparation = 9
 columns = 6
 
 [node name="G" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_right = 9.0
+margin_right = 7.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "G"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="H" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 18.0
-margin_right = 24.0
+margin_left = 16.0
+margin_right = 23.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "H"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="I" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 33.0
+margin_left = 32.0
 margin_right = 39.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "I"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1473,8 +1402,9 @@ __meta__ = {
 margin_left = 48.0
 margin_right = 55.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "J"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1482,21 +1412,23 @@ __meta__ = {
 
 [node name="K" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_left = 64.0
-margin_right = 72.0
+margin_right = 71.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "K"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="L" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 81.0
+margin_left = 80.0
 margin_right = 87.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "L"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1504,34 +1436,37 @@ __meta__ = {
 
 [node name="S" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_top = 14.0
-margin_right = 9.0
+margin_right = 7.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "S"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="T" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 18.0
+margin_left = 16.0
 margin_top = 14.0
-margin_right = 24.0
+margin_right = 23.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "T"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="U" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 33.0
+margin_left = 32.0
 margin_top = 14.0
 margin_right = 39.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "U"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1542,8 +1477,9 @@ margin_left = 48.0
 margin_top = 14.0
 margin_right = 55.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "V"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1552,22 +1488,24 @@ __meta__ = {
 [node name="W" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_left = 64.0
 margin_top = 14.0
-margin_right = 72.0
+margin_right = 71.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "W"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="X" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 81.0
+margin_left = 80.0
 margin_top = 14.0
 margin_right = 87.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "X"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1575,34 +1513,37 @@ __meta__ = {
 
 [node name="É" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_top = 28.0
-margin_right = 9.0
+margin_right = 7.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "É"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="È" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 18.0
+margin_left = 16.0
 margin_top = 28.0
-margin_right = 24.0
+margin_right = 23.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "È"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ê" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 33.0
+margin_left = 32.0
 margin_top = 28.0
 margin_right = 39.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ê"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1613,8 +1554,9 @@ margin_left = 48.0
 margin_top = 28.0
 margin_right = 55.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ï"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1623,22 +1565,24 @@ __meta__ = {
 [node name="Í" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_left = 64.0
 margin_top = 28.0
-margin_right = 72.0
+margin_right = 71.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Í"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ì" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 81.0
+margin_left = 80.0
 margin_top = 28.0
 margin_right = 87.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ì"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1646,34 +1590,37 @@ __meta__ = {
 
 [node name="Œ" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_top = 42.0
-margin_right = 9.0
+margin_right = 7.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Œ"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ü" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 18.0
+margin_left = 16.0
 margin_top = 42.0
-margin_right = 24.0
+margin_right = 23.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ü"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ú" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 33.0
+margin_left = 32.0
 margin_top = 42.0
 margin_right = 39.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ú"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1684,8 +1631,9 @@ margin_left = 48.0
 margin_top = 42.0
 margin_right = 55.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Ù"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1694,22 +1642,24 @@ __meta__ = {
 [node name="Û" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_left = 64.0
 margin_top = 42.0
-margin_right = 72.0
+margin_right = 71.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "Û"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Space" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 81.0
+margin_left = 80.0
 margin_top = 42.0
 margin_right = 87.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = " "
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1717,34 +1667,37 @@ __meta__ = {
 
 [node name="(" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_top = 56.0
-margin_right = 9.0
+margin_right = 7.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "("
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name=")" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 18.0
+margin_left = 16.0
 margin_top = 56.0
-margin_right = 24.0
+margin_right = 23.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = ")"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="[" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 33.0
+margin_left = 32.0
 margin_top = 56.0
 margin_right = 39.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "["
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1755,40 +1708,43 @@ margin_left = 48.0
 margin_top = 56.0
 margin_right = 55.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "]"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="«" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+[node name="“" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
 margin_left = 64.0
 margin_top = 56.0
-margin_right = 72.0
+margin_right = 71.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "«"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="»" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
-margin_left = 81.0
+[node name="”" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer2"]
+margin_left = 80.0
 margin_top = 56.0
 margin_right = 87.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "»"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GridContainer3" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
-margin_left = 210.0
-margin_right = 280.0
+margin_left = 208.0
+margin_right = 279.0
 margin_bottom = 68.0
 custom_constants/vseparation = 2
 custom_constants/hseparation = 9
@@ -1798,54 +1754,59 @@ __meta__ = {
 }
 
 [node name="1" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_right = 6.0
+margin_right = 7.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "1"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="2" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 15.0
-margin_right = 21.0
+margin_left = 16.0
+margin_right = 23.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "2"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="3" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 30.0
-margin_right = 36.0
+margin_left = 32.0
+margin_right = 39.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "3"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="4" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 45.0
-margin_right = 52.0
+margin_left = 48.0
+margin_right = 55.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "4"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="5" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 61.0
-margin_right = 69.0
+margin_left = 64.0
+margin_right = 71.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "5"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1853,114 +1814,124 @@ __meta__ = {
 
 [node name="6" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
 margin_top = 14.0
-margin_right = 6.0
+margin_right = 7.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "6"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="7" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = 14.0
-margin_right = 21.0
+margin_right = 23.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "7"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="8" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 30.0
+margin_left = 32.0
 margin_top = 14.0
-margin_right = 36.0
+margin_right = 39.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "8"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="9" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 45.0
+margin_left = 48.0
 margin_top = 14.0
-margin_right = 52.0
+margin_right = 55.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "9"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="0" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 61.0
+margin_left = 64.0
 margin_top = 14.0
-margin_right = 69.0
+margin_right = 71.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "0"
+text = "A"
 align = 1
 
 [node name="`" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
 margin_top = 28.0
-margin_right = 6.0
+margin_right = 7.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "`"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="at" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = 28.0
-margin_right = 21.0
+margin_right = 23.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "@"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="|" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 30.0
+[node name="note" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
+margin_left = 32.0
 margin_top = 28.0
-margin_right = 36.0
+margin_right = 39.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "|"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="$" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 45.0
+margin_left = 48.0
 margin_top = 28.0
-margin_right = 52.0
+margin_right = 55.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "$"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="&" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 61.0
+margin_left = 64.0
 margin_top = 28.0
-margin_right = 69.0
+margin_right = 71.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "&"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1968,58 +1939,63 @@ __meta__ = {
 
 [node name="period" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
 margin_top = 42.0
-margin_right = 6.0
+margin_right = 7.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "."
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="!" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = 42.0
-margin_right = 21.0
+margin_right = 23.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "!"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="\?" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 30.0
+margin_left = 32.0
 margin_top = 42.0
-margin_right = 36.0
+margin_right = 39.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "?"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="colon" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 45.0
+margin_left = 48.0
 margin_top = 42.0
-margin_right = 52.0
+margin_right = 55.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = ":"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name=";" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 61.0
+margin_left = 64.0
 margin_top = 42.0
-margin_right = 69.0
+margin_right = 71.0
 margin_bottom = 54.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = ";"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2027,111 +2003,64 @@ __meta__ = {
 
 [node name="," type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
 margin_top = 56.0
-margin_right = 6.0
+margin_right = 7.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = ","
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="\'\'" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 15.0
+margin_left = 16.0
 margin_top = 56.0
-margin_right = 21.0
+margin_right = 23.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "\""
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="\'" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 30.0
+margin_left = 32.0
 margin_top = 56.0
-margin_right = 36.0
+margin_right = 39.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "'"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="~" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 45.0
+margin_left = 48.0
 margin_top = 56.0
-margin_right = 52.0
+margin_right = 55.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "~"
+text = "A"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="©" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer3"]
-margin_left = 61.0
+margin_left = 64.0
 margin_top = 56.0
-margin_right = 69.0
+margin_right = 71.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 7, 0 )
 custom_fonts/font = ExtResource( 3 )
-text = "©"
+text = "A"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GridContainer4" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
-margin_top = 78.0
-margin_right = 89.0
-margin_bottom = 90.0
-custom_constants/hseparation = 17
-columns = 3
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="A" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer4"]
-margin_right = 46.0
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 3 )
-text = "Don't care"
-
-[node name="Empty" type="Control" parent="CanvasLayer/NamingBox/Grid"]
-margin_left = 106.0
-margin_top = 78.0
-margin_right = 193.0
-margin_bottom = 90.0
-
-[node name="GridContainer5" type="GridContainer" parent="CanvasLayer/NamingBox/Grid"]
-margin_left = 210.0
-margin_top = 78.0
-margin_right = 280.0
-margin_bottom = 90.0
-custom_constants/hseparation = 10
-columns = 2
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="A2" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer5"]
-margin_right = 48.0
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 3 )
-text = "Backspace"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="A3" type="Label" parent="CanvasLayer/NamingBox/Grid/GridContainer5"]
-margin_left = 58.0
-margin_right = 70.0
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 3 )
-text = "OK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2139,28 +2068,88 @@ __meta__ = {
 [node name="arrow" parent="CanvasLayer/NamingBox" instance=ExtResource( 4 )]
 position = Vector2( 7, 11 )
 menu_parent_path = NodePath("../Grid/GridContainer")
-cursor_offset = Vector2( -4, 1 )
 on = true
 consume_input_events = true
+skip_empty_labels = true
 move_sfx = true
+
+[node name="CommandGrid" type="GridContainer" parent="CanvasLayer/NamingBox"]
+margin_left = 12.0
+margin_top = 86.0
+margin_right = 292.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+columns = 3
+
+[node name="GridContainer4" type="GridContainer" parent="CanvasLayer/NamingBox/CommandGrid"]
+margin_right = 85.0
+margin_bottom = 12.0
+custom_constants/hseparation = 17
+columns = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Don\'t care" type="Label" parent="CanvasLayer/NamingBox/CommandGrid/GridContainer4"]
+margin_right = 85.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "MENU_DONT_CARE"
+
+[node name="Empty" type="Control" parent="CanvasLayer/NamingBox/CommandGrid"]
+margin_left = 89.0
+margin_right = 89.0
+margin_bottom = 12.0
+size_flags_horizontal = 2
+
+[node name="GridContainer5" type="GridContainer" parent="CanvasLayer/NamingBox/CommandGrid"]
+margin_left = 141.0
+margin_right = 280.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 70, 0 )
+custom_constants/hseparation = 10
+columns = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Backspace" type="Label" parent="CanvasLayer/NamingBox/CommandGrid/GridContainer5"]
+margin_right = 86.0
+margin_bottom = 12.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 3 )
+text = "MENU_BACKSPACE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OK" type="Label" parent="CanvasLayer/NamingBox/CommandGrid/GridContainer5"]
+margin_left = 96.0
+margin_right = 139.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 3 )
+text = "MENU_OK"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PressButton" type="HBoxContainer" parent="CanvasLayer/NamingBox"]
 margin_left = 3.0
 margin_top = 103.0
-margin_right = 113.0
+margin_right = 141.0
 margin_bottom = 114.0
-alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/NamingBox/PressButton"]
-margin_right = 98.0
+margin_right = 133.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
-text = "Capital/small"
+text = "MENU_CAPITALSMALL"
 
 [node name="Button" parent="CanvasLayer/NamingBox/PressButton" instance=ExtResource( 6 )]
-margin_left = 102.0
-margin_right = 110.0
-key = "ui_ctrl"
+margin_left = 137.0
+margin_right = 145.0
+key = "ui_scope"
 
 [node name="Others" type="NinePatchRect" parent="CanvasLayer"]
 material = ExtResource( 21 )
@@ -2175,72 +2164,72 @@ patch_margin_right = 13
 patch_margin_bottom = 13
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Others"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
-margin_right = 92.0
+margin_right = 118.0
 margin_bottom = 87.0
 rect_clip_content = true
 
 [node name="TextSpeed" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
-margin_right = 75.0
+margin_right = 103.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
-text = "Text Speed:"
+text = "MENU_TEXTSPEED"
 valign = 1
 
 [node name="MenuFlavor" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
 margin_top = 16.0
-margin_right = 75.0
+margin_right = 103.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
-text = "Menu Flavor:"
+text = "MENU_FLAVORS"
 valign = 1
 
 [node name="ButtonPrompts" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
 margin_top = 32.0
-margin_right = 75.0
+margin_right = 103.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
-text = "Button Prompts:"
+text = "MENU_PROMPTS"
 valign = 1
 
 [node name="End" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
 margin_top = 48.0
-margin_right = 75.0
+margin_right = 103.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 3 )
-text = "End"
+text = "MENU_END"
 valign = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Others"]
 margin_left = 92.0
 margin_top = 11.0
-margin_right = 152.0
-margin_bottom = 71.0
+margin_right = 160.0
+margin_bottom = 72.0
 
 [node name="Speed" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
-margin_right = 60.0
+margin_right = 68.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
-text = "Medium"
+text = "MENU_MEDIUM"
 align = 2
 valign = 1
 
 [node name="Flavor" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
 margin_top = 16.0
-margin_right = 60.0
+margin_right = 68.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
-text = "Plain"
+text = "FLAVOR_PLAIN"
 align = 2
 valign = 1
 
 [node name="Prompts" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
 margin_top = 32.0
-margin_right = 60.0
+margin_right = 68.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
-text = "Both"
+text = "MENU_BOTH"
 align = 2
 valign = 1
 
@@ -2271,7 +2260,6 @@ script = ExtResource( 22 )
 [node name="OthersArrow" parent="CanvasLayer/Others" instance=ExtResource( 4 )]
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
@@ -2293,46 +2281,46 @@ patch_margin_bottom = 13
 script = ExtResource( 24 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextSpeed"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 56.0
 rect_clip_content = true
 
 [node name="Fast" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
-margin_right = 75.0
+margin_right = 84.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
-text = "Fast Speed"
+text = "MENU_FASTSPD"
 valign = 1
 
 [node name="Medium" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
 margin_top = 16.0
-margin_right = 75.0
+margin_right = 84.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
-text = "Medium Speed"
+text = "MENU_MEDIUMSPD"
 valign = 1
 
 [node name="Slow" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
 margin_top = 32.0
-margin_right = 75.0
+margin_right = 84.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
-text = "Slow Speed"
+text = "MENU_SLOWSPD"
 valign = 1
 
 [node name="TextSpeedArrow" parent="CanvasLayer/TextSpeed" instance=ExtResource( 4 )]
 visible = false
-position = Vector2( 11, 16 )
+position = Vector2( 11, 32 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="Flavors" type="NinePatchRect" parent="CanvasLayer"]
 material = ExtResource( 21 )
@@ -2348,57 +2336,56 @@ patch_margin_bottom = 13
 script = ExtResource( 29 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Flavors"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 87.0
 rect_clip_content = true
 
 [node name="Plain" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
-margin_right = 75.0
-text = "Plain"
+margin_right = 104.0
+text = "FLAVOR_PLAIN"
 
 [node name="Mint" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 16.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 28.0
-text = "Mint"
+text = "FLAVOR_MINT"
 
 [node name="Strawberry" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 32.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 44.0
-text = "Strawberry"
+text = "FLAVOR_STRAWBERRY"
 
 [node name="Banana" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 48.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 60.0
-text = "Banana"
+text = "FLAVOR_BANANA"
 
 [node name="Peanut" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 64.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 76.0
-text = "Peanut"
+text = "FLAVOR_PEANUT"
 
 [node name="Grape" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 80.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 92.0
-text = "Grape"
+text = "FLAVOR_GRAPE"
 
 [node name="Melon" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 23 )]
 margin_top = 96.0
-margin_right = 75.0
+margin_right = 104.0
 margin_bottom = 108.0
-text = "Melon"
+text = "FLAVOR_MELON"
 
 [node name="FlavorsArrow" parent="CanvasLayer/Flavors" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 highlight = true
@@ -2406,6 +2393,7 @@ move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="ButtonPrompts" type="NinePatchRect" parent="CanvasLayer"]
 material = ExtResource( 21 )
@@ -2421,54 +2409,54 @@ patch_margin_bottom = 13
 script = ExtResource( 28 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ButtonPrompts"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 72.0
 rect_clip_content = true
 
 [node name="Both" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
-text = "Both"
+text = "MENU_BOTH"
 valign = 1
 
 [node name="Objects" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 16.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
-text = "Objects"
+text = "MENU_OBJECTS"
 valign = 1
 
 [node name="NPCs" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 32.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
-text = "NPCs"
+text = "MENU_NPCS"
 valign = 1
 
 [node name="None" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 48.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 3 )
-text = "None"
+text = "MENU_NONE"
 valign = 1
 
 [node name="ButtonPromptsArrow" parent="CanvasLayer/ButtonPrompts" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
 position = Vector2( 72, 57 )
@@ -2756,7 +2744,7 @@ margin_top = 15.0
 margin_right = 82.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 3 )
-text = "Are you sure?"
+text = "MENU_CERTAINTY"
 valign = 1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/ConfirmationRight/Surely"]
@@ -2774,24 +2762,23 @@ margin_right = 160.0
 margin_bottom = 38.0
 
 [node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Surely/VBoxContainer"]
-margin_right = 50.0
+margin_right = 54.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
-text = "Yep"
+text = "MENU_YEP"
 valign = 1
 
 [node name="Label2" type="Label" parent="CanvasLayer/ConfirmationRight/Surely/VBoxContainer"]
 margin_top = 16.0
-margin_right = 50.0
+margin_right = 54.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
-text = "Nope"
+text = "MENU_NOPE"
 valign = 1
 
 [node name="ConfirmationArrow" parent="CanvasLayer/ConfirmationRight/Surely" instance=ExtResource( 4 )]
 position = Vector2( 104, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
@@ -2801,6 +2788,7 @@ cancel_on = true
 [node name="OkDesuka" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.1
+bus = "SFX"
 
 [node name="CharAnims" type="AnimationPlayer" parent="."]
 anims/FavFoodEnd = SubResource( 8 )
@@ -2819,6 +2807,12 @@ anims/OthersOpen = SubResource( 9 )
 anims/RESET = SubResource( 10 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="BlockName" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -14.69
+pitch_scale = 1.6
+bus = "SFX"
 
 [connection signal="failed_move" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_failed_move"]
 [connection signal="selected" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_selected"]

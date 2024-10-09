@@ -158,6 +158,7 @@ anims/RESET = SubResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
 collision_layer = 0

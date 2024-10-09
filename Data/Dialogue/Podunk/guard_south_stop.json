@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "Guard",
-		"text": "The mayor says no passing until the curfew is lifted.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Guard",
-		"text": "A bit extreme, I know, but those are the orders. Sorry.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Guard",
-		"text": "By the way, they might let you cross the bridge northeast of the Zoo.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_GUARD_SOUTH_STOP_2",
+        "sound": "Adult"
+    }
 }

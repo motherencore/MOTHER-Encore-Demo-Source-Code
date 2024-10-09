@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "Carol",
-		"text": "I gave the [color]Basement Key[/color] to [color]Mick.[/color]",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Carol",
-		"text": "Don't tell Mimmie, though.",
-		"sound": "Sexy",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Carol",
-		"text": "I made sure to keep all the Orange Juice away from her.",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_1",
+        "sound": "Sexy",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_KEY_AGAIN_2",
+        "sound": "Sexy"
+    }
 }

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Graphics/Character Sprites/Enemies/LampOV.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/1dir/Lamp/main.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/npc.gd" type="Script" id=2]
 [ext_resource path="res://Nodes/Ui/emotes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=4]
 [ext_resource path="res://Nodes/Ui/Camera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Reusables/character_sprite.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=155]
 resource_name = "Idle"
@@ -144,6 +145,9 @@ hframes = 4
 
 [node name="emotes" parent="main" instance=ExtResource( 3 )]
 position = Vector2( 0, -26 )
+
+[node name="CharacterSprite" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3 )

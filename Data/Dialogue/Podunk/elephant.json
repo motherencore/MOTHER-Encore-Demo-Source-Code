@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "John",
-		"text": "Toooot."
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ELEPHANT_SPEAKER_John",
+        "text": "DIALOGUE_PODUNK_ELEPHANT_0"
+    }
 }

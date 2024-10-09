@@ -1,19 +1,19 @@
 {
-	"0": {
-		"text":"PartyLead opened the present.",
-		"goto":"1"
-	},
-	"1": {
-		"text":"ItemReceiver got ItemArt ItemName!",
-		"soundeffect":"Item Received.mp3",
-		"goto": "2"
-	},
-	"2": {
-		"text":"There's a note attached to it.",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Note",
-		"text": "Bats are pretty cool, but they don't really do much unless you equip them."
-	}
+    "0": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_FIRSTBAT_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_FIRSTBAT_1",
+        "soundeffect": "Item Received.mp3",
+        "goto": "2"
+    },
+    "2": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_FIRSTBAT_2",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_ITEMDESCRIPTIONS_FIRSTBAT_SPEAKER_Note",
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_FIRSTBAT_3"
+    }
 }

@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Thomas",
-		"text": "The mayor's looking for a brave hero.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Thomas",
-		"text":"If you find anyone, bring them to the town hall.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_THOMAS_SPEAKER_Thomas",
+        "text": "DIALOGUE_PODUNK_THOMAS_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_THOMAS_SPEAKER_Thomas",
+        "text": "DIALOGUE_PODUNK_THOMAS_1",
+        "sound": "Adult"
+    }
 }

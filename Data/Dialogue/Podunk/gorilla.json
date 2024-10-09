@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Gorilla",
-		"text": "Oook ooh, ook."
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_GORILLA_SPEAKER_Gorilla",
+        "text": "DIALOGUE_PODUNK_GORILLA_0"
+    }
 }

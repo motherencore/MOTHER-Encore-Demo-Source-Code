@@ -1,11 +1,11 @@
 {
-	"0": {
-		"name": "Noisy Mouse",
-		"text": "(Watch out to not get [color]poisoned[/color] out there.",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Noisy Mouse",
-		"text": "If you do, your [color]HP will drop faster[/color] than usual.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MOUSE_POISON_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_POISON_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MOUSE_POISON_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_POISON_1"
+    }
 }

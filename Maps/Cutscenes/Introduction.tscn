@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Nodes/Ui/Borders.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/UI/Introduction.gd" type="Script" id=3]
-[ext_resource path="res://Fonts/EB0.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Fonts/EB0_la.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_1_1.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_0_2.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_0_3.png" type="Texture" id=7]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_2_1.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_3_1.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/Cutscenes/Intro/Intro_1_2.png" type="Texture" id=12]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=13]
+[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/UI/Reusables/ButtonLabel.gd" type="Script" id=15]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Introduction"
@@ -24,7 +27,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 3, 11, 17, 24, 25, 32, 33, 41, 42, 49, 50, 58.5, 64, 71.5, 72.5, 79.5, 80.5, 87.5, 92.75, 99.5, 100, 100.25, 102.5, 109.5, 110, 110.5, 114.5 ),
+"times": PoolRealArray( 3, 11.5, 17, 24, 25, 32, 33, 41, 42, 49, 50, 58.5, 63.75, 71.75, 72.75, 79.5, 80.5, 89.5, 94.75, 101.5, 102, 102.25, 104.5, 111.5, 112, 112.5, 116.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -117,7 +120,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "clips": PoolStringArray( "Open", "Close", "Open", "Close", "Open", "Close", "Open", "Close" ),
-"times": PoolRealArray( 0, 11, 14, 58.5, 61, 87.5, 90, 99.5 )
+"times": PoolRealArray( 0, 11.5, 14, 58.5, 61, 89.5, 92, 101.5 )
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Images/Intro_2:rect_position")
@@ -234,10 +237,10 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0, 101.5 ),
+"times": PoolRealArray( 0, 103.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 136 ), Vector2( 0, 73 ) ]
+"values": [ Vector2( 0, 133 ), Vector2( 0, 70 ) ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("Images/Intro_6:visible")
@@ -246,7 +249,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 89.5 ),
+"times": PoolRealArray( 0, 91.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -480,20 +483,48 @@ stretch_mode = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="Text"]
 margin_top = 136.0
 margin_right = 320.0
-margin_bottom = 171.0
+margin_bottom = 178.0
 rect_clip_content = true
 alignment = 1
 
 [node name="ScrollingText" type="Label" parent="Text/HBoxContainer"]
-margin_left = 148.0
-margin_right = 172.0
-margin_bottom = 35.0
+margin_left = 144.0
+margin_top = 5.0
+margin_right = 176.0
+margin_bottom = 37.0
 custom_constants/line_spacing = 4
 custom_fonts/font = ExtResource( 4 )
 text = "text
 text
 text"
 align = 1
+
+[node name="Skip" type="HBoxContainer" parent="Text"]
+margin_left = 232.0
+margin_right = 316.0
+margin_bottom = 11.0
+grow_horizontal = 0
+alignment = 2
+script = ExtResource( 15 )
+show_on_press = true
+
+[node name="Label" type="Label" parent="Text/Skip"]
+margin_left = 1.0
+margin_right = 72.0
+margin_bottom = 11.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 13 )
+text = "MENU_SKIP"
+align = 2
+
+[node name="Button" parent="Text/Skip" instance=ExtResource( 14 )]
+margin_left = 76.0
+margin_right = 84.0
+grow_horizontal = 0
+align = 2
+key = "ui_select"
+
+[node name="Tween" type="Tween" parent="Text/Skip"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Introduction = SubResource( 4 )
@@ -507,5 +538,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+bus = "SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

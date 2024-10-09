@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name":"???",
-		"text":"*SNORE*-MIMimimi...",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_WORKING_SPEAKER_???",
+        "text": "DIALOGUE_PODUNK_WORKING_0",
+        "sound": "Adult"
+    }
 }

@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name": "Alfred",
-		"text": "It might surprise you, but I don't actually work here.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Alfred",
-		"text": "I've been visiting this place for 30 years, and people keep asking me if they can feed the birds.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Alfred",
-		"text": "The answer is no, but it's still annoying.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WORK_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WORK_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WORK_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WORK_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_ALFRED_WORK_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_WORK_2",
+        "sound": "Adult"
+    }
 }

@@ -1,30 +1,24 @@
 extends Control
 
-const maxNameCharacters := 7
-const maxFoodCharcter := 13
-const finalStep = 5
+const favFoodStep = 5
+const finalStep = 6
+const dontCareChoices = 7
+const blinkDuration = .3
 
-var maxCharacters := 7
-
+var maxCharacters := len(tr("LONGEST_POSSIBLE_NAME"))
+var is_highlight_played := false
+const KEYBOARD_ROWS = 5
+var keyboardPanel = 0
+var blacklist = tr("BLACKLISTED_NAMES").split(",")
 var step = -1
 var text = ""
 var dontCare = [
-	["Ninten", "Ken", "Douglas", "Jeremy", "Mark", "Ryu", "Colin"],
-	["Ana", "Jill", "Sylvia", "Catrine", "Carrie", "Nina", "Emily"],
-	["Lloyd", "Brian", "Albert", "Louis", "Kenny", "Jean", "Maxwell"],
-	["Pippi", "Alex", "Penny", "Ferris", "Natalie", "Katt", "Ashley"],
-	["Teddy", "Joe", "Leo", "Jeb", "Alec", "Rand", "Dallas"],
-	["Prime Rib", "Bean Paste", "Creme Cookies", "Pasta", "Omelets", "Custard", "Salmon"],
-]
-
-var biographies = [
-	"What is this boy's name?",
-	"What is this girl's name?",
-	"This other boy's name?",
-	"This other girl's name?",
-	"This last boy's name?",
-	"What is your favorite homemade food?"
-]
+	"NAME_NINTEN", 
+	"NAME_ANA",
+	"NAME_LLOYD",
+	"NAME_PIPPI",
+	"NAME_TEDDY",
+	"FAVFOOD"]
 
 var information = [
 	"", #ninten
@@ -46,7 +40,6 @@ var soundEffects = {
 var currentOtherOption = null
 var menuFlavor
 
-
 onready var bioLabel = $CanvasLayer/NameBox/Label
 onready var nameLabel = $CanvasLayer/NameBox/name/Label
 onready var arrow = $CanvasLayer/NamingBox/arrow
@@ -59,8 +52,9 @@ onready var topGrid = $CanvasLayer/NamingBox/Grid
 onready var grid = $CanvasLayer/NamingBox/Grid/GridContainer
 onready var grid2 = $CanvasLayer/NamingBox/Grid/GridContainer2
 onready var grid3 = $CanvasLayer/NamingBox/Grid/GridContainer3
-onready var grid4 = $CanvasLayer/NamingBox/Grid/GridContainer4
-onready var grid5 = $CanvasLayer/NamingBox/Grid/GridContainer5
+onready var grid4 = $CanvasLayer/NamingBox/CommandGrid/GridContainer4
+onready var grid5 = $CanvasLayer/NamingBox/CommandGrid/GridContainer5
+onready var changePanelLabel = $CanvasLayer/NamingBox/PressButton/Label
 onready var flavorsMenu = $CanvasLayer/Flavors
 onready var textSpeedMenu = $CanvasLayer/TextSpeed
 onready var buttonPromptsMenu = $CanvasLayer/ButtonPrompts
@@ -72,13 +66,23 @@ onready var tween = $Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CanvasLayer/Others/VBoxContainer2/Flavor.text = globaldata.menuFlavor
-	$CanvasLayer/Others/VBoxContainer2/Prompts.text = globaldata.buttonPrompts
+	# LOCALIZATION Code change: Use of csv keys instead of id
+	$CanvasLayer / Others / VBoxContainer2 / Flavor.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
+		
+	# LOCALIZATION Code change: Use of csv keys instead of id
+	$CanvasLayer / Others / VBoxContainer2 / Prompts.text = "MENU_" + globaldata.buttonPrompts.to_upper()
+	
+	blacklist.append("")
 	currentOtherOption = textSpeedMenu
 	global.cutscene = true
 	global.persistPlayer.pause()
 	global.persistPlayer.hide()
+	refresh_keys()
 	set_dots()
+
+	# LOCALIZATION Useful to debug language stuff
+	global.connect("locale_changed", self, "_update_locale")
+	
 	charAnims.play("Start")
 	audioManager.add_audio_player()
 	audioManager.play_music_from_id("", "Mother_Earth_Piano.mp3", audioManager.get_audio_player_count() - 1)
@@ -97,39 +101,88 @@ func _process(delta):
 		else:
 			$CanvasLayer/NameBox/Indicator2.show()
 	
-
-func create_lower():
+# LOCALIZATION Code change: Instead of switching to lower case, now the method refreshes the keys
+# according to current keyboard panel: caps/small, but also hiragana/katakana/romaji, etc.
+func refresh_keys():
+	var gridId = 0
 	for parent in topGrid.get_children():
-		if !parent in [grid4, grid5]:
+		if parent is GridContainer && !parent in [grid4, grid5]:
+			var letters = tr("KEYBOARD_PANEL%s_GRID%s" % [keyboardPanel,gridId])
+			# In case we need to set a different number of columns for different languages
+			#parent.columns = len(letters) / KEYBOARD_ROWS
 			for i in parent.get_child_count():
-				var label = parent.get_child(i)
-				if label.text.to_lower() != label.text:
-					var lowerLabel = label.duplicate()
-					
-					lowerLabel.text = label.text.to_lower()
-					label.add_child(lowerLabel)
-					label.percent_visible = 0
-					lowerLabel.rect_position = Vector2.ZERO
+					var label = parent.get_child(i)
+					var lowerLabel
+					if label.get_child_count() == 0:
+						lowerLabel = label.duplicate()
+						label.add_child(lowerLabel)
+						label.percent_visible = 0
+						lowerLabel.rect_position = Vector2.ZERO
+					else:
+						lowerLabel = label.get_child(0)
+					var letter = letters[i] if i < len(letters) else ""
+					letter = letter.replace("_", "")
+					lowerLabel.text = letter
+					label.text = "A" if letter != "" else ""
+			gridId += 1
 
-func erase_lower():
-	for parent in topGrid.get_children():
-		for i in parent.get_child_count():
-			var label = parent.get_child(i)
-			if label.get_child_count() != 0:
-				label.get_child(0).queue_free()
-				label.percent_visible = 1
+	var nextKeyboardPanel = fmod(keyboardPanel + 1, _count_keyboard_panels())
+	changePanelLabel.text = "KEYBOARD_PANEL%s_NAME" % nextKeyboardPanel
 
-func toggle_lower_upper():
-	if grid.get_child(0).get_child_count() == 0:
-		create_lower()
-		audioManager.play_sfx(soundEffects["set_lower"], "casing")
+# LOCALIZATION Code change: Now switches to the next keyboard panel (caps/small, hiragana/katakana/romaji, etc.)
+# Adapted so that we can have more than two panels
+func toggle_keyboard_panel(dir = 1):
+	keyboardPanel = fmod(keyboardPanel + dir, _count_keyboard_panels())
+	refresh_keys()
+	if arrow.menu_parent.get_child(arrow.cursor_index).text == "":
+		set_info() # Resets cursor if selected keyboard key is empty
+	if dir != 0:
+		if keyboardPanel == _count_keyboard_panels() - 1:
+			audioManager.play_sfx(soundEffects["set_lower"], "casing")
+		else:
+			audioManager.play_sfx(soundEffects["set_upper"], "casing")
+
+# LOCALIZATION Code added: Returns the number of keyboard panels, based on the csv keys
+# (Too bad there’s no way to know if one csv entry is empty in a certain language)
+func _count_keyboard_panels():
+	var i = 0
+	while tr("KEYBOARD_PANEL%s_GRID1" % i) != "KEYBOARD_PANEL%s_GRID1" % i:
+		i += 1
+	return i
+
+# LOCALIZATION Code added: Appends new character to the current name,
+# and also merges characters together in languages that require it (specifically Korean)
+func _keyboard_char_addition(character):
+	var hangul_addition = globaldata.hangul.compose_addition(text, character)
+	if hangul_addition:
+		text = hangul_addition
+		return true
 	else:
-		erase_lower()
-		audioManager.play_sfx(soundEffects["set_upper"], "casing")
-			
+		if len(text) < maxCharacters:
+			text += character
+			return true
+
+	return false
+
+# LOCALIZATION Code added: Removes last character from the current name,
+# and also remerges characters together in languages that require it (specifically Korean)
+func _keyboard_char_removal():
+	var hangul_removal = globaldata.hangul.compose_removal(text)
+	if hangul_removal:
+		text = hangul_removal
+	else:
+		text = text.left(text.length()-1)
+
+# LOCALIZATION Code added: View refresh when the locale changes
+func _update_locale():
+	toggle_keyboard_panel(0)
+	refresh_keys()
+	set_info()
+
 func backspace():
 	if text != "":
-		text = text.left(text.length()-1)
+		# LOCALIZATION Code change: Calls the new method for character removal
+		_keyboard_char_removal()
 		set_dots()
 		arrow.play_sfx("back")
 	elif step != 0:
@@ -147,8 +200,6 @@ func set_prev_step():
 		information[step] = text
 		step -= 1
 		text = information[step]
-		if step < 5:
-			maxCharacters = maxNameCharacters
 		set_info()
 		tween.interpolate_property($Objects/Actors, "position:x", 
 			$Objects/Actors.position.x, $Objects/Actors.position.x + 320, 1.0,
@@ -158,40 +209,80 @@ func set_prev_step():
 		if charAnims.current_animation == "FavFoodLoop":
 			charAnims.play("FavFoodEnd")
 		
-		if step == 5:
+		if step == favFoodStep:
 			charAnims.play("FavFoodStart")
 			yield(charAnims, "animation_finished")
 			charAnims.play("FavFoodLoop")
 
+func is_blocked(name):
+	var checkname = name.to_lower().strip_edges()
+	if checkname in blacklist:
+		return 0
+	for index in range(len(information)):
+		if index != step and name.strip_edges() == information[index].strip_edges():
+			return 1
+
+func highlight_color():
+	is_highlight_played = true
+	for i in range(2):
+		var temporal = bioLabel.text
+		if temporal != bioLabel.text:
+			break
+		bioLabel.modulate = Color(globaldata.dialogHintColor)
+		yield(get_tree().create_timer(blinkDuration), "timeout")
+		bioLabel.modulate = Color(Color.white)
+		yield(get_tree().create_timer(blinkDuration), "timeout")
+		if temporal != bioLabel.text:
+			break
+	is_highlight_played = false
+
 func set_next_step():
 	if !tween.is_active():
-		$OkDesuka.play()
-		tween.interpolate_property($Objects/Actors, "position:x", 
-			$Objects/Actors.position.x, $Objects/Actors.position.x - 320, 1.0,
-			Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-		tween.start()
-		information[step] = text
-		match step:
-			4:
-				maxCharacters = maxFoodCharcter
-				step += 1
-				text = information[step]
-				set_info()
-				charAnims.play("FavFoodStart")
-				yield(charAnims, "animation_finished")
-				charAnims.play("FavFoodLoop")
-			5:
-				step += 1
-				charAnims.play("FavFoodEnd")
-				show_others()
+		match is_blocked(text):
+			0:
+				bioLabel.text = "NAME_BLOCKED"
+				$BlockName.play()
+				if !is_highlight_played:
+					highlight_color()
+					yield(get_tree().create_timer(2), "timeout")
+					set_bios()
+			1:
+				bioLabel.text = "NAME_DUPLICATED"
+				$BlockName.play()
+				if !is_highlight_played:
+					highlight_color()
+					yield(get_tree().create_timer(2), "timeout")
+					set_bios()
 			_:
-				maxCharacters = maxNameCharacters
+				information[step] = text
+				$OkDesuka.play()
+				tween.interpolate_property($Objects/Actors, "position:x", 
+					$Objects/Actors.position.x, $Objects/Actors.position.x - 320, 1.0,
+					Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+				tween.start()
+			# LOCALIZATION Code change: Refactored a bit, used constants
 				step += 1
 				text = information[step]
-				set_info()
-		
+				match step:
+					favFoodStep:
+						set_info()
+						charAnims.play("FavFoodStart")
+						yield(charAnims, "animation_finished")
+						charAnims.play("FavFoodLoop")
+					finalStep:
+						charAnims.play("FavFoodEnd")
+						show_others()
+					_:
+						set_info()
+			
 
 func set_info():
+	# LOCALIZATION Code change: maxCharacters now depends on the language (Japanese characters are bigger and tell more stuff)
+	# + some refactoring here, moved maxCharacters reaffectations into this method
+	if step == favFoodStep:
+		maxCharacters = len(tr("LONGEST_POSSIBLE_FOOD"))
+	else:
+		maxCharacters = len(tr("LONGEST_POSSIBLE_NAME"))
 	arrow.change_parent(grid, false)
 	arrow.cursor_index = 0
 	arrow.set_cursor_from_index(0, true)
@@ -200,22 +291,24 @@ func set_info():
 
 func set_dots():
 	nameLabel.text = text
-	if len(nameLabel.text) != maxCharacters:
-		nameLabel.text += "@"
+	if len(nameLabel.text) < maxCharacters:
+		# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+		nameLabel.text += tr("SYMBOL_BULLET_NAMING")
 		for i in maxCharacters - len(nameLabel.text):
-			nameLabel.text += "`"
+			# LOCALIZATION Code change: To handle the Japanese full-width dot character as well
+			nameLabel.text += tr("SYMBOL_DOT")
 
 func set_bios():
-	bioLabel.text = biographies[step]
+	bioLabel.text = "NAME_BIO" + str(step)
 
+# LOCALIZATION Code change due to the use of csv keys
 func set_dont_care():
-	if text in dontCare[step]:
-		var index = dontCare[step].find(text) + 1
-		if index >= dontCare[step].size():
-			index = 0
-		text = dontCare[step][index]
-	else:
-		text = dontCare[step][0]
+	var index = 0
+	for i in dontCareChoices:
+		if text == tr(dontCare[step] + str(i)):
+			index = fmod(i + 1, dontCareChoices)
+			break
+	text = tr(dontCare[step] + str(index))
 	set_dots()
 
 func show_others():
@@ -269,7 +362,6 @@ func restart_sequence():
 	arrow.on = true
 	confirmArrow.on = false
 	step = 0
-	maxCharacters = maxNameCharacters
 	text = information[step]
 	set_info()
 	menuAnims.play("Naming Open")
@@ -294,10 +386,10 @@ func end_sequence():
 
 func _input(event):
 	if step < 6 and step >= 0:
-		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
+		if event.is_action_pressed("ui_cancel"):
 			backspace()
-		if event.is_action_pressed("ui_ctrl"):
-			toggle_lower_upper()
+		if event.is_action_pressed("ui_scope"):
+			toggle_keyboard_panel()
 		if event.is_action_pressed("ui_select"):
 			arrow.change_parent(grid4)
 		if event.is_action_pressed("ui_focus_next") and text != "":
@@ -305,11 +397,11 @@ func _input(event):
 		if event.is_action_pressed("ui_focus_prev") and step != 0:
 			set_prev_step()
 	elif step == 7:
-		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
+		if event.is_action_pressed("ui_cancel"):
 			restart_sequence()
 
 func _on_arrow_selected(cursor_index):
-	match arrow.menu_parent.get_child(cursor_index).text:
+	match arrow.menu_parent.get_child(cursor_index).name:
 		"Don't care":
 			set_dont_care()
 			arrow.play_sfx("cursor2")
@@ -319,13 +411,17 @@ func _on_arrow_selected(cursor_index):
 			if text != "":
 				set_next_step()
 		_:
-			if len(text) != maxCharacters:
-				var character = ""
-				if arrow.menu_parent.get_child(cursor_index).percent_visible == 1:
-					character = arrow.menu_parent.get_child(cursor_index).text
-				else:
-					character = arrow.menu_parent.get_child(cursor_index).get_child(0).text
-				text += character
+			var character = ""
+			if arrow.menu_parent.get_child(cursor_index).percent_visible == 1:
+				# LOCALIZATION Code change: added tr() for editable keyboard keys
+				character = tr(arrow.menu_parent.get_child(cursor_index).text)
+			else :
+				# LOCALIZATION Code change: added tr() for editable keyboard keys
+				character = tr(arrow.menu_parent.get_child(cursor_index).get_child(0).text)
+			
+			# LOCALIZATION Code change: Calls the new method for character addition
+			var has_text_changed = _keyboard_char_addition(character)
+			if has_text_changed:
 				set_dots()
 				arrow.play_sfx("cursor2")
 
@@ -482,23 +578,24 @@ func _on_TextSpeedArrow_selected(cursor_index):
 	othersArrow.on = true
 	textSpeedArrow.on = false
 	textSpeedArrow.hide()
+	# LOCALIZATION Code change: Use of csv keys here
 	match cursor_index:
 		0:
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "Fast"
 			globaldata.textSpeed = 0.02
+			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_FAST"
 		1:
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "Medium"
 			globaldata.textSpeed = 0.035
+			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_MEDIUM"
 		2:
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "Slow"
 			globaldata.textSpeed = 0.05
+			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_SLOW"
 
 
 func _on_TextSpeedArrow_cancel():
 	othersArrow.on = true
 	textSpeedArrow.on = false
 	textSpeedArrow.hide()
-	textSpeedArrow.get_menu_item_at_index(textSpeedArrow.cursor_index).percent_visible = 1
+	textSpeedArrow.get_current_item().percent_visible = 1
 
 
 func _on_FlavorsArrow_selected(cursor_index):
@@ -519,7 +616,8 @@ func _on_FlavorsArrow_selected(cursor_index):
 			globaldata.menuFlavor = "Melon"
 	othersArrow.on = true
 	flavorsArrow.on = false
-	$CanvasLayer/Others/VBoxContainer2/Flavor.text = globaldata.menuFlavor
+	# LOCALIZATION Code changed: Use of csv keys here
+	$CanvasLayer/Others/VBoxContainer2/Flavor.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
 	flavorsArrow.hide()
 
 func _on_FlavorsArrow_cancel():
@@ -529,8 +627,17 @@ func _on_FlavorsArrow_cancel():
 	flavorsArrow.hide()
 
 func _on_ButtonPromptsArrow_selected(cursor_index):
-	globaldata.buttonPrompts = buttonPromptsArrow.get_menu_item_at_index(cursor_index).text
-	$CanvasLayer/Others/VBoxContainer2/Prompts.text = globaldata.buttonPrompts
+	# LOCALIZATION Code change: Relying on cursor position instead of node text
+	match cursor_index:
+		0:
+			globaldata.buttonPrompts = "Both"
+		1:
+			globaldata.buttonPrompts = "Objects"
+		2:
+			globaldata.buttonPrompts = "NPCs"
+		3:
+			globaldata.buttonPrompts = "None"
+	$CanvasLayer/Others/VBoxContainer2/Prompts.text = buttonPromptsArrow.get_current_item().text
 	othersArrow.on = true
 	buttonPromptsArrow.on = false
 	buttonPromptsArrow.hide()

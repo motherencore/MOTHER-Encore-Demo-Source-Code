@@ -1,84 +1,114 @@
 extends CanvasLayer
 
-signal back
-var active = false
+const InventorySelect = preload("res://Nodes/Ui/Inventory/InventorySelect.gd")
+const SkillsMenu = preload("res://Scripts/UI/SkillsMenuUI.gd")
 
-func Show_stats():
-	$AnimationPlayer.play("Open")
-	$PartySelect.visible = true
-	$PartySelect.active = true
+export (NodePath) onready var anim = get_node(anim) as AnimationPlayer
+export (NodePath) onready var label_name = get_node(label_name) as Label
+export (NodePath) onready var label_hp = get_node(label_hp) as Label
+export (NodePath) onready var label_pp = get_node(label_pp) as Label
+export (NodePath) onready var box_stats = get_node(box_stats) as BoxContainer
+export (NodePath) onready var label_level = get_node(label_level) as Label
+export (NodePath) onready var label_exp = get_node(label_exp) as Label
+export (NodePath) onready var box_equip = get_node(box_equip) as BoxContainer
+export (NodePath) onready var box_ailments = get_node(box_ailments) as BoxContainer
+export (NodePath) onready var label_unconscious = get_node(label_unconscious) as Label
+export (NodePath) onready var panel_select = get_node(panel_select) as InventorySelect
+export (NodePath) onready var panel_skills = get_node(panel_skills) as SkillsMenu
+
+signal back
+
+const MAX_STATUS_DISPLAYED = 11
+
+var active = false
+var _character
+
+func _ready():
+	global.connect("locale_changed", self, "update")
+	panel_skills.connect("exited", self, "_on_skills_exited")
+
+func Show_stats(party_member): 
+	_character = party_member["name"]
+	panel_select.InitFromCharacter(_character)
+	panel_skills.current_character = party_member
+	anim.play("Open")
+	panel_select.visible = true
+	panel_select.active = true
 	active = true
-	set_stats(global.party[0]["name"])
+	
+	update()
 
 func _input(event):
-	if active and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle")):
-		Input.action_release("ui_cancel")
-		Input.action_release("ui_toggle")
-		$AnimationPlayer.play("Close")
-		$PartySelect.active = false
-		active = false
-		emit_signal("back")
+	if active:
+		if event.is_action_pressed("ui_cancel"):
+			Input.action_release("ui_cancel")
+			anim.play("Close")
+			panel_select.active = false
+			active = false
+			emit_signal("back")
+		elif event.is_action_pressed("ui_accept"):
+			active = false
+			audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_open.wav"), "menu_open")
+			panel_skills.activate()
 		
+func update():
+	if _character == null:
+		return
+	
+	var charData = globaldata[_character]
 
-func set_stats(chara):
-	var nextLvl = globaldata[chara].level + 1
+	# Character name
+	label_name.text = charData.nickname
+
+	# HP, PP
+	label_hp.text = "%s / %s" % [charData.hp, charData.maxhp + charData.boosts.maxhp]
+	label_pp.text = "%s / %s" % [charData.pp, charData.maxpp + charData.boosts.maxpp]
+	
+	# Battle stats: Offense, Defense, Speed, IQ, Guts
+	for node in box_stats.get_children():
+		if node is Label:
+			var stat = node.get_name()
+			node.text = str(int(charData[stat] + charData.boosts[stat]))
+
+	# Level, EXP
+	var nextLvl = charData.level + 1
 	var expNeeded = int(nextLvl * nextLvl * (nextLvl + 1) * .75)
-	$Stats/Name.text = globaldata[chara].nickname
-	$Stats/stats/HP.text = str(int(globaldata[chara].hp)) + " / " + str(globaldata[chara].maxhp + globaldata[chara]["boosts"].maxhp)
-	$Stats/stats/PP.text = str(int(globaldata[chara].pp)) + " / " + str(globaldata[chara].maxpp + globaldata[chara]["boosts"].maxpp)
-	$Stats/stats/offense.text = str(int(globaldata[chara].offense + globaldata[chara].boosts.offense))
-	$Stats/stats/defense.text = str(int(globaldata[chara].defense + globaldata[chara].boosts.defense))
-	$Stats/stats/speed.text = str(int(globaldata[chara].speed + globaldata[chara].boosts.speed))
-	$Stats/stats/IQ.text = str(int(globaldata[chara].iq + globaldata[chara].boosts.iq))
-	$Stats/stats/guts.text = str(int(globaldata[chara].guts + globaldata[chara].boosts.guts))
-	$Stats/stats2/level.text = str(int(globaldata[chara].level))
-	$Stats/stats2/points.text = str(int(globaldata[chara].exp)) + "/" + str(expNeeded)
-	$Stats/stats2/weapon.text = ""
-	$Stats/stats2/body.text = ""
-	$Stats/stats2/head.text = ""
-	$Stats/stats2/other.text = ""
-	if globaldata[chara]["equipment"]["weapon"] != "":
-		$Stats/stats2/weapon.text = InventoryManager.Load_item_data(globaldata[chara]["equipment"]["weapon"])["name"][globaldata.language]
-	if globaldata[chara]["equipment"]["body"] != "":
-		$Stats/stats2/body.text = InventoryManager.Load_item_data(globaldata[chara]["equipment"]["body"])["name"][globaldata.language]
-	if globaldata[chara]["equipment"]["head"] != "":
-		$Stats/stats2/head.text = InventoryManager.Load_item_data(globaldata[chara]["equipment"]["head"])["name"][globaldata.language]
-	if globaldata[chara]["equipment"]["other"] != "":
-		$Stats/stats2/other.text = InventoryManager.Load_item_data(globaldata[chara]["equipment"]["other"])["name"][globaldata.language]
-	$Stats/Name/statuses.text = ""
+	label_level.text = str(int(charData.level))
+	label_exp.text = str(int(charData.exp)) + "/" + str(expNeeded)
 	
-	var overflowing = false
-	for s in globaldata[chara].status.size():
-		for st in globaldata.ailments.size():
-			if st == globaldata[chara].status[s]:
-				var num = 0
-				for sta in globaldata.ailments:
-					if num == st:
-						if s > 0:
-							#if s == globaldata[chara].status.size() - 1:
-							#else:
-							$Stats/Name/statuses.text += " and "
-						$Stats/Name/statuses.text += "more"
-						$Stats/Name/statuses.text += str(sta)
-						if $Stats/Name/statuses.get_line_count() > 1:
-							$Stats/Name/statuses.text = $Stats/Name/statuses.text.replace((str(sta)), "")
-							overflowing = true
-						else:
-							$Stats/Name/statuses.text = $Stats/Name/statuses.text.replace("more", "")
-							if s != globaldata[chara].status.size() - 1:
-								$Stats/Name/statuses.text = $Stats/Name/statuses.text.replace(" and ", ", ")
-						break
-					num += 1
-			if overflowing:
-				break
-		if overflowing:
-			break
-		
-	
-	for i in $Stats/stats2.get_children():
-		if i.get("text") != null:
-			if i.text == "":
-				i.text = "None"
+	# Equip
+	for node in box_equip.get_children():
+		if node is Label:
+			var item = node.get_name()
+			if charData["equipment"][item] != "":
+				#globaldata.fit_item_name_to_label(node, InventoryManager.Load_item_data(charData["equipment"][item]))
+				node.text = InventoryManager.Load_item_data(charData["equipment"][item]).name
+			else:
+				node.text = "EQUIP_NONE"
+
+	# Status ailments
+	var ailments_to_show = charData.status
+	while MAX_STATUS_DISPLAYED > 0 and ailments_to_show.size() > MAX_STATUS_DISPLAYED:
+		ailments_to_show = ailments_to_show.slice(1, -1)
+	for node in box_ailments.get_children():
+		var ailment_id = globaldata.status_name_to_enum(node.get_name())
+		node.visible = (ailment_id in ailments_to_show)
+	var text_unconscious = _format_text_with_target("AILMENT_UNCONSCIOUS", charData)
+	label_unconscious.text = text_unconscious[0].to_upper() + text_unconscious.substr(1)
+	label_unconscious.visible = globaldata.ailments.Unconscious in ailments_to_show
+
+# To handle formatting of targets and articles in text (more particularly gender agreement)
+# Similar method in PSIMenuUI.gd
+func _format_text_with_target(text, target):
+	return tr(text).format({
+		"target": target.nickname
+		}).format(
+			globaldata.get_battler_articles(target), "{t_}"
+		)
 
 func _on_InventorySelect_character_changed(character):
-	set_stats(character)
+	_character = character
+	update()
+
+func _on_skills_exited():
+	active = true

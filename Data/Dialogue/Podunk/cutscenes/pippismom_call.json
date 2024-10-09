@@ -1,98 +1,123 @@
 {
-	"0": {
-		"actors": {
-			"lindgren": "Objects/NPCS/npc20",
-			"ninten": "leader"
-		},
-		"actorsturn": {
-			"ninten": {
-				"x": 1,
-				"y": 0,
-				"speed": 0.1
-			}
-		},
-		"name": "Mrs. Lindgren",
-		"text": "[Pippi]!",
-		"sound": "Sexy",
-		"flag": "pippis_mom_call",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Mrs. Lindgren",
-		"text": "Oh, [Pippi]!",
-		"sound": "Sexy",
-		"movecam": {
-			"x": 640,
-			"y": 290,
-			"time": 2
-		},
-		"actorsmove": {
-			"lindgren": {
-				"movement": [{"x": 0, "y": 16}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"wait": 1,
-		"goto": "2"
-	},
-	"2": {
-		"name": "Mrs. Lindgren",
-		"text": "Oh me, oh my!",
-		"sound": "Sexy",
-		"actorsmove": {
-			"lindgren": {
-				"movement": [{"x": -16, "y": 0}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"wait": 0.5,
-		"goto": "3"
-	},
-	"3": {
-		"name": "Mrs. Lindgren",
-		"text": "Oh me, oh my!",
-		"sound": "Sexy",
-		"actorsmove": {
-			"lindgren": {
-				"movement": [{"x": 32, "y": 0}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"wait": 1,
-		"goto": "4"
-	},
-	"4": {
-		"name": "Mrs. Lindgren",
-		"text": "What can I do, what should I do?!",
-		"sound": "Sexy",
-		"actorsmove": {
-			"lindgren": {
-				"movement": [{"x": -16, "y": 0}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"wait": 0.5,
-		"goto": "5"
-	},
-	"5": {
-		"showbox": false,
-		"actorsmove": {
-			"lindgren": {
-				"movement": [{"x": 0, "y": 16}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"wait": 0.6,
-		"autoadvance": true
-	}
+    "0": {
+        "actors": {
+            "lindgren": "Objects/NPCS/npc20",
+            "ninten": "leader"
+        },
+        "actorsturn": {
+            "ninten": {
+                "x": 1,
+                "y": 0,
+                "speed": 0.1
+            }
+        },
+        "name": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_0",
+        "sound": "Sexy",
+        "flag": "pippis_mom_call",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_1",
+        "sound": "Sexy",
+        "movecam": {
+            "x": 640,
+            "y": 290,
+            "time": 2
+        },
+        "actorsmove": {
+            "lindgren": {
+                "movement": [
+                    {
+                        "x": 0,
+                        "y": 16
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "wait": 1,
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_2",
+        "sound": "Sexy",
+        "actorsmove": {
+            "lindgren": {
+                "movement": [
+                    {
+                        "x": -16,
+                        "y": 0
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "wait": 0.5,
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_3",
+        "sound": "Sexy",
+        "actorsmove": {
+            "lindgren": {
+                "movement": [
+                    {
+                        "x": 32,
+                        "y": 0
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "wait": 1,
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_4",
+        "sound": "Sexy",
+        "actorsmove": {
+            "lindgren": {
+                "movement": [
+                    {
+                        "x": -16,
+                        "y": 0
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "wait": 0.5,
+        "goto": "5"
+    },
+    "5": {
+        "showbox": false,
+        "actorsmove": {
+            "lindgren": {
+                "movement": [
+                    {
+                        "x": 0,
+                        "y": 16
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "wait": 0.6,
+        "autoadvance": true
+    }
 }

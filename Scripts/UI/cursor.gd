@@ -3,7 +3,7 @@ extends AnimatedSprite
 export var menu_parent_path : NodePath
 export var cursor_offset : Vector2
 export var cursor_size = Vector2(8, 8)
-export var on = false
+export var on = false setget _set_on
 export var consume_input_events = false
 export var loop_around = false
 export var skip_empty_labels = false
@@ -22,6 +22,7 @@ var soundEffects = {
 	"back": load("res://Audio/Sound effects/M3/curshoriz.wav"),
 	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
 	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3"),
+	"restricted": load("res://Audio/Sound effects/M3/bump.wav")
 }
 
 var cursor_index : int = 0
@@ -30,6 +31,7 @@ var input := Vector2.ZERO
 signal moved(dir)
 signal failed_move(dir)
 signal selected(cursor_index)
+signal failed_select(cursor_index)
 signal cancel()
 
 func _ready():
@@ -40,74 +42,39 @@ func _ready():
 			turn_on_highlight()
 		connect("visibility_changed", self, "turn_on_highlight")
 		connect("visibility_changed", self, "unhighlight")
-		
+	global.connect("locale_changed", self, "_refresh_pos")
 
-func _input(event):
-	if is_active():
-		if event.is_action_pressed("ui_accept"):
-			var current_menu_item := get_menu_item_at_index(cursor_index)
-			if current_menu_item != null:
-				if select_sfx:
-					play_sfx('cursor2')
-				emit_signal("selected", cursor_index)
-			if consume_input_events:
-				Input.action_release("ui_accept")
-				get_tree().set_input_as_handled()
-		
-		elif event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
-			if cancel_on:
-				if cancel_sfx:
-					play_sfx('back')
-				emit_signal("cancel")
-				if consume_input_events:
-					Input.action_release("ui_cancel")
-					Input.action_release("ui_toggle")
-					get_tree().set_input_as_handled()
-		
 func _physics_process(delta):
 	if is_active():
-		input = Vector2.ZERO
-		if Input.is_action_just_pressed("ui_left") \
-		or Input.is_action_just_pressed("ui_dpad_left") \
-		or Input.is_action_just_pressed("ui_lstick_left") \
-		or Input.is_action_just_pressed("ui_rstick_left") \
-		or Input.is_action_just_pressed("ui_key_left"):
-			input.x -= 1
-		if Input.is_action_just_pressed("ui_right") \
-		or Input.is_action_just_pressed("ui_dpad_right") \
-		or Input.is_action_just_pressed("ui_lstick_right") \
-		or Input.is_action_just_pressed("ui_rstick_left") \
-		or Input.is_action_just_pressed("ui_key_right"):
-			input.x += 1
-		if Input.is_action_just_pressed("ui_up") \
-		or Input.is_action_just_pressed("ui_dpad_up") \
-		or Input.is_action_just_pressed("ui_lstick_up") \
-		or Input.is_action_just_pressed("ui_rstick_up") \
-		or Input.is_action_just_pressed("ui_key_up"):
-			input.y -= 1
-		if Input.is_action_just_pressed("ui_down") \
-		or Input.is_action_just_pressed("ui_dpad_down") \
-		or Input.is_action_just_pressed("ui_lstick_down") \
-		or Input.is_action_just_pressed("ui_rstick_down") \
-		or Input.is_action_just_pressed("ui_key_down"):
-			input.y += 1
-		
+		input = controlsManager.get_controls_vector(true)
 		if input != Vector2.ZERO and $Timer.time_left == 0:
+			print(input)
 			var old_index = cursor_index
 			var index: int
 			var dir: int
 			# assign index and input dir based on container
 			if menu_parent is VBoxContainer:
-				input.x = 0
+				#input.x = 0
 				index = int(cursor_index + input.y)
 				dir = int(input.y)
+				if loop_around:
+					if index < get_first_available_idx():
+						index = get_last_available_idx()
+					elif index > get_last_available_idx():
+						index = get_first_available_idx()
 			elif menu_parent is HBoxContainer:
-				input.y = 0
+				#input.y = 0
 				index = int(cursor_index + input.x)
 				dir = int(input.x)
+				if loop_around:
+					if index < get_first_available_idx():
+						index = get_last_available_idx()
+					elif index > get_last_available_idx():
+						index = get_first_available_idx()
 			elif menu_parent is GridContainer:
 				var row = int(cursor_index/menu_parent.columns)
 				var column = cursor_index - row * menu_parent.columns
+				var nb_rows = ceil(float(menu_parent.get_child_count() - column) / menu_parent.columns)
 				if column == menu_parent.columns - 1 and input.x == 1:
 					if loop_around:
 						index = cursor_index - menu_parent.columns + 1
@@ -118,15 +85,34 @@ func _physics_process(delta):
 						index = cursor_index + menu_parent.columns - 1
 						input.x = 1
 						dir = int(input.x + input.y)
+				elif row == nb_rows - 1 and input.y == 1:
+					if loop_around:
+						index = cursor_index % menu_parent.columns
+						input.y = -1
+						dir = int(input.x + input.y)
+				elif row == 0 and input.y == -1:
+					if loop_around:
+						index = menu_parent.columns * (nb_rows - 1) + (cursor_index % menu_parent.columns)
+						input.y = 1
+						dir = int(input.x + input.y)
+						
 				else:
 					index = cursor_index + input.x + input.y * menu_parent.columns
-					dir = int(input.x + input.y)
+					
+					#dir = int(input.x + input.y)
+					#if dir == 0 and index != cursor_index:
+					dir = index - cursor_index
+					if dir != 0:
+						dir = sign(dir)
 			# process direction to validate idx
 			if dir != 0:
+				var step = 1
+				if menu_parent is GridContainer:
+					step = abs(index - cursor_index)
 				if dir > 0:
-					index = _idx_or_next_valid_idx(index)
+					index = _idx_or_next_valid_idx(index, step)
 				elif dir < 0:
-					index = _idx_or_prev_valid_idx(index)
+					index = _idx_or_prev_valid_idx(index, step)
 				set_cursor_from_index(index)
 			
 			
@@ -136,14 +122,46 @@ func _physics_process(delta):
 				emit_signal("moved", input)
 			else:
 				emit_signal("failed_move", input)
+				print("womp womp")
+
+func _input(event):
+	if is_active():
+		if event.is_action_pressed("ui_accept"):
+			var current_menu_item := get_current_item()
+			if current_menu_item != null:
+				if select_sfx:
+					play_sfx('cursor2')
+				emit_signal("selected", cursor_index)
+			else:
+				emit_signal("failed_select", cursor_index)
+			if consume_input_events:
+				Input.action_release("ui_accept")
+				get_tree().set_input_as_handled()
+		
+		elif event.is_action_pressed("ui_cancel"):
+			if cancel_on:
+				if cancel_sfx:
+					play_sfx('back')
+				emit_signal("cancel")
+				if consume_input_events:
+					Input.action_release("ui_cancel")
+					get_tree().set_input_as_handled()
+
+func _refresh_pos():
+	yield(get_tree(), "idle_frame")
+	set_cursor_from_index(cursor_index)
+
+func _set_on(val):
+	on = val
+	playing = on
 
 func is_active():
-	return on and (menu_parent is VBoxContainer or menu_parent is HBoxContainer or menu_parent is GridContainer)
+	return on and is_instance_valid(menu_parent) and (menu_parent is VBoxContainer or menu_parent is HBoxContainer or menu_parent is GridContainer)
 
 func turn_on_highlight():
-	if highlight and get_menu_item_at_index(cursor_index) != null:
-		if get_menu_item_at_index(cursor_index).has_method("highlight") and visible:
-			get_menu_item_at_index(cursor_index).highlight(1)
+	if highlight and get_current_item() != null:
+		if get_current_item().has_method("highlight") and visible:
+			get_current_item().highlight(1)
 
 func unhighlight():
 	if highlight:
@@ -160,7 +178,7 @@ func get_visible_menu_items():
 	return visible_items
 
 func get_menu_item_at_index(index : int) -> Control:
-	if menu_parent == null:
+	if !is_instance_valid(menu_parent):
 		return null
 	
 	if index >= menu_parent.get_child_count() or index < 0:
@@ -176,12 +194,15 @@ func get_menu_item_at_index(index : int) -> Control:
 	
 	return menu_parent.get_child(validIdx) as Control
 
+func get_current_item() -> Control:
+	return get_menu_item_at_index(cursor_index)
+
 func set_cursor_from_index(index : int, transition = true) -> void:
 	
-	if menu_parent == null:
+	if !is_instance_valid(menu_parent):
 		return
 	# try to fix index preemptively lol
-	
+	index = _idx_or_prev_valid_idx(index)
 	index = _idx_or_next_valid_idx(index)
 	if index >= menu_parent.get_child_count():
 		return
@@ -224,30 +245,11 @@ func set_cursor_from_index(index : int, transition = true) -> void:
 		scale = Vector2.ONE
 		global_position = new_position
 
-func get_max():
-	var i = 0
-	for child in menu_parent.get_children():
-		var toAdd = 1
-		if skip_hidden_items:
-			if "visible" in child and !child.visible:
-				toAdd = 0
-		if skip_empty_labels:
-			if child is Label and child.text == "":
-				toAdd = 0
-		i += toAdd
-	return i
-
 func set_cursor_to_front():
 	var j = -1
 	for i in menu_parent.get_child_count():
-		if skip_hidden_items:
-			var item = menu_parent.get_child(i)
-			if "visible" in item and !item.visible:
-				continue
-		if skip_empty_labels:
-			var label = menu_parent.get_child(i)
-			if label is Label and label.text == "":
-				continue
+		if _should_skip_item(menu_parent.get_child(i)):
+			continue
 		j = i
 		break
 	
@@ -260,39 +262,46 @@ func set_cursor_to_front():
 		size.x = -size.x/6.0
 		global_position = menu_parent.rect_global_position + cursor_offset + size
 
-func _idx_or_next_valid_idx(index):
-	if menu_parent == null:
+func _idx_or_next_valid_idx(index, step = 1):
+	if !is_instance_valid(menu_parent):
 		return -1
 	elif index >= menu_parent.get_child_count() or index < 0:
 		return -1
 	else:
-		for i in range(index, menu_parent.get_child_count()):
+		for i in range(index, menu_parent.get_child_count(), step):
 			var item = menu_parent.get_child(i)
-			if skip_hidden_items:
-				if "visible" in item and !item.visible:
-					continue
-			if skip_empty_labels:
-				if item is Label and item.text == "":
-					continue
+			if _should_skip_item(item):
+				continue
 			return i
 	return -1
 
-func _idx_or_prev_valid_idx(index):
-	if menu_parent == null:
+func _idx_or_prev_valid_idx(index, step = 1):
+	if !is_instance_valid(menu_parent):
 		return -1
 	elif index >= menu_parent.get_child_count() or index < 0:
 		return -1
 	else:
-		for i in range(index, -1, -1):
+		for i in range(index, -1, -step):
 			var item = menu_parent.get_child(i)
-			if skip_hidden_items:
-				if "visible" in item and !item.visible:
-					continue
-			if skip_empty_labels:
-				if item is Label and item.text == "":
-					continue
+			if _should_skip_item(item):
+				continue
 			return i
 	return -1
+
+func _should_skip_item(item):
+	if skip_hidden_items:
+		if "visible" in item and !item.visible:
+			return true
+	if skip_empty_labels:
+		if item is Label and item.text == "":
+			return true
+	return false
+
+func get_first_available_idx():
+	return _idx_or_next_valid_idx(0)
+
+func get_last_available_idx():
+	return _idx_or_prev_valid_idx(menu_parent.get_child_count() - 1)
 
 func play_sfx(sfx):
 	var stream = soundEffects[sfx]
@@ -301,20 +310,31 @@ func play_sfx(sfx):
 
 func get_closest_menu_item_index(newParent):
 	var closest = 0
+	var cursor_position = global_position
+	cursor_position.x += cursor_size.x - cursor_offset.x
 	for i in newParent.get_child_count():
 		var closestItem = newParent.get_child(closest)
 		var newItem = newParent.get_child(i)
-		if global_position.distance_to(closestItem.rect_global_position + closestItem.rect_size / 2) > global_position.distance_to(newItem.rect_global_position + closestItem.rect_size / 2 ):
-			closest = i
+		if cursor_position.distance_to(closestItem.rect_global_position + closestItem.rect_size / 2) > cursor_position.distance_to(newItem.rect_global_position + closestItem.rect_size / 2 ):
+			if _should_skip_item(newItem):
+				continue
+			else:
+				closest = i
+
 	return closest
 
 func get_farthest_menu_item_index(newParent):
 	var farthest = 0
+	var cursor_position = global_position
+	cursor_position.x += cursor_size.x - cursor_offset.x
 	for i in newParent.get_child_count():
 		var farthestItem = newParent.get_child(farthest)
 		var newItem = newParent.get_child(i)
-		if global_position.distance_to(farthestItem.rect_global_position + farthestItem.rect_size / 2) < global_position.distance_to(newItem.rect_global_position + farthestItem.rect_size / 2 ):
-			farthest = i
+		if cursor_position.distance_to(farthestItem.rect_global_position + farthestItem.rect_size / 2) < cursor_position.distance_to(newItem.rect_global_position + farthestItem.rect_size / 2 ):
+			if _should_skip_item(newItem):
+				continue
+			else:
+				farthest = i
 	return farthest
 
 func change_parent(newParent, play_sfx = true, closest_index = true):
@@ -330,5 +350,6 @@ func change_parent(newParent, play_sfx = true, closest_index = true):
 
 func _on_arrow_visibility_changed():
 	if reset_on_show:
+		yield(get_tree(), "idle_frame")
 		cursor_index = 0
 		set_cursor_from_index(0, false)

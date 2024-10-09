@@ -1,19 +1,19 @@
 {
-	"0": {
-		"name":"Frederick",
-		"text":"The dead have come back to life down at the cemetery.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Frederick",
-		"text":"I think I'll take this opportunity to see my former wife again.",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name":"Frederick",
-		"text":"My current one just won't stop nagging me.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_FREDERICK_SPEAKER_Frederick",
+        "text": "DIALOGUE_PODUNK_FREDERICK_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_FREDERICK_SPEAKER_Frederick",
+        "text": "DIALOGUE_PODUNK_FREDERICK_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_FREDERICK_SPEAKER_Frederick",
+        "text": "DIALOGUE_PODUNK_FREDERICK_2",
+        "sound": "Adult"
+    }
 }

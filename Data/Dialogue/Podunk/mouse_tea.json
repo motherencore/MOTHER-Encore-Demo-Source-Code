@@ -1,21 +1,21 @@
 {
-	"0": {
-		"name": "Noisy Mouse",
-		"text": "(You must be feeling pretty worn out from battle right now.",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Noisy Mouse",
-		"text": "Why not take a break then?",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Noisy Mouse",
-		"text": "I heard drinking tea from a [color]blue kettle[/color] can make you feel [color]good as new[/color].",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Noisy Mouse",
-		"text": "I would have some myself, but I'm too short to reach it.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MOUSE_TEA_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_TEA_0",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MOUSE_TEA_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_TEA_1",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_MOUSE_TEA_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_TEA_2",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MOUSE_TEA_SPEAKER_Noisy_Mouse",
+        "text": "DIALOGUE_PODUNK_MOUSE_TEA_3"
+    }
 }

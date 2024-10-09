@@ -1,13 +1,13 @@
 {
-	"0": {
-		"text": "A really cool baseball bat.",
-		"goto": "1"
-	},
-	"1": {
-		"text": "It's even signed by the one and only Will Clark!",
-		"goto": "2"
-	},
-	"2": {
-		"text": "You know it's too valuable to swing around yourself."
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_NINTEN_S_HOUSE_BASEBALL_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_NINTEN_S_HOUSE_BASEBALL_1",
+        "goto": "2"
+    },
+    "2": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_NINTEN_S_HOUSE_BASEBALL_2"
+    }
 }

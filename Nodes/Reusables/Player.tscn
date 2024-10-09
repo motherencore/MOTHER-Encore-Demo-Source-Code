@@ -1,4 +1,4 @@
-[gd_scene load_steps=323 format=2]
+[gd_scene load_steps=331 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Ninten/main.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Player.gd" type="Script" id=2]
@@ -14,10 +14,11 @@
 [ext_resource path="res://Graphics/VFX/AnaPSISparks.png" type="Texture" id=12]
 [ext_resource path="res://Graphics/Character Sprites/Water_Ripple.png" type="Texture" id=13]
 [ext_resource path="res://Shaders/Outline.shader" type="Shader" id=14]
+[ext_resource path="res://Nodes/Reusables/Effects/AfterImageCreator.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ShaderMaterial" id=274]
 shader = ExtResource( 14 )
-shader_param/color = Color( 0.972549, 0.12549, 0.188235, 1 )
+shader_param/color = Color( 0.972549, 0.972549, 0, 1 )
 shader_param/width = 0.0
 shader_param/pattern = 0
 shader_param/inside = false
@@ -4762,6 +4763,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [ 180.0 ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Position/main:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 100 ]
+}
 
 [sub_resource type="Animation" id=26]
 resource_name = "Run Down"
@@ -6891,6 +6904,47 @@ tracks/5/keys = {
 "values": [ Vector2( 12, 0 ) ]
 }
 
+[sub_resource type="Animation" id=494]
+resource_name = "Soot"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 99 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position/main:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpecialAnimations:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=18]
 resource_name = "Walk Down"
 length = 0.8
@@ -7165,6 +7219,125 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Position/main:material:shader_param/glow_modifier")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Position/main:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("SpecialAnimations:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=499]
+resource_name = "TeleportFlash"
+length = 0.125
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position/main:material:shader_param/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.042, 0.084 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.807843, 0.92549, 1 ), Color( 0.352941, 0.360784, 0.87451, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=500]
+resource_name = "TeleportPulse"
+length = 0.208334
+loop = true
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position/main:material:shader_param/glow_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0416667, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.207843, 0.807843, 0.92549, 1 ), Color( 0.352941, 0.360784, 0.87451, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position/main:material:shader_param/glow_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.166667 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.2 ]
 }
 
 [sub_resource type="Animation" id=224]
@@ -8051,6 +8224,9 @@ blend_point_7/node = SubResource( 493 )
 blend_point_7/pos = Vector2( -0.6, -0.7 )
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id=495]
+animation = "Soot"
+
 [sub_resource type="AnimationNodeAnimation" id=397]
 animation = "Walk Down"
 
@@ -8159,6 +8335,12 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=479]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=496]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=497]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=498]
+
 [sub_resource type="AnimationNodeStateMachine" id=76]
 states/Bat/node = SubResource( 464 )
 states/Bat/position = Vector2( 294.919, 337.251 )
@@ -8188,11 +8370,13 @@ states/ShootHold/node = SubResource( 391 )
 states/ShootHold/position = Vector2( 67.4538, 278.814 )
 states/ShootPrep/node = SubResource( 396 )
 states/ShootPrep/position = Vector2( 71.256, 180.369 )
+states/Soot/node = SubResource( 495 )
+states/Soot/position = Vector2( 627.898, -178.328 )
 states/Walk/node = SubResource( 69 )
 states/Walk/position = Vector2( 628.097, 114.894 )
-transitions = [ "Shoot", "Idle", SubResource( 405 ), "Idle", "Crouch", SubResource( 406 ), "Crouch", "Run", SubResource( 407 ), "Crouch", "Idle", SubResource( 408 ), "Idle", "Walk", SubResource( 70 ), "Walk", "Run", SubResource( 74 ), "Run", "Walk", SubResource( 75 ), "Walk", "Idle", SubResource( 71 ), "Idle", "Blink", SubResource( 409 ), "Blink", "Idle", SubResource( 410 ), "Idle", "ShootPrep", SubResource( 411 ), "ShootPrep", "ShootHold", SubResource( 412 ), "ShootHold", "Shoot", SubResource( 413 ), "Cast", "Idle", SubResource( 223 ), "Idle", "CastPrep", SubResource( 237 ), "CastPrep", "CastHold", SubResource( 264 ), "CastHold", "Cast", SubResource( 265 ), "Crouch", "Jump", SubResource( 295 ), "Jump", "Crouch", SubResource( 296 ), "ShootHold", "Idle", SubResource( 297 ), "ShootPrep", "Idle", SubResource( 298 ), "Idle", "FaintedIdle", SubResource( 450 ), "FaintedIdle", "Idle", SubResource( 451 ), "Idle", "Bat", SubResource( 465 ), "Bat", "Idle", SubResource( 466 ), "FaintedIdle", "FaintedWalk", SubResource( 478 ), "FaintedWalk", "FaintedIdle", SubResource( 479 ) ]
+transitions = [ "Shoot", "Idle", SubResource( 405 ), "Idle", "Crouch", SubResource( 406 ), "Crouch", "Run", SubResource( 407 ), "Crouch", "Idle", SubResource( 408 ), "Idle", "Walk", SubResource( 70 ), "Walk", "Run", SubResource( 74 ), "Run", "Walk", SubResource( 75 ), "Walk", "Idle", SubResource( 71 ), "Idle", "Blink", SubResource( 409 ), "Blink", "Idle", SubResource( 410 ), "Idle", "ShootPrep", SubResource( 411 ), "ShootPrep", "ShootHold", SubResource( 412 ), "ShootHold", "Shoot", SubResource( 413 ), "Cast", "Idle", SubResource( 223 ), "Idle", "CastPrep", SubResource( 237 ), "CastPrep", "CastHold", SubResource( 264 ), "CastHold", "Cast", SubResource( 265 ), "Crouch", "Jump", SubResource( 295 ), "Jump", "Crouch", SubResource( 296 ), "ShootHold", "Idle", SubResource( 297 ), "ShootPrep", "Idle", SubResource( 298 ), "Idle", "FaintedIdle", SubResource( 450 ), "FaintedIdle", "Idle", SubResource( 451 ), "Idle", "Bat", SubResource( 465 ), "Bat", "Idle", SubResource( 466 ), "FaintedIdle", "FaintedWalk", SubResource( 478 ), "FaintedWalk", "FaintedIdle", SubResource( 479 ), "Run", "Soot", SubResource( 496 ), "Soot", "Idle", SubResource( 497 ), "Idle", "Soot", SubResource( 498 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -98.5766, -86.9245 )
+graph_offset = Vector2( -98.5766, 35.2584 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=77]
 
@@ -8284,7 +8468,8 @@ vframes = 20
 frame = 11
 
 [node name="emotes" parent="Position/main" instance=ExtResource( 8 )]
-position = Vector2( 0, -27 )
+position = Vector2( 0, -30 )
+objectPath = NodePath("..")
 
 [node name="SpecialAnimations" type="Sprite" parent="."]
 visible = false
@@ -8298,6 +8483,7 @@ frame = 4
 [node name="Ripple" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 7 )
 frames = SubResource( 480 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
@@ -8427,6 +8613,7 @@ anims/RESET = SubResource( 81 )
 "anims/ShootPrep Up" = SubResource( 181 )
 "anims/ShootPrep UpLeft" = SubResource( 488 )
 "anims/ShootPrep UpRight" = SubResource( 489 )
+anims/Soot = SubResource( 494 )
 "anims/Walk Down" = SubResource( 18 )
 "anims/Walk DownLeft" = SubResource( 19 )
 "anims/Walk DownRight" = SubResource( 20 )
@@ -8436,9 +8623,11 @@ anims/RESET = SubResource( 81 )
 "anims/Walk UpLeft" = SubResource( 24 )
 "anims/Walk UpRight" = SubResource( 25 )
 
-[node name="DamageAnimation" type="AnimationPlayer" parent="."]
+[node name="FlashAnim" type="AnimationPlayer" parent="."]
 anims/Flash = SubResource( 134 )
 anims/RESET = SubResource( 135 )
+anims/TeleportFlash = SubResource( 499 )
+anims/TeleportPulse = SubResource( 500 )
 
 [node name="EffectsAnim" type="AnimationPlayer" parent="."]
 anims/Fire = SubResource( 224 )
@@ -8518,6 +8707,7 @@ disabled = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 9 )
+bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -8536,9 +8726,20 @@ one_shot = true
 wait_time = 0.733
 one_shot = true
 
+[node name="TPCrouchTime" type="Timer" parent="."]
+one_shot = true
+
+[node name="TPTakeOffTime" type="Timer" parent="."]
+one_shot = true
+
+[node name="AfterImageCreator" parent="." instance=ExtResource( 15 )]
+spritePath = NodePath("../Position/main")
+
 [connection signal="animation_finished" from="OutlineAnim" to="." method="_on_OutlineAnim_animation_finished"]
 [connection signal="timeout" from="AimTime" to="." method="_on_AimTime_timeout"]
 [connection signal="timeout" from="BlinkTime" to="." method="_on_BlinkTime_timeout"]
 [connection signal="timeout" from="PKTime" to="." method="_on_PKTime_timeout"]
+[connection signal="timeout" from="TPCrouchTime" to="." method="_on_TPCrouchTime_timeout"]
+[connection signal="timeout" from="TPTakeOffTime" to="." method="_on_TPTakeOffTime_timeout"]
 
 [editable path="HitboxPivot/BatHitbox"]

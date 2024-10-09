@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Pippi/battle.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/Battle/BattleSprite.gd" type="Script" id=2]
@@ -250,8 +250,8 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
+[sub_resource type="Animation" id=27]
+resource_name = "idleBack"
 length = 0.0714286
 step = 0.0714286
 tracks/0/type = "value"
@@ -264,7 +264,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 19 ]
 }
 
 [sub_resource type="Animation" id=18]
@@ -334,6 +334,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 74, 75, 76, 77, 78, 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "lookIntoYourSoul"
+length = 0.0714286
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -428,11 +445,12 @@ anims/hit1 = SubResource( 11 )
 anims/hit2 = SubResource( 22 )
 anims/hit3 = SubResource( 23 )
 anims/hitIdle = SubResource( 15 )
-anims/idle = SubResource( 5 )
+anims/idleBack = SubResource( 27 )
 anims/item = SubResource( 18 )
 anims/itemLoop = SubResource( 19 )
 anims/itemPrep = SubResource( 20 )
 anims/itemReturn = SubResource( 21 )
+anims/lookIntoYourSoul = SubResource( 5 )
 anims/slingshot = SubResource( 25 )
 anims/slingshotPrep = SubResource( 26 )
 anims/victory = SubResource( 7 )

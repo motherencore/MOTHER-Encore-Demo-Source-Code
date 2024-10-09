@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Audio/Sound effects/Cursor 2.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Nodes/Ui/Camera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=9]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Nodes/Ui/DialogueOptions.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Close"
@@ -24,7 +26,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 0.63728, 2.54913 ),
 "update": 0,
-"values": [ Vector2( 30, 120 ), Vector2( 30, 180 ) ]
+"values": [ Vector2( 28, 120 ), Vector2( 28, 180 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -40,7 +42,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 0.25, 0.25 ),
 "update": 0,
-"values": [ Vector2( 30, 180 ), Vector2( 30, 120 ) ]
+"values": [ Vector2( 28, 180 ), Vector2( 28, 120 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -55,7 +57,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 35, 180 ) ]
+"values": [ Vector2( 28, 180 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -113,9 +115,9 @@ script = ExtResource( 4 )
 
 [node name="Dialoguebox" type="NinePatchRect" parent="."]
 material = ExtResource( 9 )
-margin_left = 35.0
+margin_left = 28.0
 margin_top = 180.0
-margin_right = 295.0
+margin_right = 292.0
 margin_bottom = 239.0
 texture = ExtResource( 1 )
 patch_margin_left = 8
@@ -126,52 +128,119 @@ patch_margin_bottom = 8
 [node name="Arrow" parent="Dialoguebox" instance=ExtResource( 5 )]
 position = Vector2( 108, 42 )
 menu_parent_path = NodePath("../Options")
-cursor_offset = Vector2( -8, 2 )
+cursor_offset = Vector2( -5, 2 )
 on = true
+skip_empty_labels = true
+skip_hidden_items = true
+move_sfx = true
 
 [node name="Cursor_Down" parent="Dialoguebox" instance=ExtResource( 5 )]
 position = Vector2( 249, 53 )
 rotation = 1.5708
 cursor_offset = Vector2( 0, 0 )
 
-[node name="Options" type="HBoxContainer" parent="Dialoguebox"]
-margin_left = 15.0
-margin_top = 34.0
-margin_right = 216.0
-margin_bottom = 54.0
-alignment = 1
+[node name="Options" type="GridContainer" parent="Dialoguebox"]
+margin_left = 52.0
+margin_top = 38.0
+margin_right = 255.0
+margin_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="Option1" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 60.0
+margin_bottom = 12.0
+text = "Option1"
+
+[node name="Option2" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 72.0
+margin_top = 0.0
+margin_right = 132.0
+margin_bottom = 12.0
+text = "Option2"
+
+[node name="Option3" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 144.0
+margin_top = 0.0
+margin_right = 204.0
+margin_bottom = 12.0
+text = "Option3"
+
+[node name="Option4" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 0.0
+margin_top = 16.0
+margin_right = 60.0
+margin_bottom = 28.0
+text = "Option4"
+
+[node name="Option5" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 72.0
+margin_top = 31.0
+margin_right = 132.0
+margin_bottom = 43.0
+text = "Option5"
+
+[node name="Option6" parent="Dialoguebox/Options" instance=ExtResource( 11 )]
+visible = false
+margin_left = 144.0
+margin_top = 31.0
+margin_right = 204.0
+margin_bottom = 43.0
+text = "Option6"
 
 [node name="ClipBox" type="Control" parent="Dialoguebox"]
+anchor_right = 1.0
 margin_left = 5.0
-margin_top = 5.0
-margin_right = 261.0
+margin_top = 6.0
 margin_bottom = 53.0
 rect_clip_content = true
 
-[node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
-margin_left = 3.0
-margin_top = -12.0
-margin_right = 11.0
-margin_bottom = 48.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialoguebox/ClipBox"]
+anchor_right = 1.0
+margin_left = 2.0
+margin_top = -13.0
+margin_right = -7.0
+margin_bottom = 28.0
+custom_constants/separation = 0
+
+[node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 10, 60 )
 custom_constants/line_separation = 3
 custom_fonts/mono_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 2 )
+bbcode_enabled = true
+bbcode_text = "
+[right]@ [/right]
+
+[right]@ [/right]"
 meta_underlined = false
 text = "
-@
+@ 
 
-@"
+@ "
 scroll_active = false
 scroll_following = true
 
-[node name="Dialogue" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
-margin_left = 12.0
-margin_top = -12.0
-margin_right = 247.0
-margin_bottom = 48.0
+[node name="Dialogue" type="RichTextLabel" parent="Dialoguebox/ClipBox/HBoxContainer"]
+margin_left = 10.0
+margin_right = 250.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 235, 60 )
+size_flags_horizontal = 3
 custom_constants/line_separation = 3
-custom_fonts/mono_font = ExtResource( 2 )
-custom_fonts/normal_font = ExtResource( 2 )
+custom_fonts/mono_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 10 )
 bbcode_enabled = true
 bbcode_text = "
 Whats your opinion on [tornado radius=3 freq=-4]Dialog boxes [/tornado]?
@@ -217,12 +286,15 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="InputSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
 

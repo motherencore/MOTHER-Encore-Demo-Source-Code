@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Tiger",
-		"text": "Whimper."
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_TIGER_SPEAKER_Tiger",
+        "text": "DIALOGUE_PODUNK_TIGER_0"
+    }
 }

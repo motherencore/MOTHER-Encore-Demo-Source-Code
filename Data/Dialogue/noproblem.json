@@ -1,6 +1,6 @@
 {
-	"0": {
-		"text":"No problem here.",
-		"emoteplayer": "dot"
-	}
+    "0": {
+        "text": "DIALOGUE_NOPROBLEM_0",
+        "emoteplayer": "dot"
+    }
 }

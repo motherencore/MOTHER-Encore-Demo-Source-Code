@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Dave",
-		"text": "Y-You aren't going to the cemetery, are you?",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Dave",
-		"text":"...There's word of zombies, so be careful.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_DAVE_SPEAKER_Dave",
+        "text": "DIALOGUE_PODUNK_DAVE_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_DAVE_SPEAKER_Dave",
+        "text": "DIALOGUE_PODUNK_DAVE_1",
+        "sound": "Adult"
+    }
 }

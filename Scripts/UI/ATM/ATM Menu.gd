@@ -33,28 +33,26 @@ func _physics_process(delta):
 	var arrow_D = $background/userAmount/ArrowD
 	var usrAmt = $background/userAmount
 	
-	if Input.is_action_just_pressed("ui_focus_prev") and withdraw:
+	if Input.is_action_just_pressed("ui_focus_prev"):
 		Input.action_release("ui_focus_prev")
-		withdraw = false
-		setup()
-		play_sfx("switch_tab")
-	elif Input.is_action_just_pressed("ui_focus_next") and not withdraw:
+		_switch_tab()
+	elif Input.is_action_just_pressed("ui_focus_next"):
 		Input.action_release("ui_focus_next")
-		withdraw = true
-		setup()
-		play_sfx("switch_tab")
+		_switch_tab()
 	
-	if Input.is_action_just_pressed("ui_left"):
+	var direction = controlsManager.get_controls_vector(true)
+
+	if direction.x < 0:
 		move_digit(-1)
 		play_sfx("cursor1")
-	elif Input.is_action_just_pressed("ui_right"):
+	elif direction.x > 0:
 		move_digit(1)
 		play_sfx("cursor1")
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if direction.y < 0:
 		usrAmt.add_digit(1, actual_digit)
 		play_sfx("cursor1")
-	elif Input.is_action_just_pressed("ui_down"):
+	elif direction.y > 0:
 		usrAmt.add_digit(-1, actual_digit)
 		play_sfx("cursor1")
 	
@@ -62,11 +60,15 @@ func _physics_process(delta):
 		Input.action_release("ui_accept")
 		make_transfer()
 	
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		Input.action_release("ui_cancel")
-		Input.action_release("ui_toggle")
 		play_sfx("back")
 		uiManager.close_current()
+
+func _switch_tab():
+	withdraw = !withdraw
+	setup()
+	play_sfx("switch_tab")
 
 func make_transfer():
 	if $background/userAmount.money <= 0:
@@ -138,7 +140,9 @@ func setup():
 		$Deposit/Sprite.modulate = Color("c8c8c8")
 		$Withdraw/Sprite.modulate = Color.white
 		#$background/Arrow.rect_rotation = 180
-		$background/Label2.text = "Withdraw"
+		
+		# LOCALIZATION Use of csv key
+		$background/Label2.text = "ATM_WITHDRAW"
 		$background/userAmount.set_limit(globaldata.bank)
 		limit_string = str(globaldata.bank)
 	else:
@@ -148,8 +152,10 @@ func setup():
 		$TabSub.flip_h = true
 		$Withdraw/Sprite.modulate = Color("c8c8c8")
 		$Deposit/Sprite.modulate = Color.white
+		
+		# LOCALIZATION Use of csv key
+		$background/Label2.text = "ATM_DEPOSIT"
 		#$background/Arrow.rect_rotation = 0
-		$background/Label2.text = "Deposit"
 		$background/userAmount.set_limit(globaldata.cash)
 		limit_string = str(globaldata.cash)
 	$background/userAmount.set_money(0)

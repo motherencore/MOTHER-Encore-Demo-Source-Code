@@ -1,6 +1,7 @@
-[gd_resource type="DynamicFont" load_steps=2 format=2]
+[gd_resource type="DynamicFont" load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/EBMain_ko.ttf" type="DynamicFontData" id=2]
 
 [resource]
 outline_size = 1
@@ -8,3 +9,4 @@ outline_color = Color( 0, 0, 0, 1 )
 extra_spacing_top = -1
 extra_spacing_bottom = -1
 font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )

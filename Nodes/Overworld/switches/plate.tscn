@@ -72,5 +72,6 @@ anims/Up = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,40 +1,32 @@
 {
-	"name": {
-		"english": "Old Bat",
-		"french": "Vielle Batte"
-	},
-	"article" : {
-		"english": "the",
-		"french": "la"
-	},
-	"keyitem": true,
-	"cost": 0,
-	"value": 0,
-	"usable": {
-		"ninten": false,
-		"lloyd": false,
-		"ana": false,
-		"teddy": false,
-		"pippi": false
-	},
-	"action_one": null,
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 0,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "A spare bat in case you don't have another.\nIt's too weak to use in battle.",
-		"french": "Une batte de rechange en cas de besoin.\nIl est trop faible pour être utilisé en combat."
-	}
+    "name": "BATOLD",
+    "article": "BATOLD_ART",
+    "keyitem": true,
+    "cost": 0,
+    "value": 0,
+    "usable": {
+        "ninten": false,
+        "lloyd": false,
+        "ana": false,
+        "teddy": false,
+        "pippi": false
+    },
+    "action_one": null,
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 0,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "BATOLD_DESC",
+    "short_name": "BATOLD_SHORT"
 }

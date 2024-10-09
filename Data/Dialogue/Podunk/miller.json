@@ -1,25 +1,25 @@
 {
-	"0": {
-		"name": "Miller",
-		"text": "I need to do a call, but the payphone costs $5.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Miller",
-		"text": "That's crazy expensive!",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Miller",
-		"text": "If only I could find a rotary phone...",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Miller",
-		"text": "Those ones, you can use for free.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MILLER_SPEAKER_Miller",
+        "text": "DIALOGUE_PODUNK_MILLER_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_MILLER_SPEAKER_Miller",
+        "text": "DIALOGUE_PODUNK_MILLER_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_MILLER_SPEAKER_Miller",
+        "text": "DIALOGUE_PODUNK_MILLER_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MILLER_SPEAKER_Miller",
+        "text": "DIALOGUE_PODUNK_MILLER_3",
+        "sound": "Adult"
+    }
 }

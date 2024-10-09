@@ -16,8 +16,11 @@ var state = 0
 
 
 func _ready():
-	$arrow
-	$arrow.hide()
+	_reset()
+	global.connect("locale_changed", self, "set_info")
+
+func _reset():
+	arrow.hide()
 	global.persistPlayer.pause()
 	$FileNum.text = str(fileNum)
 	load_data(fileNum)
@@ -31,7 +34,7 @@ func set_type(stateType):
 	state = stateType
 	if state == 1:
 		$HBoxContainer.hide()
-	_ready()
+	_reset()
 
 func set_info():
 	$NoData.hide()
@@ -52,12 +55,12 @@ func set_info():
 	#getting nickname of first party member
 	$Name.text = saveData["party"][0].nickname 
 	#getting level of first party member
-	$Level.text = ("LV" + str(saveData["party"][0]["level"]))
+	$Level.text = (tr("MENU_LV") + str(saveData["party"][0]["level"]))
 	
 	#scene name
 	if saveData.has("scenename"):
-		
-		$Title.text = replaceText(saveData["scenename"])
+		$Title.text = globaldata.replaceText("LOC_" + saveData["scenename"].to_upper().replace(" ", "_"), saveData)
+
 	
 	#playtime
 	if saveData.has("playtime"):
@@ -74,11 +77,12 @@ func set_info():
 		if len(minutes) < 2:
 			minutes = "0" + minutes
 		
+		var time_str = "[color=#f8f800]" + tr("SAVE_TIME") + "[/color]"
 		if len(hours) > 4:
-			$Time/Disp.text = "Go Outside"
+			$Time.bbcode_text = tr("SAVE_TIME_TOO_MUCH").format({"time": time_str})
 		else:
-			$Time/Disp.text = hours + " : "+ minutes
-	#iterating over party 
+			$Time.bbcode_text = time_str + " " + hours + " : " + minutes
+	
 	for icon in $icons.get_children():
 		icon.hide()
 	if saveData.has("party"):
@@ -92,31 +96,15 @@ func set_info():
 			picons[pindex].get_parent().show()
 			pindex += 1
 
-func replaceText(string):
-	if "[Ninten]" in string:
-		string = string.replace("[Ninten]", saveData["ninten"]["nickname"])
-		
-	if "[Ana]" in string:
-		string = string.replace("[Ana]", saveData["ana"]["nickname"])
-
-	if "[Lloyd]" in string:
-		string = string.replace("[Lloyd]", saveData["lloyd"]["nickname"])
-
-	if "[Teddy]" in string:
-		string = string.replace("[Teddy]", saveData["teddy"]["nickname"])
-
-	if "[Pippi]" in string:
-		string = string.replace("[Pippi]", saveData["pippi"]["nickname"])
-	
-	return string
-
-func activate():
-	$arrow.show()
-	$arrow.on = true
+func activate(reset = false):
+	arrow.show()
+	arrow.on = true
+	if reset:
+		arrow.set_cursor_from_index(0, false)
 
 func deactivate():
-	$arrow.on = false
-	$arrow.hide()
+	arrow.on = false
+	arrow.hide()
 	emit_signal("deactivate")
 
 func load_data(num): #benichi code
@@ -147,29 +135,31 @@ func _on_arrow_cancel():
 		$Options.hide()
 		arrow.cursor_offset.y = 3
 		arrow.change_parent($HBoxContainer, false)
-		arrow.set_cursor_from_index(3, true)
+		arrow.set_cursor_from_index(6, true)
 
 func _on_arrow_selected(cursor_index):
-	if !$Options.visible:
-		match cursor_index:
-			0:
+	if not $Options.visible:
+		# LOCALIZATION Code change: Matching on name ids because index is not relevant anymore (there are spacers between elements)
+		match arrow.menu_parent.get_child(cursor_index).name:
+			"Play":
 				arrow.on = false
 				uiManager.fade.fade_in("Fade", Color.black, 1)
 				audioManager.fadeout_all_music(0.5)
 				yield(uiManager.fade, "fade_in_done")
 				globaldata.saveFile = fileNum
+				global.save_settings()
 				global.persistPlayer.unpause()
 				global.load_game(fileNum)
 				uiManager.fade.fade_out("Circle Focus", Color.black, 1)
-			1:
+			"Copy":
 				global.load_game(fileNum, false)
 				deactivate()
 				emit_signal("show_copy")
-			2:
+			"Delete":
 				global.load_game(fileNum, false)
 				deactivate()
 				emit_signal("show_delete")
-			3:
+			"Options":
 				$Options.show()
 				arrow.cursor_offset.y = 1
 				arrow.change_parent($Options/VBoxContainer, false)

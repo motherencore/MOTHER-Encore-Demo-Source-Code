@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/UI/Pausemenu.gd" type="Script" id=2]
-[ext_resource path="res://Graphics/UI/Overworld/cents.png" type="Texture" id=3]
+[ext_resource path="res://Nodes/Ui/CashBoxPause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=5]
 [ext_resource path="res://Nodes/Ui/MapScreen/MapScreen.tscn" type="PackedScene" id=6]
@@ -14,6 +14,30 @@
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=12]
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=13]
 [ext_resource path="res://Nodes/Ui/Options/OptionsUI.tscn" type="PackedScene" id=14]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id=5]
+content_margin_bottom = 0.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 11.0
+expand_margin_right = 8.0
+expand_margin_top = 11.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
@@ -67,86 +91,74 @@ tracks/0/keys = {
 [node name="Pausemenu" type="CanvasLayer"]
 script = ExtResource( 2 )
 
-[node name="pausemenu" type="Sprite" parent="."]
-position = Vector2( 160, 90 )
-
 [node name="menu" type="Control" parent="."]
 margin_top = -80.0
 margin_right = 40.0
 margin_bottom = -40.0
 
-[node name="cash" type="NinePatchRect" parent="menu"]
+[node name="Commands" type="PanelContainer" parent="menu"]
 material = ExtResource( 12 )
-margin_left = 4.0
-margin_top = 5.0
-margin_right = 98.0
-margin_bottom = 77.0
-texture = ExtResource( 5 )
-patch_margin_left = 13
-patch_margin_top = 13
-patch_margin_right = 13
-patch_margin_bottom = 13
+margin_left = 7.0
+margin_top = 7.0
+margin_bottom = 73.0
+custom_styles/panel = SubResource( 4 )
 
-[node name="ColorRect" type="ColorRect" parent="menu/cash"]
-margin_left = 4.0
-margin_top = 69.0
-margin_right = 89.0
-margin_bottom = 70.0
-color = Color( 0.74902, 0.705882, 0.803922, 1 )
-script = ExtResource( 13 )
+[node name="InsideBG" type="PanelContainer" parent="menu/Commands"]
+use_parent_material = true
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 58.0
+custom_styles/panel = SubResource( 5 )
 
-[node name="Commands" type="NinePatchRect" parent="menu"]
-material = ExtResource( 12 )
-margin_left = 4.0
-margin_top = 5.0
-margin_right = 98.0
-margin_bottom = 68.0
-texture = ExtResource( 4 )
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+[node name="Title" type="Control" parent="menu/Commands"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 58.0
 
-[node name="title" type="ColorRect" parent="menu/Commands"]
-margin_left = 11.0
-margin_top = 1.0
-margin_right = 46.0
-margin_bottom = 8.0
+[node name="Label" type="Label" parent="menu/Commands/Title"]
+margin_left = 3.0
+margin_top = -12.0
+custom_fonts/font = ExtResource( 7 )
+text = "MENU_MENU"
+
+[node name="title" type="ColorRect" parent="menu/Commands/Title/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+margin_left = -4.0
+margin_top = 2.0
+margin_right = 9.0
+margin_bottom = 12.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="menu/Commands/title"]
-margin_left = 3.0
-margin_top = -2.0
-margin_right = 53.0
-margin_bottom = 11.0
-custom_fonts/font = ExtResource( 7 )
-text = "Menu"
 
 [node name="Items" type="GridContainer" parent="menu/Commands"]
-margin_left = 11.0
-margin_top = 11.0
-margin_right = 81.0
-margin_bottom = 55.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 78, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 custom_constants/vseparation = 3
-custom_constants/hseparation = 12
+custom_constants/hseparation = 10
 columns = 2
 
 [node name="Goods" type="Label" parent="menu/Commands/Items"]
-margin_right = 26.0
+margin_right = 61.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "Goods"
+text = "MENU_GOODS"
 
 [node name="PSI" type="Label" parent="menu/Commands/Items"]
-margin_left = 38.0
-margin_right = 70.0
+margin_left = 71.0
+margin_right = 140.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "PSI"
+text = "MENU_PSI"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -154,73 +166,67 @@ __meta__ = {
 
 [node name="Equip" type="Label" parent="menu/Commands/Items"]
 margin_top = 15.0
-margin_right = 26.0
+margin_right = 61.0
 margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "Equip"
+text = "MENU_EQUIP"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Status" type="Label" parent="menu/Commands/Items"]
-margin_left = 38.0
+margin_left = 71.0
 margin_top = 15.0
-margin_right = 70.0
+margin_right = 140.0
 margin_bottom = 27.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "Status"
+text = "MENU_STATUS"
 valign = 1
 
 [node name="Map" type="Label" parent="menu/Commands/Items"]
 margin_top = 30.0
-margin_right = 26.0
+margin_right = 61.0
 margin_bottom = 42.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "Map"
+text = "MENU_MAP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Options" type="Label" parent="menu/Commands/Items"]
-margin_left = 38.0
+margin_left = 71.0
 margin_top = 30.0
-margin_right = 70.0
+margin_right = 140.0
 margin_bottom = 42.0
+rect_min_size = Vector2( 32, 0 )
 custom_fonts/font = ExtResource( 7 )
-text = "Options"
+text = "MENU_OPTIONS"
 valign = 1
 
-[node name="Sign" type="Label" parent="menu/Commands"]
-margin_left = 7.0
-margin_top = 59.0
-margin_right = 34.0
-margin_bottom = 73.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "$"
+[node name="Bottom" type="Control" parent="menu/Commands"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 58.0
 
-[node name="Amount" type="Label" parent="menu/Commands/Sign"]
-margin_left = 24.0
-margin_right = 73.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "0"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sign" parent="menu/Commands/Bottom" instance=ExtResource( 3 )]
 
-[node name="cents" type="Sprite" parent="menu/Commands/Sign/Amount"]
-material = ExtResource( 12 )
-position = Vector2( 54, 5 )
-texture = ExtResource( 3 )
+[node name="ColorRect" type="ColorRect" parent="menu/Commands/Bottom"]
+anchor_right = 1.0
+margin_left = -7.0
+margin_top = 58.0
+margin_right = 4.0
+margin_bottom = 59.0
+color = Color( 0.74902, 0.705882, 0.803922, 1 )
+script = ExtResource( 13 )
 
 [node name="Arrow" parent="menu/Commands" instance=ExtResource( 1 )]
 position = Vector2( 6, 16 )
 menu_parent_path = NodePath("../Items")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true

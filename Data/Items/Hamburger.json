@@ -1,50 +1,36 @@
 {
-	"name": {
-		"english": "Hamburger",
-		"french": "Hamburger"
-	},
-	"article" : {
-		"english": "a",
-		"french": "un"
-	},
-	"keyitem": false,
-	"cost": 30,
-	"value": 15,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": true,
-		"pippi": true
-	},
-	"action_one": {
-		"name": {
-			"english": "Eat", 
-			"french": "Manger"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User recovered 50 HP!",
-			"french": "User a récupéré 50 PV!",
-		},
-	},
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 50,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0,
-	},
-	"description": {
-		"english": "99% Beef.\nRestores 50 HP.",
-		"french": "Se bouffe rapidement pour des PVs rapides.\nRécupère 50 PV.",
-	},
+    "name": "HAMBURGER",
+    "article": "HAMBURGER_ART",
+    "keyitem": false,
+    "cost": 30,
+    "value": 15,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": true,
+        "pippi": true
+    },
+    "action_one": {
+        "name": "HAMBURGER_ACT1_NAME",
+        "function": "consume",
+        "text": "HAMBURGER_ACT1_TEXT"
+    },
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 50,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "HAMBURGER_DESC",
+    "short_name": "HAMBURGER_SHORT"
 }

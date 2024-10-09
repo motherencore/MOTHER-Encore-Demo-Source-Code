@@ -1,16 +1,16 @@
 {
-	"0": {
-		"actors": {
-			"leader": "leader"
-		},
-		"actorsjump": {
-			"leader": {
-				"height": 16,
-				"times": 2,
-				"speed": 0.25,
-				"crouch": true
-			}
-		},
-		"text": "There's a nest inside!"
-	}
+    "0": {
+        "actors": {
+            "leader": "leader"
+        },
+        "actorsjump": {
+            "leader": {
+                "height": 16,
+                "times": 2,
+                "speed": 0.25,
+                "crouch": true
+            }
+        },
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_CANARY_HOUSE_0"
+    }
 }

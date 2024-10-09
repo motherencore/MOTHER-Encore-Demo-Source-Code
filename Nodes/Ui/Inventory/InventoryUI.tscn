@@ -1,11 +1,11 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/UI/Inventory/InventoryUI.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Ui/Description.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Graphics/UI/Inventory/stats.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/UI/Inventory/characters/teddy.png" type="Texture" id=7]
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=9]
@@ -13,9 +13,9 @@
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=11]
 [ext_resource path="res://Nodes/Ui/Inventory/ActionSelect.gd" type="Script" id=12]
 [ext_resource path="res://Nodes/Ui/Battle/PartyInfoPlate.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Nodes/Ui/Inventory/TargetCharaSelect.gd" type="Script" id=15]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_title.png" type="Texture" id=16]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=17]
 [ext_resource path="res://Nodes/Ui/Inventory/SortTypeSelect.gd" type="Script" id=18]
 [ext_resource path="res://Nodes/Ui/Inventory/ConfirmationSelect.gd" type="Script" id=19]
 [ext_resource path="res://Graphics/UI/Inventory/stats_menu.png" type="Texture" id=20]
@@ -77,7 +77,7 @@ resource_name = "Close"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -86,7 +86,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 0.4, 0.378929 ),
 "update": 0,
-"values": [ Vector2( 31, 132 ), Vector2( 31, 180 ) ]
+"values": [ 132.0, 180.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -118,7 +118,7 @@ resource_name = "Open"
 length = 0.125
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -127,7 +127,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.0833333, 0.125 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 31, 180 ), Vector2( 31, 130 ), Vector2( 31, 132 ) ]
+"values": [ 180.0, 130.0, 132.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -157,7 +157,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -166,7 +166,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 180 ) ]
+"values": [ 180.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../PartyInfoHBox:rect_position")
@@ -181,8 +181,18 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 180 ) ]
 }
 
+[sub_resource type="StyleBoxTexture" id=17]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 12.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 7.0
+
 [sub_resource type="StyleBoxFlat" id=1]
+content_margin_right = 4.0
 bg_color = Color( 0.729412, 0.32549, 0.894118, 1 )
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0.729412, 0.32549, 0.894118, 1 )
@@ -289,7 +299,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -180 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Inventory:visible")
+tracks/1/path = NodePath("Inventory/InventorySelect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -405,7 +415,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -180 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("StatsBar:rect_position")
+tracks/1/path = NodePath("StatsBar:rect_position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -414,7 +424,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 132 ) ]
+"values": [ 132.0 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("PartyInfoHBox:rect_size")
@@ -478,7 +488,7 @@ __meta__ = {
 material = ExtResource( 10 )
 margin_left = 31.0
 margin_top = 23.0
-margin_right = 286.0
+margin_right = 288.0
 margin_bottom = 132.0
 rect_pivot_offset = Vector2( 59, 58 )
 texture = ExtResource( 2 )
@@ -487,10 +497,20 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
+[node name="InventorySelect" parent="Inventory" instance=ExtResource( 5 )]
+anchor_right = 1.0
+margin_left = 0.0
+margin_top = -23.0
+margin_right = 0.0
+margin_bottom = 4.0
+noKey = false
+menuName = "MENU_TITLE_GOODS"
+
 [node name="CenterContainer" type="CenterContainer" parent="Inventory"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 5.0
+margin_right = -2.0
 margin_bottom = -6.0
 
 [node name="Divider" type="ColorRect" parent="Inventory/CenterContainer"]
@@ -523,54 +543,54 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 220, 108 )
 rect_pivot_offset = Vector2( -54, 66 )
 custom_constants/vseparation = 0
-custom_constants/hseparation = 14
+custom_constants/hseparation = 25
 columns = 2
 
 [node name="Item1" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_right = 26.0
+margin_right = 25.0
 text = "Bread"
 
 [node name="Item2" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 40.0
-margin_right = 66.0
+margin_left = 50.0
+margin_right = 75.0
 text = "Bread"
 
 [node name="Item3" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 12.0
-margin_right = 26.0
+margin_right = 25.0
 margin_bottom = 24.0
 text = "Bread"
 
 [node name="Item4" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 40.0
+margin_left = 50.0
 margin_top = 12.0
-margin_right = 66.0
+margin_right = 75.0
 margin_bottom = 24.0
 text = "Bread"
 
 [node name="Item5" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 24.0
-margin_right = 26.0
+margin_right = 25.0
 margin_bottom = 36.0
 text = "Bread"
 
 [node name="Item6" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 40.0
+margin_left = 50.0
 margin_top = 24.0
-margin_right = 66.0
+margin_right = 75.0
 margin_bottom = 36.0
 text = "Bread"
 
 [node name="Item7" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 36.0
-margin_right = 26.0
+margin_right = 25.0
 margin_bottom = 48.0
 text = "Bread"
 
 [node name="ColorRect" type="ColorRect" parent="Inventory"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 15.0
+margin_right = 17.0
 margin_bottom = 15.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 script = ExtResource( 11 )
@@ -578,6 +598,7 @@ script = ExtResource( 11 )
 [node name="Arrow" parent="Inventory/ColorRect" instance=ExtResource( 24 )]
 position = Vector2( 4, 4 )
 cursor_offset = Vector2( -6, 0 )
+on = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
@@ -586,30 +607,29 @@ cancel_sfx = true
 position = Vector2( 9, 9 )
 
 [node name="DescriptionPanel" parent="Inventory" instance=ExtResource( 4 )]
+anchor_right = 1.0
 margin_top = 61.0
-margin_bottom = 61.0
+margin_right = 1.0
+margin_bottom = 109.0
 
-[node name="cursor_up" parent="Inventory/DescriptionPanel" instance=ExtResource( 24 )]
-position = Vector2( 242, -51 )
-rotation = -1.5708
-
-[node name="cursor_down" parent="Inventory/DescriptionPanel" instance=ExtResource( 24 )]
-position = Vector2( 242, 0 )
-rotation = 1.5708
+[node name="Scrollbar" parent="Inventory/DescriptionPanel" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -17.0
+margin_top = -55.0
+margin_right = -9.0
+margin_bottom = 4.0
 
 [node name="Divider2" type="ColorRect" parent="Inventory/DescriptionPanel"]
+anchor_right = 1.0
 margin_left = 10.0
-margin_top = 6.0
-margin_right = 245.0
-margin_bottom = 7.0
+margin_top = 5.0
+margin_right = -11.0
+margin_bottom = 6.0
 rect_min_size = Vector2( 94, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 11 )
-
-[node name="InventorySelect" parent="." instance=ExtResource( 5 )]
-noKey = false
-menuName = "Goods"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 101.0
@@ -619,19 +639,19 @@ margin_bottom = 145.0
 alignment = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 80.0
+margin_left = 5.0
 margin_top = 14.0
 margin_right = 164.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 8 )
-text = "Description"
+text = "INVENTORY_DESCRIPTION"
 
 [node name="Button" parent="HBoxContainer" instance=ExtResource( 9 )]
 margin_left = 168.0
 margin_top = 14.0
 margin_right = 176.0
 margin_bottom = 25.0
-key = "ui_ctrl"
+key = "ui_scope"
 
 [node name="PartyInfoHBox" type="HBoxContainer" parent="."]
 visible = false
@@ -663,15 +683,18 @@ material = SubResource( 16 )
 margin_left = 238.0
 margin_right = 303.0
 
-[node name="StatsBar" type="TextureRect" parent="."]
-visible = false
+[node name="StatsBar" type="NinePatchRect" parent="."]
 material = ExtResource( 10 )
 margin_left = 31.0
 margin_top = 132.0
-margin_right = 286.0
+margin_right = 288.0
 margin_bottom = 180.0
 rect_pivot_offset = Vector2( -732, 257 )
 texture = ExtResource( 20 )
+patch_margin_left = 45
+patch_margin_top = 16
+patch_margin_right = 8
+patch_margin_bottom = 8
 script = ExtResource( 22 )
 
 [node name="CenterContainer" type="CenterContainer" parent="StatsBar"]
@@ -694,58 +717,73 @@ __meta__ = {
 
 [node name="StatsNameAndDividers" type="Node2D" parent="StatsBar"]
 
-[node name="HP" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 60, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 9, 0, 16, 7 )
+[node name="HP" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 45.0
+margin_right = 71.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "MENU_HP"
+align = 2
 
-[node name="PP" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 90, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 9, 7, 16, 7 )
+[node name="PP" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 75.0
+margin_right = 101.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "MENU_PP"
+align = 2
 
-[node name="OFE" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 117, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 2, 14, 23, 7 )
+[node name="OFE" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 105.0
+margin_right = 131.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_OFFENSE"
+align = 2
 
-[node name="DEF" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 147, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 2, 21, 23, 7 )
+[node name="DEF" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 135.0
+margin_right = 161.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_DEFENSE"
+align = 2
 
-[node name="IQ" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 180, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 9, 28, 16, 7 )
+[node name="IQ" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 165.0
+margin_right = 191.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_IQ"
+align = 2
 
-[node name="IQ2" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 180, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 9, 28, 16, 7 )
+[node name="SPD" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 195.0
+margin_right = 221.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_SPEED"
+align = 2
 
-[node name="SPD" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 206, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 0, 35, 25, 7 )
-
-[node name="GUT" type="Sprite" parent="StatsBar/StatsNameAndDividers"]
-position = Vector2( 236, 8 )
-texture = ExtResource( 6 )
-region_enabled = true
-region_rect = Rect2( 1, 42, 24, 7 )
+[node name="GUT" type="Label" parent="StatsBar/StatsNameAndDividers"]
+margin_left = 225.0
+margin_right = 251.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_GUTS"
+align = 2
 
 [node name="Divider2" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 220.0
+margin_left = 222.0
 margin_top = 3.0
-margin_right = 221.0
+margin_right = 223.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -756,9 +794,9 @@ __meta__ = {
 }
 
 [node name="Divider5" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 220.0
+margin_left = 222.0
 margin_top = 16.0
-margin_right = 221.0
+margin_right = 223.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -769,9 +807,9 @@ __meta__ = {
 }
 
 [node name="Divider7" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 190.0
+margin_left = 192.0
 margin_top = 16.0
-margin_right = 191.0
+margin_right = 193.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -782,9 +820,9 @@ __meta__ = {
 }
 
 [node name="Divider9" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 160.0
+margin_left = 162.0
 margin_top = 16.0
-margin_right = 161.0
+margin_right = 163.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -795,9 +833,9 @@ __meta__ = {
 }
 
 [node name="Divider11" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 130.0
+margin_left = 132.0
 margin_top = 16.0
-margin_right = 131.0
+margin_right = 133.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -808,9 +846,9 @@ __meta__ = {
 }
 
 [node name="Divider12" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 100.0
+margin_left = 102.0
 margin_top = 16.0
-margin_right = 101.0
+margin_right = 103.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -821,9 +859,9 @@ __meta__ = {
 }
 
 [node name="Divider13" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 70.0
+margin_left = 72.0
 margin_top = 16.0
-margin_right = 71.0
+margin_right = 73.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -834,9 +872,9 @@ __meta__ = {
 }
 
 [node name="Divider3" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 190.0
+margin_left = 192.0
 margin_top = 3.0
-margin_right = 191.0
+margin_right = 193.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -846,9 +884,9 @@ __meta__ = {
 }
 
 [node name="Divider4" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 160.0
+margin_left = 162.0
 margin_top = 3.0
-margin_right = 161.0
+margin_right = 163.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -858,9 +896,9 @@ __meta__ = {
 }
 
 [node name="Divider6" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 130.0
+margin_left = 132.0
 margin_top = 3.0
-margin_right = 131.0
+margin_right = 133.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -870,18 +908,18 @@ __meta__ = {
 }
 
 [node name="Divider8" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 100.0
+margin_left = 102.0
 margin_top = 3.0
-margin_right = 101.0
+margin_right = 103.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="Divider10" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 70.0
+margin_left = 72.0
 margin_top = 3.0
-margin_right = 71.0
+margin_right = 73.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -895,9 +933,9 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="StatsBar/StatsLabels"]
-margin_left = 41.0
+margin_left = 43.0
 margin_top = 14.0
-margin_right = 250.0
+margin_right = 252.0
 margin_bottom = 42.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StatsBar/StatsLabels/MarginContainer"]
@@ -944,90 +982,93 @@ anims/Close = SubResource( 6 )
 anims/Open = SubResource( 7 )
 anims/RESET = SubResource( 8 )
 
-[node name="ActionSelect" type="NinePatchRect" parent="."]
-visible = false
+[node name="ActionSelect" type="Control" parent="."]
 material = ExtResource( 10 )
-margin_left = 47.0
+margin_left = 37.0
 margin_top = 42.0
-margin_right = 119.0
-margin_bottom = 123.0
-texture = ExtResource( 2 )
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
+margin_right = 112.0
+margin_bottom = 112.0
 script = ExtResource( 12 )
+drop_label = NodePath("MarginContainer/VBoxContainer/DropLabel")
+give_label = NodePath("MarginContainer/VBoxContainer/GiveLabel")
+sort_label = NodePath("MarginContainer/VBoxContainer/SortLabel")
+action_one_label = NodePath("MarginContainer/VBoxContainer/ActionOneLabel")
+action_two_label = NodePath("MarginContainer/VBoxContainer/ActionTwoLabel")
 
-[node name="MarginContainer" type="MarginContainer" parent="ActionSelect"]
+[node name="MarginContainer" type="PanelContainer" parent="ActionSelect"]
+material = ExtResource( 10 )
+anchor_left = 1.0
 anchor_right = 1.0
-rect_min_size = Vector2( 51, 76 )
+margin_left = -45.0
+grow_horizontal = 0
 rect_clip_content = true
 size_flags_vertical = 0
-custom_constants/margin_right = 7
-custom_constants/margin_top = 6
-custom_constants/margin_left = 13
+custom_styles/panel = SubResource( 17 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ActionSelect/MarginContainer"]
-margin_left = 13.0
+margin_left = 12.0
 margin_top = 6.0
-margin_right = 65.0
-margin_bottom = 76.0
+margin_right = 135.0
+margin_bottom = 74.0
 size_flags_stretch_ratio = 0.0
 custom_constants/separation = 2
 
 [node name="ActionOneLabel" parent="ActionSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 52.0
-rect_min_size = Vector2( 30, 0 )
+margin_right = 123.0
+rect_min_size = Vector2( 0, 12 )
 custom_styles/normal = SubResource( 1 )
 text = "First"
 
 [node name="ActionTwoLabel" parent="ActionSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
-margin_right = 52.0
+margin_right = 123.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 30, 0 )
+rect_min_size = Vector2( 0, 12 )
 custom_styles/normal = SubResource( 1 )
 text = "Second"
 
 [node name="GiveLabel" parent="ActionSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 28.0
-margin_right = 52.0
+margin_right = 123.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 30, 0 )
+rect_min_size = Vector2( 0, 12 )
 custom_styles/normal = SubResource( 1 )
-text = "Give"
+text = "INVENTORY_ACTION_GIVE"
 
 [node name="SortLabel" parent="ActionSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 42.0
-margin_right = 52.0
+margin_right = 123.0
 margin_bottom = 54.0
-rect_min_size = Vector2( 30, 0 )
+rect_min_size = Vector2( 0, 12 )
 custom_styles/normal = SubResource( 1 )
-text = "Sort"
+text = "INVENTORY_ACTION_SORT"
 
 [node name="DropLabel" parent="ActionSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 56.0
-margin_right = 52.0
+margin_right = 123.0
 margin_bottom = 68.0
-rect_min_size = Vector2( 30, 0 )
+rect_min_size = Vector2( 0, 12 )
 custom_styles/normal = SubResource( 1 )
-text = "Drop"
+text = "INVENTORY_ACTION_DROP"
 
 [node name="arrow" parent="ActionSelect" instance=ExtResource( 24 )]
 position = Vector2( 8, 11 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
-cursor_offset = Vector2( -6, 1 )
+cursor_offset = Vector2( -5, 1 )
 consume_input_events = true
+loop_around = true
 skip_hidden_items = true
+highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 reset_on_show = false
 
 [node name="TargetCharaSelect" type="NinePatchRect" parent="ActionSelect"]
+visible = false
 material = ExtResource( 10 )
-margin_left = 72.0
-margin_right = 131.0
+margin_left = 75.0
+margin_right = 134.0
 margin_bottom = 76.0
 texture = ExtResource( 16 )
 patch_margin_left = 8
@@ -1043,44 +1084,47 @@ margin_right = 56.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_styles/normal = SubResource( 12 )
-text = "To whom?"
+text = "INVENTORY_ACTION_GIVE_TARGET"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActionSelect/TargetCharaSelect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 7.0
-margin_bottom = -20.0
-rect_min_size = Vector2( 51, 60 )
-custom_constants/margin_right = 7
-custom_constants/margin_top = 8
+margin_bottom = -7.0
+rect_min_size = Vector2( 58, 0 )
+custom_constants/margin_right = 6
+custom_constants/margin_top = 15
 custom_constants/margin_left = 13
+custom_constants/margin_bottom = 7
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ActionSelect/TargetCharaSelect/MarginContainer"]
 margin_left = 13.0
-margin_top = 8.0
-margin_right = 52.0
-margin_bottom = 62.0
+margin_top = 15.0
+margin_right = 53.0
+margin_bottom = 69.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 39.0
+margin_right = 40.0
 text = "lloyd"
 
 [node name="CharaLabel2" parent="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
-margin_right = 39.0
+margin_right = 40.0
 margin_bottom = 26.0
 text = "lloyd"
 
 [node name="CharaLabel3" parent="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 28.0
-margin_right = 39.0
+margin_right = 40.0
 margin_bottom = 40.0
 text = "lloyd"
 
 [node name="CharaLabel4" parent="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 42.0
-margin_right = 39.0
+margin_right = 40.0
 margin_bottom = 54.0
 text = "lloyd"
 
@@ -1088,7 +1132,9 @@ text = "lloyd"
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+loop_around = true
 skip_hidden_items = true
+highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
@@ -1098,7 +1144,7 @@ cancel_on = true
 visible = false
 material = ExtResource( 10 )
 margin_left = 59.0
-margin_right = 118.0
+margin_right = 130.0
 margin_bottom = 48.0
 texture = ExtResource( 16 )
 patch_margin_left = 8
@@ -1119,7 +1165,7 @@ text = "Q?"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -1.0
-custom_constants/margin_right = 7
+custom_constants/margin_right = 6
 custom_constants/margin_top = 15
 custom_constants/margin_left = 13
 __meta__ = {
@@ -1129,25 +1175,27 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect/MarginContainer"]
 margin_left = 13.0
 margin_top = 15.0
-margin_right = 52.0
+margin_right = 65.0
 margin_bottom = 47.0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_right = 39.0
-text = "Yes"
+text = "MENU_YES"
 
 [node name="CharaLabel2" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
 margin_right = 39.0
 margin_bottom = 26.0
-text = "No"
+text = "MENU_NO"
 
 [node name="arrow" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect" instance=ExtResource( 24 )]
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+loop_around = true
 skip_hidden_items = true
+highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
@@ -1156,10 +1204,9 @@ cancel_on = true
 [node name="Tween" type="Tween" parent="ActionSelect/TargetCharaSelect"]
 
 [node name="ConfirmationSelect" type="NinePatchRect" parent="ActionSelect"]
-visible = false
 material = ExtResource( 10 )
-margin_left = 72.0
-margin_right = 131.0
+margin_left = 75.0
+margin_right = 136.0
 margin_bottom = 48.0
 texture = ExtResource( 16 )
 patch_margin_left = 8
@@ -1180,7 +1227,7 @@ text = "Q?"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -1.0
-custom_constants/margin_right = 7
+custom_constants/margin_right = 6
 custom_constants/margin_top = 15
 custom_constants/margin_left = 13
 __meta__ = {
@@ -1190,35 +1237,36 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="ActionSelect/ConfirmationSelect/MarginContainer"]
 margin_left = 13.0
 margin_top = 15.0
-margin_right = 52.0
+margin_right = 61.0
 margin_bottom = 47.0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="ActionSelect/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 39.0
-text = "Yes"
+margin_right = 48.0
+text = "MENU_YES"
 
 [node name="CharaLabel2" parent="ActionSelect/ConfirmationSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
-margin_right = 39.0
+margin_right = 48.0
 margin_bottom = 26.0
-text = "No"
+text = "MENU_NO"
 
 [node name="arrow" parent="ActionSelect/ConfirmationSelect" instance=ExtResource( 24 )]
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+loop_around = true
 skip_hidden_items = true
+highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
 
 [node name="SortTypeSelect" type="NinePatchRect" parent="ActionSelect"]
-visible = false
 material = ExtResource( 10 )
-margin_left = 72.0
-margin_right = 131.0
+margin_left = 75.0
+margin_right = 134.0
 margin_bottom = 48.0
 texture = ExtResource( 16 )
 patch_margin_left = 8
@@ -1233,41 +1281,43 @@ margin_left = 6.0
 margin_top = 2.0
 margin_right = 56.0
 margin_bottom = 14.0
-text = "How?"
+text = "INVENTORY_ACTION_SORT_HOW"
 
 [node name="MarginContainer" type="MarginContainer" parent="ActionSelect/SortTypeSelect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -1.0
-custom_constants/margin_right = 7
+custom_constants/margin_right = 6
 custom_constants/margin_top = 15
 custom_constants/margin_left = 13
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ActionSelect/SortTypeSelect/MarginContainer"]
 margin_left = 13.0
 margin_top = 15.0
-margin_right = 52.0
+margin_right = 177.0
 margin_bottom = 47.0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 39.0
-text = "Manual"
+margin_right = 164.0
+rect_min_size = Vector2( 39, 12 )
+text = "INVENTORY_ACTION_SORT_MANUAL"
 
 [node name="CharaLabel2" parent="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 14.0
-margin_right = 39.0
+margin_right = 164.0
 margin_bottom = 26.0
-text = "Auto"
+rect_min_size = Vector2( 39, 12 )
+text = "INVENTORY_ACTION_SORT_AUTO"
 
 [node name="arrow" parent="ActionSelect/SortTypeSelect" instance=ExtResource( 24 )]
-position = Vector2( 8, 20 )
+position = Vector2( 80, 10 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+loop_around = true
 skip_hidden_items = true
+highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
@@ -1280,7 +1330,7 @@ visible = false
 material = ExtResource( 10 )
 margin_left = 31.0
 margin_top = 180.0
-margin_right = 285.0
+margin_right = 288.0
 margin_bottom = 228.0
 texture = ExtResource( 2 )
 patch_margin_left = 6
@@ -1290,11 +1340,13 @@ patch_margin_bottom = 7
 script = ExtResource( 23 )
 
 [node name="TextLabel" type="Label" parent="DialogBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 247.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 14 )
+margin_right = -7.0
+margin_bottom = -8.0
+custom_fonts/font = ExtResource( 17 )
 text = "Ninten Recovered 30 HP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 align = 1
 valign = 1
@@ -1312,7 +1364,7 @@ anims/RESET = SubResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="character_changed" from="InventorySelect" to="." method="_on_InventorySelect_character_changed"]
+[connection signal="character_changed" from="Inventory/InventorySelect" to="." method="_on_InventorySelect_character_changed"]
 [connection signal="back" from="ActionSelect" to="." method="_on_ActionSelect_back"]
 [connection signal="hide_statsbar" from="ActionSelect" to="." method="_on_ActionSelect_hide_statsbar"]
 [connection signal="show_dialogbox" from="ActionSelect" to="." method="_on_ActionSelect_show_dialogbox"]
@@ -1325,11 +1377,13 @@ anims/RESET = SubResource( 5 )
 [connection signal="hide_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_TargetCharaSelect_hide_statsbar"]
 [connection signal="show_dialogbox" from="ActionSelect/TargetCharaSelect" to="." method="_on_TargetCharaSelect_show_dialogbox"]
 [connection signal="show_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_show_statsbar"]
+[connection signal="resized" from="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" to="ActionSelect/TargetCharaSelect" method="_on_VBoxContainer_resized"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect/TargetCharaSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="back" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_visibility_changed"]
 [connection signal="back" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_SortTypeSelect_visibility_changed"]
+[connection signal="resized" from="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" to="ActionSelect/SortTypeSelect" method="_on_VBoxContainer_resized"]
 [connection signal="back" from="DialogBox" to="." method="_on_DialogBox_back"]
 [connection signal="exit" from="DialogBox" to="." method="_on_DialogBox_exit"]

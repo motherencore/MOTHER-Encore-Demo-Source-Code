@@ -1,92 +1,94 @@
 {
-	"0": {
-		"actors": {
-			"pippi": "talker"
-		},
-		"talker": "pippi",
-		"name":"[Pippi]",
-		"text":"We meet once more, [Ninten]!",
-		"sound": "Kid",
-		"goto": "1"
-	},
-	"1": {
-		"name":"[Pippi]",
-		"text":"I'd join you on your adventure, but my mom says I'm not allowed to go too far from the house for a while.",
-		"sound": "Kid",
-		"if": {
-			"flags": {
-				"courage_badge_received": true
-			},
-			"goto": "2"
-		},
-		"goto": "3"
-	},
-	"2": {
-		"name":"[Pippi]",
-		"if": {
-			"hasitem1": "CourageBadge",
-			"hasitem2": "FranklinBadge0.5",
-			"or": true,
-			"goto": "9"
-		},
-		"goto": "6"
-	},
-	"3": {
-		"name": "[Pippi]",
-		"text": "Here, take this shiny badge.",
-		"sound": "Kid",
-		"goto": "4"
-	},
-	"4": {
-		"name": "[Pippi]",
-		"text": "My mom said that as long as I have it, it'll give me courage.",
-		"sound": "Kid",
-		"goto": "5"
-	},
-	"5": {
-		"name": "[Pippi]",
-		"text": "But I think you'll probably need it more than me, so keep it!",
-		"sound": "Kid",
-		"if": {
-			"invspace": true,
-			"goto": "7"
-		},
-		"goto":"8"
-	},
-	"6": {
-		"name":"[Pippi]",
-		"text":"Oh, and by the way, you forgot the badge I gave you.",
-		"sound": "Kid",
-		"if": {
-			"invspace": true,
-			"goto": "7"
-		},
-		"goto":"8"
-	},
-	"7": {
-		"talker": "null",
-		"text":"[Ninten] got the Courage Badge!",
-		"item": "CourageBadge",
-		"soundeffect": "Item Received.mp3",
-		"flag": "courage_badge_received",
-		"goto":"9"
-	},
-	"8": {
-		"name": "[Pippi]",
-		"text": "Wait, you can't carry it? What a shame!",
-		"sound": "Kid",
-		"goto":"9"
-	},
-	"9": {
-		"talker": "pippi",
-		"name": "[Pippi]",
-		"text":"Well, have fun on your adventure.",
-		"sound": "Kid",
-		"goto": "10"
-	},
-	"10": {
-		"name": "[Pippi]",
-		"text":"I hope we meet again someday.",
-		"sound": "Kid"
-	}
+    "0": {
+        "actors": {
+            "pippi": "talker"
+        },
+        "talker": "pippi",
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_0",
+        "sound": "Kid",
+        "goto": "1"
+    },
+    "1": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_1",
+        "sound": "Kid",
+        "if": {
+            "flags": {
+                "courage_badge_received": true
+            },
+            "goto": "2"
+        },
+        "goto": "3"
+    },
+    "2": {
+        "name": "[Pippi]",
+        "if": {
+            "hasitem1": "CourageBadge",
+            "hasitem2": "FranklinBadge0.8",
+            "hasinstorage1": "CourageBadge",
+            "hasinstorage2": "FranklinBadge0.8",
+            "or": true,
+            "goto": "9"
+        },
+        "goto": "6"
+    },
+    "3": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_3",
+        "sound": "Kid",
+        "goto": "4"
+    },
+    "4": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_4",
+        "sound": "Kid",
+        "goto": "5"
+    },
+    "5": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_5",
+        "sound": "Kid",
+        "if": {
+            "invspace": true,
+            "goto": "7"
+        },
+        "goto": "8"
+    },
+    "6": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_6",
+        "sound": "Kid",
+        "if": {
+            "invspace": true,
+            "goto": "7"
+        },
+        "goto": "8"
+    },
+    "7": {
+        "talker": "null",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_7",
+        "item": "CourageBadge",
+        "soundeffect": "Item Received.mp3",
+        "flag": "courage_badge_received",
+        "goto": "9"
+    },
+    "8": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_8",
+        "sound": "Kid",
+        "goto": "9"
+    },
+    "9": {
+        "talker": "pippi",
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_9",
+        "sound": "Kid",
+        "goto": "10"
+    },
+    "10": {
+        "name": "[Pippi]",
+        "text": "DIALOGUE_PODUNK_PIPPI_HOUSE_10",
+        "sound": "Kid"
+    }
 }

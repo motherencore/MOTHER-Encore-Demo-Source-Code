@@ -16,9 +16,9 @@ func _ready():
 	global.gameover = true
 	uiManager.reset_battle_cutscenes()
 	turn_off_music_changers()
-	global.persistPlayer.collision.disabled = true
+	global.persistPlayer.set_all_collisions(false)
 	if globaldata.cash == 1:
-		globaldata.cash = 0
+		globaldata.cash = 0 # This is not very nice!
 	else:
 		globaldata.cash = int(globaldata.cash/2.0)
 	fade.fade_in("Circle")
@@ -31,7 +31,7 @@ func _ready():
 	audioManager.stop_all_music()
 	audioManager.remove_all_unplaying()
 	audioManager.add_audio_player()
-	audioManager.play_music_from_id("Game Over/Game_Over.mp3", "Game Over/Game_Over_Loop.mp3", audioManager.get_audio_player_count()-1)
+	audioManager.play_music_from_id("", "Game_Over.ogg", audioManager.get_audio_player_count()-1)
 	$AnimationPlayer.play("nintenFall")
 	yield($AnimationPlayer, "animation_finished")
 	
@@ -59,7 +59,7 @@ func end_phrase(phrase):
 		fade.fade_out("Fade", Color.white)
 		yield(fade, "fade_out_done")
 		
-		global.persistPlayer.collision.disabled = false
+		global.persistPlayer.set_all_collisions(true)
 		global.persistPlayer.unpause()
 		
 		global.gameover = false

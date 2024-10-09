@@ -1,7 +1,7 @@
 {
-	"0": {
-		"talker": "null",
-		"name": "Canary",
-		"text": "..."
-	}
+    "0": {
+        "talker": "null",
+        "name": "DIALOGUE_PODUNK_CANARY_SPEECHLESS_SPEAKER_Canary",
+        "text": "DIALOGUE_PODUNK_CANARY_SPEECHLESS_0"
+    }
 }

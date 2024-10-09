@@ -1,14 +1,12 @@
 extends CanvasLayer
 
-onready var animaPlayer = $AnimationPlayer
-var opened = false
+onready var _anim_player = $AnimationPlayer
+var _is_open = false
 
-func open():
-	if !opened:
-		$AnimationPlayer.play("Open")
-		opened = true
-
-func close():
-	if opened:
-		$AnimationPlayer.play("Close")
-		opened = false
+func toggle(open):
+	if open and !_is_open:
+		_anim_player.play("Open")
+		_is_open = true
+	elif !open and _is_open:
+		_anim_player.play("Close")
+		_is_open = false

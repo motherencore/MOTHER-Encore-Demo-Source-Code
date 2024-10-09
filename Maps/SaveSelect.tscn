@@ -19,7 +19,7 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:margin_left")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -27,11 +27,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 28, 17 ) ]
+"update": 1,
+"values": [ -4.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_size")
+tracks/1/path = NodePath(".:margin_right")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -39,15 +39,39 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 265, 78 ) ]
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 94 ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "select"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
-tracks/0/interp = 0
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,11 +79,11 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 28, 17 ) ]
+"values": [ -4.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect_size")
-tracks/1/interp = 0
+tracks/1/path = NodePath(".:margin_right")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -67,7 +91,31 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 264, 77 ) ]
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 17 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 94 ]
 }
 
 [sub_resource type="Shader" id=19]
@@ -114,25 +162,33 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Saves" type="Control" parent="CanvasLayer"]
+[node name="Body" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = -8.0
+
+[node name="Saves" type="Control" parent="CanvasLayer/Body"]
+anchor_right = 1.0
 margin_top = 21.0
-margin_right = 320.0
 margin_bottom = 205.0
 
-[node name="SaveList" type="VBoxContainer" parent="CanvasLayer/Saves"]
-margin_left = 32.0
-margin_right = 288.0
+[node name="SaveList" type="VBoxContainer" parent="CanvasLayer/Body/Saves"]
+anchor_right = 1.0
 margin_bottom = 256.0
 custom_constants/separation = 7
 
-[node name="CopyCursor" type="Node2D" parent="CanvasLayer/Saves"]
+[node name="CopyCursor" type="Control" parent="CanvasLayer/Body/Saves"]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Saves/CopyCursor"]
+[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Body/Saves/CopyCursor"]
 modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
-margin_left = 28.0
+anchor_right = 1.0
+margin_left = -4.0
 margin_top = 17.0
-margin_right = 293.0
+margin_right = 4.0
 margin_bottom = 95.0
 rect_pivot_offset = Vector2( 250, 78 )
 texture = ExtResource( 6 )
@@ -141,13 +197,16 @@ patch_margin_top = 9
 patch_margin_right = 9
 patch_margin_bottom = 9
 
-[node name="Cursor" type="Node2D" parent="CanvasLayer"]
+[node name="Cursor" type="Control" parent="CanvasLayer/Body"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Cursor"]
-margin_left = 28.0
+[node name="cursor_menu" type="NinePatchRect" parent="CanvasLayer/Body/Cursor"]
+anchor_right = 1.0
+margin_left = -4.0
 margin_top = 17.0
-margin_right = 293.0
-margin_bottom = 95.0
+margin_right = 4.0
+margin_bottom = 94.0
 rect_pivot_offset = Vector2( 250, 78 )
 texture = ExtResource( 6 )
 patch_margin_left = 9
@@ -155,7 +214,7 @@ patch_margin_top = 9
 patch_margin_right = 9
 patch_margin_bottom = 9
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Cursor/cursor_menu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Body/Cursor/cursor_menu"]
 anims/RESET = SubResource( 1 )
 anims/idle = ExtResource( 7 )
 anims/select = SubResource( 2 )
@@ -178,7 +237,7 @@ margin_top = 16.0
 margin_right = 184.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
-text = "OK to overwrite this file?"
+text = "SAVE_SAVECONFIRM"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SaveConfirmation"]
@@ -190,27 +249,25 @@ custom_constants/separation = 24
 alignment = 1
 
 [node name="Yes" type="Label" parent="CanvasLayer/SaveConfirmation/HBoxContainer"]
-margin_left = 22.0
 margin_top = 6.0
-margin_right = 38.0
+margin_right = 48.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 2 )
-text = "Yes"
+text = "MENU_YES"
 align = 1
 
-[node name="Yes2" type="Label" parent="CanvasLayer/SaveConfirmation/HBoxContainer"]
-margin_left = 62.0
+[node name="No" type="Label" parent="CanvasLayer/SaveConfirmation/HBoxContainer"]
+margin_left = 72.0
 margin_top = 6.0
-margin_right = 73.0
+margin_right = 115.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 2 )
-text = "No"
+text = "MENU_NO"
 align = 1
 
 [node name="saveArrow" parent="CanvasLayer/SaveConfirmation" instance=ExtResource( 9 )]
 position = Vector2( 64, 43 )
 menu_parent_path = NodePath("../HBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 move_sfx = true
 cancel_sfx = true
@@ -228,14 +285,13 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Title" type="Label" parent="CanvasLayer/DeleteConfirmation"]
+[node name="Text" type="Label" parent="CanvasLayer/DeleteConfirmation"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 184.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 2 )
-text = "This will erase this save file.
-Is that okay?"
+text = "SAVE_DELETECONFIRM"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeleteConfirmation"]
@@ -247,33 +303,32 @@ custom_constants/separation = 24
 alignment = 1
 
 [node name="Yes" type="Label" parent="CanvasLayer/DeleteConfirmation/HBoxContainer"]
-margin_left = 22.0
 margin_top = 2.0
-margin_right = 38.0
+margin_right = 48.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 2 )
-text = "Yes"
+text = "MENU_YES"
 align = 1
 
-[node name="Yes2" type="Label" parent="CanvasLayer/DeleteConfirmation/HBoxContainer"]
-margin_left = 62.0
+[node name="No" type="Label" parent="CanvasLayer/DeleteConfirmation/HBoxContainer"]
+margin_left = 72.0
 margin_top = 2.0
-margin_right = 73.0
+margin_right = 115.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 2 )
-text = "No"
+text = "MENU_NO"
 align = 1
 
 [node name="deleteArrow" parent="CanvasLayer/DeleteConfirmation" instance=ExtResource( 9 )]
 position = Vector2( 64, 47 )
 menu_parent_path = NodePath("../HBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 move_sfx = true
 cancel_sfx = true
 cancel_on = true
 
 [node name="TextSpeed" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
 material = ExtResource( 4 )
 margin_left = 96.0
 margin_top = 48.0
@@ -287,7 +342,7 @@ patch_margin_bottom = 13
 script = ExtResource( 14 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextSpeed"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 56.0
@@ -297,7 +352,7 @@ rect_clip_content = true
 margin_right = 75.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fast Speed"
+text = "MENU_FASTSPD"
 valign = 1
 
 [node name="Medium" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
@@ -305,7 +360,7 @@ margin_top = 16.0
 margin_right = 75.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "Medium Speed"
+text = "MENU_MEDIUMSPD"
 valign = 1
 
 [node name="Slow" type="Label" parent="CanvasLayer/TextSpeed/VBoxContainer"]
@@ -313,21 +368,22 @@ margin_top = 32.0
 margin_right = 75.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 2 )
-text = "Slow Speed"
+text = "MENU_SLOWSPD"
 valign = 1
 
 [node name="TextSpeedArrow" parent="CanvasLayer/TextSpeed" instance=ExtResource( 9 )]
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="Flavors" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
 material = ExtResource( 4 )
 margin_left = 96.0
 margin_top = 16.0
@@ -341,7 +397,7 @@ patch_margin_bottom = 13
 script = ExtResource( 15 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Flavors"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 87.0
@@ -349,48 +405,47 @@ rect_clip_content = true
 
 [node name="Plain" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_right = 75.0
-text = "Plain"
+text = "FLAVOR_PLAIN"
 
 [node name="Mint" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 16.0
 margin_right = 75.0
 margin_bottom = 28.0
-text = "Mint"
+text = "FLAVOR_MINT"
 
 [node name="Strawberry" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 32.0
 margin_right = 75.0
 margin_bottom = 44.0
-text = "Strawberry"
+text = "FLAVOR_STRAWBERRY"
 
 [node name="Banana" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 48.0
 margin_right = 75.0
 margin_bottom = 60.0
-text = "Banana"
+text = "FLAVOR_BANANA"
 
 [node name="Peanut" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 64.0
 margin_right = 75.0
 margin_bottom = 76.0
-text = "Peanut"
+text = "FLAVOR_PEANUT"
 
 [node name="Grape" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 80.0
 margin_right = 75.0
 margin_bottom = 92.0
-text = "Grape"
+text = "FLAVOR_GRAPE"
 
 [node name="Melon" parent="CanvasLayer/Flavors/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 96.0
 margin_right = 75.0
 margin_bottom = 108.0
-text = "Melon"
+text = "FLAVOR_MELON"
 
 [node name="FlavorsArrow" parent="CanvasLayer/Flavors" instance=ExtResource( 9 )]
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 highlight = true
@@ -398,8 +453,10 @@ move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="ButtonPrompts" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
 material = ExtResource( 4 )
 margin_left = 96.0
 margin_top = 39.0
@@ -413,7 +470,7 @@ patch_margin_bottom = 13
 script = ExtResource( 11 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ButtonPrompts"]
-margin_left = 17.0
+margin_left = 15.0
 margin_top = 11.0
 margin_right = 92.0
 margin_bottom = 72.0
@@ -423,7 +480,7 @@ rect_clip_content = true
 margin_right = 75.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 2 )
-text = "Both"
+text = "MENU_BOTH"
 valign = 1
 
 [node name="Objects" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
@@ -431,7 +488,7 @@ margin_top = 16.0
 margin_right = 75.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "Objects"
+text = "MENU_OBJECTS"
 valign = 1
 
 [node name="NPCs" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
@@ -439,7 +496,7 @@ margin_top = 32.0
 margin_right = 75.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 2 )
-text = "NPCs"
+text = "MENU_NPCS"
 valign = 1
 
 [node name="None" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
@@ -447,19 +504,19 @@ margin_top = 48.0
 margin_right = 75.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 2 )
-text = "None"
+text = "MENU_NONE"
 valign = 1
 
 [node name="ButtonPromptsArrow" parent="CanvasLayer/ButtonPrompts" instance=ExtResource( 9 )]
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
 consume_input_events = true
 loop_around = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
 position = Vector2( 72, 57 )

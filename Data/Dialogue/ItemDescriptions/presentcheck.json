@@ -1,10 +1,10 @@
 {
-	"0": {
-		"text":"PartyLead opened the present.",
-		"goto":"1"
-		},
-	"1": {
-		"text":"ItemReceiver got ItemArt ItemName!",
-		"soundeffect":"Item Received.mp3"
-	}
+    "0": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_PRESENTCHECK_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_ITEMDESCRIPTIONS_PRESENTCHECK_1",
+        "soundeffect": "Item Received.mp3"
+    }
 }

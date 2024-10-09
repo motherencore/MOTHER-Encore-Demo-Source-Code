@@ -1,50 +1,36 @@
 {
-	"name": {
-		"english": "Sports Drink",
-		"french": "Boisson Sportive"
-	},
-	"article" : {
-		"english": "a",
-		"french": "une"
-	},
-	"keyitem": false,
-	"cost": 75,
-	"value": 37,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": true,
-		"pippi": true
-	},
-	"action_one": {
-		"name": {
-			"english": "Use", 
-			"french": "Utiliser"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User recovered 70 HP!",
-			"french": "User a récupéré 70 PV!"
-		}
-	},
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 70,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Can reinvigorate you when tired.\nRestores 70 HP.",
-		"french": "Peut te revigorer quand t'es fatigué.\nRécupère 70 PV."
-	}
+    "name": "SPORTSDRINK",
+    "article": "SPORTSDRINK_ART",
+    "keyitem": false,
+    "cost": 75,
+    "value": 37,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": true,
+        "pippi": true
+    },
+    "action_one": {
+        "name": "SPORTSDRINK_ACT1_NAME",
+        "function": "consume",
+        "text": "SPORTSDRINK_ACT1_TEXT"
+    },
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 70,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "SPORTSDRINK_DESC",
+    "short_name": "SPORTSDRINK_SHORT"
 }

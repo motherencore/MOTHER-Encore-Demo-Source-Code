@@ -4,19 +4,20 @@ var currentText = 0
 var finished = true
 var t = 0
 var textSpeed = 0.08
+# LOCALIZATION Use of csv keys for story text ("In the early 1900's, a dark shadow" etc.)
 var text = [
-	"In the early 1900's,\na dark shadow covered a small\ncountry town in rural America.",
-	"The dark shadow formed\nmysteriously at the\nsummit of Mt Itoi.",
-	"At that time,\nnumerous paranormal\nincidents occured.",
-	"The last incident\ninvolved the disappearance\nof a young married couple.",
-	"The man's name was George.\nThe woman's name was Maria.",
-	"As soon as they disappeared,\nso did the dark shadow.",
-	"Two years later,\nas suddenly as he left,\nGeorge returned.",
-	"He never told anyone\nwhere he had been\nor what he had done.",
-	"But he began an odd\nstudy of psychic powers,\nall by himself.",
-	"As for Maria,\nhis wife...",
-	"She never returned.",
-	"80 years have passed\nsince then."
+	"INTRO_CUTSCENE_OLD_01", 
+	"INTRO_CUTSCENE_OLD_02", 
+	"INTRO_CUTSCENE_OLD_03", 
+	"INTRO_CUTSCENE_OLD_04", 
+	"INTRO_CUTSCENE_OLD_05", 
+	"INTRO_CUTSCENE_OLD_06", 
+	"INTRO_CUTSCENE_OLD_07", 
+	"INTRO_CUTSCENE_OLD_08", 
+	"INTRO_CUTSCENE_OLD_09", 
+	"INTRO_CUTSCENE_OLD_10", 
+	"INTRO_CUTSCENE_OLD_11", 
+	"INTRO_CUTSCENE_OLD_12"
 ]
 
 onready var dialogueLabel = $Text/HBoxContainer/ScrollingText
@@ -41,7 +42,7 @@ func _process(delta):
 			dialogueLabel.visible_characters += 1
 			t = 0
 			$AudioStreamPlayer.play()
-			if get_last_visible_character(dialogueLabel) in [",", ".", "!", "?"] and dialogueLabel.visible_characters < len(spacelessTest):
+			if get_last_visible_character(dialogueLabel) in tr("INTRO_CUTSCENE_PUNCTUATION") and dialogueLabel.visible_characters < len(spacelessTest):
 				$Timer.start()
 				set_process(false)
 		if dialogueLabel.visible_characters >= len(spacelessTest):
@@ -78,7 +79,8 @@ func hide_text():
 func reset_text():
 	dialogueLabel.text = ""
 	dialogueLabel.visible_characters = 0
-	dialogueLabel.rect_position.y = 0
+	# LOCALIZATION Code change: Fixed bug where vertical alignment sometimes wasn't happening when it was a 2-line paragraph twice in a row
+	dialogueLabel.rect_position.y = (dialogueLabel.get_parent().rect_size.y - dialogueLabel.rect_size.y) / 2
 	finished = true
 
 func next_text():
@@ -86,10 +88,20 @@ func next_text():
 	set_process(true)
 	if dialogueLabel.text != "":
 		dialogueLabel.text += "\n"
-	dialogueLabel.text += text[currentText]
+	# LOCALIZATION Code change: Added tr() for direct access to the translated string
+	# (to handle string length and punctuation timing in _process())
+	dialogueLabel.text += _snap_text_to_tiles(tr(text[currentText]))
 	finished = false
 	currentText += 1
 	
+# LOCALIZATION Made monospace text look "NES-like" while being centered (snap to 8x8 tiles)
+func _snap_text_to_tiles(string):
+	var splitString = string.split("\n")
+	for i in splitString.size():
+		if splitString[i].length() % 2 == 1:
+			splitString[i] += " " # Same parity in length makes centering look good
+	return splitString.join("\n")
+
 func slow_down_text():
 	textSpeed = 0.15
 

@@ -1,6 +1,7 @@
 {
-	"0": {
-		"name": "Canary Chick",
-		"text": "Chirp chirp!"
-	}
+    "0": {
+        "name": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYFOUND_CANARY_SPEAKER_Canary_Chick",
+        "text": "DIALOGUE_HOTEL_PARTY_BANTER_CANARYFOUND_CANARY_0",
+        "soundeffect": "M3/Critter Cry.mp3"
+    }
 }

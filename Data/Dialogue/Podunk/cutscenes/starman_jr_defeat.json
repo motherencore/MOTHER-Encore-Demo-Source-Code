@@ -1,96 +1,123 @@
 {
-	"0": {
-		"actors": {
-			"starman jr": "Objects/starman jr capsule",
-			"player": "leader"
-		},
-		"actorsturn": {
-			"player": {
-				"x": 0,
-				"y": -1,
-				"speed": 0.1
-			}
-		},
-		"movecam": {
-			"actor": "starman jr"
-		},
-		"objectfunction": {
-			"Music/MusicArea2": "stop_music"
-		},
-		"actorsanim": {
-			"starman jr": {"anim": "Idle", "type": 1}
-		},
-		"wait": 1,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "1"
-	},
-	"1": {
-		"actorsshadow": {
-			"starman jr": false 
-		},
-		"actorsshake": {
-			"starman jr": {
-				"y": 1,
-				"length": 1
-			}
-		},
-		"wait": 1.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "2"
-	},
-	"2": {
-		"actorsanim": {
-			"starman jr": {"anim": "Spin", "type": 1}
-		},
-		"actorsmove": {
-			"starman jr": {
-				"movement": [{"x": 0, "y": 4}],
-				"speed": 64,
-				"type": "step"
-			}
-		},
-		"wait": 0.4,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "3"
-	},
-	"3": {
-		"actorsmove": {
-			"starman jr": {
-				"movement": [{"x": 0, "y": -300}],
-				"speed": 256,
-				"type": "step"
-			}
-		},
-		"wait": 0.8,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "4"
-	},
-	"4": {
-		"shakecam": {
-			"x": 0,
-			"y": 1,
-			"size": "medium"
-		},
-		"soundeffect": "M3/PK_Thunder_a_b_y_O_hit.wav",
-		"wait": 1,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "5"
-	},
-	"5": {
-		"movecam": {
-			"actor": "player"
-		},
-		"text": "The odd sound that drove the animals insane died down.",
-		"goto": "6"
-	},
-	"6": {
-		"flag": "zoo_freed",
-		"text": "The Zoo became a safe place once more.",
-		"setcrumbs": true
-	}
+    "0": {
+        "actors": {
+            "starman jr": "Objects/starman jr capsule",
+            "player": "leader"
+        },
+        "actorsturn": {
+            "player": {
+                "x": 0,
+                "y": -1,
+                "speed": 0.1
+            }
+        },
+        "movecam": {
+            "actor": "starman jr"
+        },
+        "objectfunction": {
+            "Music/MusicArea2": "stop_music"
+        },
+        "actorsanim": {
+            "starman jr": {
+                "anim": "Idle"
+            }
+        },
+        "wait": 1,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "1"
+    },
+    "1": {
+        "name": "STARMANJR",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_1",
+        "sound": "Robot",
+        "goto": "2"
+    },
+    "2": {
+        "name": "STARMANJR",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_2",
+        "sound": "Robot",
+        "goto": "3"
+    },
+    "3": {
+        "actorsshadow": {
+            "starman jr": false
+        },
+        "actorsshake": {
+            "starman jr": {
+                "y": 1,
+                "length": 1
+            }
+        },
+        "showbox": false,
+        "wait": 1.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "4"
+    },
+    "4": {
+        "actorsanim": {
+            "starman jr": {
+                "anim": "Spin"
+            }
+        },
+        "actorsmove": {
+            "starman jr": {
+                "movement": [
+                    {
+                        "x": 0,
+                        "y": 4
+                    }
+                ],
+                "speed": 64,
+                "type": "step"
+            }
+        },
+        "wait": 0.4,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "5"
+    },
+    "5": {
+        "actorsmove": {
+            "starman jr": {
+                "movement": [
+                    {
+                        "x": 0,
+                        "y": -300
+                    }
+                ],
+                "speed": 256,
+                "type": "step"
+            }
+        },
+        "wait": 0.8,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "6"
+    },
+    "6": {
+        "shakecam": {
+            "x": 0,
+            "y": 1,
+            "size": "medium"
+        },
+        "soundeffect": "M3/PK_Thunder_a_b_y_O_hit.wav",
+        "wait": 1,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "7"
+    },
+    "7": {
+        "movecam": {
+            "actor": "player"
+        },
+        "text": "DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_7",
+        "goto": "8"
+    },
+    "8": {
+        "flag": "zoo_freed",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_8",
+        "setcrumbs": true
+    }
 }

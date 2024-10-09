@@ -1,4 +1,4 @@
-extends TextureRect
+extends NinePatchRect
 
 const character_portrait_path = "res://Graphics/UI/Inventory/characters/"
 
@@ -26,10 +26,11 @@ onready var stats = {
 func _ready():
 	hide()
 
-func show_statsBar(character_name, modifiersDic):
-	$CenterContainer/CharacterPortrait.texture = load(character_portrait_path+character_name+".png")
-	var character_stats = InventoryManager.Get_global_data(character_name)
-	
+func show_statsBar(character_stats, modifiersDic):
+	if character_stats == null:
+		return
+
+	$CenterContainer/CharacterPortrait.texture = load(character_portrait_path+character_stats.name+".png")	
 	for stat in stats_list:
 		stats[stat].set_stat_value(character_stats[stat] + character_stats["boosts"][stat])
 		stats[stat].hide_modifier_value()

@@ -12,6 +12,7 @@ func get_audio_player_count():
 
 func add_audio_player():
 	var musicPlayer = AudioStreamPlayer.new()
+	musicPlayer.bus = "Music"
 	$AudioPlayers.add_child(musicPlayer)
 
 func get_audio_player(id):
@@ -31,7 +32,9 @@ func get_audio_player_from_song(song, excludedChanger = null):
 				if audioPlayer.stream == load("res://Audio/Music/" + song):
 					return audioPlayer
 	return null
-	
+
+func get_audio_player_by_name(name) -> AudioStreamPlayer:
+	return $AudioPlayers.get_node_or_null(name) as AudioStreamPlayer
 
 func get_audio_player_id(node):
 	return get_audio_player_list().find(node)
@@ -39,40 +42,76 @@ func get_audio_player_id(node):
 func get_audio_player_list():
 	return $AudioPlayers.get_children()
 
-func remove_audio_player(id):
-	if get_audio_player(id) != null:
-		get_audio_player(id).queue_free()
-		if !get_audio_player(id).is_connected("tree_exited", self, "add_at_zero"):
-			get_audio_player(id).connect("tree_exited", self, "add_at_zero", [], CONNECT_ONESHOT)
+
+#remove a music player with an object
+func remove_music_player(musicPlayer, waitForTween = false):
+	if waitForTween and tween.is_active():
+		yield(tween, "tween_all_completed")
+	if musicPlayer != null:
+		musicPlayer.queue_free()
+		if !musicPlayer.is_connected("tree_exited", self, "add_at_zero"):
+			musicPlayer.connect("tree_exited", self, "add_at_zero", [], CONNECT_ONESHOT)
+
+#remove a music player with an id
+#(ik this is confusing but i made the one above this one after this one was already being used everywhere and i didn't feel like changing it sorry)
+func remove_audio_player(id, waitForTween = false):
+	var musicPlayer = get_audio_player(id)
+	if waitForTween and tween.is_active():
+		yield(tween, "tween_all_completed")
+	if musicPlayer != null:
+		musicPlayer.queue_free()
+		if !musicPlayer.is_connected("tree_exited", self, "add_at_zero"):
+			musicPlayer.connect("tree_exited", self, "add_at_zero", [], CONNECT_ONESHOT)
 
 func add_at_zero():
 	if get_audio_player_count() == 0:
 		add_audio_player()
 
 #track is the song's name, loop is the song to play on loop, musicPlayer is which audioPlayer to play the song from and start is the position to start the song from.
-func play_music(track, loop = "", musicPlayer = get_audio_player(0), start = 0.0): 
+func play_music(track, loop = "", musicPlayer = get_audio_player(0), start = 0.0, name = ""): 
 	if musicPlayer != null:
 		var path = ""
 		if track == "":
 			path = "res://Audio/Music/" + loop
+		elif track == "PassiveHeal.mp3":
+			path = "res://Nodes/Overworld/Enemies/PassiveHeal.mp3"
 		else:
 			path = "res://Audio/Music/" + track
 		var musicFile = load(path)
 		musicPlayer.stream = musicFile
 		musicPlayer.play(start)
+		
+		if name != "":
+			musicPlayer.name = name
+		
 		if musicPlayer.is_connected("finished", self, "play_music"):
 			musicPlayer.disconnect("finished", self, "play_music")
 		if loop != "" and !musicPlayer.is_connected("finished", self, "play_music"):
 			musicPlayer.connect("finished", self, "play_music", ["", loop, musicPlayer, 0.0], CONNECT_DEFERRED)
 		else:
-			musicPlayer.connect("finished", self, "remove_audio_player", [get_audio_player_id(musicPlayer)], CONNECT_ONESHOT)
+			musicPlayer.connect("finished", self, "remove_music_player", [musicPlayer], CONNECT_ONESHOT)
 
 #track is the song's name, loop is the song to play on loop, id is which audio player to play the song from and start is the position to start the song from.
-func play_music_from_id(track, loop = "", id = 0, start = 0.0): 
-	play_music(track, loop, get_audio_player(id), start)
+func play_music_from_id(track, loop = "", id = 0, start = 0.0, name = ""): 
+	play_music(track, loop, get_audio_player(id), start, name)
 
-func set_audio_player_bus(id, bus):
+func play_music_from_name(track, loop = "", name = "", start = 0.0):
+	if !get_audio_player_by_name(name):
+		add_audio_player()
+		play_music(track, loop, get_audio_player(get_audio_player_count() - 1), start, name)
+	else:
+		play_music(track, loop, get_audio_player_by_name(name), start, name)
+
+func music_muffle(id, level):
 	if get_audio_player(id) != null:
+		var bus
+		match level:
+			0:
+				bus = "Music"
+			1:
+				bus = "Filter"
+			2:
+				bus = "More Filter"
 		get_audio_player(id).bus = bus
 
 func set_audio_pitch(speed):
@@ -133,20 +172,21 @@ func stop_all_music():
 func pause_all_music():
 	if tween.is_active():
 		tween.seek(tween.tell() + tween.get_runtime())
-		yield(tween, "tween_all_completed")
-		remove_all_unplaying()
+		remove_all_unplaying(true)
+		tween.stop_all()
 	for musicPlayer in get_audio_player_list():
 		musicPlayer.stream_paused = true
+	
 
 func resume_all_music():
 	for musicPlayer in get_audio_player_list():
 		musicPlayer.stream_paused = false
 
-func remove_all_unplaying():
+func remove_all_unplaying(waitForTween = false):
 	for i in get_audio_player_count():
 		var musicPlayer = get_audio_player(i)
 		if !musicPlayer.playing or musicPlayer.volume_db == -80:
-			remove_audio_player(i)
+			remove_audio_player(i, waitForTween)
 
 func get_playing(song):
 	var songPlaying = false
@@ -155,13 +195,18 @@ func get_playing(song):
 	return songPlaying
 	
 
-func play_sfx(stream, name) -> AudioStreamPlayer:
+func add_sfx(stream, name) -> AudioStreamPlayer:
 	var sfx_node: AudioStreamPlayer = get_sfx(name)
 	if !sfx_node:
 		sfx_node = AudioStreamPlayer.new()
+		sfx_node.bus = "SFX"
 		sfx_node.name = name
 		$Sfx.add_child(sfx_node)
 	sfx_node.stream = stream
+	return sfx_node
+
+func play_sfx(stream, name) -> AudioStreamPlayer:
+	var sfx_node: AudioStreamPlayer = add_sfx(stream, name)
 	sfx_node.play()
 	return sfx_node
 

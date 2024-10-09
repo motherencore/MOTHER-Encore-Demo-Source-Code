@@ -135,7 +135,7 @@ frames = SubResource( 4 )
 animation = "Idle"
 playing = true
 script = ExtResource( 2 )
-cursor_offset = Vector2( -8, 0 )
+cursor_offset = Vector2( -4, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 visible = false

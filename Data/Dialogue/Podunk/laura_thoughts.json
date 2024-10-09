@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Laura",
-		"text": "(My baby...)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_LAURA_THOUGHTS_SPEAKER_Laura",
+        "text": "DIALOGUE_PODUNK_LAURA_THOUGHTS_0"
+    }
 }

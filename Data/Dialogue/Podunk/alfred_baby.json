@@ -1,39 +1,39 @@
 {
-	"0": {
-		"name": "Alfred",
-		"text": "Wow! That canary is singing Laura's baby.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Alfred",
-		"text": "Will you return her baby to her?",
-		"sound": "Adult",
-		"options": {
-			"Yes": "2",
-			"No": "5"
-		}
-	},
-	"2": {
-		"name": "Alfred",
-		"text": "Great!",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Alfred",
-		"text": "Now you just have to find her.",
-		"sound": "Adult",
-		"goto": "4"
-	},
-	"4": {
-		"name": "Alfred",
-		"text": "If I remember correctly, Laura lives in one of the white bird houses.",
-		"sound": "Adult"
-	},
-	"5": {
-		"name": "Alfred",
-		"text": "You can't just keep it as a pet!",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_1",
+        "sound": "Adult",
+        "options": {
+            "DIALOGUE_PODUNK_ALFRED_BABY_1-OPT_0": "2",
+            "DIALOGUE_PODUNK_ALFRED_BABY_1-OPT_1": "5"
+        }
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_3",
+        "sound": "Adult",
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_4",
+        "sound": "Adult"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_ALFRED_BABY_SPEAKER_Alfred",
+        "text": "DIALOGUE_PODUNK_ALFRED_BABY_5",
+        "sound": "Adult"
+    }
 }

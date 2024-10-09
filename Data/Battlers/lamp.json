@@ -1,25 +1,25 @@
 {
-	"name": "Lamp",
-	"maxhp": 30,
-	"hp": 30,
-	"maxpp": 0,
-	"pp": 0,
-	"speed": 5,
-	"offense": 1,
-	"defense": 8,
-	"iq": 3,
-	"guts": 0,
-	"level": 1,
-	"exp": 3,
-	"cash": 5,
-	"skills": [
-		{"skill" : "tackle", "weight" : 1000},
-		{"skill" : "float", "weight" : 1}
-	],
-	"description": "It hovers in the air!",
-	"boss": false,
-	"sprite": "lamp",
-	"ovsprite": "LampOV",
-	"music": "",
-	"bg": "lamp"
+  "name": "LAMP",
+  "description": "LAMP_DESC",
+  "article": "LAMP_ART",
+  "maxhp": 30,
+  "hp": 30,
+  "maxpp": 0,
+  "pp": 0,
+  "speed": 5,
+  "offense": 1,
+  "defense": 8,
+  "iq": 3,
+  "guts": 0,
+  "level": 1,
+  "exp": 3,
+  "cash": 5,
+  "skills": [
+    { "skill": "tackle", "weight": 1000 },
+    { "skill": "float", "weight": 1 }
+  ],
+  "boss": false,
+  "sprite": "lamp",
+  "music": "",
+  "bg": "lamp"
 }

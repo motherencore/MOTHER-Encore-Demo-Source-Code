@@ -26,11 +26,6 @@ var enemySprite := preload("res://Nodes/Ui/Battle/EnemySprite.tscn")
 
 # sfx
 var soundEffects = {
-	#encounter sounds
-	"encounter": load("res://Audio/Sound effects/Battle Encounter/Encounter Enemy.mp3"),
-	"playeradv": load("res://Audio/Sound effects/Battle Encounter/Encounter Player Advantage.mp3"),
-	"enemyadv": load("res://Audio/Sound effects/Battle Encounter/Encounter Enemy Advantage.mp3"),
-	"bossencounter": load("res://Audio/Sound effects/Battle Encounter/Encounter Boss.mp3"),
 	#cursors
 	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
 	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3"),
@@ -73,19 +68,39 @@ var soundEffects = {
 	#winning
 	"cheering": load("res://Audio/Sound effects/M3/Cheering.mp3")
 }
+var musicalEffects = {
+	"bossencounter": "Battle Encounter/Encounter Boss.mp3",
+	"playeradv": "Battle Encounter/Encounter Player Advantage.mp3",
+	"enemyadv": "Battle Encounter/Encounter Enemy Advantage.mp3",
+	"encounter": "Battle Encounter/Encounter Enemy.mp3",
+	"youwon": "You Win/YOUWON.mp3",
+	"youwonboss": "You Win/YOUWONBOSS.mp3",
+	"victory": "You Win/Victory.mp3",
+	"lvlup": "You Win/LVLUP.mp3",
+	"lvlup_ninten": "You Win/LVLUP_ninten.mp3",
+	"lvlup_ana": "You Win/LVLUP_ninten.mp3",
+	"lvlup_lloyd": "You Win/LVLUP_ninten.mp3",
+	"lvlup_pippi": "You Win/LVLUP_pippi.mp3",
+	"lvlup_teddy": "You Win/LVLUP_ninten.mp3"
+}
 
+#The inventory that the player has at the beginning of the battle is saved
+#to be given back to the player if they die and choose to continue
+var SavedInventories = {}
 
 const gameover = preload("res://Nodes/Ui/GameOver.tscn")
 const droppedItemNode = preload("res://Nodes/Overworld/Objects/Item.tscn")
 
 #we do love hacky stuff out here
 const enemyRename = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const maxEnemyCount = 8
 
 # Classes
 class Action extends Object:
 	var user
 	var priority = 0
 	var targetType = TargetType.SELF
+	var targetUnconscious = false
 	signal done
 	
 	func _init(_user):
@@ -102,6 +117,8 @@ class SkillAction extends Action:
 			priority = newVal.priority
 		if newVal.has("targetType"):
 			targetType = newVal.targetType
+		if newVal.has("targetUnconscious"):
+			targetUnconscious = newVal.targetUnconscious
 		skill = newVal
 
 class ItemAction extends SkillAction:
@@ -115,13 +132,12 @@ class ItemAction extends SkillAction:
 		if "battle_action" in item and item.battle_action != "":
 			setSkill(globaldata.skills[item.battle_action])
 		else:
+			targetType = TargetType.ALLY
 			if newVal.has("action_one"):
 				if newVal.action_one.has("targetType"):
 					targetType = newVal.action_one.targetType
-				else:
-					targetType = TargetType.ALLY
-			else:
-				targetType = TargetType.ALLY
+				if newVal.action_one.has("targetUnconscious"):
+					targetUnconscious = newVal.action_one.targetUnconscious
 		if item.has("priority"):
 			priority = item.priority
 		
@@ -174,7 +190,8 @@ var maxCursorLoc := Vector2(5,0)
 var actionCursorHomePos := Vector2(5,3)
 
 # battle data stuff
-var stat_mod_step := 1/8
+var stat_mod_step := 1/16
+var turns = 0
 
 # for battle win stuff
 var expPool = 0
@@ -213,6 +230,8 @@ var bufferReorganize = false
 var newEnemies = []
 
 var turn = 1
+
+const passiveHealProb = 25
 
 signal actionDone
 signal roundDone
@@ -254,22 +273,30 @@ func _ready():
 		if enemy["stats"].has("boss"):
 			if enemy["stats"]["boss"] == true:
 				boss = true
+
+	var encounterSound
 	if boss:
-		$AudioStreamPlayer.stream = soundEffects["bossencounter"]
+		encounterSound = musicalEffects["bossencounter"]
 	elif playerAdv:
-		$AudioStreamPlayer.stream = soundEffects["playeradv"]
+		encounterSound = musicalEffects["playeradv"]
 	elif enemyAdv:
-		$AudioStreamPlayer.stream = soundEffects["enemyadv"]
+		encounterSound = musicalEffects["enemyadv"]
 	else:
-		$AudioStreamPlayer.stream = soundEffects["encounter"]
-	
-	$AudioStreamPlayer.play()
+		encounterSound = musicalEffects["encounter"]
 	
 	if enemyAdv:
 		$ActionMenuBox/Arrow.on = false
 		$ActionMenuBox.hide()
 		$InfoBox1.hide()
-
+		
+	if uiManager.battleRematchFlag != "" and globaldata.flags.has(uiManager.battleRematchFlag):
+		globaldata.flags[uiManager.battleRematchFlag] = true
+	
+	global.dialogue.clear()
+	audioManager.add_audio_player()
+	audioManager.play_music_from_id(encounterSound, "", audioManager.get_audio_player_count()-1)
+	save_inventories()
+	
 func start(anim = ""):
 	# Enter "Actions" menu page
 	if music != "":
@@ -307,7 +334,7 @@ func _input(event):
 			play_sfx("enemydefeated")
 			win()
 	
-	if (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle")) and currentAction == null:
+	if Input.is_action_just_pressed("ui_cancel") and currentAction == null:
 		get_tree().set_input_as_handled()
 		if leave_menu():
 			play_sfx("back")
@@ -324,9 +351,14 @@ func leave_menu():
 		menuPageStack.pop_back().exit()
 		menuPageStack.back().enter()
 		return true
-	elif currPartyMem > 0 and currPartyMem < get_conscious_party().size():
-		prev_active_menu()
-		return true
+	elif currPartyMem < get_conscious_party().size():
+		if currPartyMem > 0:
+			prev_active_menu()
+			return true
+		elif $ActionMenuBox.cursor.on:
+			reset_page_stack()
+			goto_menu($ActionMenuBox)
+			return true
 	return false
 
 # When an action is selected, we start an Action object that will be
@@ -400,6 +432,15 @@ func _physics_process(delta):
 			for overworldSprite in $EnemyTransitions.get_children():
 				overworldSprite.offset.x = rand_range(-4.0,4.0)
 				overworldSprite.offset.y = rand_range(-4.0,4.0)
+
+func save_inventories():
+	for inv in InventoryManager.Inventories:
+		SavedInventories[inv] = InventoryManager.Inventories[inv].duplicate()
+
+func restore_backup_inventories():
+	for inv in InventoryManager.Inventories:
+		InventoryManager.Inventories[inv].clear()
+		InventoryManager.Inventories[inv].append_array(SavedInventories[inv])
 
 func add_party_member(stats, battlesprite):
 	var bp = BattleParticipant.new()
@@ -476,9 +517,15 @@ func cache_player_action(action: Action):
 	elif action is ItemAction:
 		action.user.battleSprite.play("itemPrep")
 	elif action is SkillAction:
-		if action.skill.name == "Bash" || (action.skill.has("skillType") and action.skill.skillType == "physical"):
+		# LOCALIZATION Use of csv key as an id, instead of the English name
+		if action.skill.name == "BASH" || (action.skill.has("skillType") and action.skill.skillType == "physical"):
 			action.user.battleSprite.play(action.user.bashAnim + "Prep")
 		else:
+			if action.skill.has("userAnimColors"):
+				action.user.battleSprite.set_psi_colors(action.skill.userAnimColors)
+			else:
+				var colors = [Color("ffffff"), Color("f81070"), Color("5757f0")] #Default colors
+				action.user.battleSprite.set_psi_colors(colors)
 			action.user.battleSprite.play("psiPrep")
 	
 	cache_action(action)
@@ -519,7 +566,7 @@ func next_active_menu():
 			playerAdv = false
 		do_actions()
 	else:
-		partyBPs[currPartyMem].battleSprite.showAndPlay("idle")
+		partyBPs[currPartyMem].battleSprite.showAndPlay("lookIntoYourSoul")
 		add_actions_to_menu(partyBPs[currPartyMem])
 		goto_menu($ActionMenuBox)
 
@@ -529,7 +576,7 @@ func prev_active_menu():
 	partyBPs[currPartyMem].battleSprite.hideAway()
 	currPartyMem -= 1
 	
-	partyBPs[currPartyMem].battleSprite.play("idle", true)
+	partyBPs[currPartyMem].battleSprite.play("lookIntoYourSoul", true)
 	add_actions_to_menu(partyBPs[currPartyMem])
 	goto_menu($ActionMenuBox)
 
@@ -614,14 +661,15 @@ func add_enemy_battlesprite(enemyBP, transition = true):
 	var fullSpritePath : String = spritePathP1 + enemyBP.stats.sprite + spritePathP2
 	var spriteExists := ResourceLoader.exists(fullSpritePath)
 	var texture = enemySprite.instance()
-	if spriteExists:
-		texture.texture = load(fullSpritePath)
-	else:
-		print("could not load sprite: ", fullSpritePath)
-		texture.texture = load(spritePathP1 + "invalidsprite.png")
-	
 	enemyBP.battleSprite = texture
 	$Enemies.add_child(texture)
+	if spriteExists:
+		texture.set_texture(fullSpritePath)
+	else:
+		print("could not load sprite: ", fullSpritePath)
+		texture.set_texture(spritePathP1 + "invalidsprite.png")
+	
+	
 	# put texture off screen
 	texture.rect_position = Vector2(320, 0) + texture.texture.get_size()
 	texture.hide()
@@ -651,12 +699,16 @@ func flee():
 func win():
 	active = false
 	for onScreenEnemy in uiManager.onScreenEnemies:
-		onScreenEnemy[1].activate()
+		if (onScreenEnemy[1] != null):
+			onScreenEnemy[1].activate()
 	
 	if (!audioManager.overworldBattleMusic) or (boss and audioManager.overworldBattleMusic):
 		audioManager.pause_all_music()
 		audioManager.add_audio_player()
-		audioManager.play_music_from_id("You Win/YOUWON.mp3", "You Win/Victory.mp3", audioManager.get_audio_player_count()-1)
+		if boss:
+			audioManager.play_music_from_id(musicalEffects["youwonboss"], musicalEffects["victory"], audioManager.get_audio_player_count()-1)
+		else:
+			audioManager.play_music_from_id(musicalEffects["youwon"], musicalEffects["victory"], audioManager.get_audio_player_count()-1)
 	
 	#play_sfx("res://Audio/Sound effects/EB/wow.wav")
 	
@@ -673,7 +725,7 @@ func win():
 				if !status in globaldata.persistentAilments: 
 					do_status(bp, status, false)
 					bp.setStatus(status, false)
-			if !bp.battleSprite.shown:
+			if !bp.battleSprite.state == bp.battleSprite.states.SHOWN:
 				bp.battleSprite.showIn()
 			bp.battleSprite.play("victory", true)
 			# save off stats to globaldata
@@ -696,30 +748,51 @@ func win():
 	var dialog = {}
 	if receiving > 1:
 		if receiving_party.size() == 2:
+			# LOCALIZATION Code change: Changed it to a single, localizable string
+			# LOCALIZATION Use of csv key for "{member1} and {member2} gained {value} exp each."
 			dialog = {
-				"0": {"text":  receiving_party[0].stats.nickname + " and " + receiving_party[1].stats.nickname + " gained " + str(int(round(expPool / receiving))) + " exp each."}
+				"0":{"text":_format_battle_text("BATTLE_MSG_EXP_TWO_ALLIES",
+						receiving_party[0], [receiving_party[1]], null, str(int(round(expPool / receiving))))
+					}
 			}
-		else:
+		else :
+			# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (to handle English pronoun here)
+			# LOCALIZATION Use of csv key for "{name} and {n4} friends gained %s exp each."
+			# ({n4} is a pronoun/article related to {name}; please see _format_battle_text() method)
 			dialog = {
-				"0": {"text": receiving_party[0].stats.nickname + " and " + receiving_party[0].stats.pronoun +" friends gained " + str(int(round(expPool / receiving))) + " exp each."}
+				"0":{"text":_format_battle_text("BATTLE_MSG_EXP_MANY_ALLIES",
+						receiving_party[0], [], null, str(int(round(expPool / receiving))))
+					}
 			}
 	elif receiving > 0:
+		# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (notably for Polish verb suffix here)
+		# LOCALIZATION Use of csv key for "{name} gained %s exp."
 		dialog = {
-			"0": {"text": receiving_party[0].stats.nickname + " gained " + str(expPool) + " exp."}
+			"0":{
+				"text":_format_battle_text("BATTLE_MSG_EXP_ONE_ALLY", receiving_party[0], [], null, str(expPool))
+			}
 		}
 	else:
 		match get_conscious_party().size():
 			1:
+				# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (notably for Polish verb suffix here)
+				# LOCALIZATION Use of csv key for "{name} gained 0 exp."
 				dialog = {
-					"0": {"text": get_conscious_party()[0].stats.nickname + " gained 0 exp."}
+					"0":{
+						"text":_format_battle_text("BATTLE_MSG_EXP0_ONE_ALLY", receiving_party[0])
+					}
 				}
 			2:
+				# LOCALIZATION Code change: Changed it to a single, localizable string
+				# LOCALIZATION Use of csv key for "{member1} and {member2} gained 0 exp each."
 				dialog = {
-					"0": {"text":  get_conscious_party()[0].stats.nickname + " and " + get_conscious_party()[1].stats.nickname + " gained 0 exp each."}
+					"0":{"text":_format_battle_text("BATTLE_MSG_EXP0_TWO_ALLIES", receiving_party[0], [receiving_party[1]])}
 				}
 			_:
+				# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (to handle English pronoun here)
+				# LOCALIZATION Use of csv key for "{name} and {n4} friends gained 0 exp each."
 				dialog = {
-					"0": {"text": receiving_party[0].stats.nickname + " and " + receiving_party[0].stats.pronoun +" friends gained 0 exp each."}
+					"0":{"text": _format_battle_text("BATTLE_MSG_EXP0_MANY_ALLIES", receiving_party[0])}
 				}
 	$Dialoguebox.autoAdvanced = false
 	$Dialoguebox.start(dialog)
@@ -734,33 +807,62 @@ func do_rewards():
 	var j = 0
 	var dialog = {}
 	var itemGiven = false
+	var chanceTrue = false
 	for itemStat in itemPool:
 		for item in itemStat.items:
-			var r = randi() % 100 + 1
-			if r <= item.chance:
+			var r
+			if item.has("rare") and item.rare:
+				if not itemStat.enemyName in globaldata.rareDrops:
+					globaldata.rareDrops[itemStat.enemyName] = 0
+				r = rand_range(0.0, 100)
+				var chanceMod
+				if item.has("increaseChance"):
+					chanceMod = item.increaseChance * globaldata.rareDrops[itemStat.enemyName]
+				else:
+					chanceMod = 0
+				if r <= item.chance + chanceMod or globaldata.rareDrops[itemStat.enemyName] >= 100.0 / item.chance:
+					chanceTrue = true
+					globaldata.rareDrops[itemStat.enemyName] = 0
+				else:
+					globaldata.rareDrops[itemStat.enemyName] += 1
+			else:
+				r = randi() % 100 + 1
+				if r <= item.chance:
+					chanceTrue = true
+			if chanceTrue:
 				itemGiven = true
 				droppedItem = item.item
-				var itemName = InventoryManager.Load_item_data(droppedItem).name.english
-				var itemArticle = InventoryManager.Load_item_data(droppedItem).article.english
-				dialog[str(j)] = {"text": "The enemy dropped a present!", "goto": "%s" % (j + 1)}
-				dialog[str(j + 1)] = {"text": "Inside, the present, there was " + itemArticle + " " + itemName + ".", "goto": "%s" % (j + 2)}
+				# LOCALIZATION Code change: We need full item object
+				var itemData = InventoryManager.Load_item_data(droppedItem)
+				# LOCALIZATION Use of csv key for "The enemy dropped a present!"
+				dialog[str(j)] = {"text":tr("BATTLE_MSG_PRESENT"), "goto":"%s" % (j + 1)}
+				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+				# LOCALIZATION Use of csv key for "Inside the present, there was {i3}{item}."
+				dialog[str(j + 1)] = {
+					"text":_format_battle_text("BATTLE_MSG_PRESENT_INSIDE", null, [], itemData),
+					"goto":"%s" % (j + 2)
+				}
 				j += 2
 				#who has room in their inventory?
 				var itemGet = false
 				for partyMem in partyBPs:
 					if !InventoryManager.isInventoryFull(partyMem.stats.name):
 						if partyMem.isConscious():
+							# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+							# LOCALIZATION Use of csv key for "{n0}{name} took {i5}."
 							dialog[str(j)] = {
-								"text": "%s took it." % partyMem.stats.nickname,
-								"goto": "%s" % (j + 1),
-								"soundeffect": "EB/itemget1.wav"
+								"text":_format_battle_text("BATTLE_MSG_PRESENT_TAKING", partyMem, [], itemData), 
+								"goto":"%s" % (j + 1), 
+								"soundeffect":"EB/itemget1.wav"
 							}
 							j += 1
-						else:
+						else :
+							# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+							# LOCALIZATION Use of csv key for "{i0}{item} was put inside {name}'s bag."
 							dialog[str(j)] = {
-								"text": "The item was put inside %s's bag." % partyMem.stats.nickname,
-								"goto": "%s" % (j + 1),
-								"soundeffect": "EB/itemget1.wav"
+								"text":_format_battle_text("BATTLE_MSG_PRESENT_GIVING", partyMem, [], itemData),
+								"goto":"%s" % (j + 1), 
+								"soundeffect":"EB/itemget1.wav"
 							}
 							j += 1
 						InventoryManager.addItem(partyMem.stats.name, droppedItem)
@@ -768,7 +870,11 @@ func do_rewards():
 						break
 				#does it get dropped??
 				if !itemGet:
-					dialog[str(j)] = {"text": "But you can't carry any more stuff...", "goto": "%s" % (j + 1)}
+					# LOCALIZATION Use of csv key for "But you can't carry any more stuff..."
+					dialog[str(j)] = {
+						"text": _format_battle_text("BATTLE_MSG_PRESENT_FULL", null, [], itemData),
+						"goto":"%s" % (j + 1)
+					}
 					j += 1
 					var dropItem = droppedItemNode.instance()
 					# yo, I heard you like items, so I set an item to your item item
@@ -800,8 +906,6 @@ func lose():
 	remove_battle_music()
 	audioManager.pause_all_music()
 	
-	
-	
 	if !$Dialoguebox.finished:
 		yield($Dialoguebox, "done")
 	else:
@@ -809,18 +913,17 @@ func lose():
 	play_sfx("partylose")
 	var dialog = {}
 	dialog = {
-		"0":{"text": "The party was defeated..."}
+		"0":{"text":tr("BATTLE_MSG_GAME_OVER")}
 		}
 	$Dialoguebox.start(dialog)
 	yield($Dialoguebox, "done")
-	var gameOver = gameover.instance()
-	uiManager.add_ui(gameOver)
-	yield(gameOver, "fade_done")
+	yield(uiManager.game_over(false), "completed")
 	#set up return TEMP
 	for obj in global.partyObjects:
 		obj.show()
 	hide_battle_BG()
 	global.inBattle = false
+	restore_backup_inventories()
 	uiManager.remove_ui(self)
 
 
@@ -876,6 +979,8 @@ func add_enemy(enemyName, overworld_object):
 	# only matters for enemies
 	newEnemy.filename = enemyName
 	newEnemy.stats = newEnemyStats
+	if newEnemy.stats.has("cutscene"):
+		$BattleCutscene.set_cutscene_file(newEnemy.stats.cutscene)
 	newEnemy.stats.boosts = {
 		"maxhp": 0,
 		"maxpp": 0,
@@ -885,20 +990,25 @@ func add_enemy(enemyName, overworld_object):
 		"guts": 0,
 		"speed": 0
 	}
-	# set a nickname! ! look through enemies to check if we need a unique one
-	newEnemy.stats.nickname = newEnemy.stats.name
-	if newEnemy.stats.nickname == "Pippi":
+	
+	# LOCALIZATION Code change: Added tr() to translate enemy name
+	newEnemy.stats.nickname = tr(newEnemy.stats.name)
+	if newEnemy.stats.name == "PIPPI":
 		newEnemy.stats.nickname = globaldata.pippi.nickname
-	elif newEnemy.stats.nickname == "Teddy":
+	elif newEnemy.stats.name == "TEDDY":
 		newEnemy.stats.nickname = globaldata.teddy.nickname
 	var count = 0
 	for enemyBP in enemyBPs:
-		if enemyBP.stats.nickname.begins_with(newEnemy.stats.name):
-			if enemyBP.stats.nickname == newEnemy.stats.name:
-				enemyBP.stats.nickname += " A"
+		# LOCALIZATION Code change: Added tr() to compare to translated enemy name × 2
+		if enemyBP.stats.nickname.begins_with(tr(newEnemy.stats.name)):
+			if enemyBP.stats.nickname == tr(newEnemy.stats.name):
+				# LOCALIZATION No whitespace in Japanese
+				enemyBP.stats.nickname += tr("BATTLE_LETTER_WHITESPACE") + "A"
 			count += 1
 	if count > 0:
-		newEnemy.stats.nickname = newEnemy.stats.name + " " + enemyRename[count]
+		# LOCALIZATION Code change: Added tr() to translate enemy name
+		# LOCALIZATION No whitespace in Japanese
+		newEnemy.stats.nickname = tr(newEnemy.stats.name) + tr("BATTLE_LETTER_WHITESPACE") + enemyRename[count]
 	newEnemy.stats.status = []
 	if not "passiveSkills" in newEnemy.stats:
 		newEnemy.stats.passiveSkills = []
@@ -912,12 +1022,14 @@ func add_enemy(enemyName, overworld_object):
 		if !boss:
 			itemPool.append(
 				{"items": newEnemy.stats.items,
-				 "overworld": overworld_object})
+				 "overworld": overworld_object,
+				 "enemyName": newEnemy.stats.name})
 		elif newEnemy.stats.boss:
 			#only append boss item if it's a boss encounter
 			itemPool.append(
 				{"items": newEnemy.stats.items,
-				 "overworld": overworld_object})
+				 "overworld": overworld_object,
+				 "enemyName": newEnemy.stats.name})
 	enemyBPs.append(newEnemy)
 	
 	#next, we set up enemy transitions, if there is an overworld sprite
@@ -928,6 +1040,10 @@ func add_enemy(enemyName, overworld_object):
 			overworld_object.connect("enemy_erased", newEnemy, "set_overworldObj_null")
 		overworld_object.hide()
 		enemySpr = overworld_object.duplicate_sprite()
+		#duplicate() duplicates the child nodes of the sprite so we have to remove them
+		enemySpr.set_script(null)
+		for child in enemySpr.get_children():
+			child.queue_free()
 		enemySpr.position = overworld_object.get_viewport().canvas_transform.xform(overworld_object.position)
 	else:
 		# otherwise, we just add an empty sprite
@@ -978,19 +1094,23 @@ func add_players_sprites():
 func cache_enemy_actions():
 	for enemy in enemyBPs:
 		# add skill weights
-		var allWeights := 0
-		for skill in enemy.stats.skills:
-			allWeights += skill.weight
-		var i = rand_range(0.0, float(allWeights))
-		print("rolled ", i, " out of ", allWeights)
-		# find where the random number landed
 		var chosenSkill = "bash"
-		var currentWeight = 0
-		for skill in enemy.stats.skills:
-			currentWeight += skill.weight
-			if i <= currentWeight:
-				chosenSkill = skill.skill
-				break
+		if "chosenSk" in enemy.stats and enemy.stats["chosenSk"] != "":
+			chosenSkill = enemy.stats["chosenSk"]
+			enemy.stats["chosenSk"] = ""
+		else:
+			var allWeights := 0
+			for skill in enemy.stats.skills:
+				allWeights += skill.weight
+			var i = rand_range(0.0, float(allWeights))
+			print("rolled ", i, " out of ", allWeights)
+			# find where the random number landed
+			var currentWeight = 0
+			for skill in enemy.stats.skills:
+				currentWeight += skill.weight
+				if i <= currentWeight:
+					chosenSkill = skill.skill
+					break
 		var skillAction = SkillAction.new(enemy)
 		skillAction.skill = globaldata.skills[chosenSkill]
 		cache_action(skillAction)
@@ -1010,6 +1130,9 @@ func do_actions():
 	start_action(actionQueue[0])
 
 func new_round():
+	turns += 1
+	if $BattleCutscene.currCutscene != {}:
+		$BattleCutscene.handle_phrase($BattleCutscene.currPhrase)
 	if bufferReorganize:
 		reorganize_enemies()
 	currentAction = null
@@ -1025,24 +1148,37 @@ func new_round():
 	
 	# check for healed statuses and do passives
 	for bp in get_conscious_party():
+		if !bp.stats.has("statusCountup"):
+			bp.stats.statusCountup = {"blinded": 0, "burned": 0, "numb": 0, "poisoned": 0, "sleeping": 0 }
+		var passiveHeal = bp.stats.statusCountup
 		for status in bp.stats.status:
 			var roll = randi() % 100 + 1
 			match(int(status)):
 				globaldata.ailments.Blinded:
-					if roll <= 20:
+					if roll <= passiveHealProb * (passiveHeal["blinded"] - 3):
 						yield(heal_status("blinded", bp), "completed")
+					else:
+						passiveHeal["blinded"] += 1
 				globaldata.ailments.Burned:
-					if roll <= 20:
+					if roll <= passiveHealProb * (passiveHeal["burned"] - 3):
 						yield(heal_status("burned", bp), "completed")
+					else:
+						passiveHeal["burned"] += 1
 				globaldata.ailments.Numb:
-					if roll <= 20:
+					if roll <= passiveHealProb * (passiveHeal["numb"] - 3):
 						yield(heal_status("numb", bp), "completed")
+					else:
+						passiveHeal["numb"] += 1
 				globaldata.ailments.Sleeping:
-					if roll <= 20:
+					if roll <= passiveHealProb * (passiveHeal["sleeping"] - 3):
 						yield(heal_status("sleeping", bp), "completed")
+					else:
+						passiveHeal["sleeping"] += 1
 				globaldata.ailments.Poisoned:
-					if roll <= 20:
+					if roll <= passiveHealProb * (passiveHeal["poisoned"] - 3):
 						yield(heal_status("poisoned", bp), "completed")
+					else:
+						passiveHeal["poisoned"] += 1
 				
 		# DoPassive - End of turn (party members)
 		for passive in bp.stats.passiveSkills:
@@ -1050,18 +1186,27 @@ func new_round():
 				_:
 					pass
 	for bp in get_conscious_enemies():
+		if !bp.stats.has("statusCountup"):
+			bp.stats.statusCountup = {"burned": 0, "numb": 0, "sleeping": 0 }
+		var passiveHeal = bp.stats.statusCountup
 		for status in bp.stats.status:
 			var roll = randi() % 100 + 1
 			match(int(status)):
 				globaldata.ailments.Burned:
-					if roll <= 25:
+					if roll <= passiveHealProb * (passiveHeal["burned"] - 3):
 						yield(heal_status("burned", bp), "completed")
+					else:
+						passiveHeal["burned"] += 1
 				globaldata.ailments.Numb:
-					if roll <= 25:
+					if roll <= passiveHealProb * (passiveHeal["numb"] - 3):
 						yield(heal_status("numb", bp), "completed")
+					else:
+						passiveHeal["numb"] += 1
 				globaldata.ailments.Sleeping:
-					if roll <= 25:
+					if roll <= passiveHealProb * (passiveHeal["sleeping"] - 3):
 						yield(heal_status("sleeping", bp), "completed")
+					else:
+						passiveHeal["sleeping"] += 1
 		# DoPassive - End of turn (enemies)
 		for passive in bp.stats.passiveSkills:
 			match(passive):
@@ -1087,6 +1232,30 @@ func start_action(action):
 		if !active:
 			return
 	currentAction = action
+	#hackiest code you've ever seen, at least it works
+	for enemy in enemyBPs:
+		if enemy.stats.has("text"):
+			if currentAction.user.filename.to_upper() == enemy.stats.name:
+				var dialog = enemy.stats.text
+				for key in dialog:
+					if dialog[key].has("text"):
+						dialog[key].text = tr(dialog[key].text)
+				for bp in partyBPs:
+					bp.stats.newHp = bp.stats.hp
+					bp.partyInfo.stopScrolling()
+				yield(get_tree().create_timer(1), "timeout")
+				darken_bg()
+				$Dialoguebox/ClipBox/HBoxContainer/DippinDots.show()
+				$Dialoguebox.autoAdvanced = false
+				$Dialoguebox.start(dialog)
+				yield($Dialoguebox, "done")
+				$Dialoguebox/ClipBox/HBoxContainer/DippinDots.hide()
+				$Dialoguebox.autoAdvanced = true
+				undarken_bg()
+				enemy.stats.erase("text")
+				for bp in partyBPs:
+					bp.partyInfo.setHP(bp.stats.newHp)
+					
 	# check for win
 	var battleWon = true
 	for enemy in enemyBPs:
@@ -1102,7 +1271,14 @@ func start_action(action):
 	
 	if action.user.isEnemy:
 		play_sfx("enemyturn")
-		action.user.battleSprite.flash()
+		if action.skill.skillType == "psi":
+			if action.skill.has("enemyFlashColor"):
+				action.user.battleSprite.set_psi_flash_color(action.skill.enemyFlashColor)
+			else:
+				action.user.battleSprite.set_psi_flash_color(Color.white)
+			action.user.battleSprite.flash_psi()
+		else:
+			action.user.battleSprite.flash()
 	elif !action is GuardAction:
 		play_sfx("attack1")
 	yield(get_tree().create_timer(.2), "timeout")
@@ -1117,27 +1293,13 @@ func start_action(action):
 		#      or what if we try to heal or attack someone who is unconscious
 		retarget_action(action)
 		do_skill_costs(action.skill, action.user, action.targets)
-
-		var dialogName = action.user.stats.nickname
-		var userPronoun = "its"
-		var targetPronoun = "its"
-		if action.user.stats.has("pronoun"):
-			userPronoun = action.user.stats.pronoun
-		if action.targets.size() > 1:
-			targetPronoun = "their"
-		elif action.targets[0].stats.has("pronoun"):
-			targetPronoun = action.targets[0].stats.pronoun
 		
 		var dialog = {}
 		if "dialog" in action.skill:
+			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 			dialog = {
-				"0": {
-					"text": action.skill.dialog.format({
-						"name": dialogName,
-						"target": action.targets[0].stats.nickname,
-						"userpronoun": userPronoun,
-						"targetpronoun": targetPronoun
-						})
+				"0":{
+					"text": _format_battle_text(action.skill.dialog, action.user, action.targets)
 				}
 			}
 		# default dialogs for skill action
@@ -1147,13 +1309,17 @@ func start_action(action):
 					play_sfx("enemypsi")
 				else:
 					play_sfx("yourpsi")
-				var level = globaldata.get_psi_level_ascii(action.skill.level)
+				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+				# LOCALIZATION Use of csv key for "{n0}{name} tried %s!"
+				# LOCALIZATION No whitespace in Japanese
 				dialog = {
-					"0": {"text": dialogName + " tried " + action.skill.name + " " + level + "!"}
+					"0":{"text":_format_battle_text("BATTLE_MSG_PSI", action.user, [], action.skill)}
 				}
-			else:
+			else :
+				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+				# LOCALIZATION Use of csv key for "{n0}{name} attacks!"
 				dialog = {
-					"0": {"text": dialogName + " attacks!"}
+					"0":{"text":_format_battle_text("BATTLE_MSG_SKILL", action.user)}
 				}
 		
 		$Dialoguebox.connect("done", self, "do_screen_effect", [action], CONNECT_ONESHOT)
@@ -1162,36 +1328,30 @@ func start_action(action):
 		InventoryManager.dropItem(action.user.stats.name, action.inv_idx)
 		play_battle_sprite_anim(action.user, "item", true)
 		
-		var dialogName = action.user.stats.nickname
-		var userPronoun = "its"
-		var targetPronoun = "its"
-		if action.user.stats.has("pronoun"):
-			userPronoun = action.user.stats.pronoun
-		if action.targets.size() > 1:
-			targetPronoun = "their"
-		elif action.targets[0].stats.has("pronoun"):
-			targetPronoun = action.targets[0].stats.pronoun
+		# LOCALIZATION Code removed: Formatting of battlers, items and articles is now centralized
 		
 		var dialog = {}
 		if "dialog" in action.skill:
+			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 			dialog = {
-				"0": {
-					"text": action.skill.dialog.format({
-						"name": dialogName,
-						"target": action.targets[0].stats.nickname,
-						"userpronoun": userPronoun,
-						"targetpronoun": targetPronoun
-						})
+				"0":{
+					"text":_format_battle_text(action.skill.dialog, action.user, action.targets, action.item)
 				}
 			}
 		elif action is ItemAction:
-			if dialogName != action.targets[0].stats.nickname:
+			# LOCALIZATION Code change: Fixed hardcoded ".english"
+			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+			# LOCALIZATION Use of csv key for "{n0}{name} uses {i1}{item} on {t1}{target}!"
+			if action.user.stats.nickname != action.targets[0].stats.nickname:
 				dialog = {
-					"0": {"text": "%s uses %s on %s!" % [dialogName, action.item.name.english, action.targets[0].stats.nickname]}
+					"0":{"text":_format_battle_text("BATTLE_MSG_ITEM_OTHER", action.user, action.targets, action.item)}
 				}
-			else:
+			else :
+			# LOCALIZATION Code change: Fixed hardcoded ".english"
+			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+			# LOCALIZATION Use of csv key for "{n0}{name} uses {i1}{item}!"
 				dialog = {
-					"0": {"text": "%s uses %s!" % [dialogName, action.item.name.english]}
+					"0":{"text":_format_battle_text("BATTLE_MSG_ITEM_SELF", action.user, action.targets, action.item)}
 				}
 		
 		if "battle_action" in action.item and action.item.battle_action != "":
@@ -1202,9 +1362,11 @@ func start_action(action):
 	elif action is GuardAction:
 		do_guard(action)
 	elif action is FleeAction:
+		# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+		# LOCALIZATION Use of csv key for "{n0}{name} ran away!"
 		var dialog = {
-			"0": {
-				"text": "%s ran away!" % action.user.stats.nickname
+			"0":{
+				"text":_format_battle_text("BATTLE_MSG_FLEE", action.user)
 			}
 		}
 		$Dialoguebox.start(dialog)
@@ -1212,10 +1374,10 @@ func start_action(action):
 		tryFlee(action)
 
 func retarget_action(action):
-	# ANYWAY if there are no targets (or, they are unconcious), try again
+	# ANYWAY if there are no targets (or, they are unconscious), try again
 	var targetOK = !action.targets.empty()
 	for target in action.targets:
-		if !target.isConscious():
+		if !target.isConscious() and !action.targetUnconscious:
 			#redo targets, heck
 			targetOK = false
 	if !targetOK:
@@ -1243,7 +1405,8 @@ func do_skill(action, i = 0):
 	if !action.user.isEnemy:
 		play_sfx(action.skill.useSound)
 		if i == 0:
-			if action.skill.name == "Attack":
+			# LOCALIZATION Use of csv key as an id, instead of the English name
+			if action.skill.name == "ATTACK":
 				play_battle_sprite_anim(action.user, action.user.bashAnim, true)
 				if action.user.battleSprite.animationPlayer.has_animation(action.user.bashAnim):
 					yield(action.user.battleSprite, "apply_damage")
@@ -1261,7 +1424,7 @@ func do_skill(action, i = 0):
 		var target = action.targets[i]
 		var val = 0
 		
-		if !target.isConscious():
+		if !target.isConscious() and !action.targetUnconscious:
 			action.emit_signal("done")
 			return
 		# if this is healing
@@ -1278,14 +1441,18 @@ func do_skill(action, i = 0):
 				for passive in target.stats.passiveSkills:
 					match(passive):
 						"reflect_beam_courage":
-							if skill.name == "PK Beam" and skill.level == 2 and !target.isEnemy:
+							# LOCALIZATION Use of csv key as an id, instead of the English name
+							if skill.name == "PKBEAM" and skill.level == 2 and !target.isEnemy:
 								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
 								$AudioStreamPlayer.play()
-								Input.start_joy_vibration(0, 0.3, 0.6, 0.5)
+								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
 								var dialog = {}
+								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} shined a bright light!"
+								# LOCALIZATION Use of csv key for "It reflected the beam back!"
 								dialog = {
-									"0": {"text": "%s's %s shined a bright light!" % [target.stats.nickname, globaldata.items["CourageBadge"].name.english], "goto": "1"},
-									"1": {"text": "It reflected the beam back!"}
+									"0":{"text": _format_battle_text("BATTLE_MSG_REFLECT_BEAM_COURAGE_1", null, [target], globaldata.items["CourageBadge"]), "goto":"1"}, 
+									"1":{"text":tr("BATTLE_MSG_REFLECT_BEAM_COURAGE_2")}
 								}
 								$Dialoguebox.start(dialog)
 								yield($Dialoguebox, "done")
@@ -1294,13 +1461,16 @@ func do_skill(action, i = 0):
 								target = user
 								user = temp
 						"reflect_beam":
-							if skill.name == "PK Beam" and skill.level == 2 and !target.isEnemy:
+							# LOCALIZATION Use of csv key as an id, instead of the English name
+							if skill.name == "PKBEAM" and skill.level == 2 and !target.isEnemy:
 								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
 								$AudioStreamPlayer.play()
-								Input.start_joy_vibration(0, 0.3, 0.6, 0.5)
+								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
 								var dialog = {}
+								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} reflected the beam back!
 								dialog = {
-									"0": {"text": "%s's %s reflected the beam back!" % [target.stats.nickname, globaldata.items["FranklinBadge0.8"].name.english]}
+									"0":{"text":_format_battle_text("BATTLE_MSG_REFLECT_BEAM", null, [target], globaldata.items["FranklinBadge0.8"])}
 								}
 								$Dialoguebox.start(dialog)
 								yield($Dialoguebox, "done")
@@ -1309,13 +1479,16 @@ func do_skill(action, i = 0):
 								target = user
 								user = temp
 						"reflect_lightning":
-							if skill.name == "PK Thunder":
+							# LOCALIZATION Use of csv key as an id, instead of the English name
+							if skill.name == "PKTHUNDER":
 								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
 								$AudioStreamPlayer.play()
-								Input.start_joy_vibration(0, 0.3, 0.6, 0.5)
+								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
 								var dialog = {}
+								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} reflected the lightning back!"
 								dialog = {
-									"0": {"text": "%s's %s reflected the lightning back!" % [target.stats.nickname, globaldata.items["FranklinBadge"].name.english]}
+									"0":{"text":_format_battle_text("BATTLE_MSG_REFLECT_LIGHTNING", null, [target], globaldata.items["FranklinBadge"])} 
 								}
 								$Dialoguebox.start(dialog)
 								yield($Dialoguebox, "done")
@@ -1370,11 +1543,11 @@ func do_skill(action, i = 0):
 					var smashAttack = create_smash_attack(target)
 					$SMASHBOX.add_child(smashAttack)
 					play_sfx("smash", 1)
-					Input.start_joy_vibration(0, 1, 1, 0.4)
+					global.start_joy_vibration(0, 1, 1, 0.4)
 					global.start_slowmo(0.5, 0.5)
 				elif target.isEnemy:
 					play_sfx(action.skill.hitSound, 1)
-					Input.start_joy_vibration(0, 0.5, 0.8, 0.2)
+					global.start_joy_vibration(0, 0.5, 0.8, 0.2)
 				
 				var damageNum = str(val)
 				if adrenaline:
@@ -1390,10 +1563,11 @@ func do_skill(action, i = 0):
 				for passive in user.stats.passiveSkills:
 					match(passive):
 						"reflect_beam_courage":
-							if !user.isEnemy:
-								if skill.name == "PK Beam" and skill.level == 2:
-									yield(courage_badge_swap(user), "completed")
-			else:
+							if not user.isEnemy:
+								# LOCALIZATION Use of csv key as an id, instead of the English name
+								if skill.name == "PKBEAM" and skill.level == 2:
+									yield (courage_badge_swap(user), "completed")
+			else :
 				var risingNum = create_rising_num("Miss", target)
 				risingNum.run()
 				
@@ -1410,8 +1584,8 @@ func do_skill(action, i = 0):
 			val = skill.damage + int(user.get_stat("iq") / 5)
 			#apply healing with variance!
 			val = floor(val + (randf() * skill.variance) - skill.variance/2.0)
-			apply_healing(target, val)
-			Input.start_joy_vibration(0, 0.3, 0, 0.3)
+			apply_restore_hp(target, val, action.targetUnconscious)
+			global.start_joy_vibration(0, 0.3, 0, 0.3)
 			print(target.stats.nickname, " is healed by ", str(val), "!")
 			var risingNum = create_rising_num(str(val), target)
 			risingNum.add_color_override("font_color", Color("00ee44"))
@@ -1421,30 +1595,37 @@ func do_skill(action, i = 0):
 		else:
 			#free space~!! dumbass lloyd shit go here for now
 			for status in skill.statusEffects:
-				yield(try_status(status.name, status.chance, target), "completed")
-			if action.skill.name == "Spy":
+				yield (try_status(status.name, status.chance, target), "completed")
+			# LOCALIZATION Use of csv key as an id, instead of the English name
+			if action.skill.name == "SPY":
 				var dialog = {}
 				if "description" in action.targets[0].stats:
 					dialog = {
-						"0": {"text": "Name: " + action.targets[0].stats.nickname, "goto": "1"},
-						"1": {"text": action.targets[0].stats.description},
+						# LOCALIZATION Use of csv key for "Name: "
+						# LOCALIZATION Code change: added tr()
+						"0":{"text":tr("BATTLE_MSG_SPY_NAME") + action.targets[0].stats.nickname, "goto":"1"}, 
+						"1":{"text":tr(action.targets[0].stats.description)}, 
 					}
-				else:
+				else :
+					# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+					# LOCALIZATION Use of csv key for "{n0}{name} could not gather any information from the enemy!"
 					dialog = {
-						"0": {"text": action.user.stats.nickname + " could not gather any information from the enemy!"}
+						"0":{"text":_format_battle_text("BATTLE_MSG_SPY_FAILED", action.user)}
 					}
 				$Dialoguebox.start(dialog)
-				yield($Dialoguebox, "done")
-			elif action.skill.name == "escapeCrumbs":
+				yield ($Dialoguebox, "done")
+			# LOCALIZATION Use of csv key as an id, instead of the English name
+			elif action.skill.name == "ESCAPECRUMBS":
 				if canRun:
 					flee()
-				else:
+				else :
+					# LOCALIZATION Use of csv key for "Couldn't run!"
 					var dialog = {
-						"0": {"text": "Couldn't run!"}
+						"0":{"text":tr("BATTLE_MSG_FLEE_FAILED")}
 					}
 					$Dialoguebox.start(dialog)
 					yield($Dialoguebox, "done")
-			elif "allies" in action.skill and !action.skill.allies.empty():
+			elif "allies" in action.skill and !action.skill.allies.empty() and enemyBPs.size() < maxEnemyCount:
 				# lookin' for allies
 				var allWeights := 0
 				for ally in action.skill.allies:
@@ -1512,6 +1693,10 @@ func do_skill(action, i = 0):
 		
 		if !action.user.isEnemy and !action.user.defending:
 			action.user.battleSprite.hideAway()
+			#if action.skill.has("userHideAnim") and action.skill.userHideAnim != "":
+			#	action.user.battleSprite.hideAway(action.skill.userHideAnim, true)
+			#else:
+			#	action.user.battleSprite.hideAway("lookIntoYourSoul", true)
 		action.emit_signal("done")
 
 func darken_bg():
@@ -1521,7 +1706,7 @@ func undarken_bg():
 	$BGDarkinator/AnimationPlayer.play("undarken")
 
 func start_joy_vibration(device = 0, weak_magnitude = 0.0, strong_magnitude = 0.0, duration = 0):
-	Input.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
+	global.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
 
 func do_screen_effect(action):
 	if action.skill.useSound and action.skill.useSound in soundEffects:
@@ -1632,40 +1817,42 @@ func do_item(action):
 	retarget_action(action)
 	var item = action.item
 	for target in action.targets:
-		if target.isConscious():
+		if target.isConscious() and !action.targetUnconscious:
 			if item.HPrecover > 0:
 				play_sfx("healHP", 1)
-				apply_healing(target, item.HPrecover)
+				apply_restore_hp(target, item.HPrecover, action.targetUnconscious)
 				var risingNum = create_rising_num(str(item.HPrecover), target)
 				risingNum.add_color_override("font_color", Color("00ee44"))
 				risingNum.run()
 			if item.PPrecover > 0:
 				play_sfx("healPP", 1)
-				apply_restore_pp(target, item.PPrecover)
+				apply_restore_pp(target, item.PPrecover, action.targetUnconscious)
 				var risingNum = create_rising_num(str(item.PPrecover), target)
 				risingNum.add_color_override("font_color", Color.aqua)
 				risingNum.run()
 			if "status_heals" in item:
 				play_sfx("healstatus", 1)
 				for status in item.status_heals:
-					yield(heal_status(status, action.user), "completed")
+					yield(heal_status(status, target), "completed")
 					if !active:
 						return
 			yield(get_tree().create_timer(.15), "timeout")
 			if !active:
 				return
+	if !action.user.isEnemy:
+		action.user.battleSprite.hideAway()
 	action.emit_signal("done")
 
-func apply_healing(target, val):
-	if !target.isConscious():
+func apply_restore_hp(target, val, target_unconscious = false):
+	if !target.isConscious() and !target_unconscious:
 		return
 	target.stats.hp += val
 	target.stats.hp = min(target.stats.hp, target.get_stat("maxhp"))
 	if !target.isEnemy:
 		target.partyInfo.setHP(target.stats.hp)
 
-func apply_restore_pp(target, val):
-	if !target.isConscious():
+func apply_restore_pp(target, val, target_unconscious = false):
+	if !target.isConscious() and !target_unconscious:
 		return
 	target.stats.pp += val
 	target.stats.pp = min(target.stats.pp, target.get_stat("maxpp"))
@@ -1683,15 +1870,15 @@ func apply_damage(target, val):
 		if target.defending:
 			play_sfx("hurt2")
 			target.battleSprite.play("guard")
-			Input.start_joy_vibration(0, 0.5, 0.5, 0.2)
+			global.start_joy_vibration(0, 0.5, 0.5, 0.2)
 		elif val > (1.0/16.0) * target.get_stat("maxhp"):
-			Input.start_joy_vibration(0, 0.8, 0.8, 0.3)
+			global.start_joy_vibration(0, 0.8, 0.8, 0.3)
 			play_sfx("hurt2")
 			target.battleSprite.bounceUpHit(min(val / (target.get_stat("maxhp") / 2), 3))
 			
 			target.partyInfo.quake(.1, 1.5)
 		else:
-			Input.start_joy_vibration(0, 0.5, 0.5, 0.2)
+			global.start_joy_vibration(0, 0.5, 0.5, 0.2)
 			play_sfx("hurt1")
 			target.partyInfo.quake(.1)
 			target.battleSprite.shake(val / (target.get_stat("maxhp") / 2))
@@ -1701,10 +1888,12 @@ func apply_damage(target, val):
 				yield(heal_status("Sleeping", target), "completed")
 		if target.stats.hp <= 0:
 			play_sfx("mortaldamage")
-			Input.start_joy_vibration(0, 1, 1, 0.4)
+			global.start_joy_vibration(0, 1, 1, 0.4)
 			if oldHP > 0:
+				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+				# LOCALIZATION Use of csv key for "{t0}{target} took mortal damage!"
 				var dialog = {
-				"0": {"text": "%s took mortal damage!" % [target.stats.nickname]}
+					"0":{"text":_format_battle_text("BATTLE_MSG_MORTAL_DAMAGE", null, [target])}
 				}
 				$Dialoguebox.start(dialog)
 				yield($Dialoguebox, "done")
@@ -1766,24 +1955,13 @@ func try_status(status_name, chance, target):
 		play_sfx("statusafflicted")
 		target.setStatus(status, true)
 		do_status(target, status, true)
+
+		# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+		# LOCALIZATION Use of csv keys for all status ailments messages
+		var dialogKey = "BATTLE_MSG_STATUS_" + status_name.to_upper()
 		var dialog = {
-			"0": {"text": "oh no!! %s caught the %s!!" % [target.stats.nickname, status_name]}
-		}
-		match(status):
-			globaldata.ailments.Blinded:
-				dialog["0"].text = "%s can't see!" % target.stats.nickname
-			globaldata.ailments.Burned:
-				dialog["0"].text = "%s caught on fire!" % target.stats.nickname
-			globaldata.ailments.Confused:
-				dialog["0"].text = "%s felt a little strange!" % target.stats.nickname
-			globaldata.ailments.Numb:
-				dialog["0"].text = "%s felt numb!" % target.stats.nickname
-			globaldata.ailments.Forgetful:
-				dialog["0"].text = "%s can't seem to concentrate!" % target.stats.nickname
-			globaldata.ailments.Sleeping:
-				dialog["0"].text = "%s fell asleep!" % target.stats.nickname
-			globaldata.ailments.Poisoned:
-				dialog["0"].text = "%s got poisoned!" % target.stats.nickname
+			"0":{"text": _format_battle_text(dialogKey, null, [target])}
+		}		
 		$Dialoguebox.start(dialog)
 		yield($Dialoguebox, "done")
 	else:
@@ -1801,38 +1979,14 @@ func heal_status(status_name, target):
 		return
 	target.setStatus(status, false)
 	do_status(target, status, false)
-	var dialog = {
-		"0": {"text": "%s has been cured of %s!" % [target.stats.nickname, status_name]}
-	}
-	match(status):
-		globaldata.ailments.Asthma:
-			dialog["0"].text = "%s could breathe again!" % target.stats.nickname
-		globaldata.ailments.Blinded:
-			dialog["0"].text = "%s could see again!" % target.stats.nickname
-		globaldata.ailments.Burned:
-			dialog["0"].text = "%s's burns went away!" % target.stats.nickname
-		globaldata.ailments.Cold:
-			dialog["0"].text = "%s's cold went away!" % target.stats.nickname
-		globaldata.ailments.Confused:
-			dialog["0"].text = "%s is no longer confused!" % target.stats.nickname
-		globaldata.ailments.Forgetful:
-			dialog["0"].text = "%s's head became clear!" % target.stats.nickname
-		globaldata.ailments.Nausea:
-			dialog["0"].text = "%s is no longer nauseous!" % target.stats.nickname
-		globaldata.ailments.Numb:
-			dialog["0"].text = "%s softened up!" % target.stats.nickname
-		globaldata.ailments.Mushroomized:
-			dialog["0"].text = "The mushroom fell off of %s's head!" % target.stats.nickname
-		globaldata.ailments.Poisoned:
-			dialog["0"].text = "The poison was removed from %s's body!" % target.stats.nickname
-		globaldata.ailments.Sleeping:
-			dialog["0"].text = "%s woke up!" % target.stats.nickname
-		globaldata.ailments.Sunstroked:
-			dialog["0"].text = "%s no longer has sunstroke!" % target.stats.nickname
-		globaldata.ailments.Unconscious:
-			dialog["0"].text = "%s was revived!" % target.stats.nickname
-		
 
+	# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+	# LOCALIZATION Use of csv keys for "{t0}{target} has been cured of %s!"
+	var dialogKey = "BATTLE_MSG_HEAL_STATUS_" + status_name.to_upper()
+	var dialog = {
+		"0":{"text": _format_battle_text(dialogKey, null, [target])}
+	}
+	
 	$Dialoguebox.start(dialog)
 	yield($Dialoguebox, "done")
 
@@ -1851,56 +2005,47 @@ func do_status(bp, status, on):
 
 func mod_stat(stat, amt, target):
 	var dialog = {}
-	if amt + target.statMods[stat] > 6:
+	# Add smaller amount if it’s close to the limit
+	if target.statMods[stat] < 6 and target.statMods[stat] + amt > 6:
 		amt = 6 - target.statMods[stat]
-	elif amt + target.statMods[stat] < -6:
+	elif target.statMods[stat] > -6 and target.statMods[stat] + amt < -6:
 		amt = -6 - target.statMods[stat]
-	if target.statMods[stat] < 6:
+	
+	if abs(target.statMods[stat] + amt) <= 6:
 		#if amt + target.statMods[stat] >= 6:
 		#	amt = target.statMods[stat] + amt - 6
-		var statRaise = max(3, floor(target.get_base_stat(stat)/8)) * amt
+		var statRaise = max(3, floor(target.get_base_stat(stat) * stat_mod_step)) * amt
 		if sign(amt) > 0:
 			play_sfx("statup", 1)
-			Input.start_joy_vibration(0, 0.3, 0, 0.2)
+			global.start_joy_vibration(0, 0.3, 0, 0.2)
 			if stat in ["offense", "defense", "speed"]:
 				do_hit_effect_by_anim("stat_" + stat + "_up", target)
 			dialog = {
-				"0": {"text": "%s's %s went up by %s!" % [
-					target.stats.nickname,
-					globaldata.capitalize_stat(stat),
-					str(statRaise)]
-					}
+				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_UP", null, [target], null, str(statRaise), globaldata.get_inline_stat(stat))}
 			}
 		elif sign(amt) < 0:
 			play_sfx("statdown", 1)
-			Input.start_joy_vibration(0, 0.3, 0, 0.2)
+			global.start_joy_vibration(0, 0.3, 0, 0.2)
 			if stat in ["offense", "defense", "speed"]:
 				do_hit_effect_by_anim("stat_" + stat + "_down", target)
 			dialog = {
-				"0": {"text": "%s's %s went down by %s!" % [
-					target.stats.nickname,
-					globaldata.capitalize_stat(stat), 
-					str(abs(statRaise))]
-					}
+				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_DOWN", null, [target], null, str(abs(statRaise)), globaldata.get_inline_stat(stat))}
 			}
 		target.add_stat_mod(stat, amt)
-	elif target.statMods[stat] >= 6:
+	elif target.statMods[stat] + amt > 6:
 		dialog = {
-				"0": {"text": "%s's %s could not go any higher." % [
-					target.stats.nickname,
-					globaldata.capitalize_stat(stat)]
-					}
+				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_UP_MAX", null, [target], null, null, globaldata.get_inline_stat(stat))}
 			}
-	elif target.statMods[stat] <= -6:
+			
+	elif target.statMods[stat] + amt <= -6:
 		dialog = {
-				"0": {"text": "%s's %s could not go any lower." % [
-					target.stats.nickname,
-					globaldata.capitalize_stat(stat)]
-					}
-			}
+			"0": {"text":_format_battle_text("BATTLE_MSG_STATS_DOWN_MAX", null, [target], null, null, globaldata.get_inline_stat(stat))}
+		}
 	if dialog != {}:
 		$Dialoguebox.start(dialog)
 		yield($Dialoguebox, "done")
+	else:
+		yield(get_tree(), "idle_frame")
 
 func sort_by_priority(a, b):
 	if a.priority > b.priority:
@@ -1997,9 +2142,9 @@ func defeat_player(partyMem):
 			_:
 				pass
 	play_sfx("playerdefeated")
-	Input.start_joy_vibration(0, 1, 1, 0.5)
-	# undo status before becoming unconcious
-	print("Removing all statuses for unconcious!")
+	global.start_joy_vibration(0, 1, 1, 0.5)
+	# undo status before becoming unconscious
+	print("Removing all statuses for unconscious!")
 	var status_to_remove = partyMem.stats.status.duplicate()
 	for status in status_to_remove:
 		print(globaldata.status_enum_to_name(status))
@@ -2160,20 +2305,23 @@ func level_up(i):
 	var partyMem = partyBPs[i]
 	if (!audioManager.overworldBattleMusic) or (boss and audioManager.overworldBattleMusic):
 		play_sfx('cheering')
-		if !audioManager.get_playing("You Win/LVLUP.mp3"):
+		if !audioManager.get_playing(musicalEffects["lvlup"]):
 			#audioManager.music_fadeout(audioManager.get_audio_player_count()-1, 0.2)
 			audioManager.pause_all_music()
 			audioManager.add_audio_player()
-			audioManager.play_music_from_id("", "You Win/LVLUP.mp3", audioManager.get_audio_player_count() - 1)
-		var startTime = audioManager.get_audio_player_from_song("You Win/LVLUP.mp3").get_playback_position()
-		var partyMemLevelUp = "You Win/LVLUP_" + partyMem.stats.name + ".mp3"
+			audioManager.play_music_from_id("", musicalEffects["lvlup"], audioManager.get_audio_player_count() - 1)
+		var startTime = audioManager.get_audio_player_from_song(musicalEffects["lvlup"]).get_playback_position()
+		var partyMemLevelUp = musicalEffects["lvlup_" + partyMem.stats.name]
 		if !audioManager.get_playing(partyMemLevelUp):
 			audioManager.add_audio_player()
 			audioManager.play_music_from_id("", partyMemLevelUp, audioManager.get_audio_player_count() - 1, startTime)
 	
 	partyMem.stats.level += 1
+	# LOCALIZATION Use of csv key for "{name} leveled up to %s"
+	# LOCALIZATION Code change: Used multiple placeholders instead of just %s to ease localization
+	# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 	var dialog = {
-		"0": {"text": "%s leveled up to %s!" % [partyMem.stats.nickname, str(partyMem.stats.level)]}
+		"0": {"text":_format_battle_text("BATTLE_MSG_LEVEL_UP", partyMem, [], null, str(partyMem.stats.level))}
 	}
 	var j = 0
 	for stat in globaldata.player_stat_target_table[partyMem.stats.name]:
@@ -2187,10 +2335,10 @@ func level_up(i):
 			if stat == "maxhp":
 				# let the numbers roll
 				partyBPs[i].partyInfo.maxHP = partyMem.get_stat("maxhp")
-				partyBPs[i].partyInfo.setHP(partyBPs[i].stats.hp + gain)
+				partyBPs[i].partyInfo.setHP(partyBPs[i].partyInfo.HP + gain)
 				# also update the current
 				stat = "hp"
-				partyMem.stats[stat] += gain
+				partyMem.partyInfo.HP += gain
 			elif stat == "maxpp":
 				# let the numbers roll
 				partyBPs[i].partyInfo.maxPP = partyMem.get_stat("maxpp")
@@ -2199,10 +2347,14 @@ func level_up(i):
 				stat = "pp"
 				partyMem.stats[stat] += gain
 			
-			stat = globaldata.capitalize_stat(stat)
-			dialog[str(j)] = {
-				"text": "%s raised by %s." % [stat, str(gain)]
-			}
+			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+			# LOCALIZATION Use of csv keys for "... raised by {value}."
+			# LOCALIZATION Code change: Each line needs its own key/string because of language grammar
+			# In case you need articles (which include English pronouns) here, you can with {n_}
+			# (where "_" is the index in the article table)
+			var lineStr = "BATTLE_MSG_LEVEL_UP_" + stat.to_upper()
+			dialog[str(j)] = {"text":_format_battle_text(lineStr, partyMem, [], null, str(gain))}
+	
 	
 	# check skill table
 	for level in partyMem.stats.level + 1:
@@ -2210,24 +2362,22 @@ func level_up(i):
 			var newSkill = globaldata.player_learn_skill_table[partyMem.stats.name][level]
 			if !globaldata[partyMem.stats.name].learnedSkills.has(newSkill):
 				j += 1
-				var skillName = globaldata.skills[newSkill].name
-				var skillLevel = ""
-				if globaldata.skills[newSkill].has("level") and globaldata.skills[newSkill]["skillType"] == "psi":
-					skillLevel = int(globaldata.skills[newSkill]["level"])
-					skillLevel = " " + globaldata.get_psi_level_ascii(skillLevel)
 				var flagTrue = true
 				if globaldata.player_learn_skill_table_flags[partyMem.stats.name].has(newSkill):
 					if !globaldata.flags[globaldata.player_learn_skill_table_flags[partyMem.stats.name][newSkill]]:
 						flagTrue = false
 				
 				#secretely give the move to the party member if the flag is false
-				if flagTrue:
+				if flagTrue: 
+					
 					# give the previous dialog somewhere to go
-					dialog[str(j-1)].goto = str(j) 
-					# add the new dialog
+					dialog[str(j-1)].goto = str(j)
+					
+					# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
+					# LOCALIZATION Use of csv key for "{n0}{name} learned %s!"
 					dialog[str(j)] = {
-						"text": "%s learned %s%s!" % [partyMem.stats.nickname, skillName, skillLevel],
-						"soundeffect": "M3/Learned PSI.wav"
+						"text": _format_battle_text("BATTLE_MSG_LEARNING", partyMem, [], globaldata.skills[newSkill]), # skill
+						"soundeffect":"M3/Learned PSI.wav"
 					}
 				globaldata[partyMem.stats.name].learnedSkills.append(newSkill)
 	
@@ -2398,24 +2548,18 @@ func jump_npcs_to_overworld():
 		yield(get_tree().create_timer(.05), "timeout")
 
 func remove_battle_music():
-	var winThemes = [
-		load("res://Audio/Music/You Win/YOUWON.mp3"),
-		load("res://Audio/Music/You Win/Victory.mp3"),
-		load("res://Audio/Music/Boss Win.mp3"),
-		load("res://Audio/Music/You Win/LVLUP.mp3"),
-		load("res://Audio/Music/You Win/LVLUP_ninten.mp3"),
-		load("res://Audio/Music/You Win/LVLUP_ana.mp3"),
-		load("res://Audio/Music/You Win/LVLUP_lloyd.mp3"),
-		load("res://Audio/Music/You Win/LVLUP_pippi.mp3"),
-		load("res://Audio/Music/You Win/LVLUP_teddy.mp3")
-	]
+	var winThemes = []
+
+	for id in musicalEffects:
+		winThemes.append(load("res://Audio/Music/" + musicalEffects[id]))
+
 	for audioPlayer in audioManager.get_audio_player_list():
 		if audioPlayer.stream in winThemes:
 			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioPlayer))
 	if music != "":
 		if audioManager.get_playing("Battle Themes/" + music):
 			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioManager.get_audio_player_from_song("Battle Themes/" + music)))
-		if audioManager.get_playing("Battle Themes/" + musicIntro):
+		if musicIntro != "" and audioManager.get_playing("Battle Themes/" + musicIntro):
 			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioManager.get_audio_player_from_song("Battle Themes/" + musicIntro)))
 	elif boss and audioManager.overworldBattleMusic:
 		for musicChanger in audioManager.musicChangers:
@@ -2441,9 +2585,14 @@ func courage_badge_swap(user):
 				if !passiveSkill in user.stats.passiveSkills:
 					user.stats.passiveSkills.append(passiveSkill)
 	var dialog = {}
+	# LOCALIZATION Code change: Made localizable (but here we know what the items are)
+	# LOCALIZATION Use of csv key for "The {courageBadge} turned out to be the {franklinBadge}!"
+	# LOCALIZATION Code change: Removed use of globaldata.language (tr() instead) × 2
 	dialog = {
-		"0": {"text": "The %s turned out to be the %s!" % [globaldata.items["CourageBadge"].name.english, globaldata.items["FranklinBadge0.8"].name.english]}
-	}
+		"0":{"text":tr("BATTLE_MSG_BADGE_REVEAL").format({
+				"courageBadge": tr(globaldata.items["CourageBadge"].name),
+				"franklinBadge": tr(globaldata.items["FranklinBadge0.8"].name)
+		})}}
 	$Dialoguebox.start(dialog)
 	yield($Dialoguebox, "done")
 
@@ -2464,15 +2613,35 @@ func reorganize_enemies(transition = true):
 		var i = 0
 		for enemyBP in enemyBPs:
 			var battlesprite = enemyBP.battleSprite
-			var position = $Enemies.rect_size/2 
-
+			var position = Vector2(320/2, 147 )
+	
 	for i in range(enemyBPs.size()):
 		# the ALGORITHm
+		
 		var battlesprite = enemyBPs[i].battleSprite
-		var new_position = $Enemies.rect_size
-		new_position.x /=  (enemyBPs.size() + 1)
-		new_position.x *= (i + 1)
-		new_position.y = new_position.y / 2
+		var new_position = Vector2(320, 147)
+		
+		if !enemyBPs[i].stats.boss:
+			var regEnemyCount = enemyBPs.size()
+			var regEnemyIndex = i
+			if boss and enemyBPs.size() > 2:
+				for j in range(enemyBPs.size()):
+					if enemyBPs[j].stats.boss:
+						regEnemyCount -= 1
+						regEnemyIndex -= 1
+			new_position.x /=  (regEnemyCount + 1)
+			var topEnemyPosition = Vector2(new_position.x * (int(enemyBPs.size()/2.0) + 1), 147)
+			var bottomEnemyPosition = Vector2(new_position.x, 147)
+			new_position.x *= (regEnemyIndex + 1)
+		
+			var heightDifference = get_y_curve_position(bottomEnemyPosition) - get_y_curve_position(topEnemyPosition)
+			new_position.y = get_y_curve_position(new_position) - heightDifference/3
+			if boss:
+				new_position.y -= 16
+		else:
+			new_position /= 2
+			if enemyBPs.size() > 1:
+				new_position.y += 16
 		var texture_offset = battlesprite.rect_size / 2
 #			var texture_offset = battlesprite.rect_size / 3
 #			texture_offset.y += battlesprite.texture.get_height() /3
@@ -2495,11 +2664,74 @@ func reorganize_enemies(transition = true):
 		yield(get_tree().create_timer(.65), "timeout")
 		newEnemies.clear()
 	else:
+		yield(get_tree(), "idle_frame")
 		return
+
+func get_y_curve_position(new_position):
+	var curve = 400 #The degree to which the enemies curve in a line, the smaller the number, the sharper the curve
+	return new_position.y / 2 + pow((160 - new_position.x), 2) / (curve)
 
 func _on_reorganize_enemy_tween(battlesprite, key, enemyBP):
 	if enemyBP in newEnemies:
 		battlesprite.appear()
+
+# LOCALIZATION Code added: New method to handle formatting of battlers, items and articles in battle text
+# {name} is the actor's nickname, {target} is the target's nickname, {item} is the item name
+# {n0}, {n1}, etc. are the articles for {name}
+# {t0}, {t1}, etc. are the articles for the {target}
+# {i0}, {i1}, etc. are the articles for the {item}
+# {s0}, {s1}, etc. are the articles for the {skill}
+# See list of articles (which also include pronouns and suffixes) in articles.txt
+# Just use these tags in your strings this way and this method will format them
+func _format_battle_text(text, actor=null, targets:Array=[], item_or_skill=null, value = 0, stat = ""):
+	var actor_name = actor.stats.nickname if actor != null else ""
+	var actor_articles = globaldata.get_battler_articles(actor.stats) if actor != null else []
+	
+	var item_or_skill_name = tr(item_or_skill.name) if item_or_skill != null else ""
+	var item_or_skill_articles = globaldata.get_item_or_skill_articles(item_or_skill) if item_or_skill != null else []
+	var skill_level = globaldata.get_skill_level(item_or_skill) if item_or_skill != null else ""
+
+	var target_name
+	var target_articles
+	if (targets.size() == 1):
+		target_name = targets[0].stats.nickname
+		target_articles = globaldata.get_battler_articles(targets[0].stats)
+	elif (targets.size() > 1):
+		# LOCALIZATION: If multiple targets, use "their", "the enemies", "Ninten's party" etc.
+		if targets[0].isEnemy:
+			target_name = "BATTLE_NAME_ENEMIES"
+			target_articles = "BATTLE_NAME_ENEMIES_ART"
+		else:
+			target_name = "BATTLE_NAME_ALLIES"
+			target_articles = "BATTLE_NAME_ALLIES_ART"
+		target_name = _format_battle_text(target_name, null, [targets[0]])
+		target_articles = Array(tr(target_articles).split(","))
+		for i in target_articles.size():
+			target_articles[i] = _format_battle_text(target_articles[i], null, [targets[0]])
+	else:
+		target_name = ""
+		target_articles = []
+		
+	return tr(text).format({
+		"name":tr(actor_name), 
+		"target":target_name,
+		"item":item_or_skill_name,
+		"skill":item_or_skill_name,
+		"skillLevel":skill_level,
+		"value":value,
+		"stat":stat
+		}).format(
+			actor_articles, "{n_}"
+		).format(
+			target_articles, "{t_}"
+		).format(
+			item_or_skill_articles, "{i_}"
+		).format(
+			item_or_skill_articles, "{s_}"
+		).format(
+			globaldata.get_number_articles(value), "{v_}"
+		)
+
 
 func tryFlee(action):
 	var enemySpd = 0
@@ -2517,9 +2749,10 @@ func tryFlee(action):
 	if r < chance:
 		# flee success!
 		flee()
-	else:
+	else :
+		# LOCALIZATION Use of csv key for "Couldn't run!"
 		var dialog = {
-			"0": {"text": "Couldn't run!"}
+			"0":{"text":tr("BATTLE_MSG_FLEE_FAILED")}
 		}
 		$Dialoguebox.start(dialog)
 		yield($Dialoguebox, "done")

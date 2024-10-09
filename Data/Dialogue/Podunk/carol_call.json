@@ -1,63 +1,65 @@
 {
-	"0": {
-		"actors": {"carol": "Objects/npc"},
-		"talker": "carol",
-		"name": "Carol",
-		"text": "Are you okay, [Ninten]?",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Carol",
-		"text": "What on earth is happening to our home?",
-		"sound": "Sexy",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Carol",
-		"text": "I'm so scared...",
-		"sound": "Sexy",
-		"goto": "3"
-	},
-	"3": {
-		"name": "Carol",
-		"text": "If only your father were here now...",
-		"sound": "Sexy",
-		"autoadvance": true,
-		"goto": "4"
-	},
-	"4": {
-		"name": "Carol",
-		"wait": 0.3,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "5"
-	},
-	"5": {
-		"objectfunction": {
-			"Objects/Phone": "_ring"
-		},
-		"actorsturn": {
-			"carol": {
-				"x": -1,
-				"y": 0,
-				"speed": 0.05
-			}
-		},
-		"name": "Carol",
-		"wait": 1,
-		"goto": "6"
-	},
-	"6": {
-		"name": "Carol",
-		"text": "Oh! That must be him.",
-		"sound": "Sexy",
-		"goto": "7"
-	},
-	"7": {
-		"name": "Carol",
-		"text": "Could you get it, [Ninten]?",
-		"sound": "Sexy",
-		"flag": "phone_ring"
-	}
+    "0": {
+        "actors": {
+            "carol": "Objects/npc"
+        },
+        "talker": "carol",
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_1",
+        "sound": "Sexy",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_2",
+        "sound": "Sexy",
+        "goto": "3"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_3",
+        "sound": "Sexy",
+        "autoadvance": true,
+        "goto": "4"
+    },
+    "4": {
+        "name": "Carol",
+        "wait": 0.3,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "5"
+    },
+    "5": {
+        "objectfunction": {
+            "Objects/Phone": "_ring"
+        },
+        "actorsturn": {
+            "carol": {
+                "x": -1,
+                "y": 0,
+                "speed": 0.05
+            }
+        },
+        "name": "Carol",
+        "wait": 1,
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_6",
+        "sound": "Sexy",
+        "goto": "7"
+    },
+    "7": {
+        "name": "DIALOGUE_PODUNK_CAROL_CALL_SPEAKER_Carol",
+        "text": "DIALOGUE_PODUNK_CAROL_CALL_7",
+        "sound": "Sexy",
+        "flag": "phone_ring"
+    }
 }

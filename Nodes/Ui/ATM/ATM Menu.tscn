@@ -79,7 +79,7 @@ margin_top = 9.0
 margin_right = 60.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 3 )
-text = "Balance"
+text = "ATM_BALANCE"
 
 [node name="Label2" type="Label" parent="background"]
 margin_left = 23.0
@@ -87,7 +87,7 @@ margin_top = 25.0
 margin_right = 60.0
 margin_bottom = 39.0
 custom_fonts/font = ExtResource( 3 )
-text = "Deposit"
+text = "ATM_DEPOSIT"
 
 [node name="Label3" type="Label" parent="background"]
 margin_left = 23.0
@@ -95,7 +95,7 @@ margin_top = 49.0
 margin_right = 60.0
 margin_bottom = 63.0
 custom_fonts/font = ExtResource( 3 )
-text = "On Hand"
+text = "ATM_ONHAND"
 
 [node name="divider" type="NinePatchRect" parent="background"]
 material = ExtResource( 7 )
@@ -208,7 +208,7 @@ margin_right = 50.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "Deposit"
+text = "ATM_DEPOSIT"
 
 [node name="Withdraw" type="Control" parent="."]
 margin_left = 171.0
@@ -228,7 +228,7 @@ margin_right = 54.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "Withdraw"
+text = "ATM_WITHDRAW"
 
 [node name="IndicatorL" parent="." instance=ExtResource( 4 )]
 margin_left = 80.0

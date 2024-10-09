@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name": "Belle",
-		"text": "This place is such an amazing deal.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Belle",
-		"text": "I'll never sleep at home again.",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_BELLE_SPEAKER_Belle",
+        "text": "DIALOGUE_PODUNK_BELLE_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_BELLE_SPEAKER_Belle",
+        "text": "DIALOGUE_PODUNK_BELLE_1",
+        "sound": "Adult"
+    }
 }

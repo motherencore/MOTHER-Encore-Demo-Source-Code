@@ -123,6 +123,7 @@ position = Vector2( 0, -26 )
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 0, 9 )
 stream = ExtResource( 4 )
+bus = "SFX"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

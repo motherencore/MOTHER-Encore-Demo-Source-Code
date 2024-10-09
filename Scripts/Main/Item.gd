@@ -67,11 +67,9 @@ func unparent_buttonPrompt():
 func check():
 	if InventoryManager.hasInventorySpace() or InventoryManager.Load_item_data(item)["keyitem"]:
 		unparent_buttonPrompt()
-		var ItemName = InventoryManager.Load_item_data(item)["name"][globaldata.language]
-		var ItemArt = InventoryManager.Load_item_data(item)["article"][globaldata.language]
 		InventoryManager.giveItemAvailable(item)
-		global.itemname = ItemName
-		global.itemart = ItemArt
+		# LOCALIZATION Code change: Storing item data instead of just name and article
+		global.item = InventoryManager.Load_item_data(item)
 		global.set_dialog(dialog, null) 
 		if (flag != null or flag != "") and globaldata.flags.has(flag):
 			globaldata.flags[flag] = true

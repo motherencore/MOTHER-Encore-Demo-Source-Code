@@ -1,64 +1,73 @@
 {
-	"0": {
-		"actors": {
-			"player": "leader",
-			"guard": "talker"
-		},
-		"name": "Guard",
-		"text": "The curfew has been lifted.",
-		"sound": "Adult",
-		"goto": "1"
-	},
-	"1": {
-		"name": "Guard",
-		"text": "I can't see why travel was ever restricted, though...",
-		"sound": "Adult",
-		"goto": "2"
-	},
-	"2": {
-		"name": "Guard",
-		"text": "Sorry, let me move out of the way.",
-		"sound": "Adult",
-		"goto": "3"
-	},
-	"3": {
-		"showbox": false,
-		"actorsmove": {
-			"guard": {
-				"movement": [{"x": 16, "y": 0}, {"x": 0, "y": -8}],
-				"speed": 32,
-				"animation": "Walk",
-				"type": "step"
-			}
-		},
-		"actorsturn": {
-			"guard": {
-				"actor": "player",
-				"speed": 0.1,
-				"queue": true
-			}
-		},
-		"wait": 1.5,
-		"autoadvance": true,
-		"caninput": false,
-		"goto": "4"
-	},
-	"4": {
-		"name": "Guard",
-		"text": "I heard that you can communicate with Telepathy.",
-		"sound": "Adult",
-		"goto": "5"
-	},
-	"5": {
-		"name": "Guard",
-		"text": "Have you heard of all the people talking about you?",
-		"sound": "Adult",
-		"goto": "6"
-	},
-	"6": {
-		"name": "Guard",
-		"text": "Oh right, you probably don't even need to \"listen\" to them!",
-		"sound": "Adult",
-		"flag": "guard_moved"
-	}
+    "0": {
+        "actors": {
+            "player": "leader",
+            "guard": "talker"
+        },
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_0",
+        "sound": "Adult",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_1",
+        "sound": "Adult",
+        "goto": "2"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_2",
+        "sound": "Adult",
+        "goto": "3"
+    },
+    "3": {
+        "showbox": false,
+        "actorsmove": {
+            "guard": {
+                "movement": [
+                    {
+                        "x": 16,
+                        "y": 0
+                    },
+                    {
+                        "x": 0,
+                        "y": -8
+                    }
+                ],
+                "speed": 32,
+                "animation": "Walk",
+                "type": "step"
+            }
+        },
+        "actorsturn": {
+            "guard": {
+                "actor": "player",
+                "speed": 0.1,
+                "queue": true
+            }
+        },
+        "wait": 1.5,
+        "autoadvance": true,
+        "caninput": false,
+        "goto": "4"
+    },
+    "4": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_4",
+        "sound": "Adult",
+        "goto": "5"
+    },
+    "5": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_5",
+        "sound": "Adult",
+        "goto": "6"
+    },
+    "6": {
+        "name": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard",
+        "text": "DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_6",
+        "sound": "Adult",
+        "flag": "guard_moved"
+    }
 }

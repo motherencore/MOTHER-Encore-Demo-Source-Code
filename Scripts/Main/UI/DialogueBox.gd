@@ -2,8 +2,8 @@ extends "res://Scripts/Main/UI/Functions.gd"
 
 # node refs
 onready var nameLabel = $Dialoguebox/Namebox/Name
-onready var dialogueLabel = $Dialoguebox/ClipBox/Dialogue
-onready var dotLabel = $Dialoguebox/ClipBox/DippinDots
+onready var dialogueLabel = $Dialoguebox/ClipBox/HBoxContainer/Dialogue
+onready var dotLabel = $Dialoguebox/ClipBox/HBoxContainer/DippinDots
 onready var camera = $Camera2D
 onready var actorChar = preload("res://Nodes/Reusables/actor.tscn")
 
@@ -29,21 +29,24 @@ var autoAdvance = false
 var canInput = true
 var setRespawn = false
 
+# LOCALIZATION Handling different bullet symbols (Japanese version gets a diamond-shaped bullet)
+var dotString = "[right]%s[/right]" % tr("SYMBOL_BULLET_MAIN")
+
 
 func _ready():
 	nameLabel.connect("item_rect_changed", self, "set_nametag")
 	Input.action_release("ui_cancel")
-	Input.action_release("ui_toggle")
 	Input.action_release("ui_accept")
 	global.cutscene = true
 	global.persistPlayer.pause()
 	if uiManager.check_keys(global.currentScene.name) > 0:
 		uiManager.key.close()
 	$Dialoguebox/Arrow.hide()
-	uiManager.blackBars.open()
+	uiManager.toggle_black_bars(true)
 	dialog = getDialog()
 	textSpeed = globaldata.textSpeed
 	currPhrase = dialog[str(phraseNum)]
+	print(currPhrase)
 	dialogueLabel.visible_characters = 0
 	dialogueLabel.bbcode_text = ""
 	dotLabel.bbcode_text = ""
@@ -92,7 +95,7 @@ func finish():
 
 func _input(event):
 	if !$AnimationPlayer.is_playing() and $WaitTimer.time_left == 0 and canInput:
-		if event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle"):
+		if event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 			if finished:
 				if currPhrase.has("goto") or currPhrase.has("if"):
 					next_dialog()
@@ -103,7 +106,7 @@ func _input(event):
 						$Dialoguebox/Arrow.hide()
 						phraseNum = str2var(currPhrase["options"][option])
 						for i in get_node("Dialoguebox/Options").get_children():
-							get_node("Dialoguebox/Options").remove_child(i)
+							i.hide()
 						select = 0
 						selected = 0
 						options.clear()
@@ -111,11 +114,11 @@ func _input(event):
 						nextPhrase()
 						$InputSound.play()
 						
-					elif (event.is_action_pressed("ui_cancel") or event.is_action_pressed("ui_toggle")) and currPhrase["options"].has("cancel"):
+					elif event.is_action_pressed("ui_cancel") and currPhrase["options"].has("cancel"):
 						$Dialoguebox/Arrow.hide()
 						phraseNum = str2var(currPhrase["options"]["cancel"])
 						for i in get_node("Dialoguebox/Options").get_children():
-							get_node("Dialoguebox/Options").remove_child(i)
+							i.hide()
 						select = 0
 						selected = 0
 						options.clear()
@@ -127,18 +130,22 @@ func _input(event):
 				dialogueLabel.visible_characters = len(dialogueLabel.text)
 				finish()
 
+
 func getDialog() -> Dictionary:
 	var f = File.new()
 
-	if f.file_exists(global.dialogue):
+	if f.file_exists(global.dialogue[0][0]):
 		pass
 	else:
 		global.set_dialog("error", null)
 
-	f.open(global.dialogue, File.READ)
+	f.open(global.dialogue[0][0], File.READ)
 	var json = f.get_as_text()
 	
 	var output = parse_json(json)
+	
+	global.talker = global.dialogue[0][1]
+	global.dialogue.pop_front()
 	
 	if typeof(output) == TYPE_DICTIONARY:
 		return output
@@ -154,9 +161,6 @@ func nextPhrase() -> void:
 	$Dialoguebox/Arrow.cursor_index = 0
 	currPhrase = dialog[str(phraseNum)]
 	
-	if currPhrase.has("text"):
-		currPhrase["text"] = globaldata.replaceText(currPhrase["text"])
-	
 	select = 0
 	finished = false
 	
@@ -165,6 +169,17 @@ func nextPhrase() -> void:
 		dotLabel.remove_line(1)
 	
 	
+	#Give Item (this has to be handled before the text, in case the [ItemReceiver] is mentionned in dialogue)
+	if currPhrase.has("item"):
+		var item = InventoryManager.Load_item_data(currPhrase["item"])
+		item_not_given = true #check if the item is given or not, if the item is not given, it will go to "inv_full" instead of "goto"
+		if InventoryManager.hasInventorySpace():
+			item_not_given = false
+		if item.has("keyitem"):
+			if item["keyitem"]:
+				item_not_given = false
+		InventoryManager.giveItemAvailable(currPhrase["item"])
+	
 	
 	if currPhrase.has("cleardialog"):
 		if currPhrase["cleardialog"]:
@@ -172,11 +187,14 @@ func nextPhrase() -> void:
 	
 	# Set Dialogue
 	if currPhrase.has("text"):
+		currPhrase["text"] = globaldata.replaceText(currPhrase["text"])
+
 		show_box(true)
 		
 		dialogueLabel.bbcode_text += "\n" + currPhrase["text"]
 		# add dot, assuming no options on this
-		dotLabel.bbcode_text += "\n@"
+		# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+		dotLabel.bbcode_text += "\n" + dotString
 		
 		print(strip_bbcode(currPhrase["text"]))
 		adjustDotSpacing(currPhrase["text"])
@@ -213,8 +231,8 @@ func nextPhrase() -> void:
 	if currPhrase.has("objectfunction"):
 		var objects = currPhrase["objectfunction"]
 		for i in objects:
-			var object = global.currentScene.get_node(i)
-			if object.has_method(objects[i]):
+			var object = global.currentScene.get_node_or_null(i)
+			if object != null and object.has_method(objects[i]):
 				object.call_deferred(objects[i])
 	
 	if currPhrase.has("ovbattlemusic"):
@@ -247,7 +265,7 @@ func nextPhrase() -> void:
 	
 	if currPhrase.has("font"):
 		if currPhrase["font"] == "EBZ":
-			$Dialoguebox/ClipBox/Dialogue.add_font_override("font",load("res://Fonts/saturn.tres"))
+			dialogueLabel.add_font_override("normal_font",load("res://Fonts/saturn.tres"))
 	
 	#replace npcs with actors
 	if currPhrase.has("actors"):
@@ -255,7 +273,7 @@ func nextPhrase() -> void:
 		for i in actors:
 			if actors[i] == "leader" or actors[i] == "player":
 				actors[i] = global.persistPlayer
-			elif actors[i] in global.partyMembers:
+			elif actors[i] in global.POSSIBLE_PARTY_MEMBERS:
 				var party = global.party + global.partyNpcs
 				for partyMember in global.partyObjects.size():
 					if party[partyMember]["name"] == str(actors[i]):
@@ -301,7 +319,7 @@ func nextPhrase() -> void:
 	if currPhrase.has("changereplaced"):
 		for i in currPhrase["changereplaced"]:
 			var replacement = null
-			if currPhrase["changereplaced"][i] in global.partyMembers:
+			if currPhrase["changereplaced"][i] in global.POSSIBLE_PARTY_MEMBERS:
 				var party = global.party + global.partyNpcs
 				for partyMember in global.partyObjects.size():
 					if party[partyMember]["name"] == str(currPhrase["changereplaced"][i]):
@@ -466,16 +484,16 @@ func nextPhrase() -> void:
 	if currPhrase.has("actorsanim"):
 		for i in currPhrase["actorsanim"]:
 			var animated = actors[i]
-			var type = 0 #if type = 0, then use animationTree, if type = 1, then use animationPlayer
 			var speed = 1.0
 			var queue = false
-			if currPhrase["actorsanim"][i].has("type"):
-				type = currPhrase["actorsanim"][i]["type"]
+			var type = 0
 			if currPhrase["actorsanim"][i].has("speed"):
 				speed = currPhrase["actorsanim"][i]["speed"]
 			if currPhrase["actorsanim"][i].has("queue"):
 				queue = currPhrase["actorsanim"][i]["queue"]
-			animated.play_anim(currPhrase["actorsanim"][i]["anim"], type, speed, queue)
+			if currPhrase["actorsanim"][i].has("type"):
+				type = currPhrase["actorsanim"][i]["type"]
+			animated.play_anim(currPhrase["actorsanim"][i]["anim"], speed, queue, type)
 	
 	#erase an actor from a scene
 	if currPhrase.has("eraseactors"):
@@ -517,13 +535,13 @@ func nextPhrase() -> void:
 			direction.y = currPhrase["shakecam"]["y"]
 		match size:
 			"small":
-				Input.start_joy_vibration(0, 0.4, 0.3, length)
+				global.start_joy_vibration(0, 0.4, 0.3, length)
 				global.currentCamera.shake_camera(2, length, direction)
 			"medium":
-				Input.start_joy_vibration(0, 0.5, 0.6, length)
+				global.start_joy_vibration(0, 0.5, 0.6, length)
 				global.currentCamera.shake_camera(4, length, direction)
 			"big":
-				Input.start_joy_vibration(0, 0.7, 0.8, length)
+				global.start_joy_vibration(0, 0.7, 0.8, length)
 				global.currentCamera.shake_camera(6, length, direction)
 	
 	#Set current camera
@@ -616,13 +634,16 @@ func nextPhrase() -> void:
 	# Parse Options
 	if currPhrase.has("options"):
 		for i in get_node("Dialoguebox/Options").get_children():
-			get_node("Dialoguebox/Options").remove_child(i)
+			i.hide()
 		options.clear()
 		dialogueLabel.bbcode_text += "\n"
 		dotLabel.bbcode_text += "\n"
 		var optionNode = load("res://Nodes/Ui/DialogueOptions.tscn")
 		select = 0
 		selected = 0
+
+		var visibleOptions = {}
+
 		for i in currPhrase["options"]:
 			var nickname = ""
 			var canAppend = true
@@ -638,16 +659,36 @@ func nextPhrase() -> void:
 			if nickname == "":
 				nickname = i
 			if canAppend and i != "cancel":
-				var option = optionNode.instance()
-				get_node("Dialoguebox/Options").add_child(option)
-				option.text = nickname
-				option.set_name(nickname)
-				options.append(i)
-				select += 1
-		$Dialoguebox/Arrow.global_position = $Dialoguebox/Options.get_child(0).rect_global_position + Vector2(-5,5)
+				# Bulding a dictionary with all the options that will actually appear in the dialogue box
+				visibleOptions[i] = nickname
+
+		# Now we know the exact number of visible options because they are stored inside visibleOptions
+		select = visibleOptions.size()
+
+		var optionsGrid = get_node("Dialoguebox/Options")
+		if select == 4:					# 2×2 layout if 4 options
+			optionsGrid.columns = 2
+		else:
+			optionsGrid.columns = 3
+		if select > 3:
+			dialogueLabel.bbcode_text += "\n"
+			dotLabel.bbcode_text += "\n"
+
+		# The nodes already exist, we’re just showing them
+		# (it works better that way, especially the cursor positionning)
+		var idx = 0
+		for i in visibleOptions:
+			var option = optionsGrid.get_child(idx)
+			var nickname = visibleOptions[i]
+			option.text = nickname
+			option.set_name(nickname)
+			option.show()
+			options.append(i)
+			idx += 1
 	
-	# Set Name
-	if currPhrase.has("name"):
+	# LOCALIZATION Code change: Fixed crash when dialog has name and no text
+	# (Especially happens when translation changes the speakers' name and the next phrase has the same speaker but no dialog)
+	if currPhrase.has("name") and currPhrase.has("text"):
 		currPhrase["name"] = globaldata.replaceText(currPhrase["name"])
 		var old_name = nameLabel.text
 		nameLabel.text = str(currPhrase["name"])
@@ -657,7 +698,8 @@ func nextPhrase() -> void:
 				clear_dialogue()
 				dialogueLabel.bbcode_text += "\n" + currPhrase["text"]
 				# add dot, assuming no options on this
-				dotLabel.bbcode_text += "\n@"
+				# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+				dotLabel.bbcode_text += "\n" + dotString
 				adjustDotSpacing(currPhrase["text"])
 		
 		elif old_name != currPhrase["name"]:
@@ -666,9 +708,11 @@ func nextPhrase() -> void:
 					clear_dialogue()
 					dialogueLabel.bbcode_text += "\n" + currPhrase["text"]
 					# add dot, assuming no options on this
-					dotLabel.bbcode_text += "\n@"
+					# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+					dotLabel.bbcode_text += "\n" + dotString
 					adjustDotSpacing(currPhrase["text"])
-	else:
+	# LOCALIZATION Code change: Also for the fix
+	elif not currPhrase.has("name"):
 		var old_name = nameLabel.text
 		nameLabel.text = ""
 		if $Dialoguebox/Namebox.rect_position.y != 0:
@@ -680,7 +724,8 @@ func nextPhrase() -> void:
 				
 				dialogueLabel.bbcode_text += "\n" + currPhrase["text"]
 				# add dot, assuming no options on this
-				dotLabel.bbcode_text += "\n@"
+				# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+				dotLabel.bbcode_text += "\n" + dotString
 				adjustDotSpacing(currPhrase["text"])
 	
 	#Save game
@@ -705,7 +750,8 @@ func nextPhrase() -> void:
 				globaldata[character]["hp"] = globaldata[character]["maxhp"] + globaldata[character]["boosts"]["maxhp"]
 		else:
 			for i in global.party:
-				i.hp = i.maxhp + i.boosts.maxhp
+				if !i.status.has(globaldata.ailments.Unconscious):
+					i.hp = i.maxhp + i.boosts.maxhp
 	#Restore PP
 	if currPhrase.has("restorepp"):
 		var character = str(currPhrase["restorepp"])
@@ -747,21 +793,13 @@ func nextPhrase() -> void:
 	if currPhrase.has("openshop"):
 		uiManager.open_shop(currPhrase.openshop)
 	
+	if currPhrase.has("openstorage"):
+		uiManager.open_storage()
+	
 	if currPhrase.has("use_atm"):
 		if currPhrase["use_atm"]:
 			uiManager.open_atm()
 	
-	
-	#Give Item
-	if currPhrase.has("item"):
-		var item = InventoryManager.Load_item_data(currPhrase["item"])
-		item_not_given = true #check if the item is given or not, if the item is not given, it will go to "inv_full" instead of "goto"
-		if InventoryManager.hasInventorySpace():
-			item_not_given = false
-		if item.has("keyitem"):
-			if item["keyitem"]:
-				item_not_given = false
-		InventoryManager.giveItemAvailable(currPhrase["item"])
 	
 	#Take Item
 	if currPhrase.has("removeitem"):
@@ -811,6 +849,10 @@ func nextPhrase() -> void:
 	if currPhrase.has("batwinflag"):
 		uiManager.battleWinFlag = currPhrase["batwinflag"]
 	
+	#set a flag to true for the rematch cutscene
+	if currPhrase.has("batrematchflag"):
+		uiManager.battleRematchFlag = currPhrase["batrematchflag"]
+	
 	#fully heal player or party after losing a battle
 	if currPhrase.has("batloseheal"):
 		uiManager.battleLoseHeal = currPhrase["batloseheal"]
@@ -821,20 +863,21 @@ func nextPhrase() -> void:
 
 func endDialogue():
 	Input.action_release("ui_cancel")
-	Input.action_release("ui_toggle")
 	Input.action_release("ui_accept")
 	clear_dialogue()
-	remove_dialog_box()
+	
 	$AudioStreamPlayer.volume_db = -80
-	$Dialoguebox/ClipBox/Dialogue.hide()
+	dialogueLabel.hide()
 	if unpausePlayer:
 		global.persistPlayer.unpause()
 	global.cutscene = false
 	if global.talker != null:
 		global.talker.talking = false
+		global.talker.pause = false
+		global.talker = null
 	if nameLabel.text != "":
 		$NameAnim.play("Close")
-	uiManager.blackBars.close()
+	uiManager.toggle_black_bars(false)
 	uiManager.cash.close()
 	uiManager.set_telepathy_effect(false)
 	
@@ -847,7 +890,7 @@ func endDialogue():
 			else:
 				global.remove_persistent(actors[i])
 				global.remove_persistent(actors[i].replaced)
-	
+		
 		#update partyMember path
 		if global.partySize > 1:
 			var partyMembers = global.partyObjects.duplicate()
@@ -868,9 +911,6 @@ func endDialogue():
 				partyMembers[i].find_path()
 				partyMembers[i].active = true
 	
-	if global.talker != null:
-		global.talker.pause = false
-		global.talker = null
 	if uiManager.check_keys(global.currentScene.name) > 0:
 		uiManager.key.open()
 	if queued_battle:
@@ -886,6 +926,7 @@ func endDialogue():
 	emit_signal("finalPhrase", phraseNum)
 	global.emit_signal("cutscene_ended")
 	phraseNum = 0
+	remove_dialog_box()
 
 func adjustDotSpacing(line):
 	line = strip_bbcode(line)
@@ -920,6 +961,14 @@ func next_dialog():
 			#Check if the player has a certain item
 			if "hasitem" in cond:
 				if !InventoryManager.checkItemForAll(currPhrase["if"][cond]):
+					print("checkItem")
+					condition = false
+					if !currPhrase["if"].has("or"):
+						break
+			#Check if an item is in storage
+			if "hasinstorage" in cond:
+				print("checkItem in storage")
+				if !InventoryManager.checkItemInStorage(currPhrase["if"][cond]):
 					condition = false
 					if !currPhrase["if"].has("or"):
 						break
@@ -1050,11 +1099,19 @@ func remove_dialog_box():
 		audioManager.play_sfx(load("res://Audio/Sound effects/M3/menu_close.wav"), "menu_close")
 		yield($AnimationPlayer, "animation_finished")
 	uiManager.remove_ui(self)
+	
+	if !global.dialogue.empty():
+		uiManager.open_dialogue_box()
+	
 
 func strip_bbcode(source:String) -> String:
+	var img_regex = RegEx.new()
+	img_regex.compile("\\[img.*?\\].*?\\[/img\\]")
+	var ret = img_regex.sub(source, "——", true)
 	var regex = RegEx.new()
 	regex.compile("\\[.+?\\]")
-	return regex.sub(source, "", true)
+	ret = regex.sub(ret, "", true)
+	return ret
 
 func _on_WaitTimer_timeout():
 	$Dialoguebox/Cursor_Down.show()

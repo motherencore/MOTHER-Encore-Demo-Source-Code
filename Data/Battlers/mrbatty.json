@@ -1,30 +1,33 @@
 {
-	"name": "Mr. Batty",
-	"maxhp": 76,
-	"hp":76,
-	"maxpp": 0,
-	"pp": 0,
-	"speed": 8,
-	"offense": 8,
-	"defense": 18,
-	"iq": 5,
-	"guts": 0,
-	"level": 4,
-	"exp": 10,
-	"cash": 14,
-	"items": [
-	{"item": "Fries", "chance": 10},
-	{"item": "Antidote", "chance": 30}
-	  ],
-	"skills": [
-		{"skill" : "bash", "weight" : 3},
-		{"skill" : "criticalthinking", "weight" : 1}
-	],
-	"boss": false,
-	"description": "Life itself is a puzzle to Mr. Batty",
-	"sprite": "mr batty",
-	"ovsprite": "MrBattyOV",
-	"ovtype": "Basic Enemy 2F",
-	"music": "Flippant Foe.mp3",
-	"bg": "batty"
+    "name": "MRBATTY",
+    "description": "MRBATTY_DESC",
+    "article": "MRBATTY_ART",
+    "maxhp": 76,
+    "hp": 76,
+    "maxpp": 0,
+    "pp": 0,
+    "speed": 8,
+    "offense": 8,
+    "defense": 18,
+    "iq": 5,
+    "guts": 0,
+    "level": 4,
+    "exp": 10,
+    "cash": 14,
+    "items": [
+        { "item": "Fries", "chance": 10 },
+        { "item": "Antidote", "chance": 30 }
+    ],
+    "skills": [
+        { "skill": "bash", "weight": 3 },
+        { "skill": "criticalthinking", "weight": 1 }
+    ],
+    "boss": false,
+    "sprite": "mr batty",
+    "music": "Mr Batty Twist.mp3",
+    "bg": "batty",
+    "ov": {
+        "sprite": "MrBattyOV",
+        "anim": "BasicEnemy2F"
+    }
 }

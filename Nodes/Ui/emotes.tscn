@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/Other/emotes/emotes.png" type="Texture" id=1]
 [ext_resource path="res://Audio/Sound effects/Shock.mp3" type="AudioStream" id=2]
@@ -6,8 +6,10 @@
 [sub_resource type="GDScript" id=6]
 script/source = "extends Sprite
 
-onready var animaPlayer = $AnimationPlayer
+export (NodePath) var objectPath
 
+onready var animaPlayer = $AnimationPlayer
+onready var object = get_node_or_null(objectPath)
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	if anim_name in [\"sweat\", \"angry\"]:
@@ -23,6 +25,10 @@ func _on_AnimationPlayer_animation_started(anim_name):
 				scale.x = -1
 	else:
 		scale.x = 1
+
+func set_bubble_offset():
+	position.y = -(object.texture.get_height() / object.vframes + 8)
+	print(position.y)
 "
 __meta__ = {
 "Scene_Path": "res://Nodes/Ui/emotes.tscn"
@@ -94,6 +100,23 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 2,
 "values": [ Vector2( 0, 10 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "blueExclamation"
+length = 0.6
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0666667, 0.133333, 0.201, 0.533333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 97, 98, 99, 100 ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -262,6 +285,7 @@ script = SubResource( 6 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 7 )
 anims/angry = SubResource( 10 )
+anims/blueExclamation = SubResource( 11 )
 anims/dot = SubResource( 1 )
 anims/exclamation = SubResource( 8 )
 anims/heart = SubResource( 2 )
@@ -272,5 +296,6 @@ anims/sweat = SubResource( 9 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

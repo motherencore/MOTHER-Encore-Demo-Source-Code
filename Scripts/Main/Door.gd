@@ -1,6 +1,8 @@
 extends Area2D
 
 signal done
+signal entered
+signal moved_player
 
 export var targetX = 0
 export var targetY = 0
@@ -22,7 +24,7 @@ export var unpause_player = true
 export (String) var flag_set = ""
 export (bool) var set_flag_state = true
 
-var targetCutoff = 0
+var fade_done = false
 var currentState = 0
 var player = null
 var sameScene = false
@@ -47,9 +49,10 @@ func _process(_delta):
 	if currentState != 0:
 		match currentState:
 			1:
-				if fade.colorRect.material.get_shader_param("cut") == targetCutoff:
+				if fade_done:
 					currentState = 2
 			2:
+				emit_signal("entered")
 				global.persistPlayer.camera.current = true
 				global.persistPlayer.visible = true
 				fade.colorRect.material.set_shader_param("cut", 0)
@@ -76,7 +79,7 @@ func _process(_delta):
 					$AudioStreamPlayer.play()
 				currentState = 4
 			4:
-				if fade.colorRect.material.get_shader_param("cut") == targetCutoff:
+				if fade_done:
 					set_process(false)
 					if !global.cutscene and unpause_player:
 						if wasRunning:
@@ -115,6 +118,7 @@ func _move_player():
 	player.global_position.x = targetX
 	player.global_position.y = targetY - 7
 	global.enteringDoorScene = false
+	emit_signal("moved_player")
 	yield(get_tree(), "idle_frame")
 	
 
@@ -122,7 +126,7 @@ func _goto():
 	var cam = global.persistPlayer.get_node("Camera2D")
 	player.global_position.x = newpos.global_position.x
 	player.global_position.y = newpos.global_position.y - 7
-	
+	emit_signal("moved_player")
 	#cam.limit_top = -10000000
 	#cam.limit_left = -10000000
 	#cam.limit_right = 10000000
@@ -140,14 +144,19 @@ func create_party():
 			global.partyObjects[i].disappear()
 
 func fade_in():
-	targetCutoff = 0
+	fade_done = false
 	fade.fade_in(transit_in_anim, transit_in_color, fade_in_speed)
+	yield(fade, "fade_in_done")
+	fade_done = true
+	
 
 func fade_out():
-	targetCutoff = 1
+	fade_done = false
 	if transit_out_anim == "":
 		transit_out_anim = transit_in_anim
 	fade.fade_out(transit_out_anim, transit_out_color, fade_out_speed)
+	yield(fade, "fade_out_mostly_done")
+	fade_done = true
 
 func enter(_player=global.persistPlayer):
 	player = _player
@@ -170,8 +179,27 @@ func enter(_player=global.persistPlayer):
 			fade_in()
 			currentState = 1
 			set_process(true)
+#			Ao oni code
+#			var rand = RandomNumberGenerator.new()
+#			rand.randomize()
+#			var random = rand.randi_range(1, 1000)
+#			if random == 1 and !OS.is_debug_build():
+#				if sameScene:
+#					specialGuest(false)
+#				else:
+#					specialGuest()
 
 func set_flag():
 	if flag_set != "":
 		if globaldata.flags.has(flag_set):
 			globaldata.flags[flag_set] = set_flag_state
+
+#Ao oni spawner
+func specialGuest(newScene = true):
+	var checkScene
+	checkScene = global.currentScene
+	if not checkScene.get_name() in ["Disclaimer", "Title screen", "SaveSelect", "Control", "Naming screen", "Introduction"]:
+		var specialGuest = load("res://Nodes/Overworld/Enemies/PassiveHeal.tscn").instance()
+		if !newScene:
+			yield(self, "moved_player")
+		checkScene.get_node("Objects").add_child(specialGuest)

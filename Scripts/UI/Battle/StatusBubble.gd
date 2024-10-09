@@ -41,7 +41,7 @@ func _process(delta):
 #"sleeping": return 9
 #"sunstroked": return 10
 #"mushroomized": return 11
-#"unsconcious": return 12
+#"unconscious": return 12
 func set_status_shown(status_to_show):
 	var status_name = globaldata.status_enum_to_name(status_to_show)
 	for status_node in get_children():
@@ -51,7 +51,7 @@ func set_status_shown(status_to_show):
 			status_node.hide()
 
 func add_status(new_status):
-	# we dont deal with unconcious
+	# we dont deal with unconscious
 	if new_status == globaldata.ailments.Unconscious:
 		return
 	var i = status.find(new_status)
@@ -61,7 +61,7 @@ func add_status(new_status):
 	set_status_shown(status[index])
 
 func remove_status(new_status):
-	# we dont deal with unconcious
+	# we dont deal with unconscious
 	if new_status == globaldata.ailments.Unconscious:
 		return
 	var i = status.find(new_status)

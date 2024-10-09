@@ -5,6 +5,7 @@ export (String) var dialog
 export (bool) var payphone
 export var appear_flag = ""
 export var disappear_flag = ""
+export var save_location = ""
 export (Array, PoolStringArray) var event_dialog
 var player_turn = { 
 	"y": true, #Make "x" true if you want the player to turn left/right to face npc
@@ -27,6 +28,7 @@ func _ring():
 func interact():
 	audio.stream = ResourceLoader.load("res://Audio/Sound effects/phonehangup.wav")
 	animationPlayer.play("Idle")
+	global.phoneLocation = save_location
 	set_dialog()
 	if payphone:
 		uiManager.cash.open()

@@ -181,22 +181,6 @@ tracks/0/keys = {
 "values": [ 103, 100, 0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-
 [sub_resource type="Animation" id=18]
 resource_name = "item"
 length = 0.266667
@@ -264,6 +248,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 69, 70, 71, 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "lookIntoYourSoul"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -357,11 +357,11 @@ anims/guard = SubResource( 13 )
 anims/guardPrep = SubResource( 14 )
 anims/hit = SubResource( 11 )
 anims/hitIdle = SubResource( 15 )
-anims/idle = SubResource( 5 )
 anims/item = SubResource( 18 )
 anims/itemLoop = SubResource( 19 )
 anims/itemPrep = SubResource( 20 )
 anims/itemReturn = SubResource( 21 )
+anims/lookIntoYourSoul = SubResource( 5 )
 anims/special = SubResource( 6 )
 anims/specialPrep = SubResource( 8 )
 anims/specialPrep2 = SubResource( 9 )

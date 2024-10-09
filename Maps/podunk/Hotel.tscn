@@ -1,13 +1,13 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Reusables/hotel room.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Graphics/Rooms/Podunk_Hotel.png" type="Texture" id=6]
-[ext_resource path="res://Graphics/Rooms/Podunk_Hotel_Desk.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Rooms/Podunk_Hotel_Hallway_Rails.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Hotel.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Hotel_Desk.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Hotel_Hallway_Rails.png" type="Texture" id=8]
 [ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Overworld/Objects/Openable Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/Reusables/phone.tscn" type="PackedScene" id=11]
@@ -16,10 +16,6 @@
 [ext_resource path="res://Graphics/Objects/Doors/Door_Dark_Locked.png" type="Texture" id=14]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=16]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [sub_resource type="Shader" id=432]
 code = "shader_type canvas_item;
@@ -111,17 +107,12 @@ player_turn = {
 "y": true
 }
 
-[node name="AnimationTree" parent="npc" index="2"]
-parameters/playback = SubResource( 2 )
-
-[node name="PartyMemberTree" parent="npc" index="4"]
-parameters/playback = SubResource( 3 )
-
-[node name="interact" parent="npc" index="7"]
+[node name="interact" parent="npc" index="3"]
 scale = Vector2( 1, 2 )
 
 [node name="ButtonPrompt" parent="npc/interact" index="1"]
 material = SubResource( 433 )
+position = Vector2( 0, -5.5 )
 scale = Vector2( 1, 0.5 )
 
 [node name="PodunkHotelDesk" type="Sprite" parent="."]
@@ -185,7 +176,7 @@ tile_data = PoolIntArray( -1376249, 180, 0, -65544, 536871085, 0, 3, 181, 0 )
 position = Vector2( -136, -632 )
 
 [node name="Door NPC" parent="Objects" instance=ExtResource( 9 )]
-position = Vector2( -120, -393 )
+position = Vector2( -120, -390 )
 scale = Vector2( 4, 1 )
 dialog = "Podunk/working"
 
@@ -218,8 +209,7 @@ tile_data = PoolIntArray( -2359312, 140, 0, -2293773, 99, 3, -2293763, 99, 12, -
 [node name="MusicArea" parent="." instance=ExtResource( 3 )]
 visible = false
 position = Vector2( -48, 8 )
-music = "Hotel/Hotel_Main_Track.mp3"
-loop = "Hotel/Hotel_Loop.mp3"
+loop = "Hotel.mp3"
 disappear_flag = "good_morning"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
@@ -229,8 +219,7 @@ shape = SubResource( 1 )
 [node name="MusicArea2" parent="." instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 0, -528 )
-music = "Good Morning/Good_Morning.wav"
-loop = "Good Morning/Good_Morning_Loop.wav"
+loop = "Good_Morning.mp3"
 appear_flag = "good_morning"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea2"]
@@ -302,6 +291,7 @@ position = Vector2( -32, -288 )
 polygon = PoolVector2Array( -45, -16, 200, -16, 200, -32, 192, -32, 192, -88, 176, -88, 176, -96, 152, -96, 152, -104, 120, -104, 120, -96, 96, -96, 96, -88, 80, -88, 80, -96, -16, -96, -16, -88, -32, -88, -32, -96, -56, -96, -56, -97, -88, -97, -88, -96, -112, -96, -112, -88, -128, -88, -144, -16, -115, -16, -115, -32, -108, -32, -108, 16, -52, 16, -52, -32, -45, -32, -45, 32, -160, 32, -160, -176, 208, -176, 208, 32, -45, 32 )
 
 [node name="Camareas" type="Node2D" parent="."]
+visible = false
 
 [node name="camarea" parent="Camareas" instance=ExtResource( 12 )]
 position = Vector2( -16, -64 )
@@ -353,7 +343,11 @@ entering_sound = "wood"
 position = Vector2( -8, 20 )
 shape = SubResource( 12 )
 
+[connection signal="moved_player" from="Doors/Door3" to="Openable Door" method="unlock"]
+[connection signal="moved_player" from="Doors/Door3" to="Openable Door" method="open"]
+
 [editable path="npc"]
+[editable path="npc/CharacterSprite"]
 [editable path="MusicArea2"]
 [editable path="Doors/Door3"]
 [editable path="Doors/Door6"]

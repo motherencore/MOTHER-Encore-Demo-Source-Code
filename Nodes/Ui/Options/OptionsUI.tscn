@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=2]
@@ -6,8 +6,53 @@
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/UI/Options/OptionsUI.gd" type="Script" id=5]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/UI/NamingScreen/TextSpeed.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/UI/NamingScreen/Flavors.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/UI/NamingScreen/ButtonPrompts.gd" type="Script" id=9]
+[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=11]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=13]
+[ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Nodes/Ui/Options/OptionsSwitch.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Nodes/Ui/Options/VolumeSlider.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Nodes/Ui/Options/ControlsUI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Nodes/Ui/Options/ReusableOptionList.tscn" type="PackedScene" id=18]
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 7.0
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+
+[sub_resource type="Shader" id=19]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 glow_color : hint_color = vec4(1.0);
+uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
+uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
+	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = SubResource( 19 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
 
 [node name="OptionsUI" type="CanvasLayer"]
 script = ExtResource( 5 )
@@ -21,10 +66,11 @@ __meta__ = {
 
 [node name="NinePatchRect" type="NinePatchRect" parent="OptionsMenu"]
 material = ExtResource( 3 )
-margin_left = 16.0
+margin_left = 12.0
 margin_top = 32.0
-margin_right = 192.0
-margin_bottom = 128.0
+margin_right = 188.0
+margin_bottom = 134.0
+rect_clip_content = true
 texture = ExtResource( 2 )
 patch_margin_left = 6
 patch_margin_top = 6
@@ -32,12 +78,12 @@ patch_margin_right = 6
 patch_margin_bottom = 7
 
 [node name="OptionsLabel" type="Label" parent="OptionsMenu/NinePatchRect"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 104.0
-margin_bottom = 24.0
+margin_left = 12.0
+margin_top = 7.0
+margin_right = 168.0
+margin_bottom = 23.0
 custom_fonts/font = ExtResource( 1 )
-text = "Options"
+text = "MENU_TITLE_OPTIONS"
 valign = 1
 clip_text = true
 __meta__ = {
@@ -53,103 +99,93 @@ color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 13 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect"]
-margin_left = 16.0
+margin_left = 15.0
 margin_top = 32.0
 margin_right = 112.0
 margin_bottom = 80.0
 alignment = 1
 
 [node name="FileSettingsLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
-visible = false
-margin_top = 2.0
-margin_right = 96.0
-margin_bottom = 14.0
-text = "File settings"
+margin_right = 104.0
+text = "OPTIONS_FILESETTINGS"
 
 [node name="SettingsLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
-visible = false
-margin_top = 10.0
-margin_right = 96.0
-margin_bottom = 22.0
-text = "Settings"
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 28.0
+text = "OPTIONS_SETTINGS"
 
 [node name="TitleScreenLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 10.0
-margin_right = 96.0
-margin_bottom = 22.0
-text = "Return to Title Screen"
+margin_top = 32.0
+margin_right = 104.0
+margin_bottom = 44.0
+text = "OPTIONS_TITLESCREEN"
 
 [node name="CloseGameLabel" parent="OptionsMenu/NinePatchRect/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 26.0
-margin_right = 96.0
-margin_bottom = 38.0
-text = "Close game"
+margin_top = 48.0
+margin_right = 104.0
+margin_bottom = 60.0
+text = "OPTIONS_QUIT"
 
 [node name="FileSettings" type="ColorRect" parent="OptionsMenu/NinePatchRect"]
 visible = false
-margin_left = 8.0
+margin_left = 7.0
 margin_top = 32.0
-margin_right = 160.0
-margin_bottom = 96.0
+margin_right = 168.0
+margin_bottom = 76.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 script = ExtResource( 13 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/FileSettings"]
+margin_left = 69.0
+margin_right = 161.0
+margin_bottom = 44.0
+
+[node name="TextSpeedLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_right = 92.0
+text = "MENU_FAST"
+align = 2
+
+[node name="MenuFlavorLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 92.0
+margin_bottom = 28.0
+text = "FLAVOR_PLAIN"
+align = 2
+
+[node name="ButtonPromptsLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 32.0
+margin_right = 92.0
+margin_bottom = 44.0
+text = "MENU_BOTH"
+align = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/FileSettings"]
 margin_left = 8.0
 margin_right = 104.0
-margin_bottom = 64.0
-alignment = 1
+margin_bottom = 44.0
 
 [node name="TextSpeedLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 10.0
 margin_right = 96.0
-margin_bottom = 22.0
-text = "Text speed"
+text = "MENU_TEXTSPEED"
 
 [node name="MenuFlavorLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 26.0
+margin_top = 16.0
 margin_right = 96.0
-margin_bottom = 38.0
-text = "Menu flavor"
+margin_bottom = 28.0
+text = "MENU_FLAVORS"
 
 [node name="ButtonPromptsLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 42.0
+margin_top = 32.0
 margin_right = 96.0
-margin_bottom = 54.0
-text = "Button prompts"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/FileSettings"]
-margin_left = 84.0
-margin_right = 152.0
-margin_bottom = 64.0
-alignment = 1
-
-[node name="TextSpeedLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 10.0
-margin_right = 68.0
-margin_bottom = 22.0
-text = "Fast"
-align = 2
-
-[node name="MenuFlavorLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 26.0
-margin_right = 68.0
-margin_bottom = 38.0
-text = "Plain"
-align = 2
-
-[node name="ButtonPromptsLabel" parent="OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 42.0
-margin_right = 68.0
-margin_bottom = 54.0
-text = "Both"
-align = 2
+margin_bottom = 44.0
+text = "MENU_PROMPTS"
 
 [node name="Settings" type="ColorRect" parent="OptionsMenu/NinePatchRect"]
 visible = false
-margin_left = 8.0
+margin_left = 7.0
 margin_top = 32.0
-margin_right = 160.0
+margin_right = 168.0
 margin_bottom = 96.0
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 script = ExtResource( 13 )
@@ -157,84 +193,414 @@ script = ExtResource( 13 )
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/Settings"]
 margin_left = 8.0
 margin_right = 104.0
-margin_bottom = 64.0
+margin_bottom = 60.0
 alignment = 1
-
-[node name="WindowResolutionLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
-margin_right = 96.0
-text = "Window resolution"
-
-[node name="FullscreenLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 16.0
-margin_right = 96.0
-margin_bottom = 28.0
-text = "Fullscreen"
 
 [node name="LanguageLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 32.0
-margin_right = 96.0
-margin_bottom = 44.0
-text = "Language"
+margin_right = 115.0
+text = "OPTIONS_LANGUAGE"
 
-[node name="VolumeLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+[node name="WindowResolutionLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 115.0
+margin_bottom = 28.0
+text = "OPTIONS_RESOLUTION"
+
+[node name="FullscreenLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 32.0
+margin_right = 115.0
+margin_bottom = 44.0
+text = "OPTIONS_FULLSCREEN"
+
+[node name="MusicVolumeLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
 margin_top = 48.0
-margin_right = 96.0
+margin_right = 115.0
 margin_bottom = 60.0
-text = "Volume"
+text = "OPTIONS_VOLUME_MUSIC"
+
+[node name="SFXVolumeLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 64.0
+margin_right = 115.0
+margin_bottom = 76.0
+text = "OPTIONS_VOLUME_SFX"
 
 [node name="ControlsLabel" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer" instance=ExtResource( 6 )]
-margin_top = 64.0
-margin_right = 96.0
-margin_bottom = 76.0
-text = "Controls"
+margin_top = 80.0
+margin_right = 115.0
+margin_bottom = 92.0
+text = "OPTIONS_CONTROLS"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu/NinePatchRect/Settings"]
-margin_left = 88.0
-margin_right = 152.0
-margin_bottom = 60.0
-alignment = 1
-
-[node name="WindowSize" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_right = 64.0
-text = "1920x1080"
-align = 2
-
-[node name="Fullscreen" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 16.0
-margin_right = 64.0
-margin_bottom = 28.0
-text = "Off"
-align = 2
+margin_left = 73.0
+margin_right = 161.0
+margin_bottom = 74.0
+alignment = 2
 
 [node name="Language" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 32.0
-margin_right = 64.0
-margin_bottom = 44.0
+margin_right = 88.0
 text = "English"
 align = 2
 
-[node name="Volume" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
-margin_top = 48.0
-margin_right = 64.0
-margin_bottom = 60.0
-text = "1920"
+[node name="WindowSize" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "1920×1080"
 align = 2
+
+[node name="FullScreenSwitch" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2" instance=ExtResource( 15 )]
+margin_top = 32.0
+margin_right = 88.0
+margin_bottom = 44.0
+grow_horizontal = 0
+size_flags_horizontal = 1
+alignment = 2
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2"]
+margin_top = 48.0
+margin_right = 88.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="Spacer" type="Control" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2/MusicVolumeContainer"]
+margin_right = 34.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+
+[node name="MusicVolumeSlider" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2/MusicVolumeContainer" instance=ExtResource( 16 )]
+margin_left = 38.0
+margin_top = 0.0
+margin_right = 88.0
+margin_bottom = 10.0
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 74.0
+rect_pivot_offset = Vector2( 67, -22 )
+
+[node name="Spacer" type="Control" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2/SFXVolumeContainer"]
+margin_right = 34.0
+margin_bottom = 10.0
+size_flags_horizontal = 3
+
+[node name="SFXVolumeSlider" parent="OptionsMenu/NinePatchRect/Settings/VBoxContainer2/SFXVolumeContainer" instance=ExtResource( 16 )]
+margin_left = 38.0
+margin_top = 0.0
+margin_right = 88.0
+margin_bottom = 10.0
 
 [node name="arrow" parent="OptionsMenu/NinePatchRect" instance=ExtResource( 4 )]
 position = Vector2( 11, 39 )
 menu_parent_path = NodePath("../VBoxContainer")
-cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
+loop_around = true
+skip_hidden_items = true
+move_sfx = true
+select_sfx = true
+cancel_on = true
+
+[node name="Confirm" type="PanelContainer" parent="OptionsMenu"]
+visible = false
+material = ExtResource( 3 )
+margin_left = 77.0
+margin_top = 48.0
+margin_right = 242.0
+margin_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 22 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/Confirm"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 159.0
+margin_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 10
+
+[node name="ConfirmLabel" type="Label" parent="OptionsMenu/Confirm/VBoxContainer"]
+margin_right = 153.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "Placeholder"
+align = 1
+valign = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsMenu/Confirm/VBoxContainer"]
+margin_top = 22.0
+margin_right = 153.0
+margin_bottom = 34.0
+custom_constants/separation = 24
+alignment = 1
+
+[node name="Yes" type="Label" parent="OptionsMenu/Confirm/VBoxContainer/HBoxContainer"]
+margin_left = 19.0
+margin_right = 67.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_YES"
+
+[node name="No" type="Label" parent="OptionsMenu/Confirm/VBoxContainer/HBoxContainer"]
+margin_left = 91.0
+margin_right = 134.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_NO"
+
+[node name="ConfirmArrow" parent="OptionsMenu/Confirm/VBoxContainer" instance=ExtResource( 4 )]
+position = Vector2( 23, 27 )
+menu_parent_path = NodePath("../HBoxContainer")
 consume_input_events = true
 skip_hidden_items = true
 move_sfx = true
 select_sfx = true
 cancel_on = true
 
+[node name="TextSpeed" type="NinePatchRect" parent="OptionsMenu"]
+visible = false
+material = ExtResource( 3 )
+margin_left = 188.0
+margin_top = 42.0
+margin_right = 316.0
+margin_bottom = 106.0
+texture = ExtResource( 2 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/TextSpeed"]
+margin_left = 15.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 56.0
+rect_clip_content = true
+
+[node name="Fast" type="Label" parent="OptionsMenu/TextSpeed/VBoxContainer"]
+margin_right = 84.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_FASTSPD"
+valign = 1
+
+[node name="Medium" type="Label" parent="OptionsMenu/TextSpeed/VBoxContainer"]
+margin_top = 16.0
+margin_right = 84.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_MEDIUMSPD"
+valign = 1
+
+[node name="Slow" type="Label" parent="OptionsMenu/TextSpeed/VBoxContainer"]
+margin_top = 32.0
+margin_right = 84.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_SLOWSPD"
+valign = 1
+
+[node name="TextSpeedArrow" parent="OptionsMenu/TextSpeed" instance=ExtResource( 4 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="Flavors" type="NinePatchRect" parent="OptionsMenu"]
+visible = false
+material = ExtResource( 3 )
+margin_left = 188.0
+margin_top = 11.0
+margin_right = 291.0
+margin_bottom = 139.0
+texture = ExtResource( 2 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 8 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/Flavors"]
+margin_left = 15.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 87.0
+rect_clip_content = true
+
+[node name="Plain" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_right = 104.0
+text = "FLAVOR_PLAIN"
+
+[node name="Mint" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 28.0
+text = "FLAVOR_MINT"
+
+[node name="Strawberry" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 32.0
+margin_right = 104.0
+margin_bottom = 44.0
+text = "FLAVOR_STRAWBERRY"
+
+[node name="Banana" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 48.0
+margin_right = 104.0
+margin_bottom = 60.0
+text = "FLAVOR_BANANA"
+
+[node name="Peanut" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 64.0
+margin_right = 104.0
+margin_bottom = 76.0
+text = "FLAVOR_PEANUT"
+
+[node name="Grape" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 80.0
+margin_right = 104.0
+margin_bottom = 92.0
+text = "FLAVOR_GRAPE"
+
+[node name="Melon" parent="OptionsMenu/Flavors/VBoxContainer" instance=ExtResource( 6 )]
+margin_top = 96.0
+margin_right = 104.0
+margin_bottom = 108.0
+text = "FLAVOR_MELON"
+
+[node name="FlavorsArrow" parent="OptionsMenu/Flavors" instance=ExtResource( 4 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+consume_input_events = true
+loop_around = true
+highlight = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="ButtonPrompts" type="NinePatchRect" parent="OptionsMenu"]
+visible = false
+material = ExtResource( 3 )
+margin_left = 188.0
+margin_top = 34.0
+margin_right = 316.0
+margin_bottom = 115.0
+texture = ExtResource( 2 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+script = ExtResource( 9 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/ButtonPrompts"]
+margin_left = 15.0
+margin_top = 11.0
+margin_right = 92.0
+margin_bottom = 72.0
+rect_clip_content = true
+
+[node name="Both" type="Label" parent="OptionsMenu/ButtonPrompts/VBoxContainer"]
+margin_right = 77.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_BOTH"
+valign = 1
+
+[node name="Objects" type="Label" parent="OptionsMenu/ButtonPrompts/VBoxContainer"]
+margin_top = 16.0
+margin_right = 77.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_OBJECTS"
+valign = 1
+
+[node name="NPCs" type="Label" parent="OptionsMenu/ButtonPrompts/VBoxContainer"]
+margin_top = 32.0
+margin_right = 77.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_NPCS"
+valign = 1
+
+[node name="None" type="Label" parent="OptionsMenu/ButtonPrompts/VBoxContainer"]
+margin_top = 48.0
+margin_right = 77.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_NONE"
+valign = 1
+
+[node name="ButtonPromptsArrow" parent="OptionsMenu/ButtonPrompts" instance=ExtResource( 4 )]
+position = Vector2( 11, 16 )
+menu_parent_path = NodePath("../VBoxContainer")
+consume_input_events = true
+loop_around = true
+move_sfx = true
+select_sfx = true
+cancel_sfx = true
+cancel_on = true
+reset_on_show = false
+
+[node name="Present" type="Sprite" parent="OptionsMenu/ButtonPrompts"]
+position = Vector2( 72, 57 )
+texture = ExtResource( 10 )
+hframes = 5
+
+[node name="ButtonPrompt" parent="OptionsMenu/ButtonPrompts/Present" instance=ExtResource( 14 )]
+material = SubResource( 20 )
+position = Vector2( 0, -8 )
+offset = Vector2( 0, -8 )
+
+[node name="NPC" type="Sprite" parent="OptionsMenu/ButtonPrompts"]
+position = Vector2( 104, 49 )
+texture = ExtResource( 11 )
+hframes = 5
+vframes = 4
+frame = 1
+
+[node name="ButtonPrompt" parent="OptionsMenu/ButtonPrompts/NPC" instance=ExtResource( 14 )]
+material = SubResource( 20 )
+position = Vector2( 0, -16 )
+type = "NPCs"
+offset = Vector2( 0, -16 )
+
+[node name="GenericOption" parent="OptionsMenu" instance=ExtResource( 18 )]
+visible = false
+margin_left = 203.0
+margin_top = 74.0
+margin_right = 251.0
+margin_bottom = 107.0
+
 [node name="Door" parent="OptionsMenu" instance=ExtResource( 12 )]
 position = Vector2( 328, 0 )
 targetScene = "Title screen"
 unpause_player = false
 
+[node name="ControlsUI" parent="OptionsMenu" instance=ExtResource( 17 )]
+visible = false
+
 [connection signal="cancel" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_cancel"]
+[connection signal="failed_move" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_failed_move"]
+[connection signal="moved" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_moved"]
 [connection signal="selected" from="OptionsMenu/NinePatchRect/arrow" to="." method="_on_arrow_selected"]
+[connection signal="cancel" from="OptionsMenu/Confirm/VBoxContainer/ConfirmArrow" to="." method="_on_ConfirmArrow_cancel"]
+[connection signal="selected" from="OptionsMenu/Confirm/VBoxContainer/ConfirmArrow" to="." method="_on_ConfirmArrow_selected"]
+[connection signal="cancel" from="OptionsMenu/TextSpeed/TextSpeedArrow" to="." method="_on_SubMenuArrow_cancel"]
+[connection signal="moved" from="OptionsMenu/TextSpeed/TextSpeedArrow" to="OptionsMenu/TextSpeed" method="_on_TextSpeedArrow_moved"]
+[connection signal="selected" from="OptionsMenu/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_selected"]
+[connection signal="cancel" from="OptionsMenu/Flavors/FlavorsArrow" to="." method="_on_SubMenuArrow_cancel"]
+[connection signal="moved" from="OptionsMenu/Flavors/FlavorsArrow" to="OptionsMenu/Flavors" method="_on_FlavorsArrow_moved"]
+[connection signal="selected" from="OptionsMenu/Flavors/FlavorsArrow" to="." method="_on_FlavorsArrow_selected"]
+[connection signal="cancel" from="OptionsMenu/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_SubMenuArrow_cancel"]
+[connection signal="moved" from="OptionsMenu/ButtonPrompts/ButtonPromptsArrow" to="OptionsMenu/ButtonPrompts" method="_on_ButtonPromptsArrow_moved"]
+[connection signal="selected" from="OptionsMenu/ButtonPrompts/ButtonPromptsArrow" to="." method="_on_ButtonPromptsArrow_selected"]
 [connection signal="done" from="OptionsMenu/Door" to="." method="_on_Door_done"]

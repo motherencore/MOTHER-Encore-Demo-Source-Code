@@ -1,7 +1,7 @@
 {
-	"0": {
-		"name":"Mayor Goodman",
-		"text":"Do you mind speaking to me in front of my desk?",
-		"sound": "Adult"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MAYOR_SIDE_DESK_SPEAKER_Mayor_Goodman",
+        "text": "DIALOGUE_PODUNK_MAYOR_SIDE_DESK_0",
+        "sound": "Adult"
+    }
 }

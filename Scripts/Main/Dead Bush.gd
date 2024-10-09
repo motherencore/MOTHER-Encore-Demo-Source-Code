@@ -31,7 +31,7 @@ func _ready():
 		newParent = get_parent()
 
 func grow():
-	Input.start_joy_vibration(0, 0.5, 0.7, 0.8)
+	global.start_joy_vibration(0, 0.5, 0.7, 0.8)
 	animationPlayer.play("Grow")
 	yield(animationPlayer, "animation_finished")
 	animationPlayer.play("Idle")

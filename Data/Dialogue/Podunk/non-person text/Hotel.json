@@ -1,13 +1,13 @@
 {
-	"0": {
-		"text": "Come visit Podunk's one and only hotel!",
-		"goto": "1"
-	},
-	"1": {
-		"text": "Stay with us for one night you'll feel good as new!",
-		"goto": "2"
-	},
-	"2": {
-		"text": "Only $50 per person."
-	}
+    "0": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_HOTEL_0",
+        "goto": "1"
+    },
+    "1": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_HOTEL_1",
+        "goto": "2"
+    },
+    "2": {
+        "text": "DIALOGUE_PODUNK_NON-PERSON_TEXT_HOTEL_2"
+    }
 }

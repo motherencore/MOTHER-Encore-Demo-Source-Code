@@ -10,6 +10,7 @@ func _ready():
 	if cursor != null:
 		cursor.connect("selected", self, "select")
 		cursor.connect("moved", self, "move")
+		cursor.connect("failed_move", self, "fail_move")
 	else:
 		print("cursor is null!")
 
@@ -27,6 +28,9 @@ func hide():
 	.hide()
 	if cursor != null:
 		cursor.on = false
+
+func fail_move(dir: Vector2):
+	pass
 
 func move(dir: Vector2):
 	pass

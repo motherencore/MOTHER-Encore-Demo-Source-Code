@@ -4,6 +4,7 @@ onready var colorRect = $Path2D/PathFollow2D/ColorRect
 onready var animPlayer = $Path2D/PathFollow2D/ColorRect/AnimationPlayer
 
 signal fade_in_done
+signal fade_out_mostly_done
 signal fade_out_done
 signal cut_done
 
@@ -69,3 +70,6 @@ func fade_out(anim_name = "Fade", color = Color.black, animation_speed = 1.0):
 	yield(animPlayer, "animation_finished")
 	colorRect.rect_position = -colorRect.rect_size/4
 	emit_signal("fade_out_done")
+
+func _on_fade_out_mostly_done():
+	emit_signal("fade_out_mostly_done")

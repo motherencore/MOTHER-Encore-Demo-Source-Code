@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/Main/Event Activator.gd" type="Script" id=1]
 
 [node name="Event Activator" type="Area2D"]
+collision_layer = 4096
 collision_mask = 0
 monitorable = false
 script = ExtResource( 1 )

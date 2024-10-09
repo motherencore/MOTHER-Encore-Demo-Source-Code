@@ -1,29 +1,31 @@
 {
-	"name": "Hyena",
-	"maxhp": 130,
-	"hp": 130,
-	"maxpp": 0,
-	"pp": 0,
-	"speed": 9,
-	"offense": 14,
-	"defense": 20,
-	"iq": 18,
-	"guts": 0,
-	"level": 7,
-	"exp": 24,
-	"cash": 20,
-	"items": [
-		{"item": "EyeDrops", "chance": 80}
-	],
-	"skills": [
-		{"skill" : "bite", "weight" : 6},
-		{"skill" : "bigGrin", "weight" : 1},
-		{"skill" : "hystericalLaugh", "weight" : 1}
-	],
-	"description": "He who laughs last laughs best.",
-	"boss": false,
-	"sprite": "hyena",
-	"ovsprite": "YeenaOV",
-	"music": "Flippant Foe.mp3",
-	"bg": "hyena"
+  "name": "HYENA",
+  "description": "HYENA_DESC",
+  "article": "HYENA_ART",
+  "maxhp": 130,
+  "hp": 130,
+  "maxpp": 0,
+  "pp": 0,
+  "speed": 9,
+  "offense": 14,
+  "defense": 20,
+  "iq": 18,
+  "guts": 0,
+  "level": 7,
+  "exp": 24,
+  "cash": 20,
+  "items": [{ "item": "EyeDrops", "chance": 80 }],
+  "skills": [
+    { "skill": "bite", "weight": 6 },
+    { "skill": "bigGrin", "weight": 1 },
+    { "skill": "hystericalLaugh", "weight": 1 }
+  ],
+  "boss": false,
+  "sprite": "hyena",
+  "music": "Flippant Foe.mp3",
+  "bg": "hyena",
+  "ov": {
+    "sprite": "YeenaOV",
+    "anim": "BasicEnemy"
+  }
 }

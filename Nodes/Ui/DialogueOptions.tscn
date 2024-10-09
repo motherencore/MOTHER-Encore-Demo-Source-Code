@@ -8,4 +8,5 @@ margin_top = 4.0
 margin_right = 98.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 60, 10 )
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )

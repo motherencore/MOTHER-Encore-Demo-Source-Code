@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=104 format=2]
 
 [ext_resource path="res://Graphics/UI/Battle/bashIcon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/BattleSystem.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Nodes/Ui/Battle/PSIBox.gd" type="Script" id=22]
 [ext_resource path="res://Nodes/Ui/Battle/ItemsBox.gd" type="Script" id=23]
 [ext_resource path="res://Nodes/Ui/PSISelect.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=25]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultlabel.png" type="Texture" id=26]
 [ext_resource path="res://Graphics/UI/Battle/youwin.png" type="Texture" id=27]
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=29]
@@ -49,9 +50,12 @@
 [ext_resource path="res://Graphics/Battle Effects/PSI_Healing_Bubble_Lvl_2.png" type="Texture" id=69]
 [ext_resource path="res://Audio/Sound effects/M3/Healing_b.wav" type="AudioStream" id=70]
 [ext_resource path="res://Graphics/Battle Effects/Offense_Up_Hit_Effect.png" type="Texture" id=71]
+[ext_resource path="res://Nodes/Ui/Battle/BattleCutscene.tscn" type="PackedScene" id=72]
 [ext_resource path="res://Graphics/Battle Effects/Defense_Up_Hit_Effect.png" type="Texture" id=73]
 [ext_resource path="res://Graphics/Battle Effects/Speed_Up_Hit_Effect.png" type="Texture" id=74]
+[ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=75]
 [ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=76]
+[ext_resource path="res://Nodes/Ui/Battle/InfoBox.gd" type="Script" id=77]
 
 [sub_resource type="Animation" id=20]
 length = 0.001
@@ -246,6 +250,275 @@ tracks/0/keys = {
 
 [sub_resource type="Theme" id=1]
 
+[sub_resource type="Animation" id=63]
+resource_name = "Close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 10, 8 ), Vector2( 10, -75 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=64]
+resource_name = "Open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 10, -75 ), Vector2( 10, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=65]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=66]
+resource_name = "Close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 32, 8 ), Vector2( 32, -75 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "Open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 32, -75 ), Vector2( 32, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=68]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 32, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=69]
+resource_name = "Close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 32, 8 ), Vector2( 32, -100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "Open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 0.25, 0.25 ),
+"update": 0,
+"values": [ Vector2( 32, -100 ), Vector2( 32, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=71]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 32, 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 256, 96 ) ]
+}
+
+[sub_resource type="StyleBoxTexture" id=62]
+texture = ExtResource( 26 )
+region_rect = Rect2( 0, 0, 9, 9 )
+margin_left = 4.0
+margin_right = 4.0
+margin_top = 4.0
+margin_bottom = 4.0
+
 [sub_resource type="Animation" id=16]
 length = 0.001
 tracks/0/type = "value"
@@ -273,7 +546,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ClipBox/Dialogue:visible")
+tracks/2/path = NodePath("ClipBox/HBoxContainer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -281,11 +554,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ClipBox/DippinDots:visible")
+tracks/3/path = NodePath("Cursor_Down:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -293,19 +566,7 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Cursor_Down:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ true ]
 }
 
@@ -338,7 +599,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("ClipBox/Dialogue:visible")
+tracks/2/path = NodePath("ClipBox/HBoxContainer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -350,24 +611,12 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("ClipBox/DippinDots:visible")
+tracks/3/path = NodePath("Cursor_Down:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Cursor_Down:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -2994,7 +3243,7 @@ tracks/9/keys = {
 "values": [ -18.0, -18.0, 0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ActionMenuBox/ActionIcons/DefendIcon:margin_top")
+tracks/10/path = NodePath("ActionMenuBox/ActionIcons/ItemsIcon:margin_top")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -3006,7 +3255,7 @@ tracks/10/keys = {
 "values": [ -18.0, -18.0, 0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("ActionMenuBox/ActionIcons/ItemsIcon:margin_top")
+tracks/11/path = NodePath("ActionMenuBox/ActionIcons/DefendIcon:margin_top")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -3112,7 +3361,9 @@ anims/darken = SubResource( 21 )
 anims/smash = SubResource( 55 )
 anims/undarken = SubResource( 22 )
 
-[node name="Enemies" type="Control" parent="."]
+[node name="Enemies" type="YSort" parent="."]
+
+[node name="Enemie" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -33.0
@@ -3128,16 +3379,18 @@ __meta__ = {
 }
 
 [node name="top" type="ColorRect" parent="."]
+margin_left = -64.0
 margin_top = -162.0
-margin_right = 448.0
+margin_right = 384.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 0, 180 )
 rect_pivot_offset = Vector2( 224, 180 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="bottom" type="ColorRect" parent="."]
+margin_left = -64.0
 margin_top = 148.0
-margin_right = 448.0
+margin_right = 384.0
 margin_bottom = 328.0
 grow_vertical = 2
 rect_pivot_offset = Vector2( 224, 0 )
@@ -3207,8 +3460,8 @@ margin_left = 6.0
 margin_top = 7.0
 margin_right = 120.0
 margin_bottom = 21.0
-custom_fonts/font = ExtResource( 10 )
-text = "Bash"
+custom_fonts/font = ExtResource( 25 )
+text = "BATTLE_ACTION_BASH"
 align = 1
 valign = 1
 __meta__ = {
@@ -3228,14 +3481,13 @@ __meta__ = {
 nameBox = NodePath("../InfoBox1")
 
 [node name="Arrow" parent="ActionMenuBox" instance=ExtResource( 5 )]
-position = Vector2( 17, -10 )
+position = Vector2( 17, 8 )
 frames = null
 menu_parent_path = NodePath("../ActionIcons")
 cursor_offset = Vector2( 12, 2 )
 cursor_size = Vector2( 24, 12 )
 consume_input_events = true
-skip_empty_labels = true
-skip_hidden_items = true
+loop_around = true
 move_sfx = true
 select_sfx = true
 reset_on_show = false
@@ -3275,19 +3527,19 @@ margin_bottom = 16.0
 theme = SubResource( 1 )
 texture = ExtResource( 20 )
 
-[node name="DefendIcon" type="TextureRect" parent="ActionMenuBox/ActionIcons"]
+[node name="ItemsIcon" type="TextureRect" parent="ActionMenuBox/ActionIcons"]
 margin_left = 96.0
 margin_right = 112.0
 margin_bottom = 16.0
 theme = SubResource( 1 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 
-[node name="ItemsIcon" type="TextureRect" parent="ActionMenuBox/ActionIcons"]
+[node name="DefendIcon" type="TextureRect" parent="ActionMenuBox/ActionIcons"]
 margin_left = 128.0
 margin_right = 144.0
 margin_bottom = 16.0
 theme = SubResource( 1 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 
 [node name="RunIcon" type="TextureRect" parent="ActionMenuBox/ActionIcons"]
 margin_left = 160.0
@@ -3301,7 +3553,7 @@ visible = false
 material = ExtResource( 30 )
 margin_left = 10.0
 margin_top = 9.0
-margin_right = 92.0
+margin_right = 95.0
 margin_bottom = 75.0
 rect_pivot_offset = Vector2( 52, 24 )
 texture = ExtResource( 3 )
@@ -3310,52 +3562,67 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 22 )
-infoBox = NodePath("../InfoBox3")
+info_box = NodePath("../InfoBox3")
 
 [node name="VBox" type="VBoxContainer" parent="PSIBox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 10.0
-margin_right = -20.0
-margin_bottom = -12.0
+margin_left = 15.0
+margin_top = 8.0
+margin_right = 72.0
+margin_bottom = -9.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+alignment = 1
 
 [node name="Label1" parent="PSIBox/VBox" instance=ExtResource( 31 )]
-margin_right = 42.0
-text = "Offense"
+margin_top = 2.0
+margin_right = 142.0
+margin_bottom = 14.0
+size_flags_vertical = 6
+text = "BATTLE_PSIMENU_OFFENSE"
 
 [node name="Label2" parent="PSIBox/VBox" instance=ExtResource( 31 )]
-margin_top = 16.0
-margin_right = 42.0
-margin_bottom = 28.0
-text = "Recovery"
+margin_top = 18.0
+margin_right = 142.0
+margin_bottom = 30.0
+size_flags_vertical = 6
+text = "BATTLE_PSIMENU_RECOVERY"
 
 [node name="Label3" parent="PSIBox/VBox" instance=ExtResource( 31 )]
-margin_top = 32.0
-margin_right = 42.0
-margin_bottom = 44.0
-text = "Assist"
+margin_top = 34.0
+margin_right = 142.0
+margin_bottom = 46.0
+size_flags_vertical = 6
+text = "BATTLE_PSIMENU_ASSIST"
 
 [node name="Arrow" parent="PSIBox" instance=ExtResource( 5 )]
 position = Vector2( 13, 15 )
 menu_parent_path = NodePath("../VBox")
 consume_input_events = true
+loop_around = true
+skip_hidden_items = true
 move_sfx = true
 select_sfx = true
 reset_on_show = false
 
 [node name="PSISelect" parent="PSIBox" instance=ExtResource( 24 )]
-margin_left = 84.0
+margin_left = 87.0
 margin_right = 300.0
 
 [node name="Tween" type="Tween" parent="PSIBox"]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PSIBox"]
+anims/Close = SubResource( 63 )
+anims/Open = SubResource( 64 )
+anims/RESET = SubResource( 65 )
+
 [node name="SkillsBox" type="NinePatchRect" parent="."]
 visible = false
 material = ExtResource( 30 )
-margin_left = 20.0
+margin_left = 32.0
 margin_top = 9.0
-margin_right = 300.0
+margin_right = 288.0
 margin_bottom = 75.0
 rect_pivot_offset = Vector2( 52, 24 )
 texture = ExtResource( 3 )
@@ -3364,7 +3631,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 4 )
-infoBox = NodePath("../InfoBox2")
+infoBox = NodePath("../InfoBox3")
 
 [node name="GridContainer" type="GridContainer" parent="SkillsBox"]
 anchor_right = 1.0
@@ -3377,8 +3644,9 @@ custom_constants/hseparation = 12
 columns = 2
 
 [node name="Label1" type="Label" parent="SkillsBox/GridContainer"]
-margin_right = 114.0
+margin_right = 100.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 2"
@@ -3387,9 +3655,10 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="SkillsBox/GridContainer"]
-margin_left = 126.0
-margin_right = 240.0
+margin_left = 114.0
+margin_right = 214.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 3"
@@ -3399,8 +3668,9 @@ __meta__ = {
 
 [node name="Label3" type="Label" parent="SkillsBox/GridContainer"]
 margin_top = 16.0
-margin_right = 114.0
+margin_right = 100.0
 margin_bottom = 28.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 4"
@@ -3409,10 +3679,11 @@ __meta__ = {
 }
 
 [node name="Label4" type="Label" parent="SkillsBox/GridContainer"]
-margin_left = 126.0
+margin_left = 114.0
 margin_top = 16.0
-margin_right = 240.0
+margin_right = 214.0
 margin_bottom = 28.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 5"
@@ -3422,8 +3693,9 @@ __meta__ = {
 
 [node name="Label5" type="Label" parent="SkillsBox/GridContainer"]
 margin_top = 32.0
-margin_right = 114.0
+margin_right = 100.0
 margin_bottom = 44.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 6"
@@ -3432,10 +3704,11 @@ __meta__ = {
 }
 
 [node name="Label6" type="Label" parent="SkillsBox/GridContainer"]
-margin_left = 126.0
+margin_left = 114.0
 margin_top = 32.0
-margin_right = 240.0
+margin_right = 214.0
 margin_bottom = 44.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 10 )
 text = "Skill 6"
@@ -3447,28 +3720,33 @@ __meta__ = {
 position = Vector2( 12, 12 )
 menu_parent_path = NodePath("../GridContainer")
 consume_input_events = true
+skip_empty_labels = true
 move_sfx = true
 select_sfx = true
+reset_on_show = false
 
-[node name="UpArrow" parent="SkillsBox" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 198.276, 8.82161 )
-rotation = 4.71239
+[node name="Scrollbar" parent="SkillsBox" instance=ExtResource( 75 )]
+margin_left = 240.0
+margin_top = 6.0
+margin_right = 248.0
+margin_bottom = 59.0
 
-[node name="DownArrow" parent="SkillsBox" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 198.25, 16.8216 )
-rotation = 1.5708
+[node name="Tween" type="Tween" parent="SkillsBox"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkillsBox"]
+anims/Close = SubResource( 66 )
+anims/Open = SubResource( 67 )
+anims/RESET = SubResource( 68 )
 
 [node name="ItemsBox" type="NinePatchRect" parent="."]
 visible = false
 material = ExtResource( 30 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 48.0
-margin_top = 6.0
-margin_right = -48.0
-margin_bottom = -78.0
+margin_left = 32.0
+margin_top = 9.0
+margin_right = -32.0
+margin_bottom = -75.0
 rect_pivot_offset = Vector2( 52, 24 )
 texture = ExtResource( 3 )
 patch_margin_left = 8
@@ -3476,7 +3754,10 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 23 )
-infoBox = NodePath("../InfoBox2")
+__meta__ = {
+"_edit_lock_": true
+}
+infoBox = NodePath("../InfoBox3")
 
 [node name="GridContainer" type="GridContainer" parent="ItemsBox"]
 anchor_right = 1.0
@@ -3484,7 +3765,7 @@ anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 10.0
 margin_right = -20.0
-margin_bottom = -12.0
+margin_bottom = -10.0
 rect_clip_content = true
 custom_constants/hseparation = 12
 columns = 2
@@ -3493,93 +3774,96 @@ __meta__ = {
 }
 
 [node name="Item0" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_right = 82.0
-rect_min_size = Vector2( 82, 12 )
+margin_right = 100.0
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item1" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_left = 94.0
-margin_right = 176.0
-rect_min_size = Vector2( 82, 12 )
+margin_left = 112.0
+margin_right = 212.0
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item2" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
 margin_top = 16.0
-margin_right = 82.0
+margin_right = 100.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item3" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_left = 94.0
+margin_left = 112.0
 margin_top = 16.0
-margin_right = 176.0
+margin_right = 212.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item4" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
 margin_top = 32.0
-margin_right = 82.0
+margin_right = 100.0
 margin_bottom = 44.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item5" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_left = 94.0
+margin_left = 112.0
 margin_top = 32.0
-margin_right = 176.0
+margin_right = 212.0
 margin_bottom = 44.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item6" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
 margin_top = 48.0
-margin_right = 82.0
+margin_right = 100.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item7" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_left = 94.0
+margin_left = 112.0
 margin_top = 48.0
-margin_right = 176.0
+margin_right = 212.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item8" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
 margin_top = 64.0
-margin_right = 82.0
+margin_right = 100.0
 margin_bottom = 76.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Item9" parent="ItemsBox/GridContainer" instance=ExtResource( 31 )]
-margin_left = 94.0
+margin_left = 112.0
 margin_top = 64.0
-margin_right = 176.0
+margin_right = 212.0
 margin_bottom = 76.0
-rect_min_size = Vector2( 82, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Arrow" parent="ItemsBox" instance=ExtResource( 5 )]
-position = Vector2( 8, 12 )
+position = Vector2( 16, 15 )
 menu_parent_path = NodePath("../GridContainer")
 consume_input_events = true
 skip_empty_labels = true
 move_sfx = true
 select_sfx = true
 
-[node name="UpArrow" parent="ItemsBox" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 212, 8.822 )
-rotation = 4.71239
+[node name="Scrollbar" parent="ItemsBox" instance=ExtResource( 75 )]
+margin_left = 240.0
+margin_top = 6.0
+margin_right = 248.0
+margin_bottom = 89.0
 
-[node name="DownArrow" parent="ItemsBox" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 212, 85 )
-rotation = 1.5708
+[node name="Tween" type="Tween" parent="ItemsBox"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemsBox"]
+anims/Close = SubResource( 69 )
+anims/Open = SubResource( 70 )
+anims/RESET = SubResource( 71 )
 
 [node name="InfoBox2" type="NinePatchRect" parent="."]
 visible = false
@@ -3587,68 +3871,120 @@ material = ExtResource( 30 )
 margin_left = 40.0
 margin_top = 132.0
 margin_right = 280.0
-margin_bottom = 174.0
+margin_bottom = 180.0
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+script = ExtResource( 77 )
+desc_label = NodePath("MarginContainer/Label")
+tween = NodePath("Tween")
 
-[node name="Label" type="Label" parent="InfoBox2"]
-margin_left = 16.0
+[node name="MarginContainer" type="MarginContainer" parent="InfoBox2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
 margin_top = 8.0
-margin_right = 224.0
-margin_bottom = 37.0
-custom_fonts/font = ExtResource( 10 )
-text = "Your
-Mother"
-autowrap = true
+margin_right = -12.0
+margin_bottom = -9.0
+size_flags_vertical = 4
+custom_constants/margin_top = 2
+
+[node name="Label" type="RichTextLabel" parent="InfoBox2/MarginContainer"]
+margin_top = 9.0
+margin_right = 216.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_clip_content = false
+size_flags_vertical = 4
+custom_constants/line_separation = 3
+custom_fonts/normal_font = ExtResource( 25 )
+bbcode_enabled = true
+bbcode_text = "Your Mother"
+text = "Your Mother"
+fit_content_height = true
+scroll_active = false
+
+[node name="Tween" type="Tween" parent="InfoBox2"]
 
 [node name="InfoBox3" type="NinePatchRect" parent="."]
 visible = false
 material = ExtResource( 30 )
-margin_left = 18.0
+margin_left = 32.0
 margin_top = 132.0
-margin_right = 302.0
-margin_bottom = 174.0
+margin_right = 288.0
+margin_bottom = 180.0
 texture = ExtResource( 3 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
+script = ExtResource( 77 )
+desc_label = NodePath("MarginContainer/Label")
+tween = NodePath("Tween")
 
-[node name="Label" type="Label" parent="InfoBox3"]
-margin_left = 8.0
+[node name="MarginContainer" type="MarginContainer" parent="InfoBox3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
 margin_top = 8.0
-margin_right = 270.0
-margin_bottom = 37.0
-custom_fonts/font = ExtResource( 10 )
+margin_right = -12.0
+margin_bottom = -9.0
+size_flags_vertical = 4
+custom_constants/margin_top = 2
+
+[node name="Label" type="RichTextLabel" parent="InfoBox3/MarginContainer"]
+margin_top = 2.0
+margin_right = 232.0
+margin_bottom = 32.0
+grow_vertical = 2
+size_flags_vertical = 4
+custom_constants/line_separation = 3
+custom_fonts/normal_font = ExtResource( 25 )
+bbcode_enabled = true
+bbcode_text = "Your
+Mother"
 text = "Your
 Mother"
-autowrap = true
+fit_content_height = true
+scroll_active = false
 
-[node name="PPCost" type="NinePatchRect" parent="InfoBox3"]
+[node name="PPCost" type="PanelContainer" parent="InfoBox3"]
 material = ExtResource( 30 )
-margin_left = 234.0
+margin_left = 209.0
 margin_top = -10.0
-margin_right = 274.0
+margin_right = 248.0
 margin_bottom = 8.0
-texture = ExtResource( 26 )
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
+grow_horizontal = 0
+custom_styles/panel = SubResource( 62 )
 
-[node name="ButtonText" parent="InfoBox3/PPCost" instance=ExtResource( 76 )]
-modulate = Color( 1, 1, 1, 1 )
+[node name="MarginContainer" type="MarginContainer" parent="InfoBox3/PPCost"]
 margin_left = 4.0
-margin_top = 2.0
-margin_right = 36.0
-margin_bottom = 16.0
+margin_top = 4.0
+margin_right = 35.0
+margin_bottom = 14.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+custom_constants/margin_top = -2
+custom_constants/margin_left = 1
+
+[node name="ButtonText" parent="InfoBox3/PPCost/MarginContainer" instance=ExtResource( 76 )]
+modulate = Color( 1, 1, 1, 1 )
+margin_left = 1.0
+margin_top = -2.0
+margin_right = 31.0
+margin_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "CTRL"
 align = 1
-key = "ui_ctrl"
+key = "ui_scope"
 hintColor = false
+
+[node name="Tween" type="Tween" parent="InfoBox3"]
 
 [node name="Dialoguebox" type="NinePatchRect" parent="."]
 visible = false
@@ -3668,7 +4004,7 @@ script = ExtResource( 11 )
 position = Vector2( 116, 44 )
 
 [node name="Cursor_Down" parent="Dialoguebox" instance=ExtResource( 5 )]
-position = Vector2( 284.21, 30.306 )
+position = Vector2( 285.21, 39.306 )
 rotation = 1.5708
 
 [node name="Options" type="HBoxContainer" parent="Dialoguebox"]
@@ -3678,30 +4014,34 @@ margin_right = 208.0
 margin_bottom = 54.0
 alignment = 1
 __meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
+"_edit_group_": true
 }
 
 [node name="ClipBox" type="Control" parent="Dialoguebox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
+margin_left = 9.0
 margin_top = 5.0
-margin_right = -5.0
+margin_right = -9.0
 margin_bottom = -6.0
 rect_clip_content = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
-margin_left = 2.0
-margin_top = -13.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialoguebox/ClipBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -12.0
+margin_bottom = -1.0
+custom_constants/separation = 0
+
+[node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox/HBoxContainer"]
+visible = false
 margin_right = 10.0
-margin_bottom = 33.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 10, 45 )
 custom_constants/line_separation = 3
 custom_fonts/mono_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
+bbcode_enabled = true
 meta_underlined = false
 text = "
 @
@@ -3709,14 +4049,14 @@ text = "
 scroll_active = false
 scroll_following = true
 
-[node name="Dialogue" type="RichTextLabel" parent="Dialoguebox/ClipBox"]
-margin_left = 10.0
-margin_top = -13.0
-margin_right = 205.0
-margin_bottom = 33.0
+[node name="Dialogue" type="RichTextLabel" parent="Dialoguebox/ClipBox/HBoxContainer"]
+margin_right = 282.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 263, 45 )
+size_flags_horizontal = 3
 custom_constants/line_separation = 3
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+custom_fonts/mono_font = ExtResource( 25 )
+custom_fonts/normal_font = ExtResource( 25 )
 meta_underlined = false
 text = "
 text
@@ -3731,8 +4071,10 @@ texture = ExtResource( 27 )
 vframes = 6
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dialoguebox"]
+bus = "SFX"
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="Dialoguebox"]
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dialoguebox"]
 anims/RESET = SubResource( 16 )
@@ -3746,10 +4088,10 @@ margin_right = -320.0
 margin_bottom = -180.0
 
 [node name="Sprite" type="Sprite" parent="ScreenEffect"]
-texture = ExtResource( 67 )
+texture = ExtResource( 55 )
 centered = false
 hframes = 4
-vframes = 6
+vframes = 4
 frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenEffect"]
@@ -3785,7 +4127,7 @@ texture = ExtResource( 68 )
 centered = false
 hframes = 5
 vframes = 4
-frame = 1
+frame = 18
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PreHitEffect"]
 anims/healing_alpha = SubResource( 51 )
@@ -3833,7 +4175,10 @@ anims/transitionOut = SubResource( 14 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 65 )
 volume_db = -0.3
+bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="BattleCutscene" parent="." instance=ExtResource( 72 )]
 
 [connection signal="moved" from="ItemsBox/Arrow" to="ItemsBox" method="_on_Arrow_moved"]

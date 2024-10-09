@@ -17,6 +17,10 @@ func _ready():
 	if auto_start:
 		timer.start()
 
+func delayed_start(time = 5):
+	yield(get_tree().create_timer(time), "timeout")
+	start_shake()
+
 func start_shake():
 	if timer.time_left == 0:
 		_on_Timer_timeout()
@@ -25,9 +29,12 @@ func start_shake():
 func stop_shake():
 	timer.stop()
 
+func vibrate():
+	global.currentCamera.shake_camera(magnitude, length, direction)
+	audioPlayer.play()
+	global.start_joy_vibration(0, 0.6, 0.8, length)
+	timer.wait_time = rand_range(wait_time - wait_margin, wait_time + wait_margin)
+
 func _on_Timer_timeout():
 	if !global.queuedBattle and !global.inBattle and !global.gameover and global.persistPlayer.state != global.persistPlayer.CAMERA:
-		global.currentCamera.shake_camera(magnitude, length, direction)
-		audioPlayer.play()
-		Input.start_joy_vibration(0, 0.6, 0.8, length)
-		timer.wait_time = rand_range(wait_time - wait_margin, wait_time + wait_margin)
+		vibrate()

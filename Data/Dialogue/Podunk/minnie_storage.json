@@ -1,26 +1,30 @@
 {
-	"0": {
-		"name": "Minnie",
-		"text": "What can I do for you?",
-		"sound": "Kid",
-		"options": {
-			"Storage isn't in the demo": "1",
-			"cancel": "3"
-		}
-	},
-	"1": {
-		"name": "Minnie",
-		"text": "Man, the developers should really add that.",
-		"sound": "Kid"
-	},
-	"2": {
-		"name": "Minnie",
-		"text": "Man, the developers should really add that.",
-		"sound": "Kid"
-	},
-	"3":{
-		"name": "Minnie",
-		"text": "See you later, and take care!",
-		"sound": "Kid"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_STORAGE_0",
+        "sound": "Kid",
+        "options": {
+            "DIALOGUE_PODUNK_MINNIE_STORAGE_0-OPT_0": "1",
+            "DIALOGUE_PODUNK_MINNIE_STORAGE_0-OPT_1": "3",
+            "cancel": "3"
+        }
+    },
+    "1": {
+        "text": "",
+        "cleardialog": true,
+        "caninput": false,
+        "showbox": false,
+        "openstorage": true,
+        "goto": "3"
+    },
+    "2": {
+        "name": "DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_STORAGE_2",
+        "sound": "Kid"
+    },
+    "3": {
+        "name": "DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie",
+        "text": "DIALOGUE_PODUNK_MINNIE_STORAGE_3",
+        "sound": "Kid"
+    }
 }

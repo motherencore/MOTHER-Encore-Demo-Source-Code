@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Graphics/UI/Title/Title Screen background.png" type="Texture" id=2]
@@ -15,7 +15,7 @@
 [ext_resource path="res://Graphics/UI/Title/TS_R.png" type="Texture" id=13]
 [ext_resource path="res://Graphics/UI/Title/TS_H.png" type="Texture" id=14]
 [ext_resource path="res://Graphics/UI/Title/TS_Encore.png" type="Texture" id=15]
-[ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Graphics/UI/Title/TitleSettings.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/UI/Title/TitleLoad.png" type="Texture" id=17]
 [ext_resource path="res://Graphics/UI/Title/TitleNewGame.png" type="Texture" id=18]
 [ext_resource path="res://Graphics/UI/Title/TS_Purple_M.png" type="Texture" id=19]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Graphics/UI/Title/TS_Purple_T.png" type="Texture" id=27]
 [ext_resource path="res://Graphics/UI/Title/TS_Purple_E.png" type="Texture" id=28]
 [ext_resource path="res://Graphics/UI/Title/TS_Blue_M.png" type="Texture" id=29]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=30]
 
 [sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
@@ -63,6 +64,14 @@ shader_param/flash_modifier = 0.0
 shader_param/glow_modifier = 0.0
 
 [sub_resource type="ShaderMaterial" id=37]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/glow_color = Color( 1, 1, 1, 1 )
+shader_param/flash_modifier = 0.0
+shader_param/glow_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id=39]
 resource_local_to_scene = true
 shader = SubResource( 5 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
@@ -1573,6 +1582,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("Aboveground/Base/Label:align")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
 
 [sub_resource type="Animation" id=31]
 length = 3.3
@@ -1610,7 +1631,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 83, -14 ) ]
+"values": [ Vector2( 0, -14 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Aboveground/Base/credit:position")
@@ -1634,6 +1655,18 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
+"values": [ 2 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Aboveground/Base/Label:align")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ 2 ]
 }
 
@@ -1760,6 +1793,18 @@ tracks/9/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Aboveground/Base/Label:align")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [node name="Title screen" type="Control"]
 pause_mode = 2
@@ -1772,7 +1817,14 @@ __meta__ = {
 
 [node name="Objects" type="YSort" parent="."]
 
-[node name="Door2" parent="Objects" instance=ExtResource( 6 )]
+[node name="DoorToDebug" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 315, 6 )
+dir = Vector2( 0, 1 )
+transit_in_anim = "Circle"
+targetScene = "Testing/Debug world"
+set_respawn = true
+
+[node name="DoorToNewGame" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 344, 5 )
 targetX = 160
 targetY = 97
@@ -1781,13 +1833,22 @@ transit_in_anim = "Circle"
 targetScene = "Naming screen"
 unpause_player = false
 
-[node name="Door3" parent="Objects" instance=ExtResource( 6 )]
+[node name="DoorToSaveSelect" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 344, 5 )
 targetX = 160
 targetY = 97
 dir = Vector2( 0, 1 )
 transit_in_anim = "Circle"
 targetScene = "SaveSelect"
+unpause_player = false
+
+[node name="DoorToSettings" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( 344, 5 )
+targetX = 160
+targetY = 97
+dir = Vector2( 0, 1 )
+transit_in_anim = "Circle"
+targetScene = "Settings"
 unpause_player = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1799,7 +1860,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="BackEarth" type="Sprite" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-self_modulate = Color( 0.843709, 0.617246, 1, 1 )
+self_modulate = Color( 0.957787, 0.896621, 1, 1 )
 position = Vector2( 160, 90 )
 texture = ExtResource( 2 )
 
@@ -1809,24 +1870,36 @@ margin_top = 36.0
 margin_right = 280.0
 margin_bottom = 108.0
 
-[node name="Version" type="Label" parent="CanvasLayer/Title"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Title"]
 margin_left = -34.0
 margin_top = -30.0
-margin_right = 19.0
-margin_bottom = -16.0
+margin_right = 86.0
+margin_bottom = -18.0
+
+[node name="Version" type="Label" parent="CanvasLayer/Title/HBoxContainer"]
+margin_right = 55.0
+margin_bottom = 12.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 7 )
-text = "Demo"
+text = "TITLE_DEMO"
+
+[node name="VersionNumber" type="Label" parent="CanvasLayer/Title/HBoxContainer"]
+margin_left = 59.0
+margin_right = 92.0
+margin_bottom = 12.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "0.3.1.0"
 
 [node name="Version2" type="Label" parent="CanvasLayer/Title"]
-margin_left = 201.0
+margin_left = 170.0
 margin_top = -30.0
 margin_right = 275.0
 margin_bottom = -3.0
+grow_horizontal = 0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 7 )
-text = "F4 - Fullscreen
-F5 - Window Size"
+custom_fonts/font = ExtResource( 30 )
+text = "TITLE_FNKEYS"
 align = 2
 
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer/Title"]
@@ -1835,6 +1908,7 @@ margin_left = -40.0
 margin_top = 79.0
 margin_right = 280.0
 margin_bottom = 139.0
+custom_constants/separation = 0
 alignment = 1
 __meta__ = {
 "_edit_group_": true
@@ -1842,47 +1916,47 @@ __meta__ = {
 
 [node name="NewGame" type="TextureRect" parent="CanvasLayer/Title/Menu"]
 material = SubResource( 34 )
-margin_top = 14.0
+margin_top = 6.0
 margin_right = 320.0
-margin_bottom = 22.0
+margin_bottom = 18.0
 texture = ExtResource( 18 )
 stretch_mode = 4
 
 [node name="Load" type="TextureRect" parent="CanvasLayer/Title/Menu"]
 material = SubResource( 35 )
-margin_top = 26.0
+margin_top = 18.0
 margin_right = 320.0
-margin_bottom = 34.0
+margin_bottom = 30.0
 texture = ExtResource( 17 )
 stretch_mode = 4
 
 [node name="Options" type="TextureRect" parent="CanvasLayer/Title/Menu"]
 material = SubResource( 37 )
-margin_top = 38.0
+margin_top = 30.0
 margin_right = 320.0
-margin_bottom = 46.0
+margin_bottom = 42.0
+texture = ExtResource( 16 )
+stretch_mode = 4
+
+[node name="Exit" type="TextureRect" parent="CanvasLayer/Title/Menu"]
+material = SubResource( 39 )
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 54.0
 texture = ExtResource( 20 )
 stretch_mode = 4
 
-[node name="PressButton" type="HBoxContainer" parent="CanvasLayer/Title"]
+[node name="PressButton" type="RichTextLabel" parent="CanvasLayer/Title"]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = -40.0
-margin_top = 94.0
+margin_top = 96.0
 margin_right = 280.0
-margin_bottom = 105.0
-alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/Title/PressButton"]
-margin_left = 134.0
-margin_right = 173.0
-margin_bottom = 11.0
-custom_fonts/font = ExtResource( 1 )
-text = "Press"
-
-[node name="Button" parent="CanvasLayer/Title/PressButton" instance=ExtResource( 16 )]
-margin_left = 177.0
-margin_right = 185.0
-key = "ui_accept"
+margin_bottom = 107.0
+custom_fonts/mono_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
 
 [node name="M3" type="Sprite" parent="CanvasLayer/Title"]
 position = Vector2( -92, 27 )
@@ -1990,17 +2064,16 @@ color = Color( 0.972549, 0.0627451, 0.439216, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/Aboveground/Base"]
 margin_left = 1.0
 margin_top = -14.0
-margin_right = 121.0
+margin_right = 181.0
 margin_bottom = -2.0
 custom_colors/font_color = Color( 0.298039, 0.443137, 0.886275, 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "Originally Produced by"
 
 [node name="credit" type="Sprite" parent="CanvasLayer/Aboveground/Base"]
-position = Vector2( 37, 15 )
+position = Vector2( 33, 15 )
 texture = ExtResource( 3 )
 vframes = 3
-frame = 1
 
 [node name="Abovefade" type="ColorRect" parent="CanvasLayer/Aboveground"]
 margin_right = 320.0
@@ -2017,6 +2090,7 @@ anims/nintendo = SubResource( 32 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+bus = "Music"
 
 [node name="Tween" type="Tween" parent="."]
 

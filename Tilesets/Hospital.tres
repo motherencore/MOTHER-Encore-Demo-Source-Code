@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=26 format=2]
+[gd_resource type="TileSet" load_steps=27 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/TilHospital.png" type="Texture" id=1]
+[ext_resource path="res://Translations/TranslatedTiles/Shared_HospitalSafety.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -594,3 +595,17 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 4, 32, 4 )
 174/shape_one_way_margin = 0.0
 174/shapes = [  ]
 174/z_index = 0
+175/name = "SafetySignTRANSLATED"
+175/texture = ExtResource( 2 )
+175/tex_offset = Vector2( 0, 4 )
+175/modulate = Color( 1, 1, 1, 1 )
+175/region = Rect2( 0, 0, 48, 25 )
+175/tile_mode = 0
+175/occluder_offset = Vector2( 0, 0 )
+175/navigation_offset = Vector2( 0, 0 )
+175/shape_offset = Vector2( 0, 0 )
+175/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+175/shape_one_way = false
+175/shape_one_way_margin = 0.0
+175/shapes = [  ]
+175/z_index = 0

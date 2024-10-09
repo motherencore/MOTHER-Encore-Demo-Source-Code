@@ -1,50 +1,36 @@
 {
-	"name": {
-		"english": "Milk",
-		"french": "Lait"
-	},
-	"article" : {
-		"english": "some",
-		"french": "du"
-	},
-	"keyitem": false,
-	"cost": 15,
-	"value": 7,
-	"usable": {
-		"ninten": true,
-		"lloyd": true,
-		"ana": true,
-		"teddy": true,
-		"pippi": true
-	},
-	"action_one": {
-		"name": {
-			"english": "Drink", 
-			"french": "Boire"
-		},
-		"function": "consume",
-		"text": {
-			"english": "User recovered 20 HP!",
-			"french": "User a récupéré 20 PV!"
-		}
-	},
-	"action_two": null,
-	"battle_action": "",
-	"transform": "",
-	"slot": "",
-	"HPrecover": 20,
-	"PPrecover": 0,
-	"boost": {
-		"maxhp": 0, 
-		"maxpp": 0, 
-		"speed": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"iq": 0, 
-		"guts": 0
-	},
-	"description": {
-		"english": "Some fresh cow milk.\nRestores 20 HP.",
-		"french": "Du lait de vache frais.\nRécupère 20 PV."
-	}
+    "name": "MILK",
+    "article": "MILK_ART",
+    "keyitem": false,
+    "cost": 15,
+    "value": 7,
+    "usable": {
+        "ninten": true,
+        "lloyd": true,
+        "ana": true,
+        "teddy": true,
+        "pippi": true
+    },
+    "action_one": {
+        "name": "MILK_ACT1_NAME",
+        "function": "consume",
+        "text": "MILK_ACT1_TEXT"
+    },
+    "action_two": null,
+    "battle_action": "",
+    "transform": "",
+    "slot": "",
+    "HPrecover": 20,
+    "PPrecover": 0,
+    "boost": {
+        "maxhp": 0,
+        "maxpp": 0,
+        "speed": 0,
+        "offense": 0,
+        "defense": 0,
+        "iq": 0,
+        "guts": 0
+    },
+    "description": "MILK_DESC",
+    "short_name": "MILK_SHORT"
 }

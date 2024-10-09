@@ -1,8 +1,14 @@
-[gd_resource type="DynamicFont" load_steps=2 format=2]
+[gd_resource type="DynamicFont" load_steps=5 format=2]
 
-[ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/EBMain_ko.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fonts/EBMain_fw9.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Fonts/EBMain_jaM3.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=4]
 
 [resource]
 extra_spacing_top = -1
 extra_spacing_bottom = -1
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
+fallback/0 = ExtResource( 2 )
+fallback/1 = ExtResource( 3 )
+fallback/2 = ExtResource( 1 )

@@ -1,6 +1,6 @@
 {
-	"0": {
-		"name": "Alligator",
-		"text": "(Honestly, you're the one who provoked me, but I forgive you.)"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_ALLIGATOR_THOUGHTS_1_SPEAKER_Alligator",
+        "text": "DIALOGUE_PODUNK_ALLIGATOR_THOUGHTS_1_0"
+    }
 }

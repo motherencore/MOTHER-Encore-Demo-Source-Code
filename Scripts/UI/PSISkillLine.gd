@@ -5,6 +5,7 @@ var skillName = null
 
 func init(skill):
 	name = skill.name
+	skillName = skill.name
 	$Name.text = skill.name
 	$Name.modulate = Color.darkgray
 	
@@ -25,21 +26,21 @@ func init(skill):
 func addLevel(level: int, selectable: bool = true):
 	match(level):
 		0: #alpha
-			$HBox/Alpha.text = "¢"
+			$HBox/Alpha.text = "α"
 			if selectable:
 				$HBox/Alpha.modulate = Color.white
 				$Name.modulate = Color.white
 		1: #beta
-			$HBox/Beta.text = "\\"
+			$HBox/Beta.text = "β"
 			if selectable:
 				$HBox/Beta.modulate = Color.white
 				$Name.modulate = Color.white
 		2: #gamma (but its actually delta lol)
-			$HBox/Gamma.text = "£"
+			$HBox/Gamma.text = "γ"
 			if selectable:
 				$HBox/Gamma.modulate = Color.white
 		3: #omega
-			$HBox/Omega.text = "€‎"
+			$HBox/Omega.text = "Ω"
 			if selectable:
 				$HBox/Omega.modulate = Color.white
 				$Name.modulate = Color.white

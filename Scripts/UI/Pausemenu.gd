@@ -1,12 +1,17 @@
 extends CanvasLayer
 
 onready var arrow = $menu/Commands/Arrow
+onready var cash_box = $menu/Commands/Bottom/Sign
+onready var animation_player = $AnimationPlayer
+
 onready var talk
 onready var check
 
 var pos = Vector2(0,0)
 var active
 var unpause = true
+
+var cash_scene = preload("res://Nodes/Ui/CashBoxPause.tscn")
 
 var soundEffects = {
 	"menu_open": load("res://Audio/Sound effects/M3/menu_open.wav"),
@@ -19,25 +24,25 @@ var soundEffects = {
 }
 
 func _ready():
+	global.connect("locale_changed", self, "_on_locale_changed")
 	active = true
-	set_text()
-	$menu/Commands/Sign/Amount.text = var2str(globaldata.cash)
-	$AnimationPlayer.play("open")
+	cash_box.get_node("Amount").text = var2str(globaldata.cash)
+	animation_player.play("open")
 	audioManager.play_sfx(soundEffects["menu_open2"], "menu_open")
-	uiManager.blackBars.animaPlayer.play("Open")
-	audioManager.set_audio_player_bus(0, "Filter")
-	yield($AnimationPlayer, "animation_finished")
+	uiManager.toggle_black_bars(true)
+	audioManager.music_muffle(0, 1)
+	yield(animation_player, "animation_finished")
 	arrow.on = true
 
 func _physics_process(delta):
 	if active:
-		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_toggle") or Input.is_action_just_pressed("ui_select"):
+		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_select"):
 			close_menu()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Close" and !active:
 		if unpause:
-			uiManager.close_commands_menu(true)
+			uiManager.close_commands_menu()
 
 
 func create_stats_menu():
@@ -46,20 +51,9 @@ func create_stats_menu():
 	uiManager.stableCanvasLayer.add_child(statsMenu)
 	deactivate()
 
-func set_text():
-	#$Commands/title/Label.text = globaldata.text["stats"]["commands"]
-	#$Commands/Items/Talk.text = globaldata.text["actions"]["talk"]
-	#$Commands/Items/Check.text = globaldata.text["actions"]["check"]
-	#$Commands/Items/Goods.text = globaldata.text["actions"]["goods"]
-	#$Commands/Items/Map.text = globaldata.text["actions"]["map"]
-	#$Commands/Items/PSI.text = globaldata.text["actions"]["psi"]
-	#$Commands/Items/Stats.text = globaldata.text["actions"]["stats"]
-	#$cash/Sign.text = globaldata.text["stats"]["dollarsign"]
-	pass
-
 func deactivate():
 	arrow.on = false
-	audioManager.set_audio_player_bus(0, "More Filter")
+	audioManager.music_muffle(0, 2)
 	audioManager.play_sfx(soundEffects["menu_open"], "menu_open")
 	active = false
 	if uiManager.check_keys(global.currentScene.name) > 0:
@@ -67,34 +61,34 @@ func deactivate():
 
 func activate():
 	arrow.on = true
-	audioManager.set_audio_player_bus(0, "Filter")
+	audioManager.music_muffle(0, 1)
 	audioManager.play_sfx(soundEffects["menu_close"], "menu_close")
 	active = true
 	if uiManager.check_keys(global.currentScene.name) > 0:
 		uiManager.key.open()
 
 func _on_InventoryUI_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_EquipMenuUI_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_StatsMenuUI_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_PSIMenuUI_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_MapScreen_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_OptionsUI_back():
-	audioManager.play_sfx(soundEffects["back"], "cursor")
+	#audioManager.play_sfx(soundEffects["back"], "cursor")
 	activate()
 
 func _on_OptionsUI_closeMenu():
@@ -111,19 +105,33 @@ func _on_Arrow_selected(cursor_index):
 		2: #Equip
 			$EquipMenuUI.Show_equipMenu(global.party[0])
 		3: #Status
-			$StatsMenuUI.Show_stats()
+			$StatsMenuUI.Show_stats(global.party[0])
 		4: #Map
 			$MapScreen.slide_name()
 		5: #Options
 			$OptionsUI.Show_options()
 	
+
+func _on_locale_changed():
+	_reload_cash_box()
+	yield(get_tree(), "idle_frame")
+	arrow.set_cursor_from_index(arrow.cursor_index)
+
+# Dollar sign before or after the value depending on language
+func _reload_cash_box():
+	var cash_box_parent = cash_box.get_parent()
+	cash_box.free()
+	cash_box = cash_scene.instance()
+	cash_box_parent.add_child(cash_box)
+	cash_box.get_node("Amount").text = var2str(globaldata.cash)
+
 func close_menu(deactivate = true, unpausePlayer = true):
 	active = !deactivate
 	unpause = unpausePlayer
-	if $menu.rect_position.y != -80:
+	if $menu.rect_position.y > -40:
 		audioManager.play_sfx(soundEffects["menu_close2"], "menu_close")
-		uiManager.blackBars.animaPlayer.play("Close")
-		$AnimationPlayer.play("Close")
+		uiManager.toggle_black_bars(false)
+		animation_player.play("Close")
 	else:
 		_on_AnimationPlayer_animation_finished("Close")
 

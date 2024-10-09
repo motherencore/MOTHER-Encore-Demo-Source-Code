@@ -1,13 +1,13 @@
 {
-	"0": {
-		"name":"Sandra",
-		"text":"It looks like the dead have risen.",
-		"sound": "Sexy",
-		"goto": "1"
-	},
-	"1": {
-		"name":"Sandra",
-		"text":"Thankfully, we have God to protect us!",
-		"sound": "Sexy"
-	}
+    "0": {
+        "name": "DIALOGUE_PODUNK_SANDRA_SPEAKER_Sandra",
+        "text": "DIALOGUE_PODUNK_SANDRA_0",
+        "sound": "Sexy",
+        "goto": "1"
+    },
+    "1": {
+        "name": "DIALOGUE_PODUNK_SANDRA_SPEAKER_Sandra",
+        "text": "DIALOGUE_PODUNK_SANDRA_1",
+        "sound": "Sexy"
+    }
 }
