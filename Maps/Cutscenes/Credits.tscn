@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 10, 182 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -4629 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("CanvasLayer/TitleLogo")
@@ -83,6 +83,11 @@ content_margin_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+_anim_player = NodePath("AnimationPlayer")
+_door = NodePath("Door")
+_container = NodePath("CanvasLayer/TitleLogo/VBoxContainer")
+_player_container_path = NodePath("CanvasLayer/TitleLogo/VBoxContainer/Player")
+_player_label_path = NodePath("CanvasLayer/TitleLogo/VBoxContainer/Player/Devs")
 
 [node name="Objects" type="YSort" parent="."]
 
@@ -207,7 +212,7 @@ Danionel"
 [node name="OverworldCharacterSprites" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
 margin_top = 297.0
 margin_right = 256.0
-margin_bottom = 504.0
+margin_bottom = 489.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OverworldCharacterSprites"]
 margin_right = 256.0
@@ -219,7 +224,7 @@ text = "CREDITS_ARTISTS_NPC"
 [node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OverworldCharacterSprites"]
 margin_top = 15.0
 margin_right = 256.0
-margin_bottom = 207.0
+margin_bottom = 192.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
 text = "benichi
@@ -232,14 +237,13 @@ Clipbrick
 FlintMother3
 Yahav
 Megadrivesonic
-thatsjuno
 Bndi
 Destroyer120"
 
 [node name="CharacterAnimators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 529.0
+margin_top = 514.0
 margin_right = 256.0
-margin_bottom = 736.0
+margin_bottom = 721.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/CharacterAnimators"]
 margin_right = 256.0
@@ -269,9 +273,9 @@ corblan
 deebits"
 
 [node name="EffectsAnimators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 761.0
+margin_top = 746.0
 margin_right = 256.0
-margin_bottom = 848.0
+margin_bottom = 833.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/EffectsAnimators"]
 margin_right = 256.0
@@ -293,9 +297,9 @@ AveryPizza
 Aqief"
 
 [node name="BattleBackgroundsArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 873.0
+margin_top = 858.0
 margin_right = 256.0
-margin_bottom = 960.0
+margin_bottom = 945.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BattleBackgroundsArtists"]
 margin_right = 256.0
@@ -317,9 +321,9 @@ Clipbrick
 Bassya"
 
 [node name="MapArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 985.0
+margin_top = 970.0
 margin_right = 256.0
-margin_bottom = 1162.0
+margin_bottom = 1132.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/MapArtists"]
 margin_right = 256.0
@@ -331,7 +335,7 @@ text = "CREDITS_DESIGN_MAPS"
 [node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/MapArtists"]
 margin_top = 15.0
 margin_right = 256.0
-margin_bottom = 177.0
+margin_bottom = 162.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
 text = "Sam the Salmon
@@ -342,14 +346,13 @@ Clipbrick
 Castor28
 luff
 Qirlfriend
-meely.px
 NAN4
 Ror"
 
 [node name="IntroCinematic" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1187.0
+margin_top = 1157.0
 margin_right = 256.0
-margin_bottom = 1289.0
+margin_bottom = 1259.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/IntroCinematic"]
 margin_right = 256.0
@@ -372,9 +375,9 @@ Benichi
 Birb"
 
 [node name="ConceptArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1314.0
+margin_top = 1284.0
 margin_right = 256.0
-margin_bottom = 1401.0
+margin_bottom = 1371.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ConceptArtists"]
 margin_right = 256.0
@@ -396,9 +399,9 @@ Nicolás Romero
 Scan"
 
 [node name="PromotionalArtists" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1426.0
+margin_top = 1396.0
 margin_right = 256.0
-margin_bottom = 1483.0
+margin_bottom = 1468.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/PromotionalArtists"]
 margin_right = 256.0
@@ -410,17 +413,18 @@ text = "CREDITS_ARTISTS_PROMO"
 [node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/PromotionalArtists"]
 margin_top = 15.0
 margin_right = 256.0
-margin_bottom = 57.0
+margin_bottom = 72.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
 text = "Nicolás Romero
 Retro64
-Clipbrick"
+Clipbrick
+Jaccarias"
 
 [node name="LogoDesign" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1508.0
+margin_top = 1493.0
 margin_right = 256.0
-margin_bottom = 1535.0
+margin_bottom = 1520.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/LogoDesign"]
 margin_right = 256.0
@@ -438,9 +442,9 @@ custom_styles/normal = SubResource( 3 )
 text = "Orange is Borange"
 
 [node name="Writers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1560.0
+margin_top = 1545.0
 margin_right = 256.0
-margin_bottom = 1602.0
+margin_bottom = 1587.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Writers"]
 margin_right = 256.0
@@ -459,9 +463,9 @@ text = "Scan
 Pkdotts"
 
 [node name="SoundDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1627.0
+margin_top = 1612.0
 margin_right = 256.0
-margin_bottom = 1684.0
+margin_bottom = 1669.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SoundDesigners"]
 margin_right = 256.0
@@ -481,9 +485,9 @@ McThrillington
 irikachana"
 
 [node name="Singers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1709.0
+margin_top = 1694.0
 margin_right = 256.0
-margin_bottom = 1751.0
+margin_bottom = 1736.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Singers"]
 margin_right = 256.0
@@ -502,9 +506,9 @@ text = "BismuthBloom
 CopperTheJackal"
 
 [node name="VoiceActors" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1776.0
+margin_top = 1761.0
 margin_right = 256.0
-margin_bottom = 1803.0
+margin_bottom = 1788.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VoiceActors"]
 margin_right = 256.0
@@ -522,7 +526,7 @@ custom_styles/normal = SubResource( 3 )
 text = "Retro64"
 
 [node name="BugTesters" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 1828.0
+margin_top = 1813.0
 margin_right = 256.0
 margin_bottom = 2050.0
 
@@ -536,7 +540,7 @@ text = "CREDITS_TESTERS_BUGS"
 [node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/BugTesters"]
 margin_top = 15.0
 margin_right = 256.0
-margin_bottom = 222.0
+margin_bottom = 237.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
 text = "Vicente
@@ -550,9 +554,10 @@ Scan
 Okano
 Xylo
 Chiipan7
-Olavo R.
+Olavo “olavored” Reche
 Danionel
-JumpmanFR"
+JumpmanFR
+Artem “Inqurity” N."
 
 [node name="TranslationManager" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
 margin_top = 2075.0
@@ -729,7 +734,7 @@ margin_right = 256.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
-text = "Olavo R.
+text = "Olavo “olavored” Reche
 Foffano"
 
 [node name="GermanTranslator" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
@@ -864,7 +869,7 @@ Benz"
 [node name="RussianTranslator" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
 margin_top = 2839.0
 margin_right = 256.0
-margin_bottom = 2898.0
+margin_bottom = 2896.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator"]
 margin_right = 256.0
@@ -873,68 +878,41 @@ custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "CREDITS_TRANSLATOR_RU"
 
-[node name="TeamContainer" type="MarginContainer" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator"]
-margin_top = 15.0
-margin_right = 180.0
-margin_bottom = 28.0
-size_flags_horizontal = 0
-custom_constants/margin_bottom = 1
-
-[node name="UnderlineContainer" type="Control" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer"]
-margin_top = 12.0
-margin_right = 180.0
-margin_bottom = 12.0
-size_flags_vertical = 8
-
-[node name="Underline" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer/UnderlineContainer"]
-anchor_right = 1.0
-margin_left = -1.0
-margin_top = -2.0
-rect_min_size = Vector2( 0, 3 )
-size_flags_vertical = 8
-color = Color( 0, 0, 0, 1 )
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer/UnderlineContainer/Underline"]
-anchor_right = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = 2.0
-
-[node name="Team" type="HBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer"]
-margin_right = 180.0
-margin_bottom = 12.0
-custom_constants/separation = 0
-
-[node name="Label" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer/Team"]
-margin_right = 143.0
-margin_bottom = 12.0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 5 )
-custom_styles/normal = SubResource( 3 )
-text = "CREDITS_TRANSLATORS_TEAM"
-
-[node name="Name" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator/TeamContainer/Team"]
-margin_left = 143.0
-margin_right = 180.0
-margin_bottom = 12.0
-custom_fonts/font = ExtResource( 5 )
-custom_styles/normal = SubResource( 3 )
-text = "Cozy Inn"
-
 [node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/RussianTranslator"]
-margin_top = 32.0
+margin_top = 15.0
 margin_right = 256.0
-margin_bottom = 59.0
+margin_bottom = 57.0
 custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 3 )
 text = "Anasu Meruku
+Mikhail “Px-Ch” Fefilov
 Zakuro"
 
-[node name="ManagerOfFun" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 2923.0
+[node name="UkrainianTranslator" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2921.0
 margin_right = 256.0
-margin_bottom = 2950.0
+margin_bottom = 2963.0
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/UkrainianTranslator"]
+margin_right = 256.0
+margin_bottom = 11.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "CREDITS_TRANSLATOR_UK"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/UkrainianTranslator"]
+margin_top = 15.0
+margin_right = 256.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = SubResource( 3 )
+text = "Turnipman
+Artem “Inqurity” N."
+
+[node name="ManagerOfFun" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 2988.0
+margin_right = 256.0
+margin_bottom = 3015.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ManagerOfFun"]
 margin_right = 256.0
@@ -952,9 +930,9 @@ custom_styles/normal = SubResource( 3 )
 text = "sludgeXP"
 
 [node name="SpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 2975.0
+margin_top = 3040.0
 margin_right = 256.0
-margin_bottom = 3122.0
+margin_bottom = 3187.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/SpecialThanks"]
 margin_right = 256.0
@@ -980,9 +958,9 @@ Pastel
 Cherryello"
 
 [node name="VerySpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3147.0
+margin_top = 3212.0
 margin_right = 256.0
-margin_bottom = 3234.0
+margin_bottom = 3299.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/VerySpecialThanks"]
 margin_right = 256.0
@@ -1038,9 +1016,9 @@ text = "CREDITS_NAME_DISCORD"
 
 [node name="OriginalMotherStaffCredits" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
 margin_left = 61.0
-margin_top = 3259.0
+margin_top = 3324.0
 margin_right = 195.0
-margin_bottom = 3270.0
+margin_bottom = 3335.0
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OriginalMotherStaffCredits"]
@@ -1065,9 +1043,9 @@ margin_right = -1.0
 margin_bottom = 2.0
 
 [node name="OGDirector" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3295.0
+margin_top = 3360.0
 margin_right = 256.0
-margin_bottom = 3322.0
+margin_bottom = 3387.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGDirector"]
 margin_right = 256.0
@@ -1085,9 +1063,9 @@ custom_styles/normal = SubResource( 3 )
 text = "Shigesato Itoi"
 
 [node name="OGGameDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3347.0
+margin_top = 3412.0
 margin_right = 256.0
-margin_bottom = 3389.0
+margin_bottom = 3454.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGGameDesigners"]
 margin_right = 256.0
@@ -1106,9 +1084,9 @@ text = "Shigesato Itoi
 Miyuki Kure"
 
 [node name="OGMusicProducers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3414.0
+margin_top = 3479.0
 margin_right = 256.0
-margin_bottom = 3456.0
+margin_bottom = 3521.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicProducers"]
 margin_right = 256.0
@@ -1127,9 +1105,9 @@ text = "Akio Ohmori
 Ritsuo Kamimura"
 
 [node name="OGMusicalEffects" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3481.0
+margin_top = 3546.0
 margin_right = 256.0
-margin_bottom = 3523.0
+margin_bottom = 3588.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGMusicalEffects"]
 margin_right = 256.0
@@ -1148,9 +1126,9 @@ text = "Keiichi Suzuki
 Hirokazu Tanaka"
 
 [node name="OGCharacterDesigners" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3548.0
+margin_top = 3613.0
 margin_right = 256.0
-margin_bottom = 3590.0
+margin_bottom = 3655.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCharacterDesigners"]
 margin_right = 256.0
@@ -1169,9 +1147,9 @@ text = "Shinbo Minami
 Tatsuya Ishii"
 
 [node name="OGFigureModeling" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3615.0
+margin_top = 3680.0
 margin_right = 256.0
-margin_bottom = 3642.0
+margin_bottom = 3707.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGFigureModeling"]
 margin_right = 256.0
@@ -1189,9 +1167,9 @@ custom_styles/normal = SubResource( 3 )
 text = "Tottori"
 
 [node name="OGProgrammers" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3667.0
+margin_top = 3732.0
 margin_right = 256.0
-margin_bottom = 3724.0
+margin_bottom = 3789.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProgrammers"]
 margin_right = 256.0
@@ -1211,9 +1189,9 @@ Takayuki Onodera
 Motoo Yasuma"
 
 [node name="OGScenarioAssistants" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3749.0
+margin_top = 3814.0
 margin_right = 256.0
-margin_bottom = 3821.0
+margin_bottom = 3886.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGScenarioAssistants"]
 margin_right = 256.0
@@ -1234,9 +1212,9 @@ Katsutomo Maeiwa
 Kuniko Sakurai"
 
 [node name="OGCoordinators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3846.0
+margin_top = 3911.0
 margin_right = 256.0
-margin_bottom = 3948.0
+margin_bottom = 4013.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGCoordinators"]
 margin_right = 256.0
@@ -1259,9 +1237,9 @@ Akihito Toda
 Yukari Saitoh"
 
 [node name="OGEnglishScriptWriter" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 3973.0
+margin_top = 4038.0
 margin_right = 256.0
-margin_bottom = 4000.0
+margin_bottom = 4065.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGEnglishScriptWriter"]
 margin_right = 256.0
@@ -1279,9 +1257,9 @@ custom_styles/normal = SubResource( 3 )
 text = "Phil Sandhop"
 
 [node name="OGTranslators" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 4025.0
+margin_top = 4090.0
 margin_right = 256.0
-margin_bottom = 4082.0
+margin_bottom = 4147.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGTranslators"]
 margin_right = 256.0
@@ -1301,9 +1279,9 @@ Yuka Nakata
 Hoko Faulkner"
 
 [node name="OGSpecialThanks" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 4107.0
+margin_top = 4172.0
 margin_right = 256.0
-margin_bottom = 4224.0
+margin_bottom = 4289.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGSpecialThanks"]
 margin_right = 256.0
@@ -1327,9 +1305,9 @@ Hikonori Suzuki
 Takao Shimizu"
 
 [node name="OGProducer" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 4249.0
+margin_top = 4314.0
 margin_right = 256.0
-margin_bottom = 4276.0
+margin_bottom = 4341.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGProducer"]
 margin_right = 256.0
@@ -1347,9 +1325,9 @@ custom_styles/normal = SubResource( 3 )
 text = "Shigeru Miyamoto"
 
 [node name="OGExecutiveProducer" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 4301.0
+margin_top = 4366.0
 margin_right = 256.0
-margin_bottom = 4328.0
+margin_bottom = 4393.0
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/OGExecutiveProducer"]
 margin_right = 256.0
@@ -1367,18 +1345,44 @@ custom_styles/normal = SubResource( 3 )
 text = "Hiroshi Yamauchi"
 
 [node name="Player" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
-margin_top = 4353.0
+margin_top = 4418.0
 margin_right = 256.0
-margin_bottom = 4434.0
-custom_constants/separation = 70
+margin_bottom = 4479.0
 
 [node name="Spacer" type="Control" parent="CanvasLayer/TitleLogo/VBoxContainer/Player"]
 margin_right = 256.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Player"]
-margin_top = 70.0
+margin_top = 34.0
 margin_right = 256.0
-margin_bottom = 81.0
+margin_bottom = 45.0
+custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "CREDITS_PLAYER"
+
+[node name="Devs" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/Player"]
+margin_top = 49.0
+margin_right = 256.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 5 )
+custom_styles/normal = SubResource( 3 )
+
+[node name="ThankYou" type="VBoxContainer" parent="CanvasLayer/TitleLogo/VBoxContainer"]
+margin_top = 4504.0
+margin_right = 256.0
+margin_bottom = 4589.0
+
+[node name="Spacer" type="Control" parent="CanvasLayer/TitleLogo/VBoxContainer/ThankYou"]
+margin_right = 256.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+
+[node name="Role" type="Label" parent="CanvasLayer/TitleLogo/VBoxContainer/ThankYou"]
+margin_top = 74.0
+margin_right = 256.0
+margin_bottom = 85.0
 custom_colors/font_color = Color( 1, 0.666667, 0.4, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "CREDITS_PLAYER_THANK_YOU"

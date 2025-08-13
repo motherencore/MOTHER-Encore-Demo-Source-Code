@@ -1,57 +1,143 @@
 extends Node
 
-enum ailments {Asthma,Blinded,Burned,Cold,Confused,Forgetful,Nausea,Numb,Poisoned,Sleeping,Sunstroked,Mushroomized,Unconscious}
-const persistentAilments = [
-	ailments.Asthma,
-	ailments.Cold,
-	ailments.Confused,
-	ailments.Mushroomized,
-	ailments.Nausea,
-	ailments.Poisoned,
-	ailments.Sunstroked,
-]
+enum BtnStyles {NINTENDO, PLAYSTATION, XBOX, DETECT}
 
-const PSI_LEVELS = "αβγΩΣ"
+const ALLOWED_KEYS := [KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_KP_MULTIPLY, KEY_KP_DIVIDE, KEY_KP_SUBTRACT, KEY_KP_PERIOD, KEY_KP_ADD, KEY_KP_0, KEY_KP_1, KEY_KP_2, KEY_KP_3, KEY_KP_4, KEY_KP_5, KEY_KP_6, KEY_KP_7, KEY_KP_8, KEY_KP_9, KEY_SPACE, KEY_ESCAPE, KEY_TAB, KEY_BACKSPACE, KEY_ENTER, KEY_INSERT, KEY_DELETE, KEY_PAUSE, KEY_HOME, KEY_END, KEY_PAGEUP, KEY_PAGEDOWN, KEY_SHIFT, KEY_CONTROL, KEY_META, KEY_ALT, KEY_SUPER_L, KEY_SUPER_R, KEY_MENU, KEY_F1, KEY_F2, KEY_F3, KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_F13, KEY_F14, KEY_F15, KEY_F16]
+const TEXT_SPEEDS := [0.02, 0.035, 0.05]
+const TEXT_SPEEDS_NAMES := ["FAST", "MEDIUM", "SLOW"]
+const BUTTON_PROMPTS := ["Both", "Objects", "NPCs", "None"]
+const FLAVORS := ["Plain", "Mint", "Strawberry", "Banana", "Peanut", "Grape", "Melon"]
+const LANG_ALT := "upupdodolerilericaac"
+const CONSTANT_CHAR_DATA := {
+	"ninten": {
+		"name": "ninten",
+		"sprite": "Ninten",
+		"article": "ARTICLES_NINTEN",
+		"basic_skill": "attack",
+	},
+	"ana": {
+		"name": "ana",
+		"sprite": "Ana",
+		"article": "ARTICLES_ANA",
+		"basic_skill": "attack",
+	},
+	"lloyd": {
+		"name": "lloyd",
+		"sprite": "Lloyd",
+		"article": "ARTICLES_LLOYD",
+		"basic_skill": "attack",
+	},
+	"teddy": {
+		"name": "teddy",
+		"sprite": "Teddy",
+		"article": "ARTICLES_TEDDY",
+		"basic_skill": "attack",
+	},
+	"pippi": {
+		"name": "pippi",
+		"sprite": "Pippi",
+		"article": "ARTICLES_PIPPI",
+		"basic_skill": "attack",
+	},
+	"flyingman": {
+		"name": "flyingman", 
+		"nickname": "[tr:NAME_FLYINGMAN]", 
+		"article": "ARTICLES_FLYINGMAN",
+		"sprite": "FlyingMan", 
+		"level": 99, 
+		"exp": 0, 
+		"maxhp": 400, 
+		"maxpp": 0, 
+		"speed": 14, 
+		"offense": 55, 
+		"defense": 25, 
+		"iq": 25, 
+		"guts": 25,
+		"untargetable": true,
+		"skills": [{
+			"skill": "bash",
+			"weight": 1
+		}]
+	},
+	"canarychick": {
+		"name": "canarychick", 
+		"nickname": "[tr:NAME_CANARYCHICK]",
+		"article": "ARTICLES_CANARYCHICK",
+		"sprite": "CanaryChick", 
+		"level": 1, 
+		"exp": 0, 
+		"hp": 1, 
+		"pp": 0, 
+		"maxhp": 0, 
+		"maxpp": 0, 
+		"speed": 1, 
+		"offense": 1, 
+		"defense": 1, 
+		"iq": 1, 
+		"guts": 1,
+		"untargetable": true,
+		"skills": [{
+			"skill": "canaryLife1",
+			"weight": 6
+		}, {
+			"skill": "canaryLife2",
+			"weight": 1
+		}],
+	},
+	"eve": {
+		"name": "eve", 
+		"nickname": "[tr:NAME_EVE]",
+		"article": "ARTICLES_EVE",
+		"sprite": "FlyingMan", 
+		"level": 1, 
+		"exp": 0, 
+		"maxhp": 0, 
+		"maxpp": 0, 
+		"speed": 1, 
+		"offense": 1, 
+		"defense": 1, 
+		"iq": 1, 
+		"guts": 1, 
+		"untargetable": true,
+		"skills": [{
+			"skill": "bash",
+			"weight": 1
+		}],
+	}
+}
 
-# LOCALIZATION Code added for Polish grammar needs
-var polishDeclension = load("Scripts/languages/PolishDeclension.gd").new()
-var russianDeclension = load("Scripts/languages/RussianDeclension.gd").new()
-var hangul = load("Scripts/languages/Hangul.gd").new()
+var _yaml_lib = null
 
-var saveFile = 0
-var playtime = 0
-var winSize = 3
-var musicVolume = 0
-var sfxVolume = 0
-var earned_cash: int = 0
-var cash: int = 200
-var bank: int = 0
-var levelCap = 20
-var respawnPoint = Vector2.ZERO
-var respawnScene = ""
-var description = true
-var rumble = true
-var favoriteFood = "Oreos"
-var menuFlavor = "Plain"
-var textSpeed = 0.02
-var buttonPrompts = "Both"
-var dialogHintColor = "ea8b2c"
-var playerName = "You"
-var rareDrops = {}
-enum BTN_STYLES {NINTENDO, PLAYSTATION, XBOX, DETECT}
-var buttonsStyle = BTN_STYLES.DETECT
-# LOCALIZATION Code change: Added article field for each party member
-var ninten = {
-	"name": "ninten",
-	"nickname": "ryu",
-	"sprite": "Ninten", 
+var saveFile := 0
+var playtime := 0
+var winSize := 3
+var musicVolume := 0
+var sfxVolume := 0
+var earned_cash := 0
+var cash := 10000
+var bank := 0
+var phone_units: int setget ,_get_phone_units
+var levelCap := 20
+var respawnPoint := Vector2.ZERO
+var respawnScene := ""
+var description := true
+var rumble := true
+var favoriteFood := "Oreos"
+var menuFlavor: String = FLAVORS[0]
+var textSpeed: float = TEXT_SPEEDS[0]
+var buttonPrompts: String = BUTTON_PROMPTS[0]
+var playerName := ""
+var rareDrops := {}
+var buttonsStyle: int = BtnStyles.DETECT
+var encountered := {}
+var ninten := {
+	"nickname": "Ninten",
 	"status": [], 
-	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
-	"learnedSkills": ["telepathy", "lifeUpA", "lifeUpB", "healingA"],
-	"passiveSkills": [],
+	"equipment": {"weapon": "BatPlastic", "body": "", "arms" : "", "other": "BaseballCap"},
+	"learnedSkills": [],
 	"level": 1, 
 	"exp": 0,
-	"hp": 75, 
+	"hp": 30, 
 	"maxhp": 75, 
 	"pp": 30,
 	"maxpp": 30, 
@@ -69,16 +155,12 @@ var ninten = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_NINTEN"
-	} 
-var ana = {
-	"name": "ana",
+} 
+var ana := {
 	"nickname": "Ana",
-	"sprite": "Ana", 
 	"status": [], 
-	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
+	"equipment": {"weapon": "", "body": "", "arms" : "", "other": ""},
 	"learnedSkills": [],
-	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0,
 	"hp": 1, 
@@ -99,15 +181,12 @@ var ana = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_ANA"}
-var lloyd = {
-	"name": "lloyd", 
+}
+var lloyd := {
 	"nickname": "Lloyd", 
-	"sprite": "Lloyd", 
 	"status": [], 
-	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""},
+	"equipment": {"weapon": "", "body": "", "arms" : "", "other": ""},
 	"learnedSkills": [],
-	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0,
 	"hp": 80, 
@@ -118,7 +197,7 @@ var lloyd = {
 	"defense": 10, 
 	"speed": 10, 
 	"iq": 10, 
-	"guts": 3,
+	"guts": 0,
 	"boosts": {
 		"maxhp": 0,
 		"maxpp": 0, 
@@ -128,15 +207,12 @@ var lloyd = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_LLOYD"}
-var teddy = {
-	"name": "teddy", 
+}
+var teddy := {
 	"nickname": "Teddy",
-	"sprite": "Teddy", 
 	"status": [], 
-	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""}, 
+	"equipment": {"weapon": "", "body": "", "arms" : "", "other": ""}, 
 	"learnedSkills": [""],
-	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0, 
 	"hp": 80, 
@@ -157,15 +233,12 @@ var teddy = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_TEDDY"}
-var pippi = {
-	"name": "pippi", 
+}
+var pippi := {
 	"nickname": "Child", 
-	"sprite": "Pippi", 
 	"status": [], 
-	"equipment": {"weapon": "", "body": "", "head" : "", "other": ""}, 
+	"equipment": {"weapon": "", "body": "", "arms" : "", "other": ""}, 
 	"learnedSkills": [],
-	"passiveSkills": [],
 	"level": 1, 
 	"exp": 0, 
 	"hp": 80, 
@@ -186,52 +259,23 @@ var pippi = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_PIPPI"}
-var flyingman = {
-	"name": "flyingman", 
-	"nickname": tr("NAME_FLYINGMAN"), 
-	"sprite": "FlyingMan", 
-	"status": [], 
-	"learnedSkills": [""],
-	"passiveSkills": [],
-	"level": 99, 
-	"exp": 0, 
+}
+var canarychick := {
+	"status": [],
+	"boosts": {
+		"maxhp": 0,
+		"maxpp": 0, 
+		"offense": 0, 
+		"defense": 0, 
+		"speed": 0, 
+		"iq": 0, 
+		"guts": 0,
+	},
+}
+var flyingman := {
 	"hp": 400, 
-	"maxhp": 400, 
 	"pp": 0, 
-	"maxpp": 0, 
-	"speed": 14, 
-	"offense": 55, 
-	"defense": 25, 
-	"iq": 25, 
-	"guts": 25,
-	"boosts": {
-		"maxhp": 0,
-		"maxpp": 0, 
-		"offense": 0, 
-		"defense": 0, 
-		"speed": 0, 
-		"iq": 0, 
-		"guts": 0,
-	},
-	"article": "ARTICLES_FLYINGMAN"}
-var canarychick = {
-	"name": "canarychick", 
-	"nickname": tr("NAME_CANARYCHICK"),
-	"sprite": "CanaryChick", 
 	"status": [], 
-	"passiveSkills": [],
-	"level": 42, 
-	"exp": 0, 
-	"hp": 0, 
-	"maxhp": 0, 
-	"pp": 0, 
-	"maxpp": 0, 
-	"speed": 1, 
-	"offense": 1, 
-	"defense": 1, 
-	"iq": 1, 
-	"guts": 1, 
 	"boosts": {
 		"maxhp": 0,
 		"maxpp": 0, 
@@ -241,24 +285,11 @@ var canarychick = {
 		"iq": 0, 
 		"guts": 0,
 	},
-	"article": "ARTICLES_CANARYCHICK"}
-var eve = {
-	"name": "eve", 
-	"nickname": tr("NAME_EVE"),
-	"sprite": "", 
+}
+var eve := {
+	"hp": 400, 
+	"pp": 0, 
 	"status": [], 
-	"passiveSkills": [],
-	"level": 1, 
-	"exp": 0, 
-	"hp": 0, 
-	"maxhp": 0, 
-	"pp": 0, 
-	"maxpp": 0, 
-	"speed": 1, 
-	"offense": 1, 
-	"defense": 1, 
-	"iq": 1, 
-	"guts": 1, 
 	"boosts": {
 		"maxhp": 0,
 		"maxpp": 0, 
@@ -267,14 +298,14 @@ var eve = {
 		"speed": 0, 
 		"iq": 0, 
 		"guts": 0,
-	},
-	"article": "ARTICLES_EVE"}
+	}
+}
 
 # The stat target table is a dictionary with stats that each have an array
 # Each stat array represents where a stat should be at that (index * 10) level
 # e.g. Ninten's offense at level 30 would be in index 3, the 4th number in the array
 #      Level 30 - Offense Stat target is 24
-const player_stat_target_table = {
+const player_stat_target_table := {
 	"ninten": {
 		"maxhp": [60, 88, 121, 160, 205, 254, 308, 365, 425, 487, 550],
 		"maxpp": [25, 38, 54, 73, 94, 118, 144, 171, 200, 230, 260],
@@ -300,7 +331,8 @@ const player_stat_target_table = {
 		"defense": [10, 14, 20, 26, 34, 42, 50, 60, 69, 80, 90],
 		"speed": [10, 15, 21, 27, 35, 44, 53, 63, 73, 84, 95],
 		"iq":  [10, 18, 29, 41, 54, 69, 86, 103, 122, 141, 160],
-		"guts": [3, 5, 6, 9, 11, 14, 17, 20, 23, 27, 30],
+		#"guts": [3, 5, 6, 9, 11, 14, 17, 20, 23, 27, 30],
+		"guts": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	},
 	
 	"teddy": {
@@ -323,7 +355,7 @@ const player_stat_target_table = {
 	},
 }
 
-const player_learn_skill_table_flags = {
+const player_learn_skill_table_flags := {
 	"ninten": {
 		"curveball": "bat"
 	},
@@ -340,7 +372,7 @@ const player_learn_skill_table_flags = {
 	}
 }
 
-const player_learn_skill_table = {
+const player_learn_skill_table := {
 	"ninten": {
 		2: "telepathy",
 		#4: "hypnosis",
@@ -372,388 +404,19 @@ const player_learn_skill_table = {
 	}
 }
 
-const skills = {}
-const fieldSkills = {}
-const items = {}
-const shopLists = {}
-const mapMarkers = {}
+const skills := {}
+const fieldSkills := {}
+const passiveSkills = {}
+const items := {}
+const shopLists := {}
+const mapMarkers := {}
+const namingSequences := {}
 
-# LOCALIZATION Code change: Rewrote this methode to make it more effective, more consistent
-# Also included more tags for articles and specific language needs
-func replaceText(string, context = self, without_brackets = false):
-	string = tr(string)
-	string = _replace_ifs(string)
-	string = _replace_tags(string, context, without_brackets)
-	var substitutions = {" - ": " – " , "(\\d+) (\\$)": '$1 $2',  "([   ])!": "$1¦" }
-	var regex = RegEx.new()
-	for pattern in substitutions:
-		regex.compile(pattern)
-		string = regex.sub(string, substitutions[pattern], true)
-	return string
-	
-# General syntax: [Tag], [Tag:Param1,Param2,...], or [Tag123] (numeric parameter)
-func _replace_tags(string, context = self, without_brackets = false):
-	var startIndex = 0
-	var regex = RegEx.new()
-	if !without_brackets:
-		regex.compile("\\[([A-Za-z_]+)(:[^\\]]+|\\d+)?\\]")
-	else:
-		regex.compile("^([A-Za-z_]+)(:[^\\]]+|\\d+)?$")
-	var tag = regex.search(string)
-	while tag:
-		var result = tag.get_string()
-		var tagContent = tag.get_string(1)
-		var tagParam = tag.get_string(2).trim_prefix(":")
-		match tagContent:
-			"N":			# [N] returns Ninten's initial, for the NES joke in other languages
-				result = context.ninten["nickname"][0]
-			"PartyLead":	# [PartyLead] returns the party leader's nickname
-				result = global.party[0]["nickname"]
-			"FavFood":		# [FavFood] returns the favorite food
-				result = context.favoriteFood
-			"ItemName": 	# [ItemName] returns the current item name
-				result = tr(global.item["name"]) if global.item else ""
-			"ItemReceiver":	# [ItemReceiver] returns the nickname of the party member receiving an item
-				result = global.receiver["nickname"] if global.receiver else ""
-			"User":			# [User] returns the nickname of the party member who's using an item
-				result = global.itemUser["nickname"] if global.itemUser else ""
-			"LeadArt":		# [LeadArt0], [LeadArt1], etc., return the party leader's articles
-				result = get_battler_articles(global.party[0], int(tagParam))
-			"ReceiverArt":	# [ReceiverArt0], [ReceiverArt1], etc., return the item receiver's articles
-				result = get_battler_articles(global.receiver, int(tagParam))
-			"UserArt":		# [UserArt0], [UserArt1], etc., return the item user's articles
-				result = get_battler_articles(global.itemUser, int(tagParam))
-			"ItemArt":		# [ItemArt0], [ItemArt1], etc., return the current item articles
-				if global.item and tagParam:
-					result = get_item_or_skill_articles(global.item, int(tagParam))
-				else:
-					result = ""
-			"EarnedCash":	# [EarnedCash] returns - and resets - the amount of money you've just earned
-				result = var2str(context.earned_cash) # Dollar sign not included
-				context.earned_cash = 0
-				context.flags["earned_cash"] = false
-			"CurrentCash":	# [CurrentCash] returns the amount of money on hand (without dollar sign)
-				result = var2str(context.cash)
-			"BankCash":		# [BankCash] returns the amount of money on bank (without dollar sign)
-				result = var2str(context.bank)
-			"color":		# [color] returns the opening tag to set the text color to hint color
-				result = "[color=#"+ dialogHintColor + "]"
-			"br":			# [br] returns a new line (it can )
-				result = "\n"
-			"fr_eli":		# [fr_eli] returns French elision ("e " or "'" if followed by vowel)
-							# [fr_eli:***] returns French elision where the next word is ***
-				if tagParam:
-					var nickname = _replace_tags(tagParam, context, true)
-					result = get_french_elision(nickname)
-				else:
-					result = get_french_elision(string.substr(tag.get_end()))
-			"de_gen":		# [de_gen] returns German genitive suffix ("s" or "'" if after an s or x)
-							# [de_gen:***] returns German genitive suffix where the previous word is ***
-				if tagParam:
-					var nickname = _replace_tags(tagParam, context, true)
-					result = get_german_genitive(nickname)
-				else:
-					result = get_german_genitive(string.substr(0, tag.get_start()))
-			"pl_decl":		# [pl_decl:name:gender:case] returns Polish declension for name
-							# where "gender" is M or F and "case" is the index of the grammar case
-				var params = tagParam.split(":")
-				var nickname = _replace_tags(params[0], context, true)
-				result = get_polish_declension(nickname, params[1], int(params[2]))
-			"ru_decl":		# [ru_decl:name:gender:case] returns Russian declension for name
-							# where "gender" is M or F and "case" is the index of the grammar case
-				var params = tagParam.split(":")
-				var nickname = _replace_tags(params[0], context, true)
-				result = get_russian_declension(nickname, params[1], int(params[2]))
-			"ko_part":
-				var params = tagParam.split(":")
-				if params.size() > 1:
-					var nickname = _replace_tags(params[0], context, true)
-					result = get_korean_particle(nickname, int(params[1]))
-				else:
-					result = get_korean_particle(string.substr(0, tag.get_start()), int(params[0]))
+var keys := {}
 
-			_:
-				if tagContent.begins_with("ui_"):	# [ui_accept], [ui_cancel], etc., returns control keys
-					result = get_key_name(tagContent)
-				elif tagContent.to_lower() in global.POSSIBLE_PARTY_MEMBERS:
-					result = context[tagContent.to_lower()]["nickname"]
-					var max_length = len(tr("LONGEST_POSSIBLE_NAME"))
-					result = result.substr(0, max_length)
-				elif status_name_to_enum(tagContent.to_lower()) != -1:
-					result = "[font=res://Graphics/UI/Ailments/Ailments.tres][img]res://Graphics/UI/Ailments/%s.png[/img][/font]" % tagContent.capitalize()
-				else:								# Unknown tags: doing nothing, moving the start index to prevent looping indefinitely
-					startIndex = tag.get_start() + 1
-					if not tagContent in ["img", "i", "b"]:
-						push_warning("UNKNOWN TAG: %s" % tagContent)
+var object_flags := {}
 
-		var strBefore = string.substr(0, tag.get_start())
-		var strAfter = string.substr(tag.get_end())
-		string = strBefore + result + strAfter
-
-		if without_brackets:
-			break
-
-		tag = regex.search(string, startIndex)
-	
-	return string
-
-
-func _replace_ifs(string):
-	var regex = RegEx.new()
-	regex.compile("\\[if (\\w+)(:\\w+)?\\]((?:(?!\\[/?if [\\w:]+\\]).)*?)(\\[else\\]((?:(?!\\[/?if [\\w:]+\\]).)*?))?\\[/if\\]")
-	var tag = regex.search(string)
-	
-	if tag:
-		var condition = tag.get_string(1)
-		var params = tag.get_string(2).trim_prefix(":").split(":")
-		var content_if = tag.get_string(3)
-		var content_else = tag.get_string(5)
-		var before = string.substr(0, tag.get_start())
-		var after = string.substr(tag.get_end())
-		var condition_res = true
-		match condition:
-			"input":
-				for param in params:
-					match param:
-						"gamepad":
-							condition_res = condition_res if global.device == global.GAMEPAD else false
-						"keyboard":
-							condition_res = condition_res if global.device == global.KEYBOARD else false
-						_:
-							push_warning("UNKNOWN CONDITION: %s=%s" % [condition, param])
-			"party":
-				for param in params:
-					match param:
-						"plural":
-							condition_res = condition_res if global.party.size() > 1 else false
-						"singular":
-							condition_res = false if global.party.size() > 1 else condition_res
-						"female_lead":
-							condition_res = condition_res if global.party[0] in [globaldata.ana, globaldata.pippi] else false
-						"male_lead":
-							condition_res = false if global.party[0] in [globaldata.ana, globaldata.pippi] else condition_res
-			_:
-				push_warning("UNKNOWN CONDITION: %s" % condition)
-				condition_res = null
-		var res
-		if condition_res == null:
-			res = before + after
-		elif condition_res:
-			res = before + content_if + after
-		else:
-			res = before + content_else + after
-		if string == res:
-			return res
-		else:
-			return _replace_ifs(res)
-	
-	else:
-		return string
-
-# LOCALIZATION Code added to handle multiple item articles
-func get_item_or_skill_articles(item, articleIdx: int = -1):
-	var articleStr = tr(item.article)
-	var articleArray = articleStr.split(",")
-	
-	if articleIdx == -1:
-		return Array(articleArray)
-	else:
-		return articleArray[articleIdx]
-
-# LOCALIZATION Code added to handle multiple articles for battlers (includes pronouns, suffixes, etc.)
-func get_battler_articles(battler, articleIdx : int = -1):
-	var articleStr
-	if battler.has("article"):
-		articleStr = tr(battler.article)
-	else:
-		articleStr = tr("ARTICLES_DEFAULT")
-
-	var articleArray = articleStr.split(",")
-
-	for i in articleArray.size():
-		# In case the "articles" are actually alternative names, [name] reverts to the actual nickname (useful for Polish)
-		articleArray[i] = articleArray[i].replace("[name]", battler.nickname)
-		# French elision in the case of articles (for user-defined party member names)
-		articleArray[i] = replaceText(articleArray[i])
-	
-	if articleIdx == -1:
-		return Array(articleArray)
-	else:
-		return articleArray[articleIdx]
-	
-func get_skill_level(skill):
-	if skill.has("level") and skill.get("skillType") == "psi":
-		var skill_level = int(skill["level"])
-		if skill_level in range(0, PSI_LEVELS.length()):
-			return tr("BATTLE_LETTER_WHITESPACE") + PSI_LEVELS[skill_level]
-	return ""
-
-func get_number_articles(number, article_idx: int = -1):
-	var article_array = tr("ARTICLES_NUMBERS").split(",")
-
-	for i in article_array.size():
-		article_array[i] = article_array[i].format([number])
-		article_array[i] = replaceText(article_array[i])
-		
-	if article_idx == -1:
-		return Array(article_array)
-	else:
-		return article_array[article_idx]
-
-
-func get_french_elision(nextWord):
-	nextWord = replaceText(nextWord)
-	var vowels = "aeiouáàâäæéèêëíìîïóòôöœúùûü"
-	if nextWord.length() > 0 and nextWord[0].to_lower() in vowels:
-		return "'"
-	else:
-		return "e "
-
-func get_german_genitive(prevWord):
-	prevWord = replaceText(prevWord)
-	if prevWord.ends_with('s') or prevWord.ends_with('x'):
-		return "'"
-	else:
-		return "s"
-
-func get_polish_declension(name, gender, case):
-	return polishDeclension.get_polish_declension(name, gender, case)
-	
-func get_russian_declension(name, gender, case):
-	return russianDeclension.get_russian_declension(name, gender, case)
-
-func get_korean_particle(prevWord, type):
-	if hangul.ends_with_vowel(prevWord, type == 4):
-		return ["는","가","를","와","로"][type]
-	else:
-		return ["은","이","을","과","으로"][type]
-
-func get_key_name(key, device = global.device):
-	var keyname = ""
-	for event in InputMap.get_action_list(key):
-		if (device == global.KEYBOARD and event is InputEventKey)\
-		or (device == global.GAMEPAD and event is InputEventJoypadButton)\
-		or (device == global.GAMEPAD and event is InputEventJoypadMotion):
-			return get_key_name_from_event(event)
-
-func is_key_allowed(event):
-	return get_key_name_from_event(event) != null
-
-func get_key_name_from_event(event):
-	if event is InputEventKey:
-		return get_key_from_scancode(event.scancode)
-	elif event is InputEventJoypadButton:
-		return get_button_name(Input.get_joy_button_string(event.button_index))
-	elif event is InputEventJoypadMotion:
-		return
-
-func get_key_from_scancode(scancode):
-	var SPECIAL_KEY_LABELS = {KEY_UP: "↑", KEY_DOWN: "↓", KEY_LEFT: "←", KEY_RIGHT: "→", KEY_KP_MULTIPLY: "*", KEY_KP_DIVIDE: "/", KEY_KP_SUBTRACT: "-", KEY_KP_PERIOD: ".", KEY_KP_ADD: "+", KEY_KP_0: "0", KEY_KP_1: "1", KEY_KP_2: "2", KEY_KP_3: "3", KEY_KP_4: "4", KEY_KP_5: "5", KEY_KP_6: "6", KEY_KP_7: "7", KEY_KP_8: "8", KEY_KP_9: "9", KEY_SPACE: "KEYBOARD_SPACE"}
-
-	var ALLOWED_KEYS = SPECIAL_KEY_LABELS.keys() + [KEY_ESCAPE, KEY_TAB, KEY_BACKSPACE, KEY_ENTER, KEY_INSERT, KEY_DELETE, KEY_PAUSE, KEY_HOME, KEY_END, KEY_PAGEUP, KEY_PAGEDOWN, KEY_SHIFT, KEY_CONTROL, KEY_META, KEY_ALT, KEY_SUPER_L, KEY_SUPER_R, KEY_MENU, KEY_F1, KEY_F2, KEY_F3, KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F10, KEY_F11, KEY_F12, KEY_F13, KEY_F14, KEY_F15, KEY_F16]
-
-	if scancode in SPECIAL_KEY_LABELS:
-		return tr(SPECIAL_KEY_LABELS[scancode])
-	
-	elif OS.is_scancode_unicode(scancode):
-		if char(scancode) in "            ​  　﻿\t": # Filtering out non-printable characters
-			return
-		else:
-			return char(scancode)
-	
-	elif scancode in ALLOWED_KEYS:
-		var key_str = OS.get_scancode_string(scancode)
-		var key_translated = tr("KEYBOARD_" + key_str.to_upper().replace(" ", "_"))
-		if key_translated.begins_with("KEYBOARD_"):
-			return key_str
-		else:
-			return key_translated
-
-func get_button_name(button_string):
-	var current_style = buttonsStyle
-	if current_style == BTN_STYLES.DETECT:
-		current_style = global.detect_buttons_style()
-	match button_string:
-		"Face Button Bottom":
-			return "B✖A"[current_style]
-		"Face Button Left":
-			return "Y■X"[current_style]
-		"Face Button Right":
-			return "A●B"[current_style]
-		"Face Button Top":
-			return "X▲Y"[current_style]
-		"DPAD Up":
-			return "↑"
-		"DPAD Down":
-			return "↓"
-		"DPAD Left":
-			return "←"
-		"DPAD Right":
-			return "→"
-		"L2":
-			return ["ZL", "L2", "L2"][current_style]
-		"R2":
-			return ["ZR", "R2", "R2"][current_style]
-		"L3":
-			return ["LS", "L3", "L3"][current_style]
-		"R3":
-			return ["RS", "R3", "R3"][current_style]
-		"Select":
-			return ["-", "Share", "Select"][current_style]
-		"Start":
-			return ["+", "Optns", "Start"][current_style]
-		_:
-			return(button_string.replace(" ", "").substr(0, 6))
-
-var text = {
-	"actions":{
-		"talk": "Talk",
-		"check": "Check",
-		"goods": "Goods",
-		"psi": "PSI",
-		
-		"map": "Map",
-		"stats": "Stats",
-		"bash": "Bash",
-		"guard": "Guard",
-		"flee": "Flee"
-	},
-	"stats":{
-		"cash": "Cash",
-		"dollarsign": "$",
-		"commands": "Commands",
-		"status": "Status",
-		"equipments": "Equipments",
-		"elodies": "Melodies",
-		"name": "Name",
-		"lvl": "Lvl",
-		"hp" : "HP",
-		"pp": "PP",
-		"offense": "Offense",
-		"defence": "Defence",
-		"speed": "Speed",
-		"iq": "IQ",
-		"guts": "Guts",
-		"exp": "Exp"
-	},
-	"options":{
-		"equip": "Equip",
-		"info": "Info",
-		"eat": "Eat",
-		"use": "Use",
-		"give": "Give",
-		"drop": "Drop"
-	},
-	"title":{
-		"start": "Start",
-		"options": "Options",
-		"soundtest": "Sound Test"
-	}
-}
-
-var keys = {"Catacombs": 0}
-
-var flags = {
+var flags := {
 	##################
 	#Melodies
 	##################
@@ -771,11 +434,7 @@ var flags = {
 	"switch_leader": true,
 	"bat": true,
 	"laser": true,
-	"PKfire": true,
-	"PKfreeze": true,
-	"PKthunder": true,
 	"eagle_feather": true,
-	"teleport": true,
 	##################
 	#Misc
 	##################
@@ -785,30 +444,9 @@ var flags = {
 	##################
 	#Debug
 	##################
-	"npc_appear_1": false,
 	"npc_disappear_1": false,
 	"npc_dialog_1": false,
 	"npc_dialog_2": false,
-	"debug_present_1": false,
-	"debug_present_2": false,
-	"debug_present_3": false,
-	"debug_present_4": false,
-	"debug_present_5": false,
-	"debug_present_6": false,
-	"debug_present_7": false,
-	"debug_present_8": false,
-	"debug_present_9": false,
-	"debug_present_10": false,
-	"debug_present_11": false,
-	"debug_present_12": false,
-	"debug_present_13": false,
-	"debug_present_14": false,
-	"debug_present_15": false,
-	"debug_present_16": false,
-	"debug_present_17": false,
-	"debug_present_18": false,
-	"debug_present_19": false,
-	"debug_present_20": false,
 	##################
 	#Ninten's House
 	##################
@@ -829,19 +467,11 @@ var flags = {
 	"got_juice": false,
 	"got_diary": false,
 	"got_dog_treats": false,
-	"basement_pres_2": false,
-	"basement_pres_3": false,
+	"got_asthma_spray": false,
 	"gave_treats": false,
-	
 	##################
 	#Podunk
 	##################
-	"podunk_pres_1": false,
-	"podunk_pres_2": false,
-	"podunk_pres_3": false,
-	"podunk_pres_4": false,
-	"podunk_pres_5": false,
-	"podunk_pres_6": false,
 	"beat_dog_bridge": false,
 	"pippis_mom_call": false,
 	"pippis_mom_help": false,
@@ -852,12 +482,6 @@ var flags = {
 	"cem_roots_grown": false,
 	"got_shovel": false,
 	"returned_shovel": false,
-	"cem_pres_1": false,
-	"cem_pres_2": false,
-	"cem_pres_3": false,
-	"cem_pres_4": false,
-	"cem_pres_5": false,
-	
 	##################
 	#Podunk Catacombs
 	##################
@@ -867,42 +491,10 @@ var flags = {
 	"courage_badge_received": false,
 	"church_door_opened": false,
 	"church_exited": false,
-	
-	"catac_pres_1": false,
-	"catac_pres_2": false,
-	"catac_pres_3": false,
-	"catac_pres_4": false,
-	"catac_pres_5": false,
-	"catac_pres_6": false,
-	"catac_pres_7": false,
-	"catac_pres_8": false,
-	"catac_pres_9": false,
-	
-	"catac_item_1": false,
-	"catac_item_2": false,
-	"catac_item_3": false,
-	"catac_item_4": false,
-	"catac_item_5": false,
-	"catac_item_6": false,
-	"catac_item_7": false,
-	
-	"catac_plate_1": false,
-	"catac_plate_2": false,
-	"catac_plate_3": false,
-	"catac_plate_4": false,
-	"catac_plate_5": false,
-	
-	"catac_key_1": false,
-	"catac_key_2": false,
-	"catac_key_3": false,
-	
-	"catac_door_1":false,
-	"catac_door_2":false,
-	"catac_door_3":false,
 	##################
-	#return to podunk
+	#Return to podunk
 	##################
-	"pippi_town_hall": false,
+	#"pippi_town_hall": false, # Useless?
 	"canary_found": false,
 	"wally_attack": false,
 	"wally_defeat": false,
@@ -910,34 +502,25 @@ var flags = {
 	"alfred_song": false,
 	"leave_canary_village": false,
 	"pippi_delivered": false,
-	"mayor_key_not_received": false,
-	"zoo_key_received": false,
-	
+	#"mayor_key_not_received": false, # Useless?
+	#"zoo_key_received": false, # Useless
 	##################
 	#Zoo
 	##################
 	"zoo_key_stolen": false,
-	"zoo_pres_1": false,
-	"zoo_pres_2": false,
-	"zoo_pres_3": false,
-	"zoo_pres_4": false,
-	"zoo_office_pres_1": false,
-	"zoo_office_pres_2": false,
 	"zoo_freed": false,
 	"monkey_apologize": false,
 	"guard_moved": false,
 	##################
-	#Snowman
-	##################
-	"snow_pres_1": false,
-	
-	##################
-	#Rematches
+	#Podunk Rematches
 	##################
 	"pippi_rematch": false,
 	"wally_rematch": false,
 	"starman_jr_rematch": false,
-
+	##################
+	#Magicant
+	##################
+	
 	##################
 	#Exploration
 	##################
@@ -954,16 +537,21 @@ var flags = {
 }
 
 func _init():
-	var dir = Directory.new()
+	var to_load = {
+		"BattleSkills": skills,
+		"FieldSkills": fieldSkills,
+		"PassiveSkills": passiveSkills,
+		"Items": items,
+		"Shops": shopLists,
+		"MapMarkers": mapMarkers,
+		"NamingSequences": namingSequences
+	}
+	for key in to_load:
+		load_data("res://Data/%s/" % key, to_load[key])
 	
-	_load_data("res://Data/BattleSkills/", skills)
-	_load_data("res://Data/FieldSkills/", fieldSkills)
-	_load_data("res://Data/Items/", items)
-	_load_data("res://Data/Shops/", shopLists)
-	_load_data("res://Data/MapMarkers/", mapMarkers)
+	reset_constant_char_data()
 
-
-func _load_data(path, dest, sub_dir = ""):
+func load_data(path, dest, sub_dir = ""):
 	var dir = Directory.new()
 	if dir.open(path) == OK:
 		dir.list_dir_begin()
@@ -971,15 +559,21 @@ func _load_data(path, dest, sub_dir = ""):
 		while file_name != "":
 			if dir.current_is_dir():
 				if not file_name in [".", ".."]:
-					_load_data("%s/%s/" % [path, file_name], dest, "%s%s/" % [sub_dir, file_name])
+					load_data("%s/%s/" % [path, file_name], dest, "%s%s/" % [sub_dir, file_name])
 			else:
-				if file_name.ends_with(".json"):
-					var json_data = get_json_file(path + file_name)
-					dest[sub_dir + file_name.replace(".json", "")] = json_data
+				if file_name.ends_with(".yaml"):
+					var json_data = get_json_data(path + file_name)
+					dest[sub_dir + file_name.trim_suffix(".yaml")] = json_data
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access %s." % path)
 
+func reset_constant_char_data(data = self):
+	for char_name in CONSTANT_CHAR_DATA:
+		if char_name in data:
+			var char_data = CONSTANT_CHAR_DATA[char_name]
+			for key in char_data:
+				data.get(char_name)[key] = char_data[key]
 
 func reset_data():
 	playtime = 0
@@ -989,13 +583,13 @@ func reset_data():
 	keys = {"Catacombs": 0}
 	respawnPoint = Vector2.ZERO
 	respawnScene = ""
-	favoriteFood = "Prime Rib"
-	menuFlavor = "Plain"
-	uiManager.set_menu_flavors("Plain")
-	textSpeed = 0.035
+	favoriteFood = ""
+	menuFlavor = FLAVORS[0]
+	uiManager.set_menu_flavors(FLAVORS[0])
+	textSpeed = TEXT_SPEEDS[1]
 	buttonPrompts = "Both"
 	description = true
-	InventoryManager.resetInventories()
+	InventoryManager.reset_inventories()
 	global.persistPlayer.run_sound = "wood.mp3"
 	global.party.clear()
 	global.partyNpcs.clear()
@@ -1003,9 +597,8 @@ func reset_data():
 	for i in [ninten, ana, lloyd, pippi, teddy]:
 		i["nickname"] = ""
 		i["status"] = []
-		i["equipment"] = {"weapon": "", "body": "", "head" : "", "other": ""}
+		i["equipment"] = {"weapon": "", "body": "", "arms" : "", "other": ""}
 		i["learnedSkills"] = []
-		i["passiveSkills"] = []
 		i["level"] = 1
 		i["exp"] = 0
 		i["boosts"] = {
@@ -1022,67 +615,90 @@ func reset_data():
 			if "max" in stat:
 				i[stat.replace("max", "")] = player_stat_target_table[i["name"]][stat][0]
 	InventoryManager.addItem("ninten", "BaseballCap")
-	InventoryManager.equipItem("ninten", 0)
+	InventoryManager.equip_item("ninten", 0)
 	for flag in flags:
 		flags[flag] = false
+	object_flags.clear()
+	
 
-func upgrade_from_old_save():
-	for i in [ninten, ana, lloyd, pippi, teddy, flyingman, canarychick, eve]:
-		if not "article" in i:
-			i["article"] = "ARTICLES_%s" % i["name"].to_upper()
-	flags["visited_podunk"] = true
-
-func get_json_file(filepath: String):
+func get_json_data(file_path: String, fallback: String = "") -> Dictionary:
 	var file = File.new()
-	if file.file_exists(filepath):
-		file.open(filepath, File.READ)
-		var fileText = file.get_as_text()
-		var validation = validate_json(fileText)
-		if validation == "": # validate_json() returns empty string if valid.
-			return parse_json(fileText)
-		else:
-			push_warning("Json format had errors:\n" + validation)
+	if file.file_exists(file_path):
+		file.open(file_path, File.READ)
+		var file_content = file.get_as_text()
+		var res = parse_yaml(file_content)
+		file.close()
+		if res == null:
+			push_warning("Couldn't parse yaml file at %s" % file_path)
 			return {}
+		return res
 	else:
-		push_warning("Was not able to find json at " + filepath)
-		return {}
+		if fallback:
+			return get_json_data(fallback)
+		else:
+			push_warning("Couldn't find yaml file at %s" % file_path)
+			return {}
 
-func give_status(character, status):
-	if !get(character)["status"].has(ailments.Unconscious) and !get(character)["status"].has(status_name_to_enum(status)):
-		get(character)["status"].append(status_name_to_enum(status))
+func parse_yaml(content: String):
+	if _yaml_lib == null:
+		_yaml_lib = load("res://addons/godot-yaml/gdyaml.gdns").new()
+	var obj = _yaml_lib.parse(content)
+	var res = obj.result
+	return res
 
-func status_name_to_enum(status_name):
-	var res = ailments.get(status_name.capitalize())
-	return -1 if res == null else res
+func get_exp_for_level(level: int) -> int:
+	return int(level * level * (level + 1) * .75)
 
-func status_enum_to_name(status) -> String:
-	if status < ailments.size():
-		return ailments.keys()[status].to_lower()
-	else:
-		return ""
+func get_stat_for_level(char_name: String, stat_name: String, level: int) -> int:
+	var stats_dict_for_member: Dictionary = player_stat_target_table[char_name]
+	var level_tens := min(level / 10, stats_dict_for_member[stat_name].size() - 2)
+	var level_units := level - (level_tens * 10)
+	var lower_stat: int = stats_dict_for_member[stat_name][level_tens]
+	var upper_stat: int = stats_dict_for_member[stat_name][level_tens + 1]
+	return int(lerp(lower_stat, upper_stat, level_units / 10.0))
 
-func get_inline_stat(stat):
-	return tr("INLINE_STAT_" + stat.to_upper())
+func get_basic_skill(char_name: String) -> String:
+	var char_data: Dictionary = self.get(char_name)
+	var weapon_name: String = char_data["equipment"]["weapon"]
+	if weapon_name:
+		var weapon_data: Dictionary = self.items[weapon_name]
+		var skill_name: String = weapon_data.get("basic_skill", "")
+		if skill_name:
+			return skill_name
+	return char_data.get("basic_skill", "attack")
 
-# LOCALIZATION Code added: Shortens item names to fit and adds ellipsis (for equip and status screens)
-#func fit_item_name_to_label(label, item):
-#	# First, trying to fit the full name...
-#	label.text = tr(item.name)
-#	if label.get_line_count() == 1:
-#		return
-#	# If the full name is too long, let's try with the shorter one
-#	text = tr(get_item_short_name(item))
-#	label.text = text
-#	# And if needed, let's try to shorten it further...
-#	while len(text) > 0 && label.get_line_count() > 1:
-#		text = text.rstrip(text[-1])
-#		while len(text) > 0 && text[-1] == " ":
-#			text = text.rstrip(" ")
-#		label.text = text + tr("SYMBOL_ELLIPIS")
-#
-#func get_item_short_name(item):
-#	# Making sure the corresponding key has a translation (I couldn't find a better way)
-#	if "short_name" in item and tr(item["short_name"]) != item["short_name"]:
-#		return item["short_name"]
-#	else:
-#		return item["name"]
+# requested_stat: HPrecover, PPrecover, maxhp, maxpp, offense, defense, speed, iq, guts
+# if requested_stat is omitted, the most relevant stat value is automatically returned
+func get_item_value(item_data: Dictionary, requested_stat := "") -> int:
+	var boosts: Dictionary = item_data.get("boost", {})
+	if requested_stat:
+		return item_data.get(requested_stat, item_data.get("boost", {}).get(requested_stat, 0))
+	for stat in boosts:
+		if boosts.get(stat, 0) > 0:
+			return boosts[stat]
+	for recover in ["PPrecover", "HPrecover"]:
+		if item_data.get(recover, 0) > 0:
+			return item_data[recover]
+	return 0
+
+func _get_phone_units() -> int:
+	var all_phone_cards: Array = InventoryManager.find_all_occurrences("PhoneCard")
+	var sum := 0
+	for card in all_phone_cards:
+		sum += (card as InventoryManager.Item).doses
+	return sum
+
+func has_field_skill(character: Dictionary, skill_name: String) -> bool:
+	var skill: Dictionary = fieldSkills.get(skill_name, {})
+	var ret := true
+	if skill.has("usable") and !skill.usable.get(character.name, false):
+		ret = false
+	if skill.has("flag") and !flags.get(skill.flag, false):
+		ret = false
+	if skill.has("battle_skill") and !character.get("learnedSkills", []).has(skill.battle_skill):
+		ret = false
+	return ret
+
+func is_key_allowed(event):
+	return TextTools.get_key_name_from_event(event) != null
+

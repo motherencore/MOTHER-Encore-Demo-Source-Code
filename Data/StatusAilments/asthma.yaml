@@ -1,0 +1,17 @@
+healing:
+  persistent: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_ASTHMA
+  effect: BATTLE_MSG_STATUS_ASTHMA_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_ASTHMA
+  heal_overworld: ACTION_RESULT_HEAL_ASTHMA
+  heal_overworld_fail: ACTION_RESULT_HEAL_ASTHMA_FAIL
+status_bubble: asthma
+effects_by_char:
+  any:
+    cant_select:
+      Basic: true
+      Skills: true
+    cant_do:
+      action:
+        skill_type: [ basic, skill ]

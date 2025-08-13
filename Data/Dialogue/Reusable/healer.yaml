@@ -1,0 +1,171 @@
+'0':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_0
+  goto: '2'
+'2':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_2
+  options:
+    DIALOGUE_REUSABLE_HEALER_2-OPT_0: '17'
+    DIALOGUE_REUSABLE_HEALER_2-OPT_1: '15'
+    cancel: '15'
+  cash: true
+'3':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  text: DIALOGUE_REUSABLE_HEALER_3
+  options:
+    chkninten: '4'
+    chkana: '8'
+    chklloyd: '6'
+    chkteddy: '10'
+    chkpippi: '12'
+    cancel: '15'
+  cash: true
+'4':
+  if:
+    goto: '16'
+    hasstatus1:
+      character: ninten
+      status: ''
+    hasstatus2:
+      character: ninten
+      status: Unconscious
+    or: null
+  goto: '5'
+'5':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_5
+  givecash: -120
+  cure:
+    character: ninten
+    status: All
+  if:
+    partysize:
+      size: 1
+      symbol: '>'
+    goto: '14'
+'6':
+  if:
+    goto: '16'
+    hasstatus1:
+      character: lloyd
+      status: ''
+    hasstatus2:
+      character: lloyd
+      status: Unconscious
+    or: null
+  goto: '7'
+'7':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_7
+  givecash: -120
+  cure:
+    character: lloyd
+    status: All
+  if:
+    partysize:
+      size: 1
+      symbol: '>'
+    goto: '14'
+'8':
+  if:
+    goto: '16'
+    hasstatus1:
+      character: ana
+      status: ''
+    hasstatus2:
+      character: ana
+      status: Unconscious
+    or: null
+  goto: '9'
+'9':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_9
+  givecash: -120
+  cure:
+    character: ana
+    status: All
+  if:
+    partysize:
+      size: 1
+      symbol: '>'
+    goto: '14'
+'10':
+  if:
+    goto: '16'
+    hasstatus1:
+      character: teddy
+      status: ''
+    hasstatus2:
+      character: teddy
+      status: Unconscious
+    or: null
+  goto: '11'
+'11':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_11
+  givecash: -120
+  cure:
+    character: teddy
+    status: All
+  if:
+    partysize:
+      size: 1
+      symbol: '>'
+    goto: '14'
+'12':
+  if:
+    goto: '16'
+    hasstatus1:
+      character: pippi
+      status: ''
+    hasstatus2:
+      character: pippi
+      status: Unconscious
+    or: null
+  goto: '13'
+'13':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_13
+  givecash: -120
+  cure:
+    character: pippi
+    status: All
+  if:
+    partysize:
+      size: 1
+      symbol: '>'
+    goto: '14'
+'14':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_14
+  options:
+    DIALOGUE_REUSABLE_HEALER_14-OPT_0: '3'
+    DIALOGUE_REUSABLE_HEALER_14-OPT_1: '15'
+    cancel: '15'
+'15':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_15
+'16':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_16
+  goto: '3'
+'17':
+  if:
+    hascash: 120
+    goto: '3'
+  goto: '18'
+'18':
+  name: DIALOGUE_REUSABLE_HEALER_SPEAKER_Healer
+  sound: Adult
+  text: DIALOGUE_REUSABLE_HEALER_18

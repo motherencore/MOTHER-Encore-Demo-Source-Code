@@ -1,0 +1,34 @@
+'0':
+  text: DIALOGUE_REUSABLE_PINKSHELLTELEPATHY_0
+  if:
+    hasitem: GGFDiary
+    goto: '2'
+'2':
+  text: DIALOGUE_REUSABLE_PINKSHELLTELEPATHY_2
+  goto: '4'
+'4':
+  sound: Kid
+  text: DIALOGUE_REUSABLE_PINKSHELLTELEPATHY_4
+  goto: '5'
+  cleardialog: true
+'5':
+  showbox: false
+  fadein:
+    speed: 0.7
+    anim: Fade
+    color: 'FFFFFF'
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '6'
+  music: ''
+'6':
+  fadeout:
+    speed: 0.2
+    anim: Fade
+    color: 'FFFFFF'
+  autoadvance: true
+  caninput: false
+  changescene: Cutscenes/Credits
+  unpauseplayer: false
+  wait: 3

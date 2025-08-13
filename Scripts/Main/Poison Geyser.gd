@@ -28,7 +28,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_Poison_Geyser_body_entered(body):
 	if body.has_method("damage"):
 		if global.persistPlayer.paused == false:
-			body.damage(5, 2, Vector2.ZERO, globaldata.ailments.Poisoned)
+			body.damage(5, 2, Vector2.ZERO, StatusManager.AILMENT_POISONED)
 
 func _on_Poison_Geyser_body_exited(body):
 	if body.has_method("damage"):

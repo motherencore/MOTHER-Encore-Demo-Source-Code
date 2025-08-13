@@ -2,9 +2,8 @@ extends NinePatchRect
 
 signal character_changed (character)
 
-var active = false
-var inhibit_chara_change = false
-var swapmode = false
+var active = false setget _set_active
+var _swap_mode = false
 
 export var psiOnly = false
 export var noKey = false setget _set_no_key
@@ -140,9 +139,12 @@ func _set_include_storage(val):
 	include_storage = val
 	_reset_presence()
 
-func setSwapmode(val, source, target):
-	
-	swapmode = val
+func _set_active(val):
+	active = val
+	_update_indicators()
+
+func set_swap_mode(val, source, target):
+	_swap_mode = val
 	if val:
 		InitFromCharacter(target)
 		portrait_nodes[inv_indexes[source]].texture = gr_portraits_texture[inv_indexes[source]]
@@ -150,10 +152,12 @@ func setSwapmode(val, source, target):
 	else:
 		InitFromCharacter(source)
 
+	_update_indicators()
 	_refresh_title()
 
+
 func _refresh_title():
-	if swapmode:
+	if _swap_mode:
 		$CenterContainer/MenuName.text = "INVENTORY_SWAP"
 	else:
 		$CenterContainer/MenuName.text = menuName
@@ -200,18 +204,17 @@ func _update_portraits():
 		else:
 			portrait_nodes[index].texture = portraits_texture[index]
 	
-	
-	$CharacterPortraits/IndicatorL.visible = true
-	$CharacterPortraits/IndicatorR.visible = true
-	if !noKey:
-		$CharacterPortraits/Key.visible = true
-	elif portraitsVisible <= 1:
-		$CharacterPortraits/IndicatorL.visible = false
-		$CharacterPortraits/IndicatorR.visible = false
-	
-	
+	$CharacterPortraits/Key.visible = !noKey
+	_update_indicators()
 
-func Update_portrait_modifiers(character, is_suitable, is_equiped, is_better, is_lower):
+func _update_indicators():
+	var nb_elements = presence.values().count(true)
+	var multiple_elements = nb_elements > 1
+	var visible = multiple_elements and active and !_swap_mode 
+	$CharacterPortraits/IndicatorL.visible = visible
+	$CharacterPortraits/IndicatorR.visible = visible
+
+func update_portrait_modifiers(character, is_suitable, is_equiped, is_better, is_lower):
 	if !is_equiped:
 		portrait_nodes[presence.keys().find(character)].show_is_item_suitable(is_suitable)
 		portrait_nodes[presence.keys().find(character)].show_is_item_equiped(false)
@@ -223,8 +226,8 @@ func Update_portrait_modifiers(character, is_suitable, is_equiped, is_better, is
 	
 
 func _input(event):
-	if !swapmode:
-		if (active and !inhibit_chara_change):
+	if !_swap_mode:
+		if active:
 
 			var portraitsVisible = 0
 			for character in presence.keys():

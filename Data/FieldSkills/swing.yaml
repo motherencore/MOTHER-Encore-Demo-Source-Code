@@ -1,0 +1,10 @@
+name: FIELD_SWING
+description: FIELD_SWING_DESC
+is_skill_button: true
+flag: bat
+usable:
+  ninten: true
+  ana: false
+  lloyd: false
+  teddy: false
+  pippi: false

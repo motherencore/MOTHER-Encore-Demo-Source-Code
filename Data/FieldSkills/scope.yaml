@@ -1,0 +1,8 @@
+name: FIELD_SCOPE
+description: FIELD_SCOPE_DESC
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: true
+  pippi: true

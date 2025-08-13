@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cold.png-c09535f99ef0c985c0c8d29216488bf5.stex"
+path="res://.import/cold.png-dc04af51f037be50cca8509a9196597a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Cold.png"
-dest_files=[ "res://.import/Cold.png-c09535f99ef0c985c0c8d29216488bf5.stex" ]
+source_file="res://Graphics/UI/Ailments/cold.png"
+dest_files=[ "res://.import/cold.png-dc04af51f037be50cca8509a9196597a.stex" ]
 
 [params]
 

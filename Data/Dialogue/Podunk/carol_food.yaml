@@ -1,0 +1,43 @@
+'0':
+  actors:
+    player: leader
+  name: DIALOGUE_PODUNK_CAROL_FOOD_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CAROL_FOOD_0
+  goto: '4'
+'4':
+  showbox: false
+  fadein:
+    speed: 0.3
+    anim: Circle Focus
+  objectfunction:
+    MusicArea: stop_music
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  actorsdir:
+    player:
+      x: 0
+      y: 1
+  teleportactors:
+    player:
+      x: 520
+      y: 400
+  teleportparty:
+    x: 520
+    y: 400
+  returncam: 0.01
+  fadefocus: player
+  fadeout:
+    type: 1
+    anim: Circle
+  objectfunction:
+    MusicArea3: play_music
+  setflags: good_morning
+  heal: All
+  restorepp: All
+  wait: 1
+  autoadvance: true
+  caninput: false

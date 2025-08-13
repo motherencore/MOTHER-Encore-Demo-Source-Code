@@ -1,0 +1,22 @@
+'0':
+  actors:
+    ninten: leader
+    carol: Objects/npc
+  talker: carol
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_PHONE_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_PHONE_0
+  actorsdir:
+    carol:
+      x: 0
+      y: 1
+  actorsmove:
+    ninten:
+      movement:
+      - wait: 0.1
+      - x: 0
+        y: -16
+      speed: 64
+      animation: Walk
+      type: step
+  returncam: 0.1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Ana/battle.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/UI/Battle/BattleSprite.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/Battle/BattleSpriteParty.gd" type="Script" id=2]
 [ext_resource path="res://Shaders/Outline.shader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=10]

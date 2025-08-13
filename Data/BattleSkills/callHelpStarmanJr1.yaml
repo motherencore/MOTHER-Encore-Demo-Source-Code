@@ -1,0 +1,25 @@
+name: CALLHELPSTARMANJR_NAME
+description: CALLHELPSTARMANJR_DESC
+dialog: CALLHELPSTARMANJR_DIALOG
+skillType: ''
+actionType: 2
+useCases: 1
+damageType: none
+targetType: 0
+damage: 0
+variance: 0
+priority: 0
+statusEffects: []
+statusHeals: []
+allies:
+- ally: rat
+  weight: 1
+critChance: 0
+failChance: 0
+ppCost: 0
+hpCost: 0
+hitEffect: ''
+screenEffect: ''
+userAnim: ''
+useSound: siren
+hitSound: ''

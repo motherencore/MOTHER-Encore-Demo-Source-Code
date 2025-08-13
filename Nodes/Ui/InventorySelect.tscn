@@ -64,7 +64,7 @@ align = 1
 margin_left = 6.0
 margin_right = 182.0
 margin_bottom = 27.0
-custom_constants/separation = 1
+custom_constants/separation = 0
 
 [node name="IndicatorL" parent="CharacterPortraits" instance=ExtResource( 2 )]
 margin_bottom = 27.0
@@ -73,43 +73,50 @@ key = "ui_focus_prev"
 
 [node name="Ninten" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 1.0
 margin_right = 22.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Ana" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 23.0
+margin_left = 22.0
 margin_right = 44.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Lloyd" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 45.0
+margin_left = 44.0
 margin_right = 66.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Teddy" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 67.0
+margin_left = 66.0
 margin_right = 88.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Pippi" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 89.0
+margin_left = 88.0
 margin_right = 110.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="FlyingMan" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 111.0
+margin_left = 110.0
 margin_right = 132.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Eve" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 133.0
+margin_left = 132.0
 margin_right = 154.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="CanaryChick" parent="CharacterPortraits" instance=ExtResource( 11 )]
 show_behind_parent = true
-margin_left = 155.0
+margin_left = 154.0
 margin_right = 176.0
+rect_min_size = Vector2( 22, 21 )
 
 [node name="Key" type="TextureRect" parent="CharacterPortraits"]
 visible = false
@@ -118,7 +125,7 @@ material = ExtResource( 3 )
 margin_left = 154.0
 margin_right = 175.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 21, 21 )
+rect_min_size = Vector2( 22, 21 )
 texture = ExtResource( 4 )
 stretch_mode = 4
 
@@ -129,12 +136,12 @@ material = ExtResource( 3 )
 margin_left = 154.0
 margin_right = 175.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 21, 21 )
+rect_min_size = Vector2( 22, 21 )
 texture = ExtResource( 4 )
 stretch_mode = 4
 
 [node name="IndicatorR" parent="CharacterPortraits" instance=ExtResource( 2 )]
-margin_left = 177.0
-margin_right = 177.0
+margin_left = 176.0
+margin_right = 176.0
 margin_bottom = 27.0
 grow_horizontal = 1

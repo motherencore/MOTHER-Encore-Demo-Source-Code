@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Main/Stepping Sounds.gd" type="Script" id=1]
 
 [node name="Stepping Sounds" type="Area2D"]
-collision_layer = 0
+collision_layer = 2048
 monitorable = false
 script = ExtResource( 1 )
 

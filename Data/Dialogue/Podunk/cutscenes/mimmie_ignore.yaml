@@ -1,0 +1,22 @@
+'0':
+  actors:
+    ninten: leader
+    mimmie: Objects/npc2
+  talker: mimmie
+  name: DIALOGUE_PODUNK_CUTSCENES_MIMMIE_IGNORE_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MIMMIE_IGNORE_0
+  changecam: null
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_MIMMIE_IGNORE_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MIMMIE_IGNORE_1
+  actorsmove:
+    ninten:
+      movement:
+      - x: 0
+        y: -12
+      speed: 64
+      animation: Walk
+      type: step

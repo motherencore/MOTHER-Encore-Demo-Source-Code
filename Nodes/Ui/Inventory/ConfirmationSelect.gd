@@ -3,7 +3,7 @@ extends NinePatchRect
 signal back (accept, current_action, current_character, target_character, current_item)
 
 onready var arrow = $arrow
-onready var confirmation_label = $ConfirmationLabel
+onready var confirmation_label = $TitleMarginContainer/ConfirmationLabel
 
 var current_character = "ninten"
 var target_character = "ninten"
@@ -18,14 +18,7 @@ func _ready():
 	visible = false
 	
 func Show_confirmation_select(pos, curr_action, back_act, cur_char, target_char, item_idx):
-	# LOCALIZATION Code added: Moving all these boxes to the left if it gets out of screen
-	var offscreen_part = rect_global_position.x + rect_size.x - get_viewport_rect().size.x
-	if offscreen_part > 0:
-		var tween = Tween.new()
-		var parentMenu = find_parent("ActionSelect")
-		parentMenu.add_child(tween)
-		tween.interpolate_property(parentMenu, "rect_position:x", null, parentMenu.rect_position.x - offscreen_part, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.start()
+	_move_to_fit()
 
 	current_action = curr_action
 	# LOCALIZATION Code change: Made it translatable
@@ -65,3 +58,23 @@ func _inputs():
 		arrow.on = false
 		emit_signal("back", arrow.cursor_index == 0, current_action, current_character, target_character, current_item)
 		
+
+func _on_content_resized():
+	yield(get_tree(), "idle_frame")
+	_bg_resize()
+
+func _bg_resize():
+	$TitleMarginContainer.set_size(Vector2(0, 0))
+	var right_width = $TitleMarginContainer.rect_size.x
+	rect_size.x = right_width
+	$MarginContainer.set_size(Vector2(right_width, 0))
+	_move_to_fit()
+
+func _move_to_fit():
+	var offscreen_part = rect_global_position.x + rect_size.x - get_viewport_rect().size.x
+	if offscreen_part > 0:
+		var tween = Tween.new()
+		var parentMenu = find_parent("ActionSelect")
+		parentMenu.add_child(tween)
+		tween.interpolate_property(parentMenu, "rect_position:x", null, parentMenu.rect_position.x - offscreen_part, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()

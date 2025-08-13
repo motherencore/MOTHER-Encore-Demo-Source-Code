@@ -8,17 +8,30 @@ enum {
 	ATTACK_PREP,
 	ATTACK,
 	CAMERA,
-	JUMPING
+	JUMPING,
+	TELEPORTING,
+	SOOT
+}
+
+enum TPModes {
+	MANUAL = -1,
+	ALPHA,
+	OMEGA = 3
 }
 
 const SPEED_WALKING = 64
 const SPEED_RUNNING = 96
 
+const TP_SPEED_UP =		{ TPModes.MANUAL: 5, TPModes.ALPHA: 2, TPModes.OMEGA: 2}
+const TP_SPEED_CAP =	{ TPModes.MANUAL: 400, TPModes.ALPHA: 400, TPModes.OMEGA: 400}
+const TP_TIME_TO_TAKE_OFF = { TPModes.MANUAL: -1, TPModes.ALPHA: 1, TPModes.OMEGA: 1}
+const TP_TAKE_OFF_SPEED_MULTIPLIER = { TPModes.MANUAL: 1, TPModes.ALPHA: 1.2, TPModes.OMEGA: 1.3}
+
 const PAUSABLE_FLASH_ANIMS = ["Flash"]
 
 var partyMember = globaldata.ninten
 var state = MOVE
-var PK_type = 0 
+var current_skill_action := ""
 var direction = Vector2.ZERO
 var knockback = Vector2.ZERO
 var hitdirect = Vector2.ZERO
@@ -35,7 +48,7 @@ var run_sound = "wood"
 var crouch = false
 var tap_run = false
 var running = false
-var dialogue_box = true
+var can_interact = true
 var climbing = false
 var _spinning = false
 var _switching = false
@@ -43,7 +56,12 @@ var _spin_num = 0
 var _switch = "None"
 var _idle = false
 var _event_collider = null
+var _tp_crouch_timer_done = false
+var _tp_max_speed_reached = false
+var _tp_take_off_timer_done = false
+var _tp_mode = TPModes.MANUAL
 
+var _tp_crash_sound = load("res://Audio/Sound effects/EB/tcrash.wav")
 
 onready var sprite = $Position/main
 onready var special = $SpecialAnimations
@@ -63,6 +81,8 @@ onready var tween = $Tween
 onready var bat = $HitboxPivot/BatHitbox/CollisionShape2D
 onready var viewArea = $EventDetector/ViewArea
 onready var timer = $Timer
+onready var _tp_crouch_timer = $TPCrouchTime
+onready var _tp_take_off_timer = $TPTakeOffTime
 onready var _after_image_creator = $AfterImageCreator
 
 
@@ -83,7 +103,7 @@ func _ready():
 	crouch = false
 	direction = Vector2(0,1)
 	blend_position(direction)
-	set_ripple(false)
+	set_shadow("shadow")
 	
 	var sfx = load("res://Audio/Sound effects/Footsteps/" + run_sound + ".mp3")
 	audioManager.add_sfx(sfx, "run")
@@ -94,6 +114,9 @@ func _physics_process(delta):
 		MOVE:
 			move_state(delta)
 		
+		TELEPORTING:
+			teleport_state(delta)
+		
 		ATTACK_PREP:
 			attack_hold()
 		
@@ -102,11 +125,13 @@ func _physics_process(delta):
 			if inputVector != Vector2.ZERO:
 				blend_position(camera.offset)
 				travel_fainted("Idle", "FaintedIdle")
+		SOOT:
+			soot_state()
 	
 	
 	
 	
-	if state != MOVE:
+	if state != MOVE and state != TELEPORTING:
 		set_running(false)
 
 	if damaging == true and !paused:
@@ -117,32 +142,90 @@ func _physics_process(delta):
 			global.start_joy_vibration(0, 0.6, 0.8, 0.1)
 			global.party_call("play_flash_anim", "Flash")
 			audioManager.play_sfx(load("res://Audio/Sound effects/Hurt 1.mp3"), "damage")
-			if !global.party[0]["status"].has(globaldata.ailments.Unconscious):
+			if !StatusManager.is_unconscious(global.party[0]):
 				global.party[0]["hp"] -= damage
 				uiManager.create_flying_num(damage, global_position)
 				if global.party[0]["hp"] <= 0:
 					global.party[0]["hp"] = 0
 					global.party[0]["status"].clear()
-					global.party[0]["status"].append(globaldata.ailments.Unconscious)
+					StatusManager.add_status(global.party[0], StatusManager.AILMENT_UNCONSCIOUS)
 					if global.get_conscious_party() == []:
 						game_over()
 	knockback = knockback.move_toward(Vector2.ZERO, 200)
 
+func teleport_state(delta):
+	if !paused:
+		var oldPos = global_position
+		_controls()
+		
+		
+		var incorrectInputs = [
+			direction * -1,
+			(direction * -1).rotated(0.25*PI).round(),
+			(direction * -1).rotated(-0.25*PI).round()
+		]
+		
+		if !_tp_take_off_timer_done and inputVector != Vector2.ZERO and !inputVector in incorrectInputs:
+			set_direction(inputVector)
+
+		if !_tp_max_speed_reached:
+			if speed < TP_SPEED_CAP[_tp_mode]:
+				speed += TP_SPEED_UP[_tp_mode]
+			elif speed >= TP_SPEED_CAP[_tp_mode]:
+				speed = TP_SPEED_CAP[_tp_mode]
+				_tp_max_speed_reached = true
+				global.party_call("play_flash_anim", "TeleportPulse")
+				global.party_call("start_creating_afterimage")
+				if TP_TIME_TO_TAKE_OFF[_tp_mode] > 0:
+					_tp_take_off_timer.start(TP_TIME_TO_TAKE_OFF[_tp_mode])
+		elif _tp_take_off_timer_done:
+			speed = int(floor(speed * TP_TAKE_OFF_SPEED_MULTIPLIER[_tp_mode]))
+		
+		velocity = direction * speed
+		move_and_slide(velocity)
+		travel_fainted("Run", "FaintedWalk")
+		animationTree.set("parameters/FaintedWalk/TimeScale/scale", 2)
+		
+		if (_tp_mode == TPModes.MANUAL and Input.is_action_just_pressed("ui_toggle")) \
+		or (!_tp_take_off_timer_done and max(abs(oldPos.x - global_position.x), abs(oldPos.y - global_position.y)) <= 1):
+			set_running(false)
+			substantialMovement = false
+			_idle = true
+			state = SOOT
+			_tp_max_speed_reached = false
+			_tp_take_off_timer.stop()
+			animationState.travel("Soot")
+			_tp_crouch_timer.start()
+			global.party_call("play_flash_anim", "RESET")
+			global.party_call("stop_creating_afterimage")
+			camera.shake_camera(speed/100.0, 0.2, direction)
+			audioManager.play_sfx(_tp_crash_sound, "tcrash")
+		update_party_positions(oldPos, 0.5)
+
+func soot_state():
+	if !paused:
+		if _tp_crouch_timer.time_left == 0:
+			_controls()
+			if inputVector != Vector2.ZERO:
+				direction = inputVector
+				state = MOVE
 
 func move_state(delta):
 	if !paused:
 		
-		if globaldata.buttonPrompts != "None":
-			check_eventCollider()
+		
+		check_eventCollider()
 		
 		_controls()
 		_movement(delta)
-		if Input.is_action_just_pressed("ui_cancel") and !climbing and !_spinning and \
-			((global.party[0] == globaldata.ninten and globaldata.flags["bat"]) or \
-			(global.party[0] == globaldata.lloyd and globaldata.flags["laser"]) or \
-			(global.party[0] == globaldata.ana)):
-			
-			if global.party[0] == globaldata.ninten:
+		if Input.is_action_just_pressed("ui_cancel") and !climbing and !_spinning:
+			var action_skills = _get_skills_button_actions()
+			if action_skills.empty():
+				current_skill_action = ""
+			elif not current_skill_action in action_skills:
+				current_skill_action = action_skills.front()
+
+			if current_skill_action == "swing":
 				state = ATTACK
 				crouch = false
 				_idle = false
@@ -151,7 +234,7 @@ func move_state(delta):
 				walk = false
 				attack_unleash()
 			else:
-				if global.party[0] == globaldata.lloyd:
+				if current_skill_action == "laser":
 					if global.currentScene.get_node("Objects").get_node_or_null("Laser") == null:
 						$AimTime.start()
 					else:
@@ -162,7 +245,7 @@ func move_state(delta):
 				tap_run = false
 				set_running(false)
 				walk = false
-			if global.party[0] == globaldata.ana:
+			if current_skill_action in ["pkfire", "pkfreeze", "pkthunder"]:
 				animationState.travel("Cast")
 				$PKTime.wait_time = 0.733
 				$PKTime.start()
@@ -179,8 +262,20 @@ func move_state(delta):
 		if audioManager.get_sfx("run") != null and audioManager.get_sfx("run").playing:
 			audioManager.get_sfx("run").stop()
 
+func _get_skills_button_actions() -> Array:
+	var ret := []
+	var character: Dictionary = global.party[0]
+	for skill_id in globaldata.fieldSkills:
+		if globaldata.has_field_skill(character, skill_id) and globaldata.fieldSkills[skill_id].get("is_skill_button", false):
+			ret.append(skill_id)
+	ret.sort()
+	return ret
+
 func _controls():
 	inputVector = controlsManager.get_controls_vector()
+	if climbing:
+		inputVector.x = 0
+	
 
 func move():
 	if tap_run == true:
@@ -207,6 +302,8 @@ func _movement(delta):
 		if Input.is_action_pressed("ui_toggle") or tap_run == true:
 			if  Input.is_action_just_pressed("ui_toggle") and crouch == false and running == false and climbing == false:
 				crouch = true
+				if globaldata.has_field_skill(global.party[0], "teleport"):
+					_tp_crouch_timer.start()
 			if Input.is_action_just_pressed("ui_toggle") and tap_run == true:
 				tap_run = false
 				set_running(false)
@@ -225,15 +322,18 @@ func _movement(delta):
 		walk = false
 		if Input.is_action_just_released("ui_toggle") and crouch == true:
 			crouch = false
-			speed = SPEED_RUNNING
-			tap_run = true
-			
-			velocity = direction * speed
+			if _tp_crouch_timer_done:
+				start_teleport(TPModes.MANUAL)
+			else:
+				speed = SPEED_RUNNING
+				tap_run = true
+				
+				velocity = direction * speed
 
 	var oldpos = self.position
 	velocity = move_and_slide(velocity * delta * (speed/1.7))
 	knockback = move_and_slide(knockback)
-	if abs(velocity.x) > 0.1 or abs(velocity.y) > 0.1 or abs(knockback.x) > 0.1 or abs(knockback.y) > 0.1:
+	if max(round(abs(oldpos.x - position.x)), round(abs(oldpos.y - position.y))) > 0 or abs(knockback.x) > 0.1 or abs(knockback.y) > 0.1:
 		substantialMovement = true
 		_idle = false
 	else:
@@ -257,6 +357,8 @@ func _movement(delta):
 			animationPlayer.playback_speed = 0
 		if Input.is_action_just_pressed("ui_toggle") and crouch == false:
 			crouch = true
+			if globaldata.has_field_skill(global.party[0], "teleport"):
+				_tp_crouch_timer.start()
 		elif Input.is_action_just_pressed("ui_toggle") and crouch == true:
 			crouch = false
 		if crouch == true:
@@ -275,17 +377,19 @@ func _movement(delta):
 	for i in global.partyObjects:
 		if i.climbing:
 			canClimb = false
-	if canClimb and globaldata.flags["switch_leader"] and global.party.size() != 1 and globaldata.flags["switch_leader"]:
+	if canClimb and global.party.size() != 1 and globaldata.has_field_skill(global.party[0], "switch_leader"):
 		if Input.is_action_just_pressed("ui_focus_next"):
 			crouch = false
 			_switching = true
 			spin(8,45,0.015)
 			_switch = "next"
+			current_skill_action = ""
 		if Input.is_action_just_pressed("ui_focus_prev"):
 			crouch = false
 			_switching = true
 			spin(8,-45,0.015)
 			_switch = "prev"
+			current_skill_action = ""
 		if _switching == true and _spinning == true and _spin_num == 4:
 			match _switch:
 				"next":
@@ -295,8 +399,8 @@ func _movement(delta):
 			for i in global.partyObjects:
 				if i != self:
 					i.set_partyMember()
-				i._spritesheet()
-	if Input.is_action_just_pressed("ui_accept") and !paused and dialogue_box and eventRayCaster.is_colliding():
+				i.spritesheet()
+	if Input.is_action_just_pressed("ui_accept") and !paused and can_interact and eventRayCaster.is_colliding():
 		if crouch:
 			use_telepathy()
 		else:
@@ -346,19 +450,19 @@ func interact_with():
 						turn_to(collided, true)
 					collided.interact()
 				if collide.get_node_or_null("ButtonPrompt") != null:
-					print("pressed :3")
+					#print("pressed :3")
 					collide.get_node_or_null("ButtonPrompt").press_button()
 			else:
-				global.set_dialog("noproblem", null)
+				global.set_dialog("noproblem")
 				uiManager.open_dialogue_box()
 				pause()
 		else:
-			global.set_dialog("noproblem", null)
+			global.set_dialog("noproblem")
 			uiManager.open_dialogue_box()
 			pause()
 
 func use_telepathy():
-	if uiManager.uiStack.size() == 0 and global.party[0] in [globaldata.ninten, globaldata.ana]:
+	if uiManager.uiStack.size() == 0 and globaldata.has_field_skill(global.party[0], "telepathy"):
 		set_eventCollider(null)
 		var collide = eventRayCaster.get_collider()
 		if collide != null:
@@ -369,36 +473,42 @@ func use_telepathy():
 						turn_to(collided, true)
 					uiManager.set_telepathy_effect(true, collided)
 					collided.telepathy()
+					if collide.get_node_or_null("ButtonPrompt") != null:
+						collide.get_node_or_null("ButtonPrompt").press_button()
 				else:
 					if collided.no_problem_thoughts:
-						global.set_dialog("noproblem", null)
+						global.set_dialog("Reusable/nothoughts")
 					else:
-						global.set_dialog("Reusable/straythoughts", null) 
+						global.set_dialog("Reusable/straythoughts") 
+						if collide.get_node_or_null("ButtonPrompt") != null:
+							collide.get_node_or_null("ButtonPrompt").press_button()
 					uiManager.open_dialogue_box()
 					pause()
+				
 			elif collide.has_method("telepathy"):
 				if collide.thoughts != "":
 					if collide.get("player_turn") != null:
 						turn_to(collide, true)
 					collide.telepathy()
+					if collide.get_node_or_null("ButtonPrompt") != null:
+						collide.get_node_or_null("ButtonPrompt").press_button()
 				else:
-					global.set_dialog("noproblem", null)
+					global.set_dialog("Reusable/nothoughts")
 					uiManager.open_dialogue_box()
 					pause()
 			else:
-				global.set_dialog("Reusable/nothoughts", null) 
+				global.set_dialog("Reusable/nothoughts") 
 				uiManager.open_dialogue_box()
 				pause()
 			
-			if collide.get_node_or_null("ButtonPrompt") != null:
-				if collide.get_node_or_null("ButtonPrompt").type == "NPCs":
+				if collide.get_node_or_null("ButtonPrompt") != null:
 					collide.get_node_or_null("ButtonPrompt").press_button()
 		else:
-			global.set_dialog("Reusable/nothoughts", null) 
+			global.set_dialog("Reusable/nothoughts") 
 			uiManager.open_dialogue_box()
 			pause()
 
-func _spritesheet():
+func spritesheet():
 	var texPathP1 := "res://Graphics/Character Sprites/"
 	var texPathP2 := "/main.png"
 	var textPathP3 := "/special.png"
@@ -473,27 +583,26 @@ func attack_hold():
 		attack_unleash()
 
 func attack_unleash():
-	if global.party[0]== globaldata.ninten:
-		$AudioStreamPlayer.stream = load("res://Audio/Sound effects/Ninten Bat.mp3")
-		$AudioStreamPlayer.play()
-		global.start_joy_vibration(0, 0.35, 0, 0.2)
-		animationState.travel("Bat")
-		if global.party[0].status.has(globaldata.ailments.Unconscious):
-			animationTree.set("parameters/Bat/TimeScale/scale", 0.7)
-		else:
-			animationTree.set("parameters/Bat/TimeScale/scale", 1)
-	elif global.party[0]["sprite"] == "Lloyd":
-		animationState.travel("Shoot")
-		camera.return_offset(0.4)
-	elif global.party[0]["sprite"] == "Ana":
-		animationState.travel("Cast")
-		$OutlineAnim.play("Normal")
-		$PKTime.stop()
-	elif global.party[0]["sprite"] == "Teddy":
-		state = MOVE
-	else:
-		state = MOVE
-
+	match current_skill_action:
+		"swing":
+			$AudioStreamPlayer.stream = load("res://Audio/Sound effects/Ninten Bat.mp3")
+			$AudioStreamPlayer.play()
+			global.start_joy_vibration(0, 0.35, 0, 0.2)
+			animationState.travel("Bat")
+			if StatusManager.is_unconscious(global.party[0]):
+				animationTree.set("parameters/Bat/TimeScale/scale", 0.7)
+			else:
+				animationTree.set("parameters/Bat/TimeScale/scale", 1)
+		"laser":
+			animationState.travel("Shoot")
+			camera.return_offset(0.4)
+		"pkfire", "pkfreeze", "pkthunder":
+			animationState.travel("Cast")
+			$OutlineAnim.play("Normal")
+			$PKTime.stop()
+		_:
+			state = MOVE
+	
 func attack_animation_finished():
 	$HitboxPivot/BatHitbox/CollisionShape2D.disabled = true
 	state = MOVE
@@ -533,15 +642,15 @@ func dust():
 
 
 func shoot():
-	var La = Laser.instance()
-	global.currentScene.get_node("Objects").add_child(La)
-	var laser = La.get_node("LaserHead")
+	var la = Laser.instance()
+	global.currentScene.get_node("Objects").add_child(la)
+	var laser = la.get_node("LaserHead")
 	laser.animationTree.set("parameters/shoot/blend_position", direction)
 	laser.global_position = $HitboxPivot/BulletSpawn.global_position
 	laser.inputVector = direction
 	laser.rotation = $HitboxPivot/BulletSpawn.global_rotation
 	laser.animationState.travel("shoot")
-	La.show()
+	la.show()
 
 func cast():
 	var ini_dir = direction
@@ -551,12 +660,12 @@ func cast():
 	wait.set_one_shot(true)
 	self.add_child(wait)
 	for i in 3 :
-		var Pk = Cast.instance()
+		var pk = Cast.instance()
 		if ini_dir.x != 0:
-			Pk.position = (ini_pos + (Vector2(30 * i,30 * i) * ini_dir.normalized()))
+			pk.position = (ini_pos + (Vector2(30 * i,30 * i) * ini_dir.normalized()))
 		else:
-			Pk.position = (ini_pos + (Vector2(30 * i,25 * i) * ini_dir.normalized()))
-		global.currentScene.get_node("Objects").add_child(Pk)
+			pk.position = (ini_pos + (Vector2(30 * i,25 * i) * ini_dir.normalized()))
+		global.currentScene.get_node("Objects").add_child(pk)
 		wait.start()
 		yield(wait, "timeout")
 	
@@ -611,8 +720,8 @@ func damage(Damage, DamageVariation = 0, Hitdirect = Vector2.ZERO, Status = null
 	_attack_damage = Damage
 	_damage_variation = DamageVariation
 	hitdirect = Hitdirect
-	if Status != null and !global.party[0]["status"].has(Status) and !global.party[0]["status"].has(globaldata.ailments.Unconscious):
-		global.party[0]["status"].append(Status)
+	if Status != null:
+		StatusManager.add_status(global.party[0], Status)
 
 func undamage():
 	damaging = false
@@ -640,13 +749,15 @@ func unladder():
 	if running:
 		set_running(true)
 
-func set_ripple(enabled):
-	$Shadow.visible = !enabled
-	$Ripple.visible = enabled
+func set_shadow(anim):
+	$Shadow.set_anim(anim)
+
+
+
 
 func travel_fainted(anim, faintanim):
 	if !climbing:
-		if global.party[0].status.has(globaldata.ailments.Unconscious):
+		if StatusManager.is_unconscious(global.party[0]):
 			animationState.travel(faintanim)
 		else:
 			animationState.travel(anim)
@@ -664,6 +775,17 @@ func set_running(enabled):
 	if audioManager.get_sfx("run") != null and audioManager.get_sfx("run").playing and !enabled:
 		audioManager.get_sfx("run").stop()
 
+func start_teleport(tp_mode):
+	speed = SPEED_RUNNING
+	set_running(true)
+	state = TELEPORTING
+	_tp_crouch_timer_done = false
+	_tp_max_speed_reached = false
+	_tp_take_off_timer_done = false
+	_tp_mode = tp_mode
+	velocity = direction * speed
+	$OutlineAnim.play("Normal")
+
 func pause():
 	global.party_call("pause_flash_anim")
 	global.party_call("stop_creating_afterimage")
@@ -672,6 +794,8 @@ func pause():
 	walk = false
 	state = MOVE
 	paused = true
+	if _tp_take_off_timer:
+		_tp_take_off_timer.stop()
 	inputVector = Vector2.ZERO
 	$AudioStreamPlayer.playing = false
 	$AudioStreamPlayer.stream_paused = true
@@ -707,19 +831,23 @@ func round_vector(pos):
 	pos.y = round(pos.y)
 	return pos
 
+func round_vector_half(pos):
+	return round_vector(pos * 10)/10
+
 func _on_BlinkTime_timeout():
 	_idle = true
 
 func _on_PKTime_timeout():
-	PK_type += 1
-	if PK_type > 2:
-		PK_type = 0
-	match PK_type:
-		0:
+	var skill_actions := _get_skills_button_actions()
+	var current_skill_index = skill_actions.find(current_skill_action)
+	current_skill_index = (current_skill_index + 1) % skill_actions.size()
+	current_skill_action = skill_actions[current_skill_index]
+	match current_skill_action:
+		"pkfire":
 			$EffectsAnim.play("Fire")
-		1:
+		"pkfreeze":
 			$EffectsAnim.play("Freeze")
-		2:
+		"pkthunder":
 			$EffectsAnim.play("Thunder")
 	$OutlineAnim.play("Flash")
 	$PKTime.wait_time = 1
@@ -727,12 +855,12 @@ func _on_PKTime_timeout():
 
 func _on_OutlineAnim_animation_finished(anim_name):
 	if anim_name == "Flash":
-		match PK_type:
-			0:
+		match current_skill_action:
+			"pkfire":
 				$OutlineAnim.play("Fire")
-			1:
+			"pkfreeze":
 				$OutlineAnim.play("Freeze")
-			2:
+			"pkthunder":
 				$OutlineAnim.play("Thunder")
 
 func duplicate_sprite():
@@ -781,3 +909,17 @@ func start_creating_afterimage():
 func stop_creating_afterimage():
 	_after_image_creator.stop_creating()
 
+func _on_TPCrouchTime_timeout():
+	if crouch:
+		_tp_crouch_timer_done = true
+		global.party_call("play_flash_anim", "TeleportFlash")
+
+func _on_TPTakeOffTime_timeout():
+	global.party_call("set_all_collisions", false)
+	_tp_take_off_timer_done = true
+	uiManager.get_fixed_camera().set_current()
+	yield(get_tree().create_timer(.6), "timeout")
+	pause()
+	yield(uiManager.open_teleport(), "completed")
+	camera.set_current()
+	camera.reset()

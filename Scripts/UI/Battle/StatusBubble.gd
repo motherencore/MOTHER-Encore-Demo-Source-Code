@@ -1,5 +1,6 @@
 extends Control
 
+onready var bubble = $Bubble
 export var fps = 5
 export var loopsBeforeCycle = 4
 var status = []
@@ -10,8 +11,7 @@ var frame = 0
 var loops = 0
 
 func _ready():
-	for status_node in get_children():
-		status_node.hide()
+	bubble.hide()
 
 func _process(delta):
 	t += delta
@@ -26,33 +26,17 @@ func _process(delta):
 				loops = 0
 				if !status.empty():
 					rotate_status()
-		for status_node in get_children():
-			status_node.frame_coords.x = frame
+		bubble.frame_coords.x = frame
 
-#"asthma": return 0
-#"blinded": return 1
-#"burned": return 2
-#"cold": return 3
-#"confused": return 4
-#"forgetful": return 5
-#"nausea": return 6
-#"numb": return 7
-#"poisoned": return 8
-#"sleeping": return 9
-#"sunstroked": return 10
-#"mushroomized": return 11
-#"unconscious": return 12
 func set_status_shown(status_to_show):
-	var status_name = globaldata.status_enum_to_name(status_to_show)
-	for status_node in get_children():
-		if status_node.name.to_lower() == status_name:
-			status_node.show()
-		else:
-			status_node.hide()
+	var dir = StatusManager.get_ailment_info(status_to_show).get("status_bubble")
+	if dir != null:
+		bubble.texture = load("res://Graphics/UI/Battle/StatusBubble/" + dir + ".png")
+		bubble.show()
 
 func add_status(new_status):
 	# we dont deal with unconscious
-	if new_status == globaldata.ailments.Unconscious:
+	if new_status == StatusManager.AILMENT_UNCONSCIOUS:
 		return
 	var i = status.find(new_status)
 	if i > -1:
@@ -62,7 +46,7 @@ func add_status(new_status):
 
 func remove_status(new_status):
 	# we dont deal with unconscious
-	if new_status == globaldata.ailments.Unconscious:
+	if new_status == StatusManager.AILMENT_UNCONSCIOUS:
 		return
 	var i = status.find(new_status)
 	if i == -1:
@@ -70,8 +54,7 @@ func remove_status(new_status):
 	status.remove(i)
 	if status.empty():
 		index = 0
-		for status_node in get_children():
-			status_node.hide()
+		bubble.hide()
 	elif i == index:
 		index -= 1
 		rotate_status()

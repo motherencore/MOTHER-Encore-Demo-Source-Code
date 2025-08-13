@@ -58,3 +58,13 @@ func _on_VBoxContainer_resized():
 	$MarginContainer.set_size(Vector2(0, 0))
 	rect_size.x = $MarginContainer.rect_size.x
 	#rect_size.y = $MarginContainer.rect_size.y
+	_move_to_fit()
+
+func _move_to_fit():
+	var offscreen_part = rect_global_position.x + rect_size.x - get_viewport_rect().size.x
+	if offscreen_part > 0:
+		var tween = Tween.new()
+		var parentMenu = find_parent("ActionSelect")
+		parentMenu.add_child(tween)
+		tween.interpolate_property(parentMenu, "rect_position:x", null, parentMenu.rect_position.x - offscreen_part, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()

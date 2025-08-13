@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sleeping.png-53a70aaad68611d511461248f0928f74.stex"
+path="res://.import/sleeping.png-7f1090fa341971cb3f44af1278f0f3ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Sleeping.png"
-dest_files=[ "res://.import/Sleeping.png-53a70aaad68611d511461248f0928f74.stex" ]
+source_file="res://Graphics/UI/Ailments/sleeping.png"
+dest_files=[ "res://.import/sleeping.png-7f1090fa341971cb3f44af1278f0f3ea.stex" ]
 
 [params]
 

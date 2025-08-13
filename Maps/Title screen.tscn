@@ -512,7 +512,7 @@ tracks/19/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "show_button"
+"method": "_show_button"
 } ]
 }
 tracks/20/type = "value"
@@ -818,7 +818,7 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "show_button"
+"method": "_show_button"
 } ]
 }
 tracks/3/type = "value"
@@ -1363,7 +1363,7 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "show_button"
+"method": "_show_button"
 } ]
 }
 tracks/3/type = "value"
@@ -1495,182 +1495,8 @@ tracks/13/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=30]
-length = 3.3
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/path = NodePath("Aboveground/Abovefade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.416667, 2.08333, 2.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Aboveground/Base:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 140, 94 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Aboveground/Base/Label:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, -14 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Aboveground/Base/credit:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 37, 15 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Aboveground/Base/credit:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Title:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 2.5, 2.905 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Title/PressButton:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 2.16667 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Aboveground/Base/Label:align")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=31]
-length = 3.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Aboveground/Abovefade:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.5, 2.5, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Aboveground/Base:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 94 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Aboveground/Base/Label:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -14 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Aboveground/Base/credit:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 142, 15 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Aboveground/Base/credit:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Aboveground/Base/Label:align")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 2 ]
-}
-
 [sub_resource type="Animation" id=32]
+resource_name = "intro1"
 length = 3.3
 step = 0.0666667
 tracks/0/type = "value"
@@ -1698,7 +1524,7 @@ tracks/1/keys = {
 "values": [ Vector2( 140, 94 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Aboveground/Base/Label:rect_position")
+tracks/2/path = NodePath("Aboveground:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1707,10 +1533,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, -14 ) ]
+"values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Aboveground/Base/credit:position")
+tracks/3/path = NodePath("Title/Menu:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1718,11 +1544,11 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 33, 15 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Aboveground/Base/credit:frame")
+tracks/4/path = NodePath("Aboveground:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1731,10 +1557,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Aboveground:color")
+tracks/5/path = NodePath("Background:color")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1746,7 +1572,7 @@ tracks/5/keys = {
 "values": [ Color( 0, 0, 0, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Title/Menu:visible")
+tracks/6/path = NodePath("Aboveground/Base:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1755,10 +1581,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Aboveground:visible")
+tracks/7/path = NodePath("Aboveground/Base/IntroTexts/Label:size_flags_horizontal")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -1767,10 +1593,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 2 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Background:color")
+tracks/8/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer/Image:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -1778,11 +1604,11 @@ tracks/8/enabled = true
 tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
+"update": 1,
+"values": [ 0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Aboveground/Base:visible")
+tracks/9/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer:size_flags_horizontal")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -1791,19 +1617,160 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ 2 ]
 }
-tracks/10/type = "value"
-tracks/10/path = NodePath("Aboveground/Base/Label:align")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
+
+[sub_resource type="Animation" id=31]
+resource_name = "intro2"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Aboveground/Abovefade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.5, 2.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Aboveground/Base:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 94 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Aboveground/Base/IntroTexts/Label:size_flags_horizontal")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 10 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer/Image:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer:size_flags_horizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "intro3"
+length = 3.3
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Aboveground/Abovefade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.416667, 2.08333, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Aboveground/Base:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 140, 94 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Title:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5, 2.905 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Title/PressButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.16667 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Aboveground/Base/IntroTexts/Label:size_flags_horizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer/Image:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Aboveground/Base/IntroTexts/ImageContainer:size_flags_horizontal")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
 }
 
 [node name="Title screen" type="Control"]
@@ -1889,7 +1856,7 @@ margin_right = 92.0
 margin_bottom = 12.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 7 )
-text = "0.3.1.0"
+text = "0.3.3.2"
 
 [node name="Version2" type="Label" parent="CanvasLayer/Title"]
 margin_left = 170.0
@@ -2045,6 +2012,7 @@ anims/Shine = SubResource( 6 )
 
 [node name="Earth" type="AnimatedSprite" parent="CanvasLayer/Title"]
 visible = false
+modulate = Color( 0.682353, 0.152941, 1, 0 )
 position = Vector2( 89, 27 )
 frames = SubResource( 27 )
 animation = "Spin"
@@ -2059,21 +2027,44 @@ margin_left = 140.0
 margin_top = 94.0
 margin_right = 320.0
 margin_bottom = 97.0
+size_flags_horizontal = 3
 color = Color( 0.972549, 0.0627451, 0.439216, 1 )
 
-[node name="Label" type="Label" parent="CanvasLayer/Aboveground/Base"]
-margin_left = 1.0
-margin_top = -14.0
-margin_right = 181.0
-margin_bottom = -2.0
+[node name="IntroTexts" type="VBoxContainer" parent="CanvasLayer/Aboveground/Base"]
+anchor_right = 1.0
+margin_top = -19.0
+margin_right = 1.0
+margin_bottom = 27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 5
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Aboveground/Base/IntroTexts"]
+margin_top = 2.0
+margin_right = 94.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 18 )
+size_flags_horizontal = 2
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.298039, 0.443137, 0.886275, 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "Originally Produced by"
+valign = 1
 
-[node name="credit" type="Sprite" parent="CanvasLayer/Aboveground/Base"]
-position = Vector2( 33, 15 )
+[node name="ImageContainer" type="Control" parent="CanvasLayer/Aboveground/Base/IntroTexts"]
+margin_top = 25.0
+margin_right = 100.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 100, 18 )
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Image" type="Sprite" parent="CanvasLayer/Aboveground/Base/IntroTexts/ImageContainer"]
 texture = ExtResource( 3 )
+centered = false
 vframes = 3
+frame = 2
 
 [node name="Abovefade" type="ColorRect" parent="CanvasLayer/Aboveground"]
 margin_right = 320.0
@@ -2084,9 +2075,9 @@ anims/Fade = SubResource( 28 )
 "anims/Instant Start" = SubResource( 38 )
 anims/RESET = SubResource( 29 )
 "anims/Skip Fade" = SubResource( 33 )
-"anims/Team Encore" = SubResource( 30 )
-anims/itoi = SubResource( 31 )
-anims/nintendo = SubResource( 32 )
+anims/intro1 = SubResource( 32 )
+anims/intro2 = SubResource( 31 )
+anims/intro3 = SubResource( 30 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

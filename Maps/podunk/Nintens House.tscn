@@ -357,7 +357,7 @@ extents = Vector2( 24, 12.625 )
 [node name="Ninten\'s House" type="Node2D"]
 script = ExtResource( 20 )
 player_map_offset = Vector2( 99, 127 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -376,10 +376,10 @@ format = 1
 tile_data = PoolIntArray( 8716225, 30, 0 )
 
 [node name="Ladder" parent="Below" instance=ExtResource( 3 )]
-position = Vector2( 64, 88 )
+position = Vector2( 63, 88 )
 
 [node name="CollisionShape2D" parent="Below/Ladder" index="0"]
-position = Vector2( -1.5, -10.5 )
+position = Vector2( -0.5, -10.5 )
 shape = SubResource( 88 )
 
 [node name="Openable Door" parent="Below" instance=ExtResource( 12 )]
@@ -446,7 +446,7 @@ staring = true
 [node name="pillow" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 825, 25 )
 sprite = "Npcs/1dir/pillow"
-json = "res://Data/Animations/Floater.json"
+yaml = "res://Data/Animations/Floater.yaml"
 player_turn = {
 "x": true,
 "y": true
@@ -502,6 +502,17 @@ player_turn = {
 }
 button_offset = Vector2( -2, -10 )
 
+[node name="interact_dialog6" parent="Objects" instance=ExtResource( 14 )]
+position = Vector2( 416, 456 )
+scale = Vector2( 3, 3 )
+dialog = "Podunk/non-person text/Ninten's house/Bedside Drawer"
+event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Bedside Drawer" ) ]
+player_turn = {
+"x": false,
+"y": false
+}
+button_offset = Vector2( -2, -10 )
+
 [node name="interact_dialog2" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( 518, 456 )
 scale = Vector2( 4.046, 3.834 )
@@ -537,7 +548,7 @@ button_offset = Vector2( 5, -18 )
 [node name="lamp" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 496, 390 )
 sprite = "Npcs/1dir/lamp"
-json = "res://Data/Animations/Lamp.json"
+yaml = "res://Data/Animations/Lamp.yaml"
 connections = [  ]
 player_turn = {
 "x": true,
@@ -549,7 +560,7 @@ no_shadow = true
 position = Vector2( 40, 40 )
 sprite = "Npcs/1dir/doll"
 dialog = "Podunk/dollmelody"
-json = "res://Data/Animations/Floater.json"
+yaml = "res://Data/Animations/Floater.yaml"
 event_dialog = [ PoolStringArray( "doll_melody", "Podunk/doll" ) ]
 player_turn = {
 "x": true,
@@ -558,33 +569,32 @@ player_turn = {
 no_problem_thoughts = true
 no_shadow = true
 
-[node name="Present" parent="Objects" instance=ExtResource( 18 )]
+[node name="Present1" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 128, 1016 )
 flag = "got_diary"
 item = "GGFDiary"
 dialog = "Podunk/cutscenes/ggf_diary"
 type = "briefcase"
 
-[node name="Sprite" parent="Objects/Present" index="0"]
+[node name="Sprite" parent="Objects/Present1" index="0"]
 texture = ExtResource( 25 )
 
-[node name="Sparkles" parent="Objects/Present" index="1"]
-frame = 1
+[node name="Sparkles" parent="Objects/Present1" index="1"]
+frame = 30
 
-[node name="interact" parent="Objects/Present" index="3"]
+[node name="interact" parent="Objects/Present1" index="3"]
 scale = Vector2( 1.5, 1.5 )
 
-[node name="CollisionShape2D" parent="Objects/Present/interact" index="0"]
+[node name="CollisionShape2D" parent="Objects/Present1/interact" index="0"]
 visible = true
 
-[node name="ButtonPrompt" parent="Objects/Present/interact" index="1"]
+[node name="ButtonPrompt" parent="Objects/Present1/interact" index="1"]
 material = SubResource( 99 )
 position = Vector2( 0, -5.33333 )
 scale = Vector2( 0.666667, 0.666667 )
 
 [node name="Present2" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 160, 1072 )
-flag = "basement_pres_2"
 item = "BatPlastic"
 dialog = "ItemDescriptions/firstbat"
 
@@ -595,7 +605,6 @@ item = "DogTreats"
 
 [node name="Present3" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 96, 1072 )
-flag = "basement_pres_3"
 item = "MapPodunk"
 type = "map"
 
@@ -740,7 +749,7 @@ polygon = PoolVector2Array( 840, 456, 864, 456, 864, 472, 896, 472, 896, 456, 95
 
 [node name="CollisionPolygon2D13" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -816, -280 )
-polygon = PoolVector2Array( 840, 440, 840, 456, 928, 456, 928, 472, 944, 472, 944, 488, 792, 488, 792, 272, 1016, 272, 1016, 488, 944, 488, 944, 472, 960, 472, 960, 456, 984, 456, 984, 416, 1000, 416, 984, 360, 920, 360, 920, 344, 888, 344, 888, 376, 885, 368, 885, 318, 850, 318, 850, 341, 866, 341, 870, 345.444, 870, 368, 867, 376, 832, 376, 824, 432, 840, 432 )
+polygon = PoolVector2Array( 840, 440, 840, 456, 928, 456, 928, 472, 944, 472, 944, 488, 792, 488, 792, 272, 1016, 272, 1016, 488, 944, 488, 944, 472, 960, 472, 960, 456, 984, 456, 984, 416, 1000, 416, 984, 360, 920, 360, 920, 344, 888, 344, 888, 376, 886, 368, 886, 318, 850, 318, 850, 341, 866, 341, 870, 345.444, 870, 368, 867, 376, 832, 376, 824, 432, 840, 432 )
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -832, 16 )
@@ -751,7 +760,6 @@ position = Vector2( 0, -1 )
 polygon = PoolVector2Array( 533, 385, 533, 395, 528, 401, 512, 401, 507, 395, 507, 385 )
 
 [node name="Limits" type="Node2D" parent="."]
-visible = false
 
 [node name="camarea" parent="Limits" instance=ExtResource( 8 )]
 position = Vector2( 500, 397 )
@@ -992,7 +1000,7 @@ __meta__ = {
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Below/Ladder"]
-[editable path="Objects/Present"]
+[editable path="Objects/Present1"]
 [editable path="Doors/Ninten_upstairs"]
 [editable path="Doors/Upstairs_Ninten"]
 [editable path="Doors/Upstair_Mom"]

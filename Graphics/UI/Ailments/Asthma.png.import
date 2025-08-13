@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Asthma.png-ed05f49d434f99331fd3c827732c3a56.stex"
+path="res://.import/asthma.png-3d420d4c2ef4e1f629599960a39d2cf0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Asthma.png"
-dest_files=[ "res://.import/Asthma.png-ed05f49d434f99331fd3c827732c3a56.stex" ]
+source_file="res://Graphics/UI/Ailments/asthma.png"
+dest_files=[ "res://.import/asthma.png-3d420d4c2ef4e1f629599960a39d2cf0.stex" ]
 
 [params]
 

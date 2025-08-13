@@ -30,4 +30,5 @@ func _on_Area2D_body_exited(body):
 		for i in party_npcs:
 			global.partyNpcs.append(i)
 		global.call_deferred("create_party_followers")
+		global.emit_signal("party_changed")
 		replacing = false

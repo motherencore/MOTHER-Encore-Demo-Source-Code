@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Graphics/UI/Teleport/teleport_orb.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/UI/Teleport/teleport_sparkle.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI/Teleport/TeleportOrb.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 26, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 26, 0, 26, 26 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CanvasItemMaterial" id=5]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Animation" id=6]
+resource_name = "OrbEnter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Orb:position:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ 0.0, 200.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sparkles:emission_points")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0 ), PoolVector2Array( 200, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_anim_entered"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "OrbLeave"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Orb:position:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 200.0, 580.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sparkles:emission_points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 200, 0 ), PoolVector2Array( 580, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_anim_left"
+} ]
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+_anim = NodePath("AnimationPlayer")
+
+[node name="Orb" type="AnimatedSprite" parent="."]
+position = Vector2( 580, 0 )
+frames = SubResource( 4 )
+speed_scale = 2.0
+playing = true
+
+[node name="Sparkles" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+material = SubResource( 5 )
+position = Vector2( -13, 0 )
+amount = 10
+lifetime = 2.0
+preprocess = 2.0
+speed_scale = 2.0
+randomness = 0.5
+lifetime_randomness = 0.2
+texture = ExtResource( 2 )
+emission_shape = 3
+emission_points = PoolVector2Array( 580, 0 )
+emission_colors = PoolColorArray(  )
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 45.0
+angle_random = 1.0
+anim_speed = 8.0
+anim_speed_random = 0.5
+anim_offset_random = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/OrbEnter = SubResource( 6 )
+anims/OrbLeave = SubResource( 7 )

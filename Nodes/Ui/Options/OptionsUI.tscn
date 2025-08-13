@@ -58,6 +58,7 @@ shader_param/glow_modifier = 0.0
 script = ExtResource( 5 )
 
 [node name="OptionsMenu" type="Control" parent="."]
+visible = false
 margin_right = 320.0
 margin_bottom = 180.0
 __meta__ = {
@@ -551,7 +552,7 @@ cancel_on = true
 reset_on_show = false
 
 [node name="Present" type="Sprite" parent="OptionsMenu/ButtonPrompts"]
-position = Vector2( 72, 57 )
+position = Vector2( 75, 57 )
 texture = ExtResource( 10 )
 hframes = 5
 
@@ -561,7 +562,7 @@ position = Vector2( 0, -8 )
 offset = Vector2( 0, -8 )
 
 [node name="NPC" type="Sprite" parent="OptionsMenu/ButtonPrompts"]
-position = Vector2( 104, 49 )
+position = Vector2( 104, 50 )
 texture = ExtResource( 11 )
 hframes = 5
 vframes = 4

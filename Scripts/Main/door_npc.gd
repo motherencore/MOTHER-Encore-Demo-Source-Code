@@ -51,7 +51,7 @@ func start_cutscene():
 	uiManager.toggle_black_bars(true)
 	$AudioStreamPlayer.play()
 	yield(get_tree().create_timer(1),"timeout")
-	global.set_dialog(dialog, null) 
+	global.set_dialog(dialog) 
 	uiManager.open_dialogue_box()
 	global.cutscene = false
 

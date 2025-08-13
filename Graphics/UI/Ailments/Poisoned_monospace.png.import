@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Poisoned_monospace.png-c3b00cef03a82cc8d766a6b5e0288771.stex"
+path="res://.import/poisoned_monospace.png-33866cb93b665321b59d0958cfd87881.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Poisoned_monospace.png"
-dest_files=[ "res://.import/Poisoned_monospace.png-c3b00cef03a82cc8d766a6b5e0288771.stex" ]
+source_file="res://Graphics/UI/Ailments/poisoned_monospace.png"
+dest_files=[ "res://.import/poisoned_monospace.png-33866cb93b665321b59d0958cfd87881.stex" ]
 
 [params]
 

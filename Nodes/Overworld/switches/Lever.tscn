@@ -1,26 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Graphics/Objects/Lever.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Main/Switches/Lever.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Main/Switches/TwoStatesSwitch.gd" type="Script" id=2]
 [ext_resource path="res://Audio/Sound effects/Lever.mp3" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 8, 8.02734 )
-
-[sub_resource type="Animation" id=24]
-resource_name = "Left"
-tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=25]
 length = 0.001
@@ -37,8 +22,23 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=24]
+resource_name = "TurnOff"
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
 [sub_resource type="Animation" id=26]
-resource_name = "Right"
+resource_name = "TurnOn"
 tracks/0/type = "value"
 tracks/0/path = NodePath("main:frame")
 tracks/0/interp = 1
@@ -72,23 +72,18 @@ position = Vector2( 0, -1.02734 )
 shape = SubResource( 23 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Left = SubResource( 24 )
 anims/RESET = SubResource( 25 )
-anims/Right = SubResource( 26 )
+anims/TurnOff = SubResource( 24 )
+anims/TurnOn = SubResource( 26 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "SFX"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="interact" type="Area2D" parent="."]
-collision_mask = 198
+collision_mask = 194
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="interact"]
 shape = SubResource( 27 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="area_entered" from="interact" to="." method="_on_interact_area_entered"]
+[connection signal="area_entered" from="interact" to="." method="_on_hit"]

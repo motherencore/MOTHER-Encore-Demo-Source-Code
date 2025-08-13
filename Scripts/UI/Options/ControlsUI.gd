@@ -1,23 +1,21 @@
 extends PanelContainer
 
 const Indicator = preload("res://Scripts/UI/Indicator.gd")
-const Scrollbar = preload("res://Scripts/UI/Reusables/Scrollbar.gd")
 const DialogWindow = preload("res://Scripts/UI/Options/DialogWindow.gd")
 const OptionsSwitch = preload("res://Scripts/UI/Options/OptionsSwitch.gd")
-const Cursor = preload("res://Scripts/UI/cursor.gd")
 
 onready var tab_images = [
 	preload("res://Graphics/UI/Options/controls_kbd.png"),
 	preload("res://Graphics/UI/Options/controls_pad.png"),
 ]
 onready var tab_images_on = [
-	preload("res://Graphics/UI/Options/controls_kbd_on.png"),
-	preload("res://Graphics/UI/Options/controls_pad_on.png"),
+	preload("res://Graphics/UI/Options/controls_kbd_hl.png"),
+	preload("res://Graphics/UI/Options/controls_pad_hl.png"),
 ]
 
 export (Array, NodePath) onready var tabs
 export (NodePath) onready var scroll_view = get_node(scroll_view) as ScrollContainer
-export (NodePath) onready var scroll_bar_view = get_node(scroll_bar_view) as Scrollbar
+export (NodePath) onready var scroll_bar_view = get_node(scroll_bar_view) as EncoreScrollBar
 export (Array, Array, NodePath) var control_node_paths
 export (Array, NodePath) var keyboard_only_divs
 export (Array, NodePath) var gamepad_only_divs
@@ -131,7 +129,7 @@ func _toggle_options(option_view, direction = 1):
 			globaldata.rumble = !globaldata.rumble
 			global.start_joy_vibration(0, 0.4, 0.3, 0.3)
 		button_style_view:
-			globaldata.buttonsStyle = posmod(globaldata.buttonsStyle + direction, globaldata.BTN_STYLES.size())
+			globaldata.buttonsStyle = posmod(globaldata.buttonsStyle + direction, globaldata.BtnStyles.size())
 			global.emit_signal("inputs_changed")
 	_update_labels()
 
@@ -154,9 +152,9 @@ func _update_labels():
 				label.text = ""
 			else:
 				var event = events[event_index]
-				label.text = globaldata.get_key_name_from_event(event)
+				label.text = TextTools.get_key_name_from_event(event)
 	rumble_switch.text = "OPTIONS_ON" if globaldata.rumble else "OPTIONS_OFF"
-	button_style_switch.text = "CONTROLS_BUTTON_STYLE_" + globaldata.BTN_STYLES.keys()[globaldata.buttonsStyle].to_upper()
+	button_style_switch.text = "CONTROLS_BUTTON_STYLE_" + globaldata.BtnStyles.keys()[globaldata.buttonsStyle].to_upper()
 
 func _set_current_tab(value):
 	_current_tab = value
@@ -269,7 +267,7 @@ func _reassign_listed_input(event_to_register: InputEvent, pos: Vector2, check_d
 
 func _reassign_input(event_to_register: InputEvent, action_id: String, xPos: int, check_duplicates = true):
 	if event_to_register is InputEvent:
-		event_to_register.device = -1 # For all devices
+		event_to_register.device = 0
 	if event_to_register is InputEventKey:
 		if event_to_register.scancode and event_to_register.physical_scancode:
 			event_to_register.physical_scancode = 0

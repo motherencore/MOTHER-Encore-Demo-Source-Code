@@ -1,0 +1,26 @@
+name: WALLY_NAME
+description: WALLY_DESC
+article: WALLY_ART
+maxhp: 800
+hp: 800
+maxpp: 0
+pp: 0
+offense: 24
+defense: 37
+speed: 15
+iq: 10
+guts: 0
+level: 8
+exp: 240
+cash: 150
+skills:
+- skill: bash
+  weight: 5
+- skill: brandishPitchfork
+  weight: 1
+- skill: rage
+  weight: 1
+boss: true
+sprite: wally
+music: Rampant Redneck.mp3
+bg: wally

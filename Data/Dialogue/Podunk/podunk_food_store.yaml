@@ -1,0 +1,16 @@
+'0':
+  name: DIALOGUE_PODUNK_PODUNK_FOOD_STORE_SPEAKER_Marcie
+  sound: Sexy
+  text: DIALOGUE_PODUNK_PODUNK_FOOD_STORE_0
+  goto: '1'
+'1':
+  text: ''
+  showbox: false
+  openshop: podunk_food_store
+  caninput: false
+  goto: '2'
+  cleardialog: true
+'2':
+  name: DIALOGUE_PODUNK_PODUNK_FOOD_STORE_SPEAKER_Marcie
+  sound: Sexy
+  text: DIALOGUE_PODUNK_PODUNK_FOOD_STORE_2

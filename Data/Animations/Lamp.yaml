@@ -1,0 +1,26 @@
+animations:
+  Idle:
+    directions:
+    - - 0
+      - - 1
+        - 0.1
+    type: 1
+  Open:
+    directions:
+    - - 0
+      - - 1
+        - 1.5833
+      - - 2
+        - 0.083
+      - - 3
+        - 0.083
+      - - 4
+        - 0.083
+    type: 1
+offset:
+- 0
+- 0
+size:
+- 4
+- 1
+type: 0

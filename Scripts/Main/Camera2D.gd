@@ -1,10 +1,12 @@
 extends Camera2D
+class_name GameCamera
 
 signal stoped_shaking
 
 const cam_limit = 50
 var inputVector = Vector2.ZERO
 var current_offset = Vector2.ZERO #used for knowing the normal offset when shaking it
+var camarea_offset = Vector2.ZERO # offset added to the camera when inside of a camarea
 var camareas = 0
 var shaking = false
 
@@ -29,7 +31,7 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("ui_scope", true):
 			global_position = get_camera_screen_center()
 			$ArrowsAnim.play("Come In")
-		if Input.is_action_just_released("ui_scope", true):
+		if Input.is_action_just_released("ui_scope"):
 			$ArrowsAnim.play("Come Out")
 			global.persistPlayer.exit_camera()
 			return_offset(0.3)
@@ -97,11 +99,12 @@ func arrows_come_out():
 	if arrowDown.position.y != 100:
 		$ArrowsAnim.play("Come Out")
 
-func move_camera(position_x,position_y, time):
+func move_camera(position: Vector2, time):
 	$Tween.interpolate_property(self,"global_position",
-		get_camera_screen_center(), Vector2(position_x,position_y), time,
+		get_camera_screen_center(), position, time,
 		Tween.TRANS_SINE, Tween.EASE_OUT)
 	$Tween.start()
+	yield($Tween,"tween_completed")
 
 func move_offset(offset_x,offset_y, time):
 	var new_pos = global_position + Vector2(offset_x, offset_y)
@@ -134,14 +137,14 @@ func move_offset(offset_x,offset_y, time):
 func return_camera(time = 1):
 	$Tween.stop_all()
 	$Tween.interpolate_property(self,"position",
-		position, Vector2.ZERO, time,
+		position, camarea_offset, time,
 		Tween.TRANS_SINE, Tween.EASE_OUT)
 	
 	$Tween.start()
 	
 	yield($Tween,"tween_completed")
 	
-	position = Vector2.ZERO
+	position = camarea_offset
 
 func return_offset(time = 1):
 	$Tween.stop_all()
@@ -152,20 +155,29 @@ func return_offset(time = 1):
 	$Tween.start()
 	
 	$Tween.interpolate_property(self,"position",
-		position, Vector2.ZERO, time,
+		position, camarea_offset, time,
 		Tween.TRANS_SINE, Tween.EASE_OUT)
 	
 	$Tween.start()
 	
 	yield($Tween,"tween_completed")
 	
-	position = Vector2.ZERO
+	position = camarea_offset
 	offset = Vector2.ZERO
-	current_offset = offset
+	current_offset = get_offset_with_camerea_offset()
+
+func set_camarea_offset(off: Vector2):
+	camarea_offset = off
+	position = camarea_offset
+
+func get_offset_with_camerea_offset():
+	return position + camarea_offset
 
 func reset():
 	position = Vector2.ZERO
 	offset = Vector2.ZERO
+
+
 
 func shake_camera(magnitude = 1.0, time = 1.0, direction = Vector2.ONE):
 	if !$Tween.is_active():

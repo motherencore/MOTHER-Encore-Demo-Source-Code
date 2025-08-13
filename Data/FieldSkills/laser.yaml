@@ -1,0 +1,10 @@
+name: FIELD_LASER
+description: FIELD_LASER_DESC
+is_skill_button: true
+flag: laser
+usable:
+  ninten: false
+  ana: false
+  lloyd: true
+  teddy: false
+  pippi: false

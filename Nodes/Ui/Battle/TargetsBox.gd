@@ -1,20 +1,20 @@
-extends "res://Scripts/UI/Battle/BattleMenuBox.gd"
+extends BattleMenuBox
 
 export(NodePath) var nameBox
 export(NodePath) var bgDarkinator
 
 enum TargetType {ENEMY, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES}
 
-const targetables = []
 var partyBPs = []
 var enemyBPs = []
 
-var targetAll = false
-var targetingEnemy = false
-onready var pointer = get_node("TargetPointer")
-var pointerIndex = 0
+const _targetables = []
+var _target_type
+var _target_all = false
+onready var _pointer = get_node("TargetPointer")
+var _pointer_index = 0
 
-var soundEffects = {
+var _sound_effects = {
 	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
 	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3")
 }
@@ -25,62 +25,67 @@ func _ready():
 
 func _process(delta):
 	if visible:
-		if !targetAll and targetables.size() > 1:
+		if !_target_all and _targetables.size() > 1:
 			var direction = controlsManager.get_controls_vector(true).x
 			
-			if direction != 0 and pointer.get_node("Timer").time_left == 0:
-				pointerMove(direction)
-				pointer.get_node("Timer").start()
+			if direction != 0 and _pointer.get_node("Timer").time_left == 0:
+				pointer_move(direction)
+				_pointer.get_node("Timer").start()
 				return
 
 func _input(event):
 	if visible:
 		if event.is_action_pressed("ui_accept"):
 			get_tree().set_input_as_handled()
-			pointerSelect()
+			_pointer_select()
 
 func enter(reset = false, _action = null):
 	.enter(reset, _action)
-	targetables.clear()
-	targetAll = false
-	match(int(_action.targetType)):
+	_targetables.clear()
+	_target_all = _action.targetType in [TargetType.ALL_ENEMIES, TargetType.ALL_ALLIES]
+	_target_type = _action.targetType
+	match(_action.targetType):
 		TargetType.ENEMY:
-			targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
-			nameBox.get_child(0).text = targetables.front().stats.nickname
+			_targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
 		TargetType.ALL_ENEMIES:
-			targetAll = true
-			targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
-			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ENEMIES"
+			_targetables.append_array(_get_all_targetable(enemyBPs, _action.targetUnconscious))
 		TargetType.SELF:
-			targetables.append_array([action.user])
-			nameBox.get_child(0).text = action.user.stats.nickname
+			_targetables.append_array([action.user])
 		TargetType.ALLY:
-			targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
-			nameBox.get_child(0).text = targetables.front().stats.nickname
+			_targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
 		TargetType.ALL_ALLIES:
-			targetAll = true
-			targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
-			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ALLIES"
+			_targetables.append_array(_get_all_targetable(partyBPs, _action.targetUnconscious))
+	
+	_targetables.sort_custom(self, "_sort_targetables")
+
 	if reset:
-		pointerIndex = 0
+		if _action.targetType == TargetType.ENEMY:
+			_pointer_index = (_targetables.size() - 1) / 2
+		else:
+			_pointer_index = 0
 		nameBox.show()
 		darken_bg()
-		if targetAll:
+		if _target_all:
 			var i = 0
-			for target in targetables:
-				var nextPointer = createOrGetPointer(i)
+			for target in _targetables:
+				var nextPointer = _create_or_get_pointer(i)
 				nextPointer.show()
 				nextPointer.get_node("AnimationPlayer").play("point")
-				pointer.rect_position = target.battleSprite.rect_global_position - pointer.rect_size/2
+				nextPointer.rect_position = target.battleSprite.rect_global_position - _pointer.rect_size/2
 				target.select()
 				i += 1
-			get_parent().tilt_bars(targetables[i - 1].battleSprite.rect_global_position + targetables[i - 1].battleSprite.rect_size/2)
+			get_parent().tilt_bars(_targetables[i - 1].battleSprite.rect_global_position + _targetables[i - 1].battleSprite.rect_size/2)
 		else:
-			targetables.front().select()
-			pointer.show()
-			pointer.get_node("AnimationPlayer").play("point")
-			pointer.rect_position = targetables[0].battleSprite.rect_global_position - pointer.rect_size/2
-			get_parent().tilt_bars(targetables[0].battleSprite.rect_global_position + targetables[0].battleSprite.rect_size/2)
+			_targetables[_pointer_index].select()
+			_pointer.show()
+			_pointer.get_node("AnimationPlayer").play("point")
+			_pointer.rect_position = _targetables[_pointer_index].battleSprite.rect_global_position - _pointer.rect_size/2
+			get_parent().tilt_bars(_targetables[_pointer_index].battleSprite.rect_global_position + _targetables[0].battleSprite.rect_size/2)
+
+	_name_box_refresh()
+
+func _sort_targetables(bp1, bp2):
+	return bp1.battleSprite.rect_global_position < bp2.battleSprite.rect_global_position
 
 func darken_bg():
 	bgDarkinator.play("darken")
@@ -95,13 +100,13 @@ func hide():
 	for p in get_children():
 		if p.has_method("hide"):
 			p.hide()
-	for target in targetables:
+	for target in _targetables:
 		target.deselect()
 	get_parent().tilt_bars(Vector2(160, 90))
 
-func createOrGetPointer(num):
+func _create_or_get_pointer(num):
 	if num >= get_child_count():
-		var newPointer = pointer.duplicate()
+		var newPointer = _pointer.duplicate()
 		add_child(newPointer)
 		return newPointer
 	else:
@@ -114,29 +119,42 @@ func _get_all_targetable(bpArray, target_unconscious):
 			arr.append(bp)
 	return arr
 
-func pointerMove(dir):
+func pointer_move(dir):
 	if dir != 0:
-		audioManager.play_sfx(soundEffects["cursor1"], "cursor")
-	targetables[pointerIndex].deselect()
-	if dir == -1 and pointerIndex == 0:
-		pointerIndex = targetables.size() - 1
-	elif dir == 1 and pointerIndex == targetables.size() - 1:
-		pointerIndex = 0
+		audioManager.play_sfx(_sound_effects["cursor1"], "cursor")
+	_targetables[_pointer_index].deselect()
+	if dir == -1 and _pointer_index == 0:
+		_pointer_index = _targetables.size() - 1
+	elif dir == 1 and _pointer_index == _targetables.size() - 1:
+		_pointer_index = 0
 	else:
-		pointerIndex = clamp(pointerIndex + dir, 0, targetables.size() - 1)
-	var selected = targetables[pointerIndex]
+		_pointer_index = clamp(_pointer_index + dir, 0, _targetables.size() - 1)
+	var selected = _targetables[_pointer_index]
 	selected.select()
 	get_parent().tilt_bars(selected.battleSprite.rect_global_position + selected.battleSprite.rect_size/2)
-	pointer.get_node("Tween").interpolate_property(pointer, "rect_position",
-		pointer.rect_position, selected.battleSprite.rect_global_position - pointer.rect_size/2, 0.2,
+	_pointer.get_node("Tween").interpolate_property(_pointer, "rect_position",
+		_pointer.rect_position, selected.battleSprite.rect_global_position - _pointer.rect_size/2, 0.2,
 		Tween.TRANS_QUART,Tween.EASE_OUT)
-	pointer.get_node("Tween").start()
-	nameBox.get_child(0).text = selected.stats.nickname
+	_pointer.get_node("Tween").start()
+	_name_box_refresh()
 
-func pointerSelect():
-	audioManager.play_sfx(soundEffects["cursor2"], "cursor")
-	if targetAll:
-		action.targets = targetables
+func _pointer_select():
+	audioManager.play_sfx(_sound_effects["cursor2"], "cursor")
+	if _target_all:
+		action.targets = _targetables
 	else:
-		action.targets = [targetables[pointerIndex]]
+		action.targets = [_targetables[_pointer_index]]
 	emit_signal("next")
+
+func _name_box_refresh():
+	match _target_type:
+		TargetType.ENEMY:
+			nameBox.get_child(0).text = _targetables[_pointer_index].get_name()
+		TargetType.ALL_ENEMIES:
+			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ENEMIES"
+		TargetType.SELF:
+			nameBox.get_child(0).text = action.user.get_name()
+		TargetType.ALLY:
+			nameBox.get_child(0).text = _targetables[_pointer_index].get_name()
+		TargetType.ALL_ALLIES:
+			nameBox.get_child(0).text = "BATTLE_TARGET_ALL_ALLIES"

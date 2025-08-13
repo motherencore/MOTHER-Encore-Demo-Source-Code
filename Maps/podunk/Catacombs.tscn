@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Tilesets/Catacombs.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://Nodes/Reusables/tea kettle.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Nodes/Reusables/payphone.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Nodes/Overworld/Enemies/Enemy Spawner.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=25]
 [ext_resource path="res://Nodes/Overworld/poison geyser hole.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=28]
@@ -52,9 +51,6 @@ extents = Vector2( 208, 112 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 224, 120 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 184, 116 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 248, 136 )
@@ -108,9 +104,9 @@ extents = Vector2( 17, 13 )
 extents = Vector2( 32, 16 )
 
 [node name="Catacombs" type="Node2D"]
-script = ExtResource( 25 )
+script = ExtResource( 7 )
 player_map_offset = Vector2( 134, 417 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -134,15 +130,12 @@ tile_data = PoolIntArray( -7209102, 4, 0, -7209101, 0, 393217, -7209100, 0, 3932
 
 [node name="Locked Door3" parent="Bottom1" instance=ExtResource( 3 )]
 position = Vector2( -1480, -808 )
-flag = "catac_door_3"
 
 [node name="Locked Door1" parent="Bottom1" instance=ExtResource( 3 )]
 position = Vector2( -2024, -280 )
-flag = "catac_door_1"
 
 [node name="Locked Door2" parent="Bottom1" instance=ExtResource( 3 )]
 position = Vector2( -2024, -552 )
-flag = "catac_door_2"
 
 [node name="Bottom2" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -167,37 +160,40 @@ position = Vector2( -2376, -256 )
 
 [node name="switch" parent="Bottom2" instance=ExtResource( 6 )]
 position = Vector2( -1368, 472 )
-perm = true
 flag = "hidden_entrance_opened"
+_focus_objects_when_changed = true
+_controlled_objects = [ NodePath("../Wall Door") ]
+_is_one_way = true
 
 [node name="switch1" parent="Bottom2" instance=ExtResource( 6 )]
 position = Vector2( -1528, -1064 )
+reset_when_leaving_area = true
+_controlled_objects = [ NodePath("../../Objects/Gate3"), NodePath("../../Objects/Gate4"), NodePath("../../Objects/Gate5"), NodePath("../../Objects/Gate8") ]
 
 [node name="switch2" parent="Bottom2" instance=ExtResource( 6 )]
 position = Vector2( -528, -616 )
+_controlled_objects = [ NodePath("../../Objects/Gate9"), NodePath("../../Objects/Gate10") ]
 
-[node name="plate" parent="Bottom2" instance=ExtResource( 11 )]
+[node name="Plate1" parent="Bottom2" instance=ExtResource( 11 )]
 position = Vector2( -1160, -184 )
-flag = "catac_plate_1"
+_controlled_objects = [ NodePath("../../Objects/Gate6") ]
 
-[node name="plate4" parent="Bottom2" instance=ExtResource( 11 )]
+[node name="Plate4" parent="Bottom2" instance=ExtResource( 11 )]
 position = Vector2( -2488, -232 )
-flag = "catac_plate_4"
+_controlled_objects = [ NodePath("../../Objects/Gate11") ]
 
 [node name="Key1" parent="Bottom2" instance=ExtResource( 9 )]
 position = Vector2( -1472, 304 )
-flag = "catac_key_1"
 
 [node name="Key2" parent="Bottom2" instance=ExtResource( 9 )]
 position = Vector2( -1568, 304 )
-flag = "catac_key_2"
 
 [node name="Key3" parent="Bottom2" instance=ExtResource( 9 )]
 position = Vector2( -1520, 304 )
-flag = "catac_key_3"
 
 [node name="Wall Door" parent="Bottom2" instance=ExtResource( 19 )]
 position = Vector2( -648, 120 )
+_move_cam_offset = Vector2( 0, 44 )
 
 [node name="Poison Geysers" type="Node2D" parent="Bottom2"]
 
@@ -699,33 +695,26 @@ New_parent = NodePath("../../Bottom2")
 
 [node name="Gate6" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -1192, -208 )
-switch_path = NodePath("../../Bottom2/plate")
 
 [node name="Gate3" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -1352, -1088 )
-switch_path = NodePath("../../Bottom2/switch1")
-OG_Open = true
+_initially_on = true
 
 [node name="Gate8" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -1720, -1088 )
-switch_path = NodePath("../../Bottom2/switch1")
-OG_Open = true
+_initially_on = true
 
 [node name="Gate4" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -1608, -1088 )
-switch_path = NodePath("../../Bottom2/switch1")
 
 [node name="Gate5" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -1240, -1088 )
-switch_path = NodePath("../../Bottom2/switch1")
 
 [node name="Gate9" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -648, -736 )
-switch_path = NodePath("../../Bottom2/switch2")
 
 [node name="Gate10" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -600, -736 )
-switch_path = NodePath("../../Bottom2/switch2")
 
 [node name="Barrel2" parent="Objects" instance=ExtResource( 13 )]
 position = Vector2( -592, -272 )
@@ -843,7 +832,6 @@ enemy = "pseudozombie"
 
 [node name="Gate11" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -2344, -208 )
-switch_path = NodePath("../../Bottom2/plate4")
 
 [node name="Barrel9" parent="Objects" instance=ExtResource( 13 )]
 position = Vector2( -776, -584 )
@@ -1156,7 +1144,7 @@ New_parent = NodePath("../../Bottom2")
 
 [node name="Coffin10" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( -1864, -768 )
-contents = NodePath("../Item")
+contents = NodePath("../Item1")
 New_parent = NodePath("../../Bottom2")
 
 [node name="Coffin11" parent="Objects" instance=ExtResource( 4 )]
@@ -1180,39 +1168,32 @@ position = Vector2( -2184, -1800 )
 position = Vector2( 0, -4 )
 shape = SubResource( 25 )
 
-[node name="Item" parent="Objects" instance=ExtResource( 18 )]
+[node name="Item1" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1592, 340 )
-flag = "catac_item_1"
 item = "Hamburger"
 
 [node name="Item2" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1560, 348 )
-flag = "catac_item_2"
 item = "Fries"
 
 [node name="Item3" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1620, 340 )
-flag = "catac_item_3"
 item = "Hamburger"
 
 [node name="Item4" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1608, 368 )
-flag = "catac_item_4"
 item = "Hamburger"
 
 [node name="Item5" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1464, 368 )
-flag = "catac_item_5"
 item = "Antidote"
 
 [node name="Item6" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1496, 328 )
-flag = "catac_item_6"
 item = "Antidote"
 
 [node name="Item7" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( -1352, 320 )
-flag = "catac_item_7"
 item = "Hamburger"
 
 [node name="npc" parent="Objects" instance=ExtResource( 20 )]
@@ -1260,62 +1241,42 @@ player_turn = {
 }
 speed = 80
 
-[node name="npc3" parent="Objects" instance=ExtResource( 20 )]
-position = Vector2( -1056, -472 )
-sprite = "Npcs/4dir/mouse"
-dialog = "Reusable/squeak"
-thoughts = "Podunk/mouse_poison"
-player_turn = {
-"x": true,
-"y": true
-}
-speed = 80
-
-[node name="Present" parent="Objects" instance=ExtResource( 14 )]
+[node name="Present1" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -1872, -504 )
-flag = "catac_pres_1"
 item = "Bread"
 
 [node name="Present2" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -984, -432 )
-flag = "catac_pres_2"
 item = "Slingshot"
 
 [node name="Present3" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -1232, -1192 )
-flag = "catac_pres_3"
 item = "CapsuleHP"
 
 [node name="Present4" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -2584, -256 )
-flag = "catac_pres_4"
 item = "Bread"
 
 [node name="Present5" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -528, -704 )
-flag = "catac_pres_5"
 item = "Hamburger"
 
 [node name="Present9" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -536, -432 )
-flag = "catac_pres_9"
 item = "CapsuleDEF"
 
 [node name="Present6" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -1576, -416 )
-flag = "catac_pres_6"
 item = "Bread"
 
 [node name="Present7" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -64, -280 )
 offset = Vector2( -7, -10 )
-flag = "catac_pres_7"
 item = "Hamburger"
 
 [node name="Present8" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( -2584, -448 )
 offset = Vector2( -7, -10 )
-flag = "catac_pres_8"
 item = "CapsulePP"
 
 [node name="Top" type="TileMap" parent="."]
@@ -1364,7 +1325,6 @@ position = Vector2( 8, -8 )
 shape = SubResource( 5 )
 
 [node name="camarea3" parent="Camareas" instance=ExtResource( 10 )]
-visible = false
 position = Vector2( -1080, -240 )
 
 [node name="CollisionShape2D" parent="Camareas/camarea3" index="0"]
@@ -1378,15 +1338,7 @@ position = Vector2( -208, -240 )
 position = Vector2( 0, 8 )
 shape = SubResource( 7 )
 
-[node name="camarea8" parent="Camareas" instance=ExtResource( 10 )]
-position = Vector2( -216, -496 )
-
-[node name="CollisionShape2D" parent="Camareas/camarea8" index="0"]
-position = Vector2( 0, -4 )
-shape = SubResource( 8 )
-
 [node name="camarea12" parent="Camareas" instance=ExtResource( 10 )]
-visible = false
 position = Vector2( -648, -1024 )
 
 [node name="CollisionShape2D" parent="Camareas/camarea12" index="0"]
@@ -1523,6 +1475,8 @@ shape = SubResource( 27 )
 [node name="Water" parent="Stepping Sounds" instance=ExtResource( 27 )]
 entering_sound = "water"
 exiting_sound = "stone"
+enter_shadow_effect = "ripple"
+exit_shadow_effect = "shadow"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stepping Sounds/Water"]
 polygon = PoolVector2Array( -1488, -288, -1456, -288, -1440, -304, -1424, -304, -1408, -320, -1392, -320, -1376, -336, -1376, -224, -1488, -224, -1504, -240, -1504, -272 )
@@ -1573,9 +1527,6 @@ shape = SubResource( 30 )
 
 [node name="Vignette" parent="." instance=ExtResource( 31 )]
 
-[node name="DoorOpen" type="Node" parent="."]
-script = ExtResource( 7 )
-
 [node name="Cutscenes" type="Node2D" parent="."]
 
 [node name="Cutscene Area" parent="Cutscenes" instance=ExtResource( 29 )]
@@ -1594,7 +1545,8 @@ flag_set = "church_exited"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Event Activator4"]
 shape = SubResource( 32 )
 
-[connection signal="switch_hit" from="Bottom2/switch" to="DoorOpen" method="_on_switch_switch_hit"]
+[connection signal="switch_hit" from="Bottom2/switch" to="." method="_on_main_switch_hit"]
+[connection signal="state_changed" from="Bottom2/Wall Door" to="." method="_on_wall_door_state_changed"]
 
 [editable path="Objects/Doors/Door"]
 [editable path="Objects/Doors/Door6"]
@@ -1659,7 +1611,6 @@ shape = SubResource( 32 )
 [editable path="Camareas/camarea7"]
 [editable path="Camareas/camarea3"]
 [editable path="Camareas/camarea6"]
-[editable path="Camareas/camarea8"]
 [editable path="Camareas/camarea12"]
 [editable path="Camareas/camarea14"]
 [editable path="Camareas/camarea15"]

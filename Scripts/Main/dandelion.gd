@@ -5,5 +5,3 @@ func _on_Dandelion_body_entered(body):
 		$Sprite.frame = 1
 		$CPUParticles2D.gravity = global.persistPlayer.direction * 5
 		$CPUParticles2D.emitting = true
-		$CPUParticles2D2.gravity = global.persistPlayer.direction * 5
-		$CPUParticles2D2.emitting = true

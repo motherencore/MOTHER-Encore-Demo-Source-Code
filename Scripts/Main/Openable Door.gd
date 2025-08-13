@@ -93,17 +93,16 @@ func lock():
 func interact():
 	if !unlocked:
 		if blocked:
-			global.set_dialog("Reusable/doorblocked", null)
-		elif InventoryManager.checkItemForAll(key):
+			global.set_dialog("Reusable/doorblocked")
+		elif InventoryManager.check_item_for_all(key):
 			globaldata.flags[flag] = true
 			open()
 			unlock()
 			if remove_key:
-				InventoryManager.removeItem(key)
-			# LOCALIZATION Code change: Removed use of globaldata.language (storing the csv key id) × 2
+				InventoryManager.remove_item(key)
 			global.item = InventoryManager.Load_item_data(key)
-			global.set_dialog("Reusable/lockopened", null) 
+			global.set_dialog("Reusable/lockopened")
 		else:
-			global.set_dialog("Reusable/locklocked", null)
+			global.set_dialog("Reusable/locklocked")
 		uiManager.open_dialogue_box()
 		global.persistPlayer.pause()

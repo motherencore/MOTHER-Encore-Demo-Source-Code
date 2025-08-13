@@ -1,0 +1,144 @@
+'0':
+  name: '[Pippi]'
+  sound: Kid
+  emotenpc: question
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_0
+  goto: '1'
+'1':
+  actors:
+    ninten: leader
+    pippi: talker
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_1
+  actorsdir:
+    ninten:
+      x: 0
+      y: -1
+    pippi:
+      x: 0
+      y: 1
+  emoteactors:
+    pippi: shock
+  actorsjump:
+    ninten:
+      speed: 0.4
+      height: 32
+  actorsmove:
+    ninten:
+      movement:
+      - x: -1416
+        y: -1624
+      speed: 132
+      animation: ''
+      type: position
+  changecam: pippi
+  returncam: 1
+  goto: '2'
+  actorsblend:
+    ninten: false
+  actorsshake:
+    ninten:
+      x: 1
+      length: 0.4
+  shakecam:
+    x: 1
+    y: 0
+    size: medium
+'2':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_2
+  actorsdir:
+    ninten:
+      x: 0
+      y: -1
+  actorsmove:
+    pippi:
+      movement:
+      - x: 0
+        y: -16
+      speed: 64
+      animation: Walk
+      type: step
+      moonwalk: true
+  changecam: null
+  goto: '3'
+  actorsblend:
+    ninten: true
+  shakecam:
+    x: 1
+    y: 0
+    size: small
+'3':
+  showbox: false
+  emoteactors:
+    ninten: sweat
+  actorsjump:
+    ninten:
+      height: 8
+      length: 0.2
+      queue: true
+      times: 2
+  actorsmove:
+    ninten:
+      movement:
+      - x: 0
+        y: -12
+      speed: 32
+      animation: Walk
+      type: step
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_4
+  actorsdir:
+    ninten:
+      x: 0
+      y: -1
+  goto: '6'
+  actorsanim:
+    ninten:
+      type: 0
+      anim: Idle
+'6':
+  showbox: false
+  emoteactors:
+    ninten: angry
+  actorsjump:
+    ninten:
+      height: 8
+      length: 0.25
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '7'
+  actorsshake:
+    ninten:
+      x: 1
+      length: 0.4
+      queue: true
+'7':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_7
+  goto: '8'
+  actorsshake:
+    pippi:
+      x: 1
+      length: 0.2
+'8':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_ATTACK_8
+  setflags: pippi_fight
+  battler:
+    actor: pippi
+    enemy: pippi
+    keep: true
+  batrematchflag: pippi_rematch
+  batwincutscene: Podunk/cutscenes/catacombs_pippi_defeat

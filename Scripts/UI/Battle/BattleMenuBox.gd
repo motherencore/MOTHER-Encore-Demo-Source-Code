@@ -1,5 +1,7 @@
 extends Control
 
+class_name BattleMenuBox
+
 onready var cursor = get_node_or_null("Arrow")
 
 signal next()

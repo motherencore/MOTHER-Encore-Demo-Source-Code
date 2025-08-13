@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/NamingScreen/Naming screen.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Audio/Sound effects/M3/okdesuka.wav" type="AudioStream" id=8]
 [ext_resource path="res://Audio/Sound effects/M3/error.wav" type="AudioStream" id=9]
-[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/Ui/Indicator.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=12]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=13]
@@ -152,7 +151,7 @@ tracks/1/keys = {
 "values": [ Vector2( 130, 0 ), Vector2( 320, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/path = NodePath("CanvasLayer/Settings:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -204,7 +203,7 @@ tracks/1/keys = {
 "values": [ Vector2( 320, 0 ), Vector2( 130, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/path = NodePath("CanvasLayer/Settings:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -216,7 +215,7 @@ tracks/2/keys = {
 "values": [ Vector2( 8, 39 ), Vector2( 140, 39 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
+tracks/3/path = NodePath("CanvasLayer/Settings/VBoxContainer/End:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -228,7 +227,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Others/OthersArrow:visible")
+tracks/4/path = NodePath("CanvasLayer/Settings/SettingsArrow:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -240,7 +239,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/5/path = NodePath("CanvasLayer/Settings/VBoxContainer:rect_position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -252,7 +251,7 @@ tracks/5/keys = {
 "values": [ Vector2( 15, 11 ), Vector2( 15, 19 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
+tracks/6/path = NodePath("CanvasLayer/Settings/VBoxContainer2:rect_position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -264,7 +263,7 @@ tracks/6/keys = {
 "values": [ Vector2( 92, 11 ), Vector2( 92, 19 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
+tracks/7/path = NodePath("CanvasLayer/Settings/ColorRect3:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -276,7 +275,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
+tracks/8/path = NodePath("CanvasLayer/Settings/ColorRect2:rect_position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -288,7 +287,7 @@ tracks/8/keys = {
 "values": [ Vector2( 16, 40 ), Vector2( 16, 48 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
+tracks/9/path = NodePath("CanvasLayer/Settings/ColorRect:rect_position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -327,7 +326,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -136, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/2/path = NodePath("CanvasLayer/Settings:rect_position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -361,170 +360,6 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 0.4, 0.4, 1 ),
 "update": 0,
 "values": [ Vector2( 128, -56 ), Vector2( 128, -56 ), Vector2( 128, 8 ) ]
-}
-
-[sub_resource type="Animation" id=18]
-resource_name = "OthersClose"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
-"update": 0,
-"values": [ Vector2( 128, -56 ), Vector2( 128, -56 ), Vector2( 128, 8 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
-"update": 0,
-"values": [ Vector2( 8, 192 ), Vector2( 8, 192 ), Vector2( 8, 64 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 0.4, 0.4 ),
-"update": 0,
-"values": [ Vector2( 8, 39 ), Vector2( -176, 39 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/NamingBox/arrow:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "OthersOpen"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 0.4, 1 ),
-"update": 0,
-"values": [ Vector2( 128, 8 ), Vector2( 128, -56 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 0.4, 1 ),
-"update": 0,
-"values": [ Vector2( 8, 64 ), Vector2( 8, 192 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/Others:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 0.4, 0.4, 1 ),
-"update": 0,
-"values": [ Vector2( -176, 39 ), Vector2( -176, 39 ), Vector2( 8, 39 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 15, 11 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 16, 24 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 16, 40 ) ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 92, 11 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -578,7 +413,7 @@ tracks/3/keys = {
 "values": [ Vector2( 320, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("CanvasLayer/Others:rect_position")
+tracks/4/path = NodePath("CanvasLayer/Settings:rect_position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -590,7 +425,7 @@ tracks/4/keys = {
 "values": [ Vector2( -176, 39 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CanvasLayer/Others/VBoxContainer/End:visible")
+tracks/5/path = NodePath("CanvasLayer/Settings/VBoxContainer/End:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -602,7 +437,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("CanvasLayer/Others/OthersArrow:visible")
+tracks/6/path = NodePath("CanvasLayer/Settings/SettingsArrow:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -650,7 +485,7 @@ tracks/9/keys = {
 "values": [ true ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/10/path = NodePath("CanvasLayer/Settings/VBoxContainer:rect_position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -662,7 +497,7 @@ tracks/10/keys = {
 "values": [ Vector2( 124, 167 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("CanvasLayer/Others/VBoxContainer:rect_position")
+tracks/11/path = NodePath("CanvasLayer/Settings/VBoxContainer:rect_position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -674,7 +509,7 @@ tracks/11/keys = {
 "values": [ Vector2( 15, 11 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("CanvasLayer/Others/VBoxContainer2:rect_position")
+tracks/12/path = NodePath("CanvasLayer/Settings/VBoxContainer2:rect_position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -686,7 +521,7 @@ tracks/12/keys = {
 "values": [ Vector2( 92, 11 ) ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("CanvasLayer/Others/ColorRect3:visible")
+tracks/13/path = NodePath("CanvasLayer/Settings/ColorRect3:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -698,7 +533,7 @@ tracks/13/keys = {
 "values": [ true ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("CanvasLayer/Others/ColorRect2:rect_position")
+tracks/14/path = NodePath("CanvasLayer/Settings/ColorRect2:rect_position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -710,7 +545,7 @@ tracks/14/keys = {
 "values": [ Vector2( 16, 40 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("CanvasLayer/Others/ColorRect:rect_position")
+tracks/15/path = NodePath("CanvasLayer/Settings/ColorRect:rect_position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -734,6 +569,170 @@ tracks/16/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=18]
+resource_name = "SettingsClose"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 128, -56 ), Vector2( 128, -56 ), Vector2( 128, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.4, 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 8, 192 ), Vector2( 8, 192 ), Vector2( 8, 64 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Settings:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 0.4 ),
+"update": 0,
+"values": [ Vector2( 8, 39 ), Vector2( -176, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/NamingBox/arrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "SettingsOpen"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/NameBox:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 128, 8 ), Vector2( 128, -56 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/NamingBox:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( 8, 64 ), Vector2( 8, 192 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Settings:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 0.4, 0.4, 1 ),
+"update": 0,
+"values": [ Vector2( -176, 39 ), Vector2( -176, 39 ), Vector2( 8, 39 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Settings/VBoxContainer/End:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Settings/ColorRect3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Settings/VBoxContainer:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 15, 11 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/Settings/ColorRect:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 24 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/Settings/ColorRect2:rect_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16, 40 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer/Settings/VBoxContainer2:rect_position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 92, 11 ) ]
+}
+
 [node name="Naming screen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -742,7 +741,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 margin_right = 320.0
 margin_bottom = 185.0
 color = Color( 0, 0, 0, 1 )
@@ -752,56 +751,10 @@ __meta__ = {
 
 [node name="Objects" type="YSort" parent="."]
 
-[node name="Actors" type="YSort" parent="Objects"]
-
-[node name="npc" parent="Objects/Actors" instance=ExtResource( 10 )]
+[node name="Actors" type="Node2D" parent="Objects"]
 position = Vector2( 64, 40 )
-sprite = "Ninten"
-player_turn = {
-"x": true,
-"y": true
-}
-idle_animation = "Walk"
 
-[node name="npc2" parent="Objects/Actors" instance=ExtResource( 10 )]
-position = Vector2( 384, 40 )
-sprite = "Ana"
-player_turn = {
-"x": true,
-"y": true
-}
-idle_animation = "Walk"
-
-[node name="npc3" parent="Objects/Actors" instance=ExtResource( 10 )]
-position = Vector2( 704, 40 )
-sprite = "Lloyd"
-player_turn = {
-"x": true,
-"y": true
-}
-idle_animation = "Walk"
-
-[node name="npc4" parent="Objects/Actors" instance=ExtResource( 10 )]
-position = Vector2( 1024, 40 )
-sprite = "Pippi"
-player_turn = {
-"x": true,
-"y": true
-}
-idle_animation = "Walk"
-
-[node name="npc5" parent="Objects/Actors" instance=ExtResource( 10 )]
-position = Vector2( 1344, 40 )
-sprite = "Teddy"
-player_turn = {
-"x": true,
-"y": true
-}
-idle_animation = "Walk"
-
-[node name="Plate" type="Sprite" parent="Objects/Actors"]
-position = Vector2( 1664, 40 )
-texture = ExtResource( 19 )
+[node name="ActorsSequence" type="YSort" parent="Objects/Actors"]
 
 [node name="Door" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 344, 5 )
@@ -825,7 +778,6 @@ position = Vector2( 64, -10 )
 texture = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 11.0
@@ -895,26 +847,28 @@ text = "NAME_BIO0"
 align = 1
 
 [node name="name" type="ColorRect" parent="CanvasLayer/NameBox"]
-margin_left = 40.0
+margin_left = 34.0
 margin_top = 23.0
-margin_right = 144.0
+margin_right = 150.0
 margin_bottom = 38.0
 color = Color( 0.729412, 0.32549, 0.894118, 1 )
 script = ExtResource( 22 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/NameBox/name"]
 use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = -1.0
 margin_top = 1.0
-margin_right = 105.0
-margin_bottom = 14.0
+margin_right = 1.0
+margin_bottom = -1.0
 color = Color( 0.729412, 0.32549, 0.894118, 1 )
 script = ExtResource( 22 )
 
 [node name="Label" type="Label" parent="CanvasLayer/NameBox/name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_top = 1.0
-margin_right = 104.0
-margin_bottom = 15.0
 custom_colors/font_color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "@``````"
@@ -938,7 +892,7 @@ margin_bottom = -48.0
 grow_horizontal = 0
 size_before_growing = 32
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/NameBox"]
+[node name="Mask" type="ColorRect" parent="CanvasLayer/NameBox"]
 show_behind_parent = true
 margin_top = -16.0
 margin_right = 200.0
@@ -2071,6 +2025,7 @@ menu_parent_path = NodePath("../Grid/GridContainer")
 on = true
 consume_input_events = true
 skip_empty_labels = true
+skip_hidden_items = true
 move_sfx = true
 
 [node name="CommandGrid" type="GridContainer" parent="CanvasLayer/NamingBox"]
@@ -2151,7 +2106,7 @@ margin_left = 137.0
 margin_right = 145.0
 key = "ui_scope"
 
-[node name="Others" type="NinePatchRect" parent="CanvasLayer"]
+[node name="Settings" type="NinePatchRect" parent="CanvasLayer"]
 material = ExtResource( 21 )
 margin_left = -176.0
 margin_top = 39.0
@@ -2163,21 +2118,21 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Others"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings"]
 margin_left = 15.0
 margin_top = 11.0
 margin_right = 118.0
 margin_bottom = 87.0
 rect_clip_content = true
 
-[node name="TextSpeed" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+[node name="TextSpeed" type="Label" parent="CanvasLayer/Settings/VBoxContainer"]
 margin_right = 103.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
 text = "MENU_TEXTSPEED"
 valign = 1
 
-[node name="MenuFlavor" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+[node name="MenuFlavor" type="Label" parent="CanvasLayer/Settings/VBoxContainer"]
 margin_top = 16.0
 margin_right = 103.0
 margin_bottom = 28.0
@@ -2185,7 +2140,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "MENU_FLAVORS"
 valign = 1
 
-[node name="ButtonPrompts" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+[node name="ButtonPrompts" type="Label" parent="CanvasLayer/Settings/VBoxContainer"]
 margin_top = 32.0
 margin_right = 103.0
 margin_bottom = 44.0
@@ -2193,7 +2148,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "MENU_PROMPTS"
 valign = 1
 
-[node name="End" type="Label" parent="CanvasLayer/Others/VBoxContainer"]
+[node name="End" type="Label" parent="CanvasLayer/Settings/VBoxContainer"]
 margin_top = 48.0
 margin_right = 103.0
 margin_bottom = 60.0
@@ -2201,13 +2156,13 @@ custom_fonts/font = ExtResource( 3 )
 text = "MENU_END"
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Others"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings"]
 margin_left = 92.0
 margin_top = 11.0
 margin_right = 160.0
 margin_bottom = 72.0
 
-[node name="Speed" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+[node name="Speed" type="Label" parent="CanvasLayer/Settings/VBoxContainer2"]
 margin_right = 68.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 3 )
@@ -2215,7 +2170,7 @@ text = "MENU_MEDIUM"
 align = 2
 valign = 1
 
-[node name="Flavor" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+[node name="Flavor" type="Label" parent="CanvasLayer/Settings/VBoxContainer2"]
 margin_top = 16.0
 margin_right = 68.0
 margin_bottom = 28.0
@@ -2224,7 +2179,7 @@ text = "FLAVOR_PLAIN"
 align = 2
 valign = 1
 
-[node name="Prompts" type="Label" parent="CanvasLayer/Others/VBoxContainer2"]
+[node name="Prompts" type="Label" parent="CanvasLayer/Settings/VBoxContainer2"]
 margin_top = 32.0
 margin_right = 68.0
 margin_bottom = 44.0
@@ -2233,7 +2188,7 @@ text = "MENU_BOTH"
 align = 2
 valign = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Others"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Settings"]
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 152.0
@@ -2241,7 +2196,7 @@ margin_bottom = 25.0
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 22 )
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Others"]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Settings"]
 margin_left = 16.0
 margin_top = 40.0
 margin_right = 152.0
@@ -2249,7 +2204,7 @@ margin_bottom = 41.0
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 22 )
 
-[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/Others"]
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/Settings"]
 margin_left = 16.0
 margin_top = 56.0
 margin_right = 152.0
@@ -2257,7 +2212,7 @@ margin_bottom = 57.0
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 22 )
 
-[node name="OthersArrow" parent="CanvasLayer/Others" instance=ExtResource( 4 )]
+[node name="SettingsArrow" parent="CanvasLayer/Settings" instance=ExtResource( 4 )]
 position = Vector2( 11, 16 )
 menu_parent_path = NodePath("../VBoxContainer")
 consume_input_events = true
@@ -2459,7 +2414,7 @@ cancel_on = true
 reset_on_show = false
 
 [node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
-position = Vector2( 72, 57 )
+position = Vector2( 75, 57 )
 texture = ExtResource( 25 )
 hframes = 5
 
@@ -2469,7 +2424,7 @@ position = Vector2( 0, -8 )
 offset = Vector2( 0, -8 )
 
 [node name="NPC" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
-position = Vector2( 104, 49 )
+position = Vector2( 104, 50 )
 texture = ExtResource( 26 )
 hframes = 5
 vframes = 4
@@ -2485,7 +2440,7 @@ offset = Vector2( 0, -16 )
 margin_left = -136.0
 margin_bottom = 184.0
 
-[node name="Ninten" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+[node name="Confirm0" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
 material = ExtResource( 21 )
 margin_left = 12.0
 margin_top = 6.0
@@ -2497,7 +2452,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Ninten"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Confirm0"]
 material = ExtResource( 21 )
 margin_left = 30.0
 margin_right = 120.0
@@ -2508,7 +2463,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Ninten"]
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Confirm0"]
 margin_left = 40.0
 margin_top = 9.0
 margin_right = 112.0
@@ -2517,14 +2472,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "WWWWWWW"
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Ninten"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 27.0
-margin_bottom = 25.0
-texture = ExtResource( 14 )
-
-[node name="Ana" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+[node name="Confirm1" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
 material = ExtResource( 21 )
 margin_left = 12.0
 margin_top = 39.0
@@ -2536,7 +2484,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Ana"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Confirm1"]
 material = ExtResource( 21 )
 margin_left = 30.0
 margin_right = 120.0
@@ -2547,7 +2495,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Ana"]
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Confirm1"]
 margin_left = 40.0
 margin_top = 9.0
 margin_right = 112.0
@@ -2556,14 +2504,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "WWWWWWW"
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Ana"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 27.0
-margin_bottom = 25.0
-texture = ExtResource( 18 )
-
-[node name="Lloyd" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+[node name="Confirm2" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
 material = ExtResource( 21 )
 margin_left = 12.0
 margin_top = 72.0
@@ -2575,7 +2516,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Confirm2"]
 material = ExtResource( 21 )
 margin_left = 30.0
 margin_right = 120.0
@@ -2586,7 +2527,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Confirm2"]
 margin_left = 40.0
 margin_top = 9.0
 margin_right = 112.0
@@ -2595,14 +2536,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "WWWWWWW"
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Lloyd"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 27.0
-margin_bottom = 25.0
-texture = ExtResource( 16 )
-
-[node name="Pippi" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+[node name="Confirm3" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
 material = ExtResource( 21 )
 margin_left = 12.0
 margin_top = 105.0
@@ -2614,7 +2548,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Pippi"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Confirm3"]
 material = ExtResource( 21 )
 margin_left = 30.0
 margin_right = 120.0
@@ -2625,7 +2559,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Pippi"]
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Confirm3"]
 margin_left = 40.0
 margin_top = 9.0
 margin_right = 112.0
@@ -2634,14 +2568,7 @@ custom_fonts/font = ExtResource( 3 )
 text = "WWWWWWW"
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Pippi"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 27.0
-margin_bottom = 25.0
-texture = ExtResource( 17 )
-
-[node name="Teddy" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
+[node name="Confirm4" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft"]
 material = ExtResource( 21 )
 margin_left = 12.0
 margin_top = 138.0
@@ -2653,7 +2580,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Teddy"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationLeft/Confirm4"]
 material = ExtResource( 21 )
 margin_left = 30.0
 margin_right = 120.0
@@ -2664,7 +2591,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Teddy"]
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationLeft/Confirm4"]
 material = ExtResource( 21 )
 margin_left = 40.0
 margin_top = 9.0
@@ -2674,19 +2601,12 @@ custom_fonts/font = ExtResource( 3 )
 text = "WWWWWWW"
 valign = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ConfirmationLeft/Teddy"]
-margin_left = 8.0
-margin_top = 4.0
-margin_right = 27.0
-margin_bottom = 25.0
-texture = ExtResource( 15 )
-
 [node name="ConfirmationRight" type="Control" parent="CanvasLayer"]
 margin_left = 320.0
 margin_right = 504.0
 margin_bottom = 184.0
 
-[node name="Food" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight"]
+[node name="Confirm5" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight"]
 material = ExtResource( 21 )
 margin_left = 10.0
 margin_top = 6.0
@@ -2698,9 +2618,9 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight/Food"]
+[node name="Inside" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight/Confirm5"]
 material = ExtResource( 21 )
-margin_left = 40.0
+margin_left = 31.0
 margin_right = 168.0
 margin_bottom = 32.0
 texture = ExtResource( 13 )
@@ -2709,22 +2629,14 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Food"]
-margin_left = 48.0
+[node name="Label" type="Label" parent="CanvasLayer/ConfirmationRight/Confirm5"]
+margin_left = 41.0
 margin_top = 9.0
-margin_right = 114.0
+margin_right = 158.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 3 )
-text = "WWWWWWWWWWWWW"
+text = "ЩЩЩЩЩЩЩЩЩЩЩЩЩ"
 valign = 1
-
-[node name="Plate" type="Sprite" parent="CanvasLayer/ConfirmationRight/Food"]
-position = Vector2( 23, 19 )
-texture = ExtResource( 19 )
-
-[node name="QMark" type="Sprite" parent="CanvasLayer/ConfirmationRight/Food/Plate"]
-position = Vector2( 0, -5 )
-texture = ExtResource( 20 )
 
 [node name="Surely" type="NinePatchRect" parent="CanvasLayer/ConfirmationRight"]
 material = ExtResource( 21 )
@@ -2785,6 +2697,68 @@ move_sfx = true
 cancel_sfx = true
 cancel_on = true
 
+[node name="Toolbox" type="Control" parent="."]
+visible = false
+
+[node name="Actors" type="Control" parent="Toolbox"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Plate" type="Sprite" parent="Toolbox/Actors"]
+texture = ExtResource( 19 )
+
+[node name="Confirm" type="Control" parent="Toolbox"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Ninten" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 14 )
+
+[node name="Ana" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 18 )
+
+[node name="Lloyd" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 16 )
+
+[node name="Pippi" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 17 )
+
+[node name="Teddy" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 27.0
+margin_bottom = 25.0
+texture = ExtResource( 15 )
+
+[node name="Plate" type="TextureRect" parent="Toolbox/Confirm"]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 28.0
+margin_bottom = 33.0
+texture = ExtResource( 19 )
+stretch_mode = 4
+
+[node name="QMark" type="TextureRect" parent="Toolbox/Confirm/Plate"]
+anchor_right = 1.0
+texture = ExtResource( 20 )
+stretch_mode = 4
+
 [node name="OkDesuka" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 pitch_scale = 1.1
@@ -2802,9 +2776,9 @@ anims/Start = SubResource( 15 )
 anims/ConfirmationClose = SubResource( 13 )
 anims/ConfirmationOpen = SubResource( 11 )
 "anims/Naming Open" = SubResource( 12 )
-anims/OthersClose = SubResource( 18 )
-anims/OthersOpen = SubResource( 9 )
 anims/RESET = SubResource( 10 )
+anims/SettingsClose = SubResource( 18 )
+anims/SettingsOpen = SubResource( 9 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -2816,9 +2790,9 @@ bus = "SFX"
 
 [connection signal="failed_move" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_failed_move"]
 [connection signal="selected" from="CanvasLayer/NamingBox/arrow" to="." method="_on_arrow_selected"]
-[connection signal="cancel" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_cancel"]
-[connection signal="moved" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_moved"]
-[connection signal="selected" from="CanvasLayer/Others/OthersArrow" to="." method="_on_OthersArrow_selected"]
+[connection signal="cancel" from="CanvasLayer/Settings/SettingsArrow" to="." method="_on_SettingsArrow_cancel"]
+[connection signal="moved" from="CanvasLayer/Settings/SettingsArrow" to="." method="_on_SettingsArrow_moved"]
+[connection signal="selected" from="CanvasLayer/Settings/SettingsArrow" to="." method="_on_SettingsArrow_selected"]
 [connection signal="cancel" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_cancel"]
 [connection signal="moved" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="CanvasLayer/TextSpeed" method="_on_TextSpeedArrow_moved"]
 [connection signal="selected" from="CanvasLayer/TextSpeed/TextSpeedArrow" to="." method="_on_TextSpeedArrow_selected"]

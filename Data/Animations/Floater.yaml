@@ -1,0 +1,30 @@
+animations:
+  Float:
+    directions:
+    - - 0
+      - - 1
+        - 0.25
+      - - 2
+        - 0.25
+      - - 3
+        - 0.25
+      - - 4
+        - 0.25
+      - - 3
+        - 0.25
+      - - 2
+        - 0.25
+    type: 0
+  Idle:
+    directions:
+    - - 0
+      - - 1
+        - 0.25
+    type: 0
+offset:
+- 0
+- 0
+size:
+- 4
+- 1
+type: 0

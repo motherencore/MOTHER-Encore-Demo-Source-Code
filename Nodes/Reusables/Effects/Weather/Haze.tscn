@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/misc/Anim_start.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 1.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 9 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/multiplier = 0.5
+shader_param/softness = 1.0
+
+[sub_resource type="Environment" id=6]
+background_mode = 4
+fog_depth_enabled = false
+fog_height_min = 2441.4
+fog_height_max = 2117.6
+fog_height_curve = 0.812252
+dof_blur_near_enabled = true
+dof_blur_near_distance = 1.0
+dof_blur_near_transition = 65.0
+dof_blur_near_amount = 0.25
+dof_blur_near_quality = 2
+glow_intensity = 0.25
+glow_strength = 1.69
+glow_bloom = 0.79
+adjustment_enabled = true
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Haze/WorldEnvironment:environment:dof_blur_near_distance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Scroll"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Haze/WorldEnvironment:environment:dof_blur_near_distance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 15.0, 25.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.05 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.5, 0.45 ]
+}
+
+[node name="Haze" type="CanvasLayer"]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 8 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 2 )
+anims/Scroll = SubResource( 3 )
+script = ExtResource( 1 )
+animation = "Scroll"

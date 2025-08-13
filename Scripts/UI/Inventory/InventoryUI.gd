@@ -1,157 +1,149 @@
-extends CanvasLayer
+extends Control
 
 signal back
 signal exit
 
-const partyInfoTscn = preload("res://Nodes/Ui/Battle/PartyInfoPlate.tscn")
+onready var _party_info_view = uiManager.party_info_view
 
 #external paths and references
-onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
-onready var SelectPanel = $Inventory/InventorySelect
-onready var StatsBar = $StatsBar
-onready var DialogBox = $DialogBox
-onready var ActionSelect = $ActionSelect
-onready var arrow = $Inventory/ColorRect
-onready var itemsGrid = $Inventory/CenterContainer/Items/GridContainer 
-onready var arrow_init_pos = arrow.rect_position
-onready var scrollbar = $Inventory/DescriptionPanel/Scrollbar
+onready var ItemLabelTemplate = preload("res://Nodes/Ui/HighlightLabel.tscn")
 
-const max_item_collumns = 2
-const offset_list_threshold = 5
-const arrow_move_offset_x = 123
-const arrow_move_offset_y = 12
-const MAX_SUBMENU_POSITION = 60
-const ITEM_LABEL_SIZE = 98
+onready var _select_panel = $InventorySelect
+onready var _stats_bar = $Bottom/StatsBar
+onready var _dialog_box = $Bottom/DialogBox
+onready var _action_select = $ActionSelect
+onready var _arrow: Cursor = $Inventory/Arrow
+onready var _items_grid = $Inventory/CenterContainer/Items/GridContainer 
+onready var _scroll_bar = $Inventory/DescriptionPanel/Scrollbar
 
-var active = false setget _setActive
-func _setActive(val):
-	active = val
-	SelectPanel.active = val
+const NB_COLUMNS := 2
+const NB_ROWS_WITH_DESC := 5
+const ARROW_MOVE_OFFSET_X := 123
+const ARROW_MOVE_OFFSET_Y := 12
+const MAX_SUBMENU_POSITION := 60
 
-var current_character = "ninten"
-var current_inventory = []
-var current_scroll_pos = 1
-var selected_item_nb = 0
-var item_to_hl = 0
-var idx_x = 1
-var idx_y = 1
-var item_collumns = max_item_collumns
-var item_rows = max_item_rows
-var max_item_rows = 8
-var offset_list = false
-var is_inventory_empty = false
-var blink = false
-var swapmode = false
-var swap_source = ""
-var swap_source_item = ""
-var swap_target = ""
-var sort_mode = false
-var sort_source_idx = 0
+var _is_active := false
 
+var _current_character := "ninten"
+var _current_inventory := []
+var _current_scroll_pos := 0
+var _is_desc_shown := false
+var _swap_mode := false
+var _swap_source := ""
+var _swap_source_item := 0
+var _swap_target: = ""
+var _sort_mode := false
+var _sort_source_idx := 0
 
 	
-func Show_inventory(party_member):
-	current_character = party_member["name"].to_lower()
-	SelectPanel.InitFromCharacter(current_character)
+func open(party_member: Dictionary):
+	_current_character = party_member["name"].to_lower()
+	_select_panel.InitFromCharacter(_current_character)
 	_show_hide_description(globaldata.description)
-	scrollbar.nb_visible_rows = offset_list_threshold
-	_update_inventory(current_character, true)
-	updatePartyInfos()
-	active = true
+	_scroll_bar.nb_visible_rows = NB_ROWS_WITH_DESC
+	_update_inventory(true)
+	_update_party_infos()
+	_set_active(true)
 	$AnimationPlayer.play("Open")
 	$Inventory.visible = true
-	SelectPanel.visible = true
+	_select_panel.visible = true
+	_highlight()
 	
-	
-func _update_inventory(character, reset_select):
-	current_inventory = InventoryManager.getInventory(character)
+func _update_inventory(reset_select: bool):
+	_current_inventory = InventoryManager.getInventory(_current_character)
 	if reset_select:
-		selected_item_nb = 0
-		current_scroll_pos = 1
-		idx_x = 1
-		idx_y = 1
-	_update_list()
-	
+		_current_scroll_pos = 0
+		_set_selected_idx(0)
+	else:
+		pass
+		#_idx_y = int(clamp(_idx_y, 1, _get_max_items_rows()))
+	_update_scroll()	
 	
 func _ready():
 	$Inventory.visible = false
-	_update_list()
+	_update_list_view()
 	global.connect("locale_changed", self, "_update_description")
 	
-func _physics_process(_delta):
-	if active:
-		$Inventory/ColorRect/Arrow.on = true
-		if !swapmode:
-			_update_description()
-			_update_portraits()
-		controls()
-		highlight()
-		
-	else:
-		$Inventory/ColorRect/Arrow.on = false
-		
-
-#empty list before updating
-func _empty_list():
-	for item in itemsGrid.get_children():
-		item.queue_free()
-			
-		
 #Update the list 	
-func _update_list():
-	var item_cnt = 0
-	_empty_list()
-	if current_inventory == []: #empty inventory
-#		var item_label = item_label_template.instance()
-#		item_label.text = ""
-#		itemsGrid.add_child(item_label)
-		is_inventory_empty = true
-	else:
-		is_inventory_empty = false
-		for item in current_inventory:
-			var item_in_row = item_cnt / max_item_collumns
-			if ((item_in_row >= current_scroll_pos - 1) and offset_list) or !offset_list:
-				var item_label = item_label_template.instance()
-				item_label.rect_min_size.x = ITEM_LABEL_SIZE
-				var item_data = InventoryManager.Load_item_data(item.ItemName)
-				# LOCALIZATION Code change: Removed use of globaldata.language
-				item_label.text = item_data["name"]
-				item_label.show_equiped(item.equiped)
-				itemsGrid.add_child(item_label)
-			item_cnt+=1
+func _update_list_view(select_idx := -1):
+	for i in _items_grid.get_child_count():
+		var which_row = i / NB_COLUMNS
+		var item_label = _items_grid.get_child(i)
+		var item_idx = i + _current_scroll_pos * 2
+		if item_idx < _current_inventory.size() and (!_is_desc_shown or i < NB_ROWS_WITH_DESC * NB_COLUMNS):
+			var item = _current_inventory[item_idx]
+			item_label.text = item.get_data()["name"]
+			item_label.show_equiped(item.equiped)
+		else:
+			item_label.text = ""
+			item_label.show_equiped(false)
+
+	_arrow.visible = !_is_inventory_empty()
 			
-	var total_rows = ceil(item_cnt * 1.0 / max_item_collumns)
+	var total_rows = ceil(_current_inventory.size() * 1.0 / NB_COLUMNS)
 
 	# In case scrolling goes above the last row (like, because an item was deleted and the last row is empty)
-	if total_rows < current_scroll_pos - 1 + offset_list_threshold:
-		total_rows = current_scroll_pos - 1 + offset_list_threshold
-		
-	scrollbar.nb_rows = total_rows
-	scrollbar.position = current_scroll_pos - 1
+	if total_rows < _current_scroll_pos + NB_ROWS_WITH_DESC:
+		total_rows = _current_scroll_pos + NB_ROWS_WITH_DESC
+
+	if select_idx > -1:
+		_arrow.set_cursor_from_index(select_idx - _current_scroll_pos * NB_COLUMNS, false)
+
+	_scroll_bar.nb_rows = total_rows
+	_scroll_bar.position = _current_scroll_pos
+
+	_highlight()
+	_update_item_details()
+
+func _update_item_details():
+	_update_description()
+	_update_portraits()
+
+func _set_active(val: bool):
+	_is_active = val
+	_update_select_panel_state()
+	_arrow.on = val
+
+func _update_select_panel_state():
+	_select_panel.active = _is_active and !_sort_mode
+
+func _is_inventory_empty() -> bool:
+	return _current_inventory.empty()
+
+func _get_selected_pos_x() -> int:
+	return _get_selected_idx() % NB_COLUMNS
+
+func _get_selected_pos_y() -> int:
+	return _get_selected_idx() / NB_COLUMNS
+
+func _get_selected_idx() -> int:
+	var idx := _arrow.cursor_index + _current_scroll_pos * NB_COLUMNS
+	if _current_inventory.size() in range(1, idx + 1):
+		idx = _current_inventory.size() - 1
+	return idx
 
 func _update_scroll():
-	#updates the scrolling position if the selected item is out of visibility area
-	if idx_y < current_scroll_pos:
-		current_scroll_pos = idx_y
-	if idx_y > current_scroll_pos + offset_list_threshold - 1:
-		current_scroll_pos = idx_y - offset_list_threshold + 1
+	_set_selected_idx(_get_selected_idx())
 
-	#calculate the item selected according to the xy coordinates
-	selected_item_nb = 2*(idx_y-1)+(idx_x-1)
-	selected_item_nb = clamp(selected_item_nb, 0, current_inventory.size()-1)
-	if offset_list:
-		item_to_hl = 2*(idx_y - current_scroll_pos)+(idx_x-1)
+func _set_selected_idx(index: int):
+	if _is_desc_shown:
+		if index < NB_COLUMNS * _current_scroll_pos:
+			_current_scroll_pos = index / NB_COLUMNS
+		elif index >= NB_COLUMNS * (_current_scroll_pos + NB_ROWS_WITH_DESC):
+			_current_scroll_pos = index / NB_COLUMNS - NB_ROWS_WITH_DESC + 1
 	else:
-		item_to_hl = selected_item_nb
+		_current_scroll_pos = 0
+		
+	_update_list_view(index)
+
+func _get_max_items_rows(pos_x: int) -> int:
+	return ((_current_inventory.size() / NB_COLUMNS)+((-pos_x) * (_current_inventory.size() % NB_COLUMNS)))+(_current_inventory.size() % NB_COLUMNS)
 
 func _update_description():
-	#get the name of the selected items
-	if selected_item_nb < current_inventory.size():
-		var selected_item_name = current_inventory[selected_item_nb].ItemName
-		var item = InventoryManager.Load_item_data(selected_item_name)
-		$Inventory/DescriptionPanel.setItem(current_inventory[selected_item_nb].ItemName)
+	if _get_selected_idx() < _current_inventory.size():
+		$Inventory/DescriptionPanel.set_item_from_inv(_current_inventory[_get_selected_idx()])
 	else:
-		$Inventory/DescriptionPanel.setItem("")
+		$Inventory/DescriptionPanel.set_item_from_inv(null)
 
 func _update_portraits():
 	#update portrait modifiers
@@ -163,22 +155,18 @@ func _update_portraits():
 		var is_lower = false
 		#	- item is suitable for the character
 		var chara_nam = character["name"].to_lower()
-		if chara_nam in ["flyingman", "eve", "canarychick"]: # Useless? Same condition just below
-			return
-		if !(chara_nam in InventoryManager.no_inventory_characters): # Same condition just above
-			if selected_item_nb < current_inventory.size():
-				var current_item_name = current_inventory[selected_item_nb].ItemName
-				var current_item_data = InventoryManager.Load_item_data(current_item_name)
+		if chara_nam in global.POSSIBLE_PLAYABLE_MEMBERS:
+			if _get_selected_idx() < _current_inventory.size():
+				var current_item_name = _current_inventory[_get_selected_idx()].ItemName
 				
-				if InventoryManager.doesItemHaveFunction(current_item_name, "equip"):
-					is_suitable = current_item_data["usable"][chara_nam]
-					var current_item_slot = current_item_data["slot"]
+				if InventoryManager.is_equippable(current_item_name):
+					is_suitable = InventoryManager.is_usable_by(chara_nam, current_item_name)
 					#- item is equiped
-					is_equiped = (InventoryManager.Get_global_data(chara_nam)["equipment"][current_item_slot] == current_item_name)
+					is_equiped = InventoryManager.is_equipped_by(chara_nam, current_item_name)
 					
 					#if not equiped, check if stats boost
 					if !is_equiped:
-						var res = InventoryManager.is_the_item_better(InventoryManager.Get_global_data(chara_nam), current_item_name)
+						var res = InventoryManager.is_the_item_better(InventoryManager.get_global_data(chara_nam), current_item_name)
 						match res:
 							1:
 								is_better = true
@@ -198,228 +186,159 @@ func _update_portraits():
 					is_equiped = false
 				
 				# then update the modifiers
-				SelectPanel.Update_portrait_modifiers(chara_nam, is_suitable, is_equiped, is_better, is_lower)
+				_select_panel.update_portrait_modifiers(chara_nam, is_suitable, is_equiped, is_better, is_lower)
 
-func updatePartyInfos(set=true):
-	for i in $PartyInfoHBox.get_child_count():
-		var partyInfo = $PartyInfoHBox.get_child(i)
-		if i >= global.party.size():
-			partyInfo.hide()
-			continue
-		partyInfo.show()
-		partyInfo.pName = global.party[i].nickname
-		partyInfo.get_node("Name").text = partyInfo.pName
-		partyInfo.maxHP = global.party[i].maxhp + global.party[i].boosts.maxhp
-		partyInfo.maxPP = global.party[i].maxpp + global.party[i].boosts.maxpp
-		partyInfo.setHP(global.party[i].hp, set)
-		partyInfo.setPP(global.party[i].pp, set)
-		partyInfo.show_maxNum()
+func _update_party_infos(set := true):
+	if _party_info_view:
+		_party_info_view.update_party_infos(set)
 
+func _on_arrow_moved(dir: Vector2):
+	#check for inputs for selecting items in the inventory
+	_update_item_details()
+	if !_is_inventory_empty():
+		_highlight()
 
-func controls():
-	if active:
-		var pos = arrow.rect_position
-		var update_flag = false
-		
-		#check for inputs for selecting items in the inventory
-		if !is_inventory_empty:
-			var input = controlsManager.get_controls_vector(true)
-			if input.y < 0:
-				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-				idx_y -=1
-				update_flag = true
-			elif input.y > 0:
-				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-				idx_y +=1
-				update_flag = true
-			if input.x < 0:
-				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-				idx_x -=1 
-				if idx_x < 1:
-					idx_x = max_item_collumns
-				update_flag = true
-			elif input.x > 0:
-				$Inventory/ColorRect/Arrow.play_sfx("cursor1")
-				idx_x +=1 
-				if idx_x > max_item_collumns:
-					idx_x = 1
-				update_flag = true
-			
-			if current_inventory.size() == 1:
-				idx_x = 1
-				
-			#calculate new max items in the current collumn for this inventory
-			max_item_rows = ((current_inventory.size()/2)+((1-idx_x)*(current_inventory.size()%2)))+(current_inventory.size()%2)
-			
-			#check for vertical boundaries with newly calculated max
-			#only cycling if updated by user
-			if update_flag:
-				if idx_y < 1:
-					idx_y = max_item_rows
-				if idx_y > max_item_rows:
-					idx_y = 1
-			else:
-				idx_y = clamp(idx_y, 1, max_item_rows)
-			
-			_update_scroll()
+func _on_arrow_failed_move(dir: Vector2):
+	if !_is_inventory_empty():
+		_arrow.play_sfx("cursor1")
 
-			#don't update if no changes
-			if update_flag == true:
-				_update_list()
-				update_flag = false
-			
-		pos.x = arrow_init_pos.x + (item_to_hl % max_item_collumns) * arrow_move_offset_x
-		pos.y = arrow_init_pos.y + (item_to_hl / max_item_collumns) * arrow_move_offset_y
-		
-		arrow.rect_position = pos
+		var pos_x = _get_selected_pos_x()
+		var pos_y = _get_selected_pos_y()
+		pos_y += dir.y
 
-func _input(event):
-	if active:
-		var pos = arrow.rect_position
-		var update_flag = false
-		if !is_inventory_empty:
-			if event.is_action_pressed("ui_scope"):
-				Input.action_release("ui_scope")
-				if !is_inventory_empty and !swapmode and !sort_mode:
-					globaldata.description = !globaldata.description
-					_show_hide_description(globaldata.description)
-					_update_inventory(current_character, false)
-				
+		if pos_y >= _get_max_items_rows(pos_x):
+			pos_y = 0
+		elif pos_y < 0:
+			pos_y = _get_max_items_rows(pos_x) - 1
+
+		pos_x = posmod(pos_x + int(dir.x), NB_COLUMNS)
+
+		_set_selected_idx(pos_y * NB_COLUMNS + pos_x)
+
+		_update_scroll()
+
+func _on_arrow_selected(cursor_index: int):
+	if !_is_inventory_empty():
+		#item selected and validated, show actions box at the right place
+		Input.action_release("ui_accept")
+		var item = _current_inventory[_get_selected_idx()].ItemName
+		if _swap_mode:
+			InventoryManager.swap_between_characters(_swap_source, _swap_target, _swap_source_item, _get_selected_idx())
+			_swap_mode = false
+			_set_active(false)
+			_set_selected_idx(_swap_source_item)
+			_current_character = _swap_source
+			_select_panel.set_swap_mode(false, _swap_source, _swap_target)
+			_show_hide_description(globaldata.description)
+			_update_inventory(false)
+			_action_select.visible = true
+			_action_select.chain_with_equip()
+		elif _sort_mode:
+			var target_idx = _get_selected_idx()
+			InventoryManager.switch_items(_current_character, _sort_source_idx, target_idx)
+			_update_inventory(false)
+			_sort_mode = false
+			_show_hide_description(globaldata.description)
+			_update_list_view()
+			_update_select_panel_state()		
+		else:
+			var side := -1.5 if _get_selected_pos_x() == 1 else 1.0
+			var submenu_position = $Inventory/Arrow/Position2D.global_position
+			submenu_position.x = submenu_position.x + 25 * side
+			submenu_position.y = min(MAX_SUBMENU_POSITION, submenu_position.y)
+			_action_select.set_for_new_item(submenu_position, item, side, _current_character,_get_selected_idx())
+			_set_active(false)
+
+func _on_arrow_cancel():
+	if _sort_mode:
+		_arrow.play_sfx("back")
+		_sort_mode = false
+		_show_hide_description(globaldata.description)
+		_highlight()
+		_update_select_panel_state()
+	elif _swap_mode:
+		_arrow.play_sfx("back")
+		_swap_mode = false
+		_show_hide_description(globaldata.description)
+		_highlight()
+		_select_panel.set_swap_mode(false, _swap_source, _swap_target )
+		_current_character = _swap_source
+		_update_inventory(false)
+	else:
+		_close()
+
+func _input(event: InputEvent):
+	if _is_active and !_is_inventory_empty():
+		if event.is_action_pressed("ui_scope"):
+			Input.action_release("ui_scope")
+			if !_swap_mode and !_sort_mode:
+				globaldata.description = !globaldata.description
+				_show_hide_description(globaldata.description)
 					
-			
+#highlight item
+func _highlight():
+	var item_to_hl = _arrow.cursor_index
 
-			#item selected and validated, show actions box at the right place
-			if Input.is_action_just_pressed(("ui_accept")):
-				Input.action_release("ui_accept")
-				$Inventory/ColorRect/Arrow.play_sfx("cursor2")
-				var item = current_inventory[selected_item_nb].ItemName
-				var item_data = InventoryManager.Load_item_data(item)
-				var side = ""
-				if !swapmode:
-					if sort_mode:
-						var target_idx = selected_item_nb
-						InventoryManager.switchItems(current_character, sort_source_idx, target_idx)
-						_update_inventory(current_character,false)
-						sort_mode = false
-						_show_hide_description(globaldata.description)
-						_update_list()
-						SelectPanel.active = true
-						
-					else:
-						if selected_item_nb%2 == 1:
-							side = -1.5#"right"
-						else:
-							side = 1#"left"
-						var submenu_position = $Inventory/ColorRect/Arrow/Position2D.global_position
-						if submenu_position.y > arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y):
-							submenu_position.y = arrow_init_pos.y+ 9 + (offset_list_threshold * arrow_move_offset_y)
-						submenu_position.x = submenu_position.x + 25*side
-						submenu_position.y = min(MAX_SUBMENU_POSITION, submenu_position.y)
-						if current_character != "key":
-							ActionSelect.set_for_new_item(submenu_position, item, side, current_character,selected_item_nb)
-							active = false
-							SelectPanel.active = false
-				else:
-					#sound here?
-					InventoryManager.swapBetweenCharacters(swap_source, swap_target, swap_source_item,  selected_item_nb)
-					swapmode = false
-					active = false
-					selected_item_nb = swap_source_item
-					current_character = swap_source
-					SelectPanel.setSwapmode(false, swap_source, swap_target )
-					_show_hide_description(globaldata.description)
-					_update_inventory(current_character, false)
-					ActionSelect.visible = true
-					ActionSelect.chain_with_equip()
-				return
+	var items = _items_grid.get_children()
 
-		else:
-			selected_item_nb = 0 #temp?
-						
-		if Input.is_action_just_pressed("ui_cancel"):
-			Input.action_release("ui_cancel")
-			if sort_mode:
-				$Inventory/ColorRect/Arrow.play_sfx("back")
-				sort_mode = false
-				_show_hide_description(globaldata.description)
-				highlight()
-				SelectPanel.active = true
-				return
-			elif swapmode:
-				$Inventory/ColorRect/Arrow.play_sfx("back")
-				swapmode = false
-				_show_hide_description(globaldata.description)
-				highlight()
-				SelectPanel.setSwapmode(false, swap_source, swap_target )
-				current_character = swap_source
-				_update_inventory(current_character, false)
-				return
-			else:
-				$AnimationPlayer.play("Close")
-				active = false
-				SelectPanel.active = false
-				emit_signal("back")
-				return
-				
-
-		
-	
-	#highlight item
-func highlight():	
-	var items = itemsGrid.get_children()
 	for item_idx in items.size():
-		if item_idx == item_to_hl:
-			if swapmode:
-				if items[item_to_hl].blinking == false:
-					items[item_to_hl].blink(true)
+		if _sort_mode and item_idx == _sort_source_idx:
+			if items[item_idx].blinking == false:
+				items[item_idx].blink(true)
+		elif item_idx == item_to_hl and item_idx < _current_inventory.size():
+			if _swap_mode:
+				if !items[item_idx].blinking:
+					items[item_idx].blink(true)
 			else:
-				items[item_to_hl].highlight(1)
+				if items[item_idx].blinking:
+					items[item_idx].blink(false)
+				items[item_idx].highlight(1)
 		else:
-			if sort_mode:
-				items[sort_source_idx].blink(true)
-			else:
-				items[item_idx].highlight(0)
+			if items[item_idx].blinking:
+				items[item_idx].blink(false)
+			items[item_idx].highlight(0)
 
-func _show_hide_description(value):
+func _show_hide_description(value: bool):
 	$Inventory/DescriptionPanel.visible = value
-	offset_list = value
+	_is_desc_shown = value
 	_update_scroll()
+	#_update_list_view()
 
-func _on_InventorySelect_character_changed(character):
-	current_character = character
-	_update_inventory(character, true)
-
+func _on_InventorySelect_character_changed(character: String):
+	_current_character = character
+	_update_inventory(true)
 
 func _on_ActionSelect_back():
-	_update_inventory(current_character, false)
-	active = true
-	if !sort_mode:
-		SelectPanel.active = true
+	_update_inventory(false)
+	_set_active(true)
+	_update_select_panel_state()
+		
+func _on_ActionSelect_exit():
+	_close(true)
 
-
-func _on_ActionSelect_swapmode(target):
+func _on_ActionSelect_swapmode(target: String):
 	_show_hide_description(false)
-	swap_source = current_character
-	swap_source_item = selected_item_nb
-	current_character = target
-	swap_target = target
-	swapmode = true
-	SelectPanel.setSwapmode(true, swap_source, swap_target )
-	_update_inventory(target,false)
+	_swap_source = _current_character
+	_swap_source_item = _get_selected_idx()
+	_current_character = target
+	_swap_target = target
+	_swap_mode = true
+	_select_panel.set_swap_mode(true, _swap_source, _swap_target )
+	_update_inventory(false)
 
 
 func _on_ActionSelect_sortmode():
 	_show_hide_description(false)
-	sort_source_idx = selected_item_nb
-	sort_mode = true
-	SelectPanel.active = false
+	_sort_source_idx = _get_selected_idx()
+	_sort_mode = true
+	_update_select_panel_state()
 
-func _on_ActionSelect_show_statsbar(character, unequip = false):
+func _on_ActionSelect_show_statsbar(character: String, unequip := false):
 	
 	var modifiersDic = {}
-	var chara_data = InventoryManager.Get_global_data(character)
-	var item = current_inventory[selected_item_nb].ItemName
-	var item_stats= InventoryManager.Load_item_data(item)
+	var chara_data = InventoryManager.get_global_data(character)
+	var item = _current_inventory[_get_selected_idx()].ItemName
+	var item_stats = globaldata.items[item]
 	var item_slot = item_stats["slot"] 
 	var is_equiped = false
 	
@@ -427,61 +346,59 @@ func _on_ActionSelect_show_statsbar(character, unequip = false):
 	var projected_stat
 	
 	if chara_data == null:
-		StatsBar.hide_statsBar()
+		_hide_stats_bar()
 	elif chara_data["equipment"][item_slot] != item:
-		for stat in StatsBar.stats_list:
+		for stat in _stats_bar.stats_list:
 			if item_stats["boost"].has(stat):
 				var boost = int(item_stats["boost"][stat])
 				if boost != 0:
 					var equiped_item = chara_data["equipment"][item_slot]
 					var equiped_boost = 0
 					if equiped_item != "":
-						equiped_boost = InventoryManager.Load_item_data(equiped_item)["boost"][stat]
+						equiped_boost = globaldata.items[equiped_item]["boost"][stat]
 					projected_stat = chara_data[stat] + chara_data["boosts"][stat] - equiped_boost + boost
 						
 					modifiersDic[stat] = projected_stat
 	else:
-		for stat in StatsBar.stats_list:
+		for stat in _stats_bar.stats_list:
 			if item_stats["boost"].has(stat):
 				var boost = int(item_stats["boost"][stat])
 				if boost != 0:
 					var equiped_item = chara_data["equipment"][item_slot]
 					var equiped_boost = 0
 					if equiped_item != "":
-						equiped_boost = InventoryManager.Load_item_data(equiped_item)["boost"][stat]
+						equiped_boost = globaldata.items[equiped_item]["boost"][stat]
 					projected_stat = chara_data[stat] + chara_data["boosts"][stat] - equiped_boost
 						
 					modifiersDic[stat] = projected_stat
 				
-	StatsBar.show_statsBar(chara_data, modifiersDic)
-
+	_stats_bar.show_statsBar(chara_data, modifiersDic)
+	_party_info_view.close()
 
 func _on_ActionSelect_hide_statsbar():
-	StatsBar.hide_statsBar()
+	_hide_stats_bar()
 
 func _on_TargetCharaSelect_hide_statsbar():
-	StatsBar.hide_statsBar()
+	_hide_stats_bar()
 
-func _on_ActionSelect_show_dialogbox(dialog, character = null, action = ""):
-	DialogBox.show_dialogBox(dialog, character, action)
+func _hide_stats_bar():
+	_stats_bar.hide_statsBar()
+	_party_info_view.open()
 
-func _on_TargetCharaSelect_show_dialogbox(dialog, character = null, action = ""):
-	DialogBox.show_dialogBox(dialog, character, action)
+func _close(exit_pause := false):
+	$AnimationPlayer.play("Close")
+	_set_active(false)
+	emit_signal("exit" if exit_pause else "back")
+
+func _on_ActionSelect_show_dialogbox(dialog: String, character = "", value := 0, stat := "", item = null):
+	yield(get_tree(), "idle_frame")
+	_set_active(false)
+	_dialog_box.show_dialog_box(dialog, character, value, stat, item)
+	_update_description()
+	_update_portraits()
 
 func _on_DialogBox_back():
-	updatePartyInfos()
-	_update_list()
-	active = true
-	SelectPanel.active = true
-
-
-func _on_DialogBox_exit():
-	updatePartyInfos()
-	$AnimationPlayer.play("Close")
-	active = false
-	SelectPanel.active = false
-	emit_signal("exit")
-	return
-
-
+	_update_party_infos()
+	_update_scroll()
+	_set_active(true)
 

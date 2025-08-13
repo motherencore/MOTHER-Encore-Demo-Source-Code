@@ -1,0 +1,10 @@
+name: FIELD_PK_THUNDER
+description: FIELD_PK_THUNDER_DESC
+is_skill_button: true
+battle_skill: pkThunderA
+usable:
+  ninten: false
+  ana: true
+  lloyd: false
+  teddy: false
+  pippi: false

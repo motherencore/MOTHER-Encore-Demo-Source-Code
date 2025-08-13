@@ -24,10 +24,10 @@ var hlportraitSprites = {
 
 # Nodes
 onready var charaSelect = $StorageBox/InventorySelect
-onready var listOnHand = $StorageBox/ItemsOnHand
-onready var listStorage = $StorageBox/ItemsStored
-onready var description = $DescBox/DescriptionPanel
-onready var dialog = $DescBox/DescriptionDialog
+onready var listOnHand: ItemListMenu = $StorageBox/ItemsOnHand
+onready var listStorage: ItemListMenu = $StorageBox/ItemsStored
+onready var description = $DescContainer/DescriptionPanel
+onready var dialog = $DescContainer/DescriptionDialog
 
 var god_mode = false setget _set_god_mode
 
@@ -43,6 +43,7 @@ func _ready():
 	$StorageBox/Separator.modulate = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 2)
 
 	_set_god_mode()
+	InventoryManager.sort_auto(_storage_id)
 
 	charaSelect.visible = true
 	charaSelect.active = true
@@ -57,7 +58,7 @@ func _ready():
 	listOnHand.connect("exited", self, "_on_exit_on_hand")
 	listStorage.connect("exited", self, "_on_exit_storage")
 	dialog.connect("closed", self, "_on_dialog_closed")
-	global.connect("locale_changed", self, "_update_desc")
+	global.connect("locale_changed", self, "_on_locale_changed")
 
 	# set up character order
 	_characterOrder.clear()
@@ -67,6 +68,11 @@ func _ready():
 	_change_character(_characterOrder[0])
 	_update_list_storage()
 	_switch_to_panel(false, true)
+	#_update_desc()
+
+func _on_locale_changed():
+	InventoryManager.sort_auto(_storage_id)
+	_update_list_storage()
 	_update_desc()
 
 func _set_god_mode(value = god_mode):
@@ -76,7 +82,7 @@ func _set_god_mode(value = god_mode):
 		charaSelect.noKey = !value
 		charaSelect.include_storage = value
 
-func _on_arrow_failed_move(dir):
+func _on_arrow_failed_move(dir: Vector2):
 	if !dialog.open:
 		if dir.x < 0:
 			_switch_to_panel(false, false, true)
@@ -130,7 +136,7 @@ func _list_restrictions_cb(item_instance):
 	else:
 		return !InventoryManager.isInventoryFull(_current_character_name)
 
-func _update_portraits(highlighted_item=null):
+func _update_portraits(highlighted_item:String = ""):
 	for i in 4: # there's 4 portraits!
 		# equipment information
 		var is_suitable = false
@@ -141,7 +147,7 @@ func _update_portraits(highlighted_item=null):
 			if highlighted_item:
 				var current_item_data = globaldata.items[highlighted_item]
 				var character = _characterOrder[i]
-				if InventoryManager.doesItemHaveFunction(highlighted_item, "equip"):
+				if InventoryManager.is_equippable(highlighted_item):
 					is_suitable = current_item_data["usable"][character]
 					var current_item_slot = current_item_data["slot"]
 					#- item is equiped
@@ -156,21 +162,21 @@ func _update_portraits(highlighted_item=null):
 							-1:
 								is_lower = true
 			is_suitable = is_suitable and !is_equiped
-			charaSelect.Update_portrait_modifiers(_characterOrder[i], is_suitable, is_equiped, is_better, is_lower)
-
+			charaSelect.update_portrait_modifiers(_characterOrder[i], is_suitable, is_equiped, is_better, is_lower)
 
 func _on_list_move(itemPos):
 	_update_desc()
 
 func _update_desc():
-	var fromList
+	var from_list: ItemListMenu
 	if !_currentPanelIsStorage:
-		fromList = listOnHand
+		from_list = listOnHand
 	else:
-		fromList = listStorage
-	var item_id = fromList.get_current_item_id()
-	_update_portraits(item_id)
-	description.setItem(item_id)
+		from_list = listStorage
+	var item = from_list.get_current_item()
+	_update_portraits(item.ItemName if item else "")
+	description.set_item_from_inv(item)
+	description.visible = !!item
 
 func _on_selected_on_hand(itemPos):
 	if !InventoryManager.isInventoryFull(_storage_id):
@@ -179,7 +185,7 @@ func _on_selected_on_hand(itemPos):
 		var is_equiped = InventoryManager.getInventory(_current_character_name)[itemPos].equiped
 
 		if is_equiped:
-			var question_str = _format_text_with_item("TRANSACTION_ASK_UNEQUIP", itemData)
+			var question_str = TextTools.format_text_with_context("TRANSACTION_ASK_UNEQUIP", null, itemData)
 			_ask_user(question_str, item_id, "_unequip_and_store", [_current_character_name, itemPos])
 		else:
 			_store_item(_current_character_name, itemPos)
@@ -192,10 +198,9 @@ func _on_selected_storage(itemPos):
 		var item_id = listStorage.get_current_item_id()
 		_withdraw_item(_current_character_name, itemPos)
 		var itemData = globaldata.items[item_id]
-		var canEquip = InventoryManager.doesItemHaveFunction(item_id, "equip") && itemData["usable"][_current_character_name]
-		if canEquip:
+		if InventoryManager.is_equippable_by(_current_character_name, item_id):
 			var itemUid = InventoryManager.getInventory(_current_character_name).back().uid
-			var question_str = _format_text_with_item("SHOP_ASK_EQUIP", itemData)
+			var question_str = TextTools.format_text_with_context("SHOP_ASK_EQUIP", null, itemData)
 			_ask_user(question_str, item_id, "_equip_after_withdrawal", [ _current_character_name, itemUid])
 	else:
 		_warn_user(tr("TRANSACTION_FULL"))
@@ -220,9 +225,9 @@ func _unequip_and_store(character_name, itemPos):
 func _equip_after_withdrawal(character_name, itemPos):
 	audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
 	var itemUid = InventoryManager.getInventory(character_name).back().uid
-	var character_data = InventoryManager.Get_global_data(character_name)
+	var character_data = InventoryManager.get_global_data(character_name)
 	if character_data:
-		InventoryManager.equipItemFromUID(character_data, itemUid)
+		InventoryManager.equip_item_from_uid(character_data, itemUid)
 	_update_list_on_hand()
 
 func _store_item(characterName, itemPos):
@@ -233,13 +238,13 @@ func _withdraw_item(characterName, itemPos):
 
 func _item_transaction(source, target, itemPos, targetList, sort=false):
 	var item_id = InventoryManager.getInventory(source)[itemPos].ItemName
-	InventoryManager.giveItem(source, target, itemPos)
+	InventoryManager.give_item(source, target, itemPos)
 	if sort:
-		InventoryManager.sortAuto(_storage_id)
+		InventoryManager.sort_auto(_storage_id)
 	_update_list_on_hand()
 	_update_list_storage()
 	_update_desc()
-	_scroll_to_focus(targetList, item_id)
+	#_scroll_to_focus(targetList, item_id)
 
 func _scroll_to_focus(list, item_id):
 	var newPos = 0
@@ -252,28 +257,17 @@ func _on_failed_select(itemPos):
 	audioManager.play_sfx(load("res://Audio/Sound effects/M3/bump.wav"), "menu")
 
 func _on_exit_on_hand():
-	print("exit 1")
 	if not _currentPanelIsStorage and dialog.open == false:
 		uiManager.remove_ui(self)
 
 func _on_exit_storage():
-	print("exit 2")
 	if _currentPanelIsStorage and dialog.open == false:
 		uiManager.remove_ui(self)
 
+# Override
 func close():
-	print("close %s" % var2str(get_stack()))
 	if is_instance_valid(uiManager.dialogueBox):
-		uiManager.dialogueBox.call_deferred("next_dialog")
+		uiManager.dialogueBox.call_deferred("next_phrase")
 	else:
 		global.persistPlayer.unpause()
 	queue_free()
-
-# LOCALIZATION Code added: New method to handle formatting of items and articles in text
-# Same method in ShopUI.gd
-func _format_text_with_item(text, item):
-	return tr(text).format({
-		"item": tr(item.name)
-		}).format(
-			globaldata.get_item_or_skill_articles(item), "{i_}"
-		)

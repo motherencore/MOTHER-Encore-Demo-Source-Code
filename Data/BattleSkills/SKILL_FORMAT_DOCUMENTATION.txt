@@ -1,73 +1,80 @@
 Documentation on the skill format.
 Using the "Bash" skill as a reference.
 
-"name" : "Bash",   # The name of the skill that will appear in the menu and info feed(?).
+name: Bash   # The name of the skill that will appear in the menu and info feed(?).
 
-"description" : "Perform a basic attack against an enemy.",   # Description of the skill.
+description: Perform a basic attack against an enemy.   # Description of the skill.
 
-"category" : "Offense", # determines how the psi is ordered
+psiCategory: Offense, # determines how the psi is ordered
 
-"skillType" : "physical",   # The type of skill used. "physical", "psi", and "item" are all applicable. 
+skillType: basic,   # The type of skill used. "basic", "skill", and "psi" are all applicable. 
 						    # Item consumability is referenced by the inventory system.
 
-"useCases" : 1,   # Determines where the skill can be used. 
+useCases: 1   # Determines where the skill can be used. 
 				  # -1 = Field only, 0 = Field & Battle, 1 = Battle only.
 
-"damageType" : 0,   # Denotes whether or not the skill damages (0), heals (1), or is none (2)
+actionType: 0   # Denotes whether or not the skill damages (0), heals (1), or is none (2).
 
-"targetType" : 0,   # Which entities can be targetted, and how. 
-					# Determined by enumerator:
-					# {ENEMY = 0, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES = 7}
+damageType: normal		# Determines the type of damage: normal, fire, ice, electric, none
 
-"damage" : 10,   # Base value used to calculate damage/healing. Currently works as follows (subject to change): 
+targetType: 0,   # Which entities can be targetted, and how. 
+				 # Determined by enumerator:
+				 # {ENEMY = 0, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES = 7}
+
+damage: 10,   # Base value used to calculate damage/healing. Currently works as follows (subject to change): 
                  # if not healing and physical: (damage + offense) - (enemyDefense * 0.5) = finalDamage
                  # if not healing and not item: (damage + int) - (enemyDefense * 0.5) = finalDamage
                  # if healing and psi: (damage + int) = finalHealing
                  # if not healing and item: damage - (enemyDefense * 0.5) = finalDamage
                  # if healing and item: damage = finalHealing
 
-"variance" : 10,   # Percentage of the calculated damage value that will be added to to the final damage value.
+variance: 10,   # Percentage of the calculated damage value that will be added to to the final damage value.
                    # 10% = anywhere from 5% less damage, to 5% more damage.
 
-"priority" : 0,   # Determines the order of actions in combat.
+priority: 0,   # Determines the order of actions in combat.
                   # Higher priority actions will always go sooner than lower priority
 
-"statusEffects" : [
-	{"name" : poisoned", "chance" : 66}, {"name" : "blinded", "chance" : 25}
-],   # Status ailments inflicted
+statusEffects: 
+- name: poisoned
+  chance: 66
+- name: blinded
+  chance: 25
+	 # Status ailments inflicted
 	 # Status effects are also their own json files, denoting how they work. 
 	 # Chance is percentage based. if you want to inflict a status 1 in 3 times, put 33 or 34 in there. 
 	 # These are integer values. Decimals will be rounded if put there.
 	 # The array can simply be left blank if no effects are desired.
 
-"statusHeals" : [
-   "poison", "burned", "colded"
-],   # Status ailments healed
+statusHeals:
+- poison
+- burned
+- colded
+	 # Status ailments healed
 
-"statusAmountHealed": 0 #Amount of statuses healed with the move
-					# -1 = heals all statuses in "statusHeals"
+statusAmountHealed: 0 #Amount of statuses healed with the move
+				 # -1 = heals all statuses in "statusHeals"
 
-"critChance" : 0,   # Percent chance the skill will crit. 
-					# Defense is ignored during crits
+critChance: 0,   # Percent chance the skill will crit. 
+				 # Defense is ignored during crits
 
-"failChance" : 2,   # Percent chance for the skill to fail.
-					# Physical skills will say "Missed!" while others will say "Failed!"
+failChance: 2,   # Percent chance for the skill to fail.
+				 # Physical skills will say "Missed!" while others will say "Failed!"
 
-"ppCost" : 0,   # PP cost to use skill.
+ppCost: 0,   # PP cost to use skill.
 
-"hpCost" : 0,   # HP cost to use skill. (unused in mother encore probably)
+hpCost: 0,   # HP cost to use skill. (unused in mother encore probably)
 
-"preHitEffect" : "bash",   # Visual effect to display over the enemy before being hit. Leave blank for none. (e.g. pk_freeze_alpha, pk_thunder_alpha)
+preHitEffect: bash,   # Visual effect to display over the enemy before being hit. Leave blank for none. (e.g. pk_freeze_alpha, pk_thunder_alpha)
 
-"hitEffect" : "bash",   # Visual effect to display over the enemy when hit. Leave blank for none. ((e.g. pk_thunder_alpha_hit))
+hitEffect: bash,   # Visual effect to display over the enemy when hit. Leave blank for none. ((e.g. pk_thunder_alpha_hit))
 
-"screenEffect" : "",   # Visual effect to display on screen when using the skill. Leave blank for none.
+screenEffect: '',   # Visual effect to display on screen when using the skill. Leave blank for none.
 
-"userAnim" : "bash",   # Animation for the character to play when using the skill. 
+userAnim: bash,   # Animation for the character to play when using the skill. 
 					   # If the animation cannot be found idle sprites will be used instead.
 
-"useSound" : "bash",   # Sound to play when using the skill. Leave blank for none.
+useSound: bash,   # Sound to play when using the skill. Leave blank for none.
 
-"hitSound" : "bash",   # Sound to play when the enemy is hit with the skill. Leave blank for none.
+hitSound: bash,   # Sound to play when the enemy is hit with the skill. Leave blank for none.
 
-"targetUnconscious": false   # Ability to target unconscious characters
+targetUnconscious: false   # Ability to target unconscious characters

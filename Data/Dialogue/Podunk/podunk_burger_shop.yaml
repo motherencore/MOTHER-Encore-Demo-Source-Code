@@ -1,0 +1,16 @@
+'0':
+  name: DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_SPEAKER_Katie
+  sound: Sexy
+  text: DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_0
+  goto: '1'
+'1':
+  text: ''
+  showbox: false
+  openshop: podunk_burger_shop
+  caninput: false
+  goto: '2'
+  cleardialog: true
+'2':
+  name: DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_SPEAKER_Katie
+  sound: Sexy
+  text: DIALOGUE_PODUNK_PODUNK_BURGER_SHOP_2

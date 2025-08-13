@@ -5,26 +5,22 @@
 [ext_resource path="res://Nodes/Ui/Inventory/Stats.gd" type="Script" id=3]
 
 [node name="Stats" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 28.0
+margin_bottom = 28.0
 script = ExtResource( 3 )
 
 [node name="StatLabel" type="Label" parent="."]
-margin_top = 2.0
 margin_right = 28.0
 margin_bottom = 11.0
 rect_min_size = Vector2( 28, 9 )
 custom_fonts/font = ExtResource( 2 )
 text = "99"
 align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Modifier" type="Control" parent="."]
-margin_top = 16.0
+margin_top = 14.0
 margin_right = 29.0
-margin_bottom = 26.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 29, 0 )
 __meta__ = {
 "_edit_use_anchors_": false

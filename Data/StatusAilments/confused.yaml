@@ -1,0 +1,14 @@
+healing:
+  persistent: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_CONFUSED
+  effect: BATTLE_MSG_STATUS_CONFUSED_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_CONFUSED
+  heal_overworld: ACTION_RESULT_HEAL_CONFUSED
+  heal_overworld_fail: ACTION_RESULT_HEAL_CONFUSED_FAIL
+status_bubble: confused
+effects_by_char:
+  any:
+    confusion: true
+  boss_layer_1:
+    fail_additionner: 15

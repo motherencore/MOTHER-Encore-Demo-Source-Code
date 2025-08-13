@@ -1,0 +1,66 @@
+'0':
+  actors:
+    ninten: leader
+    carol: Objects/npc
+  talker: carol
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_0
+  actorsdir:
+    carol:
+      x: 0
+      y: 1
+  returncam: 0.1
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_1
+  actorsmove:
+    ninten:
+      movement:
+      - x: 0
+        y: -32
+      - wait: 0.1
+      speed: 64
+      animation: Walk
+      type: step
+  actorsturn:
+    ninten:
+      speed: 0.1
+      actor: carol
+      queue: true
+  goto: '3'
+'3':
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_3
+  autoadvance: true
+  goto: '4'
+'4':
+  name: Carol
+  wait: 0.3
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  name: Carol
+  actorsturn:
+    carol:
+      x: -1
+      y: 0
+      speed: 0.05
+  objectfunction:
+    Objects/Phone: _ring
+  wait: 1
+  goto: '6'
+'6':
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_6
+  goto: '7'
+'7':
+  name: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_CAROL_CALL_7
+  setflags: phone_ring

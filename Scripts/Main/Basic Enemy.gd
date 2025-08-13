@@ -49,8 +49,10 @@ var state = WANDER
 
 func _ready():
 	if enemy != "Gorilla2OV":
-		enemyData = Load_enemy_data(enemy)
-		load_enemy_data()
+		enemyData = _load_enemy_data(enemy)
+		if enemyData != null and enemyData.has("ov"):
+			for i in enemyData["ov"]:
+				set(i, enemyData["ov"][i])
 		startingHP = enemyData["hp"]
 		var highestLevel = 0
 		for i in global.party.size():
@@ -289,7 +291,7 @@ func _on_Hurtbox_area_entered(area):
 			# apply variance
 			val = floor(val + (randf() * bash.variance) - bash.variance/2.0)
 			val = int(round(val))
-			if global.party[0].status.has(globaldata.ailments.Unconscious):
+			if StatusManager.is_unconscious(global.party[0]):
 				val = int(round(val/4))
 			startingHP -= val
 			uiManager.create_flying_num(val, global_position)
@@ -355,11 +357,9 @@ func duplicate_sprite():
 func set_spritesheet():
 	var path = "res://Graphics/Character Sprites/Enemies/" + sprite + ".png"
 	characterSprite.set_sprite(path)
-	var animPath = ""
 	if anim == "":
-		animPath = "res://Data/Animations/BasicEnemy.json"
-	else:
-		animPath = "res://Data/Animations/" + anim + ".json"
+		anim = "BasicEnemy"
+	var animPath = "res://Data/Animations/%s.yaml" % anim
 	characterSprite.set_animation(animPath, connections)
 	
 	characterSprite.set_spritesheet()
@@ -375,17 +375,13 @@ func set_spritesheet():
 #	else:
 #		characterSprite.texture = null
 
-func Load_enemy_data(enemy_name):
-	var path = "res://Data/Battlers/"+(enemy_name.replace(" ", ""))+".json"
-	var enemy_file = File.new()
-	enemy_file.open(path, File.READ)
-	var data = enemy_file.get_as_text()
-	enemy_file.close()
-	return parse_json(data)
+func _load_enemy_data(enemy_name):
+	var path = "res://Data/Battlers/"+(enemy_name.replace(" ", ""))+".yaml"
+	return globaldata.get_json_data(path)
 
 func load_skill_json(skillName: String) -> Dictionary:
-	var file := File.new()
-	#var json := "res://Data/BattleSkills/" + skillName + ".json"
+	#var file := File.new()
+	#var json := "res://Data/BattleSkills/" + skillName + ".yaml"
 	var skillData : Dictionary
 	if skillName in globaldata.skills:
 		skillData = globaldata.skills[skillName]
@@ -394,17 +390,17 @@ func load_skill_json(skillName: String) -> Dictionary:
 #	if file.file_exists(json):
 #		file.open(json, File.READ)
 #		if validate_json(file.get_as_text()) == "": # validate_json() returns empty string if valid.
-#			skillData = parse_json(file.get_as_text())
+#			skillData = globaldata.parse_yaml(file.get_as_text())
 #			file.close()
 #		else:
 #			file.close()
-#			file.open("res://Data/BleSkills/yomama.json", File.READ)
-#			skillData = parse_json(file.get_as_text())
+#			file.open("res://Data/BleSkills/yomama.yaml", File.READ)
+#			skillData = globaldata.parse_yaml(file.get_as_text())
 #			file.close()
 #			push_warning("SKILL \"" + skillName + "\" IS FORMATTED INCORRECTLY. ERRORS MAY OCCUR")
 #	else:
-#		file.open("res://Data/BattleSkills/yomama.json", File.READ)
-#		skillData = parse_json(file.get_as_text())
+#		file.open("res://Data/BattleSkills/yomama.yaml", File.READ)
+#		skillData = globaldata.parse_yaml(file.get_as_text())
 #		file.close()
 #		push_warning("SKILL \"" + skillName + "\" COULD NOT BE LOADED. ERRORS MAY OCCUR")
 	return skillData
@@ -451,9 +447,4 @@ func updateId(id):
 func _on_Enemy_tree_exiting():
 	if !changingParents:
 		die(false)
-
-func load_enemy_data():
-	if enemyData != null and enemyData.has("ov"):
-		for i in enemyData["ov"]:
-			set(i, enemyData["ov"][i])
 		

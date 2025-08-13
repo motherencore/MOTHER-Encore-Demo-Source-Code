@@ -1,0 +1,29 @@
+'0':
+  name: DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben
+  sound: Shy
+  text: DIALOGUE_TESTING_HELLOWORLD2_0
+  goto: '1'
+'1':
+  name: DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben
+  sound: Shy
+  text: DIALOGUE_TESTING_HELLOWORLD2_1
+  item: Bread
+  cash: true
+  givecash: 30
+  goto: '3'
+  inv_full: '2'
+'2':
+  name: DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben
+  sound: Shy
+  text: DIALOGUE_TESTING_HELLOWORLD2_2
+  goto: '4'
+'3':
+  text: DIALOGUE_TESTING_HELLOWORLD2_3
+  soundeffect: Item Received.mp3
+  goto: '4'
+'4':
+  name: DIALOGUE_TESTING_HELLOWORLD2_SPEAKER_Ben
+  sound: Shy
+  text: DIALOGUE_TESTING_HELLOWORLD2_4
+  cash: false
+  setflags: npc_dialog_2

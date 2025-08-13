@@ -1,5 +1,7 @@
-extends Sprite
+extends ControlledTwoStatesObject
 
-func _ready():
-	if globaldata.flags["hidden_entrance_opened"]:
-		$AnimationPlayer.play("Opened")
+func _init():
+	_state_anim_player = "AnimationPlayer"
+
+func _shake(duration: float):
+	global.persistPlayer.camera.shake_camera(2, duration, Vector2(1, 0))

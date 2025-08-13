@@ -1,4 +1,5 @@
-extends YSort
+extends Node2D
+class_name FlagLandmark
 
 export var appear_flag = ""
 export var disappear_flag = ""

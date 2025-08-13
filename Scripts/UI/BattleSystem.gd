@@ -1,35 +1,45 @@
 extends CanvasLayer
 
+signal action_done
+signal round_done
+
 #Other Scripts
 #const Action = preload("res://Scripts/UI/Battle/Action.gd")
-const BattleParticipant = preload("res://Scripts/UI/Battle/BattleParticpant.gd")
 
 # HitNumber tscns
-const risingNumTscn = preload("res://Nodes/Ui/Battle/RisingNumber.tscn")
-const flyingNumTscn = preload("res://Nodes/Ui/Battle/FlyingNumber.tscn")
-const smashAttackTscn = preload("res://Nodes/Ui/Battle/Smash.tscn")
+const RisingNumTscn = preload("res://Nodes/Ui/Battle/RisingNumber.tscn")
+const FlyingNumTscn = preload("res://Nodes/Ui/Battle/FlyingNumber.tscn")
+const SmashAttackTscn = preload("res://Nodes/Ui/Battle/Smash.tscn")
 
-# Item/Skill Pages
+const DroppedItemNode = preload("res://Nodes/Overworld/Objects/Item.tscn")
 
 # Party Member Sprites
-var statusBubbleTscn = preload("res://Nodes/Ui/Battle/StatusBubble.tscn")
-var partyInfoTscn = preload("res://Nodes/Ui/Battle/PartyInfoPlate.tscn")
-var defaultBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpriteDefault.tscn")
-var nintenBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpriteNinten.tscn")
-var lloydBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpriteLloyd.tscn")
-var anaBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpriteAna.tscn")
-var pippiBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpritePippi.tscn")
-var teddyBattleSprite = preload("res://Nodes/Ui/Battle/BattleSpriteTeddy.tscn")
+var StatusBubbleTscn = preload("res://Nodes/Ui/Battle/StatusBubble.tscn")
+var PartyInfoTscn = preload("res://Nodes/Ui/Battle/PartyInfoPlate.tscn")
+
+var _party_battle_sprites = {
+	"ninten": preload("res://Nodes/Ui/Battle/BattleSpriteNinten.tscn"),
+	"lloyd": preload("res://Nodes/Ui/Battle/BattleSpriteLloyd.tscn"),
+	"ana": preload("res://Nodes/Ui/Battle/BattleSpriteAna.tscn"),
+	"pippi": preload("res://Nodes/Ui/Battle/BattleSpritePippi.tscn"),
+	"teddy": preload("res://Nodes/Ui/Battle/BattleSpriteTeddy.tscn"),
+	"canarychick": preload("res://Nodes/Ui/Battle/BattleSpriteNPC.tscn"),
+	"flyingman": preload("res://Nodes/Ui/Battle/BattleSpriteFlyingMan.tscn"),
+	"eve": preload("res://Nodes/Ui/Battle/BattleSpriteEVE.tscn")
+}
+
+var PartyBattleSpriteDefault = preload("res://Nodes/Ui/Battle/BattleSpriteDefault.tscn")
 
 # Enemies
-var enemySprite := preload("res://Nodes/Ui/Battle/EnemySprite.tscn")
+var EnemySprite := preload("res://Nodes/Ui/Battle/EnemySprite.tscn")
 
 # sfx
-var soundEffects = {
+var _sound_effects = {
 	#cursors
 	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
 	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3"),
 	"back": load("res://Audio/Sound effects/M3/curshoriz.wav"),
+	"error": load("res://Audio/Sound effects/M3/error.wav"),
 	#battle sounds
 	"swing": load("res://Audio/Sound effects/Ninten Bat.mp3"),
 	"attack1": load("res://Audio/Sound effects/Attack 1.mp3"),
@@ -64,11 +74,8 @@ var soundEffects = {
 	# psi skill sounds
 	"lifeup_a": load("res://Audio/Sound effects/EB/heal 1.wav"),
 	"healing_a": load("res://Audio/Sound effects/EB/heal.wav"),
-	
-	#winning
-	"cheering": load("res://Audio/Sound effects/M3/Cheering.mp3")
 }
-var musicalEffects = {
+var _musical_effects = {
 	"bossencounter": "Battle Encounter/Encounter Boss.mp3",
 	"playeradv": "Battle Encounter/Encounter Player Advantage.mp3",
 	"enemyadv": "Battle Encounter/Encounter Enemy Advantage.mp3",
@@ -84,60 +91,89 @@ var musicalEffects = {
 	"lvlup_teddy": "You Win/LVLUP_ninten.mp3"
 }
 
-#The inventory that the player has at the beginning of the battle is saved
-#to be given back to the player if they die and choose to continue
-var SavedInventories = {}
+const MAX_ENEMY_COUNT := 8
 
-const gameover = preload("res://Nodes/Ui/GameOver.tscn")
-const droppedItemNode = preload("res://Nodes/Overworld/Objects/Item.tscn")
+const FLEEING_MAX_ATTEMPTS := 3
+const FLEEING_CHANCES_BASE := 40
+const FLEEING_CHANCES_INCREASE := 10
 
-#we do love hacky stuff out here
-const enemyRename = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const maxEnemyCount = 8
+const STAT_MOD_STEP := 1.0/16
+const PASSIVE_HEAL_PROB = 25
+const HEAL_BY_HIT_PROB = 25
+const TRANSMIT_PROB = 10
+const CONFUSED_BOSS_FAIL_CHANCE := 15
+const SHAKE_FREQ := 0.06
+const NPC_TAKING_HIT_THRESHOLD := { "flyingman": 200, "eve": 400 }
+const NPC_TAKING_HIT_CHANCE := { "flyingman": 60, "eve": 90 }
+
+const SPRITE_FRAMES = { 
+	"crouch_up": Vector2(3, 3),
+	"crouch_down": Vector2(3, 0),
+	"crouch_left": Vector2(3, 1),
+	"crouch_right": Vector2(3, 2),
+	"jump_up": Vector2(3, 18),
+	"jump_down": Vector2(0, 18),
+	"jump_left": Vector2(1, 18),
+	"jump_right": Vector2(2, 18)
+}
 
 # Classes
 class Action extends Object:
-	var user
-	var priority = 0
-	var targetType = TargetType.SELF
-	var targetUnconscious = false
+	var user: BattleParticipant
+	var priority := 0
+	var targetType: int = TargetType.SELF
+	var targetUnconscious := false
 	signal done
 	
-	func _init(_user):
-		user = _user
+	func _init(user, priority = 0):
+		self.user = user
+		self.priority = priority
 
 class SkillAction extends Action:
-	var skill = {} setget setSkill
-	var targets = []
-	func _init(_user).(_user):
+	var skill := {} setget _set_skill
+	var targets := []
+
+	func _init(user: BattleParticipant, priority := 0).(user, priority):
 		pass
+
+	func get_dialog() -> String:
+		if skill.has("dialog"):
+			if skill.dialog is Array:
+				return skill.dialog[randi() % skill.dialog.size()]
+			else:
+				return skill.dialog
+		else:
+			if skill.skillType == "psi":
+				return "BATTLE_MSG_PSI"
+			else:
+				return "BATTLE_MSG_SKILL"
 	
-	func setSkill(newVal):
-		if newVal.has("priority"):
-			priority = newVal.priority
-		if newVal.has("targetType"):
-			targetType = newVal.targetType
-		if newVal.has("targetUnconscious"):
-			targetUnconscious = newVal.targetUnconscious
-		skill = newVal
+	func _set_skill(new_val):
+		if new_val.has("priority"):
+			priority = new_val.priority
+		if new_val.has("targetType"):
+			targetType = new_val.targetType
+		if new_val.has("targetUnconscious"):
+			targetUnconscious = new_val.targetUnconscious
+		skill = new_val
 
 class ItemAction extends SkillAction:
-	var item = {} setget setItem
-	var inv_idx = -1
-	func _init(_user).(_user):
+	var item := {} setget _set_item
+	var inv_idx := -1
+	func _init(user, priority = 0).(user, priority):
 		pass
 	
-	func setItem(newVal):
-		item = newVal
-		if "battle_action" in item and item.battle_action != "":
-			setSkill(globaldata.skills[item.battle_action])
+	func _set_item(new_val):
+		item = new_val
+		if item.get("battle_action"):
+			_set_skill(globaldata.skills[item.battle_action])
 		else:
 			targetType = TargetType.ALLY
-			if newVal.has("action_one"):
-				if newVal.action_one.has("targetType"):
-					targetType = newVal.action_one.targetType
-				if newVal.action_one.has("targetUnconscious"):
-					targetUnconscious = newVal.action_one.targetUnconscious
+			if new_val.get("action_one"):
+				if new_val.action_one.has("targetType"):
+					targetType = new_val.action_one.targetType
+				if new_val.action_one.has("targetUnconscious"):
+					targetUnconscious = new_val.action_one.targetUnconscious
 		if item.has("priority"):
 			priority = item.priority
 		
@@ -148,378 +184,430 @@ class GuardAction extends Action:
 
 class FleeAction extends Action:
 	func _init(_user).(_user):
-		priority = 0
+		priority = 4
 
 # enums
-enum DamageType {DAMAGE, HEALING, NONE}
+enum ActionType {DAMAGE, HEALING, NONE}
+enum DamageType {NONE = -1, NORMAL, ICE, FIRE, ELECTRIC}
 enum TargetType {ENEMY, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES}
-enum menuPages {BATTLE = -1, ACTIONS, SPECIAL, ITEMS, TARGETS}
+
+#The inventory that the player has at the beginning of the battle is saved
+#to be given back to the player if they die and choose to continue
+var _saved_inventories := {}
 
 # Everyone in battle!
-var battleParticipants := []
-var partyBPs := []
-var npcBPs := []
-var enemyBPs := []
+var _party_BPs := []
+var _npc_BPs := []
+var _enemy_BPs := []
 
+var _special_npc_BPs := {}
 
-var loseBattle = false
-
+var _lose_battle := false
 
 # UI Cursor/ Menus
-var menuPageStack := []
-var cursorLocStack := []
+var _menu_page_stack := []
 
-# For PSI/SPECIAL Page
-var skillPage = 0
-var skillsPerPage = 3
-
-# For ITEM Page
-const itemPageSize = Vector2(2, 5)
-var itemPageYOffset = 0
-
-var selectedSkill := ""
-var actionQueue := []
-#var loadedItems := {}
-var currPartyMem : int = -1
-
-# page -1 (BATTLE) is used for when the actionQueue is actually being played out.
-var cursorActive := true
-var cursorLoc := Vector2(0,0)
-var maxCursorLoc := Vector2(5,0)
-
-var actionCursorHomePos := Vector2(5,3)
-
-# battle data stuff
-var stat_mod_step := 1/16
-var turns = 0
+var _action_queue := []
+var _curr_party_mem : int = -1
 
 # for battle win stuff
-var expPool = 0
-var cashPool = 0
+var _exp_pool := 0
+var _cash_pool := 0
 # an array of item name and drop chances
-var itemPool = []
-var queuedDroppedItems = []
+var _items_pool := []
 
 # for prebattle transition
-var enemiesShaking = false
-var shakeTime = 0
-var shakeFreq = 0.06
+var _enemies_shaking := false
+var _shake_time := 0.0
 
-var battleBG
-var musicIntro = ""
-var music = ""
+var _battle_bg
+var _music_intro := ""
+var _music := ""
 
-var partyOriginalPositions = []
-var partyOriginalDirections = []
+# listed in the strict order for battle (Ninten, Ana, Lloyd, Teddy, Pippi)
+var _party_orig_objects := []
+var _party_orig_positions := []
+var _party_orig_dirs := []
 
 # when the battle is inactive, we stop taking input
-var active = true
+var _active := true
 # for when actions are being done
-var doingActions = false
-var currentAction = null
+var _doing_actions := false
+var _current_action = null
+
+# Dictionary (npc_name: String, yield: GDScriptFunctionState)
+var _ongoing_npc_protection := {}
 
 # know if it's a boss encounter
-var boss = false
-var canRun = true
+var _is_boss := false
+var _can_run := true
 
-var playerAdv = false
-var enemyAdv = false
+var _player_adv := false
+var _enemy_adv := false
+var _show_intro_outro := false
 
-var bufferedPlayerDefeat = []
-var bufferReorganize = false
-var newEnemies = []
+var _fleeing_attempts := 0
 
-var turn = 1
+var _buffered_player_defeat := []
+var _buffer_reorganize := false
+var _new_enemies := []
 
-const passiveHealProb = 25
-
-signal actionDone
-signal roundDone
-signal levelUpDone
+var _turns_count := 1
 
 func _init():
 	randomize()
-	for partyMember in global.party:
-		add_party_member(partyMember, null)
+	for name in global.POSSIBLE_PLAYABLE_MEMBERS:
+		var party_member = globaldata.get(name)
+		if party_member in global.party:
+			_add_party_member(party_member)
 	for partyNpc in global.partyNpcs:
-		add_party_npc(partyNpc, null)
-	for partyObj in global.partyObjects:
+		_add_party_npc(partyNpc)
+
+	_party_orig_objects = global.partyObjects.duplicate()
+	_party_orig_objects.sort_custom(self, "_sort_party_objects")
+
+	for partyObj in _party_orig_objects:
 		var dir = Vector2.RIGHT
 		if "direction" in partyObj:
 			dir = partyObj.direction
 		elif "input_vector" in partyObj:
 			dir = partyObj.input_vector
-		partyOriginalDirections.append(dir)
+		_party_orig_dirs.append(dir)
 	
 	global.inBattle = true
 
-func _ready():
-	add_party_info_plates()
-	for i in range(enemyBPs.size()):
-		add_enemy_battlesprite(enemyBPs[i])
-	reorganize_enemies(false)
-	add_players_sprites()
-	$ActionMenuBox.connect("next", self, "action_selected")
-	# when we know who up first, we want to change the icons accordingly
-	add_actions_to_menu(get_conscious_party().front())
-	$TargetsBox.partyBPs = partyBPs
-	$TargetsBox.enemyBPs = enemyBPs
+func init_battle_params(enemies_to_join: Array, player_adv: bool, enemy_adv: bool, can_run: bool = true, battle_bgs: Dictionary = {}, transition = null):
+	for enemy in enemies_to_join:
+		if !enemy is Array:
+			enemy = [enemy, null]
+		_add_enemy(enemy[0], enemy[1])
 
-	$AnimationPlayer.play("transitionIn")
-	$AnimationPlayer.connect("animation_finished", self, "start", [], CONNECT_ONESHOT)
-	if music != "":
+	if !globaldata.encountered.get(_enemy_BPs[0].stats.name, false):
+		globaldata.encountered[_enemy_BPs[0].stats.name] = true
+		_show_intro_outro = _enemy_BPs[0].stats.get("show_intro_outro", false)
+
+	_music_intro = _enemy_BPs[0].stats.get("musicintro", "")
+	_music = _enemy_BPs[0].stats.get("music", "")
+
+	_player_adv = player_adv
+	_enemy_adv = enemy_adv
+	_can_run = can_run
+
+	var bg = battle_bgs.get(_enemy_BPs[0].stats.get("bg"), battle_bgs["lamp"])
+	_battle_bg = CanvasLayer.new()
+	_battle_bg.add_child(bg.instance())
+	_battle_bg.layer = -1
+	uiManager.add_ui(_battle_bg)
+	if transition:
+		transition.connect("done", _battle_bg, "set", ["layer", 1])
+
+func _ready():
+	var transitions_in_progress = _add_players_and_npc_transitions()
+	_add_party_info_plates()
+	#_add_npc_battlesprites()
+	for i in range(_enemy_BPs.size()):
+		_add_enemy_battlesprite(_enemy_BPs[i])
+	_reorganize_enemies(false)
+	$ActionMenuBox.connect("next", self, "_action_box_selected")
+	# when we know who up first, we want to change the icons accordingly
+	
+	var _conscious_party = _get_conscious_party(true)
+	_add_actions_to_menu(_conscious_party[0] if _conscious_party else null)
+	$TargetsBox.partyBPs = _party_BPs
+	$TargetsBox.enemyBPs = _enemy_BPs
+
+	$AnimScene.play("transitionIn")
+	$AnimScene.connect("animation_finished", self, "_battle_start", [], CONNECT_ONESHOT)
+	if _music != "":
 		audioManager.pause_all_music()
-	for enemy in enemyBPs:
-		if enemy["stats"].has("boss"):
-			if enemy["stats"]["boss"] == true:
-				boss = true
+	for enemy in _enemy_BPs:
+		if enemy["stats"].get("boss"):
+			_is_boss = true
 
 	var encounterSound
-	if boss:
-		encounterSound = musicalEffects["bossencounter"]
-	elif playerAdv:
-		encounterSound = musicalEffects["playeradv"]
-	elif enemyAdv:
-		encounterSound = musicalEffects["enemyadv"]
+	if _is_boss:
+		encounterSound = _musical_effects["bossencounter"]
+	elif _player_adv:
+		encounterSound = _musical_effects["playeradv"]
+	elif _enemy_adv:
+		encounterSound = _musical_effects["enemyadv"]
 	else:
-		encounterSound = musicalEffects["encounter"]
+		encounterSound = _musical_effects["encounter"]
 	
-	if enemyAdv:
-		$ActionMenuBox/Arrow.on = false
+	if _enemy_adv:
 		$ActionMenuBox.hide()
-		$InfoBox1.hide()
 		
 	if uiManager.battleRematchFlag != "" and globaldata.flags.has(uiManager.battleRematchFlag):
 		globaldata.flags[uiManager.battleRematchFlag] = true
 	
 	global.dialogue.clear()
 	audioManager.add_audio_player()
-	audioManager.play_music_from_id(encounterSound, "", audioManager.get_audio_player_count()-1)
-	save_inventories()
+	audioManager.play_music_on_latest_player(encounterSound, "")
+	_save_inventories()
 	
-func start(anim = ""):
+func _battle_start(anim := ""):
+	_add_npc_battlesprites()
+
 	# Enter "Actions" menu page
-	if music != "":
+	if _music != "":
 		var intro = ""
-		if musicIntro != "":
-			intro = "Battle Themes/" + musicIntro
+		if _music_intro != "":
+			intro = "Battle Themes/" + _music_intro
 		audioManager.add_audio_player()
-		audioManager.play_music_from_id(intro, "Battle Themes/" + music, audioManager.get_audio_player_count() - 1)
-	if enemyAdv:
-		currPartyMem = partyBPs.size()
-		enemyAdv = false
+		audioManager.play_music_on_latest_player(intro, "Battle Themes/" + _music)
+	if _enemy_adv:
+		_curr_party_mem = _party_BPs.size()
 	
 	# activate statuses if there are any
-	for partyBP in partyBPs:
-		for status in partyBP.stats.status:
-			do_status(partyBP, status, true)
-			if partyBP.statusBubble:
-				print("add ", globaldata.status_enum_to_name(status))
-				partyBP.statusBubble.add_status(status)
-	next_active_menu()
+	for partyBP in _party_BPs:
+		partyBP.refresh_status_info()
+
+	if _show_intro_outro:
+		var dialog = _enemy_BPs[0].stats.get("intro_message", "You encountered {n3}{name}!")
+		dialog = _format_battle_text(dialog, _enemy_BPs[0])
+		yield($Dialoguebox.start_from_string(dialog), "completed")
+		$AnimAction.play("transitionIn")
+		yield($AnimAction, "animation_finished")
+	
+	_next_active_member()
 
 func _input(event):
-	if !active or doingActions:
-		return
-	
-	if OS.is_debug_build():
-		# debug win battle instantly
-		if event.is_action_pressed("ui_end") and $ActionMenuBox.cursor.on:
-			$ActionMenuBox.hide()
-			$InfoBox1.hide()
-			var enemyArr = enemyBPs.duplicate()
-			for enemyBP in enemyArr:
-				enemyBP.defeat()
-				enemyBPs.erase(enemyBP)
-			play_sfx("enemydefeated")
-			win()
-	
-	if Input.is_action_just_pressed("ui_cancel") and currentAction == null:
-		get_tree().set_input_as_handled()
-		if leave_menu():
-			play_sfx("back")
+	if _active and !_doing_actions:	
+		if OS.is_debug_build():
+			# debug win battle instantly
+			if event.is_action_pressed("ui_end") and $ActionMenuBox.cursor.on:
+				$ActionMenuBox.hide()
+				while _enemy_BPs.size() > 0:
+					_enemy_BPs[0].defeat()
+				_win()
+		
+		if Input.is_action_just_pressed("ui_cancel") and _current_action == null:
+			get_tree().set_input_as_handled()
+			if _leave_menu():
+				_play_sfx("back")
 
-func goto_menu(menu, action = null):
-	if !menuPageStack.empty():
-		menuPageStack.back().hide()
+		if Input.is_action_pressed("ui_toggle"):
+			for member in _party_BPs:
+				member.partyInfo.user_fast_mode = true
+
+	if Input.is_action_just_released("ui_toggle"):
+		for member in _party_BPs:
+			member.partyInfo.user_fast_mode = false
+
+
+func _goto_menu(menu: BattleMenuBox, action:Action = null):
+	if !_menu_page_stack.empty():
+		_menu_page_stack.back().hide()
 	menu.enter(true, action)
-	menuPageStack.push_back(menu)
+	_menu_page_stack.push_back(menu)
 
-# returns true if anything acutally happens
-func leave_menu():
-	if menuPageStack.size() > 1:
-		menuPageStack.pop_back().exit()
-		menuPageStack.back().enter()
+# returns true if anything actually happens
+func _leave_menu() -> bool:
+	if _menu_page_stack.size() > 1:
+		_menu_page_stack.pop_back().exit()
+		_menu_page_stack.back().enter()
 		return true
-	elif currPartyMem < get_conscious_party().size():
-		if currPartyMem > 0:
-			prev_active_menu()
-			return true
-		elif $ActionMenuBox.cursor.on:
-			reset_page_stack()
-			goto_menu($ActionMenuBox)
-			return true
-	return false
+	elif _curr_party_mem < _party_BPs.size() and $ActionMenuBox.cursor.on:
+		if _is_first_active_member():
+			_reset_page_stack()
+			_goto_menu($ActionMenuBox)
+		else:
+			_prev_active_member()
+		return true
+	else:
+		return false
 
-# When an action is selected, we start an Action object that will be
+# When an action box is selected, we start an Action object that will be
 # assembly-lined through menus
  
 # When the last menu is completed, the Action object is then saved, and we move
 # on to the next player
-func action_selected(actionName):
-	disconnect_menus()
-	match(actionName):
-		"Bash":
-			var skillAction = SkillAction.new(partyBPs[currPartyMem])
-			skillAction.skill = globaldata.skills["attack"]
-			$TargetsBox.connect("next", self, "cache_player_action", [skillAction])
-			goto_menu($TargetsBox, skillAction)
+func _action_box_selected(action_name: String):
+	for box in [$TargetsBox, $PSIBox, $SkillsBox, $ItemsBox]:
+		for connection in box.get_signal_connection_list("next"):
+			box.disconnect(connection.signal, connection.target, connection.method)
+	
+	var actor: BattleParticipant = _party_BPs[_curr_party_mem]
+	match(action_name):
+		"Basic":
+			var skill_action = SkillAction.new(actor)
+			skill_action.skill = globaldata.skills[globaldata.get_basic_skill(actor.stats.name)]
+			$TargetsBox.connect("next", self, "_action_selected", [skill_action])
+			_goto_menu($TargetsBox, skill_action)
 		"PSI":
-			var skillAction = SkillAction.new(partyBPs[currPartyMem])
-			$PSIBox.connect("next", self, "goto_menu", [$TargetsBox, skillAction])
-			$TargetsBox.connect("next", self, "cache_player_action", [skillAction])
-			goto_menu($PSIBox, skillAction)
+			var skill_action = SkillAction.new(actor)
+			$PSIBox.connect("next", self, "_goto_menu", [$TargetsBox, skill_action])
+			$TargetsBox.connect("next", self, "_action_selected", [skill_action])
+			_goto_menu($PSIBox, skill_action)
 		"Skills":
-			var skillAction = SkillAction.new(partyBPs[currPartyMem])
-			$SkillsBox.connect("next", self, "goto_menu", [$TargetsBox, skillAction])
-			$TargetsBox.connect("next", self, "cache_player_action", [skillAction])
-			goto_menu($SkillsBox, skillAction)
+			var skill_action = SkillAction.new(actor)
+			$SkillsBox.connect("next", self, "_goto_menu", [$TargetsBox, skill_action])
+			$TargetsBox.connect("next", self, "_action_selected", [skill_action])
+			_goto_menu($SkillsBox, skill_action)
 		"Items":
-			var itemAction = ItemAction.new(partyBPs[currPartyMem])
-			$ItemsBox.connect("next", self, "goto_menu", [$TargetsBox, itemAction])
-			$TargetsBox.connect("next", self, "cache_player_action", [itemAction])
-			goto_menu($ItemsBox, itemAction)
+			var itemAction = ItemAction.new(actor)
+			$ItemsBox.connect("next", self, "_goto_menu", [$TargetsBox, itemAction])
+			$TargetsBox.connect("next", self, "_action_selected", [itemAction])
+			_goto_menu($ItemsBox, itemAction)
 		"Defend":
-			cache_player_action(GuardAction.new(partyBPs[currPartyMem]))
+			_action_selected(GuardAction.new(actor))
 		"Run":
-			cache_player_action(FleeAction.new(partyBPs[currPartyMem]))
+			_action_selected(FleeAction.new(actor))
 		_:
 			pass
 
-func disconnect_menus():
-	for connection in $TargetsBox.get_signal_connection_list("next"):
-		$TargetsBox.disconnect(connection.signal, connection.target, connection.method)
-	for connection in $PSIBox.get_signal_connection_list("next"):
-		$PSIBox.disconnect(connection.signal, connection.target, connection.method)
-	for connection in $SkillsBox.get_signal_connection_list("next"):
-		$SkillsBox.disconnect(connection.signal, connection.target, connection.method)
-	for connection in $ItemsBox.get_signal_connection_list("next"):
-		$ItemsBox.disconnect(connection.signal, connection.target, connection.method)
+func _show_inability_text(character: BattleParticipant, dialog:= "", choosing_action := true): # suspend func
+	if !dialog:
+		yield(get_tree(), "idle_frame")
+		return
+	dialog = _format_battle_text(dialog, character)
+	$ActionMenuBox.hide()
+	yield($Dialoguebox.start_from_string(dialog), "completed")
+	if choosing_action:
+		$ActionMenuBox.show()
 
-func add_actions_to_menu(bp):
-	$ActionMenuBox.resetActions()
-	match(bp.stats.name):
-		"ninten":
-			if globaldata.ninten.learnedSkills != []:
-				if bp.stats.equipment.weapon.begins_with("Bat") and globaldata.flags["bat"] and globaldata.ninten.learnedSkills.has("curveball"):
-					$ActionMenuBox.addActions(["Skills", "PSI"])
-				else:
-					$ActionMenuBox.addActions(["PSI"])
-		"lloyd":
-			$ActionMenuBox.addActions(["Skills"])
-		"ana":
-			$ActionMenuBox.addActions(["PSI"])
-	if bp.hasStatus(globaldata.ailments.Numb):
-		$ActionMenuBox.addUnselectableActions(["Bash", "Skills", "Items"])
-	if canRun or uiManager.battleFleeCutscene != "":
-		$ActionMenuBox.addAction("Run")
+func _check_ableness_for_action(character: BattleParticipant, action: Action = null) -> bool: # suspend func
+	var action_types = character.get_combined_status_effect("cant_do")
+	var can_do = true
+	for type in action_types:
+		can_do = !_compare_action_types(action, type.action)
+		if !can_do:
+			yield(_show_inability_text(character, type.get("message", ""), false), "completed")
+			return false
+	yield(get_tree(), "idle_frame")
+	return true
+ 
+func _add_actions_to_menu(bp: BattleParticipant):
+	$ActionMenuBox.reset_actions()
 
-func _physics_process(delta):
-	if enemiesShaking:
-		shakeTime += delta
-		if shakeTime > shakeFreq:
-			shakeTime -= shakeFreq
+	if bp:
+		$ActionMenuBox.set_basic_action(globaldata.get_basic_skill(bp.stats.name))
+		
+		for skill in bp.stats.get("learnedSkills", []):
+			if skill in globaldata.skills:
+				var skill_data = globaldata.skills[skill]
+				if !skill_data.has("required_weapon") or bp.stats.equipment.weapon in skill_data.required_weapon:
+					if skill_data.get("skillType") == "skill":
+						$ActionMenuBox.add_action("Skills")
+					if skill_data.get("skillType") == "psi":
+						$ActionMenuBox.add_action("PSI")
+
+		$ActionMenuBox.add_unselectable_actions(bp.get_combined_status_effect("cant_select").keys())
+	
+		if _is_first_active_member() and (_can_run or uiManager.battleFleeCutscene != ""):
+			$ActionMenuBox.add_action("Run")
+
+func _physics_process(delta: float):
+	if _enemies_shaking:
+		_shake_time += delta
+		if _shake_time > SHAKE_FREQ:
+			_shake_time -= SHAKE_FREQ
 			for overworldSprite in $EnemyTransitions.get_children():
 				overworldSprite.offset.x = rand_range(-4.0,4.0)
 				overworldSprite.offset.y = rand_range(-4.0,4.0)
 
-func save_inventories():
-	for inv in InventoryManager.Inventories:
-		SavedInventories[inv] = InventoryManager.Inventories[inv].duplicate()
+func _sort_party_objects(obj1, obj2) -> bool:
+	var idx1 = global.POSSIBLE_PARTY_MEMBERS.find(obj1.partyMember.name)
+	var idx2 = global.POSSIBLE_PARTY_MEMBERS.find(obj2.partyMember.name)
+	return idx1 < idx2
 
-func restore_backup_inventories():
+func _save_inventories():
+	for inv in InventoryManager.Inventories:
+		_saved_inventories[inv] = InventoryManager.Inventories[inv].duplicate()
+
+func _restore_backup_inventories():
 	for inv in InventoryManager.Inventories:
 		InventoryManager.Inventories[inv].clear()
-		InventoryManager.Inventories[inv].append_array(SavedInventories[inv])
+		InventoryManager.Inventories[inv].append_array(_saved_inventories[inv])
 
-func add_party_member(stats, battlesprite):
-	var bp = BattleParticipant.new()
-	bp.stats = stats
-	bp.id = battleParticipants.size()
-	#look at ninten's equip inv for bat
-	if bp.stats.name in ["ninten", "pippi"]:
-		if "Bat" in bp.stats.equipment.weapon:
-			bp.bashAnim = "bat"
-		elif "Slingshot" in bp.stats.equipment.weapon:
-			bp.bashAnim = "slingshot"
-	for item in InventoryManager.Inventories[bp.stats.name]:
-		var item_data = InventoryManager.Load_item_data(item.ItemName)
-		if item_data.has("slot"):
-			if item_data.slot == "" and item_data.has("passive_skills"):
-				for passiveSkill in item_data.passive_skills:
-					if !passiveSkill in bp.stats.passiveSkills:
-						bp.stats.passiveSkills.append(passiveSkill)
-	battleParticipants.append(bp)
-	partyBPs.append(bp)
+func _add_party_member(stats):
+	var bp := BattleParticipant.new(self, _get_bp_count(), stats, BattleParticipant.Type.PLAYABLE)
+	_party_BPs.append(bp)
+	bp.connect("defeated", self, "_on_bp_defeated")
 
-func add_party_npc(stats, battlesprite):
-	var bp = BattleParticipant.new()
-	bp.stats = stats
-	bp.id = battleParticipants.size()
-	npcBPs.append(bp)
+func _add_party_npc(stats):
+	var bp := BattleParticipant.new(self, _get_bp_count(), stats, BattleParticipant.Type.NPC)
+	_npc_BPs.append(bp)
+	_special_npc_BPs[stats.name] = bp
+	bp.connect("defeated", self, "_on_bp_defeated")
 
-func get_alive_targets_from_type(user, targetType):
+func _get_bp_count() -> int:
+	return _party_BPs.size() + _enemy_BPs.size() + _npc_BPs.size()
+
+func _retargeting(action:Action, target_type:int, maintain := true): # suspend func
 	var targets = []
-	var friendlies = get_conscious_party()
-	var enemies = get_conscious_enemies()
-	if user.isEnemy:
-		friendlies = get_conscious_enemies()
-		enemies = get_conscious_party()
-	if user.stats.status.has(globaldata.ailments.Confused):
-		if int(targetType) in [TargetType.RANDOM_ALLY, TargetType.ALLY, TargetType.RANDOM_ENEMY, TargetType.ENEMY]:
-			targetType = TargetType.ANY
-		elif targetType == TargetType.ALL_ENEMIES or targetType == TargetType.ALL_ALLIES:
-			if (randi()%2+0) == 1:
-				targetType = TargetType.ALL_ENEMIES
-			else:
-				targetType = TargetType.ALL_ALLIES
-	match(int(targetType)):
+
+	var actor_side = _get_conscious_enemies() if action.user.get_type() == BattleParticipant.Type.ENEMY else _get_conscious_party()
+	var opposite_side = _get_conscious_party() + _get_conscious_npcs(true) if action.user.get_type() == BattleParticipant.Type.ENEMY else _get_conscious_enemies()
+
+	target_type = _apply_confusion(action, target_type)
+
+	match target_type:
+		TargetType.ALL_ENEMIES:
+			targets = opposite_side
+		TargetType.ALL_ALLIES:
+			targets = actor_side
+		TargetType.RANDOM_ENEMY:
+			targets = [opposite_side[randi() % opposite_side.size()]]
+		TargetType.RANDOM_ALLY:
+			targets = [actor_side[randi() % actor_side.size()]]
 		TargetType.ANY:
 			# decide random!
-			var all = []
-			all.append_array(friendlies)
-			all.append_array(enemies)
+			var all = actor_side + opposite_side
 			var random = all[randi() % all.size()]
 			targets.append(random)
-		TargetType.ALL_ENEMIES:
-			targets = enemies
-		TargetType.RANDOM_ENEMY:
-			continue
 		TargetType.ENEMY:
-			targets = [enemies[randi() % enemies.size()]]
-		TargetType.ALL_ALLIES:
-			targets = friendlies
-		TargetType.RANDOM_ALLY:
-			continue
+			if !maintain:
+				targets = [opposite_side[randi() % opposite_side.size()]]
+				for actor in opposite_side:
+					if actor.stats.get("priorityTarget", false):
+						targets = [actor]
+			else:
+				targets = action.targets
 		TargetType.ALLY:
-			targets = [friendlies[randi() % friendlies.size()]]
+			if !maintain:
+				targets = [actor_side[randi() % actor_side.size()]]
+				if action is ItemAction:
+					continue
+			else:
+				targets = action.targets
 		TargetType.SELF:
-			targets = [user]
+			targets = [action.user]
+	yield(get_tree(), "idle_frame")
 	return targets
 
-func reset_page_stack():
-	for page in range(menuPageStack.size()):
-		menuPageStack.pop_back().exit()
+# TODO maybe decorrelate the message and the return value
+func _apply_confusion(action:Action, target_type:int):
+	var confusion = false
+	if action.user.get_combined_status_effect("confusion"):
+		if (randi() % 2 + 0) == 1:
+			confusion = true
+	if confusion:
+		action.skill = globaldata.skills.bash
+		target_type = TargetType.RANDOM_ALLY
+		$Dialoguebox.append(_format_battle_text(StatusManager.get_status_message("confused", "effect"), action.user))
+#		if target_type in [TargetType.RANDOM_ALLY, TargetType.ALLY, TargetType.RANDOM_ENEMY, TargetType.ENEMY]:
+#			target_type = TargetType.ANY
+#		elif target_type in [TargetType.ALL_ENEMIES, TargetType.ALL_ALLIES]:
+#			if (randi()%2+0) == 1:
+#				target_type = TargetType.ALL_ENEMIES
+#			else:
+#				target_type = TargetType.ALL_ALLIES
+	return target_type
 
-func cache_player_action(action: Action):
+
+func _reset_page_stack():
+	for page in range(_menu_page_stack.size()):
+		_menu_page_stack.pop_back().exit()
+
+func _action_selected(action: Action):
 	if action is GuardAction:
 		action.user.battleSprite.play("guardPrep")
 	elif action is ItemAction:
 		action.user.battleSprite.play("itemPrep")
 	elif action is SkillAction:
-		# LOCALIZATION Use of csv key as an id, instead of the English name
-		if action.skill.name == "BASH" || (action.skill.has("skillType") and action.skill.skillType == "physical"):
-			action.user.battleSprite.play(action.user.bashAnim + "Prep")
+		if action.skill.has("skillType") and action.skill.skillType in ["basic", "skill"]:
+			action.user.battleSprite.play(action.skill.userAnim + "Prep")
 		else:
 			if action.skill.has("userAnimColors"):
 				action.user.battleSprite.set_psi_colors(action.skill.userAnimColors)
@@ -528,11 +616,15 @@ func cache_player_action(action: Action):
 				action.user.battleSprite.set_psi_colors(colors)
 			action.user.battleSprite.play("psiPrep")
 	
-	cache_action(action)
-	reset_page_stack()
-	next_active_menu()
+	_cache_action(action)
+	_reset_page_stack()
 
-func tilt_bars(position):
+	if action is FleeAction:
+		_end_player_action_choices(false)
+	else:
+		_next_active_member()
+
+func tilt_bars(position:Vector2):
 	var topCenter = Vector2(160, -1200)
 	var topRadAngle = topCenter.direction_to(position).rotated(-PI/2).angle()
 	
@@ -548,43 +640,90 @@ func tilt_bars(position):
 		Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$Tween.start()
 
-func next_active_menu():
+func _next_active_member(): # suspend func
 	#next player turn
-	currPartyMem += 1
-	#cycle through party members until we reach next concious party member
-	while currPartyMem < partyBPs.size() and ( \
-			!partyBPs[currPartyMem].isConscious() \
-			or partyBPs[currPartyMem].hasStatus(globaldata.ailments.Sleeping)):
-		currPartyMem += 1
-	
+	_curr_party_mem += 1
+	var can_do_action = _party_BPs[_curr_party_mem].can_act() if _curr_party_mem < _party_BPs.size() else true
+	#cycle through party members until we reach next conscious party member
+	while _curr_party_mem < _party_BPs.size() and !can_do_action:
+		if !_party_BPs[_curr_party_mem].can_act():
+			yield(_show_inability_text(_party_BPs[_curr_party_mem], _party_BPs[_curr_party_mem].get_combined_status_effect("turn_skip").get("message", "")), "completed")
+		_curr_party_mem += 1
+		can_do_action = _party_BPs[_curr_party_mem].can_act() if _curr_party_mem < _party_BPs.size() else true
+		
 	# when there is no party members left, start battle
-	if currPartyMem >= partyBPs.size():
-		if !playerAdv:
-			cache_enemy_actions()
-			yield(get_tree().create_timer(.3), "timeout")
-		else:
-			playerAdv = false
-		do_actions()
+	if _curr_party_mem >= _party_BPs.size():
+		_end_player_action_choices()
 	else:
-		partyBPs[currPartyMem].battleSprite.showAndPlay("lookIntoYourSoul")
-		add_actions_to_menu(partyBPs[currPartyMem])
-		goto_menu($ActionMenuBox)
+		_party_BPs[_curr_party_mem].battleSprite.showAndPlay("lookIntoYourSoul")
+		_add_actions_to_menu(_party_BPs[_curr_party_mem])
+		_goto_menu($ActionMenuBox)
 
-func prev_active_menu():
-	actionQueue.pop_back()
-	reset_page_stack()
-	partyBPs[currPartyMem].battleSprite.hideAway()
-	currPartyMem -= 1
-	
-	partyBPs[currPartyMem].battleSprite.play("lookIntoYourSoul", true)
-	add_actions_to_menu(partyBPs[currPartyMem])
-	goto_menu($ActionMenuBox)
+func _prev_active_member(): # suspend func
+	var prev_party_member = _curr_party_mem - 1
+	while prev_party_member >= 0 and !_party_BPs[prev_party_member].can_act():
+		yield(_show_inability_text(_party_BPs[prev_party_member], _party_BPs[prev_party_member].get_combined_status_effect("turn_skip").get("message", "")), "completed")
+		prev_party_member -= 1
+	if prev_party_member < 0:
+		return
+	_reset_page_stack()
+	_action_queue.pop_back()
+	_party_BPs[_curr_party_mem].battleSprite.hideAway()
+	_curr_party_mem = prev_party_member
+	_party_BPs[_curr_party_mem].battleSprite.play("lookIntoYourSoul", true)
+	_add_actions_to_menu(_party_BPs[_curr_party_mem])
+	_goto_menu($ActionMenuBox)
 
-func cache_action(action):
-	actionQueue.append(action)
+func _is_first_active_member() -> bool:
+	var prev_party_member = _curr_party_mem - 1
+	while prev_party_member >= 0 and !_party_BPs[prev_party_member].can_act():
+		prev_party_member -= 1
+	return prev_party_member < 0
 
-func add_party_info_plates():
-	var partySize : int = partyBPs.size()
+func _end_player_action_choices(with_enemy_delay := true): # suspend func
+	if !_player_adv:
+		_cache_enemy_and_npc_actions(true, !_enemy_adv)
+		if with_enemy_delay:
+			yield(get_tree().create_timer(.3), "timeout")
+	else:
+		_cache_enemy_and_npc_actions(false, true)
+	var in_progress = _do_actions()
+	if in_progress: yield(in_progress, "completed")
+	_new_round()
+
+func _cache_action(action:Action):
+	_action_queue.append(action)
+
+func _on_bp_defeated(bp:BattleParticipant, silent:=false):
+	match bp.get_type():
+		BattleParticipant.Type.PLAYABLE:
+			if !silent:
+				_play_sfx("playerdefeated")
+				global.start_joy_vibration(0, 1, 1, 0.5)
+			if _get_conscious_party().empty():
+				if uiManager.battleLoseCutscene:
+					_lose_battle = true
+					_active = false
+					_end_battle(uiManager.battleLoseCutscene)
+				else:
+					_lose()
+		BattleParticipant.Type.ENEMY:
+			_enemy_BPs.erase(bp)
+			if !_enemy_BPs.empty():
+				_buffer_reorganize = true
+		BattleParticipant.Type.NPC:
+			if !silent:
+				global.start_joy_vibration(0, 1, 1, 0.5)
+				if bp == _special_npc_BPs.flyingman:
+					$Dialoguebox.append(_format_battle_text("BATTLE_MSG_FLYING_MAN_COLLAPSED", bp), _sound_effects["playerdefeated"].resource_path)
+				else:
+					_play_sfx("playerdefeated")
+
+			_special_npc_BPs.erase(bp.stats.name)
+			_npc_BPs.erase(bp)
+
+func _add_party_info_plates():
+	var partySize : int = _party_BPs.size()
 	var partyIsOdd : bool
 	if partySize % 2 == 1: partyIsOdd = true
 	else: partyIsOdd = false
@@ -614,79 +753,68 @@ func add_party_info_plates():
 		#print(plateSize.x * (partySize - 1))
 	
 	for i in range(partySize):
-		var plate = partyInfoTscn.instance()
-		plate.pName = partyBPs[i].stats.nickname
-		plate.maxHP = partyBPs[i].get_stat("maxhp")
-		plate.maxPP = partyBPs[i].get_stat("maxpp")
+		var plate = PartyInfoTscn.instance()
+		plate.pName = TextTools.replace_text(_party_BPs[i].get_name())
+		plate.maxHP = _party_BPs[i].get_stat("maxhp")
+		plate.maxPP = _party_BPs[i].get_stat("maxpp")
 		$PartyInfo.add_child(plate)
-		if partyBPs[i].stats.status.has(globaldata.ailments.Poisoned):
-			plate.set_poisoned()
-		plate.setHP(partyBPs[i].stats.hp, true)
-		plate.setPP(partyBPs[i].stats.pp, true)
+		plate.setHP(_party_BPs[i].stats.hp, true)
+		plate.setPP(_party_BPs[i].stats.pp, true)
 		plate.rect_position.x = firstPlacementX + (plateSize.x * i)
 		plate.rect_position.y = 20
-		plate.connect("hp_scroll_done", self, "check_player_defeated", [partyBPs[i]])
-		plate.connect("hp_scroll_done", partyBPs[i], "hp_stopped_scrolling")
-		plate.connect("pp_scroll_done", partyBPs[i], "pp_stopped_scrolling")
-		partyBPs[i].partyInfo = plate
+		plate.connect("hp_scroll_done", self, "_check_player_defeated", [_party_BPs[i]])
+		plate.connect("hp_scroll_done", _party_BPs[i], "hp_stopped_scrolling")
+		plate.connect("pp_scroll_done", _party_BPs[i], "pp_stopped_scrolling")
+		_party_BPs[i].partyInfo = plate
 		
-		var battleSprite
-		match(partyBPs[i].stats.name):
-			"ninten":
-				battleSprite = nintenBattleSprite.instance()
-			"lloyd":
-				battleSprite = lloydBattleSprite.instance()
-			"ana":
-				battleSprite = anaBattleSprite.instance()
-			"pippi":
-				battleSprite = pippiBattleSprite.instance()
-			"teddy":
-				battleSprite = teddyBattleSprite.instance()
-			_:
-				battleSprite = defaultBattleSprite.instance()
+		var battleSprite = _party_battle_sprites.get(_party_BPs[i].stats.name, PartyBattleSpriteDefault).instance()
+
 		plate.add_child(battleSprite)
-		partyBPs[i].battleSprite = battleSprite
+		_party_BPs[i].battleSprite = battleSprite
 		
-		var statusBubble = statusBubbleTscn.instance()
+		var statusBubble = StatusBubbleTscn.instance()
 		battleSprite.add_child(statusBubble)
 		statusBubble.rect_position.x = battleSprite.rect_size.x/2
 		statusBubble.rect_position.y += 16 #magic numbers, tsk tsk roka....
-		partyBPs[i].statusBubble = statusBubble
-		if !partyBPs[i].isConscious():
-			partyBPs[i].defeat()
+		_party_BPs[i].statusBubble = statusBubble
+		if !_party_BPs[i].isConscious():
+			_party_BPs[i].defeat(true)
 
-func add_enemy_battlesprite(enemyBP, transition = true):
-	var spritePathP1 := "res://Graphics/Battle Sprites/"
-	var spritePathP2 := ".png"
-	var fullSpritePath : String = spritePathP1 + enemyBP.stats.sprite + spritePathP2
-	var spriteExists := ResourceLoader.exists(fullSpritePath)
-	var texture = enemySprite.instance()
-	enemyBP.battleSprite = texture
+func _add_npc_battlesprites():
+	for i in range(_npc_BPs.size()):
+		_npc_BPs[i].battleSprite = _party_battle_sprites.get(_npc_BPs[i].stats.name, PartyBattleSpriteDefault).instance()
+		_npc_BPs[i].battleSprite.init_from_ov_sprite($NpcTransitions.get_child(i))
+		$NPCs.add_child(_npc_BPs[i].battleSprite)
+
+func _add_enemy_battlesprite(enemy_bp: BattleParticipant, transition := true):
+	var sprite_path_pattern := "res://Graphics/Battle Sprites/%s.png"
+	var sprite_path : String = sprite_path_pattern % enemy_bp.stats.sprite
+	var texture = EnemySprite.instance()
+	enemy_bp.battleSprite = texture
 	$Enemies.add_child(texture)
-	if spriteExists:
-		texture.set_texture(fullSpritePath)
+	if ResourceLoader.exists(sprite_path):
+		texture.set_texture(sprite_path)
 	else:
-		print("could not load sprite: ", fullSpritePath)
-		texture.set_texture(spritePathP1 + "invalidsprite.png")
-	
+		print("could not load sprite: ", sprite_path)
+		texture.set_texture(sprite_path_pattern % "invalidsprite")
 	
 	# put texture off screen
 	texture.rect_position = Vector2(320, 0) + texture.texture.get_size()
 	texture.hide()
-	var statusBubble = statusBubbleTscn.instance()
+	var statusBubble = StatusBubbleTscn.instance()
 	texture.add_child(statusBubble)
-	statusBubble.rect_position.x = texture.rect_size.x/2
+	statusBubble.rect_position.x = texture.rect_size.x / 2
 	statusBubble.rect_position.y += 24 - texture.rect_size.y / 2 #magic numbers, tsk tsk roka....
-	enemyBP.statusBubble = statusBubble
+	enemy_bp.statusBubble = statusBubble
 
-func flee():
-	active = false
-	for bp in partyBPs:
+func _flee():
+	_active = false
+	for bp in _party_BPs:
 		if bp.isConscious() and bp.partyInfo.HP <= bp.partyInfo.get_current_HP():
-			bp.partyInfo.stopScrolling()
+			bp.partyInfo.stop_scrolling()
 	for onScreenEnemy in uiManager.onScreenEnemies:
 		onScreenEnemy[1].activate()
-	for enemy in enemyBPs:
+	for enemy in _enemy_BPs:
 		if enemy != null:
 			if enemy.overworldObj != null:
 				if enemy.overworldObj.has_method("stun"):
@@ -694,127 +822,90 @@ func flee():
 					enemy.overworldObj.get_node("interact/CollisionShape2D").set_deferred("disabled", false)
 					enemy.overworldObj.flash(3, 0.2, 0, true)
 	#temp functionality
-	end_battle(uiManager.battleFleeCutscene)
+	_end_battle(uiManager.battleFleeCutscene)
 
-func win():
-	active = false
+func _win(): # suspend func
+	_active = false
 	for onScreenEnemy in uiManager.onScreenEnemies:
-		if (onScreenEnemy[1] != null):
-			onScreenEnemy[1].activate()
+		onScreenEnemy[1].activate()
 	
-	if (!audioManager.overworldBattleMusic) or (boss and audioManager.overworldBattleMusic):
+	if (!audioManager.overworldBattleMusic) or (_is_boss and audioManager.overworldBattleMusic):
 		audioManager.pause_all_music()
 		audioManager.add_audio_player()
-		if boss:
-			audioManager.play_music_from_id(musicalEffects["youwonboss"], musicalEffects["victory"], audioManager.get_audio_player_count()-1)
+		if _is_boss:
+			audioManager.play_music_on_latest_player(_musical_effects["youwonboss"], _musical_effects["victory"])
 		else:
-			audioManager.play_music_from_id(musicalEffects["youwon"], musicalEffects["victory"], audioManager.get_audio_player_count()-1)
+			audioManager.play_music_on_latest_player(_musical_effects["youwon"], _musical_effects["victory"])
 	
-	#play_sfx("res://Audio/Sound effects/EB/wow.wav")
+	#_play_sfx("res://Audio/Sound effects/EB/wow.wav")
 	
 	#stop rolling hp
 	# show player battle sprites + victory animation
-	for bp in partyBPs:
+	for bp in _party_BPs:
 		if bp.isConscious():
 			if bp.partyInfo.HP <= bp.partyInfo.get_current_HP():
-				bp.partyInfo.stopScrolling()
+				bp.partyInfo.stop_scrolling()
 			bp.reset_all_stat_mods()
 			# heal all non persistent ailments
 			var status_to_remove = bp.stats.status.duplicate()
 			for status in status_to_remove:
-				if !status in globaldata.persistentAilments: 
-					do_status(bp, status, false)
-					bp.setStatus(status, false)
+				if !StatusManager.get_ailment_info(status.ailment)["healing"].get("persistent", false): 
+					bp.set_status(status.ailment, false)
 			if !bp.battleSprite.state == bp.battleSprite.states.SHOWN:
 				bp.battleSprite.showIn()
 			bp.battleSprite.play("victory", true)
 			# save off stats to globaldata
 #			for partyMem in global.party:
 #				partyMem.stats = bp.stats
-			
-	
-	connect("levelUpDone", self, "do_rewards", [], CONNECT_ONESHOT)
-	
-	$Dialoguebox.playWin()
+
+	$Dialoguebox.play_win()
 	yield(get_tree().create_timer(3), "timeout")
 	#text box
-	var receiving = 0
 	var receiving_party = []
-	for i in partyBPs.size():
-		if partyBPs[i].isConscious() and partyBPs[i].stats.level < globaldata.levelCap:
-			receiving += 1
-			receiving_party.append(partyBPs[i])
-	
-	var dialog = {}
-	if receiving > 1:
-		if receiving_party.size() == 2:
-			# LOCALIZATION Code change: Changed it to a single, localizable string
-			# LOCALIZATION Use of csv key for "{member1} and {member2} gained {value} exp each."
-			dialog = {
-				"0":{"text":_format_battle_text("BATTLE_MSG_EXP_TWO_ALLIES",
-						receiving_party[0], [receiving_party[1]], null, str(int(round(expPool / receiving))))
-					}
-			}
-		else :
-			# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (to handle English pronoun here)
-			# LOCALIZATION Use of csv key for "{name} and {n4} friends gained %s exp each."
-			# ({n4} is a pronoun/article related to {name}; please see _format_battle_text() method)
-			dialog = {
-				"0":{"text":_format_battle_text("BATTLE_MSG_EXP_MANY_ALLIES",
-						receiving_party[0], [], null, str(int(round(expPool / receiving))))
-					}
-			}
-	elif receiving > 0:
-		# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (notably for Polish verb suffix here)
-		# LOCALIZATION Use of csv key for "{name} gained %s exp."
-		dialog = {
-			"0":{
-				"text":_format_battle_text("BATTLE_MSG_EXP_ONE_ALLY", receiving_party[0], [], null, str(expPool))
-			}
-		}
-	else:
-		match get_conscious_party().size():
-			1:
-				# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (notably for Polish verb suffix here)
-				# LOCALIZATION Use of csv key for "{name} gained 0 exp."
-				dialog = {
-					"0":{
-						"text":_format_battle_text("BATTLE_MSG_EXP0_ONE_ALLY", receiving_party[0])
-					}
-				}
-			2:
-				# LOCALIZATION Code change: Changed it to a single, localizable string
-				# LOCALIZATION Use of csv key for "{member1} and {member2} gained 0 exp each."
-				dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_EXP0_TWO_ALLIES", receiving_party[0], [receiving_party[1]])}
-				}
-			_:
-				# LOCALIZATION Code change: Centralized formatting of battlers and articles/pronouns (to handle English pronoun here)
-				# LOCALIZATION Use of csv key for "{name} and {n4} friends gained 0 exp each."
-				dialog = {
-					"0":{"text": _format_battle_text("BATTLE_MSG_EXP0_MANY_ALLIES", receiving_party[0])}
-				}
-	$Dialoguebox.autoAdvanced = false
-	$Dialoguebox.start(dialog)
-	yield($Dialoguebox, "done")
-	give_exp(0)
-	give_cash()
-	globaldata.flags["earned_cash"] = true
+	for i in _party_BPs.size():
+		if _party_BPs[i].isConscious() and _party_BPs[i].stats.level < globaldata.levelCap:
+			receiving_party.append(_party_BPs[i])
 
-func do_rewards():
+	var exp_per_ally := 0
+
+	if receiving_party.size() == 0:
+		receiving_party = _get_conscious_party()
+	else:
+		exp_per_ally = int(round(_exp_pool / receiving_party.size()))
+	
+	var dialog: String
+	match receiving_party.size():
+		2:
+			dialog = _format_battle_text("BATTLE_MSG_EXP_TWO_ALLIES", receiving_party[0], [receiving_party[1]], null, exp_per_ally)
+		1:
+			dialog = _format_battle_text("BATTLE_MSG_EXP_ONE_ALLY", receiving_party[0], [], null, exp_per_ally)
+		_:
+			dialog = _format_battle_text("BATTLE_MSG_EXP_MANY_ALLIES", receiving_party[0], [], null, exp_per_ally)
+	
+	yield($Dialoguebox.start_from_string(dialog), "completed")
+		
+	var in_progress = _give_exp(receiving_party, exp_per_ally)
+	if in_progress: yield(in_progress, "completed")
+
+	var items_to_overworld := []
+	in_progress = _do_rewards(items_to_overworld)
+	if in_progress: yield(in_progress, "completed")
+
+	_give_cash()
+
+	_end_battle(uiManager.battleWinCutscene, items_to_overworld)
+
+func _do_rewards(items_to_overworld: Array): # suspend func
 	# do we get an item???
 	var droppedItem = ""
-	var j = 0
-	var dialog = {}
 	var itemGiven = false
 	var chanceTrue = false
-	for itemStat in itemPool:
+	for itemStat in _items_pool:
 		for item in itemStat.items:
-			var r
 			if item.has("rare") and item.rare:
 				if not itemStat.enemyName in globaldata.rareDrops:
 					globaldata.rareDrops[itemStat.enemyName] = 0
-				r = rand_range(0.0, 100)
+				var r = rand_range(0.0, 100)
 				var chanceMod
 				if item.has("increaseChance"):
 					chanceMod = item.increaseChance * globaldata.rareDrops[itemStat.enemyName]
@@ -826,7 +917,7 @@ func do_rewards():
 				else:
 					globaldata.rareDrops[itemStat.enemyName] += 1
 			else:
-				r = randi() % 100 + 1
+				var r = randi() % 100 + 1
 				if r <= item.chance:
 					chanceTrue = true
 			if chanceTrue:
@@ -835,51 +926,37 @@ func do_rewards():
 				# LOCALIZATION Code change: We need full item object
 				var itemData = InventoryManager.Load_item_data(droppedItem)
 				# LOCALIZATION Use of csv key for "The enemy dropped a present!"
-				dialog[str(j)] = {"text":tr("BATTLE_MSG_PRESENT"), "goto":"%s" % (j + 1)}
+				$Dialoguebox.append(tr("BATTLE_MSG_PRESENT"))
 				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 				# LOCALIZATION Use of csv key for "Inside the present, there was {i3}{item}."
-				dialog[str(j + 1)] = {
-					"text":_format_battle_text("BATTLE_MSG_PRESENT_INSIDE", null, [], itemData),
-					"goto":"%s" % (j + 2)
-				}
-				j += 2
+				$Dialoguebox.append(_format_battle_text("BATTLE_MSG_PRESENT_INSIDE", null, [], itemData))
 				#who has room in their inventory?
 				var itemGet = false
-				for partyMem in partyBPs:
+				for partyMem in _party_BPs:
 					if !InventoryManager.isInventoryFull(partyMem.stats.name):
 						if partyMem.isConscious():
 							# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 							# LOCALIZATION Use of csv key for "{n0}{name} took {i5}."
-							dialog[str(j)] = {
-								"text":_format_battle_text("BATTLE_MSG_PRESENT_TAKING", partyMem, [], itemData), 
-								"goto":"%s" % (j + 1), 
-								"soundeffect":"EB/itemget1.wav"
-							}
-							j += 1
+							$Dialoguebox.append(
+								_format_battle_text("BATTLE_MSG_PRESENT_TAKING", partyMem, [], itemData),
+							"EB/itemget1.wav")
 						else :
 							# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
 							# LOCALIZATION Use of csv key for "{i0}{item} was put inside {name}'s bag."
-							dialog[str(j)] = {
-								"text":_format_battle_text("BATTLE_MSG_PRESENT_GIVING", partyMem, [], itemData),
-								"goto":"%s" % (j + 1), 
-								"soundeffect":"EB/itemget1.wav"
-							}
-							j += 1
+							$Dialoguebox.append(
+								_format_battle_text("BATTLE_MSG_PRESENT_GIVING", partyMem, [], itemData),
+							"EB/itemget1.wav")
 						InventoryManager.addItem(partyMem.stats.name, droppedItem)
 						itemGet = true
 						break
 				#does it get dropped??
 				if !itemGet:
-					# LOCALIZATION Use of csv key for "But you can't carry any more stuff..."
-					dialog[str(j)] = {
-						"text": _format_battle_text("BATTLE_MSG_PRESENT_FULL", null, [], itemData),
-						"goto":"%s" % (j + 1)
-					}
-					j += 1
-					var dropItem = droppedItemNode.instance()
+					$Dialoguebox.append(_format_battle_text("BATTLE_MSG_PRESENT_FULL", null, [], itemData))
+					var dropItem = DroppedItemNode.instance()
 					# yo, I heard you like items, so I set an item to your item item
 					dropItem.item = item.item
-					queuedDroppedItems.append(dropItem)
+					dropItem.reset_when_consumed = true
+					items_to_overworld.append(dropItem)
 #					if itemStat.overworld != null:
 #						itemStat.overworld.queued_item = item.item
 				break
@@ -890,51 +967,37 @@ func do_rewards():
 		globaldata.flags[uiManager.battleWinFlag] = true
 	
 	if droppedItem != "":
-		# remove last "goto"
-		dialog[str(j-1)].erase("goto") 
-		$Dialoguebox.connect("done", self, "end_battle", [uiManager.battleWinCutscene], CONNECT_ONESHOT)
-		$Dialoguebox.start(dialog)
-	else:
-		end_battle(uiManager.battleWinCutscene)
-	
+		yield($Dialoguebox.start_from_appended(), "completed")
 
-func lose():
-	reset_page_stack()
-	active = false
+func _lose(): # suspend func
+	_reset_page_stack()
+	_lose_battle = true
+	_active = false
 	$ActionMenuBox.hide()
-	$InfoBox1.hide()
-	remove_battle_music()
+	_remove_battle_music()
 	audioManager.pause_all_music()
 	
-	if !$Dialoguebox.finished:
+	if !$Dialoguebox.did_finish():
 		yield($Dialoguebox, "done")
 	else:
 		yield(get_tree().create_timer(0.5), "timeout")
-	play_sfx("partylose")
-	var dialog = {}
-	dialog = {
-		"0":{"text":tr("BATTLE_MSG_GAME_OVER")}
-		}
-	$Dialoguebox.start(dialog)
-	yield($Dialoguebox, "done")
+	_play_sfx("partylose")
+	yield($Dialoguebox.start_from_string(tr("BATTLE_MSG_GAME_OVER")), "completed")
 	yield(uiManager.game_over(false), "completed")
 	#set up return TEMP
-	for obj in global.partyObjects:
+	for obj in _party_orig_objects:
 		obj.show()
-	hide_battle_BG()
+	_hide_battle_BG()
 	global.inBattle = false
-	restore_backup_inventories()
+	_restore_backup_inventories()
 	uiManager.remove_ui(self)
 
-
-func end_battle(cutscene = ""):
+func _end_battle(cutscene := "", items_to_overworld := []): # suspend func
 	$Dialoguebox.hide()
 	$ActionMenuBox.hide()
-	$InfoBox1.hide()
-	if (!audioManager.overworldBattleMusic) or (boss and audioManager.overworldBattleMusic):
+	if (!audioManager.overworldBattleMusic) or (_is_boss and audioManager.overworldBattleMusic):
 		#remove victory and level up tracks
-		remove_battle_music()
-		
+		_remove_battle_music()
 		
 		#resume overworld music
 		if audioManager.get_audio_player(0) != null:
@@ -942,102 +1005,52 @@ func end_battle(cutscene = ""):
 				audioManager.music_fadein(0, audioManager.get_audio_player(0).volume_db, 3)
 	
 	audioManager.resume_all_music()
-	$AnimationPlayer.play("transitionOut")
-	drop_item_to_overworld()
-	yield($AnimationPlayer, "animation_finished")
+	$AnimScene.play("transitionOut")
+	_drop_item_to_overworld(items_to_overworld)
+	yield($AnimScene, "animation_finished")
 		
 	# release player or play cutscene
 	global.inBattle = false
 	uiManager.remove_ui(self)
 	if cutscene != "":
-		global.set_dialog(cutscene, null)
+		global.set_dialog(cutscene)
 		uiManager.open_dialogue_box()
 	else:
 		global.persistPlayer.unpause()
 	uiManager.reset_battle_cutscenes()
 
-func load_enemy(enemy: String) -> Dictionary:
-	var file = File.new();
-	var json = "res://Data/Battlers/" + enemy + ".json"
-	var enemyData : Dictionary
-	if file.file_exists(json):
-		file.open(json, File.READ);
-		enemyData = parse_json(file.get_as_text())
-		file.close()
-	else:
-		print("could not load json: ", json)
-		file.open("res://Data/Battlers/testenemy.json", File.READ)
-		enemyData = parse_json(file.get_as_text())
-		file.close()
-	return enemyData
-
-func add_enemy(enemyName, overworld_object):
-	var newEnemyStats = load_enemy(enemyName)
-	var newEnemy = BattleParticipant.new()
-	newEnemy.id = battleParticipants.size()
-	newEnemy.isEnemy = true
-	# only matters for enemies
-	newEnemy.filename = enemyName
-	newEnemy.stats = newEnemyStats
-	if newEnemy.stats.has("cutscene"):
-		$BattleCutscene.set_cutscene_file(newEnemy.stats.cutscene)
-	newEnemy.stats.boosts = {
-		"maxhp": 0,
-		"maxpp": 0,
-		"offense": 0,
-		"defense": 0,
-		"iq": 0,
-		"guts": 0,
-		"speed": 0
-	}
+func _add_enemy(enemyName:String, overworld_object) -> BattleParticipant:
+	var new_enemy_stats = globaldata.get_json_data("res://Data/Battlers/%s.yaml" % enemyName, "res://Data/Battlers/testenemy.yaml")
+	var new_enemy := BattleParticipant.new(self, _get_bp_count(), new_enemy_stats, BattleParticipant.Type.ENEMY)
 	
-	# LOCALIZATION Code change: Added tr() to translate enemy name
-	newEnemy.stats.nickname = tr(newEnemy.stats.name)
-	if newEnemy.stats.name == "PIPPI":
-		newEnemy.stats.nickname = globaldata.pippi.nickname
-	elif newEnemy.stats.name == "TEDDY":
-		newEnemy.stats.nickname = globaldata.teddy.nickname
-	var count = 0
-	for enemyBP in enemyBPs:
-		# LOCALIZATION Code change: Added tr() to compare to translated enemy name × 2
-		if enemyBP.stats.nickname.begins_with(tr(newEnemy.stats.name)):
-			if enemyBP.stats.nickname == tr(newEnemy.stats.name):
-				# LOCALIZATION No whitespace in Japanese
-				enemyBP.stats.nickname += tr("BATTLE_LETTER_WHITESPACE") + "A"
-			count += 1
-	if count > 0:
-		# LOCALIZATION Code change: Added tr() to translate enemy name
-		# LOCALIZATION No whitespace in Japanese
-		newEnemy.stats.nickname = tr(newEnemy.stats.name) + tr("BATTLE_LETTER_WHITESPACE") + enemyRename[count]
-	newEnemy.stats.status = []
-	if not "passiveSkills" in newEnemy.stats:
-		newEnemy.stats.passiveSkills = []
-	battleParticipants.append(newEnemy)
+	new_enemy.handle_homonymy_with(_enemy_BPs)
+
 	if overworld_object != null and overworld_object.get("startingHP") != null:
-		newEnemy.stats.hp = overworld_object.startingHP
+		new_enemy.stats.hp = overworld_object.startingHP
 	#then exps, cashes, and items!!
-	expPool += newEnemy.stats.exp
-	cashPool += newEnemy.stats.cash
-	if newEnemy.stats.has("items"):
-		if !boss:
-			itemPool.append(
-				{"items": newEnemy.stats.items,
+	_exp_pool += new_enemy.stats.exp
+	_cash_pool += new_enemy.stats.cash
+	if new_enemy.stats.has("items"):
+		if !_is_boss:
+			_items_pool.append(
+				{"items": new_enemy.stats.items,
 				 "overworld": overworld_object,
-				 "enemyName": newEnemy.stats.name})
-		elif newEnemy.stats.boss:
+				 "enemyName": new_enemy.stats.name})
+		elif new_enemy.stats.boss:
 			#only append boss item if it's a boss encounter
-			itemPool.append(
-				{"items": newEnemy.stats.items,
+			_items_pool.append(
+				{"items": new_enemy.stats.items,
 				 "overworld": overworld_object,
-				 "enemyName": newEnemy.stats.name})
-	enemyBPs.append(newEnemy)
+				 "enemyName": new_enemy.stats.name})
+	_enemy_BPs.append(new_enemy)
+	new_enemy.connect("defeated", self, "_on_bp_defeated")
 	
 	#next, we set up enemy transitions, if there is an overworld sprite
 	var enemySpr = null
 	if overworld_object != null:
 		if overworld_object.has_method("die"):
-			newEnemy.overworldObj = overworld_object
-			overworld_object.connect("enemy_erased", newEnemy, "set_overworldObj_null")
+			new_enemy.overworldObj = overworld_object
+			overworld_object.connect("enemy_erased", new_enemy, "set_overworld_obj_null")
 		overworld_object.hide()
 		enemySpr = overworld_object.duplicate_sprite()
 		#duplicate() duplicates the child nodes of the sprite so we have to remove them
@@ -1049,29 +1062,26 @@ func add_enemy(enemyName, overworld_object):
 		# otherwise, we just add an empty sprite
 		enemySpr = Sprite.new()
 	$EnemyTransitions.add_child(enemySpr)
-	return newEnemy
+	return new_enemy
 
-func add_players_sprites():
+func _add_players_and_npc_transitions(): # suspend func
 #	var arr = [global.persistPlayer]
 #	arr.append_array(global.partyObjects)
-	for partyMem in global.partyObjects:
+	for partyMem in _party_orig_objects:
 		partyMem.hide()
 		var sprite = partyMem.duplicate_sprite()
-		var tween = Tween.new()
-		#jank. bad code. what r u doing roka
 		
 		sprite.show()
 		sprite.position = partyMem.get_viewport().canvas_transform.xform(partyMem.position) - Vector2(0,4)
-		if partyMem == global.persistPlayer:
-			sprite.frame_coords = Vector2(3, 0)
-			$PlayerTransitions.add_child(sprite)
-		elif partyMem.partyMemberClass == global.party:
-			sprite.frame_coords = Vector2(3, 0)
+		if partyMem.partyMember.name in global.POSSIBLE_PLAYABLE_MEMBERS:
+			sprite.frame_coords = SPRITE_FRAMES.crouch_down
 			$PlayerTransitions.add_child(sprite)
 		else:
-			sprite.frame_coords = Vector2(3, 2)
+			sprite.frame_coords = SPRITE_FRAMES.crouch_right
 			$NpcTransitions.add_child(sprite)
-		partyOriginalPositions.append(sprite.position)
+		
+		var tween = Tween.new()
+		_party_orig_positions.append(sprite.position)
 		sprite.add_child(tween)
 		tween.interpolate_property(sprite, "scale", \
 			sprite.scale, Vector2(1.1, 0.9), 0.1, \
@@ -1091,186 +1101,174 @@ func add_players_sprites():
 		tween.start()
 		yield(get_tree().create_timer(.01), "timeout")
 
-func cache_enemy_actions():
-	for enemy in enemyBPs:
+func _cache_enemy_and_npc_actions(do_enemies := true, do_npcs := true):
+	var pool = []
+	if do_enemies:
+		pool += _enemy_BPs
+	if do_npcs:
+		pool += _npc_BPs
+	for actor in pool:
 		# add skill weights
 		var chosenSkill = "bash"
-		if "chosenSk" in enemy.stats and enemy.stats["chosenSk"] != "":
-			chosenSkill = enemy.stats["chosenSk"]
-			enemy.stats["chosenSk"] = ""
+		if "scriptedSkill" in actor.stats and actor.stats["scriptedSkill"] != "":
+			chosenSkill = actor.stats["scriptedSkill"]
+			actor.stats["scriptedSkill"] = ""
 		else:
 			var allWeights := 0
-			for skill in enemy.stats.skills:
+			for skill in actor.stats.skills:
 				allWeights += skill.weight
 			var i = rand_range(0.0, float(allWeights))
-			print("rolled ", i, " out of ", allWeights)
+			#print("rolled ", i, " out of ", allWeights)
 			# find where the random number landed
 			var currentWeight = 0
-			for skill in enemy.stats.skills:
+			for skill in actor.stats.skills:
 				currentWeight += skill.weight
 				if i <= currentWeight:
 					chosenSkill = skill.skill
 					break
-		var skillAction = SkillAction.new(enemy)
+		var skillAction = SkillAction.new(actor)
 		skillAction.skill = globaldata.skills[chosenSkill]
-		cache_action(skillAction)
+		_cache_action(skillAction)
 
-func do_actions():
-	doingActions = true
+func _do_actions(): # suspend func
+	_doing_actions = true
 	$ActionMenuBox.hide()
-	$InfoBox1.hide()
-	actionQueue.sort_custom(self, "sort_by_priority")
-	print("Doing actions!!")
-	for i in range(actionQueue.size()):
-		var action = actionQueue[i]
-		if i < actionQueue.size() - 1:
-			action.connect("done", self, "start_action", [actionQueue[i+1]], CONNECT_ONESHOT)
-		else:
-			action.connect("done", self, "new_round", [], CONNECT_ONESHOT || CONNECT_DEFERRED)
-	start_action(actionQueue[0])
+	_action_queue.sort_custom(self, "_sort_by_priority")
 
-func new_round():
-	turns += 1
-	if $BattleCutscene.currCutscene != {}:
-		$BattleCutscene.handle_phrase($BattleCutscene.currPhrase)
-	if bufferReorganize:
-		reorganize_enemies()
-	currentAction = null
-	doingActions = false
+	for i in range(_action_queue.size()):
+		var action = _action_queue[i]
+		call_deferred("_start_action", action)
+		yield(action, "done")
+		var status_in_progress = _check_status_effect(action.user)
+		if status_in_progress: yield(status_in_progress, "completed")
+
+func _new_round(): # suspend func
+	for enemy in _enemy_BPs:
+		enemy.handle_battler_script()
+	if _buffer_reorganize:
+		_reorganize_enemies()
+	_current_action = null
+	_doing_actions = false
 	# check for win
-	var battleWon = true
-	for enemy in enemyBPs:
-		if enemy.isConscious():
-			battleWon = false
-	if battleWon:
-		win()
+	if _get_conscious_enemies().empty():
+		_win()
 		return
 	
 	# check for healed statuses and do passives
-	for bp in get_conscious_party():
-		if !bp.stats.has("statusCountup"):
-			bp.stats.statusCountup = {"blinded": 0, "burned": 0, "numb": 0, "poisoned": 0, "sleeping": 0 }
-		var passiveHeal = bp.stats.statusCountup
+	for bp in (_get_conscious_party() + _get_conscious_enemies()):
 		for status in bp.stats.status:
-			var roll = randi() % 100 + 1
-			match(int(status)):
-				globaldata.ailments.Blinded:
-					if roll <= passiveHealProb * (passiveHeal["blinded"] - 3):
-						yield(heal_status("blinded", bp), "completed")
-					else:
-						passiveHeal["blinded"] += 1
-				globaldata.ailments.Burned:
-					if roll <= passiveHealProb * (passiveHeal["burned"] - 3):
-						yield(heal_status("burned", bp), "completed")
-					else:
-						passiveHeal["burned"] += 1
-				globaldata.ailments.Numb:
-					if roll <= passiveHealProb * (passiveHeal["numb"] - 3):
-						yield(heal_status("numb", bp), "completed")
-					else:
-						passiveHeal["numb"] += 1
-				globaldata.ailments.Sleeping:
-					if roll <= passiveHealProb * (passiveHeal["sleeping"] - 3):
-						yield(heal_status("sleeping", bp), "completed")
-					else:
-						passiveHeal["sleeping"] += 1
-				globaldata.ailments.Poisoned:
-					if roll <= passiveHealProb * (passiveHeal["poisoned"] - 3):
-						yield(heal_status("poisoned", bp), "completed")
-					else:
-						passiveHeal["poisoned"] += 1
-				
-		# DoPassive - End of turn (party members)
-		for passive in bp.stats.passiveSkills:
-			match(passive):
-				_:
-					pass
-	for bp in get_conscious_enemies():
-		if !bp.stats.has("statusCountup"):
-			bp.stats.statusCountup = {"burned": 0, "numb": 0, "sleeping": 0 }
-		var passiveHeal = bp.stats.statusCountup
-		for status in bp.stats.status:
-			var roll = randi() % 100 + 1
-			match(int(status)):
-				globaldata.ailments.Burned:
-					if roll <= passiveHealProb * (passiveHeal["burned"] - 3):
-						yield(heal_status("burned", bp), "completed")
-					else:
-						passiveHeal["burned"] += 1
-				globaldata.ailments.Numb:
-					if roll <= passiveHealProb * (passiveHeal["numb"] - 3):
-						yield(heal_status("numb", bp), "completed")
-					else:
-						passiveHeal["numb"] += 1
-				globaldata.ailments.Sleeping:
-					if roll <= passiveHealProb * (passiveHeal["sleeping"] - 3):
-						yield(heal_status("sleeping", bp), "completed")
-					else:
-						passiveHeal["sleeping"] += 1
-		# DoPassive - End of turn (enemies)
-		for passive in bp.stats.passiveSkills:
-			match(passive):
-				_:
-					pass
-	
-	emit_signal("roundDone")
+			var info = StatusManager.get_ailment_info(status.ailment)
+			if info["healing"].get("passive_heal", false):
+				var roll = randi() % 100 + 1
+				var prob = info["healing"].get("heal_prob", PASSIVE_HEAL_PROB)
+				var turns = info["healing"].get("mandatory_turns", 3)
+				if roll <= prob * (status.battleTurns - turns):
+					yield(_heal_status(status.ailment, bp), "completed")
+				else:
+					status.battleTurns += 1
+					
+		# TODO Passive for end of turn?
+
+	_turns_count += 1
+	emit_signal("round_done", _turns_count)
 	yield(get_tree().create_timer(.4), "timeout")
-	if !active:
+	_player_adv = false
+	_enemy_adv = false
+	if !_active:
 		return
 	# start new round!
-	for action in actionQueue:
+	for action in _action_queue:
 		action.free()
-	actionQueue.clear()
-	currPartyMem = -1
-	cursorActive = true
-	turn += 1
-	next_active_menu()
+	_action_queue.clear()
+	_curr_party_mem = -1
+	_next_active_member()
 
-func start_action(action):
-	if bufferReorganize:
-		yield(reorganize_enemies(), "completed")
-		if !active:
+func _check_status_effect(character:BattleParticipant, before_turn := false, on_complete: FuncRef = null, on_complete_params: Array = []): # suspend func
+	var effects_to_do := []
+	for effect in character.get_all_status_effects():
+		for key in effect.keys():
+			var dict = {key: effect[key]}
+			if effect[key] is Dictionary:
+				if before_turn:
+					if effect[key].get("moment", "after") == "before":
+						effects_to_do.append(dict)
+				else:
+					if effect[key].get("moment", "after") == "after":
+						effects_to_do.append(dict)
+	
+	for effect in effects_to_do:
+		var in_progress = _do_status_effect(character, effect)
+		if in_progress: yield(in_progress, "completed")
+	
+	if on_complete:
+		on_complete.call_funcv(on_complete_params)
+
+func _do_status_effect(character:BattleParticipant, effect:Dictionary):
+	var key = effect.keys()[0]
+	var value = effect.values()[0]
+	match key:
+		"do_skill":
+			var action = SkillAction.new(character)
+			action.skill = globaldata.skills[value.get("skill", "attack")]
+			var in_progress = _start_action(action)
+			if in_progress: yield(in_progress, "completed")
+			
+	#for status in character.stats.status:
+	#	if status.ailment == "asthma": # TODO replace with get_combined_status_effect
+	#		var dialog = _format_battle_text("BATTLE_MSG_ASTHMA_" + str(status.battleTurns), character)
+	#		yield($Dialoguebox.start_from_string(dialog), "completed")
+	#		status.battleTurns += 1
+	#		if status.battleTurns >= 4:
+	#			character.defeat()
+	#			break
+
+func _start_action(action:Action): # suspend func
+	if _lose_battle:
+		return
+	if _buffer_reorganize:
+		yield(_reorganize_enemies(), "completed")
+		if !_active:
 			return
-	currentAction = action
+	_current_action = action
+	var turn_skip = _current_action.user.get_combined_status_effect("turn_skip")
+	if turn_skip.get("enable", false):
+		yield(_show_inability_text(_current_action.user, turn_skip.get("message", ""), false), "completed")
+		action.emit_signal("done")
+		return
 	#hackiest code you've ever seen, at least it works
-	for enemy in enemyBPs:
+	for enemy in _enemy_BPs:
 		if enemy.stats.has("text"):
-			if currentAction.user.filename.to_upper() == enemy.stats.name:
-				var dialog = enemy.stats.text
-				for key in dialog:
-					if dialog[key].has("text"):
-						dialog[key].text = tr(dialog[key].text)
-				for bp in partyBPs:
+			if _current_action.user == enemy:
+				for bp in _party_BPs:
 					bp.stats.newHp = bp.stats.hp
-					bp.partyInfo.stopScrolling()
+					bp.partyInfo.stop_scrolling()
 				yield(get_tree().create_timer(1), "timeout")
-				darken_bg()
-				$Dialoguebox/ClipBox/HBoxContainer/DippinDots.show()
-				$Dialoguebox.autoAdvanced = false
-				$Dialoguebox.start(dialog)
-				yield($Dialoguebox, "done")
-				$Dialoguebox/ClipBox/HBoxContainer/DippinDots.hide()
-				$Dialoguebox.autoAdvanced = true
-				undarken_bg()
+				_darken_bg()
+				yield($Dialoguebox.start_from_scripted_dialog(enemy.stats.text, false), "completed")
+				_undarken_bg()
 				enemy.stats.erase("text")
-				for bp in partyBPs:
+				for bp in _party_BPs:
 					bp.partyInfo.setHP(bp.stats.newHp)
 					
 	# check for win
-	var battleWon = true
-	for enemy in enemyBPs:
-		if enemy.isConscious():
-			battleWon = false
-	if battleWon:
-		win()
+	if _get_conscious_enemies().empty():
+		_win()
 		return
 	
 	if !action.user.isConscious():
 		action.emit_signal("done")
 		return
+
+	if _lose_battle:
+		return
 	
-	if action.user.isEnemy:
-		play_sfx("enemyturn")
+	var can_do_action = yield(_check_ableness_for_action(action.user, action), "completed")
+	if !can_do_action:
+		action.emit_signal("done")
+		return
+	
+	if action.user.get_type() == BattleParticipant.Type.ENEMY:
+		_play_sfx("enemyturn")
 		if action.skill.skillType == "psi":
 			if action.skill.has("enemyFlashColor"):
 				action.user.battleSprite.set_psi_flash_color(action.skill.enemyFlashColor)
@@ -1279,10 +1277,12 @@ func start_action(action):
 			action.user.battleSprite.flash_psi()
 		else:
 			action.user.battleSprite.flash()
-	elif !action is GuardAction:
-		play_sfx("attack1")
+	else:
+		if !action is GuardAction:
+			_play_sfx("attack1")
 	yield(get_tree().create_timer(.2), "timeout")
-	if !active:
+	
+	if !_active:
 		return
 	
 	# this category handles both skills and items
@@ -1291,633 +1291,668 @@ func start_action(action):
 		# TODO: check if the action is possible??
 		# aka, what if we try to use a status healing item on someone whose status is now healed
 		#      or what if we try to heal or attack someone who is unconscious
-		retarget_action(action)
-		do_skill_costs(action.skill, action.user, action.targets)
+		yield(_retarget_action(action), "completed")
+		_apply_skill_costs(action.skill, action.user, action.targets)
 		
-		var dialog = {}
-		if "dialog" in action.skill:
-			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-			dialog = {
-				"0":{
-					"text": _format_battle_text(action.skill.dialog, action.user, action.targets)
-				}
-			}
-		# default dialogs for skill action
-		else:
+		var dialog := _format_battle_text(action.get_dialog(), action.user, action.targets, action.skill)
+		if !"dialog" in action.skill:
 			if action.skill.skillType == "psi":
-				if action.user.isEnemy:
-					play_sfx("enemypsi")
+				if action.user.get_type() == BattleParticipant.Type.ENEMY:
+					_play_sfx("enemypsi")
 				else:
-					play_sfx("yourpsi")
-				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-				# LOCALIZATION Use of csv key for "{n0}{name} tried %s!"
-				# LOCALIZATION No whitespace in Japanese
-				dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_PSI", action.user, [], action.skill)}
-				}
-			else :
-				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-				# LOCALIZATION Use of csv key for "{n0}{name} attacks!"
-				dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_SKILL", action.user)}
-				}
+					_play_sfx("yourpsi")
 		
-		$Dialoguebox.connect("done", self, "do_screen_effect", [action], CONNECT_ONESHOT)
-		$Dialoguebox.start(dialog)
+		$Dialoguebox.append(dialog)
+		yield($Dialoguebox.start_from_appended(), "completed")
+		
+		_do_skill_with_screen_effect(action)
+		#$Dialoguebox.connect("done", self, "_do_skill_with_screen_effect", [action], CONNECT_ONESHOT)
+		#$Dialoguebox.start_from_scripted_dialog(dialog)
 	elif action is ItemAction:
-		InventoryManager.dropItem(action.user.stats.name, action.inv_idx)
-		play_battle_sprite_anim(action.user, "item", true)
-		
-		# LOCALIZATION Code removed: Formatting of battlers, items and articles is now centralized
-		
-		var dialog = {}
-		if "dialog" in action.skill:
-			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-			dialog = {
-				"0":{
-					"text":_format_battle_text(action.skill.dialog, action.user, action.targets, action.item)
-				}
-			}
-		elif action is ItemAction:
-			# LOCALIZATION Code change: Fixed hardcoded ".english"
-			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-			# LOCALIZATION Use of csv key for "{n0}{name} uses {i1}{item} on {t1}{target}!"
-			if action.user.stats.nickname != action.targets[0].stats.nickname:
-				dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_ITEM_OTHER", action.user, action.targets, action.item)}
-				}
-			else :
-			# LOCALIZATION Code change: Fixed hardcoded ".english"
-			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-			# LOCALIZATION Use of csv key for "{n0}{name} uses {i1}{item}!"
-				dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_ITEM_SELF", action.user, action.targets, action.item)}
-				}
-		
-		if "battle_action" in action.item and action.item.battle_action != "":
-			$Dialoguebox.connect("done", self, "do_screen_effect", [action], CONNECT_ONESHOT)
-		else:
-			$Dialoguebox.connect("done", self, "do_item", [action], CONNECT_ONESHOT)
-		$Dialoguebox.start(dialog)
-	elif action is GuardAction:
-		do_guard(action)
-	elif action is FleeAction:
-		# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-		# LOCALIZATION Use of csv key for "{n0}{name} ran away!"
-		var dialog = {
-			"0":{
-				"text":_format_battle_text("BATTLE_MSG_FLEE", action.user)
-			}
-		}
-		$Dialoguebox.start(dialog)
-		yield($Dialoguebox, "done")
-		tryFlee(action)
+		InventoryManager.reduce_or_drop_item(action.user.stats.name, action.inv_idx)
+		_play_battle_sprite_anim(action.user, "item")
 
-func retarget_action(action):
+		var dialog_text = "BATTLE_MSG_ITEM_SELF" if action.user == action.targets[0] else "BATTLE_MSG_ITEM_OTHER"
+		dialog_text = action.skill.get("dialog", dialog_text)
+		var dialog = _format_battle_text(dialog_text, action.user, action.targets, action.item)
+		$Dialoguebox.append(dialog)
+		yield($Dialoguebox.start_from_appended(), "completed")
+		if action.item.get("battle_action"):
+			_do_skill_with_screen_effect(action)
+		else:
+			_do_item(action)
+
+		#if action.item.get("battle_action"):
+		#	$Dialoguebox.connect("done", self, "_do_skill_with_screen_effect", [action], CONNECT_ONESHOT)
+		#else:
+		#	$Dialoguebox.connect("done", self, "_do_item", [action], CONNECT_ONESHOT)
+		#$Dialoguebox.start_from_scripted_dialog(dialog)
+	elif action is GuardAction:
+		_do_guard(action)
+	elif action is FleeAction:
+		var dialog = _format_battle_text("BATTLE_MSG_FLEE", action.user)
+		yield($Dialoguebox.start_from_string(dialog), "completed")
+		_try_flee(action)
+
+func _retarget_action(action:Action): # suspend func
 	# ANYWAY if there are no targets (or, they are unconscious), try again
-	var targetOK = !action.targets.empty()
+	var target_ok = (!action.targetType in [TargetType.ALL_ALLIES, TargetType.ALL_ENEMIES]) and !action.targets.empty()
 	for target in action.targets:
 		if !target.isConscious() and !action.targetUnconscious:
 			#redo targets, heck
-			targetOK = false
-	if !targetOK:
-		# retargeting is not smart, but we can change that in the future lol
-		if action is ItemAction:
-			action.targets = get_alive_targets_from_type(action.user, TargetType.SELF)
-		else:
-			action.targets = get_alive_targets_from_type(action.user, action.skill.targetType)
+			target_ok = false
+	action.targets = yield(_retargeting(action, action.targetType, target_ok), "completed")
+	yield(get_tree(), "idle_frame")
 
-func do_skill_costs(skill, user, targets):
+func _apply_skill_costs(skill, user:BattleParticipant, targets:Array):
 	# subtract hp/pp costs
 	if skill.hpCost > 0:
 		user.stats.hp -= skill.hpCost
-		if !user.isEnemy:
+		if user.get_type() == BattleParticipant.Type.PLAYABLE:
 			user.partyInfo.setHP(user.stats.hp)
 	if skill.ppCost > 0:
 		user.stats.pp -= skill.ppCost
-		if !user.isEnemy:
+		if user.get_type() == BattleParticipant.Type.PLAYABLE:
 			user.partyInfo.setPP(user.stats.pp)
 
-func do_skill(action, i = 0):
+func _compare_action_types(action:Action, desiredType: Dictionary):
+	var actionType = {"dict": desiredType.get("action_type", "any"), "compare": "actionType"}
+	var skillType = {"dict": desiredType.get("skill_type", "any"), "compare": "skillType"}
+	var damageType = {"dict": desiredType.get("damage_type", "any"), "compare": "damageType"}
+	var specificSkill = {"dict": desiredType.get("specific_skill", "any"), "compare": "identifier"}
+	for typeDict in [actionType, skillType, damageType, specificSkill]:
+		if not typeDict.dict is Array:
+			typeDict.dict = [typeDict.dict]
+		var isType = false
+		if "any" in typeDict.dict:
+			isType = true
+		else:
+			for type in typeDict.dict:
+				if action.skill.has(typeDict.compare):
+					if type == action.skill.get(typeDict.compare, ""):
+						isType = true
+		if !isType:
+			return false
+	return true
+			
+	
+func _do_fail_chance(action:Action) -> bool:
+	var hitRoll = randi() % 100 + 1
+	var statusRoll = randi() % 100 + 1
+	var ailmentChance = action.user.get_combined_status_effect("fail_additionner")
+	if statusRoll <= ailmentChance:
+		return true
+	if hitRoll <= action.skill.failChance:
+		return true
+	return false
+
+func _do_status_hit_heal(character:BattleParticipant, action:Action):
+	for status in character.stats.status:
+		var info = StatusManager.get_ailment_info(status.ailment)
+		if info.has("healing") and info.healing.has("by_hit"):
+			if info.healing.by_hit.has("action") and !_compare_action_types(action, info.healing.by_hit.action):
+				continue
+			var roll = randi() % 100 + 1
+			var prob = info.healing.by_hit.get("prob", HEAL_BY_HIT_PROB)
+			yield(_try_afflict_status(status.ailment, prob, character), "completed")
+
+func _do_status_transmission(transmitter:BattleParticipant, transmitted:BattleParticipant, action:Action):
+	for status in transmitter.stats.status:
+		var info = StatusManager.get_ailment_info(status.ailment)
+		if info.has("transmit"):
+			if info.transmit.has("action") and !_compare_action_types(action, info.transmit.action):
+				continue
+			var roll = randi() % 100 + 1
+			var prob = info.transmit.get("prob", TRANSMIT_PROB)
+			yield(_try_afflict_status(status.ailment, prob, transmitted), "completed")
+			
+func _get_damage_modifiers(effects: Array, action:Action) -> int:
+	var modifier = 1
+	for effect in effects:
+		if effect.has("action") and _compare_action_types(action, effect.action):
+			modifier *= effect.get("mod", 1)
+	return modifier
+
+func _get_damage_color(effects: Array, action:Action) -> Color:
+	for effect in effects:
+		if effect.has("action") and _compare_action_types(action, effect.action):
+			return Color(effect.get("color", "FFFFFF"))
+	return Color.white
+
+func _calculate_damage(action:Action, target:BattleParticipant, passive_multiplier, adrenaline, smash):
+	var stats_mod := 0
+	var user := action.user
+	var value_type = action.skill.get("damageValueType", "normal")
+	var val
+	if action.skill.skillType == "psi":
+		stats_mod = user.get_stat("iq") / 5
+	else:
+		stats_mod = user.get_stat("offense")
+				
+	var defense: int = target.get_stat("defense")
+	if target.defending:
+		defense *= 2
+	match value_type:
+		"fixed":
+			val = int(action.skill.damage)
+			if action.skill.has("variance"):
+				val = floor(val + (randf() * action.skill.variance) - action.skill.variance/2.0)
+		"percentage":
+			val = int(action.skill.damage*target.stats.hp/100)
+		"normal":
+			val = int(action.skill.damage) + stats_mod - (defense/2.0)
+			if smash:
+				val *= 2
+			else:
+				if adrenaline:
+					val *= 1.5
+				val = floor(val + (randf() * action.skill.variance) - action.skill.variance/2.0)
+			
+			val *= target.get_vulnerab_multiplier(action.skill.damageType)
+			# apply creature type damage multiplier
+			val *= action.skill.get("creature_type_multipliers", {}).get(target.stats.get("creature_type"), 1)
+			# apply multiplier from passive skill
+			val *= passive_multiplier
+			
+			var user_modifier = user.get_combined_status_effect("dealt_mod")
+			val *= float(_get_damage_modifiers(user_modifier, action))
+			var target_modifier = target.get_combined_status_effect("received_mod")
+			val *= float(_get_damage_modifiers(target_modifier, action))
+
+	val = max(1, val)
+	
+	return val
+
+func _do_attack_damage(action:Action, target:BattleParticipant, passive_multiplier := 1.0, intended_target:BattleParticipant = null): # suspend func
+	var can_smash := false
+	var use_flying_num := false
+	var user := action.user
+	if action.skill.skillType != "psi":
+		can_smash = true
+		use_flying_num = true
+	
+	# check for smash attack
+	
+	var smash_roll := randi() % 100 + 1
+	var smashed := false
+	var adrenaline := false
+	# smash chance is either 5/100 or guts/5
+	if action.user.get_type() == BattleParticipant.Type.PLAYABLE:
+		if action.user.stats.hp <= 0:
+			adrenaline = true
+		if "Slingshot" in user.stats.equipment.weapon:
+			can_smash = false
+	
+	if smash_roll <= max(5, floor(user.get_stat("guts")/5)) and user.get_stat("guts") > 0 and can_smash:
+		# SMAAAAAAASH
+		smashed = true
+	
+	var val = _calculate_damage(action, target, passive_multiplier, adrenaline, smashed)
+
+	if target != intended_target and _ongoing_npc_protection.get(target.stats.name):
+		if _ongoing_npc_protection[target.stats.name].is_valid():
+			yield(_ongoing_npc_protection[target.stats.name], "completed")
+		_ongoing_npc_protection[target.stats.name] = null
+
+	if smashed:
+		var smash_attack = _create_smash_attack(target)
+		$SMASHBOX.add_child(smash_attack)
+		_play_sfx("smash", 1)
+		global.start_joy_vibration(0, 1, 1, 0.4)
+		global.start_slowmo(0.5, 0.5)
+	elif target.get_type() == BattleParticipant.Type.ENEMY:
+		_play_sfx(action.skill.hitSound, 1)
+		global.start_joy_vibration(0, 0.5, 0.8, 0.2)
+	
+	var val_int := int(val)
+	var damage_num := str(val_int)
+	if adrenaline:
+		damage_num = damage_num + "!"
+	var rising_num = _create_rising_num(damage_num, target, use_flying_num)
+	#manage color
+	var color = Color.white
+	var user_color = _get_damage_color(user.get_combined_status_effect("dealt_color"), action)
+	var target_color = _get_damage_color(target.get_combined_status_effect("received_color"), action)
+	if user_color != Color.white:
+		color = user_color
+	elif target_color != Color.white:
+		color = target_color
+	rising_num.add_color_override("font_color", color)
+	
+	rising_num.run()
+
+	_do_hit_effect(action.skill.hitEffect, action.skill.hitSound, target)
+
+	var in_progress = _apply_damage(target, val_int, intended_target)	
+	if in_progress: yield(in_progress, "completed")
+
+	yield(get_tree(), "idle_frame")
+
+func _apply_passive_skill(passive_skill_actions: Dictionary, skill: Dictionary, user: BattleParticipant, target: BattleParticipant):
+		var damage_multiplier = passive_skill_actions.get("damage_multiplier", 1)
+
+		# Sound/vibration
+		if passive_skill_actions.has("sound"):
+			$AudioStreamPlayer.stream = _sound_effects[passive_skill_actions.sound]
+			$AudioStreamPlayer.play()
+		if passive_skill_actions.get("vibrate", 0):
+			global.start_joy_vibration(0, 0.3, 0.6, passive_skill_actions.vibrate)	
+
+		# Hit dialogue
+		if passive_skill_actions.has("dialogue"):
+			var item = globaldata.items.get(passive_skill_actions.get("context_item", "error"))
+			var dialog := _format_battle_text(passive_skill_actions.dialogue, user, [target], item)
+			yield($Dialoguebox.start_from_string(dialog), "completed")
+
+		# Counter attack
+		if passive_skill_actions.get("counter_multiplier", 0):
+			var counter_action = SkillAction.new(target)
+			counter_action.targets = [user]
+			counter_action.skill = skill
+			if passive_skill_actions.counter_multiplier > 0:
+				yield(_do_attack_damage(counter_action, user, passive_skill_actions.counter_multiplier), "completed")
+
+		# Add/remove items
+		if passive_skill_actions.has("remove_item"):
+			InventoryManager.removeItemFromChar(target.stats.name, passive_skill_actions.remove_item)
+		if passive_skill_actions.has("add_item"):
+			InventoryManager.addItem(target.stats.name, passive_skill_actions.add_item)
+
+		# Dialogue after
+		if passive_skill_actions.has("dialogue_after"):
+			yield($Dialoguebox.start_from_string(tr(passive_skill_actions.dialogue_after)), "completed")
+
+func _do_skill(action: SkillAction): # suspend func
 	if !action.user.isConscious():
 		action.emit_signal("done")
 		return
-	if !action.user.isEnemy:
-		play_sfx(action.skill.useSound)
-		if i == 0:
-			# LOCALIZATION Use of csv key as an id, instead of the English name
-			if action.skill.name == "ATTACK":
-				play_battle_sprite_anim(action.user, action.user.bashAnim, true)
-				if action.user.battleSprite.animationPlayer.has_animation(action.user.bashAnim):
+
+	var no_miss_targets = []
+	for target in action.targets:
+		if !_do_fail_chance(action):
+			no_miss_targets.append(target)
+	
+	# Dictionary (ally → npc)
+	var allies_protected_by_npcs = {}
+
+	match action.user.get_type():
+		BattleParticipant.Type.PLAYABLE:
+			_play_battle_sprite_anim(action.user, action.skill.userAnim)
+			if action.skill.skillType == "basic":
+				if action.user.battleSprite.animationPlayer.has_animation(action.skill.userAnim):
 					yield(action.user.battleSprite, "apply_damage")
-			else:
-				play_battle_sprite_anim(action.user, action.skill.userAnim, true)
 		
-	else:
-		if i == 0 and action.skill.damageType == DamageType.DAMAGE and action.skill.skillType == "physical":
-			action.user.battleSprite.attack()
-			yield(action.user.battleSprite, "apply_damage")
-	if i < action.targets.size():
-		yield(do_pre_hit_effect(action, i), "completed")
-		var skill = action.skill
-		var user = action.user
-		var target = action.targets[i]
-		var val = 0
-		
+		BattleParticipant.Type.ENEMY:
+			if action.skill.actionType == ActionType.DAMAGE:
+				no_miss_targets.sort_custom(self, "_sort_by_low_hp")
+				var protected_targets_count = 0
+				for npc_name in _special_npc_BPs:
+					if action.skill.damage < NPC_TAKING_HIT_THRESHOLD.get(npc_name, 0) and protected_targets_count < no_miss_targets.size():
+						var roll := randi() % 100 + 1
+						if roll <= NPC_TAKING_HIT_CHANCE.get(npc_name, 0):
+							var cur_target = no_miss_targets[protected_targets_count]
+							allies_protected_by_npcs[cur_target.stats.name] = npc_name
+							protected_targets_count += 1
+							if cur_target == action.targets[0]:
+								_ongoing_npc_protection[npc_name] = _special_npc_BPs[npc_name].battleSprite.protect_ally(cur_target)
+								yield(get_tree().create_timer(_special_npc_BPs[npc_name].battleSprite.ENEMY_ATTACK_DELAY), "timeout")
+							else:
+								_ongoing_npc_protection[npc_name] = null
+				
+				if action.skill.skillType in ["basic", "skill"]:
+					action.user.battleSprite.attack()
+					yield(action.user.battleSprite, "apply_damage")
+
+		BattleParticipant.Type.NPC:
+			if action.skill.actionType == ActionType.DAMAGE:
+				yield(action.user.battleSprite.attack_target(action.targets[0]), "completed")
+
+	for i in action.targets.size():
+		var skill := action.skill
+		var user := action.user
+		var target: BattleParticipant = action.targets[i]
+		var intended_target := target
+		var miss: bool = !(target in no_miss_targets)
+
 		if !target.isConscious() and !action.targetUnconscious:
-			action.emit_signal("done")
-			return
+			continue
+
+		if user.get_type() == BattleParticipant.Type.PLAYABLE:
+			_play_sfx(action.skill.useSound)
+
+		var pre_hit_fx_in_progress = _do_pre_hit_effect(target, skill.get("preHitEffect"))
+
+		if allies_protected_by_npcs.has(target.stats.name):
+			var npc_name = allies_protected_by_npcs[target.stats.name]
+			if !_ongoing_npc_protection[npc_name]:
+				_ongoing_npc_protection[npc_name] = _special_npc_BPs[npc_name].battleSprite.protect_ally(target)
+			target = _special_npc_BPs[npc_name]
+
+		yield(pre_hit_fx_in_progress, "completed")
+
 		# if this is healing
 		# damage skill!
-		if skill.damageType == DamageType.DAMAGE:
-			var hitRoll = randi() % 100 + 1
+		if skill.actionType == ActionType.DAMAGE:
 			# blind check!
-			if user.hasStatus(globaldata.ailments.Blinded):
-				var blindRoll = randi() % 100 + 1
-				if blindRoll <= 60:
-					hitRoll = -1
-			if hitRoll >= skill.failChance:
-				# DoPassive - On getting hit
-				for passive in target.stats.passiveSkills:
-					match(passive):
-						"reflect_beam_courage":
-							# LOCALIZATION Use of csv key as an id, instead of the English name
-							if skill.name == "PKBEAM" and skill.level == 2 and !target.isEnemy:
-								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
-								$AudioStreamPlayer.play()
-								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
-								var dialog = {}
-								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} shined a bright light!"
-								# LOCALIZATION Use of csv key for "It reflected the beam back!"
-								dialog = {
-									"0":{"text": _format_battle_text("BATTLE_MSG_REFLECT_BEAM_COURAGE_1", null, [target], globaldata.items["CourageBadge"]), "goto":"1"}, 
-									"1":{"text":tr("BATTLE_MSG_REFLECT_BEAM_COURAGE_2")}
-								}
-								$Dialoguebox.start(dialog)
-								yield($Dialoguebox, "done")
-								var temp = target
-								# flip flop the target and the user
-								target = user
-								user = temp
-						"reflect_beam":
-							# LOCALIZATION Use of csv key as an id, instead of the English name
-							if skill.name == "PKBEAM" and skill.level == 2 and !target.isEnemy:
-								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
-								$AudioStreamPlayer.play()
-								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
-								var dialog = {}
-								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} reflected the beam back!
-								dialog = {
-									"0":{"text":_format_battle_text("BATTLE_MSG_REFLECT_BEAM", null, [target], globaldata.items["FranklinBadge0.8"])}
-								}
-								$Dialoguebox.start(dialog)
-								yield($Dialoguebox, "done")
-								var temp = target
-								# flip flop the target and the user
-								target = user
-								user = temp
-						"reflect_lightning":
-							# LOCALIZATION Use of csv key as an id, instead of the English name
-							if skill.name == "PKTHUNDER":
-								$AudioStreamPlayer.stream = soundEffects["franklinbadge"]
-								$AudioStreamPlayer.play()
-								global.start_joy_vibration(0, 0.3, 0.6, 0.5)
-								var dialog = {}
-								# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-								# LOCALIZATION Use of csv key for "{t0}{target}'s {item} reflected the lightning back!"
-								dialog = {
-									"0":{"text":_format_battle_text("BATTLE_MSG_REFLECT_LIGHTNING", null, [target], globaldata.items["FranklinBadge"])} 
-								}
-								$Dialoguebox.start(dialog)
-								yield($Dialoguebox, "done")
-								var temp = target
-								# flip flop the target and the user
-								target = user
-								user = temp
+			if !miss:
+				var passive_skill_actions := target.get_passive_skill_for_attack(skill)
 				
-				var mod = 0
-				var useFlyingNum
-				var canSmash = false
-				if skill.skillType == "physical":
-					canSmash = true
-					useFlyingNum = true
-					mod = user.get_stat("offense")
-				elif skill.skillType == "psi":
-					useFlyingNum = false
-					mod = user.get_stat("iq") / 5
+				var damage_multiplier = passive_skill_actions.get("damage_multiplier", 1)
+				if damage_multiplier > 0:
+					yield(_do_attack_damage(action, target, damage_multiplier, intended_target), "completed")
 				
-				var defense = target.get_stat("defense")
-				if target.defending:
-					defense *= 2.0
+				var in_progress = _apply_passive_skill(passive_skill_actions, skill, user, target)
+				if in_progress: yield(in_progress, "completed")
+
+				# Status ailment
+				if damage_multiplier > 0:
+					for status in skill.statusEffects:
+						yield(_try_afflict_status(status.name, status.chance, target), "completed")
 				
-				# check for smash attack
-				
-				var smashRoll = randi() % 100 + 1
-				var smashed = false
-				var adrenaline = false
-				# smash chance is either 5/100 or guts/5
-				if !action.user.isEnemy:
-					if action.user.stats.hp <= 0:
-						adrenaline = true
-					if "Slingshot" in user.stats.equipment.weapon:
-						canSmash = false
-				
-				
-				if smashRoll <= max(5, floor(user.get_stat("guts")/5)) and user.get_stat("guts") > 0 and canSmash:
-					# SMAAAAAAASH
-					smashed = true
-					val = max(1, (2 * (skill.damage + mod - (defense/2.0))))
-				else:
-					val = max(1, skill.damage + mod - (defense/2.0))
-					# apply variance
-					if adrenaline:
-						val *= 1.5
-					val = max(1, floor(val + (randf() * skill.variance) - skill.variance/2.0))
-				
-				
-				apply_damage(target, val)
-				
-				if smashed:
-					var smashAttack = create_smash_attack(target)
-					$SMASHBOX.add_child(smashAttack)
-					play_sfx("smash", 1)
-					global.start_joy_vibration(0, 1, 1, 0.4)
-					global.start_slowmo(0.5, 0.5)
-				elif target.isEnemy:
-					play_sfx(action.skill.hitSound, 1)
-					global.start_joy_vibration(0, 0.5, 0.8, 0.2)
-				
-				var damageNum = str(val)
-				if adrenaline:
-					damageNum = damageNum + "!"
-				var risingNum = create_rising_num(damageNum, target, useFlyingNum)
-				risingNum.run()
-				do_hit_effect(action, i)
-				
-				for status in skill.statusEffects:
-					yield(try_status(status.name, status.chance, target), "completed")
-				
-				# DoPassive - On attack did hit
-				for passive in user.stats.passiveSkills:
-					match(passive):
-						"reflect_beam_courage":
-							if not user.isEnemy:
-								# LOCALIZATION Use of csv key as an id, instead of the English name
-								if skill.name == "PKBEAM" and skill.level == 2:
-									yield (courage_badge_swap(user), "completed")
-			else :
-				var risingNum = create_rising_num("Miss", target)
+			else: # if miss:
+				var risingNum := _create_rising_num("Miss", target)
 				risingNum.run()
 				
 				target.battleSprite.dodge()
-				if target.isEnemy:
-					$AudioStreamPlayer.stream = soundEffects["miss"]
-					$AudioStreamPlayer.play()
+				if target.get_type() == BattleParticipant.Type.ENEMY:
+					$AudioStreamPlayer.stream = _sound_effects["miss"]
 				else:
-					$AudioStreamPlayer.stream = soundEffects["dodge"]
-					$AudioStreamPlayer.play()
+					$AudioStreamPlayer.stream = _sound_effects["dodge"]
+				$AudioStreamPlayer.play()
 				
 		# for healin skills
-		elif skill.damageType == DamageType.HEALING:
-			val = skill.damage + int(user.get_stat("iq") / 5)
+		elif skill.actionType == ActionType.HEALING:
+			var val: int = skill.damage + user.get_stat("iq") / 5
 			#apply healing with variance!
-			val = floor(val + (randf() * skill.variance) - skill.variance/2.0)
-			apply_restore_hp(target, val, action.targetUnconscious)
+			val += (randf() * skill.variance) - (skill.variance / 2)
+			_apply_restore_hp(target, val, action.targetUnconscious)
 			global.start_joy_vibration(0, 0.3, 0, 0.3)
-			print(target.stats.nickname, " is healed by ", str(val), "!")
-			var risingNum = create_rising_num(str(val), target)
+			print("%s is healed by %s!" % [target.get_name(), val])
+			var risingNum := _create_rising_num(str(val), target)
 			risingNum.add_color_override("font_color", Color("00ee44"))
 			risingNum.run()
-			do_hit_effect(action, i)
+			_do_hit_effect(action.skill.hitEffect, action.skill.hitSound, target)
 		# for non hp stuff
 		else:
-			#free space~!! dumbass lloyd shit go here for now
-			for status in skill.statusEffects:
-				yield (try_status(status.name, status.chance, target), "completed")
-			# LOCALIZATION Use of csv key as an id, instead of the English name
-			if action.skill.name == "SPY":
-				var dialog = {}
-				if "description" in action.targets[0].stats:
-					dialog = {
-						# LOCALIZATION Use of csv key for "Name: "
-						# LOCALIZATION Code change: added tr()
-						"0":{"text":tr("BATTLE_MSG_SPY_NAME") + action.targets[0].stats.nickname, "goto":"1"}, 
-						"1":{"text":tr(action.targets[0].stats.description)}, 
-					}
-				else :
-					# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-					# LOCALIZATION Use of csv key for "{n0}{name} could not gather any information from the enemy!"
-					dialog = {
-						"0":{"text":_format_battle_text("BATTLE_MSG_SPY_FAILED", action.user)}
-					}
-				$Dialoguebox.start(dialog)
-				yield ($Dialoguebox, "done")
-			# LOCALIZATION Use of csv key as an id, instead of the English name
-			elif action.skill.name == "ESCAPECRUMBS":
-				if canRun:
-					flee()
-				else :
-					# LOCALIZATION Use of csv key for "Couldn't run!"
-					var dialog = {
-						"0":{"text":tr("BATTLE_MSG_FLEE_FAILED")}
-					}
-					$Dialoguebox.start(dialog)
-					yield($Dialoguebox, "done")
-			elif "allies" in action.skill and !action.skill.allies.empty() and enemyBPs.size() < maxEnemyCount:
-				# lookin' for allies
-				var allWeights := 0
-				for ally in action.skill.allies:
-					allWeights += ally.weight
-				var j = rand_range(0.0, float(allWeights))
-				# find where the random number landed
-				var chosenAlly = ""
-				var currentWeight = 0
-				for ally in action.skill.allies:
-					currentWeight += ally.weight
-					if j < currentWeight:
-						chosenAlly = ally.ally
-						break
-				if chosenAlly != "":
-					var enemyBP = add_enemy(chosenAlly, null)
-					add_enemy_battlesprite(enemyBP, false)
-					enemyBP.battleSprite.show()
-					newEnemies.append(enemyBP)
-					bufferReorganize = true
+			if !miss:
+				#free space~!! dumbass lloyd shit go here for now
+				for status in skill.statusEffects:
+					yield(_try_afflict_status(status.name, status.chance, target, true), "completed")
+				if action.skill == globaldata.skills.spy:
+					var dialog: Array
+					if "description" in action.targets[0].stats:
+						dialog = [
+							tr("BATTLE_MSG_SPY_NAME") + action.targets[0].get_name(),
+							tr(action.targets[0].stats.description)
+						]
+					else :
+						dialog = [_format_battle_text("BATTLE_MSG_SPY_FAILED", action.user)]
+					yield($Dialoguebox.start_from_array(dialog), "completed")
+				elif action.skill == globaldata.skills.escapeCrumbs:
+					if _can_run:
+						_flee()
+					else :
+						yield($Dialoguebox.start_from_string(tr("BATTLE_MSG_FLEE_FAILED")), "completed")
+				elif "allies" in action.skill and !action.skill.allies.empty() and _enemy_BPs.size() < MAX_ENEMY_COUNT:
+					# lookin' for allies
+					var allWeights := 0
+					for ally in action.skill.allies:
+						allWeights += ally.weight
+					var j = rand_range(0.0, float(allWeights))
+					# find where the random number landed
+					var chosenAlly = ""
+					var currentWeight = 0
+					for ally in action.skill.allies:
+						currentWeight += ally.weight
+						if j < currentWeight:
+							chosenAlly = ally.ally
+							break
+					if chosenAlly != "":
+						var enemyBP = _add_enemy(chosenAlly, null)
+						_add_enemy_battlesprite(enemyBP, false)
+						enemyBP.battleSprite.show()
+						_new_enemies.append(enemyBP)
+						_buffer_reorganize = true
+			else:
+				if action.skill.has("failDialog"):
+					var dialog = _format_battle_text(action.skill.failDialog, action.user, action.targets, action.skill)
+					yield($Dialoguebox.start_from_string(dialog), "completed")
 		
 		if skill.statusHeals != []:
 			if skill.statusAmountHealed > 0:
-				for i in skill.statusAmountHealed:
+				for j in skill.statusAmountHealed:
 					for status in target.stats.status:
-						if globaldata.status_enum_to_name(status) in skill.statusHeals:
-							yield(heal_status(globaldata.status_enum_to_name(status), target), "completed")
+						if status.ailment in skill.statusHeals:
+							yield(_heal_status(status.ailment, target), "completed")
 							break
 			elif skill.statusAmountHealed == -1:
 				for status in skill.statusHeals:
-					yield(heal_status(status, target), "completed")
+					yield(_heal_status(status.ailment, target), "completed")
 				
-		if "statMods" in skill:
-			for stat in skill.statMods:
-				yield(mod_stat(stat, skill.statMods[stat], target), "completed")
-				if !active:
-					return
-		yield(get_tree().create_timer(.175), "timeout")
-		if !active:
-			return
-		do_skill(action, i + 1)
-	else:
-		#check if we buffered any player knockouts
-		if !bufferedPlayerDefeat.empty():
-			for partyBp in bufferedPlayerDefeat:
-				check_player_defeated(partyBp)
-			bufferedPlayerDefeat.clear()
-		if !active:
-			return
-		#check for status effect damage
-		if action.user.hasStatus(globaldata.ailments.Burned):
-			yield(get_tree().create_timer(.2), "timeout")
-			if !active:
+		for stat in skill.get("statMods", {}):
+			yield(_mod_stat(stat, skill.statMods[stat], target), "completed")
+			if !_active:
 				return
-			var val = randi() % 6 + 3
-			var risingNum = create_rising_num(str(val), action.user, true)
-			risingNum.add_color_override("font_color", Color.red * .9)
-			risingNum.run()
-			yield(get_tree().create_timer(.2), "timeout")
-			if !active:
-				return
-		else:
-			yield(get_tree().create_timer(.4), "timeout")
-			if !active:
-				return
+		if !miss:
+			var in_progress = _do_status_transmission(action.user, target, action)	
+			if in_progress: yield(in_progress, "completed")
 		
-		if !action.user.isEnemy and !action.user.defending:
-			action.user.battleSprite.hideAway()
-			#if action.skill.has("userHideAnim") and action.skill.userHideAnim != "":
-			#	action.user.battleSprite.hideAway(action.skill.userHideAnim, true)
-			#else:
-			#	action.user.battleSprite.hideAway("lookIntoYourSoul", true)
-		action.emit_signal("done")
-
-func darken_bg():
-	$BGDarkinator/AnimationPlayer.play("darken")
-
-func undarken_bg():
-	$BGDarkinator/AnimationPlayer.play("undarken")
-
-func start_joy_vibration(device = 0, weak_magnitude = 0.0, strong_magnitude = 0.0, duration = 0):
-	global.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
-
-func do_screen_effect(action):
-	if action.skill.useSound and action.skill.useSound in soundEffects:
-		$AudioStreamPlayer.stream = soundEffects[action.skill.useSound]
-		$AudioStreamPlayer.play()
-	
-	if !action.user.isEnemy and action.skill.has("screenEffect"): 
-		if $ScreenEffect/AnimationPlayer.has_animation(action.skill.screenEffect):
-			$ScreenEffect/AnimationPlayer.play(action.skill.screenEffect)
-		else:
-			do_skill(action)
+			in_progress = _do_status_hit_heal(target, action)
+			if in_progress: yield(in_progress, "completed")
+		yield(get_tree().create_timer(.175), "timeout")
+		if !_active:
 			return
-	elif action.user.isEnemy and action.skill.has("enemyScreenEffect"):
-		if $ScreenEffect/AnimationPlayer.has_animation(action.skill.enemyScreenEffect):
-			$ScreenEffect/AnimationPlayer.play(action.skill.enemyScreenEffect)
-		else:
-			do_skill(action)
-			return
-	else:
-		do_skill(action)
+
+	#check if we buffered any player knockouts
+	if !_buffered_player_defeat.empty():
+		for partyBp in _buffered_player_defeat:
+			_check_player_defeated(partyBp)
+		_buffered_player_defeat.clear()
+	if !_active:
+		return
+	#check for status effect damage
+	yield(get_tree().create_timer(.4), "timeout")
+	if !_active:
 		return
 	
-	darken_bg()
-	yield($ScreenEffect/AnimationPlayer, "animation_finished")
-	do_skill(action)
-	undarken_bg()
+	if action.user.get_type() == BattleParticipant.Type.PLAYABLE and !action.user.defending:
+		action.user.battleSprite.hideAway()
+		#if action.skill.has("userHideAnim") and action.skill.userHideAnim != "":
+		#	action.user.battleSprite.hideAway(action.skill.userHideAnim, true)
+		#else:
+		#	action.user.battleSprite.hideAway("lookIntoYourSoul", true)
+	action.emit_signal("done")
+
+func _sort_by_low_hp(bp1: BattleParticipant, bp2: BattleParticipant):
+	return bp1.partyInfo.HP < bp2.partyInfo.HP
+
+func _darken_bg():
+	$BGDarkinator/AnimationPlayer.play("darken")
+
+func _undarken_bg():
+	$BGDarkinator/AnimationPlayer.play("undarken")
+
+func _start_joy_vibration(device := 0, weak_magnitude := 0.0, strong_magnitude := 0.0, duration := 0):
+	global.start_joy_vibration(device, weak_magnitude, strong_magnitude, duration)
+
+func _do_skill_with_screen_effect(action: SkillAction): # suspend func
+	if _sound_effects.has(action.skill.useSound):
+		$AudioStreamPlayer.stream = _sound_effects[action.skill.useSound]
+		$AudioStreamPlayer.play()
 	
+	var started_effect := false
+	if !action.user.get_type() == BattleParticipant.Type.ENEMY and action.skill.has("screenEffect"): 
+		if $ScreenEffect/AnimationPlayer.has_animation(action.skill.screenEffect):
+			$ScreenEffect/AnimationPlayer.play(action.skill.screenEffect)
+			started_effect = true
+	elif action.user.get_type() == BattleParticipant.Type.ENEMY and action.skill.has("enemyScreenEffect"):
+		if $ScreenEffect/AnimationPlayer.has_animation(action.skill.enemyScreenEffect):
+			$ScreenEffect/AnimationPlayer.play(action.skill.enemyScreenEffect)
+			started_effect = true
 
+	if started_effect:	
+		_darken_bg()
+		yield($ScreenEffect/AnimationPlayer, "animation_finished")
+	_do_skill(action)
+	if started_effect:
+		_undarken_bg()
 
-func do_pre_hit_effect(action, idx):
-	if !action.skill.has("preHitEffect") or !$PreHitEffect/AnimationPlayer.has_animation(action.skill.preHitEffect):
+func _do_pre_hit_effect(target:BattleParticipant, effect): # suspend func
+	if !effect or !$PreHitEffect/AnimationPlayer.has_animation(effect):
 		yield(get_tree(), "idle_frame")
 		return
 	
 	#this is the stupidist way to find our target's ui in the scene, but we living it up out here
-	var targetPos = Vector2()
-	# first, check if we are a party member
-	for i in range(partyBPs.size()):
-		if partyBPs[i] == action.targets[idx]:
-			targetPos = $PartyInfo.get_child(i).rect_global_position
-			targetPos += $PartyInfo.get_child(i).rect_size/2
-	# in case its an enemy we are looking for, we use battleId instead
-	if targetPos == Vector2.ZERO:
-		var id = action.targets[idx].id - partyBPs.size()
-		targetPos = action.targets[idx].battleSprite.rect_global_position + action.targets[idx].battleSprite.rect_size/2
+	var targetPos = target.get_position(true)
 	
-	darken_bg()
-	$PreHitEffect/AnimationPlayer.play(action.skill.preHitEffect)
+	_darken_bg()
+	$PreHitEffect/AnimationPlayer.play(effect)
 	$PreHitEffect/AnimationPlayer.advance(0)
 	$PreHitEffect.rect_position = targetPos - $PreHitEffect.rect_size/2
 	yield($PreHitEffect/AnimationPlayer, "animation_finished")
-	undarken_bg()
+	_undarken_bg()
 
-func do_hit_effect(action, idx):
-	if !action.skill.has("hitEffect") or !$HitEffect/AnimationPlayer.has_animation(action.skill.hitEffect):
-		yield(get_tree(), "idle_frame")
+func _do_hit_effect(hit_effect: String, hit_sound: String, target: BattleParticipant):
+	if !hit_effect or !$HitEffect/AnimationPlayer.has_animation(hit_effect):
 		return
 	
 	#this is the stupidist way to find our target's ui in the scene, but we living it up out here
-	var targetPos = Vector2()
-	# first, check if we are a party member
-	for i in range(partyBPs.size()):
-		if partyBPs[i] == action.targets[idx]:
-			targetPos = $PartyInfo.get_child(i).rect_global_position
-			targetPos += $PartyInfo.get_child(i).rect_size/2
-	# in case its an enemy we are looking for, we use battleId instead
-	if targetPos == Vector2.ZERO:
-		var id = action.targets[idx].id - partyBPs.size()
-		targetPos = action.targets[idx].battleSprite.rect_global_position + action.targets[idx].battleSprite.rect_size/2
+	var targetPos = target.get_position(true)
+
+	if _sound_effects.has(hit_sound):
+		$AudioStreamPlayer.stream = _sound_effects[hit_sound]
 	
-	if action.skill.hitSound and action.skill.hitSound in soundEffects:
-		$AudioStreamPlayer.stream = soundEffects[action.skill.hitSound]
-	
-	$HitEffect/AnimationPlayer.play(action.skill.hitEffect)
+	$HitEffect/AnimationPlayer.play(hit_effect)
 	$HitEffect/AnimationPlayer.advance(0)
 	$HitEffect.rect_position = targetPos - $HitEffect.rect_size/2
 
 #mainly used for stat buffs/debuffs
-func do_hit_effect_by_anim(anim, target):
+func _do_hit_effect_by_anim(anim:String, target: BattleParticipant):
 	if !$HitEffect/AnimationPlayer.has_animation(anim):
-		yield(get_tree(), "idle_frame")
 		return
 	
-	var targetPos = Vector2()
-	# first, check if we are a party member
-	targetPos = target.battleSprite.rect_global_position + target.battleSprite.rect_size/2
+	var targetPos = target.get_position()
 	
 	$HitEffect/AnimationPlayer.play(anim)
 	$HitEffect/AnimationPlayer.advance(0)
 	$HitEffect.rect_position = targetPos - $HitEffect.rect_size/2
 
-func do_guard(action):
+func _do_guard(action: Action):
 	action.user.defending = true
-	if !is_connected("roundDone", self, "undo_guard"):
-		connect("roundDone", self, "undo_guard", [], CONNECT_ONESHOT)
+	if !is_connected("round_done", self, "_undo_guard"):
+		connect("round_done", self, "_undo_guard", [], CONNECT_ONESHOT)
 	action.emit_signal("done")
 
-func undo_guard():
-	for partyMember in partyBPs:
+func _undo_guard(foo):
+	for partyMember in _party_BPs:
 		if partyMember.defending:
 			partyMember.defending = false
 			partyMember.battleSprite.hideAway()
 
-func do_item(action):
+func _do_item(action: Action): # suspend func
 	if !action.user.isConscious():
 		action.emit_signal("done")
 		return
-	retarget_action(action)
+	yield(_retarget_action(action), "completed")
 	var item = action.item
 	for target in action.targets:
 		if target.isConscious() and !action.targetUnconscious:
 			if item.HPrecover > 0:
-				play_sfx("healHP", 1)
-				apply_restore_hp(target, item.HPrecover, action.targetUnconscious)
-				var risingNum = create_rising_num(str(item.HPrecover), target)
+				_play_sfx("healHP", 1)
+				_apply_restore_hp(target, item.HPrecover, action.targetUnconscious)
+				var risingNum = _create_rising_num(str(item.HPrecover), target)
 				risingNum.add_color_override("font_color", Color("00ee44"))
 				risingNum.run()
 			if item.PPrecover > 0:
-				play_sfx("healPP", 1)
-				apply_restore_pp(target, item.PPrecover, action.targetUnconscious)
-				var risingNum = create_rising_num(str(item.PPrecover), target)
+				_play_sfx("healPP", 1)
+				_apply_restore_pp(target, item.PPrecover, action.targetUnconscious)
+				var risingNum = _create_rising_num(str(item.PPrecover), target)
 				risingNum.add_color_override("font_color", Color.aqua)
 				risingNum.run()
 			if "status_heals" in item:
-				play_sfx("healstatus", 1)
+				_play_sfx("healstatus", 1)
 				for status in item.status_heals:
-					yield(heal_status(status, target), "completed")
-					if !active:
+					yield(_heal_status(status, target), "completed")
+					if !_active:
 						return
 			yield(get_tree().create_timer(.15), "timeout")
-			if !active:
+			if !_active:
 				return
-	if !action.user.isEnemy:
+	if action.user.get_type() == BattleParticipant.Type.PLAYABLE:
 		action.user.battleSprite.hideAway()
 	action.emit_signal("done")
 
-func apply_restore_hp(target, val, target_unconscious = false):
+func _apply_restore_hp(target: BattleParticipant, val: int, target_unconscious = false):
 	if !target.isConscious() and !target_unconscious:
 		return
 	target.stats.hp += val
 	target.stats.hp = min(target.stats.hp, target.get_stat("maxhp"))
-	if !target.isEnemy:
+	if target.get_type() == BattleParticipant.Type.PLAYABLE:
 		target.partyInfo.setHP(target.stats.hp)
 
-func apply_restore_pp(target, val, target_unconscious = false):
+func _apply_restore_pp(target: BattleParticipant, val: int, target_unconscious = false):
 	if !target.isConscious() and !target_unconscious:
 		return
 	target.stats.pp += val
 	target.stats.pp = min(target.stats.pp, target.get_stat("maxpp"))
-	if !target.isEnemy:
+	if target.get_type() == BattleParticipant.Type.PLAYABLE:
 		target.partyInfo.setPP(target.stats.pp)
 
-func apply_damage(target, val):
+func _apply_damage(target: BattleParticipant, val: int, intended_target: BattleParticipant = null): # suspend func
 	if !target.isConscious():
 		return
 	var oldHP = target.stats.hp
 	target.stats.hp -= val
 	target.stats.hp = max(target.stats.hp, 0)
-	if !target.isEnemy:
-		target.partyInfo.setHP(target.stats.hp)
-		if target.defending:
-			play_sfx("hurt2")
-			target.battleSprite.play("guard")
-			global.start_joy_vibration(0, 0.5, 0.5, 0.2)
-		elif val > (1.0/16.0) * target.get_stat("maxhp"):
-			global.start_joy_vibration(0, 0.8, 0.8, 0.3)
-			play_sfx("hurt2")
-			target.battleSprite.bounceUpHit(min(val / (target.get_stat("maxhp") / 2), 3))
-			
-			target.partyInfo.quake(.1, 1.5)
-		else:
-			global.start_joy_vibration(0, 0.5, 0.5, 0.2)
-			play_sfx("hurt1")
-			target.partyInfo.quake(.1)
-			target.battleSprite.shake(val / (target.get_stat("maxhp") / 2))
-		if target.hasStatus(globaldata.ailments.Sleeping):
-			var roll = randi() % 100 + 1
-			if roll <= 25:
-				yield(heal_status("Sleeping", target), "completed")
-		if target.stats.hp <= 0:
-			play_sfx("mortaldamage")
-			global.start_joy_vibration(0, 1, 1, 0.4)
-			if oldHP > 0:
-				# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-				# LOCALIZATION Use of csv key for "{t0}{target} took mortal damage!"
-				var dialog = {
-					"0":{"text":_format_battle_text("BATTLE_MSG_MORTAL_DAMAGE", null, [target])}
-				}
-				$Dialoguebox.start(dialog)
-				yield($Dialoguebox, "done")
-		
-	else:
-		if target.stats.hp == 0:
-			# DoPassive - On enemy defeated
-			if currentAction != null:
-				for passive in currentAction.user.stats.passiveSkills:
-					match(passive):
-						_:
-							pass
-			target.defeat()
-			enemyBPs.erase(target)
-			if !enemyBPs.empty():
-				bufferReorganize = true
-		else:
-			target.battleSprite.hit()
-			if target.hasStatus(globaldata.ailments.Sleeping):
-				var roll = randi() % 100 + 1
-				if roll <= 25:
-					yield(heal_status("Sleeping", target), "completed")
+	match target.get_type():
+		BattleParticipant.Type.PLAYABLE:
+			target.partyInfo.setHP(target.stats.hp)
+			if target.defending:
+				_play_sfx("hurt2")
+				target.battleSprite.play("guard")
+				global.start_joy_vibration(0, 0.5, 0.5, 0.2)
+			elif val > (1.0/16.0) * target.get_stat("maxhp"):
+				global.start_joy_vibration(0, 0.8, 0.8, 0.3)
+				_play_sfx("hurt2")
+				target.battleSprite.bounceUpHit(min(val / (target.get_stat("maxhp") / 2), 3))
+				
+				target.partyInfo.quake(.1, 1.5)
+			else:
+				global.start_joy_vibration(0, 0.5, 0.5, 0.2)
+				_play_sfx("hurt1")
+				target.partyInfo.quake(.1)
+				target.battleSprite.shake(val / (target.get_stat("maxhp") / 2))
+			if target.stats.hp <= 0:
+				_play_sfx("mortaldamage")
+				global.start_joy_vibration(0, 1, 1, 0.4)
+				if oldHP > 0:
+					var dialog = _format_battle_text("BATTLE_MSG_MORTAL_DAMAGE", null, [target])
+					yield($Dialoguebox.start_from_string(dialog), "completed")
+		BattleParticipant.Type.ENEMY:
+			if target.stats.hp == 0:
+				# TODO Passive skill on enemy defeated?
+				if target.stats.has("swansong"):
+					var on_dying_skill = SkillAction.new(target)
+					on_dying_skill.skill = globaldata.skills[target.stats.swansong]
+					call_deferred("_start_action", on_dying_skill)
+					yield(on_dying_skill, "done")
+				target.defeat()
+				if _show_intro_outro:
+					yield(get_tree().create_timer(0.5), "timeout")
+					var dialog = target.stats.get("outro_message", "{n0}{name} became tame!")
+					yield($Dialoguebox.start_from_string(_format_battle_text(dialog, target)), "completed")
+			else:
+				target.battleSprite.hit()
+		BattleParticipant.Type.NPC:
+			if intended_target:
+				$Dialoguebox.append(_format_battle_text("BATTLE_MSG_NPC_PROTECTION", target, [intended_target]), _sound_effects["hurt1"].resource_path)
+			else:
+				_play_sfx("hurt1")
+			if target.stats.hp <= 0:
+				target.defeat()
+			yield($Dialoguebox.start_from_appended(), "completed")
 
-func drain_pp(target, drainer, val):
+func _drain_pp(target: BattleParticipant, drainer: BattleParticipant, val):
 	if !target.isConscious():
 		return
 	#remove pp from target
@@ -1925,7 +1960,7 @@ func drain_pp(target, drainer, val):
 	target.stats.pp -= val
 	target.stats.pp = max(target.stats.pp, 0)
 	
-	if !target.isEnemy:
+	if target.get_type() == BattleParticipant.Type.PLAYABLE:
 		target.partyInfo.setPP(target.stats.pp)
 	#give pp to drainer
 	if drainer != null:
@@ -1933,315 +1968,269 @@ func drain_pp(target, drainer, val):
 		if difference < 0:
 			difference = 0
 		drainer.stats.pp += difference
-		create_rising_num(difference, drainer)
+		_create_rising_num(difference, drainer)
 	
-		if !drainer.isEnemy:
+		if drainer.get_type() == BattleParticipant.Type.PLAYABLE:
 			drainer.partyInfo.setPP(drainer.stats.pp)
 
-func try_status(status_name, chance, target):
+func _try_afflict_status(status: String, chance: float, target: BattleParticipant, status_skill:= false): # suspend func
 	if !target.isConscious():
 		yield(get_tree(), "idle_frame")
 		return
-	var status = globaldata.status_name_to_enum(status_name)
-	if status == -1:
-		push_warning("Invalid status effect !" + status_name + " skipping...")
+	if !StatusManager.does_ailment_exist(status):
+		push_warning("Invalid status effect !" + status + " skipping...")
 		yield(get_tree(), "idle_frame")
 		return
-	if target.hasStatus(status):
-		yield(get_tree(), "idle_frame")
-		return
+
+	chance *= target.get_vulnerab_multiplier(status)
+	
 	var r = randi() % 100 + 1
 	if r <= chance:
-		play_sfx("statusafflicted")
-		target.setStatus(status, true)
-		do_status(target, status, true)
-
-		# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-		# LOCALIZATION Use of csv keys for all status ailments messages
-		var dialogKey = "BATTLE_MSG_STATUS_" + status_name.to_upper()
-		var dialog = {
-			"0":{"text": _format_battle_text(dialogKey, null, [target])}
-		}		
-		$Dialoguebox.start(dialog)
-		yield($Dialoguebox, "done")
+		yield(_afflict_status(status, target, status_skill), "completed")
 	else:
 		yield(get_tree(), "idle_frame")
 		return
 
-func heal_status(status_name, target):
-	var status = globaldata.status_name_to_enum(status_name)
-	if status == -1:
-		push_warning("Invalid status effect " + status_name + " skipping...")
+func _afflict_status(status: String, target: BattleParticipant, status_skill:= false): # suspend func
+	var info = StatusManager.get_ailment_info(status)
+	if !StatusManager.does_ailment_exist(status):
+		push_warning("Invalid status effect" + status + "skipping...")
 		yield(get_tree(), "idle_frame")
 		return
-	if !target.hasStatus(status):
+	if target.has_status(status) and info.get("ignore_reinflict", false):
+		if status_skill:
+			var dialog = _format_battle_text("jdksañfjskfdafkds", null, [target]) # It had no effect on [target]!
+			yield($Dialoguebox.start_from_string(dialog), "completed")
+			return
+		else:
+			yield(get_tree(), "idle_frame")
+			return
+	_play_sfx("statusafflicted")
+	target.set_status(status, true)
+
+	var dialogKey = StatusManager.get_status_message(status, "afflict_battle")
+	var dialog = _format_battle_text(dialogKey, null, [target])
+	yield($Dialoguebox.start_from_string(dialog), "completed")
+
+func _heal_status(status: String, target: BattleParticipant): # suspend func
+	if !StatusManager.does_ailment_exist(status):
+		push_warning("Invalid status effect " + status + " skipping...")
 		yield(get_tree(), "idle_frame")
 		return
-	target.setStatus(status, false)
-	do_status(target, status, false)
+	if !target.has_status(status):
+		yield(get_tree(), "idle_frame")
+		return
+	target.set_status(status, false)
 
-	# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-	# LOCALIZATION Use of csv keys for "{t0}{target} has been cured of %s!"
-	var dialogKey = "BATTLE_MSG_HEAL_STATUS_" + status_name.to_upper()
-	var dialog = {
-		"0":{"text": _format_battle_text(dialogKey, null, [target])}
-	}
-	
-	$Dialoguebox.start(dialog)
-	yield($Dialoguebox, "done")
+	var dialogKey = StatusManager.get_status_message(status, "heal_battle")
+	var dialog = _format_battle_text(dialogKey, null, [target])
+	yield($Dialoguebox.start_from_string(dialog), "completed")
 
-func do_status(bp, status, on):
-#	print("Status is ", status_name)
-	# any init or cleanup happens here for statuses
-	match(status):
-		globaldata.ailments.Poisoned:
-			if !bp.isEnemy:
-				if on:
-					bp.partyInfo.decScrollSpeedMod = 1.5
-					bp.partyInfo.set_poisoned()
-				else:
-					bp.partyInfo.decScrollSpeedMod = 1.0
-					bp.partyInfo.set_cured_poison()
-
-func mod_stat(stat, amt, target):
-	var dialog = {}
+func _mod_stat(stat:String, amt:int, target: BattleParticipant): # suspend func
+	var cur_stat_mod = target.get_stat_mod(stat)
 	# Add smaller amount if it’s close to the limit
-	if target.statMods[stat] < 6 and target.statMods[stat] + amt > 6:
-		amt = 6 - target.statMods[stat]
-	elif target.statMods[stat] > -6 and target.statMods[stat] + amt < -6:
-		amt = -6 - target.statMods[stat]
+	if cur_stat_mod < 6 and cur_stat_mod + amt > 6:
+		amt = 6 - cur_stat_mod
+	elif cur_stat_mod > -6 and cur_stat_mod + amt < -6:
+		amt = -6 - cur_stat_mod
 	
-	if abs(target.statMods[stat] + amt) <= 6:
-		#if amt + target.statMods[stat] >= 6:
-		#	amt = target.statMods[stat] + amt - 6
-		var statRaise = max(3, floor(target.get_base_stat(stat) * stat_mod_step)) * amt
+	var dialog: String
+	if abs(cur_stat_mod + amt) <= 6:
+		var statRaise = amt * max(3, floor(target.get_base_stat(stat) * STAT_MOD_STEP))
 		if sign(amt) > 0:
-			play_sfx("statup", 1)
+			_play_sfx("statup", 1)
 			global.start_joy_vibration(0, 0.3, 0, 0.2)
 			if stat in ["offense", "defense", "speed"]:
-				do_hit_effect_by_anim("stat_" + stat + "_up", target)
-			dialog = {
-				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_UP", null, [target], null, str(statRaise), globaldata.get_inline_stat(stat))}
-			}
+				_do_hit_effect_by_anim("stat_" + stat + "_up", target)
+			dialog = _format_battle_text("BATTLE_MSG_STATS_UP", null, [target], null, statRaise, stat)
 		elif sign(amt) < 0:
-			play_sfx("statdown", 1)
+			_play_sfx("statdown", 1)
 			global.start_joy_vibration(0, 0.3, 0, 0.2)
 			if stat in ["offense", "defense", "speed"]:
-				do_hit_effect_by_anim("stat_" + stat + "_down", target)
-			dialog = {
-				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_DOWN", null, [target], null, str(abs(statRaise)), globaldata.get_inline_stat(stat))}
-			}
+				_do_hit_effect_by_anim("stat_" + stat + "_down", target)
+			dialog = _format_battle_text("BATTLE_MSG_STATS_DOWN", null, [target], null, -statRaise, stat)
 		target.add_stat_mod(stat, amt)
-	elif target.statMods[stat] + amt > 6:
-		dialog = {
-				"0": {"text": _format_battle_text("BATTLE_MSG_STATS_UP_MAX", null, [target], null, null, globaldata.get_inline_stat(stat))}
-			}
+	elif cur_stat_mod + amt > 6:
+		dialog = _format_battle_text("BATTLE_MSG_STATS_UP_MAX", null, [target], null, 0, stat)
 			
-	elif target.statMods[stat] + amt <= -6:
-		dialog = {
-			"0": {"text":_format_battle_text("BATTLE_MSG_STATS_DOWN_MAX", null, [target], null, null, globaldata.get_inline_stat(stat))}
-		}
-	if dialog != {}:
-		$Dialoguebox.start(dialog)
-		yield($Dialoguebox, "done")
+	elif cur_stat_mod + amt <= -6:
+		dialog = _format_battle_text("BATTLE_MSG_STATS_DOWN_MAX", null, [target], null, 0, stat)
+	
+	if dialog:
+		yield($Dialoguebox.start_from_string(dialog), "completed")
 	else:
 		yield(get_tree(), "idle_frame")
 
-func sort_by_priority(a, b):
+func _sort_by_priority(a: Action, b: Action) -> bool:
 	if a.priority > b.priority:
 		return true
 	# when in the same priority, speed matters
 	elif a.priority == b.priority:
-		return sort_by_speed(a, b)
+		return _sort_by_speed(a, b)
 	else:
 		return false
 
-func sort_by_speed(a, b):
+func _sort_by_speed(a: Action, b: Action) -> bool:
 	if a.user.get_stat("speed") > b.user.get_stat("speed"):
 		return true
 	# we dont randomize if both speeds are the same, godot doesn't like that
 	else:
 		return false
 
-func create_rising_num(text, who, flyingNum = false):
-	var risingNum
+func _create_rising_num(text: String, who: BattleParticipant, flyingNum := false) -> Label:
+	var risingNum: Label
 	if !flyingNum:
-		risingNum = risingNumTscn.instance()
+		risingNum = RisingNumTscn.instance()
 	else:
-		risingNum = flyingNumTscn.instance()
+		risingNum = FlyingNumTscn.instance()
 	risingNum.text = text
 	add_child(risingNum)
-	var targetPos = Vector2()
-	# first, check if we are a party member
-	if !who.isEnemy:
-		targetPos = who.partyInfo.rect_global_position
-		targetPos.x += who.partyInfo.rect_size.x/2
-	else:
-		# in case its an enemy we are looking for, we use battleId instead
-		targetPos = who.battleSprite.rect_global_position + who.battleSprite.rect_size/2
+	var targetPos = who.get_position(true, true)
 	targetPos -= risingNum.rect_size/2
 	risingNum.rect_position = targetPos
 	return risingNum
 
-func create_smash_attack(who):
+func _create_smash_attack(target: BattleParticipant) -> Sprite:
 	$BGDarkinator/AnimationPlayer.play("smash")
-	var smashAttack = smashAttackTscn.instance()
-	var targetPos = Vector2()
-	# first, check if we are a party member
-	if !who.isEnemy:
-		targetPos = who.partyInfo.rect_global_position
-		targetPos.x += who.partyInfo.rect_size.x/2
-	else:
-		# in case its an enemy we are looking for, we calc it differently
-		targetPos = who.battleSprite.rect_global_position + who.battleSprite.rect_size/2
-	# make the smash a little higher above where the rising num will be 
+	var smashAttack = SmashAttackTscn.instance()
+	var targetPos = target.get_position(true, true)
 	targetPos.y -= 32
 #	targetPos -= smashAttack.rect_size/2
 	smashAttack.position = targetPos
 	return smashAttack
 
-func play_battle_sprite_anim(user, anim, override = false):
-	if !user.isEnemy:
-		user.battleSprite.play(anim, override)
+func _play_battle_sprite_anim(user: BattleParticipant, anim: String):
+	if user.get_type() == BattleParticipant.Type.PLAYABLE:
+		user.battleSprite.play(anim, true)
 
-func get_conscious_party():
+func _get_conscious_party(only_who_can_attack := false) -> Array:
 	var arr = []
-	for partyMember in partyBPs:
-		if partyMember.isConscious():
-			arr.append(partyMember)
+	for party_member in _party_BPs:
+		if party_member.isConscious():
+			if !only_who_can_attack or party_member.can_act():
+				arr.append(party_member)
 	return arr
 
-func get_conscious_enemies():
+func _get_conscious_enemies(only_who_can_attack := false) -> Array:
 	var arr = []
-	for enemy in enemyBPs:
+	for enemy in _enemy_BPs:
 		if enemy.isConscious():
-			arr.append(enemy)
+			if !only_who_can_attack or enemy.can_act():
+				arr.append(enemy)
+		
 	return arr
 
-func show_enemy_sprites():
+func _get_conscious_npcs(targetable_only := false) -> Array:
+	var arr = []
+	for npc in _npc_BPs:
+		if npc.isConscious() and !npc.stats.get("untargetable", false):
+			arr.append(npc)
+	return arr
+
+func _show_action_menu(is_battle_start := false):
+	if !_show_intro_outro:
+		$AnimAction.play("transitionIn")
+
+func _show_enemy_sprites(): # suspend func
 	for enemy in $Enemies.get_children():
 #		$EnemyTransitions.get_child(0).queue_free()
 		enemy.show()
 		enemy.appear()
 		yield(get_tree().create_timer(.1), "timeout")
-	enemiesShaking = false
+	_enemies_shaking = false
 
-func check_player_defeated(partyMem):
-	if active and !enemyBPs.empty():
+func _check_player_defeated(partyMem: BattleParticipant):
+	if _active and !_enemy_BPs.empty():
 		if partyMem.partyInfo.HP == 0:
-			if doingActions and !currentAction.user.isEnemy and \
+			if _doing_actions and _current_action.user.get_type() == BattleParticipant.Type.PLAYABLE and \
 			   ($ScreenEffect/AnimationPlayer.is_playing() or $PreHitEffect/AnimationPlayer.is_playing()):
-				bufferedPlayerDefeat.append(partyMem)
+				_buffered_player_defeat.append(partyMem)
 			else:
-				defeat_player(partyMem)
+				partyMem.defeat()
 
-func defeat_player(partyMem):
-	# DoPassive - On party member defeat
-	for passive in partyMem.stats.passiveSkills:
-		match(passive):
-			_:
-				pass
-	play_sfx("playerdefeated")
-	global.start_joy_vibration(0, 1, 1, 0.5)
-	# undo status before becoming unconscious
-	print("Removing all statuses for unconscious!")
-	var status_to_remove = partyMem.stats.status.duplicate()
-	for status in status_to_remove:
-		print(globaldata.status_enum_to_name(status))
-		do_status(partyMem, status, false)
-		partyMem.setStatus(status, false)
-	partyMem.defeat()
-	if get_conscious_party().empty():
-		if uiManager.battleLoseCutscene != "":
-			loseBattle = true
-			active = false
-			end_battle(uiManager.battleLoseCutscene)
-		else:
-			lose()
-			
-
-func revive_party():
+func _revive_party():
 	for i in global.party:
 		i.status.clear()
 		if i == global.party[0]:
 			i.hp = i.maxhp
 			i.pp = i.maxpp
 		else:
-			i.status.append(globaldata.ailments.Unconscious)
+			StatusManager.add_status(i, StatusManager.AILMENT_UNCONSCIOUS)
 			i.pp = i.maxpp
 
-func remove_enemy_transitions():
+func _remove_enemy_transitions(): # suspend func
 	for enemy in $Enemies.get_children():
 		$EnemyTransitions.get_child(0).queue_free()
 		yield(get_tree().create_timer(.1), "timeout")
 
-func jump_to_partyinfo():
+func _jump_to_battle(): # suspend func
 	yield(get_tree().create_timer(.2), "timeout")
 	for i in range($PlayerTransitions.get_child_count()):
 		yield(get_tree().create_timer(.1), "timeout")
-		var sprite = $PlayerTransitions.get_child(i)
-		var partyInfo = $PartyInfo.get_child(i)
-		var tween = Tween.new()
-		var jumpHeight = 0
-		sprite.add_child(tween)
-		if sprite.position.y >= 90:
-			jumpHeight = sprite.position.y - 90
-		tween.interpolate_property(sprite, "position:x", \
-			sprite.position.x, partyInfo.rect_position.x + partyInfo.rect_size.x/2, 0.6, \
-			Tween.TRANS_LINEAR, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "position:y", \
-			sprite.position.y, sprite.position.y - (16 + jumpHeight), 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_OUT)
-		tween.interpolate_property(sprite, "position:y", \
-			sprite.position.y - (16 + jumpHeight), 180, 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_IN, 0.3)
-		tween.interpolate_property(sprite, "scale:x", \
-			sprite.scale.x, 0.3, 0.3, \
-			Tween.TRANS_QUART, Tween.EASE_IN, 0.3)
-		tween.interpolate_property(sprite, "scale:y", \
-			sprite.scale.y, 2, 0.3, \
-			Tween.TRANS_QUART, Tween.EASE_IN, 0.3)
-		tween.connect("tween_all_completed", partyInfo, "quake", [0, .5])
-		tween.connect("tween_all_completed", sprite, "hide", [], CONNECT_DEFERRED)
-		
-		#jank. bad code. what r u doing roka
-		sprite.frame_coords = Vector2(0, 18)
-		tween.start()
-	jump_to_side()
-
-func jump_to_side():
+		_jump_player_to_partyinfo(i)
 	yield(get_tree().create_timer(.2), "timeout")
 	for i in range($NpcTransitions.get_child_count()):
 		yield(get_tree().create_timer(.1), "timeout")
-		var sprite = $NpcTransitions.get_child(i)
-		var tween = Tween.new()
-		var jumpHeight = 0
-		sprite.add_child(tween)
-		if sprite.position.y >= 90:
-			jumpHeight = sprite.position.y - 90
-		tween.interpolate_property(sprite, "position:x", \
-			sprite.position.x, 370, 0.6, \
-			Tween.TRANS_LINEAR, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "position:y", \
-			sprite.position.y, sprite.position.y - (42 + jumpHeight), 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_OUT)
-		tween.interpolate_property(sprite, "position:y", \
-			sprite.position.y - (42 + jumpHeight), 90, 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_IN, 0.3)
-		tween.interpolate_property(sprite, "scale:x", \
-			0.8, sprite.scale.x, 0.2, \
-			Tween.TRANS_QUART, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "scale:y", \
-			1.2, sprite.scale.y, 0.2, \
-			Tween.TRANS_QUART, Tween.EASE_IN)
-		tween.connect("tween_all_completed", sprite, "hide", [], CONNECT_DEFERRED)
-		
-		#jank. bad code. what r u doing roka
-		sprite.frame_coords = Vector2(2, 18)
-		tween.start()
+		_jump_npc_to_side(i)
 
-func enemy_to_position():
-	start_enemy_shaking()
+func _jump_player_to_partyinfo(index: int):
+	var sprite = $PlayerTransitions.get_child(index)
+	var partyInfo = $PartyInfo.get_child(index)
+	var tween = Tween.new()
+	var jumpHeight = 0
+	sprite.add_child(tween)
+	if sprite.position.y >= 90:
+		jumpHeight = sprite.position.y - 90
+	tween.interpolate_property(sprite, "position:x", \
+		sprite.position.x, partyInfo.rect_position.x + partyInfo.rect_size.x/2, 0.6, \
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(sprite, "position:y", \
+		sprite.position.y, sprite.position.y - (16 + jumpHeight), 0.3, \
+		Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.interpolate_property(sprite, "position:y", \
+		sprite.position.y - (16 + jumpHeight), 180, 0.3, \
+		Tween.TRANS_QUAD, Tween.EASE_IN, 0.3)
+	tween.interpolate_property(sprite, "scale:x", \
+		sprite.scale.x, 0.3, 0.3, \
+		Tween.TRANS_QUART, Tween.EASE_IN, 0.3)
+	tween.interpolate_property(sprite, "scale:y", \
+		sprite.scale.y, 2, 0.3, \
+		Tween.TRANS_QUART, Tween.EASE_IN, 0.3)
+	tween.connect("tween_all_completed", partyInfo, "quake", [0, .5])
+	tween.connect("tween_all_completed", sprite, "hide", [], CONNECT_DEFERRED)
+	
+	sprite.frame_coords = SPRITE_FRAMES.jump_down
+	tween.start()
+
+func _jump_npc_to_side(index: int):
+	var sprite = $NpcTransitions.get_child(index)
+	var tween = Tween.new()
+	var jumpHeight = 0
+	sprite.add_child(tween)
+	if sprite.position.y >= 90:
+		jumpHeight = sprite.position.y - 90
+	tween.interpolate_property(sprite, "position:x", \
+		sprite.position.x, 370, 0.6, \
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(sprite, "position:y", \
+		sprite.position.y, sprite.position.y - (42 + jumpHeight), 0.3, \
+		Tween.TRANS_QUAD, Tween.EASE_OUT)
+	tween.interpolate_property(sprite, "position:y", \
+		sprite.position.y - (42 + jumpHeight), 90, 0.3, \
+		Tween.TRANS_QUAD, Tween.EASE_IN, 0.3)
+	tween.interpolate_property(sprite, "scale:x", \
+		0.8, sprite.scale.x, 0.2, \
+		Tween.TRANS_QUART, Tween.EASE_IN)
+	tween.interpolate_property(sprite, "scale:y", \
+		1.2, sprite.scale.y, 0.2, \
+		Tween.TRANS_QUART, Tween.EASE_IN)
+	#tween.connect("tween_all_completed", sprite, "hide", [], CONNECT_DEFERRED)
+	
+	sprite.frame_coords = SPRITE_FRAMES.jump_right
+	tween.start()
+
+func _enemy_to_position(): # suspend func
+	_enemies_shaking = true
 	for i in range($EnemyTransitions.get_child_count()):
 		var sprite = $EnemyTransitions.get_child(i)
 		var fullSprite = $Enemies.get_child(i)
@@ -2255,164 +2244,102 @@ func enemy_to_position():
 		tween.interpolate_property(sprite, "modulate",
 			sprite.modulate, Color.black, 0.2,
 			Tween.TRANS_LINEAR)
-		tween.start()
+		tween.start()	
 
-func start_enemy_shaking():
-	enemiesShaking = true
-
-func play_sfx(sfxName, channel = 0):
-	if !soundEffects.has(sfxName):
+func _play_sfx(sfx_name: String, channel := 0):
+	if !_sound_effects.has(sfx_name):
 		return
-	audioManager.play_sfx(soundEffects[sfxName], "BattleSfx" + str(channel))
+	audioManager.play_sfx(_sound_effects[sfx_name], "BattleSfx" + str(channel))
 
-func give_exp(i):
-	var receiving = 0
-	for i in partyBPs.size():
-		if partyBPs[i].isConscious() and partyBPs[i].stats.level < globaldata.levelCap:
-			receiving += 1
-	if i >= receiving:
-		emit_signal("levelUpDone")
-		return
-	var partyMem = partyBPs[i]
-	if !partyMem.isConscious() or partyMem.stats.level >= globaldata.levelCap:
-		give_exp(i + 1)
-		return
-	
-	# give exp
-	partyMem.stats.exp += int(round(expPool/ receiving))
-	check_level_up(i)
+func _give_exp(party_members: Array, amount: int): # suspend func
+	for party_mem in party_members:
+		party_mem.stats.exp += amount
+		var in_progress = _check_level_up(party_mem)
+		if in_progress: yield(in_progress, "completed")
 
-func give_cash():
-	globaldata.earned_cash += cashPool
-	globaldata.bank += cashPool
+func _give_cash():
+	globaldata.earned_cash += _cash_pool
+	globaldata.bank += _cash_pool
+	globaldata.flags["earned_cash"] = true
 
-func check_level_up(i):
-	var partyMem = partyBPs[i]
-	
-	# check exp calc
-	var nextLvl = partyMem.stats.level + 1
-	var expNeeded = int(nextLvl * nextLvl * (nextLvl + 1) * .75)
-	
+func _check_level_up(party_mem: BattleParticipant): # suspend func
 	# do level up, if enough exp!!
-	if partyMem.stats.exp >= expNeeded:
-		level_up(i)
-	else:
-		give_exp(i + 1)
+	var target_level: int = party_mem.stats.level
+	while party_mem.stats.exp >= globaldata.get_exp_for_level(target_level + 1):
+		target_level += 1
+	if target_level > party_mem.stats.level:
+		_level_up(party_mem, target_level)
+	$Dialoguebox.start_from_appended()
+	yield($Dialoguebox, "done")
 
-
-
-func level_up(i):
-	var partyMem = partyBPs[i]
-	if (!audioManager.overworldBattleMusic) or (boss and audioManager.overworldBattleMusic):
-		play_sfx('cheering')
-		if !audioManager.get_playing(musicalEffects["lvlup"]):
-			#audioManager.music_fadeout(audioManager.get_audio_player_count()-1, 0.2)
+func _level_up(party_mem: BattleParticipant, to_level: int): # suspend func
+	if (!audioManager.overworldBattleMusic) or (_is_boss and audioManager.overworldBattleMusic):
+		if !audioManager.get_playing(_musical_effects["lvlup"]):
+			#audioManager.music_fadeout(audioManager.get_latest_audio_player_index(), 0.2)
 			audioManager.pause_all_music()
 			audioManager.add_audio_player()
-			audioManager.play_music_from_id("", musicalEffects["lvlup"], audioManager.get_audio_player_count() - 1)
-		var startTime = audioManager.get_audio_player_from_song(musicalEffects["lvlup"]).get_playback_position()
-		var partyMemLevelUp = musicalEffects["lvlup_" + partyMem.stats.name]
+			audioManager.play_music_on_latest_player("", _musical_effects["lvlup"])
+		var startTime = audioManager.get_audio_player_from_song(_musical_effects["lvlup"]).get_playback_position()
+		var partyMemLevelUp = _musical_effects["lvlup_" + party_mem.stats.name]
 		if !audioManager.get_playing(partyMemLevelUp):
 			audioManager.add_audio_player()
-			audioManager.play_music_from_id("", partyMemLevelUp, audioManager.get_audio_player_count() - 1, startTime)
+			audioManager.play_music_on_latest_player("", partyMemLevelUp, startTime)
 	
-	partyMem.stats.level += 1
-	# LOCALIZATION Use of csv key for "{name} leveled up to %s"
-	# LOCALIZATION Code change: Used multiple placeholders instead of just %s to ease localization
-	# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-	var dialog = {
-		"0": {"text":_format_battle_text("BATTLE_MSG_LEVEL_UP", partyMem, [], null, str(partyMem.stats.level))}
-	}
-	var j = 0
-	for stat in globaldata.player_stat_target_table[partyMem.stats.name]:
-		var gain = get_stat_growth(partyMem, stat)
+	$Dialoguebox.append(_format_battle_text("BATTLE_MSG_LEVEL_UP", party_mem, [], null, to_level), "M3/Cheering.mp3")
+	for stat in globaldata.player_stat_target_table[party_mem.stats.name]:
+		var new_value := globaldata.get_stat_for_level(party_mem.stats.name, stat, to_level)
+		var gain: int = new_value - party_mem.stats[stat]
 		if gain > 0:
-			partyMem.stats[stat] += gain
-			j += 1
-			# give the previous dialog somewhere to go
-			dialog[str(j-1)].goto = str(j) 
+			party_mem.stats[stat] += gain
 			# add the new dialog
 			if stat == "maxhp":
 				# let the numbers roll
-				partyBPs[i].partyInfo.maxHP = partyMem.get_stat("maxhp")
-				partyBPs[i].partyInfo.setHP(partyBPs[i].partyInfo.HP + gain)
+				party_mem.partyInfo.maxHP = party_mem.get_stat("maxhp")
 				# also update the current
+				party_mem.partyInfo.setHP(party_mem.partyInfo.HP + gain)
 				stat = "hp"
-				partyMem.partyInfo.HP += gain
+				party_mem.stats[stat] += gain
 			elif stat == "maxpp":
 				# let the numbers roll
-				partyBPs[i].partyInfo.maxPP = partyMem.get_stat("maxpp")
-				partyBPs[i].partyInfo.setPP(partyBPs[i].stats.pp + gain)
+				party_mem.partyInfo.maxPP = party_mem.get_stat("maxpp")
 				# also update the current
+				party_mem.partyInfo.setPP(party_mem.stats.pp + gain)
 				stat = "pp"
-				partyMem.stats[stat] += gain
+				party_mem.stats[stat] += gain
 			
-			# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-			# LOCALIZATION Use of csv keys for "... raised by {value}."
-			# LOCALIZATION Code change: Each line needs its own key/string because of language grammar
-			# In case you need articles (which include English pronouns) here, you can with {n_}
-			# (where "_" is the index in the article table)
-			var lineStr = "BATTLE_MSG_LEVEL_UP_" + stat.to_upper()
-			dialog[str(j)] = {"text":_format_battle_text(lineStr, partyMem, [], null, str(gain))}
-	
-	
+			var stat_msg = _format_battle_text("BATTLE_MSG_LEVEL_UP_" + stat.to_upper(), party_mem, [], null, gain)
+			$Dialoguebox.append(stat_msg)
+
+	party_mem.stats.level = to_level
+
 	# check skill table
-	for level in partyMem.stats.level + 1:
-		if globaldata.player_learn_skill_table[partyMem.stats.name].has(level):
-			var newSkill = globaldata.player_learn_skill_table[partyMem.stats.name][level]
-			if !globaldata[partyMem.stats.name].learnedSkills.has(newSkill):
-				j += 1
+	for level in to_level + 1:
+		if globaldata.player_learn_skill_table[party_mem.stats.name].has(level):
+			var newSkill = globaldata.player_learn_skill_table[party_mem.stats.name][level]
+			if !globaldata[party_mem.stats.name].learnedSkills.has(newSkill):
 				var flagTrue = true
-				if globaldata.player_learn_skill_table_flags[partyMem.stats.name].has(newSkill):
-					if !globaldata.flags[globaldata.player_learn_skill_table_flags[partyMem.stats.name][newSkill]]:
+				if globaldata.player_learn_skill_table_flags[party_mem.stats.name].has(newSkill):
+					if !globaldata.flags[globaldata.player_learn_skill_table_flags[party_mem.stats.name][newSkill]]:
 						flagTrue = false
 				
 				#secretely give the move to the party member if the flag is false
-				if flagTrue: 
-					
-					# give the previous dialog somewhere to go
-					dialog[str(j-1)].goto = str(j)
-					
-					# LOCALIZATION Code change: Centralized formatting of battlers, items and articles
-					# LOCALIZATION Use of csv key for "{n0}{name} learned %s!"
-					dialog[str(j)] = {
-						"text": _format_battle_text("BATTLE_MSG_LEARNING", partyMem, [], globaldata.skills[newSkill]), # skill
-						"soundeffect":"M3/Learned PSI.wav"
-					}
-				globaldata[partyMem.stats.name].learnedSkills.append(newSkill)
-	
-	$Dialoguebox.connect("done", self, "check_level_up", [i], CONNECT_ONESHOT | CONNECT_DEFERRED)
-	$Dialoguebox.start(dialog)
+				if flagTrue:	
+					var new_psi_msg = _format_battle_text("BATTLE_MSG_LEARNING", party_mem, [], globaldata.skills[newSkill])
+					$Dialoguebox.append(new_psi_msg, "M3/Learned PSI.wav")
+				globaldata[party_mem.stats.name].learnedSkills.append(newSkill)
 
-func get_stat_growth(partyMem, stat):
-	var statArr = globaldata.player_stat_target_table[partyMem.stats.name][stat]
-	var low_i = floor(partyMem.stats.level/10)
-	var high_i = low_i + 1
-	var interp = floor(lerp(statArr[low_i], statArr[high_i], (int(partyMem.stats.level) % 10)/10.0))
-	var gain = 0
-	match(stat):
-#		"hp":
-#			gain = max(0, interp - partyMem.stats.hp)
-#		"pp":
-#			gain = max(0, interp - partyMem.stats.pp)
-		_:
-#			var r = 4.0/50.0
-#			gain = floor(((statArr * (partyMem.stats.level - 1)) - ((partyMem.stats[stat] - 2) * 10)) * r)
-			gain = interp - partyMem.stats[stat]
-	return gain
-
-func hide_battle_BG():
-	uiManager.remove_ui(battleBG)
+func _hide_battle_BG():
+	uiManager.remove_ui(_battle_bg)
 	global.currentCamera.get_node("Tween").set_active(true)
 	global.currentCamera.reset()
 
-func hide_enemies():
+func _hide_enemies():
 	$Enemies.hide()
 
-func drop_item_to_overworld():
+func _drop_item_to_overworld(queued_dropped_items: Array): # suspend func
 	yield(get_tree().create_timer(0.8), "timeout")
 	var playerPos = global.persistPlayer.get_viewport().canvas_transform.xform(global.persistPlayer.position)
-	for droppedItem in queuedDroppedItems:
+	for droppedItem in queued_dropped_items:
 		var sprite = Sprite.new()
 		var path := str("res://Graphics/Objects/Items/" + droppedItem.item + ".png")
 		sprite.texture = load(path)
@@ -2429,7 +2356,7 @@ func drop_item_to_overworld():
 			Tween.TRANS_QUART, Tween.EASE_IN, 1.5)
 		$Tween.start()
 	yield($Tween, "tween_all_completed")
-	for droppedItem in queuedDroppedItems:
+	for droppedItem in queued_dropped_items:
 		droppedItem.position = global.persistPlayer.position
 		var objectsLayer = global.persistPlayer.get_parent()
 		if objectsLayer == null:
@@ -2442,16 +2369,17 @@ func drop_item_to_overworld():
 	for sprite in $EnemyTransitions.get_children():
 		sprite.queue_free()
 
-func jump_to_overworld():
-	if loseBattle and uiManager.battleLoseCutscene != "":
-		for i in global.partyObjects.size():
-			global.partyObjects[i].show()
-		revive_party()
+func _jump_to_overworld(): # suspend func
+	if _lose_battle and uiManager.battleLoseCutscene != "":
+		for i in _party_orig_objects.size():
+			_party_orig_objects[i].show()
+		_revive_party()
 	else:
-		partyOriginalPositions.clear()
-		for partyMem in global.partyObjects:
-			partyOriginalPositions.append(partyMem.get_viewport().canvas_transform.xform(partyMem.position) - Vector2(0,4))
-		jump_npcs_to_overworld()
+		_party_orig_positions.clear()
+		for partyMem in _party_orig_objects:
+			if is_instance_valid(partyMem):
+				_party_orig_positions.append(partyMem.get_viewport().canvas_transform.xform(partyMem.position) - Vector2(0,4))
+		_jump_npcs_to_overworld()
 		for i in range($PlayerTransitions.get_child_count()):
 			var sprite = $PlayerTransitions.get_child(i)
 			var partyInfo = $PartyInfo.get_child(i)
@@ -2466,13 +2394,13 @@ func jump_to_overworld():
 			var tween = Tween.new()
 			sprite.add_child(tween)
 			tween.interpolate_property(sprite, "position:x", \
-				sprite.position.x, partyOriginalPositions[i].x, 0.55, \
+				sprite.position.x, _party_orig_positions[i].x, 0.55, \
 				Tween.TRANS_LINEAR, Tween.EASE_IN)
 			tween.interpolate_property(sprite, "position:y", \
-				sprite.position.y, partyOriginalPositions[i].y - 24, 0.35, \
+				sprite.position.y, _party_orig_positions[i].y - 24, 0.35, \
 				Tween.TRANS_QUAD, Tween.EASE_OUT)
 			tween.interpolate_property(sprite, "position:y", \
-				partyOriginalPositions[i].y - 24, partyOriginalPositions[i].y + 4, 0.2, \
+				_party_orig_positions[i].y - 24, _party_orig_positions[i].y + 4, 0.2, \
 				Tween.TRANS_QUAD, Tween.EASE_IN, 0.4)
 			tween.interpolate_property(sprite, "scale:x", \
 				0.6, 1, 0.4, \
@@ -2488,121 +2416,109 @@ func jump_to_overworld():
 				Tween.TRANS_QUAD, Tween.EASE_IN, 0.4)
 			
 			tween.connect("tween_all_completed", sprite, "hide", [])
-			tween.connect("tween_all_completed", global.partyObjects[i], "show", [])
-			tween.connect("tween_all_completed", global.partyObjects[i], "set_direction", [Vector2(0, -1)])
-			tween.connect("tween_all_completed", global.partyObjects[i].sprite, "set", ["frame_coords", Vector2(3,3)])
+			tween.connect("tween_all_completed", _party_orig_objects[i], "show", [])
+			tween.connect("tween_all_completed", _party_orig_objects[i], "set_direction", [Vector2(0, -1)])
+			tween.connect("tween_all_completed", _party_orig_objects[i].sprite, "set", ["frame_coords", SPRITE_FRAMES.crouch_up])
 			
-			if !partyBPs[i].isConscious():
+			if !_party_BPs[i].isConscious():
 				pass
-			#jank. bad code. what r u doing roka
 			
-			sprite.frame_coords = Vector2(3, 18)
+			sprite.frame_coords = SPRITE_FRAMES.jump_up
 			tween.start()
 			yield(get_tree().create_timer(.05), "timeout")
 
-func jump_npcs_to_overworld():
+func _jump_npcs_to_overworld(): # suspend func
 	for i in range($NpcTransitions.get_child_count()):
 		var sprite = $NpcTransitions.get_child(i)
 		# set sprite back in position
 		sprite.show()
 #		sprite.position.y = 180
 		sprite.scale = Vector2.ONE
-		
-		# do the tween stuff
-		var tween = Tween.new()
-		sprite.add_child(tween)
-		tween.interpolate_property(sprite, 
-		"position:x", \
-			sprite.position.x, partyOriginalPositions[i + global.party.size()].x, 0.55, \
-			Tween.TRANS_LINEAR, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "position:y", \
-			sprite.position.y, partyOriginalPositions[i + global.party.size() - 1].y - 24, 0.35, \
-			Tween.TRANS_QUAD, Tween.EASE_OUT)
-		tween.interpolate_property(sprite, "position:y", \
-			partyOriginalPositions[i + global.party.size() - 1].y - 24, partyOriginalPositions[i + global.party.size()].y + 4, 0.2, \
-			Tween.TRANS_QUAD, Tween.EASE_IN, 0.4)
-		tween.interpolate_property(sprite, "scale:x", \
-			0.6, 1, 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "scale:y", \
-			1.2, 1, 0.3, \
-			Tween.TRANS_QUAD, Tween.EASE_IN)
-		tween.interpolate_property(sprite, "scale:x", \
-			1, 0.8, 0.1, \
-			Tween.TRANS_QUAD, Tween.EASE_IN, 0.5)
-		tween.interpolate_property(sprite, "scale:y", \
-			1, 1.1, 0.1, \
-			Tween.TRANS_QUAD, Tween.EASE_IN, 0.5)
-		
-		tween.connect("tween_all_completed", sprite, "hide", [])
-		tween.connect("tween_all_completed", global.partyObjects[i + global.party.size()], "show", [])
-		tween.connect("tween_all_completed", global.partyObjects[i + global.party.size()], "set_direction", [Vector2(0, -1)])
-		tween.connect("tween_all_completed", global.partyObjects[i + global.party.size()].sprite, "set", ["frame_coords", Vector2(3,3)])
-		
-		if !npcBPs[i].isConscious():
-			pass
-		#jank. bad code. what r u doing roka
-		
-		sprite.frame_coords = Vector2(3, 18)
-		tween.start()
-		yield(get_tree().create_timer(.05), "timeout")
 
-func remove_battle_music():
+		var index_in_objects = i + global.party.size()
+		var orig_object = _party_orig_objects[index_in_objects]
+		
+		if is_instance_valid(orig_object):
+			var orig_position = _party_orig_positions[index_in_objects]
+			var orig_position_prev = _party_orig_positions[index_in_objects - 1]
+			
+			# do the tween stuff
+			var tween = Tween.new()
+			sprite.add_child(tween)
+			tween.interpolate_property(sprite, 
+			"position:x", \
+				sprite.position.x, orig_position.x, 0.55, \
+				Tween.TRANS_LINEAR, Tween.EASE_IN)
+			tween.interpolate_property(sprite, "position:y", \
+				sprite.position.y, orig_position_prev.y - 24, 0.35, \
+				Tween.TRANS_QUAD, Tween.EASE_OUT)
+			tween.interpolate_property(sprite, "position:y", \
+				orig_position_prev.y - 24, orig_position.y + 4, 0.2, \
+				Tween.TRANS_QUAD, Tween.EASE_IN, 0.4)
+			tween.interpolate_property(sprite, "scale:x", \
+				0.6, 1, 0.3, \
+				Tween.TRANS_QUAD, Tween.EASE_IN)
+			tween.interpolate_property(sprite, "scale:y", \
+				1.2, 1, 0.3, \
+				Tween.TRANS_QUAD, Tween.EASE_IN)
+			tween.interpolate_property(sprite, "scale:x", \
+				1, 0.8, 0.1, \
+				Tween.TRANS_QUAD, Tween.EASE_IN, 0.5)
+			tween.interpolate_property(sprite, "scale:y", \
+				1, 1.1, 0.1, \
+				Tween.TRANS_QUAD, Tween.EASE_IN, 0.5)
+			
+			tween.connect("tween_all_completed", sprite, "hide", [])
+			tween.connect("tween_all_completed", orig_object, "show", [])
+			tween.connect("tween_all_completed", orig_object, "set_direction", [Vector2(0, -1)])
+			tween.connect("tween_all_completed", orig_object.sprite, "set", ["frame_coords", SPRITE_FRAMES.crouch_up])
+			
+			if !_npc_BPs[i].isConscious():
+				pass
+			
+			sprite.frame_coords = SPRITE_FRAMES.jump_up
+			tween.start()
+			yield(get_tree().create_timer(.05), "timeout")
+
+func _remove_battle_music():
 	var winThemes = []
 
-	for id in musicalEffects:
-		winThemes.append(load("res://Audio/Music/" + musicalEffects[id]))
+	for id in _musical_effects:
+		winThemes.append(load("res://Audio/Music/" + _musical_effects[id]))
 
 	for audioPlayer in audioManager.get_audio_player_list():
 		if audioPlayer.stream in winThemes:
-			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioPlayer))
-	if music != "":
-		if audioManager.get_playing("Battle Themes/" + music):
-			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioManager.get_audio_player_from_song("Battle Themes/" + music)))
-		if musicIntro != "" and audioManager.get_playing("Battle Themes/" + musicIntro):
-			audioManager.remove_audio_player(audioManager.get_audio_player_id(audioManager.get_audio_player_from_song("Battle Themes/" + musicIntro)))
-	elif boss and audioManager.overworldBattleMusic:
+			audioManager.remove_audio_player(audioManager.get_audio_player_index(audioPlayer))
+	if _music != "":
+		if audioManager.get_playing("Battle Themes/" + _music):
+			audioManager.remove_audio_player(audioManager.get_audio_player_index(audioManager.get_audio_player_from_song("Battle Themes/" + _music)))
+		if _music_intro != "" and audioManager.get_playing("Battle Themes/" + _music_intro):
+			audioManager.remove_audio_player(audioManager.get_audio_player_index(audioManager.get_audio_player_from_song("Battle Themes/" + _music_intro)))
+	elif _is_boss and audioManager.overworldBattleMusic:
 		for musicChanger in audioManager.musicChangers:
 			musicChanger.stop_music_immediately()
-	audioManager.remove_all_unplaying()
 
-func turn_party_to_overworld():
-	for bp in partyBPs:
+func _turn_party_to_overworld():
+	for bp in _party_BPs:
 		bp.battleSprite.hideAway()
 
-func rotate_party_to_original_direction():
-	for partyObj in global.partyObjects:
-		partyObj.rotate_to(partyOriginalDirections.pop_front(), .05)
+func _rotate_party_to_original_direction():
+	for partyObj in _party_orig_objects:
+		if is_instance_valid(partyObj):
+			partyObj.rotate_to(_party_orig_dirs.pop_front(), .05)
 
-func courage_badge_swap(user):
+func _courage_badge_swap(user: BattleParticipant): # suspend func
 	InventoryManager.removeItemFromChar(user.stats.name, "CourageBadge")
 	InventoryManager.addItem(user.stats.name, "FranklinBadge0.8")
-	user.stats.passiveSkills.erase("reflect_beam_courage")
-	var item_data = InventoryManager.Load_item_data("FranklinBadge0.8")
-	if item_data.has("slot"):
-		if item_data.slot == "" and item_data.has("passive_skills"):
-			for passiveSkill in item_data.passive_skills:
-				if !passiveSkill in user.stats.passiveSkills:
-					user.stats.passiveSkills.append(passiveSkill)
-	var dialog = {}
-	# LOCALIZATION Code change: Made localizable (but here we know what the items are)
-	# LOCALIZATION Use of csv key for "The {courageBadge} turned out to be the {franklinBadge}!"
-	# LOCALIZATION Code change: Removed use of globaldata.language (tr() instead) × 2
-	dialog = {
-		"0":{"text":tr("BATTLE_MSG_BADGE_REVEAL").format({
-				"courageBadge": tr(globaldata.items["CourageBadge"].name),
-				"franklinBadge": tr(globaldata.items["FranklinBadge0.8"].name)
-		})}}
-	$Dialoguebox.start(dialog)
-	yield($Dialoguebox, "done")
+	yield($Dialoguebox.start_from_string(tr("BATTLE_MSG_BADGE_REVEAL")), "completed")
 
-func reorganize_enemies(transition = true):
-	bufferReorganize = false
+func _reorganize_enemies(transition := true): # suspend func
+	_buffer_reorganize = false
 	# if there's a boss, we need a different pattern
-	if boss:
+	if _is_boss:
 		# find the boss
 		var bossEnemy
-		for enemy in enemyBPs:
+		for enemy in _enemy_BPs:
 			if enemy.stats.get("boss") != null:
 				if enemy.stats.boss:
 					bossEnemy = enemy
@@ -2611,36 +2527,36 @@ func reorganize_enemies(transition = true):
 		# set it to the center
 		# set enemies alternating, to the left/right
 		var i = 0
-		for enemyBP in enemyBPs:
+		for enemyBP in _enemy_BPs:
 			var battlesprite = enemyBP.battleSprite
 			var position = Vector2(320/2, 147 )
 	
-	for i in range(enemyBPs.size()):
+	for i in range(_enemy_BPs.size()):
 		# the ALGORITHm
 		
-		var battlesprite = enemyBPs[i].battleSprite
+		var battlesprite = _enemy_BPs[i].battleSprite
 		var new_position = Vector2(320, 147)
 		
-		if !enemyBPs[i].stats.boss:
-			var regEnemyCount = enemyBPs.size()
+		if !_enemy_BPs[i].stats.boss:
+			var regEnemyCount = _enemy_BPs.size()
 			var regEnemyIndex = i
-			if boss and enemyBPs.size() > 2:
-				for j in range(enemyBPs.size()):
-					if enemyBPs[j].stats.boss:
+			if _is_boss and _enemy_BPs.size() > 2:
+				for j in range(_enemy_BPs.size()):
+					if _enemy_BPs[j].stats.boss:
 						regEnemyCount -= 1
 						regEnemyIndex -= 1
 			new_position.x /=  (regEnemyCount + 1)
-			var topEnemyPosition = Vector2(new_position.x * (int(enemyBPs.size()/2.0) + 1), 147)
+			var topEnemyPosition = Vector2(new_position.x * (int(_enemy_BPs.size()/2.0) + 1), 147)
 			var bottomEnemyPosition = Vector2(new_position.x, 147)
 			new_position.x *= (regEnemyIndex + 1)
 		
-			var heightDifference = get_y_curve_position(bottomEnemyPosition) - get_y_curve_position(topEnemyPosition)
-			new_position.y = get_y_curve_position(new_position) - heightDifference/3
-			if boss:
+			var heightDifference = _get_y_curve_position(bottomEnemyPosition) - _get_y_curve_position(topEnemyPosition)
+			new_position.y = _get_y_curve_position(new_position) - heightDifference/3
+			if _is_boss:
 				new_position.y -= 16
 		else:
 			new_position /= 2
-			if enemyBPs.size() > 1:
+			if _enemy_BPs.size() > 1:
 				new_position.y += 16
 		var texture_offset = battlesprite.rect_size / 2
 #			var texture_offset = battlesprite.rect_size / 3
@@ -2654,7 +2570,7 @@ func reorganize_enemies(transition = true):
 			battlesprite.rect_position, new_position, 0.4, \
 			Tween.TRANS_EXPO, Tween.EASE_OUT)
 			battlesprite.transitionTween.connect("tween_completed", self, \
-			 "_on_reorganize_enemy_tween", [enemyBPs[i]], CONNECT_ONESHOT)
+			 "_on_reorganize_enemy_tween", [_enemy_BPs[i]], CONNECT_ONESHOT)
 			battlesprite.transitionTween.start()
 		else:
 			battlesprite.rect_position = new_position
@@ -2662,43 +2578,47 @@ func reorganize_enemies(transition = true):
 		# magic numbers, yet again! tsk tsk
 		# the number is .2 seconds longer than the tween
 		yield(get_tree().create_timer(.65), "timeout")
-		newEnemies.clear()
+		_new_enemies.clear()
 	else:
 		yield(get_tree(), "idle_frame")
 		return
 
-func get_y_curve_position(new_position):
+func _get_y_curve_position(new_position: Vector2) -> float:
 	var curve = 400 #The degree to which the enemies curve in a line, the smaller the number, the sharper the curve
 	return new_position.y / 2 + pow((160 - new_position.x), 2) / (curve)
 
-func _on_reorganize_enemy_tween(battlesprite, key, enemyBP):
-	if enemyBP in newEnemies:
+func _on_reorganize_enemy_tween(battlesprite, key, enemyBP: BattleParticipant):
+	if enemyBP in _new_enemies:
 		battlesprite.appear()
 
-# LOCALIZATION Code added: New method to handle formatting of battlers, items and articles in battle text
-# {name} is the actor's nickname, {target} is the target's nickname, {item} is the item name
+# Handle formatting of battlers, items and articles in battle text
+# {name} is the actor's name, {target} is the target's name, {item} is the item name
 # {n0}, {n1}, etc. are the articles for {name}
 # {t0}, {t1}, etc. are the articles for the {target}
 # {i0}, {i1}, etc. are the articles for the {item}
-# {s0}, {s1}, etc. are the articles for the {skill}
+# {s0}, {s1}, etc. are the articles for {skill}
+# {st0}, {st1}, etc. are the articles for {stat}
+# {v0}, {v1}, etc. are the articles for {value}
 # See list of articles (which also include pronouns and suffixes) in articles.txt
 # Just use these tags in your strings this way and this method will format them
-func _format_battle_text(text, actor=null, targets:Array=[], item_or_skill=null, value = 0, stat = ""):
-	var actor_name = actor.stats.nickname if actor != null else ""
-	var actor_articles = globaldata.get_battler_articles(actor.stats) if actor != null else []
+func _format_battle_text(text: String, actor: BattleParticipant = null, targets:Array=[], item_or_skill=null, value := 0, stat := "") -> String:
+	var actor_name = actor.get_name() if actor else ""
+	var actor_articles = TextTools.get_battler_articles(actor.stats, -1, actor.get_name()) if actor else []
 	
-	var item_or_skill_name = tr(item_or_skill.name) if item_or_skill != null else ""
-	var item_or_skill_articles = globaldata.get_item_or_skill_articles(item_or_skill) if item_or_skill != null else []
-	var skill_level = globaldata.get_skill_level(item_or_skill) if item_or_skill != null else ""
+	var item_or_skill_name = tr(item_or_skill.name) if item_or_skill else ""
+	var item_or_skill_articles = TextTools.get_item_or_skill_articles(item_or_skill) if item_or_skill else []
+	var skill_level = TextTools.get_skill_level(item_or_skill) if item_or_skill else ""
+	var stat_name = TextTools.get_inline_stat_name(stat) if stat else ""
+	var stat_articles = TextTools.get_inline_stat_articles(stat) if stat else []
 
 	var target_name
 	var target_articles
 	if (targets.size() == 1):
-		target_name = targets[0].stats.nickname
-		target_articles = globaldata.get_battler_articles(targets[0].stats)
+		target_name = targets[0].get_name()
+		target_articles = TextTools.get_battler_articles(targets[0].stats, -1, targets[0].get_name())
 	elif (targets.size() > 1):
 		# LOCALIZATION: If multiple targets, use "their", "the enemies", "Ninten's party" etc.
-		if targets[0].isEnemy:
+		if targets[0].get_type() == BattleParticipant.Type.ENEMY:
 			target_name = "BATTLE_NAME_ENEMIES"
 			target_articles = "BATTLE_NAME_ENEMIES_ART"
 		else:
@@ -2718,8 +2638,9 @@ func _format_battle_text(text, actor=null, targets:Array=[], item_or_skill=null,
 		"item":item_or_skill_name,
 		"skill":item_or_skill_name,
 		"skillLevel":skill_level,
+		"stat":stat_name,
 		"value":value,
-		"stat":stat
+		"wait":TextTools.CHAR_WAIT
 		}).format(
 			actor_articles, "{n_}"
 		).format(
@@ -2729,31 +2650,37 @@ func _format_battle_text(text, actor=null, targets:Array=[], item_or_skill=null,
 		).format(
 			item_or_skill_articles, "{s_}"
 		).format(
-			globaldata.get_number_articles(value), "{v_}"
+			stat_articles, "{st_}"
+		).format(
+			TextTools.get_number_articles(value), "{v_}"
 		)
 
+func _try_flee(action: Action): # suspend func
+	_fleeing_attempts += 1
+	if _player_adv:
+		print("Fleeing thanks to player advantage")
+		_flee()
+	elif _fleeing_attempts >= FLEEING_MAX_ATTEMPTS:
+		print("Fleeing after %s attempts" % FLEEING_MAX_ATTEMPTS)
+		_flee()
+	else:
+		var chances_multiplier = 1
 
-func tryFlee(action):
-	var enemySpd = 0
-	for enemyBP in get_conscious_enemies():
-		enemySpd = max(enemySpd, enemyBP.get_stat("speed"))
+		var max_enemy_speed = 0
+		for enemyBP in _get_conscious_enemies(true):
+			max_enemy_speed = max(max_enemy_speed, enemyBP.get_stat("speed"))
+			chances_multiplier *= enemyBP.get_vulnerab_multiplier("flee")
 		
-	var partySpd = 0
-	for partyBP in get_conscious_party():
-		partySpd = max(partySpd, partyBP.get_stat("speed"))
-	
-	var chance = wrapi(enemySpd - partySpd + (10 * turn), 0, 100)
-	print("flee chance: ", chance)
-	var r = randi() % 100 + 1
-	print("flee roll: ", r)
-	if r < chance:
-		# flee success!
-		flee()
-	else :
-		# LOCALIZATION Use of csv key for "Couldn't run!"
-		var dialog = {
-			"0":{"text":tr("BATTLE_MSG_FLEE_FAILED")}
-		}
-		$Dialoguebox.start(dialog)
-		yield($Dialoguebox, "done")
-		action.emit_signal("done")
+		var party_speed = 0
+		for partyBP in _get_conscious_party(true):
+			party_speed = max(party_speed, partyBP.get_stat("speed"))
+			chances_multiplier *= partyBP.get_vulnerab_multiplier("flee")
+
+		var chance = (FLEEING_CHANCES_BASE * chances_multiplier) + (party_speed - max_enemy_speed) + (_turns_count * FLEEING_CHANCES_INCREASE)
+		print("Flee chance: %s" % chance)
+		var r = randi() % 100 + 1
+		if r < chance:
+			_flee()
+		else :
+			yield($Dialoguebox.start_from_string(tr("BATTLE_MSG_FLEE_FAILED")), "completed")
+			action.emit_signal("done")

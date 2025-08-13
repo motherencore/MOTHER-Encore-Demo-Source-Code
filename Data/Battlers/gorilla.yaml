@@ -1,0 +1,32 @@
+name: GORILLA_NAME
+description: GORILLA_DESC
+article: GORILLA_ART
+maxhp: 160
+hp: 160
+maxpp: 0
+pp: 0
+offense: 24
+defense: 21
+speed: 7
+iq: 20
+guts: 0
+level: 10
+exp: 90
+cash: 52
+items:
+- chance: 60
+  item: HotDog
+skills:
+- skill: punch
+  weight: 5
+- skill: blindingThrow
+  weight: 2
+- skill: rage
+  weight: 1
+boss: false
+sprite: gorilla
+music: Dangerous Foe.mp3
+bg: gorilla
+ov:
+  sprite: GorillaOV
+  anim: BasicEnemy

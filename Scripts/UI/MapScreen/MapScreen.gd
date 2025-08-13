@@ -106,7 +106,7 @@ func load_map(areaName: String, dontUpdate := false):
 	var map_markers : Array
 	
 	if areaName != loaded_map:
-		if areaName != "": 
+		if globaldata.mapMarkers.has(areaName): 
 			map_tex = load(map_tex_path)
 			name_tex = load(name_tex_path)
 			loaded_map = areaName

@@ -1,26 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scripts/Main/Switches/plate.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Main/Switches/TwoStatesSwitch.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Objects/Plate.png" type="Texture" id=2]
 [ext_resource path="res://Audio/Sound effects/M3/door_close.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 6, 5 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "Down"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -38,7 +23,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Up"
+resource_name = "TurnOff"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -52,8 +37,24 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "TurnOn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
 [node name="plate" type="Sprite"]
 script = ExtResource( 1 )
+_is_one_way = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -66,12 +67,12 @@ position = Vector2( 0, -1 )
 shape = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Down = SubResource( 2 )
 anims/RESET = SubResource( 3 )
-anims/Up = SubResource( 4 )
+anims/TurnOff = SubResource( 4 )
+anims/TurnOn = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "SFX"
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_player_entered"]

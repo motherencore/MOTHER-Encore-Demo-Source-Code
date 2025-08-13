@@ -9,19 +9,19 @@
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Nodes/Ui/ButtonText.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Ui/SkillsMenuUI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Graphics/UI/Ailments/Mushroomized.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/UI/Ailments/Cold.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/UI/Ailments/Asthma_monospace.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/UI/Ailments/Nausea_monospace.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/UI/Ailments/Sunstroked_monospace.png" type="Texture" id=14]
-[ext_resource path="res://Graphics/UI/Ailments/Confused_monospace.png" type="Texture" id=15]
-[ext_resource path="res://Graphics/UI/Ailments/Poisoned_monospace.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/UI/Ailments/mushroomized.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/Ailments/cold.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/UI/Ailments/asthma_monospace.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/UI/Ailments/nausea_monospace.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/UI/Ailments/sunstroked_monospace.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/UI/Ailments/confused_monospace.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/UI/Ailments/poisoned_monospace.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/UI/Overworld/note.png" type="Texture" id=17]
-[ext_resource path="res://Graphics/UI/Ailments/Numb_monospace.png" type="Texture" id=18]
-[ext_resource path="res://Graphics/UI/Ailments/Burned.png" type="Texture" id=19]
-[ext_resource path="res://Graphics/UI/Ailments/Blinded_monospace.png" type="Texture" id=20]
-[ext_resource path="res://Graphics/UI/Ailments/Sleeping_monospace.png" type="Texture" id=21]
-[ext_resource path="res://Graphics/UI/Ailments/Forgetful_monospace.png" type="Texture" id=22]
+[ext_resource path="res://Graphics/UI/Ailments/numb_monospace.png" type="Texture" id=18]
+[ext_resource path="res://Graphics/UI/Ailments/burned.png" type="Texture" id=19]
+[ext_resource path="res://Graphics/UI/Ailments/blinded_monospace.png" type="Texture" id=20]
+[ext_resource path="res://Graphics/UI/Ailments/sleeping_monospace.png" type="Texture" id=21]
+[ext_resource path="res://Graphics/UI/Ailments/forgetful_monospace.png" type="Texture" id=22]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 12 )
@@ -157,6 +157,7 @@ tracks/1/keys = {
 }
 
 [node name="StatsMenuUI" type="CanvasLayer"]
+layer = 2
 offset = Vector2( 0, -180 )
 transform = Transform2D( 1, 0, 0, 1, 0, -180 )
 script = ExtResource( 3 )
@@ -724,14 +725,14 @@ rect_min_size = Vector2( 12, 0 )
 size_flags_vertical = 5
 text = "EQUIP_BODY"
 
-[node name="head" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
+[node name="arms" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
 margin_top = 30.0
 margin_right = 69.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 12, 0 )
 size_flags_vertical = 5
-text = "EQUIP_HEAD"
+text = "EQUIP_ARMS"
 
 [node name="other" parent="Stats/Body/Right/Middle/Labels" instance=ExtResource( 7 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
@@ -778,7 +779,7 @@ size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 5 )
 text = "EQUIP_NONE"
 
-[node name="head" type="Label" parent="Stats/Body/Right/Middle/Values"]
+[node name="arms" type="Label" parent="Stats/Body/Right/Middle/Values"]
 margin_top = 30.0
 margin_right = 54.0
 margin_bottom = 42.0

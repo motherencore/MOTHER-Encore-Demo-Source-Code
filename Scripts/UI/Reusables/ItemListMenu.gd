@@ -1,17 +1,18 @@
+class_name ItemListMenu
 extends NinePatchRect
 
 onready var cursor = get_node_or_null("arrow")
 onready var lines = $MarginContainer/VBoxContainer.get_children()
 onready var scrollbar = $Scrollbar
 
-export(String) var priceType = "cost"
-export var loop_around = false
+export (bool) var _is_resale_price := false
+export var loop_around := false
 
 const LINES_PER_PAGE = 6
 
-var page = 0
+var page := 0
 
-var item_list = [] setget _set_item_list	# list of InventoryManager.Item
+var item_list := [] setget _set_item_list	# list of InventoryManager.Item
 var restriction_func: FuncRef
 
 signal selected(itemIdx)
@@ -27,6 +28,13 @@ func _ready():
 		cursor.connect("selected", self, "_on_cursor_select")
 		cursor.connect("failed_select", self, "_on_cursor_failed_select")
 	scrollbar.nb_visible_rows = LINES_PER_PAGE
+
+func _physics_process(delta):
+	if cursor.on and Input.is_action_pressed("ui_toggle"):
+		var direction = controlsManager.get_controls_vector(true)
+		var page_delta = direction.y * LINES_PER_PAGE
+		if page_delta != 0:
+			_on_cursor_move_by_page(page_delta)
 
 func enter(reset=true, idx = -1):
 	if idx != -1:
@@ -46,8 +54,8 @@ func _update_content(reset=false):
 
 	# check if the page is too far and there's no other items
 	if page + LINES_PER_PAGE > item_list.size():
-		page = max(0, item_list.size() - LINES_PER_PAGE)	
-	_updatePage()
+		page = int(max(0, item_list.size() - LINES_PER_PAGE))
+	_update_page()
 
 	if cursor.cursor_index + page > item_list.size() - 1:
 		cursor.set_cursor_from_index(item_list.size() - page - 1, false)
@@ -71,31 +79,29 @@ func exit():
 
 
 func scroll_to(pos):
-	page = clamp(page, pos - LINES_PER_PAGE + 1, pos)
+	page = int(clamp(page, pos - LINES_PER_PAGE + 1, pos))
 	cursor.set_cursor_from_index(pos - page)
 	if cursor.on:
 		set_highlight(cursor.cursor_index)
-	_updatePage()
+	_update_page()
 
-
-func get_current_item():
+func get_current_item() -> InventoryManager.Item:
 	if !item_list.empty():
 		return item_list[cursor.cursor_index + page]
 	else:
 		return null
 
-func get_current_item_id():
+func get_current_item_id() -> String:
 	if !item_list.empty():
 		return item_list[cursor.cursor_index + page].ItemName
 	else:
-		return null
-
+		return ""
 
 func _on_arrow_cancel():
 	if cursor.on or (visible and item_list.empty()):
 		exit()
 
-func _updatePage(dir=0):
+func _update_page(dir = 0):
 	page += dir
 	for i in LINES_PER_PAGE:
 		var line = lines[i]
@@ -115,10 +121,10 @@ func _updatePage(dir=0):
 				else:
 					line.get_node("ItemLabel").add_color_override("font_color", Color.white)
 				if line.has_node("PriceLabel"):
-					if priceType in item:
-						line.get_node("PriceLabel").text = str(item[priceType])
+					if _is_resale_price:
+						line.get_node("PriceLabel").text = str(item.value * item_instance.doses)
 					else:
-						line.get_node("PriceLabel").text = ""
+						line.get_node("PriceLabel").text = str(item.cost)
 				line.get_node("ItemLabel").show_equiped(item_instance.equiped)
 	scrollbar.position = page
 
@@ -131,14 +137,14 @@ func set_highlight(idx):
 			else:
 				child.highlight(0)
 
-func _on_cursor_failed_move(dir):
+func _on_cursor_failed_move(dir: Vector2):
 	if dir.y == 0:
 		return
 
 	if dir.y < 0 and dir.y + page < 0:
 		if loop_around:
 			dir.y = 0
-			page = max(0, item_list.size() - LINES_PER_PAGE)
+			page = int(max(0, item_list.size() - LINES_PER_PAGE))
 			cursor.set_cursor_from_index(min(LINES_PER_PAGE - 1, item_list.size() - 1))
 		else:
 			return
@@ -149,18 +155,27 @@ func _on_cursor_failed_move(dir):
 			cursor.set_cursor_from_index(0)
 		else:
 			return
-	_updatePage(dir.y)
+	_update_page(dir.y)
 
 	if not item_list.empty():
 		set_highlight(cursor.cursor_index)
 		cursor.play_sfx("cursor1")
 		emit_signal("moved", cursor.cursor_index + page)
 
-func _on_cursor_move(dir):
+func _on_cursor_move(dir: Vector2):
 	if !cursor.on:
 		return
 	set_highlight(cursor.cursor_index)
 	emit_signal("moved", cursor.cursor_index + page)
+
+func _on_cursor_move_by_page(delta: int):
+	var new_page := page + delta
+	new_page = int(clamp(new_page, 0, item_list.size() - LINES_PER_PAGE))
+	if new_page != page and item_list.size() > LINES_PER_PAGE:
+		page = new_page
+		_update_page()
+		cursor.play_sfx("cursor1")
+		emit_signal("moved", cursor.cursor_index + page)
 
 func _on_cursor_select(idx):
 	if !cursor.on:

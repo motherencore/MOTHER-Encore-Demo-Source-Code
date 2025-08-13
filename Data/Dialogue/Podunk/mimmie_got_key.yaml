@@ -1,0 +1,17 @@
+'0':
+  name: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_0
+  if:
+    flags:
+      mimmie_ask_key: true
+    goto: '1'
+  goto: '2'
+'1':
+  name: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_1
+'2':
+  name: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_GOT_KEY_2

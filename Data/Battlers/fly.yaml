@@ -1,0 +1,34 @@
+name: FLY_NAME
+description: FLY_DESC
+article: FLY_ART
+maxhp: 20
+hp: 20
+maxpp: 0
+pp: 0
+offense: 5
+defense: 12
+speed: 9
+iq: 10
+guts: 0
+level: 4
+exp: 12
+cash: 1
+skills:
+- skill: float
+  weight: 1
+- skill: callHelpFly
+  weight: 1
+- skill: tackle
+  weight: 10
+boss: false
+sprite: fly
+music: Flippant Foe.mp3
+bg: fly
+ov:
+  sprite: FlyOV
+  anim: FlyEnemy
+  shadow: false
+  maxSpeed: 128
+  acceleration: 800
+  friction: 800
+  walkFrequency: 0.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Graphics/UI/Battle/PartyInfoPlate.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Graphics/UI/Battle/PartyInfoPlateBasic.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/UI/Battle/PartyInfoPlateHighlight.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/UI/Battle/label_hp.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/Battle/label_pp.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -92,31 +94,64 @@ centered = false
 hframes = 8
 vframes = 10
 
-[node name="BasicPlate" type="TextureRect" parent="."]
-visible = false
+[node name="hp_label" type="TextureRect" parent="."]
 material = ExtResource( 5 )
-margin_left = -5.0
-margin_right = 68.0
+margin_left = 11.0
+margin_top = 20.0
+margin_right = 24.0
+margin_bottom = 29.0
+texture = ExtResource( 10 )
+
+[node name="pp_label" type="TextureRect" parent="."]
+material = ExtResource( 5 )
+margin_left = 11.0
+margin_top = 32.0
+margin_right = 24.0
+margin_bottom = 41.0
+texture = ExtResource( 11 )
+
+[node name="BasicPlate" type="TextureRect" parent="."]
+material = ExtResource( 5 )
+margin_left = -6.0
+margin_right = 73.0
 margin_bottom = 49.0
 texture = ExtResource( 8 )
 
 [node name="MaxHP" type="Label" parent="BasicPlate"]
-margin_left = 23.0
+margin_left = 25.0
 margin_top = 17.0
-margin_right = 66.0
+margin_right = 72.0
 margin_bottom = 28.0
+grow_horizontal = 0
 custom_fonts/font = ExtResource( 7 )
 text = "200/900"
 align = 1
 
 [node name="MaxPP" type="Label" parent="BasicPlate"]
-margin_left = 23.0
+margin_left = 25.0
 margin_top = 29.0
-margin_right = 66.0
+margin_right = 72.0
 margin_bottom = 40.0
+grow_horizontal = 0
 custom_fonts/font = ExtResource( 7 )
 text = "20/900"
 align = 1
+
+[node name="hp_label" type="TextureRect" parent="BasicPlate"]
+material = ExtResource( 5 )
+margin_left = 9.0
+margin_top = 20.0
+margin_right = 22.0
+margin_bottom = 29.0
+texture = ExtResource( 10 )
+
+[node name="pp_label" type="TextureRect" parent="BasicPlate"]
+material = ExtResource( 5 )
+margin_left = 9.0
+margin_top = 32.0
+margin_right = 22.0
+margin_bottom = 41.0
+texture = ExtResource( 11 )
 
 [node name="Highlight" type="NinePatchRect" parent="."]
 visible = false
@@ -131,14 +166,14 @@ patch_margin_right = 5
 patch_margin_bottom = 5
 
 [node name="Name" type="Label" parent="."]
-margin_left = -4.0
+margin_left = -3.0
 margin_top = 1.0
-margin_right = 71.0
+margin_right = 72.0
 margin_bottom = 16.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
-text = "ŒŒŒŒŒŒŒŒ"
+text = "ЩЩЩЩЩЩЩ"
 align = 1
 valign = 1
 

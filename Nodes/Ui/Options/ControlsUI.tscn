@@ -124,29 +124,28 @@ cursor_div = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollConta
 cursor = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/ControlsArrow")
 
 [node name="Content" type="VBoxContainer" parent="."]
-margin_right = 308.0
+margin_right = 294.0
 margin_bottom = 145.0
 grow_horizontal = 2
 custom_constants/separation = 3
 alignment = 1
 
 [node name="Header" type="HBoxContainer" parent="Content"]
-margin_right = 308.0
+margin_right = 294.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 0, 20 )
 rect_pivot_offset = Vector2( -310, -108 )
 
 [node name="Tabs" type="HBoxContainer" parent="Content/Header"]
-margin_right = 236.0
+margin_right = 222.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 
 [node name="IndicatorL" parent="Content/Header/Tabs" instance=ExtResource( 14 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 0.0
 margin_bottom = 21.0
+grow_horizontal = 1
 key = "ui_focus_prev"
+size_before_growing = 12
 
 [node name="Keyboard" type="TextureRect" parent="Content/Header/Tabs"]
 show_behind_parent = true
@@ -169,16 +168,15 @@ texture = ExtResource( 16 )
 stretch_mode = 4
 
 [node name="IndicatorR" parent="Content/Header/Tabs" instance=ExtResource( 14 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 54.0
 margin_right = 54.0
 margin_bottom = 21.0
+size_before_growing = 12
 
 [node name="Panel" type="Panel" parent="Content/Header"]
 material = ExtResource( 5 )
-margin_left = 240.0
-margin_right = 308.0
+margin_left = 226.0
+margin_right = 294.0
 margin_bottom = 21.0
 grow_horizontal = 2
 rect_min_size = Vector2( 68, 0 )
@@ -200,14 +198,14 @@ align = 1
 [node name="BodyPanel" type="PanelContainer" parent="Content"]
 material = ExtResource( 5 )
 margin_top = 24.0
-margin_right = 308.0
+margin_right = 294.0
 margin_bottom = 145.0
 grow_horizontal = 2
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/BodyPanel"]
-margin_right = 308.0
+margin_right = 294.0
 margin_bottom = 121.0
 custom_constants/margin_right = 2
 custom_constants/margin_top = 2
@@ -217,20 +215,19 @@ custom_constants/margin_bottom = 3
 [node name="BodyContent" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer"]
 margin_left = 2.0
 margin_top = 2.0
-margin_right = 306.0
+margin_right = 292.0
 margin_bottom = 118.0
 custom_constants/separation = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/BodyPanel/MarginContainer/BodyContent"]
-margin_right = 296.0
+margin_right = 282.0
 margin_bottom = 116.0
-rect_clip_content = false
 size_flags_horizontal = 3
 theme = SubResource( 6 )
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer"]
-margin_right = 296.0
+margin_right = 282.0
 margin_bottom = 319.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 9
@@ -238,28 +235,28 @@ custom_constants/margin_left = 10
 
 [node name="ScrollingContent" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer"]
 margin_left = 10.0
-margin_right = 287.0
+margin_right = 273.0
 margin_bottom = 319.0
 size_flags_horizontal = 3
 
 [node name="Movement" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 80.0
 
 [node name="MovementHeader" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement"]
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Spacer" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementHeader"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="Header" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementHeader"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 150, 14 )
 custom_constants/separation = 0
@@ -284,18 +281,18 @@ script = ExtResource( 8 )
 
 [node name="MovementBody" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement"]
 margin_top = 18.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 80.0
 
 [node name="Labels" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 2
 
 [node name="Label" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Labels"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -304,7 +301,7 @@ valign = 1
 
 [node name="Label2" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Labels"]
 margin_top = 16.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -313,7 +310,7 @@ valign = 1
 
 [node name="Label3" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Labels"]
 margin_top = 32.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -322,7 +319,7 @@ valign = 1
 
 [node name="Label4" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Labels"]
 margin_top = 48.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -330,8 +327,8 @@ text = "CONTROLS_RIGHT"
 valign = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 150, 0 )
 alignment = 1
@@ -514,24 +511,24 @@ valign = 1
 
 [node name="Actions" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
 margin_top = 84.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 212.0
 
 [node name="ActionsHeader" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions"]
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Spacer" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsHeader"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 
 [node name="Header" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsHeader"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 150, 14 )
 size_flags_horizontal = 3
@@ -557,18 +554,18 @@ script = ExtResource( 8 )
 
 [node name="ActionsBody" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions"]
 margin_top = 18.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 128.0
 
 [node name="Labels" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 2
 
 [node name="Label" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -577,7 +574,7 @@ valign = 1
 
 [node name="Label2" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 16.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -586,7 +583,7 @@ valign = 1
 
 [node name="Label3" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 32.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -595,7 +592,7 @@ valign = 1
 
 [node name="Label4" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 48.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 62.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -604,7 +601,7 @@ valign = 1
 
 [node name="Label5" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 64.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -613,7 +610,7 @@ valign = 1
 
 [node name="Label6" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 80.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -622,7 +619,7 @@ valign = 1
 
 [node name="Label7" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
 margin_top = 96.0
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -630,8 +627,8 @@ text = "CONTROLS_MENU"
 valign = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
@@ -941,24 +938,24 @@ valign = 1
 
 [node name="Misc" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
 margin_top = 216.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 264.0
 
 [node name="MiscHeader" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc"]
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Spacer" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscHeader"]
-margin_right = 123.0
+margin_right = 109.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 
 [node name="Header" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscHeader"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 150, 14 )
 size_flags_horizontal = 3
@@ -984,18 +981,19 @@ script = ExtResource( 8 )
 
 [node name="MiscBody" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc"]
 margin_top = 18.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 48.0
+custom_constants/separation = 0
 
 [node name="Labels" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody"]
-margin_right = 123.0
+margin_right = 113.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 2
 
 [node name="Label" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Labels"]
-margin_right = 123.0
+margin_right = 113.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -1004,7 +1002,7 @@ valign = 1
 
 [node name="Label2" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Labels"]
 margin_top = 16.0
-margin_right = 123.0
+margin_right = 113.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 14 )
 custom_fonts/font = ExtResource( 7 )
@@ -1012,8 +1010,8 @@ text = "CONTROLS_WINDOW_SIZE"
 valign = 1
 
 [node name="Buttons" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody"]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
@@ -1113,7 +1111,7 @@ valign = 1
 
 [node name="Divider" type="ColorRect" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
 margin_top = 268.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 269.0
 rect_min_size = Vector2( 94, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1122,51 +1120,63 @@ script = ExtResource( 8 )
 
 [node name="MiscMore" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
 margin_top = 273.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 319.0
 
 [node name="ButtonStyles" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 12.0
 focus_mode = 1
 
-[node name="ButtonStylesLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles"]
-margin_right = 123.0
+[node name="Control" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles"]
+margin_right = 109.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
+
+[node name="ButtonStylesLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles/Control"]
+margin_right = 127.0
+margin_bottom = 12.0
+size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "CONTROLS_BUTTON_STYLE"
 
 [node name="ButtonStylesSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles" instance=ExtResource( 17 )]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 rect_min_size = Vector2( 150, 12 )
+size_flags_horizontal = 6
 alignment = 1
 
 [node name="Rumble" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
 margin_top = 16.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 28.0
 focus_mode = 1
 
-[node name="RumbleLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble"]
-margin_right = 123.0
+[node name="Control" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble"]
+margin_right = 109.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
+
+[node name="RumbleLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble/Control"]
+margin_right = 89.0
+margin_bottom = 12.0
+size_flags_horizontal = 2
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "CONTROLS_RUMBLE"
 
 [node name="RumbleSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble" instance=ExtResource( 17 )]
-margin_left = 127.0
-margin_right = 277.0
+margin_left = 113.0
+margin_right = 263.0
 rect_min_size = Vector2( 150, 12 )
+size_flags_horizontal = 6
 alignment = 1
 
 [node name="Default" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
 margin_top = 32.0
-margin_right = 277.0
+margin_right = 263.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 0, 14 )
 focus_mode = 1
@@ -1176,17 +1186,15 @@ text = "CONTROLS_DEFAULT"
 [node name="ControlsArrow" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent" instance=ExtResource( 13 )]
 position = Vector2( 0, 268 )
 menu_parent_path = NodePath("../MiscMore")
-cursor_offset = Vector2( -4, 1 )
 reset_on_show = false
 
 [node name="Scrollbar" parent="Content/BodyPanel/MarginContainer/BodyContent" instance=ExtResource( 6 )]
-margin_left = 296.0
-margin_right = 304.0
+margin_left = 282.0
+margin_right = 290.0
 margin_bottom = 116.0
-rect_min_size = Vector2( 8, 0 )
 
 [node name="Overlay" type="Control" parent="."]
-margin_right = 308.0
+margin_right = 294.0
 margin_bottom = 145.0
 
 [node name="TimeoutDialog" parent="Overlay" instance=ExtResource( 11 )]

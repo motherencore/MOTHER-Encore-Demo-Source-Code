@@ -33,7 +33,7 @@ extents = Vector2( 32, 22.5 )
 [node name="Podunk Healer\'s House" type="Node2D"]
 script = ExtResource( 9 )
 player_map_offset = Vector2( 40, 304 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 

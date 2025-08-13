@@ -1,0 +1,38 @@
+'0':
+  if:
+    hp: 850
+    goto: '1'
+'1':
+  doskill: callHelpStarmanJr1
+  goto: '2'
+'2':
+  if:
+    hp: 600
+    goto: '3'
+'3':
+  doskill: callHelpStarmanJr2
+  goto: '4'
+'4':
+  if:
+    hp: 350
+    goto: '5'
+'5':
+  doskill: callHelpStarmanJr3
+  goto: '6'
+'6':
+  if:
+    hp: 120
+    goto: '7'
+'7':
+  doskill: pkBeamG
+  text:
+    '0':
+      text: BATTLE_STARMANJR_1_0
+      sound: Robot
+  goto: '8'
+'8':
+  if:
+    hp: 0
+    goto: '9'
+'9':
+  die: true

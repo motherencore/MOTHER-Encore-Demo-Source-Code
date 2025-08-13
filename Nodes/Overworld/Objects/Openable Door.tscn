@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main/Openable Door.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 16, 19 )
+extents = Vector2( 16, 19.5 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 16, 4 )
 
 [sub_resource type="Shader" id=5]
@@ -115,12 +115,16 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 4 )
+
 [node name="Openable Door" type="Sprite"]
 script = ExtResource( 1 )
 sound = "M3/door_open.wav"
 end_sound = "Door_Short.mp3"
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 position = Vector2( 0, -32 )
 offset = Vector2( 0, 8 )
 
@@ -130,13 +134,13 @@ collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, -15 )
+position = Vector2( 0, -14.5 )
 shape = SubResource( 7 )
 
 [node name="interact" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="ButtonPrompt" parent="interact" instance=ExtResource( 2 )]
 material = SubResource( 6 )

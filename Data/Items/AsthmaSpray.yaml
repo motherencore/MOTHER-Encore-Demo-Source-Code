@@ -1,0 +1,32 @@
+name: ASTHMASPRAY_NAME
+sorting_name: ASTHMASPRAY_SORT
+description: ASTHMASPRAY_DESC
+article: ASTHMASPRAY_ART
+keyitem: false
+cost: 148
+value: 74
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: true
+  pippi: true
+action_one:
+  name: INVENTORY_ACTION_USE
+  function: consume
+action_two: null
+battle_action: ''
+transform: ''
+slot: ''
+status_heals:
+- asthma
+HPrecover: 0
+PPrecover: 0
+boost:
+  maxhp: 0
+  maxpp: 0
+  offense: 0
+  defense: 0
+  speed: 0
+  iq: 0
+  guts: 0

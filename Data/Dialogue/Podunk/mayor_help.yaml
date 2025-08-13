@@ -1,0 +1,16 @@
+'0':
+  name: DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_MAYOR_HELP_0
+  options:
+    DIALOGUE_PODUNK_MAYOR_HELP_6-OPT_0: '7'
+    DIALOGUE_PODUNK_MAYOR_HELP_6-OPT_1: '10'
+    cancel: '10'
+'7':
+  name: DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_MAYOR_HELP_7
+'10':
+  name: DIALOGUE_PODUNK_MAYOR_HELP_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_MAYOR_HELP_10

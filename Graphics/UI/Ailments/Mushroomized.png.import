@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Mushroomized.png-42c4a728ff680ee5b1b58d5ef482c679.stex"
+path="res://.import/mushroomized.png-3d3a4ecd5a0ffc5e1c48acceeb9932d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Mushroomized.png"
-dest_files=[ "res://.import/Mushroomized.png-42c4a728ff680ee5b1b58d5ef482c679.stex" ]
+source_file="res://Graphics/UI/Ailments/mushroomized.png"
+dest_files=[ "res://.import/mushroomized.png-3d3a4ecd5a0ffc5e1c48acceeb9932d6.stex" ]
 
 [params]
 

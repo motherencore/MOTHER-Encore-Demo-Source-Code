@@ -1,0 +1,10 @@
+'0':
+  name: DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_MAYOR_ZOO_FREED_0
+  goto: '2'
+'2':
+  name: DIALOGUE_PODUNK_MAYOR_ZOO_FREED_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_MAYOR_ZOO_FREED_2
+  emoteplayer: question

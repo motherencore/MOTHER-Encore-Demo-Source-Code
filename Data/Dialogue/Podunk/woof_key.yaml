@@ -1,0 +1,17 @@
+'0':
+  name: DIALOGUE_PODUNK_WOOF_KEY_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_KEY_0
+  goto: '4'
+'4':
+  text: DIALOGUE_PODUNK_WOOF_KEY_4
+  item: KeyBasement
+  soundeffect: Item Received.mp3
+  goto: '5'
+'5':
+  name: DIALOGUE_PODUNK_WOOF_KEY_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_KEY_5
+  goto: '6'
+'6':
+  name: DIALOGUE_PODUNK_WOOF_KEY_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_KEY_6
+  setflags: mick_telepathy

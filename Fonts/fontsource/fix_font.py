@@ -164,20 +164,24 @@ def fixAllCJK(font):
 	nbFixes += _fixSameFixedWidth(font, ranges)
 	return nbFixes
 
+def fixOneCharBearings(font, char, size):
+	code = ord(char)
+	if font.__contains__(code):
+		glyph = font.__getitem__(code)
+		if glyph.right_side_bearing != size * PIXEL_WIDTH:
+			oldWidth = glyph.width
+			glyph.right_side_bearing = size * PIXEL_WIDTH
+			print(f"    Width of glyph {_charInfo(code)} changed: from {oldWidth // PIXEL_WIDTH} to {glyph.width // PIXEL_WIDTH}")
+			return 1
+	return 0
+
 def fixBearings(font):
 	print("  Checking a few letters that shouldn’t have extra bearing...")
-	allA = "aáàâäãåāǎăąаíîïÍÎÏ"
+	#allA = "aáàâäãåāǎăąíîïÍÎÏ"
+	allA = "aáàâäãåāǎăąíîïĩǐĭīÍ"
 	nbFixes = 0
 	for a in allA:
-		code = ord(a)
-		if font.__contains__(code):
-			glyph = font.__getitem__(code)
-			if glyph.right_side_bearing != 0:
-				oldWidth = glyph.width
-				glyph.right_side_bearing = 0
-				print(f"    Width of glyph {_charInfo(code)} changed: from {oldWidth // PIXEL_WIDTH} to {glyph.width // PIXEL_WIDTH}")
-				nbFixes += 1
-	
+		nbFixes += fixOneCharBearings(font, a, 0)
 	return nbFixes
 				
 def fixVariousPunctuation(font):
@@ -185,16 +189,24 @@ def fixVariousPunctuation(font):
 	bearings = {"@": 2, "`": 2}
 	nbFixes = 0
 	for p in bearings:
-		code = ord(p)
-		if font.__contains__(code):
-			glyph = font.__getitem__(code)
-			if glyph.right_side_bearing != bearings[p] * PIXEL_WIDTH:
-				oldWidth = glyph.width
-				glyph.right_side_bearing = bearings[p] * PIXEL_WIDTH
-				print(f"    Width of glyph {_charInfo(code)} changed: from {oldWidth // PIXEL_WIDTH} to {glyph.width // PIXEL_WIDTH}")
-				nbFixes += 1
+		nbFixes += fixOneCharBearings(font, p, bearings[p])
 	return nbFixes
 
+def fixSaturnBearings(font):
+	print("  Checking bearing for Saturn font...")
+	bearing0 = "EÉÈÊËĒĔĚĖĘÆŒHĤĦJĴĲRŔŖŘXZŹŻŽЕЁНХ'’´`\"“”>「"
+	bearing2 = "37<LĹĻĽĿȽŁ@ぁぃぅぇぉっゃゅょ゛ゝ"
+
+	nbFixes = 0
+	for c in bearing0:
+		nbFixes += fixOneCharBearings(font, c, 0)
+		nbFixes += fixOneCharBearings(font, c.lower(), 0)
+	for c in bearing2:
+		nbFixes += fixOneCharBearings(font, c, 2)
+		nbFixes += fixOneCharBearings(font, c.lower(), 2)
+	nbFixes += fixOneCharBearings(font, "？", 5)
+	nbFixes += fixOneCharBearings(font, "！", 6)
+	return nbFixes
 
 def exportGlyphWidths(font):
 	widthsObj = {}
@@ -221,12 +233,16 @@ def fixFile(fontFile):
 	nbFixes += fixAllWhiteSpaces(font)
 	#nbFixes += fixAllJapanese(font)
 	#nbFixes += fixAllKorean(font)
-	nbFixes += fixAllCJK(font)
+	if font.fontname != "SaturnBoing":
+		nbFixes += fixAllCJK(font)
 	
 	if font.fontname == "EBMain":
 		nbFixes += fixBearings(font)
 		nbFixes += fixVariousPunctuation(font)
 	
+	if font.fontname == "SaturnBoing":
+		nbFixes += fixSaturnBearings(font)
+
 	exportGlyphWidths(font)
 
 	if nbFixes > 0:

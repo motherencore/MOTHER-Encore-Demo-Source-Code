@@ -16,7 +16,7 @@ export var transit_out_color = Color.black
 export var fade_in_speed = 1.0
 export var fade_out_speed = 1.0
 export var fadeout_music_on_scene_change = true
-export var fadeout_music_length = 0.9
+export var fadeout_music_length = 0.8
 export var targetScene = ""
 export var set_respawn = false
 export var set_crumbs = false
@@ -199,7 +199,7 @@ func specialGuest(newScene = true):
 	var checkScene
 	checkScene = global.currentScene
 	if not checkScene.get_name() in ["Disclaimer", "Title screen", "SaveSelect", "Control", "Naming screen", "Introduction"]:
-		var specialGuest = load("res://Nodes/Overworld/Enemies/PassiveHeal.tscn").instance()
+		var specialGuest = load("res://Nodes/Overworld/Enemies/AoOni.tscn").instance()
 		if !newScene:
 			yield(self, "moved_player")
 		checkScene.get_node("Objects").add_child(specialGuest)

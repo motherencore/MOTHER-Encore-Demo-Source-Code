@@ -1,0 +1,13 @@
+'0':
+  name: DIALOGUE_PODUNK_WOOF_TREATS_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_TREATS_0
+  goto: '2'
+'2':
+  text: DIALOGUE_PODUNK_WOOF_TREATS_2
+  goto: '3'
+'3':
+  name: DIALOGUE_PODUNK_WOOF_TREATS_SPEAKER_Mick
+  emotenpc: heart
+  text: DIALOGUE_PODUNK_WOOF_TREATS_3
+  removeitem: DogTreats
+  setflags: gave_treats

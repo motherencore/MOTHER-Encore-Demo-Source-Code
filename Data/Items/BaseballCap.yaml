@@ -1,0 +1,31 @@
+name: BASEBALLCAP_NAME
+sorting_name: BASEBALLCAP_SORT
+description: BASEBALLCAP_DESC
+article: BASEBALLCAP_ART
+keyitem: false
+cost: 60
+value: 30
+usable:
+  ninten: true
+  ana: false
+  lloyd: false
+  teddy: false
+  pippi: false
+action_one:
+  name: INVENTORY_ACTION_EQUIP
+  nametwo: INVENTORY_ACTION_UNEQUIP
+  function: equip
+action_two: null
+battle_action: ''
+transform: ''
+slot: other
+HPrecover: 0
+PPrecover: 0
+boost:
+  maxhp: 0
+  maxpp: 0
+  offense: 0
+  defense: 5
+  speed: 0
+  iq: 0
+  guts: 0

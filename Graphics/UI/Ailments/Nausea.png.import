@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Nausea.png-5b5733b5e4a33e42de82c3f61371fe98.stex"
+path="res://.import/nausea.png-5d2cd1fc1e75c488cf48a6352f8a4d4e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Nausea.png"
-dest_files=[ "res://.import/Nausea.png-5b5733b5e4a33e42de82c3f61371fe98.stex" ]
+source_file="res://Graphics/UI/Ailments/nausea.png"
+dest_files=[ "res://.import/nausea.png-5d2cd1fc1e75c488cf48a6352f8a4d4e.stex" ]
 
 [params]
 

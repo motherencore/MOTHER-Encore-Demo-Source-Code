@@ -1,0 +1,31 @@
+name: CAPSULEHP_NAME
+sorting_name: CAPSULEHP_SORT
+description: CAPSULEHP_DESC
+article: CAPSULEHP_ART
+keyitem: false
+cost: 0
+value: 0
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: false
+  pippi: false
+action_one:
+  name: CAPSULEHP_ACT1_NAME
+  function: consume
+  textfail: ACTION_RESULT_FAIL_CAPSULE
+action_two: null
+battle_action: ''
+transform: ''
+slot: ''
+HPrecover: 3
+PPrecover: 0
+boost:
+  maxhp: 3
+  maxpp: 0
+  offense: 0
+  defense: 0
+  speed: 0
+  iq: 0
+  guts: 0

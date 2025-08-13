@@ -1,0 +1,10 @@
+name: FIELD_PK_FIRE
+description: FIELD_PK_FIRE_DESC
+is_skill_button: true
+battle_skill: pkFireA
+usable:
+  ninten: false
+  ana: true
+  lloyd: false
+  teddy: false
+  pippi: false

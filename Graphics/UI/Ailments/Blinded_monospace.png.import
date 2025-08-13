@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blinded_monospace.png-ebb725509938f268ba3a410c963eaeb0.stex"
+path="res://.import/blinded_monospace.png-64521811a443ffa88f98410747ae2160.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Blinded_monospace.png"
-dest_files=[ "res://.import/Blinded_monospace.png-ebb725509938f268ba3a410c963eaeb0.stex" ]
+source_file="res://Graphics/UI/Ailments/blinded_monospace.png"
+dest_files=[ "res://.import/blinded_monospace.png-64521811a443ffa88f98410747ae2160.stex" ]
 
 [params]
 

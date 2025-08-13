@@ -1,0 +1,33 @@
+name: ALLIGATOR_NAME
+description: ALLIGATOR_DESC
+article: ALLIGATOR_ART
+maxhp: 170
+hp: 170
+maxpp: 0
+pp: 0
+offense: 18
+defense: 26
+speed: 6
+iq: 10
+guts: 0
+level: 9
+exp: 79
+cash: 39
+items:
+- chance: 70
+  item: SportsDrink
+skills:
+- skill: bite
+  weight: 10
+- skill: approach
+  weight: 1
+boss: false
+sprite: alligator
+music: Dangerous Foe.mp3
+bg: alligator
+ov:
+  sprite: AlligatorOV
+  anim: BasicEnemy
+  spriteOffset:
+  - 0
+  - 6

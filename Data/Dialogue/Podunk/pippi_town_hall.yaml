@@ -1,0 +1,12 @@
+'0':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_TOWN_HALL_0
+  if:
+    flags:
+      courage_badge_received: false
+    goto: '1'
+'1':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_TOWN_HALL_1

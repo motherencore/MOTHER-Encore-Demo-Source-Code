@@ -1,0 +1,266 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/UI/debugmenu/Info.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/debug.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/UI/debug/debugui.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/UI/partyicons.png" type="Texture" id=4]
+[ext_resource path="res://Nodes/Ui/debug/debug.gd" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.431373, 0.431373, 0.431373, 0.388235 )
+border_width_left = 4
+border_color = Color( 0.431373, 0.431373, 0.431373, 0.388235 )
+
+[node name="debug" type="Control"]
+margin_left = -35.0
+margin_right = -35.0
+mouse_filter = 1
+script = ExtResource( 6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main" type="NinePatchRect" parent="CanvasLayer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 81.0
+margin_bottom = 81.0
+rect_pivot_offset = Vector2( 20, 20 )
+texture = ExtResource( 3 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="CanvasLayer/Main"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 39.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+text = "Debug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
+margin_left = 3.0
+margin_top = 19.0
+margin_right = 77.0
+margin_bottom = 33.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="CanvasLayer/Main/VBoxContainer"]
+margin_right = 74.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 2 )
+text = "Poo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close" type="Sprite" parent="CanvasLayer/Main"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 71, 8 )
+texture = ExtResource( 4 )
+hframes = 6
+frame = 4
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Main/close"]
+position = Vector2( -91, -15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Main/close/Area2D"]
+position = Vector2( 90, 16 )
+shape = SubResource( 1 )
+
+[node name="Info" type="NinePatchRect" parent="CanvasLayer"]
+margin_left = 206.0
+margin_top = 1.0
+margin_right = 319.0
+margin_bottom = 99.0
+mouse_filter = 1
+texture = ExtResource( 3 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="CanvasLayer/Info"]
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 77.0
+margin_bottom = 13.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Info"]
+margin_left = 4.0
+margin_top = 19.0
+margin_right = 110.0
+margin_bottom = 79.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="fpsdisplay" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+margin_right = 106.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 2 )
+text = "FPS: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="map" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+margin_top = 15.0
+margin_right = 106.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "Map:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pos" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+margin_top = 30.0
+margin_right = 106.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 2 )
+text = "XY:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="state" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+margin_top = 45.0
+margin_right = 106.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 2 )
+text = "State: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="velocity" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+margin_top = 60.0
+margin_right = 106.0
+margin_bottom = 71.0
+custom_fonts/font = ExtResource( 2 )
+text = "Vel:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="Label" parent="CanvasLayer/Info/VBoxContainer"]
+visible = false
+margin_top = 60.0
+margin_right = 106.0
+margin_bottom = 71.0
+custom_fonts/font = ExtResource( 2 )
+text = "Anim: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Console" type="NinePatchRect" parent="CanvasLayer"]
+visible = false
+margin_left = 20.0
+margin_top = 11.0
+margin_right = 293.0
+margin_bottom = 168.0
+rect_pivot_offset = Vector2( 20, 20 )
+texture = ExtResource( 3 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="CanvasLayer/Console"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 46.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 2 )
+text = "Console"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Console"]
+margin_left = 3.0
+margin_top = 130.0
+margin_right = 270.0
+margin_bottom = 131.0
+color = Color( 0.431373, 0.431373, 0.431373, 0.85098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Console"]
+margin_left = 3.0
+margin_top = 16.0
+margin_right = 270.0
+margin_bottom = 17.0
+color = Color( 0.431373, 0.431373, 0.431373, 0.85098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Console"]
+margin_left = 7.0
+margin_top = 135.0
+margin_right = 265.0
+margin_bottom = 150.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "AAAAAAAA"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Console"]
+margin_left = 5.0
+margin_top = 21.0
+margin_right = 268.0
+margin_bottom = 124.0
+custom_fonts/normal_font = ExtResource( 2 )
+text = "aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa"
+__meta__ = {
+"_edit_use_anchors_": false
+}

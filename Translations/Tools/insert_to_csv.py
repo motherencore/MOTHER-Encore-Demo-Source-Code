@@ -6,7 +6,7 @@ EXCLUDE_FROM_COUNTER = ["dialogue_Magicant", "dialogue_Magicant_descriptions", "
 FOLDER_TEXT = "text-{}/"
 FOLDER_CSV = "../TranslatedText/"
 SUFFIX_CSV = " - sheet.csv"
-METADATA_REGEX = "SHORT|DESC|ART|DIALOG|ACT1_NAME|ACT1_TEXT|ACT1_FAIL|ACT2_NAME|ACT2_TEXT|ACT2_FAIL"
+METADATA_REGEX = "NAME|SHORT|DESC|ART|DIALOG|ACT1_NAME|ACT1_TEXT|ACT1_FAIL|ACT2_NAME|ACT2_TEXT|ACT2_FAIL"
 SUBSTITUTIONS = {
     'fr': {'·': " ", "•": " ", "’": "'", "!": "¦"}
 }
@@ -120,10 +120,6 @@ def parseTxt(txtName, languages, classes = {}):
                 lineId = reMatch.group(1)
                 lineLang = reMatch.group(2)
                 lineText = reMatch.group(3)
-            elif reMatch := re.match(r'^name-([A-Z]\d{0,2}): (.*)$', line): # Item/battler/skill name
-                lineId = ""
-                lineLang = reMatch.group(1)
-                lineText = reMatch.group(2)
             elif reMatch := re.match(fr'^({METADATA_REGEX.lower()})-([A-Z]\d?): (.*)$', line): # Item/battler/skill metadata
                 lineId = reMatch.group(1).upper()
                 lineLang = reMatch.group(2)

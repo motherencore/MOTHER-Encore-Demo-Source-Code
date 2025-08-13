@@ -1,0 +1,48 @@
+'0':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_0
+  if:
+    flags:
+      earned_cash: true
+    goto: '1'
+  goto: '2'
+'1':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_1
+  goto: '2'
+'2':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_2
+  options:
+    DIALOGUE_REUSABLE_DAD_NORMAL_3-OPT_0: '4'
+    DIALOGUE_REUSABLE_DAD_NORMAL_3-OPT_1: '6'
+    cancel: '6'
+  unsetflags: money_earned
+'4':
+  text: ''
+  showbox: false
+  unsetflags: saved
+  caninput: false
+  if:
+    flags:
+      saved: true
+    goto: '5'
+  goto: '6'
+  save: true
+'5':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_5
+  goto: '6'
+'6':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_6
+  goto: '7'
+'7':
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_NORMAL_7

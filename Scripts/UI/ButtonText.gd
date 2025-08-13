@@ -10,9 +10,9 @@ func _ready():
 
 func set_key_name(keyname):
 	key = keyname
-	text = globaldata.get_key_name(keyname)
+	text = TextTools.get_key_name(keyname)
 	if hintColor:
-		modulate = Color(globaldata.dialogHintColor)
+		modulate = Color(TextTools.DIALOG_HINT_COLOR)
 
 func _on_ButtonText_visibility_changed():
 	set_key_name(key)

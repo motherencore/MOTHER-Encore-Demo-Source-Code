@@ -1,0 +1,161 @@
+'0':
+  actors:
+    ninten: leader
+    iggy: Objects/NPCS/npc18
+  talker: iggy
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_0
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_1
+  changecam: iggy
+  returncam: 1
+  goto: '2'
+'2':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - x: 1336
+        y: 4744
+      - x: 1376
+        y: 4744
+      speed: 32
+      animation: Walk
+      type: position
+  wait: 3.5
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_3
+  actorsdir:
+    iggy:
+      x: -1
+      y: 0
+  movecam:
+    x: 1404
+    y: 4744
+  goto: '7'
+'7':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_7
+  actorsturn:
+    iggy:
+      x: 1
+      y: 0
+      speed: 0.1
+  goto: '8'
+'8':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_8
+  wait: 1
+  goto: '9'
+'9':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_9
+  actorsturn:
+    iggy:
+      x: -1
+      y: 0
+      speed: 0.1
+  goto: '12'
+'12':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_12
+  actorsdir:
+    iggy:
+      x: 0
+      y: -1
+  movecam:
+    x: 1432
+    y: 4712
+  changecam: null
+  goto: '14'
+'14':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_14
+  actorsdir:
+    iggy:
+      x: -1
+      y: 0
+  movecam:
+    x: 1404
+    y: 4744
+  goto: '16'
+'16':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_16
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_16-OPT_0: '18'
+    DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_16-OPT_1: '17'
+    cancel: '17'
+'17':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_17
+  goto: '16'
+'18':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_18
+  goto: '22'
+'22':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_22
+  item: BatOld
+  soundeffect: Item Received.mp3
+  goto: '23'
+'23':
+  talker: iggy
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_23
+  goto: '24'
+'24':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_SWING_24
+  goto: '29'
+'29':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - x: 1432
+        y: 4744
+      - x: 1432
+        y: 4720
+      speed: 32
+      animation: Walk
+      type: position
+    iggy:
+      movement:
+      - x: 1456
+        y: 4744
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    iggy:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  changecam: ninten
+  returncam: 1
+  setflags: bat
+  wait: 3
+  autoadvance: true
+  caninput: false

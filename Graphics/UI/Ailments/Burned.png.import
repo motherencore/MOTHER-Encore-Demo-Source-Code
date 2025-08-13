@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Burned.png-c86677291c1baa5d3f128725810ee8f3.stex"
+path="res://.import/burned.png-8d9c2780459a32324fb65cefabe36673.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Burned.png"
-dest_files=[ "res://.import/Burned.png-c86677291c1baa5d3f128725810ee8f3.stex" ]
+source_file="res://Graphics/UI/Ailments/burned.png"
+dest_files=[ "res://.import/burned.png-8d9c2780459a32324fb65cefabe36673.stex" ]
 
 [params]
 

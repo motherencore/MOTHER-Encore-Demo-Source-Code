@@ -4,7 +4,7 @@
 [ext_resource path="res://Nodes/Ui/Inventory/portrait.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Nodes/Ui/Indicator.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/UI/Reusables/ItemListMenu.gd" type="Script" id=4]
-[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Fonts/BottleRocket_align.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=6]
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=8]
@@ -112,8 +112,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
-text = "Pornography"
-valign = 1
+text = "Item"
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem"]
@@ -142,7 +142,7 @@ size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
 text = "Equippable"
-valign = 1
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem2"]
@@ -170,8 +170,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
-text = "Pornography"
-valign = 1
+text = "Item"
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem3"]
@@ -199,8 +199,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
-text = "Pornography"
-valign = 1
+text = "Item"
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem4"]
@@ -228,8 +228,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
-text = "Pornography"
-valign = 1
+text = "Item"
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem5"]
@@ -257,8 +257,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 14 )
 custom_styles/normal = SubResource( 1 )
-text = "Pornography"
-valign = 1
+text = "Item"
+valign = 2
 script = ExtResource( 18 )
 
 [node name="PriceLabel" type="Label" parent="ShopBox/BuyMenu/MarginContainer/VBoxContainer/ShopItem6"]
@@ -275,7 +275,7 @@ script = ExtResource( 18 )
 [node name="arrow" parent="ShopBox/BuyMenu" instance=ExtResource( 7 )]
 position = Vector2( 12, 13 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
-cursor_offset = Vector2( -5, 1 )
+cursor_offset = Vector2( -5, 2 )
 consume_input_events = true
 skip_empty_labels = true
 skip_hidden_items = true
@@ -299,7 +299,7 @@ patch_margin_top = 9
 patch_margin_right = 9
 patch_margin_bottom = 9
 script = ExtResource( 4 )
-priceType = "value"
+_is_resale_price = true
 loop_around = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopBox/SellMenu"]
@@ -328,8 +328,7 @@ margin_right = 95.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Pornography"
-valign = 1
+text = "Item"
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem"]
 margin_left = 95.0
@@ -355,7 +354,6 @@ margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
 text = "Equippable"
-valign = 1
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem2"]
 margin_left = 95.0
@@ -380,8 +378,7 @@ margin_right = 95.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Pornography"
-valign = 1
+text = "Item"
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem3"]
 margin_left = 95.0
@@ -406,8 +403,7 @@ margin_right = 95.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Pornography"
-valign = 1
+text = "Item"
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem4"]
 margin_left = 95.0
@@ -432,8 +428,7 @@ margin_right = 95.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Pornography"
-valign = 1
+text = "Item"
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem5"]
 margin_left = 95.0
@@ -458,8 +453,7 @@ margin_right = 95.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Pornography"
-valign = 1
+text = "Item"
 
 [node name="PriceLabel" type="Label" parent="ShopBox/SellMenu/MarginContainer/VBoxContainer/ShopItem6"]
 margin_left = 95.0
@@ -475,7 +469,7 @@ script = ExtResource( 18 )
 [node name="arrow" parent="ShopBox/SellMenu" instance=ExtResource( 7 )]
 position = Vector2( 12, 14 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
-cursor_offset = Vector2( -5, 1 )
+cursor_offset = Vector2( -5, 2 )
 consume_input_events = true
 skip_empty_labels = true
 skip_hidden_items = true
@@ -548,8 +542,6 @@ margin_right = 91.0
 margin_bottom = 28.0
 
 [node name="IndicatorL" parent="CharacterSelect" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = -2.0
 margin_top = 1.0
 margin_right = -2.0
@@ -557,8 +549,6 @@ margin_bottom = 25.0
 key = "ui_focus_prev"
 
 [node name="IndicatorR" parent="CharacterSelect" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 97.0
 margin_top = 1.0
 margin_right = 97.0
@@ -620,12 +610,22 @@ patch_margin_right = 9
 patch_margin_bottom = 9
 
 [node name="DescriptionPanel" parent="DescBox" instance=ExtResource( 1 )]
-margin_right = 264.0
 script = ExtResource( 16 )
 
 [node name="DescriptionDialog" parent="DescBox" instance=ExtResource( 13 )]
 visible = false
 margin_right = 264.0
+
+[node name="Background" type="ColorRect" parent="DescBox/DescriptionDialog"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -7.0
+margin_bottom = -6.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 19 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = "SFX"

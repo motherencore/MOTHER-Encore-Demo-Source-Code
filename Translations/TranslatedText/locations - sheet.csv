@@ -1,27 +1,28 @@
-key,en,fr,it,ja,ko,es,es_ES,pt_BR,pl,de,ru
-LOC_NINTEN'S_HOUSE,[Ninten]'s House,Chez [Ninten],Casa di [Ninten],マイホーム,[Ninten]의 집,Casa de [Ninten],Casa de [Ninten],Casa de [Ninten],Dom [pl_decl:Ninten:M:1],Haus von [Ninten],Дом [ru_decl:Ninten:M:1]
-LOC_PODUNK,Podunk,Podunk,Podunk,マザーズデイ,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк
-LOC_CATACOMBS,Catacombs,Catacombes,Catacombe,はかば　ちかどうくつ,지하 묘지,Catacumbas,Catacumbas,Catacumbas,Katakumby,Katakomben,Катакомбы
-LOC_ZOO_OFFICE,Zoo Office,Bureaux du zoo,Ufficio dello zoo,どうぶつえん　じむしょ,동물원 관리사무소,Oficina del zoológico,Oficinas del zoo,Escritório do zoológico,Biuro Zoo,Büro vom Zoo,Офис зоопарка
-LOC_PODUNK_DEPT_STORE,Podunk Dept Store,Ccial de Podunk,Centro comm. di Podunk,マザーズデイ　デパート,마더즈데이 백화점,C. comercial de Podunk,C. comercial de Podunk,Mercado de Podunk,Dom Handlowy Podunk,Podunk Kaufhaus,Универмаг Поданка
-LOC_PODUNK_HOTEL,Podunk Hotel,Hôtel de Podunk,Hotel di Podunk,マザーズデイ　ホテル,마더즈데이 호텔,Hotel de Podunk,Hotel de Podunk,Hotel de Podunk,Hotel Podunk,Hotel Podunk,Отель Поданка
-LOC_BURGER_SHOP,Burger Shop,Fast-food,Hamburgeria,バーガーショップ,햄버거 가게,Tienda de hamburguesas,Hamburguesería,Hamburgueria,Burgerownia,Burgerladen,Бургерная
-LOC_PODUNK_CEMETERY,Podunk Cemetery,Cimetière de Podunk,Cimitero di Podunk,はかば　きょうかいまえ,마더즈데이 공동묘지,Cementerio de Podunk,Cementerio de Podunk,Cemitério de Podunk,Cmentarz Podunk,Podunk Friedhof,Кладбище Поданка
-LOC_ZOO_ENTRANCE,Zoo Entrance,Entrée du zoo,Ingresso dello zoo,どうぶつえんまえ,동물원 입구,Entrada del zoo,Entrada del zoo,Entrada do Zoológico,Wejście do Zoo,Zoo-Eingang,Гл. вход в зоопарк
-LOC_OUTSIDE_PODUNK,Outside Podunk,Périphérie de Podunk,Periferia di Podunk,マザーズデイ　こうがい,마더즈데이 외곽,Afueras de Podunk,Afueras de Podunk,Fora de Podunk,Poza Podunk,Außerhalb von Podunk,Пригород Поданка
-MAP_PODUNK_PODUNK,Podunk,Podunk,Podunk,Mother's\nDay,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк
-MAP_PODUNK_CANARY,Canary\nVillage,Village\nCanari,     Villaggio\n     Canarino,Canary\nVillage,카나리아\n마을,Villa\nCanario,Aldea\nCanaria,     Vila\n     Canarinho,    Wioska\n    Kanarków,    Kanarien-\n    Dorf,      Канарская\n      деревушка
-MAP_PODUNK_CEMETERY,Cemetery,Cimetière,Cimitero,Cemetery,공동묘지,Cementerio,Cementerio,Cemitério,Cmentarz,Friedhof,Кладбище
-MAP_PODUNK_ZOO,Choucream\nZoo,Zoo     \nPatachou     ,Zoo     \nProfiterole     ,Choucream\nZoo,슈크림    \n동물원    ,Zoo      \nChoucream      ,Zoo      \nChoucream      ,Zoológico   \nChoucream   ,Zoo      \nChoucream      ,Windbeutel-\nZoo,Зоопарк   \n«Профитроль»   
-DEST_HOME,Home,Chez [Ninten],Casa di [Ninten],マイホーム,[Ninten]의 집,Casa de [Ninten],Casa de [Ninten],Casa de [Ninten],Dom [pl_decl:Ninten:M:1],[Ninten][de_gen:Ninten] Zuhause,Дом [ru_decl:Ninten:M:1]
-DEST_PODUNK,Podunk,Podunk,Podunk,マザーズデイ,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк
-DEST_MAGICANT,Magicant,Magicant,Magicant,マジカント,매지칸트,Magicant,Magicant,Magicant,Magicant,Magicant,Грезия
-DEST_MERRYSVILLE,Merrysville,Merrysville,Merrysville,サンクスギビング,땡스기빙데이,Merrysville,Merrysville,Merrysville,Merrysville,Merrysville,Меррисвиль
-DEST_REINDEER,Reindeer,Reindeer,Reindeer,レインディア,레인디아,Reindeer,Reindeer,Reindeer,Reindeer,Reindeer,Рейндир
-DEST_SPOOKANE,Spookane,Atrocity,Spookane,ハロウィーン,할로윈,Spookane,Spookane,Spookane,Spookane,Spookane,Крипотаун
-DEST_SNOWMAN,Snowman,Snowman,Snowman,スノーマン,스노우맨,Snowman,Snowman,Snowman,Snowman,Snowman,Сноумен
-DEST_YUCCA,Yucca Desert,Désert de Yucca,Deserto Yucca,アドベントのさばく,어드벤트 사막,Desierto de Yucca,Desierto de Yucca,Deserto de Yucca,Pustynia Yucca,Yucca-Wüste,Пустыня Юкка
-DEST_YOUNGTOWN,Youngtown,Youngtown,Youngtown,イースター,이스터,Youngtown,Youngtown,Youngtown,Youngtown,Youngtown,Юнтаун
-DEST_ELLAY,Ellay,Ellay,Ellay,バレンタイン,발렌타인,Ellay,Ellay,Ellay,Ellay,Ellay,Эллэй
-DEST_MTITOI,Mt. Itoi,Mont Itoi,Monte Itoi,ホーリーローリー,홀리 롤리 마운틴,Mt. Itoi,Mt. Itoi,Monte Itoi,Góra Itoi,Berg Itoi,Гора Итои
-DEST_UNION,Union Station,Gare de l'Union,Union Station,サンタクロース,산타클로스 역,Estación de la Unión,Estación de la Unión,Estação União,Stacja Union,Bahnhof der Union,Станция Единства
+key,en,fr,it,ja,ko,es,es_ES,pt_BR,pl,de,ru,uk,pr
+LOC_NINTEN'S_HOUSE,[Ninten]'s House,Chez [Ninten],Casa di [Ninten],マイホーム,[Ninten]의 집,Casa de [Ninten],Casa de [Ninten],Casa de [Ninten],Dom [pl_decl:Ninten:M:1],Haus von [Ninten],Дом [ru_decl:Ninten:M:1],Дім [uk_decl:Ninten:M:1],
+LOC_PODUNK,Podunk,Podunk,Podunk,マザーズデイ,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк,Поданк,Mother's Day
+LOC_CATACOMBS,Catacombs,Catacombes,Catacombe,はかば　ちかどうくつ,지하 묘지,Catacumbas,Catacumbas,Catacumbas,Katakumby,Katakomben,Катакомбы,Катакомби,
+LOC_ZOO_OFFICE,Zoo Office,Bureaux du zoo,Ufficio dello zoo,どうぶつえん　じむしょ,동물원 관리사무소,Oficina del zoológico,Oficinas del zoo,Escritório do zoológico,Biuro Zoo,Büro vom Zoo,Офис зоопарка,Офіс зоопарка,
+LOC_PODUNK_DEPT_STORE,Podunk Dept Store,Ccial de Podunk,Centro comm. di Podunk,マザーズデイ　デパート,마더즈데이 백화점,C. comercial de Podunk,C. comercial de Podunk,Mercado de Podunk,Dom Handlowy Podunk,Podunk Kaufhaus,Универмаг Поданка,Універмаг Поданка,Mother's Day Dept Store
+LOC_PODUNK_HOTEL,Podunk Hotel,Hôtel de Podunk,Hotel di Podunk,マザーズデイ　ホテル,마더즈데이 호텔,Hotel de Podunk,Hotel de Podunk,Hotel de Podunk,Hotel Podunk,Hotel Podunk,Отель Поданка,Готель Поданка,Mother's Day Hotel
+LOC_BURGER_SHOP,Burger Shop,Fast-food,Hamburgeria,バーガーショップ,햄버거 가게,Tienda de hamburguesas,Hamburguesería,Hamburgueria,Burgerownia,Burgerladen,Бургерная,Бургерна,
+LOC_PODUNK_CEMETERY,Podunk Cemetery,Cimetière de Podunk,Cimitero di Podunk,はかば　きょうかいまえ,마더즈데이 공동묘지,Cementerio de Podunk,Cementerio de Podunk,Cemitério de Podunk,Cmentarz Podunk,Podunk Friedhof,Кладбище Поданка,Кладовище Поданка,Mother's Day Cemetery
+LOC_ZOO_ENTRANCE,Zoo Entrance,Entrée du zoo,Ingresso dello zoo,どうぶつえんまえ,동물원 입구,Entrada del zoo,Entrada del zoo,Entrada do Zoológico,Wejście do Zoo,Zoo-Eingang,Гл. вход в зоопарк,Вхід в зоопарк,
+LOC_OUTSIDE_PODUNK,Outside Podunk,Périphérie de Podunk,Periferia di Podunk,マザーズデイ　こうがい,마더즈데이 외곽,Afueras de Podunk,Afueras de Podunk,Fora de Podunk,Poza Podunk,Außerhalb von Podunk,Пригород Поданка,Передмістя Поданка,Outside Mother's Day
+LOC_MAGICANT_HOUSE,Magicant,Magicant,Magicant,マジカント,매지칸트,Magicant,Magicant,Magicant,Magicant,Magicant,Грезия,Магікант,
+MAP_PODUNK_PODUNK,Podunk,Podunk,Podunk,Mother's\nDay,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк,Поданк,Mother's\nDay
+MAP_PODUNK_CANARY,Canary\nVillage,Village\nCanari,     Villaggio\n     Canarino,Canary\nVillage,카나리아\n마을,Villa\nCanario,Aldea\nCanaria,     Vila\n     Canarinho,    Wioska\n    Kanarków,    Kanarien-\n    Dorf,      Канарская\n      деревушка,Село\nканарок,
+MAP_PODUNK_CEMETERY,Cemetery,Cimetière,Cimitero,Cemetery,공동묘지,Cementerio,Cementerio,Cemitério,Cmentarz,Friedhof,Кладбище,Кладовище,
+MAP_PODUNK_ZOO,Choucream\nZoo,Zoo     \nPatachou     ,Zoo     \nProfiterole     ,Choucream\nZoo,슈크림    \n동물원    ,Zoo      \nChoucream      ,Zoo      \nChoucream      ,Zoológico   \nChoucream   ,Zoo      \nChoucream      ,Windbeutel-\nZoo,Зоопарк   \n«Профитроль»   ,Зоопарк   \n«Профітроль»   ,
+DEST_HOME,Home,Chez [Ninten],Casa di [Ninten],マイホーム,[Ninten]의 집,Casa de [Ninten],Casa de [Ninten],Casa de [Ninten],Dom [pl_decl:Ninten:M:1],[Ninten][de_gen:Ninten] Zuhause,Дом [ru_decl:Ninten:M:1],Дім [uk_decl:Ninten:M:1],
+DEST_PODUNK,Podunk,Podunk,Podunk,マザーズデイ,마더즈데이,Podunk,Podunk,Podunk,Podunk,Podunk,Поданк,Поданк,Mother's Day
+DEST_MAGICANT,Magicant,Magicant,Magicant,マジカント,매지칸트,Magicant,Magicant,Magicant,Magicant,Magicant,Грезия,Магікант,
+DEST_MERRYSVILLE,Merrysville,Merrysville,Merrysville,サンクスギビング,땡스기빙데이,Merrysville,Merrysville,Merrysville,Merrysville,Merrysville,Меррисвиль,Меррісвіль,Thanksgiving
+DEST_REINDEER,Reindeer,Reindeer,Reindeer,レインディア,레인디아,Reindeer,Reindeer,Reindeer,Reindeer,Reindeer,Рейндир,Рейндір,
+DEST_SPOOKANE,Spookane,Atrocity,Spookane,ハロウィーン,할로윈,Spookane,Spookane,Spookane,Spookane,Spookane,Криптаун,Склептаун,Halloween
+DEST_SNOWMAN,Snowman,Snowman,Snowman,スノーマン,스노우맨,Snowman,Snowman,Snowman,Snowman,Snowman,Сноумен,Сноумен,
+DEST_YUCCA,Yucca Desert,Désert de Yucca,Deserto Yucca,アドベントさばく,어드벤트 사막,Desierto de Yucca,Desierto de Yucca,Deserto de Yucca,Pustynia Yucca,Yucca-Wüste,Пустыня Юкка,Пустеля Юка,Advent Desert
+DEST_YOUNGTOWN,Youngtown,Youngtown,Youngtown,イースター,이스터,Youngtown,Youngtown,Youngtown,Youngtown,Youngtown,Юнтаун,Юнтаун,Easter
+DEST_ELLAY,Ellay,Ellay,Ellay,バレンタイン,발렌타인,Ellay,Ellay,Ellay,Ellay,Ellay,Эллэй,Еллей,Valentine
+DEST_MTITOI,Mt. Itoi,Mont Itoi,Monte Itoi,ホーリーローリー,홀리 롤리 마운틴,Mt. Itoi,Mt. Itoi,Monte Itoi,Góra Itoi,Berg Itoi,Гора Итои,Гора Ітой,Holy Loly Mountain
+DEST_UNION,Union Station,Gare de l'Union,Union Station,サンタクロース,산타클로스 역,Estación de la Unión,Estación de la Unión,Estação União,Stacja Union,Unionsbahnhof,Станция «Единство»,Станція «Єдність»,Santa Claus Station

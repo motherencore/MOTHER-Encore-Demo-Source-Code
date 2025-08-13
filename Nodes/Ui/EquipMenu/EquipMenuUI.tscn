@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Nodes/Ui/Description.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=2]
@@ -25,47 +25,34 @@ margin_top = 8.0
 margin_bottom = 8.0
 expand_margin_left = 12.0
 expand_margin_right = 10.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Close"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath("EquipMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 0.4, 0.450625 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -140 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("EquipMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("EquipMenu/Description:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("EquipMenu/Box:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 28, 132 ), Vector2( 28, 320 ) ]
+"values": [ 0.0, -140.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -73,46 +60,34 @@ resource_name = "Open"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath("EquipMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -180 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("EquipMenu:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("EquipMenu/Description:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/path = NodePath("EquipMenu/Box:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 28, 360 ), Vector2( 28, 128 ), Vector2( 28, 132 ) ]
+"values": [ -180.0, 2.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath("EquipMenu:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -121,10 +96,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("EquipMenu:visible")
+tracks/1/path = NodePath("EquipMenu/Box:rect_position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -133,24 +108,88 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ 0.0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("EquipMenu/Description:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
+
+[sub_resource type="Animation" id=6]
+resource_name = "Close"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EquipMenu/Description:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ 132.0, 180.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Open"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EquipMenu/Description:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 180.0, 128.0, 132.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EquipMenu/Description:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 28, 132 ) ]
+"values": [ 180.0 ]
 }
 
 [node name="EquipMenuUI" type="CanvasLayer"]
 layer = 2
 script = ExtResource( 5 )
+_np_values = {
+"defense": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/DefenseValue"),
+"guts": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/GutsValue"),
+"iq": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/IQValue"),
+"maxhp": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/MaxHPValue"),
+"maxpp": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/MaxPPValue"),
+"offense": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/OffenseValue"),
+"speed": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/SpeedValue")
+}
+_np_boost_values = {
+"defense": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/DefenseValue"),
+"guts": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/GutsValue"),
+"iq": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/IQValue"),
+"maxhp": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/MaxHPValue"),
+"maxpp": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/MaxPPValue"),
+"offense": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/OffenseValue"),
+"speed": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostValues/SpeedValue")
+}
+_np_boost_icons = {
+"defense": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/DefenseIcon"),
+"guts": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/GutsIcon"),
+"iq": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/IQIcon"),
+"maxhp": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/MaxHPIcon"),
+"maxpp": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/MaxPPIcon"),
+"offense": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/OffenseIcon"),
+"speed": NodePath("EquipMenu/Box/Panels/Stats/Columns/BoostIcons/SpeedIcon")
+}
 
 [node name="EquipMenu" type="Control" parent="."]
 visible = false
@@ -171,30 +210,30 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Panels" type="HBoxContainer" parent="EquipMenu/Box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 12.0
 margin_top = 23.0
-margin_right = 264.0
-margin_bottom = 132.0
 custom_constants/separation = 6
 
 [node name="Stats" type="PanelContainer" parent="EquipMenu/Box/Panels"]
 material = ExtResource( 12 )
 margin_right = 140.0
-margin_bottom = 108.0
+margin_bottom = 290.0
 size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 3
 custom_styles/panel = SubResource( 5 )
 
 [node name="Columns" type="HBoxContainer" parent="EquipMenu/Box/Panels/Stats"]
 margin_left = 8.0
 margin_top = 5.0
 margin_right = 140.0
-margin_bottom = 103.0
+margin_bottom = 285.0
 custom_constants/separation = 0
 
 [node name="Labels" type="VBoxContainer" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_right = 69.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 60, 0 )
 custom_constants/separation = 0
 
@@ -231,19 +270,19 @@ margin_right = 69.0
 margin_bottom = 62.0
 text = "STAT_DEFENSE"
 
-[node name="IQLabel" parent="EquipMenu/Box/Panels/Stats/Columns/Labels" instance=ExtResource( 2 )]
+[node name="SpeedLabel" parent="EquipMenu/Box/Panels/Stats/Columns/Labels" instance=ExtResource( 2 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
 margin_top = 62.0
 margin_right = 69.0
 margin_bottom = 74.0
-text = "STAT_IQ"
+text = "STAT_SPEED"
 
-[node name="SpeedLabel" parent="EquipMenu/Box/Panels/Stats/Columns/Labels" instance=ExtResource( 2 )]
+[node name="IQLabel" parent="EquipMenu/Box/Panels/Stats/Columns/Labels" instance=ExtResource( 2 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
 margin_top = 74.0
 margin_right = 69.0
 margin_bottom = 86.0
-text = "STAT_SPEED"
+text = "STAT_IQ"
 
 [node name="GutsLabel" parent="EquipMenu/Box/Panels/Stats/Columns/Labels" instance=ExtResource( 2 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
@@ -255,13 +294,13 @@ text = "STAT_GUTS"
 [node name="Spacer1" type="Control" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_left = 69.0
 margin_right = 74.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="Values" type="VBoxContainer" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_left = 74.0
 margin_right = 100.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 26, 0 )
 custom_constants/separation = 0
 
@@ -294,13 +333,13 @@ margin_right = 26.0
 margin_bottom = 60.0
 align = 2
 
-[node name="IQValue" parent="EquipMenu/Box/Panels/Stats/Columns/Values" instance=ExtResource( 7 )]
+[node name="SpeedValue" parent="EquipMenu/Box/Panels/Stats/Columns/Values" instance=ExtResource( 7 )]
 margin_top = 60.0
 margin_right = 26.0
 margin_bottom = 72.0
 align = 2
 
-[node name="SpeedValue" parent="EquipMenu/Box/Panels/Stats/Columns/Values" instance=ExtResource( 7 )]
+[node name="IQValue" parent="EquipMenu/Box/Panels/Stats/Columns/Values" instance=ExtResource( 7 )]
 margin_top = 72.0
 margin_right = 26.0
 margin_bottom = 84.0
@@ -315,13 +354,13 @@ align = 2
 [node name="Spacer2" type="Control" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_left = 100.0
 margin_right = 103.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="BoostIcons" type="VBoxContainer" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_left = 103.0
 margin_right = 111.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 custom_constants/separation = 4
 
 [node name="Spacer" type="Control" parent="EquipMenu/Box/Panels/Stats/Columns/BoostIcons"]
@@ -357,13 +396,13 @@ margin_right = 8.0
 margin_bottom = 60.0
 texture_normal = ExtResource( 9 )
 
-[node name="IQIcon" type="TextureButton" parent="EquipMenu/Box/Panels/Stats/Columns/BoostIcons"]
+[node name="SpeedIcon" type="TextureButton" parent="EquipMenu/Box/Panels/Stats/Columns/BoostIcons"]
 margin_top = 64.0
 margin_right = 8.0
 margin_bottom = 72.0
 texture_normal = ExtResource( 9 )
 
-[node name="SpeedIcon" type="TextureButton" parent="EquipMenu/Box/Panels/Stats/Columns/BoostIcons"]
+[node name="IQIcon" type="TextureButton" parent="EquipMenu/Box/Panels/Stats/Columns/BoostIcons"]
 margin_top = 76.0
 margin_right = 8.0
 margin_bottom = 84.0
@@ -378,7 +417,7 @@ texture_normal = ExtResource( 9 )
 [node name="BoostValues" type="VBoxContainer" parent="EquipMenu/Box/Panels/Stats/Columns"]
 margin_left = 111.0
 margin_right = 132.0
-margin_bottom = 98.0
+margin_bottom = 280.0
 rect_min_size = Vector2( 21, 0 )
 custom_constants/separation = 0
 
@@ -406,12 +445,12 @@ margin_top = 48.0
 margin_bottom = 60.0
 align = 2
 
-[node name="IQValue" parent="EquipMenu/Box/Panels/Stats/Columns/BoostValues" instance=ExtResource( 7 )]
+[node name="SpeedValue" parent="EquipMenu/Box/Panels/Stats/Columns/BoostValues" instance=ExtResource( 7 )]
 margin_top = 60.0
 margin_bottom = 72.0
 align = 2
 
-[node name="SpeedValue" parent="EquipMenu/Box/Panels/Stats/Columns/BoostValues" instance=ExtResource( 7 )]
+[node name="IQValue" parent="EquipMenu/Box/Panels/Stats/Columns/BoostValues" instance=ExtResource( 7 )]
 margin_top = 72.0
 margin_bottom = 84.0
 align = 2
@@ -454,12 +493,12 @@ margin_right = 69.0
 margin_bottom = 36.0
 text = "EQUIP_BODY"
 
-[node name="Head" parent="EquipMenu/Box/Panels/Slots/SlotsNames" instance=ExtResource( 2 )]
+[node name="Arms" parent="EquipMenu/Box/Panels/Slots/SlotsNames" instance=ExtResource( 2 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
 margin_top = 48.0
 margin_right = 69.0
 margin_bottom = 60.0
-text = "EQUIP_HEAD"
+text = "EQUIP_ARMS"
 
 [node name="Other" parent="EquipMenu/Box/Panels/Slots/SlotsNames" instance=ExtResource( 2 )]
 self_modulate = Color( 0.74902, 0.705882, 0.803922, 1 )
@@ -478,37 +517,37 @@ custom_constants/separation = 12
 
 [node name="EquippedWeapon" parent="EquipMenu/Box/Panels/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
 modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
-margin_right = 86.0
+margin_right = 406.0
 text = "EQUIP_EMPTY"
 
 [node name="EquippedBody" parent="EquipMenu/Box/Panels/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
 modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
 margin_top = 24.0
-margin_right = 86.0
+margin_right = 406.0
 margin_bottom = 36.0
 text = "EQUIP_EMPTY"
 
 [node name="EquippedHead" parent="EquipMenu/Box/Panels/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
 modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
 margin_top = 48.0
-margin_right = 86.0
+margin_right = 406.0
 margin_bottom = 60.0
 text = "EQUIP_EMPTY"
 
 [node name="EquippedOther" parent="EquipMenu/Box/Panels/Slots/EquippeditemsNames" instance=ExtResource( 2 )]
 modulate = Color( 0.952941, 0.94902, 0.956863, 1 )
 margin_top = 72.0
-margin_right = 86.0
+margin_right = 406.0
 margin_bottom = 84.0
 text = "EQUIP_EMPTY"
 
 [node name="SlotArrow" parent="EquipMenu/Box/Panels/Slots" instance=ExtResource( 3 )]
 position = Vector2( 8, 24 )
 menu_parent_path = NodePath("../EquippeditemsNames")
-cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
 loop_around = true
 move_sfx = true
-select_sfx = true
+cancel_on = true
 
 [node name="Position2D" type="Position2D" parent="EquipMenu/Box/Panels/Slots/SlotArrow"]
 position = Vector2( 9, 9 )
@@ -533,11 +572,11 @@ custom_constants/separation = 1
 [node name="ItemArrow" parent="EquipMenu/Box/Panels/Slots/ItemListPanel" instance=ExtResource( 3 )]
 position = Vector2( 3, 6 )
 menu_parent_path = NodePath("../ItemList")
-cursor_offset = Vector2( -4, 1 )
+consume_input_events = true
 loop_around = true
 move_sfx = true
-select_sfx = true
 cancel_sfx = true
+cancel_on = true
 
 [node name="CharacterName" parent="EquipMenu/Box" instance=ExtResource( 2 )]
 margin_left = 11.0
@@ -554,11 +593,12 @@ menuName = "MENU_TITLE_EQUIP"
 
 [node name="Description" type="NinePatchRect" parent="EquipMenu"]
 material = ExtResource( 12 )
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 28.0
-margin_top = 132.0
 margin_right = -28.0
-margin_bottom = 180.0
+margin_bottom = 48.0
 rect_pivot_offset = Vector2( 59, 58 )
 texture = ExtResource( 6 )
 patch_margin_left = 8
@@ -568,11 +608,23 @@ patch_margin_bottom = 8
 
 [node name="DescriptionPanel" parent="EquipMenu/Description" instance=ExtResource( 1 )]
 anchor_right = 1.0
-margin_right = 0.0
+margin_right = -6.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 2 )
 anims/Open = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
-[connection signal="character_changed" from="EquipMenu/Box/InventorySelect" to="." method="_on_InventorySelect_character_changed"]
+[node name="AnimationPlayerDesc" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+anims/Close = SubResource( 6 )
+anims/Open = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[connection signal="cancel" from="EquipMenu/Box/Panels/Slots/SlotArrow" to="." method="_on_slot_cursor_cancel"]
+[connection signal="moved" from="EquipMenu/Box/Panels/Slots/SlotArrow" to="." method="_on_cursor_moved"]
+[connection signal="selected" from="EquipMenu/Box/Panels/Slots/SlotArrow" to="." method="_on_slot_cursor_selected"]
+[connection signal="cancel" from="EquipMenu/Box/Panels/Slots/ItemListPanel/ItemArrow" to="." method="_on_list_cursor_cancel"]
+[connection signal="moved" from="EquipMenu/Box/Panels/Slots/ItemListPanel/ItemArrow" to="." method="_on_cursor_moved"]
+[connection signal="selected" from="EquipMenu/Box/Panels/Slots/ItemListPanel/ItemArrow" to="." method="_on_list_cursor_selected"]
+[connection signal="character_changed" from="EquipMenu/Box/InventorySelect" to="." method="_on_character_changed"]

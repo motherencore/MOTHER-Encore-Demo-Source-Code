@@ -1,0 +1,83 @@
+'0':
+  actors:
+    player: leader
+    starman jr: Objects/starman jr capsule
+  actorsturn:
+    player:
+      x: 0
+      y: -1
+      speed: 0.1
+  movecam:
+    actor: starman jr
+  objectfunction:
+    Music/MusicArea2: stop_music
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+  actorsanim:
+    starman jr:
+      anim: Idle
+'1':
+  name: STARMANJR_NAME
+  sound: Robot
+  text: DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_1
+  goto: '3'
+'3':
+  showbox: false
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '4'
+  actorsshadow:
+    starman jr: false
+  actorsshake:
+    starman jr:
+      y: 1
+      length: 1
+'4':
+  actorsmove:
+    starman jr:
+      movement:
+      - x: 0
+        y: 4
+      speed: 64
+      type: step
+  wait: 0.4
+  autoadvance: true
+  caninput: false
+  goto: '5'
+  actorsanim:
+    starman jr:
+      anim: Spin
+'5':
+  actorsmove:
+    starman jr:
+      movement:
+      - x: 0
+        y: -300
+      speed: 256
+      type: step
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '6'
+'6':
+  soundeffect: M3/PK_Thunder_a_b_y_O_hit.wav
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '7'
+  shakecam:
+    x: 0
+    y: 1
+    size: medium
+'7':
+  text: DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_7
+  movecam:
+    actor: player
+  goto: '8'
+'8':
+  text: DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_DEFEAT_8
+  setflags: zoo_freed
+  setcrumbs: true

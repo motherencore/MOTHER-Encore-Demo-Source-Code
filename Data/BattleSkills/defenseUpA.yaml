@@ -1,0 +1,31 @@
+name: DEFENSEUP_NAME
+level: 0
+description: DEFENSEUPA_DESC
+article: DEFENSEUP_ART
+skillType: psi
+actionType: 2
+useCases: 1
+psiCategory: Assist
+damageType: none
+targetType: 1
+damage: 0
+variance: 0
+priority: 0
+statusEffects: []
+statusHeals: []
+statMods:
+  defense: 2
+critChance: 0
+failChance: 0
+ppCost: 6
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: stat_defense_up
+userAnim: psi
+userAnimColors:
+- '009FFF'
+- '839FFF'
+- '0022B9'
+useSound: ''
+hitSound: ''

@@ -1,20 +1,19 @@
 extends TileMap
+class_name TileMapChanger
 
-
-var tile = load("res://Tilesets/Reindeer.tres")
-var tile2 = load("res://Tilesets/Snowman.tres")
+export var tile : Texture
+export var tile2 : Texture
 # var b = "text"
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
 
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_home"):
-		if self.tile_set == tile:
-			self.tile_set = tile2
-		else:
-			self.tile_set = tile
+	if Input.is_action_just_pressed("ui_w"):
+		_change_textures()
+
+func _change_textures():
+	for i in tile_set.get_tiles_ids():
+		
+		tile_set.call_deferred("tile_set_texture", i, tile2)
+		yield(get_tree(), "idle_frame")

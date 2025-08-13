@@ -149,5 +149,4 @@ func consume_all_directions():
 
 func _on_IntervalSwitchTimer_timeout():
 	if get_controls_vector() != Vector2.ZERO:
-		print("gotta go fast!")
 		intervalTimer.wait_time = FASTTIME

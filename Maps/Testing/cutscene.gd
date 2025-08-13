@@ -1,4 +1,4 @@
-extends "res://Scripts/Main/UI/Functions.gd"
+extends Node2D
 
 
 var timer = 0
@@ -33,8 +33,8 @@ func _process(delta):
 
 
 
-func getDialog():
-	var path = "res://Data/Cutscenes/" + cutsceneFile + ".json"
+func _get_dialog():
+	var path = "res://Data/Cutscenes/" + cutsceneFile + ".yaml"
 	var f = File.new()
 
 	if f.file_exists(path):
@@ -43,9 +43,9 @@ func getDialog():
 		return {}
 
 	f.open(path, File.READ)
-	var json = f.get_as_text()
+	var yaml = f.get_as_text()
 	
-	var output = parse_json(json)
+	var output = globaldata.parse_yaml(yaml)
 	if typeof(output) == TYPE_DICTIONARY:
 		return output
 	else:
@@ -54,7 +54,7 @@ func getDialog():
 func _on_CStrigger_body_entered(body):
 	if $CollisionShape2D.disabled == false:
 		$CollisionShape2D.disabled = true
-		cutscene = getDialog()
+		cutscene = _get_dialog()
 		if cutscene != null:
 			uiManager.toggle_black_bars(true)
 			global.persistPlayer.pause()
@@ -63,7 +63,7 @@ func _on_CStrigger_body_entered(body):
 
 func commands():
 	if currPhase.has("dialogue"):
-		global.set_dialog(currPhase["dialogue"], null)
+		global.set_dialog(currPhase["dialogue"])
 		uiManager.open_dialogue_box()
 	
 	if currPhase.has("commands"):

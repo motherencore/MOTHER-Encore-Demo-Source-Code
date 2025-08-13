@@ -1,0 +1,55 @@
+'0':
+  actors:
+    leader: leader
+    william: talker
+  name: DIALOGUE_PODUNK_WILLIAM_SPEAKER_William
+  sound: Adult
+  text: DIALOGUE_PODUNK_WILLIAM_0
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_WILLIAM_SPEAKER_William
+  sound: Adult
+  emotenpc: sweat
+  text: DIALOGUE_PODUNK_WILLIAM_1
+  options:
+    DIALOGUE_PODUNK_WILLIAM_1-OPT_0: '2'
+    DIALOGUE_PODUNK_WILLIAM_1-OPT_1: '4'
+    cancel: '4'
+'2':
+  name: DIALOGUE_PODUNK_WILLIAM_SPEAKER_William
+  sound: Adult
+  text: DIALOGUE_PODUNK_WILLIAM_2
+  goto: '3'
+'3':
+  name: DIALOGUE_PODUNK_WILLIAM_SPEAKER_William
+  sound: Adult
+  text: DIALOGUE_PODUNK_WILLIAM_3
+  actorsmove:
+    william:
+      movement:
+      - x: -320
+        y: 0
+      speed: 128
+      animation: Walk
+      type: step
+  actorsturn:
+    leader:
+      x: -1
+      y: 0
+      speed: 0.15
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '7'
+  shakecam:
+    x: 1
+    y: 0
+    size: 1
+'4':
+  name: DIALOGUE_PODUNK_WILLIAM_SPEAKER_William
+  sound: Adult
+  emotenpc: heart
+  text: DIALOGUE_PODUNK_WILLIAM_4
+'7':
+  eraseactors:
+    william: true

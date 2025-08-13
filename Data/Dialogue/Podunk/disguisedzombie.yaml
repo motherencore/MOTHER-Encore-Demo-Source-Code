@@ -1,0 +1,16 @@
+'0':
+  actors:
+    zombie: talker
+  name: DIALOGUE_PODUNK_DISGUISEDZOMBIE_SPEAKER_???
+  sound: Strange
+  text: DIALOGUE_PODUNK_DISGUISEDZOMBIE_0
+  goto: '4'
+  emoteplayer: question
+'4':
+  name: DIALOGUE_PODUNK_DISGUISEDZOMBIE_SPEAKER_???
+  sound: Strange
+  text: DIALOGUE_PODUNK_DISGUISEDZOMBIE_4
+  battler:
+    actor: zombie
+    enemy: pseudozombie
+  batwinflag: disguised_zombie_defeated

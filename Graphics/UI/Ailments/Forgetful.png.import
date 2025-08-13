@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Forgetful.png-debb937830d3b7adb547f4e49e4ebfa0.stex"
+path="res://.import/forgetful.png-bd1c01116bd8c792f332e603a1003a1c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Forgetful.png"
-dest_files=[ "res://.import/Forgetful.png-debb937830d3b7adb547f4e49e4ebfa0.stex" ]
+source_file="res://Graphics/UI/Ailments/forgetful.png"
+dest_files=[ "res://.import/forgetful.png-bd1c01116bd8c792f332e603a1003a1c.stex" ]
 
 [params]
 

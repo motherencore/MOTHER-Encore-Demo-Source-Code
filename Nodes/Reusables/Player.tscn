@@ -1,18 +1,17 @@
-[gd_scene load_steps=331 format=2]
+[gd_scene load_steps=326 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Ninten/main.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Main/Player.gd" type="Script" id=2]
 [ext_resource path="res://Nodes/Ui/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/Character Sprites/Ninten/special.png" type="Texture" id=4]
 [ext_resource path="res://Nodes/Reusables/Overlap/Hitbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=6]
+[ext_resource path="res://Nodes/Reusables/Shadow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Graphics/Character Sprites/Lloyd/special.png" type="Texture" id=7]
 [ext_resource path="res://Nodes/Ui/emotes.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Audio/Sound effects/Ninten Bat.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Shaders/Flash.tres" type="Material" id=10]
 [ext_resource path="res://Graphics/Character Sprites/Ana/special.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/VFX/AnaPSISparks.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Character Sprites/Water_Ripple.png" type="Texture" id=13]
 [ext_resource path="res://Shaders/Outline.shader" type="Shader" id=14]
 [ext_resource path="res://Nodes/Reusables/Effects/AfterImageCreator.tscn" type="PackedScene" id=15]
 
@@ -22,26 +21,6 @@ shader_param/color = Color( 0.972549, 0.972549, 0, 1 )
 shader_param/width = 0.0
 shader_param/pattern = 0
 shader_param/inside = false
-
-[sub_resource type="AtlasTexture" id=354]
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 15, 5 )
-
-[sub_resource type="AtlasTexture" id=355]
-atlas = ExtResource( 13 )
-region = Rect2( 30, 0, 15, 5 )
-
-[sub_resource type="AtlasTexture" id=356]
-atlas = ExtResource( 13 )
-region = Rect2( 15, 0, 15, 5 )
-
-[sub_resource type="SpriteFrames" id=480]
-animations = [ {
-"frames": [ SubResource( 354 ), SubResource( 355 ), SubResource( 356 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [sub_resource type="RectangleShape2D" id=414]
 extents = Vector2( 0.5, 0.5 )
@@ -7652,7 +7631,7 @@ nodes/Bat/position = Vector2( 80, 133.333 )
 nodes/TimeScale/node = SubResource( 463 )
 nodes/TimeScale/position = Vector2( 293.333, 133.333 )
 nodes/output/position = Vector2( 480, 160 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Bat" ]
+node_connections = [ "TimeScale", 0, "Bat", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeAnimation" id=307]
 animation = "Blink Down"
@@ -7964,7 +7943,7 @@ nodes/FaintedWalk/position = Vector2( -53.3333, 133.333 )
 nodes/TimeScale/node = SubResource( 476 )
 nodes/TimeScale/position = Vector2( 160, 160 )
 nodes/output/position = Vector2( 346.667, 186.667 )
-node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "FaintedWalk" ]
+node_connections = [ "TimeScale", 0, "FaintedWalk", "output", 0, "TimeScale" ]
 
 [sub_resource type="AnimationNodeAnimation" id=350]
 animation = "Idle Down"
@@ -8446,10 +8425,6 @@ collision/safe_margin = 0.2
 script = ExtResource( 2 )
 spriteSize_Y = 20
 
-[node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 0, 7 )
-texture = ExtResource( 6 )
-
 [node name="Effects" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0, -11 )
@@ -8471,6 +8446,9 @@ frame = 11
 position = Vector2( 0, -30 )
 objectPath = NodePath("..")
 
+[node name="Shadow" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 7 )
+
 [node name="SpecialAnimations" type="Sprite" parent="."]
 visible = false
 material = SubResource( 274 )
@@ -8479,12 +8457,6 @@ texture = ExtResource( 4 )
 hframes = 10
 vframes = 10
 frame = 4
-
-[node name="Ripple" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 7 )
-frames = SubResource( 480 )
-frame = 1
-playing = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.5, 3 )
@@ -8682,7 +8654,7 @@ collision_mask = 512
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EventDetector/ViewArea"]
 position = Vector2( 0, 3 )
-polygon = PoolVector2Array( 0, -3, 80, 10, 80, 34, -80, 34, -80, 10 )
+polygon = PoolVector2Array( 80, -3, 80, 34, -80, 34, -80, -3 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( -0.5, -2 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Burger_Shop.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Tilesets/TilPodunkBurgerShop.png" type="Texture" id=2]
@@ -10,28 +10,13 @@
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=9]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=15]
 points = PoolVector2Array( 58, 32, 7, 32, 7, 16, 58, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 16, 32, 0, 32, 0, 16, 16, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 0, 16, 16, 16, 16, 32, 0, 32 )
-
-[sub_resource type="ConvexPolygonShape2D" id=11]
-points = PoolVector2Array( 16, 32, 0, 32, 0, 0, 16, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=12]
-points = PoolVector2Array( 16, 32, 0, 32, 0, 0, 16, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
+[sub_resource type="ConvexPolygonShape2D" id=17]
 points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 
 [sub_resource type="TileSet" id=7]
@@ -45,14 +30,14 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, -16 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
-0/shape = SubResource( 1 )
+0/shape = SubResource( 15 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 15 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 } ]
 0/z_index = 0
@@ -73,44 +58,44 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, -16 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
-1/shape = SubResource( 2 )
+1/shape = SubResource( 16 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 4 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 }, {
 "autotile_coord": Vector2( 4, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 11 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 }, {
 "autotile_coord": Vector2( 5, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 12 ),
+"shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
 } ]
 1/z_index = 0
@@ -124,14 +109,14 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, -32 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
-2/shape = SubResource( 6 )
+2/shape = SubResource( 17 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 6 ),
+"shape": SubResource( 17 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
 } ]
 2/z_index = 0
@@ -157,34 +142,6 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
-
-[sub_resource type="Shader" id=432]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=433]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 192, 112 )
 
@@ -197,7 +154,7 @@ extents = Vector2( 48, 36 )
 [node name="Burger Shop" type="Node2D"]
 script = ExtResource( 9 )
 player_map_offset = Vector2( 93, 243 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -227,19 +184,7 @@ player_turn = {
 "x": true,
 "y": true
 }
-
-[node name="AnimationTree" parent="Objects/npc" index="2"]
-parameters/playback = SubResource( 9 )
-
-[node name="PartyMemberTree" parent="Objects/npc" index="4"]
-parameters/playback = SubResource( 10 )
-
-[node name="interact" parent="Objects/npc" index="7"]
-scale = Vector2( 1, 1.5 )
-
-[node name="ButtonPrompt" parent="Objects/npc/interact" index="1"]
-material = SubResource( 433 )
-scale = Vector2( 1, 0.666667 )
+extended_interact = 1
 
 [node name="npc2" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( 46, -40 )
@@ -302,5 +247,4 @@ entering_sound = "wood"
 position = Vector2( 0, 12 )
 shape = SubResource( 14 )
 
-[editable path="Objects/npc"]
 [editable path="camarea"]

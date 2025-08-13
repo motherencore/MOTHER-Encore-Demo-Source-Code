@@ -17,58 +17,67 @@ var soundEffects = {
 
 func _ready():
 	arrow.on = true
+	yield(get_tree(), 'idle_frame')
+	global.currentCamera.anchor_mode = 0
 
 func _input(event):
 	pass
 
 func _on_Arrow_selected(cursor_index):
-	print('selected %s' % cursor_index)
 	audioManager.play_sfx(soundEffects['menu_open2'], 'menu_open')
 	match cursor_index:
 		0:
-			for i in range(1,11):
+			for i in range(1,100):
 				_decode_file('saveFile%s' % i, 'saveFile%s' % i)
 			_decode_file('settings', 'settings')
 		1: 
-			for i in range(1,11):
+			for i in range(1,100):
 				_encode_file('saveFile%s' % i, 'saveFile%s' % i)
 			_encode_file('settings', 'settings')
 
 func _decode_file(from, to):
 	var saveGameE = File.new()
-	saveGameE.open_encrypted_with_pass('user://%s.save' % from, File.READ, 'ENCORE')
-	var data = parse_json(saveGameE.get_as_text())
-	saveGameE.close()
-	var saveGameD = File.new()
-	saveGameD.open('user://%s.json' % to, File.WRITE)
-	saveGameD.store_line(JSON.print(data, '	'))
-	saveGameD.close()
-	print('Decoded to %s' % to)
+	if saveGameE.file_exists('user://%s.save' % from):	
+		saveGameE.open_encrypted_with_pass('user://%s.save' % from, File.READ, 'ENCORE')
+		var data = parse_json(saveGameE.get_as_text())
+		saveGameE.close()
+		var saveGameD = File.new()
+		saveGameD.open('user://%s.json' % to, File.WRITE)
+		saveGameD.store_line(JSON.print(data, '	'))
+		saveGameD.close()
+		print('Decoded to %s' % to)
 
 func _encode_file(from, to):
 	var saveGameD = File.new()
-	saveGameD.open('user://%s.json' % from, File.READ)
-	var data = parse_json(saveGameD.get_as_text())
-	saveGameD.close()
-	var saveGameE = File.new()
-	saveGameE.open_encrypted_with_pass('user://%s.save' % to, File.WRITE, 'ENCORE')
-	saveGameE.store_line(to_json(data))
-	saveGameE.close()
-	print('Encoded to %s' % to)
+	if saveGameD.file_exists('user://%s.json' % from):	
+		saveGameD.open('user://%s.json' % from, File.READ)
+		var data = parse_json(saveGameD.get_as_text())
+		saveGameD.close()
+		var saveGameE = File.new()
+		saveGameE.open_encrypted_with_pass('user://%s.save' % to, File.WRITE, 'ENCORE')
+		saveGameE.store_line(to_json(data))
+		saveGameE.close()
+		print('Encoded to %s' % to)
 "
 
 [node name="SaveDecode" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -16.0
+margin_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 4 )
 
 [node name="Control" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 0, 12 )

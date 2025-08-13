@@ -1,0 +1,22 @@
+'0':
+  actors:
+    leader: leader
+  text: DIALOGUE_PODUNK_DOLLMELODY_0
+  goto: '3'
+'3':
+  objectfunction:
+    MusicArea: stop_music_immediately
+    melodyBG: appear
+  wait: 4
+  autoadvance: true
+  caninput: false
+  goto: '4'
+  music: Melodies/melody1.mp3
+'4':
+  text: DIALOGUE_PODUNK_DOLLMELODY_4
+  soundeffect: M3/heal_se.wav
+  objectfunction:
+    MusicArea: play_music
+    melodyBG: disappear
+  setflags: doll_melody
+  wait: 0.6

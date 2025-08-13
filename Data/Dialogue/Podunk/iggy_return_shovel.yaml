@@ -1,0 +1,6 @@
+'0':
+  name: DIALOGUE_PODUNK_IGGY_RETURN_SHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_IGGY_RETURN_SHOVEL_0
+  removeitem: Shovel
+  setflags: returned_shovel

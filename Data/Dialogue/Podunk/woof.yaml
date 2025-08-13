@@ -1,0 +1,23 @@
+'0':
+  name: DIALOGUE_PODUNK_WOOF_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_0
+  options:
+    DIALOGUE_PODUNK_WOOF_2-OPT_0: '3'
+    DIALOGUE_PODUNK_WOOF_2-OPT_1: '9'
+    cancel: '9'
+  soundeffect: M3/Woof Woof!.wav
+'3':
+  text: DIALOGUE_PODUNK_WOOF_3
+  goto: '4'
+'4':
+  name: DIALOGUE_PODUNK_WOOF_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_4
+  goto: '8'
+'8':
+  name: DIALOGUE_PODUNK_WOOF_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_8
+  setflags: mick_scratch
+'9':
+  name: DIALOGUE_PODUNK_WOOF_SPEAKER_Mick
+  text: DIALOGUE_PODUNK_WOOF_9
+  soundeffect: M3/Dog_whining.wav

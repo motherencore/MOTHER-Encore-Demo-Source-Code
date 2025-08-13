@@ -1,52 +1,72 @@
 extends Control
 
-onready var box = $HBox
-var skillName = null
+const LEVEL_NAMES = "αβγΩ"
 
-func init(skill):
+var _skill_name: String = ""
+var _levels: Dictionary # key = level, value = selectable
+var _box: HBoxContainer
+var _name_label: Label
+var _cursor
+
+func init(skill, cursor):
+	_box = $HBox
+	_name_label = $Name
+	_levels = {}
+	_cursor = cursor
+
 	name = skill.name
-	skillName = skill.name
-	$Name.text = skill.name
-	$Name.modulate = Color.darkgray
+	_skill_name = skill.name
+	_name_label.text = skill.name
+	_name_label.modulate = Color.darkgray
 	
 	#reset levels
-	$HBox/Alpha.text = ""
-	$HBox/Alpha.modulate = Color.darkgray
-	$HBox/Beta.text = ""
-	$HBox/Beta.modulate = Color.darkgray
-	$HBox/Gamma.text = ""
-	$HBox/Gamma.modulate = Color.darkgray
-	$HBox/Omega.text = ""
-	$HBox/Omega.modulate = Color.darkgray
+	for i in _box.get_child_count():
+		var node = _box.get_child(i)
+		node.text = ""
+		node.hide()
+	
 	if !"level" in skill:
 		addLevel(0)
 	else:
 		addLevel(skill.level, false)
 
 func addLevel(level: int, selectable: bool = true):
-	match(level):
-		0: #alpha
-			$HBox/Alpha.text = "α"
-			if selectable:
-				$HBox/Alpha.modulate = Color.white
-				$Name.modulate = Color.white
-		1: #beta
-			$HBox/Beta.text = "β"
-			if selectable:
-				$HBox/Beta.modulate = Color.white
-				$Name.modulate = Color.white
-		2: #gamma (but its actually delta lol)
-			$HBox/Gamma.text = "γ"
-			if selectable:
-				$HBox/Gamma.modulate = Color.white
-		3: #omega
-			$HBox/Omega.text = "Ω"
-			if selectable:
-				$HBox/Omega.modulate = Color.white
-				$Name.modulate = Color.white
-		
-	force_update_transform()
+	_levels[level] = selectable
+	_refresh_nodes()
 
 func addLevels(levels: Array):
 	for level in levels:
-		addLevel(level)
+		_levels[level] = true
+	_refresh_nodes()
+
+func _refresh_nodes():
+	var level_values = _levels.keys()
+	level_values.sort()
+	for i in level_values.size():
+		var node = _box.get_child(i)
+		if i < level_values.size():
+			node.show()
+		node.text = LEVEL_NAMES[level_values[i]]
+		var selectable = _levels[level_values[i]]
+		if selectable:
+			node.modulate = Color.white
+			_name_label.modulate = Color.white
+		else:
+			node.modulate = Color.darkgray
+
+	if is_inside_tree():
+		force_update_transform()
+
+func get_hbox():
+	return _box
+
+func get_skill_name():
+	return _skill_name
+
+func get_selected_level():
+	var level_values = _levels.keys()
+	level_values.sort()
+	if _cursor and _cursor.cursor_index < _levels.size():
+		return level_values[_cursor.cursor_index]
+	else:
+		return -1

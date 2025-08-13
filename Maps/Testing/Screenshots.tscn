@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/testing/RegionScreenshot.gd" type="Script" id=3]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=4]
+
+[sub_resource type="OpenSimplexNoise" id=10]
+octaves = 1
+period = 60.0
+persistence = 0.4
+lacunarity = 1.0
+
+[sub_resource type="NoiseTexture" id=11]
+width = 400
+height = 400
+seamless = true
+noise = SubResource( 10 )
+
+[node name="Control" type="Control"]
+margin_right = 176.0
+margin_bottom = 96.0
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture = SubResource( 11 )
+
+[node name="RegionScreenshot" type="ReferenceRect" parent="."]
+margin_right = 400.0
+margin_bottom = 400.0
+script = ExtResource( 3 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = -88.0
+margin_top = -16.0
+margin_right = 88.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 7
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 168.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+text = "Press F1 to screenshot"
+align = 1
+valign = 1

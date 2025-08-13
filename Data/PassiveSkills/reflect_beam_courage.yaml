@@ -1,0 +1,13 @@
+conditions:
+  skill: pkBeamG
+priority: 3
+passive_skill_actions:
+  sound: franklinbadge
+  vibrate: 0.5
+  damage_multiplier: 0
+  counter_multiplier: 1
+  dialogue: BATTLE_MSG_REFLECT_BEAM_COURAGE
+  context_item: CourageBadge
+  dialogue_after: BATTLE_MSG_BADGE_REVEAL
+  remove_item: CourageBadge
+  add_item: FranklinBadge0.8

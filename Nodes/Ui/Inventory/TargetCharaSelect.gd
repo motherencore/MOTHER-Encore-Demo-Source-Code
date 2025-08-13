@@ -4,7 +4,7 @@ signal back (to_inventory)
 signal chain_with_equip
 signal show_statsbar (character, unequip)
 signal hide_statsbar
-signal show_dialogbox (dialog, character, action)
+signal show_dialogbox (dialog, chara_name, value, stat, item)
 
 onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
 
@@ -53,9 +53,14 @@ func _update_character_list():
 		var label = item_label_template.instance()
 		label.text = chara_name
 		$MarginContainer/VBoxContainer.add_child(label)
-	
+
 	arrow.on = true
 	arrow.set_cursor_from_index(0, false)
+
+	yield($MarginContainer/VBoxContainer, "draw")
+	
+	_bg_resize()
+
 	
 #used to make the box appear with the right parameters
 # LOCALIZATION Code change: Added title parameter, to differentiate "Who"/"To whom"
@@ -83,9 +88,8 @@ func _physics_process(_delta):
 		if arrow.cursor_index < _char_list.size():
 			var target = _char_list[arrow.cursor_index]
 			var item_name = InventoryManager.Inventories[current_character][current_item].ItemName
-			if InventoryManager.doesItemHaveFunction(item_name, "equip")\
-			and InventoryManager.Load_item_data(item_name)["usable"][target]\
-			and arrow.cursor_index < _char_list.size():
+			if InventoryManager.is_equippable_by(target, item_name)\
+					and arrow.cursor_index < _char_list.size():
 				emit_signal("show_statsbar", target)
 		
 		if Input.is_action_just_pressed("ui_cancel"):
@@ -110,7 +114,8 @@ func _physics_process(_delta):
 					active = false
 					ConfirmationSelect.Show_confirmation_select(rect_position, "swap", "back", source, target, item)
 					yield(self, "chain_with_equip")
-					if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[target][InventoryManager.Inventories[target].size()-1].ItemName, "equip"):
+					var last_target_item_name = InventoryManager.Inventories[target][InventoryManager.Inventories[target].size()-1].ItemName
+					if InventoryManager.is_equippable(last_target_item_name):
 						visible = true
 						#propose to equip on target
 						active = false
@@ -122,14 +127,14 @@ func _physics_process(_delta):
 						
 				else:
 					#test if item is equipable
-					if InventoryManager.doesItemHaveFunction(InventoryManager.Inventories[source][item].ItemName, "equip") and InventoryManager.Load_item_data(InventoryManager.Inventories[source][item].ItemName)["usable"][target] and source != target:
+					if InventoryManager.is_equippable_by(target, InventoryManager.Inventories[source][item].ItemName) and source != target:
 						#propose to equip on target
 						active = false
 						ConfirmationSelect.Show_confirmation_select(rect_position, "equipgive", "cancel", source, target, item)
 						yield(ConfirmationSelect, "back")
 						pass
 					else: #give
-						InventoryManager.giveItem(source, target, item)
+						InventoryManager.give_item(source, target, item)
 						visible = false
 						active = false
 						emit_signal("hide_statsbar")
@@ -141,34 +146,48 @@ func _physics_process(_delta):
 				emit_signal("back", true)
 			
 
-func consume_item(source, item, target):
-	var current_item_name = InventoryManager.Inventories[source][item].ItemName
-	var item_data = InventoryManager.Load_item_data(current_item_name)
-	var useItem = false
-	if item_data["HPrecover"] > 0 or item_data["PPrecover"] > 0:
-		useItem = true
-		if item_data.has("usable"):
-			for chara in item_data["usable"]:
-				print(chara)
-				if !item_data["usable"][chara] and target == chara:
-					useItem = false
-	elif item_data.has("status_heals"):
-		for status in item_data["status_heals"]:
-			if InventoryManager.characterHasStatus(target, globaldata.status_name_to_enum(status)):
-				useItem = true
-	elif item_data.has("boost"):
-		useItem = true
-		if item_data.has("usable"):
-			for chara in item_data["usable"]:
-				print(chara)
-				if !item_data["usable"][chara] and target == chara:
-					useItem = false
-	if useItem:
-		InventoryManager.consumeItem(source, current_item, target)
-		emit_signal("show_dialogbox", item_data[action]["text"], target)
-		audioManager.play_sfx(load("res://Audio/Sound effects/EB/eat.wav"), "menu")
+func consume_item(source, item_idx, target):
+	var item_name: String = InventoryManager.Inventories[source][item_idx].ItemName
+	var item_data: Dictionary = InventoryManager.Load_item_data(item_name)
+	
+	var actions_performed := {}
+
+	if item_data.get("usable", {}).get(target, false):
+		actions_performed = InventoryManager.consume_item(source, item_idx, target)
+	
+	var success := false
+
+	if actions_performed.size() == 0:
+		emit_signal("show_dialogbox", item_data[action]["textfail"], target, 0, null, item_data)
 	else:
-		emit_signal("show_dialogbox", item_data[action]["textfail"], target)
+		for key in actions_performed:
+			var message = "ACTION_RESULT_%s" % InventoryManager.ItemActions.keys()[key]
+			var action_details = actions_performed[key]
+			match key:
+				InventoryManager.ItemActions.HP_UP, InventoryManager.ItemActions.PP_UP,\
+				InventoryManager.ItemActions.HP_MAX, InventoryManager.ItemActions.PP_MAX:
+					success = true
+					emit_signal("show_dialogbox", message, target, action_details)
+				InventoryManager.ItemActions.STAT_UP:
+					success = true
+					var stats = action_details
+					for stat in stats:
+						emit_signal("show_dialogbox", message, target, stats[stat], stat)
+				InventoryManager.ItemActions.HEAL:
+					success = true
+					if action_details.size() > 1:
+						emit_signal("show_dialogbox", "ACTION_RESULT_HEAL_ALL", target)
+					else:
+						emit_signal("show_dialogbox", StatusManager.get_status_message(action_details[0], "heal_overworld"), target)
+				InventoryManager.ItemActions.HEAL_FAIL:
+					if action_details.size() > 1:
+						emit_signal("show_dialogbox", "ACTION_RESULT_HEAL_NONE", target)
+					else:
+						emit_signal("show_dialogbox", StatusManager.get_status_message(action_details[0], "heal_overworld_fail"), target)
+
+	if success:	
+		audioManager.play_sfx(load("res://Audio/Sound effects/EB/eat.wav"), "menu")
+
 
 func _on_ConfirmationSelect_back(accept, current_action, _current_character, _target_character, _current_item):
 	if accept == false:
@@ -186,9 +205,11 @@ func bounce():
 	$Tween.start()
 
 
-# LOCALIZATION Code added: The box changes size to fit content dynamically
 func _on_VBoxContainer_resized():
 	yield(get_tree(), "idle_frame")
+	_bg_resize()
+
+func _bg_resize():
 	$MarginContainer.set_size(Vector2(0, 0))
 	rect_size.x = $MarginContainer.rect_size.x
 	rect_size.y = $MarginContainer.rect_size.y

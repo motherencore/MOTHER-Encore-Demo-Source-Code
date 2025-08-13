@@ -1,0 +1,10 @@
+'0':
+  name: DIALOGUE_TESTING_BOBOO_SPEAKER_Healer
+  sound: Kid
+  text: DIALOGUE_TESTING_BOBOO_0
+  soundeffect: M3/lifeup_a.wav
+  heal: All
+  cure:
+    character: All
+    status: All
+  restorepp: All

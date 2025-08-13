@@ -833,7 +833,7 @@ points = PoolVector2Array( 32, 48, 8, 48, 8, 32, 32, 32 )
 polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=543]
-points = PoolVector2Array( 0, 16, 16, 32, 32, 32, 32, 16 )
+points = PoolVector2Array( 4, 16, 4, 32, 36, 32, 36, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=140]
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
@@ -7043,14 +7043,14 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 195/z_index = 0
 196/name = "HotelSignTRANSLATED"
 196/texture = ExtResource( 8 )
-196/tex_offset = Vector2( 0, 0 )
+196/tex_offset = Vector2( -4, 0 )
 196/modulate = Color( 1, 1, 1, 1 )
-196/region = Rect2( 0, 0, 32, 32 )
+196/region = Rect2( 0, 0, 40, 32 )
 196/tile_mode = 0
 196/occluder_offset = Vector2( 0, 0 )
 196/navigation_offset = Vector2( 0, 0 )
-196/shape_offset = Vector2( 0, 0 )
-196/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+196/shape_offset = Vector2( -4, 0 )
+196/shape_transform = Transform2D( 1, 0, 0, 1, -4, 0 )
 196/shape = SubResource( 543 )
 196/shape_one_way = false
 196/shape_one_way_margin = 1.0
@@ -7059,7 +7059,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 543 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+"shape_transform": Transform2D( 1, 0, 0, 1, -4, 0 )
 } ]
 196/z_index = 0
 197/name = "CanarySignTRANSLATED"

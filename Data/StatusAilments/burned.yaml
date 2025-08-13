@@ -1,0 +1,16 @@
+healing:
+  passive_heal: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_BURNED
+  effect: BATTLE_MSG_STATUS_BURNED_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_BURNED
+status_bubble: burned
+effects_by_char:
+  any:
+    do_skill:
+      skill: burnedEffect
+      moment: after
+    dealt_color:
+      color: 'E60000'
+      action:
+        specific_skill: burnedEffect

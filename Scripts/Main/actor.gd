@@ -6,31 +6,33 @@ signal enemy_erased
 
 enum {MOVETO, STEP, TALKING, ROTATING, IDLE}
 
-onready var emotes = $CharacterSprite/emotes
-onready var tween = $Tween
-onready var camera = $Camera2D
-onready var characterSprite = $CharacterSprite
-onready var specialSprite = $SpecialSprite
-var speed = 64
-var party_member = false
-var pause = false
-var jumping = false
-var talking = false
-var moonwalk = false
-var looping = false
-var blendPosition = true
-var animating = false
-var newPos = position
-var direction = Vector2.ZERO
-var velocity = Vector2.ZERO
+onready var emotes := $CharacterSprite/emotes
+onready var tween := $Tween
+onready var camera := $Camera2D
+onready var characterSprite := $CharacterSprite
+onready var specialSprite := $SpecialSprite
+var speed: float = 64.0
+var party_member := false
+var pause := false
+var jumping := false
+var talking := false
+var mute := false
+var moonwalk := false
+var looping := false
+var blendPosition := true
+var animating := false
+var newPos := position
+var direction := Vector2.ZERO
+var velocity := Vector2.ZERO
 var replaced = null
-var drafted = false
-var state = IDLE
-var idleAnim = "Idle"
+var drafted := false
+var state := IDLE
+var idleAnim := "Idle"
+var talkIdleAnim := "Idle"
 var onScreenId = null
-var spritePosition = Vector2.ZERO
+var spritePosition := Vector2.ZERO
 
-var keepAfterBattle = false
+var keepAfterBattle := false
 
 func _ready():
 	hide()
@@ -62,6 +64,8 @@ func replace_npc(npc):
 	
 	if replaced.get("idle_animation") != null:
 		idleAnim = replaced.idle_animation
+	if replaced.get("talk_idle_animation") != null:
+		talkIdleAnim = replaced.talk_idle_animation
 	characterSprite.travel(idleAnim)
 	
 	if !replaced.get_node("Shadow").visible:
@@ -103,9 +107,14 @@ func update_npcs():
 	global.remove_persistent(replaced)
 	queue_free()
 
+func stop_interaction():
+	if replaced.has_method("stop_interaction"):
+		replaced.stop_interaction()
+
 func change_replaced(replacement):
 	if replaced in global.partyObjects:
-		replaced.partyMemberClass.remove(replaced.partyMember)
+		global.party.erase(replaced.partyMember)
+		global.partyNpcs.erase(replaced.partyMember)
 		global.create_party_followers()
 	else:
 		global.remove_persistent(replaced)
@@ -117,18 +126,20 @@ func change_replaced(replacement):
 func set_direction(vector2):
 	direction = vector2
 
-func _physics_process(_delta):
+func _physics_process(_delta: float):
 	match state:
 		MOVETO:
-			move_to(newPos)
+			_move_to(newPos, _delta)
 		STEP:
-			move(newPos)
+			_move(newPos, _delta)
 		IDLE:
 			if !animating:
 				if jumping and party_member:
 					return
-				elif talking:
+				elif talking and !mute:
 					characterSprite.travel("Talk")
+				elif global.talker == self:
+					characterSprite.travel(talkIdleAnim)
 				else:
 					characterSprite.travel(idleAnim)
 			position = round_vector(position)
@@ -137,14 +148,14 @@ func _physics_process(_delta):
 	else:
 		blend_position(direction)
 
-func move_queue(moves, animation, walk_speed, type, reverse = false, loop = false):
+func move_queue(moves: Array, animation: String, walk_speed: float, type: String, reverse := false, loop := false):
 	if state != IDLE:
 		yield(self, "finished_action")
 	speed = walk_speed
 	moonwalk = reverse
 	looping = loop
 	for action in moves:
-		if typeof(action) == 5:
+		if typeof(action) == TYPE_VECTOR2:
 			if type in ["position", "1"]:
 				state = MOVETO
 				newPos = action
@@ -175,8 +186,8 @@ func move_queue(moves, animation, walk_speed, type, reverse = false, loop = fals
 func stop_loop():
 	looping = false
 
-func move_to(vector2):
-	var difference = max(ceil(abs(speed / int(Engine.get_frames_per_second()))), 1)
+func _move_to(vector2: Vector2, delta: float):
+	var difference = max(ceil(abs(speed * delta)), 1.0)
 	if abs(global_position.x - newPos.x) > difference or abs(global_position.y - newPos.y) > difference:
 		direction = global_position.direction_to(vector2)
 		velocity = move_and_slide(direction * speed)
@@ -184,8 +195,8 @@ func move_to(vector2):
 		global_position = newPos
 		emit_signal("finished_movement")
 
-func move(vector2):
-	var difference = max(ceil(abs(speed / int(Engine.get_frames_per_second()))), 1)
+func _move(vector2: Vector2, delta: float):
+	var difference = max(ceil(abs(speed * delta)), 1.0)
 	if abs(global_position.x - newPos.x) > difference or abs(global_position.y - newPos.y) > difference:
 		var angle = global_position.angle_to_point(vector2)
 		direction = Vector2(-cos(angle), -sin(angle))
@@ -252,14 +263,15 @@ func set_spritesheet():
 	if ResourceLoader.exists(specialPath):
 		specialSprite.set_sprite(specialPath)
 	if replaced.get("characterSprite") != null:
-		characterSprite.set_animation(replaced.json, replaced.connections)
+		characterSprite.set_animation(replaced.yaml, replaced.connections)
+		characterSprite.position = replaced.characterSprite.position
 		party_member =  replaced.party_member
 	else: #Otherwise set default to Party Member animations
 		party_member = true
-		characterSprite.set_animation("res://Data/Animations/PartyMember.json", [["Talk", "Idle", 2]])
+		characterSprite.set_animation("res://Data/Animations/PartyMember.yaml", [["Talk", "Idle", 2]])
 		
 		var special = File.new()
-		var specialAnimPath = "res://Data/Animations/" + replaced.partyMember.sprite + "Cutscene.json"
+		var specialAnimPath = "res://Data/Animations/" + replaced.partyMember.sprite + "Cutscene.yaml"
 		if special.file_exists(specialAnimPath):
 			specialSprite.set_animation(specialAnimPath)
 			specialSprite.set_spritesheet()
@@ -268,6 +280,11 @@ func set_spritesheet():
 	set_special_sprite(false)
 	spritePosition = characterSprite.position
 	
+
+# anim: name of the animation
+# anim_speed: playback speed
+# queue: have the animation play after other actions or not
+# type: 1 for special animation, 0 for regular animation
 
 func play_anim(anim, anim_speed = 1.0, queue = false, type = 0):
 	if queue:
@@ -282,7 +299,7 @@ func play_anim(anim, anim_speed = 1.0, queue = false, type = 0):
 		characterSprite.travel(anim)
 		characterSprite.set_time_scale(anim_speed)
 
-	if anim == idleAnim and characterSprite.visible:
+	if (anim == idleAnim or anim == talkIdleAnim) and characterSprite.visible:
 		animating = false
 		emit_signal("finished_action")
 	else:

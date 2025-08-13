@@ -32,7 +32,7 @@ func changeMonospaced(value):
 	update()
 
 func update():
-	print("Cut texture to font")
+	#print("Cut texture to font")
 	if TextureToCut != null:
 		if GlyphSize.x > 0 and GlyphSize.y > 0:
 			

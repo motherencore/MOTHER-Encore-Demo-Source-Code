@@ -1,0 +1,37 @@
+name: JOHN_NAME
+description: JOHN_DESC
+article: JOHN_ART
+maxhp: 131
+hp: 131
+maxpp: 0
+pp: 0
+offense: 29
+defense: 31
+speed: 7
+iq: 31
+guts: 0
+level: 10
+exp: 130
+cash: 100
+items:
+- chance: 100
+  item: Milk
+skills:
+- skill: attack
+  weight: 4
+- skill: blindingThrow
+  weight: 1
+- skill: rage
+  weight: 2
+- skill: mightyRoar
+  weight: 2
+boss: false
+sprite: elephant
+music: Dangerous Foe.mp3
+bg: elephant
+ov:
+  sprite: ElephantOV
+  anim: BasicEnemy
+  spriteOffset:
+  - 0
+  - 4

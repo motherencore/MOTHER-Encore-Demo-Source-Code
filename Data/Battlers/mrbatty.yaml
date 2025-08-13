@@ -1,0 +1,32 @@
+name: MRBATTY_NAME
+description: MRBATTY_DESC
+article: MRBATTY_ART
+maxhp: 76
+hp: 76
+maxpp: 0
+pp: 0
+offense: 8
+defense: 18
+speed: 8
+iq: 5
+guts: 0
+level: 4
+exp: 10
+cash: 14
+items:
+- chance: 10
+  item: Fries
+- chance: 30
+  item: Antidote
+skills:
+- skill: bash
+  weight: 3
+- skill: criticalthinking
+  weight: 1
+boss: false
+sprite: mr batty
+music: Mr Batty Twist.mp3
+bg: batty
+ov:
+  sprite: MrBattyOV
+  anim: BasicEnemy2F

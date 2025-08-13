@@ -40,11 +40,11 @@ func set_button_offset(offset):
 
 func interact():
 	set_dialog()
-	global.set_dialog(dialog, null)
+	global.set_dialog(dialog)
 	uiManager.open_dialogue_box()
 
 func telepathy():
-	global.set_dialog(thoughts, null)
+	global.set_dialog(thoughts)
 	uiManager.set_telepathy_effect(true)
 	uiManager.open_dialogue_box()
 

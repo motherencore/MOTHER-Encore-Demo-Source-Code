@@ -1,0 +1,10 @@
+'0':
+  name: DIALOGUE_PODUNK_MIMMIE_KEY_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_KEY_0
+  goto: '7'
+'7':
+  name: DIALOGUE_PODUNK_MIMMIE_KEY_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_KEY_7
+  setflags: mimmie_ask_key

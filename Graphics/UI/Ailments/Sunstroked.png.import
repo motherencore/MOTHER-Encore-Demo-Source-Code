@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sunstroked.png-16e43485c5d096a5f75609636e4e7c44.stex"
+path="res://.import/sunstroked.png-cc1e6d211ee67158b42b101ed3c07b5e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Sunstroked.png"
-dest_files=[ "res://.import/Sunstroked.png-16e43485c5d096a5f75609636e4e7c44.stex" ]
+source_file="res://Graphics/UI/Ailments/sunstroked.png"
+dest_files=[ "res://.import/sunstroked.png-cc1e6d211ee67158b42b101ed3c07b5e.stex" ]
 
 [params]
 

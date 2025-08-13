@@ -15,15 +15,21 @@ texture = ExtResource( 1 )
 stretch_mode = 4
 script = ExtResource( 3 )
 
-[node name="is_item_suitable" type="Sprite" parent="."]
+[node name="Indicators" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -0.5
+margin_right = -0.5
+
+[node name="is_item_suitable" type="Sprite" parent="Indicators"]
 visible = false
-position = Vector2( 4, 21 )
+position = Vector2( -6.5, 21 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 10, 13, 7 )
 
-[node name="is_item_better" type="Sprite" parent="is_item_suitable"]
+[node name="is_item_better" type="Sprite" parent="Indicators/is_item_suitable"]
 visible = false
 position = Vector2( 1, -20 )
 texture = ExtResource( 4 )
@@ -31,7 +37,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 11, 7 )
 
-[node name="is_item_lower" type="Sprite" parent="is_item_suitable"]
+[node name="is_item_lower" type="Sprite" parent="Indicators/is_item_suitable"]
 visible = false
 position = Vector2( 1, -20 )
 texture = ExtResource( 4 )
@@ -39,9 +45,9 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 7, 11, 7 )
 
-[node name="is_item_equiped" type="Sprite" parent="."]
+[node name="is_item_equiped" type="Sprite" parent="Indicators"]
 visible = false
-position = Vector2( 6, 1 )
+position = Vector2( -4.5, 1 )
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true

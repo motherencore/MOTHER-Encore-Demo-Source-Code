@@ -1,0 +1,17 @@
+allow_cancel: false
+bgm: YourNamePlease.mp3
+check_duplicates_in:
+- ninten
+- ana
+- lloyd
+- pippi
+- teddy
+- favoriteFood
+scenario:
+- char_anims_enter: []
+  char_anims_leave: []
+  longest_name: LONGEST_POSSIBLE_PLAYER_NAME
+  prompt: What’s your name?
+  sprite: ''
+  target: playerName
+  type: naming

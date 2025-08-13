@@ -1,0 +1,341 @@
+'0':
+  actors:
+    ninten: leader
+    pippi: pippi
+    canary: canarychick
+    lindgren: Objects/NPCS/npc26
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_???
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_0
+  emoteactors:
+    pippi: question
+  setflags: pippi_reunite
+  goto: '1'
+'1':
+  showbox: false
+  actorsmove:
+    lindgren:
+      movement:
+      - x: -1184
+        y: 528
+      speed: 32
+      animation: Walk
+      type: position
+  teleportactors:
+    lindgren:
+      x: -1184
+      y: 380
+  changecam: lindgren
+  returncam: 1
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '2'
+'2':
+  actorsdir:
+    ninten:
+      x: -1
+      y: 0
+    pippi:
+      x: -1
+      y: 0
+    canary:
+      x: -1
+      y: 0
+  teleportactors:
+    ninten:
+      x: -1096
+      y: 552
+    pippi:
+      x: -1080
+      y: 528
+    canary:
+      x: -1064
+      y: 552
+  wait: 4
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_3
+  movecam:
+    x: -1172
+    y: 528
+  goto: '4'
+'4':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_4
+  emoteactors:
+    lindgren: surprise
+  actorsturn:
+    lindgren:
+      x: 1
+      y: 0
+      speed: 0.05
+  goto: '6'
+'6':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_6
+  actorsjump:
+    pippi:
+      height: 8
+      queue: true
+      times: 2
+  actorsmove:
+    ninten:
+      movement:
+      - x: -1184
+        y: 552
+      speed: 32
+      animation: Walk
+      type: position
+    pippi:
+      movement:
+      - x: -1164
+        y: 528
+      speed: 96
+      animation: Run
+      type: position
+    canary:
+      movement:
+      - x: -1164
+        y: 552
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+    canary:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  wait: 1.5
+  goto: '7'
+'7':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_7
+  goto: '10'
+'10':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_10
+  goto: '11'
+'11':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_11
+  goto: '12'
+'12':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_12
+  actorsjump:
+    pippi:
+      height: 8
+      times: 2
+  wait: 0.5
+  goto: '13'
+'13':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_13
+  actorsjump:
+    lindgren:
+      height: 8
+      times: 1
+  wait: 0.5
+  goto: '14'
+  actorsshake:
+    lindgren:
+      x: 1
+      length: 0.2
+'14':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_14
+  goto: '15'
+'15':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_15
+  actorsturn:
+    pippi:
+      x: -1
+      y: 1
+      speed: 0.1
+    lindgren:
+      x: 0
+      y: 1
+      speed: 0.1
+  changecam: ninten
+  returncam: 1
+  wait: 0.5
+  goto: '16'
+'16':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_16
+  goto: '17'
+'17':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_17
+  goto: '18'
+'18':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_18
+  emoteactors:
+    lindgren: heart
+  goto: '19'
+'19':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_19
+  actorsturn:
+    pippi:
+      x: -1
+      y: 0
+      speed: 0.1
+    lindgren:
+      x: 1
+      y: 0
+      speed: 0.1
+  changecam: pippi
+  returncam: 1
+  wait: 0.5
+  goto: '20'
+'20':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_20
+  emoteactors:
+    lindgren: question
+  goto: '21'
+'21':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_21
+  actorsturn:
+    ninten:
+      x: 1
+      y: 0
+      speed: 0.1
+    pippi:
+      x: 0
+      y: 1
+      speed: 0.1
+    lindgren:
+      x: 0
+      y: 1
+      speed: 0.2
+  changecam: canary
+  returncam: 1
+  wait: 0.5
+  goto: '22'
+'22':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_22
+  actorsturn:
+    pippi:
+      x: -1
+      y: 0
+      speed: 0.1
+  wait: 0.5
+  goto: '23'
+'23':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_23
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+  changecam: lindgren
+  returncam: 1
+  wait: 0.5
+  goto: '25'
+'25':
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_25
+  actorsturn:
+    lindgren:
+      x: 0
+      y: -1
+      speed: 0.1
+  movecam:
+    x: -1184
+    y: 480
+  wait: 0.5
+  goto: '26'
+'26':
+  name: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_26
+  actorsturn:
+    lindgren:
+      x: 1
+      y: 0
+      speed: 0.2
+  changecam: ninten
+  returncam: 1
+  wait: 0.5
+  goto: '27'
+'27':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_REUNITE_27
+  goto: '28'
+'28':
+  showbox: false
+  actorsmove:
+    lindgren:
+      movement:
+      - x: -1232
+        y: 528
+      - x: -1232
+        y: 504
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    lindgren:
+      x: 0
+      y: 1
+      speed: 0.05
+      queue: true
+  wait: 3
+  autoadvance: true
+  caninput: false

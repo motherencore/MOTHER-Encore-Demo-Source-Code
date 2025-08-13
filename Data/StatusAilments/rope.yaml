@@ -1,0 +1,16 @@
+healing:
+  passive_heal: true
+  mandatory_turns: 1
+  heal_prob: 25
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_ROPE
+  heal_battle: BATTLE_MSG_HEAL_STATUS_ROPE
+ignore_reinflict: true
+hidden: true
+effects_by_char:
+  any:
+    cant_do:
+      action:
+        action_type: 0
+        skill_type: [ basic, skill ]
+      message: BATTLE_MSG_STATUS_ROPE_EFFECT

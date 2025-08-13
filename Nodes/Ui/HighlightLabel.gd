@@ -4,10 +4,10 @@ extends Label
 onready var highlighter = get("custom_styles/normal")
 var oldColor
 var oldModulate
-var blinking = false
-var blink_state = 0.5
+var blinking := false
+var blink_state := 0.5
 
-var uid = 0
+var uid := 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,9 +36,7 @@ func set_self_modulate(color):
 			self_modulate = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR" + i)
 
 func highlight(val):
-	highlighter = highlighter.duplicate()
 	highlighter.bg_color.a = val
-	self.set('custom_styles/normal', highlighter)
 
 func blink(val):
 	blinking = val
@@ -50,7 +48,6 @@ func blink(val):
 
 func start_blinking():
 	if blinking and !$Tween.is_active():
-		print("blinking!")
 		$Tween.interpolate_property(highlighter, "bg_color:a",
 			0.8, 0.5, 0.3,
 			Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
@@ -59,7 +56,7 @@ func start_blinking():
 			Tween.TRANS_LINEAR,Tween.EASE_IN_OUT, 0.3)
 		$Tween.start()
 
-func show_equiped(val):
+func show_equiped(val: bool):
 
 	if get_node_or_null("Equiped_spr"):
 		$Equiped_spr.visible = val

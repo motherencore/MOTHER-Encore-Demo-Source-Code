@@ -1,0 +1,59 @@
+'0':
+  actors:
+    monkey: AbovePlayer1/npc
+  movecam:
+    y: -1128
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_MONKEY_APOLOGIZE_SPEAKER_Monkey
+  sound: Strange
+  text: DIALOGUE_PODUNK_CUTSCENES_MONKEY_APOLOGIZE_1
+  goto: '2'
+'2':
+  name: DIALOGUE_PODUNK_CUTSCENES_MONKEY_APOLOGIZE_SPEAKER_Monkey
+  sound: Strange
+  text: DIALOGUE_PODUNK_CUTSCENES_MONKEY_APOLOGIZE_2
+  goto: '4'
+'4':
+  showbox: false
+  actorsjump:
+    monkey:
+      height: 6
+      length: 0.4
+  actorsmove:
+    monkey:
+      movement:
+      - x: 848
+        y: -1152
+      speed: 96
+      type: position
+  wait: 0.4
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  showbox: false
+  actorsjump:
+    monkey:
+      height: 50
+      length: 0.7
+  actorsmove:
+    monkey:
+      movement:
+      - x: 864
+        y: -1232
+      speed: 128
+      type: position
+  actorsturn:
+    monkey:
+      x: 0
+      y: 1
+      speed: 0.1
+      queue: true
+  setflags: monkey_apologize
+  wait: 1.6
+  autoadvance: true
+  caninput: false

@@ -1,7 +1,7 @@
 extends TextureRect
 
 onready var transitionTween = $TransitionTween
-onready var sprite = $Sprite
+onready var _sprite = $Sprite
 
 
 signal apply_damage
@@ -13,9 +13,9 @@ func _ready():
 	$AnimationPlayer.stop()
 
 func set_texture(fullSpritePath):
-	sprite.texture = load(fullSpritePath)
-	rect_size = sprite.texture.get_size()
-	sprite.position = rect_size/2
+	_sprite.texture = load(fullSpritePath)
+	rect_size = _sprite.texture.get_size()
+	_sprite.position = rect_size/2
 
 func appear():
 	rect_pivot_offset = rect_size/2
@@ -42,11 +42,11 @@ func deselect():
 	material.set_shader_param("glow_modifier", 0.0)
 
 func attack():
-	$Tween.interpolate_property(sprite, "offset:y",
-		sprite.offset.y, -10, 0.1,
+	$Tween.interpolate_property(_sprite, "offset:y",
+		_sprite.offset.y, -10, 0.1,
 		Tween.TRANS_QUART, Tween.EASE_OUT)
-	$Tween.interpolate_property(sprite, "offset:y",
-		-10, sprite.offset.y, 0.1,
+	$Tween.interpolate_property(_sprite, "offset:y",
+		-10, _sprite.offset.y, 0.1,
 		Tween.TRANS_QUART, Tween.EASE_IN, 0.1)
 	$Tween.start()
 	yield($Tween, "tween_all_completed")

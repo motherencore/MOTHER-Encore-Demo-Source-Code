@@ -72,9 +72,9 @@ func set_spritesheet():
 	characterSprite.set_sprite(path)
 	var animPath = ""
 	if anim == "":
-		animPath = "res://Data/Animations/BasicEnemy.json"
+		animPath = "res://Data/Animations/BasicEnemy.yaml"
 	else:
-		animPath = "res://Data/Animations/" + anim + ".json"
+		animPath = "res://Data/Animations/" + anim + ".yaml"
 	characterSprite.set_animation(animPath, connections)
 	
 	characterSprite.set_spritesheet()
@@ -254,5 +254,5 @@ func _on_SpawnArea_body_exited(body):
 	if body == global.persistPlayer and firstAppearance:
 		firstAppearance = false
 		modulate = Color.white
-		audioManager.play_music_from_id("AoOni.mp3", "AoOni.mp3", audioManager.get_audio_player_count() - 1)
+		audioManager.play_music_on_latest_player("AoOni.mp3", "AoOni.mp3")
 		start_chase()

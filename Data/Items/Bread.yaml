@@ -1,0 +1,32 @@
+name: BREAD_NAME
+sorting_name: BREAD_SORT
+description: BREAD_DESC
+article: BREAD_ART
+keyitem: false
+cost: 20
+value: 10
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: true
+  pippi: true
+action_one:
+  name: BREAD_ACT1_NAME
+  function: consume
+action_two:
+  name: BREAD_ACT2_NAME
+  function: transform
+battle_action: ''
+transform: Crumbs
+slot: ''
+HPrecover: 15
+PPrecover: 0
+boost:
+  maxhp: 0
+  maxpp: 0
+  offense: 0
+  defense: 0
+  speed: 0
+  iq: 0
+  guts: 0

@@ -1,0 +1,151 @@
+'0':
+  actors:
+    ninten: leader
+    iggy: Objects/NPCS/npc18
+  talker: iggy
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_0
+  actorsdir:
+    iggy:
+      x: 0
+      y: -1
+  setflags: got_shovel
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_1
+  actorsturn:
+    ninten:
+      x: 1
+      y: 1
+      speed: 0.1
+  changecam: iggy
+  returncam: 1
+  goto: '2'
+'2':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - wait: 0.5
+      - x: 1408
+        y: 4720
+      speed: 32
+      animation: Walk
+      type: position
+    iggy:
+      movement:
+      - x: 1432
+        y: 4744
+      - x: 1432
+        y: 4680
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_3
+  objectfunction:
+    Objects/Items/Item: queue_free
+  goto: '4'
+'4':
+  showbox: false
+  actorsmove:
+    iggy:
+      movement:
+      - x: 1432
+        y: 4720
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 1
+      y: 0
+      speed: 0.3
+    iggy:
+      x: -1
+      y: 0
+      speed: 0.1
+      queue: true
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_5
+  goto: '7'
+'7':
+  showbox: false
+  actorsmove:
+    iggy:
+      movement:
+      - x: 1432
+        y: 4744
+      - x: 1360
+        y: 4744
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: -1
+      y: 1
+      speed: 0.5
+  wait: 4
+  autoadvance: true
+  caninput: false
+  goto: '8'
+'8':
+  name: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_SPEAKER_Iggy
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GRAVEDIGGER_GETSHOVEL_8
+  actorsturn:
+    iggy:
+      x: 1
+      y: 0
+      speed: 0.1
+  changecam: null
+  goto: '10'
+'10':
+  showbox: false
+  actorsdir:
+    ninten:
+      x: -1
+      y: 0
+  actorsmove:
+    iggy:
+      movement:
+      - x: 1280
+        y: 4744
+      - x: 1280
+        y: 4600
+      speed: 48
+      animation: Walk
+      type: position
+      queue: true
+  changecam: ninten
+  returncam: 1
+  wait: 4.5
+  autoadvance: true
+  caninput: false
+  goto: '11'
+'11':
+  setflags: returned_shovel
+  eraseactors:
+    iggy: true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Graphics/Rooms/Podunk/mayorlobby.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Mayors_Office.png" type="Texture" id=2]
@@ -12,34 +12,6 @@
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=10]
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Graphics/Rooms/Podunk/mayorlobby_desk.png" type="Texture" id=12]
-
-
-[sub_resource type="RectangleShape2D" id=436]
-extents = Vector2( 12.3041, 17.0085 )
-
-[sub_resource type="Shader" id=432]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=437]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 7.87464, 17.0085 )
@@ -97,7 +69,7 @@ extents = Vector2( 240, 388 )
 [node name="Mayors Office" type="Node2D"]
 script = ExtResource( 10 )
 player_map_offset = Vector2( 110, 240 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -124,13 +96,6 @@ player_turn = {
 }
 no_shadow = true
 no_collision = true
-
-[node name="CollisionShape2D" parent="npc4/interact" index="0"]
-position = Vector2( -0.5, 21 )
-shape = SubResource( 436 )
-
-[node name="ButtonPrompt" parent="npc4/interact" index="1"]
-material = SubResource( 437 )
 
 [node name="MayorlobbyDesk" type="Sprite" parent="."]
 position = Vector2( 8, -48 )
@@ -199,6 +164,7 @@ player_turn = {
 "y": true
 }
 idle_animation = "Walk"
+talk_idle_animation = "Walk"
 
 [node name="npc4" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -216, -600 )
@@ -306,8 +272,6 @@ volume_db = 6
 position = Vector2( 0, -348 )
 shape = SubResource( 435 )
 
-[editable path="npc4"]
-[editable path="npc4/CharacterSprite"]
 [editable path="Objects/npc"]
 [editable path="Objects/npc/CharacterSprite"]
 [editable path="Objects/npc2"]

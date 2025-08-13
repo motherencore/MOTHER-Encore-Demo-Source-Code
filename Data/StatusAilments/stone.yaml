@@ -1,0 +1,12 @@
+healing:
+  persistent: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_STONE
+  effect: BATTLE_MSG_STATUS_STONE_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_STONE
+  heal_overworld: ACTION_RESULT_HEAL_STONE
+  heal_overworld_fail: ACTION_RESULT_HEAL_STONE_FAIL
+status_bubble: stone
+effects_by_char:
+  any:
+    turn_skip: true

@@ -39,9 +39,9 @@ func grow():
 func interact():
 	if visible:
 		if globaldata.flags["bat"]:
-			global.set_dialog("Reusable/easytobreak", null) 
+			global.set_dialog("Reusable/easytobreak") 
 		else:
-			global.set_dialog("Reusable/hardtobreak", null) 
+			global.set_dialog("Reusable/hardtobreak") 
 		uiManager.open_dialogue_box()
 
 func _on_Hitbox_area_entered(area):

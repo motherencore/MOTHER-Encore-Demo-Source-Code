@@ -1,6 +1,5 @@
 extends Sprite
 
-
 export (String) var dialog
 export (bool) var payphone
 export var appear_flag = ""
@@ -11,11 +10,9 @@ var player_turn = {
 	"y": true, #Make "x" true if you want the player to turn left/right to face npc
 	"x": true #Make "y" true if you want the player to turn up/down to face npc
 }
-var player = null
-var talking = false
-var pause
 var inputVector
 
+var _amount_box_timer: SceneTreeTimer
 
 onready var animationPlayer = $AnimationPlayer
 onready var audio = $AudioStreamPlayer2D
@@ -31,25 +28,41 @@ func interact():
 	global.phoneLocation = save_location
 	set_dialog()
 	if payphone:
-		uiManager.cash.open()
-		if globaldata.cash >= 5:
+		var phone_cards := InventoryManager.find_all_occurrences("PhoneCard")
+		if phone_cards:
+			_show_amount_box(uiManager.phone_units, true)
 			audio.playing = true
-			global.set_dialog(dialog, null)
-			uiManager.open_dialogue_box()
-			yield(get_tree().create_timer(1),"timeout")
-			globaldata.cash -= 5
-			uiManager.cash.update()
-			yield(get_tree().create_timer(1),"timeout")
-			uiManager.close_item(uiManager.cash)
+			global.set_dialog(dialog)
+			uiManager.open_dialogue_box()		
+			InventoryManager.reduce_or_drop_item_obj(phone_cards[0])
 		else:
-			global.set_dialog("Reusable/payphonenomoney", null)
-			uiManager.open_dialogue_box()
-			yield(get_tree().create_timer(1),"timeout")
-			uiManager.close_item(uiManager.cash)
+			_show_amount_box(uiManager.cash, true)
+			if globaldata.cash >= 5:
+				audio.playing = true
+				global.set_dialog(dialog)
+				uiManager.open_dialogue_box()
+				globaldata.cash -= 5
+			else:
+				global.set_dialog("Reusable/payphonenomoney")
+				uiManager.open_dialogue_box()
 	else:
-		global.set_dialog(dialog, null)
+		global.set_dialog(dialog)
 		uiManager.open_dialogue_box()
 		audio.playing = true
+
+func _show_amount_box(box, update: bool):
+	if _amount_box_timer:
+		_amount_box_timer.disconnect("timeout", self, "_hide_amount_box")
+	box.open()
+	if update:
+		yield(get_tree().create_timer(0.5),"timeout")
+		box.update()
+	_amount_box_timer = get_tree().create_timer(1)
+	_amount_box_timer.connect("timeout", self, "_hide_amount_box", [box], CONNECT_ONESHOT)
+	
+func _hide_amount_box(box):
+	uiManager.close_item(box)
+	_amount_box_timer = null
 
 func set_dialog():
 	for flags in event_dialog:

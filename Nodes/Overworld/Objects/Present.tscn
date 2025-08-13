@@ -98,6 +98,9 @@ tracks/0/keys = {
 
 [node name="Present" type="Sprite"]
 script = ExtResource( 2 )
+dialog = "ItemDescriptions/presentcheck"
+dialog_full = "ItemDescriptions/presentfull"
+button_prompt = NodePath("interact/ButtonPrompt")
 type = "item"
 
 [node name="Sprite" type="Sprite" parent="."]

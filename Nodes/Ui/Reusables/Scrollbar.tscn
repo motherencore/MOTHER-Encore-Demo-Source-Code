@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside_light.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside_scrollbar.png" type="Texture" id=2]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=3]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultscroll.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/UI/Reusables/Scrollbar.gd" type="Script" id=5]

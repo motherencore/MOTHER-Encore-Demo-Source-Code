@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=2]
@@ -16,30 +16,6 @@
 [ext_resource path="res://Graphics/Objects/Doors/Door_Dark_Locked.png" type="Texture" id=14]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=16]
-
-[sub_resource type="Shader" id=432]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=433]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
 
 [sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
@@ -90,7 +66,7 @@ extents = Vector2( 8, 4 )
 [node name="Podunk Hotel" type="Node2D"]
 script = ExtResource( 16 )
 player_map_offset = Vector2( 136, 224 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -106,14 +82,8 @@ player_turn = {
 "x": false,
 "y": true
 }
-
-[node name="interact" parent="npc" index="3"]
-scale = Vector2( 1, 2 )
-
-[node name="ButtonPrompt" parent="npc/interact" index="1"]
-material = SubResource( 433 )
-position = Vector2( 0, -5.5 )
-scale = Vector2( 1, 0.5 )
+extended_interact = 2
+initial_dir = Vector2( 0, 1 )
 
 [node name="PodunkHotelDesk" type="Sprite" parent="."]
 position = Vector2( 56, -96 )
@@ -343,11 +313,9 @@ entering_sound = "wood"
 position = Vector2( -8, 20 )
 shape = SubResource( 12 )
 
-[connection signal="moved_player" from="Doors/Door3" to="Openable Door" method="unlock"]
 [connection signal="moved_player" from="Doors/Door3" to="Openable Door" method="open"]
+[connection signal="moved_player" from="Doors/Door3" to="Openable Door" method="unlock"]
 
-[editable path="npc"]
-[editable path="npc/CharacterSprite"]
 [editable path="MusicArea2"]
 [editable path="Doors/Door3"]
 [editable path="Doors/Door6"]

@@ -22,7 +22,7 @@ func _ready():
 
 func _process(delta):
 	if !finished:
-		var spacelessTest = get_spaceless_string(dialogueLabel.text)
+		var spacelessTest = _get_spaceless_text(dialogueLabel.text)
 		t += delta
 		if t > textSpeed:
 			dialogueLabel.visible_characters += 1
@@ -30,7 +30,7 @@ func _process(delta):
 			if $AudioStreamPlayer.stream != null:
 				$AudioStreamPlayer.set_pitch_scale(rand_range(0.85,1.0))
 				$AudioStreamPlayer.play()
-			if get_last_visible_character(dialogueLabel) in tr("INTRO_CUTSCENE_PUNCTUATION") and dialogueLabel.visible_characters < len(spacelessTest):
+			if _get_last_visible_character(dialogueLabel) in tr("INTRO_CUTSCENE_PUNCTUATION") and dialogueLabel.visible_characters < len(spacelessTest):
 				$Timer.start()
 				set_process(false)
 		if dialogueLabel.visible_characters >= len(spacelessTest):
@@ -52,12 +52,11 @@ func _physics_process(delta):
 		Input.action_release("ui_select")
 		finish_intro()
 
-func get_last_visible_character(label):
-	var spacelessText = label.text.replace(" ", "")
-	spacelessText = spacelessText.replace("\n", "")
-	return(spacelessText.left(label.visible_characters).replace(spacelessText.left(label.visible_characters - 1), ""))
+func _get_last_visible_character(label):
+	var spaceless_text = _get_spaceless_text(label.text)
+	return spaceless_text[min(label.visible_characters, spaceless_text.length()) - 1]
 
-func get_spaceless_string(string):
+func _get_spaceless_text(string):
 	return string.replace(" ", "").replace("\n", "")
 
 func hide_text():

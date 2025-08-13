@@ -41,4 +41,5 @@ margin_bottom = 12.0
 margin_right = 4.0
 margin_bottom = 10.0
 
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

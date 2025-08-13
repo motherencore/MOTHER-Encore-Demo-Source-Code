@@ -1,0 +1,9 @@
+healing:
+  persistent: true
+status_bubble: nausea
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_NAUSEA
+  effect: BATTLE_MSG_STATUS_NAUSEA_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_NAUSEA
+  heal_overworld: ACTION_RESULT_HEAL_NAUSEA
+  heal_overworld_fail: ACTION_RESULT_HEAL_NAUSEA_FAIL

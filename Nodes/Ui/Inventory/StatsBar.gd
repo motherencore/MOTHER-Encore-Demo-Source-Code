@@ -13,13 +13,13 @@ const stats_list = [
 ]
 
 onready var stats = {
-	"maxhp": 		$StatsLabels/MarginContainer/HBoxContainer/HPStats,
-	"maxpp":		$StatsLabels/MarginContainer/HBoxContainer/PPStats,
-	"speed":	$StatsLabels/MarginContainer/HBoxContainer/SPDStats,
-	"offense":	$StatsLabels/MarginContainer/HBoxContainer/OFEStats,
-	"defense":	$StatsLabels/MarginContainer/HBoxContainer/DEFStats,
-	"iq": 		$StatsLabels/MarginContainer/HBoxContainer/IQStats,
-	"guts":		$StatsLabels/MarginContainer/HBoxContainer/GUTStats
+	"maxhp": 		$StatsLabels/HPStats,
+	"maxpp":		$StatsLabels/PPStats,
+	"speed":	$StatsLabels/SPDStats,
+	"offense":	$StatsLabels/OFEStats,
+	"defense":	$StatsLabels/DEFStats,
+	"iq": 		$StatsLabels/IQStats,
+	"guts":		$StatsLabels/GUTStats
 }
 
 

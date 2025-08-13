@@ -1,0 +1,25 @@
+name: CROW_NAME
+description: CROW_DESC
+article: CROW_ART
+maxhp: 32
+hp: 32
+maxpp: 0
+pp: 0
+offense: 4
+defense: 2
+speed: 7
+iq: 1
+guts: 0
+level: 4
+exp: 9
+cash: 12
+skills:
+- skill: peck
+  weight: 1
+boss: false
+sprite: crow
+music: Flippant Foe.mp3
+bg: crow
+ov:
+  sprite: CrowOV
+  anim: FlyingEnemy8Dir

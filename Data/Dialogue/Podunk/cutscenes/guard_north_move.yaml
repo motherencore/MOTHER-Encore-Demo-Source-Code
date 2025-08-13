@@ -1,0 +1,39 @@
+'0':
+  actors:
+    player: leader
+    guard: talker
+  name: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_0
+  goto: '3'
+'3':
+  showbox: false
+  actorsmove:
+    guard:
+      movement:
+      - x: 16
+        y: 0
+      - x: 0
+        y: -8
+      speed: 32
+      animation: Walk
+      type: step
+  actorsturn:
+    guard:
+      speed: 0.1
+      actor: player
+      queue: true
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  name: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_4
+  goto: '6'
+'6':
+  name: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_SPEAKER_Guard
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_GUARD_NORTH_MOVE_6
+  setflags: guard_moved

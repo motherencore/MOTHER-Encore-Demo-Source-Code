@@ -1,0 +1,25 @@
+name: CENTIPEDE_NAME
+description: CENTIPEDE_DESC
+article: CENTIPEDE_ART
+maxhp: 13
+hp: 13
+maxpp: 0
+pp: 0
+offense: 4
+defense: 12
+speed: 8
+iq: 10
+guts: 0
+level: 4
+exp: 5
+cash: 2
+skills:
+- skill: bash
+  weight: 1
+boss: false
+sprite: centipede
+music: Unsettling Opponent.mp3
+bg: centipede
+ov:
+  sprite: CentipedeOV
+  anim: BasicEnemy2F

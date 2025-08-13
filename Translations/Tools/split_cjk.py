@@ -93,29 +93,29 @@ def getTagWidth(tagStr):
 		case _:
 			if tagStr in imageTags:
 				return imageTags[tagStr]
-			if re.match(r"\[if .*?\]", tagStr):
+			if re.fullmatch(r"\[if [\w:]+\]", tagStr):
 				return None # Don’t close the tag
-			if re.match(r"\[else\]", tagStr):
+			if re.fullmatch(r"\[if [\w:]+\](.*?)\[else\]", tagStr):
 				return None # Don’t close the tag
-			if re.match(r"\[if .*?\](.*?)\[else\](.*?)\[/if\]", tagStr):
+			if re.fullmatch(r"\[else\]", tagStr):
+				return None # Don’t close the tag
+			if m := re.fullmatch(r"\[if [\w:]+\](.*?)\[else\](.*?)\[/if\]", tagStr):
 				return getStringWidth(m.group(1))
-			if re.match(r"\[if .*?\](.*?)\[/if\]", tagStr):
+			if m := re.fullmatch(r"\[if [\w:]+\](.*?)\[/if\]", tagStr):
 				return getStringWidth(m.group(1))
-			if re.match(r"\[if_keyboard:([^\]]*)\]", tagStr):
+			if re.fullmatch(r"\[color=#?\w*\]", tagStr):
 				return 0
-			if m := re.match(r"\[if_gamepad:([^\]]*)\]", tagStr):
-				return getStringWidth(m.group(1))
-			if re.match(r"\[color=#?\w*\]", tagStr):
+			if re.fullmatch(r"\[DELAY(:[\d:]*)?\]", tagStr):
 				return 0
-			if re.match(r"\[/?color\]", tagStr):
+			if re.fullmatch(r"\[/?color\]", tagStr):
 				return 0
-			if re.match(r"\[ui_\w+\]", tagStr):
+			if re.fullmatch(r"\[ui_\w+\]", tagStr):
 				return getStringWidth(biggestCharNumbers * maxLenInput)
-			if re.match(r"\[\w+Art\d+\]", tagStr):
+			if re.fullmatch(r"\[\w+Art\d+\]", tagStr):
 				return getStringWidth(biggestCharText * maxLenArticle)
-			if re.match(r"\[ko_part:[^\]]+\]", tagStr):
+			if re.fullmatch(r"\[ko_part:[^\]]+\]", tagStr):
 				return getStringWidth(biggestCharText * maxLenArticle)
-			if re.match(r"\{member\d?\}", tagStr):
+			if re.fullmatch(r"\{member\d?\}", tagStr):
 				return getStringWidth(biggestCharText * maxLenPartyMember)
 			print(f"  Couldn’t find tag: {tagStr}")
 			return 0
@@ -200,28 +200,37 @@ def postHandleString(fullLine):
 	fullLine = fullLine.replace(ZERO_WIDTH_CHAR, "")
 	return fullLine
 
-# A line can also contain hard [br] breaks, so we have to take care of that first
-def splitLineWithHardBreaks(fullLine, boxWidth):
-	fullLineArray = fullLine.split("[br]")
-	for i, part in enumerate(fullLineArray):
-		fullLineArray[i] = splitLine(fullLineArray[i], boxWidth)
-	
-	return "[br]".join(fullLineArray)
+# A line can also contain hard breaks, so we have to take care of that first
+def splitLineWithHardBreaks(fullLine, separators, boxWidth):
+	pattern = f"({'|'.join(map(re.escape, separators))})"
+	parts = re.split(pattern, fullLine)
+	#for i, part in enumerate(parts):
+	#	parts[i] = splitLine(parts[i], boxWidth)
 
-def processLine(fullLine, boxWidth, splitMode):
-	if splitMode:
+	processedParts = [
+		splitLine(parts[i], boxWidth) if i % 2 == 0 else part  # Apply operation only to non-separators
+		for i, part in enumerate(parts)
+    ]
+	
+	return "".join(processedParts)
+
+def processLine(fullLine, boxWidth, readOnlyMode):
+	if not readOnlyMode:
 		# Preparing the string (replacing \n with \\n, adding empty spacers after comma, etc.) + the actual splitting!
 		fullLine = preHandleString(fullLine)
-		fullLine = splitLineWithHardBreaks(fullLine, boxWidth)
+		fullLine = splitLineWithHardBreaks(fullLine, ["[BR]", "[WAIT@]", "[WAITBR]", "[@]", "[BR@]"], boxWidth)
 		fullLine = postHandleString(fullLine)
 		return fullLine
 	else:
-		fullLineArray = re.split(r"\[br\]|\n|\\n", fullLine)
+		fullLineArray = re.split(r"\[BR@?\]|\[WAIT@\]|\[@\]|\[WAITBR\]|\n|\\n", fullLine)
 		for subLine in fullLineArray:
-			if getStringWidth(subLine) > boxWidth:
+			stringWidth = getStringWidth(subLine)
+			if stringWidth is None:
+				print(f"  Couldn’t measure string: “{subLine}”")
+			elif getStringWidth(subLine) > boxWidth:
 				print(f"  Too long line: “{subLine}”")
 
-def parseCsv(fileName, boxWidth, splitMode):
+def parseCsv(fileName, boxWidth, readOnlyMode):
 	print(f"Parsing file “{os.path.basename(fileName)}”")
 	global absentChars, variableWidthChars
 	absentChars = {}
@@ -234,7 +243,7 @@ def parseCsv(fileName, boxWidth, splitMode):
 		print(f"  Language “{langCode}” not found in csv")
 
 	for row in rows[1:]:
-		row[langIndex] = processLine(row[langIndex], boxWidth, splitMode)
+		row[langIndex] = processLine(row[langIndex], boxWidth, readOnlyMode)
 
 	# We also keep track of characters absent from the font or with variable width...
 	for c in absentChars:
@@ -242,11 +251,11 @@ def parseCsv(fileName, boxWidth, splitMode):
 	if variableWidthChars:
 		print(f"  Variable width chars used: “{''.join(variableWidthChars.keys())}”")
 
-	if splitMode:
+	if not readOnlyMode:
 		with open(fileName, 'w', encoding="utf-8") as f:
 			writer = csv.writer(f, delimiter=",")
 			writer.writerows(rows)
-	removeEOF(fileName)
+		removeEOF(fileName)
 
 
 if len(sys.argv) <= 1:
@@ -255,7 +264,7 @@ if len(sys.argv) <= 1:
 	exit()
 
 langCode = sys.argv[1]
-splitMode = (len(sys.argv) == 2)
+readOnlyMode = (len(sys.argv) > 2)
 
 fontWidthFiles = langContext[langCode]["fontWidthFiles"]
 maxLenPartyMember = langContext[langCode]["maxLenPartyMember"]
@@ -275,5 +284,5 @@ importFontWidths()
 
 files = glob.glob(f"{FOLDER_CSV}/dialogue*.csv")
 for f in files:
-	parseCsv(f, DIALOG_BOX_WIDTH, splitMode)
+	parseCsv(f, DIALOG_BOX_WIDTH, readOnlyMode)
 	print()

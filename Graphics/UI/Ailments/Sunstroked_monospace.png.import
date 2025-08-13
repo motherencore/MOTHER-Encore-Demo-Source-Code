@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sunstroked_monospace.png-0e8484e882a98d29f33ff12a18ac833e.stex"
+path="res://.import/sunstroked_monospace.png-4319d3810813879ba81b7131c0b6402a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Sunstroked_monospace.png"
-dest_files=[ "res://.import/Sunstroked_monospace.png-0e8484e882a98d29f33ff12a18ac833e.stex" ]
+source_file="res://Graphics/UI/Ailments/sunstroked_monospace.png"
+dest_files=[ "res://.import/sunstroked_monospace.png-4319d3810813879ba81b7131c0b6402a.stex" ]
 
 [params]
 

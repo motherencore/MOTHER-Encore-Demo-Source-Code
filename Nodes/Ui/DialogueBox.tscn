@@ -3,7 +3,7 @@
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaulttag.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/Main/UI/DialogueBox.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/UI/DialogueBox.gd" type="Script" id=4]
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Audio/Sound effects/text/Kid.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Audio/Sound effects/Cursor 2.mp3" type="AudioStream" id=7]
@@ -237,6 +237,7 @@ margin_left = 10.0
 margin_right = 250.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 235, 60 )
+rect_clip_content = false
 size_flags_horizontal = 3
 custom_constants/line_separation = 3
 custom_fonts/mono_font = ExtResource( 10 )
@@ -262,7 +263,13 @@ patch_margin_top = 15
 patch_margin_right = 15
 patch_margin_bottom = 14
 
-[node name="Name" type="Label" parent="Dialoguebox/Namebox"]
+[node name="ClipBox" type="Control" parent="Dialoguebox/Namebox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -15.0
+rect_clip_content = true
+
+[node name="Name" type="Label" parent="Dialoguebox/Namebox/ClipBox"]
 margin_left = 5.0
 margin_top = 3.0
 margin_right = 27.0

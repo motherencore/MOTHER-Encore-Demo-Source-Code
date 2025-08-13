@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal actionDone
+signal action_done
 export (int) var spacing = 20
 var currentSpace = 20
 enum {
@@ -17,7 +17,6 @@ var delay = 0.2
 var speed: int = 1
 var followerIdx : int = 1 #should be at least 1, since player is 0.
 var partyMember = globaldata.ninten
-var partyMemberClass = global.party
 var damaged = false
 var idle = true
 var attack_damage = 0
@@ -40,6 +39,7 @@ onready var flashAnim = $FlashAnim
 
 
 func initiate():
+	_collision.disabled = true
 	lastPos = position
 	currentSpace = spacing
 	if position != global.partySpace[currentSpace-1]:
@@ -48,99 +48,103 @@ func initiate():
 		set_direction(global.persistPlayer.direction)
 	animationTree.active = true
 	set_partyMember()
-	set_ripple(false)
-	_spritesheet()
+	set_shadow("shadow")
+	spritesheet()
+	_collision.disabled = false
 
 func _physics_process(_delta):
 	if global.partySpace[spacing] != null and active:
 		var player = global.persistPlayer
-		var old_pos = round_vector(position)
-		if !(abs(position.x - global.partySpace[spacing].x) > 2 or abs(position.y - global.partySpace[spacing].y) > 2): #and directionMultiplier == Vector2.ONE:
-			walk_type = FOLLOW
-			#if currentSpace < spacing:
-			#	currentSpace = spacing 
-		if walk_type == GO :
-			position = position.move_toward(global.partySpace[currentSpace], 4000)
-			#if position == global.partySpace[currentSpace]:
-			if !player.paused:
-				currentSpace -= speed
-			
-			if currentSpace < spacing:
-				currentSpace = spacing
-				walk_type = FOLLOW
-			#if !player.walk and !player.paused:
-			#	currentSpace -= 1
+		if player.state == player.SOOT:
+			animationState.travel("Soot")
 		else:
-			if currentSpace < spacing and player.walk:
-				currentSpace += 1 
-				if player.running:
-					currentSpace += 1
-			position = global.partySpace[currentSpace]
-		$Timer.wait_time = delay
-		if old_pos != round_vector(position): #(position.direction_to(global.partySpace[currentSpace-1]) != Vector2.ZERO and player.walk) or 
-			inputVector = position.direction_to(global.partySpace[currentSpace-1])
-			idle = false
-			if !spinning:
-				blend_position(inputVector)
-			if climbing == true:
-				animationPlayer.playback_speed = 1
+			var old_pos = round_vector(position)
+			if !(abs(position.x - global.partySpace[spacing].x) > 2 or abs(position.y - global.partySpace[spacing].y) > 2): #and directionMultiplier == Vector2.ONE:
+				walk_type = FOLLOW
+				#if currentSpace < spacing:
+				#	currentSpace = spacing 
+			if walk_type == GO :
+				position = position.move_toward(global.partySpace[currentSpace], 4000)
+				#if position == global.partySpace[currentSpace]:
+				if !player.paused:
+					currentSpace -= speed
+				
+				if currentSpace < spacing:
+					currentSpace = spacing
+					walk_type = FOLLOW
+				#if !player.walk and !player.paused:
+				#	currentSpace -= 1
 			else:
-				travel_fainted("Walk", "FaintedWalk")
-				animationTree.set("parameters/FaintedWalk/TimeScale/scale", 1)
-				$BlinkTime.stop()
-			if player.running == true or walk_type == GO:
-				travel_fainted("Run", "FaintedWalk")
-				animationTree.set("parameters/FaintedWalk/TimeScale/scale", 2)
-				if start_run == true:
+				if currentSpace < spacing and player.walk:
+					currentSpace += 1 
+					if player.running:
+						currentSpace += 1
+				position = global.partySpace[currentSpace]
+			$Timer.wait_time = delay
+			if old_pos != round_vector(position): #(position.direction_to(global.partySpace[currentSpace-1]) != Vector2.ZERO and player.walk) or 
+				inputVector = position.direction_to(global.partySpace[currentSpace-1])
+				idle = false
+				if !spinning:
+					blend_position(inputVector)
+				if climbing == true:
+					animationPlayer.playback_speed = 1
+				else:
+					travel_fainted("Walk", "FaintedWalk")
+					animationTree.set("parameters/FaintedWalk/TimeScale/scale", 1)
+					$BlinkTime.stop()
+				if player.running == true or walk_type == GO:
+					travel_fainted("Run", "FaintedWalk")
+					animationTree.set("parameters/FaintedWalk/TimeScale/scale", 2)
+					if start_run == true:
+						dust_time.wait_time = 0.083 * followerIdx
+						dust_time.start()
+						start_run = false
+					if start_run == false and dust_time.time_left == 0:
+						dust_time.wait_time = 0.25
+						dust_time.start()
+						if !climbing:
+							dust()
+				else: 
 					dust_time.wait_time = 0.083 * followerIdx
-					dust_time.start()
-					start_run = false
-				if start_run == false and dust_time.time_left == 0:
-					dust_time.wait_time = 0.25
-					dust_time.start()
-					if !climbing:
-						dust()
-			else: 
+					start_run = true
+				if modulate == Color(1, 1, 1, 0):
+					appear()
+			else:
+				if climbing == true:
+					animationPlayer.playback_speed = 0
+				elif $BlinkTime.time_left == 0:
+					if idle == false or spinning:
+						travel_fainted("Idle", "FaintedIdle")
+						$BlinkTime.wait_time = 10 * followerIdx + randf()*5
+						$BlinkTime.start()
+					else:
+						travel_fainted("Blink", "FaintedIdle")
 				dust_time.wait_time = 0.083 * followerIdx
 				start_run = true
-			if modulate == Color(1, 1, 1, 0):
-				appear()
-		else:
-			if climbing == true:
-				animationPlayer.playback_speed = 0
-			elif $BlinkTime.time_left == 0:
-				if idle == false or spinning:
-					travel_fainted("Idle", "FaintedIdle")
-					$BlinkTime.wait_time = 10 * followerIdx + randf()*5
-					$BlinkTime.start()
-				else:
-					travel_fainted("Blink", "FaintedIdle")
-			dust_time.wait_time = 0.083 * followerIdx
-			start_run = true
-		
-		if player.crouch == true:
-			travel_fainted("Crouch", "FaintedIdle")
-		
-		if damaged == true and $FlashAnim.get_current_animation() != "Flash" and !global.persistPlayer.paused:
-			var damage = attack_damage + int(rand_range(-damage_variation, damage_variation))
-			$FlashAnim.play("Flash")
-			travel_fainted("Idle", "FaintedIdle")
-			audioManager.play_sfx(load("res://Audio/Sound effects/Hurt 1.mp3"), "damage")
-			if !partyMember["status"].has(globaldata.ailments.Unconscious) and partyMember["maxhp"] != 0:
-				partyMember["hp"] -= damage
-				uiManager.create_flying_num(damage, global_position)
-				if partyMember["hp"] <= 0:
-					partyMember["hp"] = 0
-					partyMember["status"].clear()
-					partyMember["status"].append(globaldata.ailments.Unconscious)
-				if global.get_conscious_party() == []:
-					global.persistPlayer.game_over()
-		
-		if walk_type == FOLLOW:
-			self.position.x = round(self.position.x)
-			self.position.y = round(self.position.y) - global.partyObjects.find(self) * 0.01
-		else:
-			self.position.y = round(self.position.y)
+			
+			if player.crouch == true:
+				travel_fainted("Crouch", "FaintedIdle")
+			
+			if damaged == true and $FlashAnim.get_current_animation() != "Flash" and !global.persistPlayer.paused:
+				var damage = attack_damage + int(rand_range(-damage_variation, damage_variation))
+				$FlashAnim.play("Flash")
+				travel_fainted("Idle", "FaintedIdle")
+				audioManager.play_sfx(load("res://Audio/Sound effects/Hurt 1.mp3"), "damage")
+				if !StatusManager.is_unconscious(partyMember) and partyMember["maxhp"] != 0:
+					partyMember["hp"] -= damage
+					uiManager.create_flying_num(damage, global_position)
+					if partyMember["hp"] <= 0:
+						partyMember["hp"] = 0
+						partyMember["status"].clear()
+						StatusManager.add_status(partyMember, StatusManager.AILMENT_UNCONSCIOUS)
+					if global.get_conscious_party() == []:
+						global.persistPlayer.game_over()
+			
+			if walk_type == FOLLOW:
+				self.position.x = round(self.position.x)
+				self.position.y = round(self.position.y) - global.partyObjects.find(self) * 0.01
+			else:
+				self.position.y = round(self.position.y)
 	else:
 		travel_fainted("Idle", "FaintedIdle")
 		
@@ -148,7 +152,7 @@ func _physics_process(_delta):
 	for i in global.partyObjects:
 		if i.climbing:
 			canClimb = false
-	if global.persistPlayer.state == global.persistPlayer.MOVE and !global.persistPlayer.paused and canClimb and globaldata.flags["switch_leader"] and global.party.size() != 1 and partyMemberClass == global.party:
+	if global.persistPlayer.state == global.persistPlayer.MOVE and !global.persistPlayer.paused and canClimb and globaldata.flags["switch_leader"] and global.party.size() != 1 and partyMember.name in global.POSSIBLE_PLAYABLE_MEMBERS:
 		if Input.is_action_just_pressed("ui_focus_next"):
 			spin(8,45,0.015)
 		if Input.is_action_just_pressed("ui_focus_prev"):
@@ -161,7 +165,7 @@ func appear():
 	$Tween.interpolate_property(self, "modulate",
 	Color(0, 0, 0, 0), Color(1, 1, 1, 1), 0.1, Tween.TRANS_LINEAR)
 	$Tween.start()
-	_spritesheet()
+	spritesheet()
 
 func find_path(runSpeed = 2):
 	walk_type = GO
@@ -175,33 +179,30 @@ func find_path(runSpeed = 2):
 func set_spacing(space):
 	spacing = followerIdx * space
 
-func set_ripple(enabled):
-	$Shadow.visible = !enabled
-	$Ripple.visible = enabled
+func set_shadow(anim):
+	$Shadow.set_anim(anim)
 
 func set_partyMember():
-	var idx := followerIdx
-	if partyMemberClass == global.partyNpcs:
-		idx -= global.party.size()
-	if idx >= 0:
-		partyMember = partyMemberClass[idx]
+	var all_members = global.party + global.partyNpcs
+	partyMember = all_members[followerIdx]
 
-func _spritesheet():
+func spritesheet():
 	var texPathP1 := "res://Graphics/Character Sprites/"
 	var texPathP2 := "/main.png"
 	var texPathP4 := "Snow"
 	var fullTexPath := str(texPathP1 + partyMember["sprite"] + texPathP2)
 	var fullSnowPath := str(texPathP1 + partyMember["sprite"] + texPathP4 + texPathP2)
-	if ResourceLoader.exists(fullTexPath) and sprite.texture.resource_path != fullTexPath:
-		if global.persistPlayer.costume == "Snow" and ResourceLoader.exists(fullSnowPath):
-			sprite.texture = ResourceLoader.load(fullSnowPath)
+	if sprite.texture.resource_path != fullTexPath:
+		if ResourceLoader.exists(fullTexPath):
+			if global.persistPlayer.costume == "Snow" and ResourceLoader.exists(fullSnowPath):
+				sprite.texture = ResourceLoader.load(fullSnowPath)
+			else:
+				sprite.texture = ResourceLoader.load(fullTexPath)
+				travel_fainted("Idle", "FaintedIdle")
+			$Position/main.vframes = 20
+			$Position/main.offset.y = -$Position/main.texture.get_height()/40 + 14
 		else:
-			sprite.texture = ResourceLoader.load(fullTexPath)
-			travel_fainted("Idle", "FaintedIdle")
-		$Position/main.vframes = 20
-		$Position/main.offset.y = -$Position/main.texture.get_height()/40 + 14
-	elif not ResourceLoader.exists(fullTexPath):
-		sprite.texture = ResourceLoader.load("res://Graphics/Character Sprites/Ninten/main.png")
+			sprite.texture = ResourceLoader.load("res://Graphics/Character Sprites/Ninten/main.png")
 
 func _on_Timer_timeout():
 	pass
@@ -230,14 +231,14 @@ func damage(Damage, DamageVariation = 0, _Hitdirect = Vector2.ZERO, Status = nul
 	damaged = true
 	attack_damage = Damage
 	damage_variation = DamageVariation
-	if Status != null and !partyMember["status"].has(Status) and !partyMember["status"].has(globaldata.ailments.Unconscious):
-		partyMember["status"].append(Status)
+	if Status != null:
+		StatusManager.add_status(partyMember, Status)
 
 func undamage():
 	damaged = false
 
 func travel_fainted(anim, faintanim):
-	if partyMember.status.has(globaldata.ailments.Unconscious):
+	if StatusManager.is_unconscious(partyMember):
 		animationState.travel(faintanim)
 	else:
 		animationState.travel(anim)
@@ -257,13 +258,14 @@ func ladder():
 	animationPlayer.play("Ladder")
 	animationPlayer.playback_speed = 0
 	climbing = true
+	$Shadow.hide()
 
 func unladder():
 	animationTree.active = true
 	animationPlayer.stop()
 	travel_fainted("Idle", "FaintedIdle")
 	$Position.position.y = 0
-	$Shadow.visible = true
+	$Shadow.show()
 	climbing = false
 
 func jump(height, jump_speed, hideShadow):

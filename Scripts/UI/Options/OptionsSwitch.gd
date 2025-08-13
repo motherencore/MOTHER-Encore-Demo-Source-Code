@@ -3,6 +3,9 @@ extends Control
 export var highlighted = false setget _set_highlighted
 export var text = "" setget _set_text
 
+func _ready():
+	global.connect("locale_changed", self, "_refresh")
+
 func _on_visibility_changed():
 	self.highlighted = false
 
@@ -27,3 +30,10 @@ func _refresh():
 		$ArrowRMargin/ArrowR.playing = false
 		$ArrowLMargin/ArrowL.frame = 0
 		$ArrowRMargin/ArrowR.frame = 0
+
+	if TranslationServer.get_locale() in ["ko", "ja"]:
+		$ArrowLMargin/ArrowL.offset.y = 1
+		$ArrowRMargin/ArrowR.offset.y = 1
+	else:
+		$ArrowLMargin/ArrowL.offset.y = 0
+		$ArrowRMargin/ArrowR.offset.y = 0

@@ -296,7 +296,7 @@ extents = Vector2( 216.5, 394 )
 [node name="XX Cave" type="Node2D"]
 script = ExtResource( 14 )
 player_map_offset = Vector2( 300, 38 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 is_sub_area = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -336,14 +336,14 @@ motion_mirroring = Vector2( 256, 0 )
 position = Vector2( 80, 0 )
 frames = SubResource( 23 )
 animation = "Flow"
-frame = 1
+frame = 2
 playing = true
 
 [node name="XXBG2" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer7"]
 position = Vector2( 336, 0 )
 frames = SubResource( 23 )
 animation = "Flow"
-frame = 1
+frame = 2
 playing = true
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -355,14 +355,14 @@ motion_mirroring = Vector2( 256, 0 )
 position = Vector2( 127, 0 )
 frames = SubResource( 27 )
 animation = "Flow"
-frame = 1
+frame = 2
 playing = true
 
 [node name="XXBG2" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer6"]
 position = Vector2( 383, 0 )
 frames = SubResource( 27 )
 animation = "Flow"
-frame = 1
+frame = 2
 playing = true
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -500,7 +500,6 @@ shape = SubResource( 28 )
 
 [node name="Stepping Sounds" parent="." instance=ExtResource( 13 )]
 visible = false
-entering_sound = "cave"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds"]
 position = Vector2( 128.5, -290 )

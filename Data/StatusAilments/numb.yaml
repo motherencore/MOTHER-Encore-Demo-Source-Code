@@ -1,0 +1,20 @@
+healing:
+  passive_heal: true
+status_bubble: numb
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_NUMB
+  effect: BATTLE_MSG_STATUS_NUMB_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_NUMB
+effects_by_char:
+  boss_layer_1:
+    stat_mods:
+      offense: 75
+  any:
+    cant_select:
+      Basic: true
+      Skills: true
+      Items: true
+    cant_do:
+      action:
+        skill_type: [ basic, skill ]
+      message: effect

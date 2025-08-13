@@ -33,7 +33,7 @@ func _ready():
 	set_key_name()
 
 func set_key_name():
-	label.text = globaldata.get_key_name(key)
+	label.text = TextTools.get_key_name(key)
 
 func _on_Indicator_visibility_changed():
 	set_key_name()

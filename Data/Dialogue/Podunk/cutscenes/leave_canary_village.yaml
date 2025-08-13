@@ -1,0 +1,62 @@
+'0':
+  actors:
+    ninten: leader
+    pippi: pippi
+    lindgren:
+    - Objects/NPCS/npc26
+    - Objects/NPCS/npc46
+  actorsdir:
+    lindgren:
+      x: 1
+      y: 0
+  emoteactors:
+    lindgren: exclamation
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_1
+  actorsturn:
+    ninten:
+      x: -1
+      y: 0
+      speed: 0.1
+    pippi:
+      x: -1
+      y: 0
+      speed: 0.05
+  goto: '3'
+'3':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_3
+  goto: '4'
+'4':
+  talker: lindgren
+  name: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_SPEAKER_Mrs._Lindgren
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_4
+  goto: '7'
+'7':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_7
+  goto: '8'
+'8':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_LEAVE_CANARY_VILLAGE_8
+  actorsturn:
+    ninten:
+      speed: 0.05
+      actor: pippi
+    pippi:
+      speed: 0.05
+      actor: ninten
+  setflags: leave_canary_village

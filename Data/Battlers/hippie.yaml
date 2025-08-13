@@ -1,0 +1,29 @@
+name: HIPPIE_NAME
+description: HIPPIE_DESC
+article: HIPPIE_ART
+maxhp: 60
+hp: 60
+maxpp: 0
+pp: 0
+offense: 8
+defense: 14
+speed: 6
+iq: 1
+guts: 0
+level: 4
+exp: 12
+cash: 35
+skills:
+- skill: bash
+  weight: 10
+- skill: meditate
+  weight: 1
+- skill: rage
+  weight: 1
+boss: false
+sprite: hippie
+music: Retro Enemy.mp3
+bg: hippie
+ov:
+  sprite: HippieOV
+  anim: BasicEnemy

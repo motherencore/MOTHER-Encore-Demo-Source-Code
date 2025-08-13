@@ -1,11 +1,13 @@
 extends Control
 
 signal back
-signal swapmode (target_character)
-signal sortmode
+signal exit
+signal action_selected
+signal swap_mode_selected (target_character)
+signal sort_mode_selected
 signal show_statsbar (character, unequip)
 signal hide_statsbar
-signal show_dialogbox (dialog, character, action)
+signal show_dialogbox (dialog, chara_name, value, stat, item)
 
 enum ACTIONS {EQUIP=0, CHECK, USE, CONSUME, TRANSFORM, GIVE, SORT, DROP}
 
@@ -15,20 +17,16 @@ export (NodePath) onready var sort_label = get_node(sort_label) as Label
 export (NodePath) onready var action_one_label = get_node(action_one_label) as Label
 export (NodePath) onready var action_two_label = get_node(action_two_label) as Label
 
-onready var arrow = $arrow
-onready var arrow_init_pos = arrow.position
+onready var _arrow = $arrow
 
-var item_side_on_screen = 1
-var is_equipable = false
-var active = false
-var current_char = "ninten"
-var current_item = -1
-var current_item_name = ""
+var _item_side_on_screen = 1
+var _is_equipable = false
+var _active = false
+var _current_char = "ninten"
+var _current_item_idx = -1
+var _current_item_name = ""
 
-var waiting_drop_confirmation = false
-
-
-var possible_actions
+var _possible_actions
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,48 +34,49 @@ func _ready():
 	pass
 	
 func set_for_new_item(pos, item_name, item_side, curr_char, item_idx):
-	current_item = item_idx
-	current_item_name = item_name
-	current_char = curr_char
-	item_side_on_screen = item_side
+	_current_item_idx = item_idx
+	_current_item_name = item_name
+	_current_char = curr_char
+	_item_side_on_screen = item_side
 	rect_position = pos
-#	rect_position.x = item_side_on_screen*pos.x
+#	rect_position.x = _item_side_on_screen*pos.x
+
+	var is_key_item = InventoryManager.Load_item_data(item_name).get("keyitem", false)
 	
-	if InventoryManager.Load_item_data(item_name)["usable"][current_char]:
-		is_equipable = InventoryManager.doesItemHaveFunction(item_name, "equip")
+	if !is_key_item and InventoryManager.is_usable_by(_current_char, item_name):
+		_is_equipable = InventoryManager.is_equippable(item_name)
 	else:
-		is_equipable = false
-	possible_actions = {}
+		_is_equipable = false
+	_possible_actions = {}
 	
-	if InventoryManager.Load_item_data(item_name).value != 0:
-		possible_actions[drop_label.name] = ACTIONS.DROP
+	if !is_key_item and InventoryManager.Load_item_data(item_name).value != 0:
+		_possible_actions[drop_label.name] = ACTIONS.DROP
 		drop_label.visible = true
 	else:
 		drop_label.visible = false
 	
-	possible_actions[sort_label.name] = ACTIONS.SORT
+	_possible_actions[sort_label.name] = ACTIONS.SORT
 	
-	if global.party.size()>1:
-		possible_actions[give_label.name] = ACTIONS.GIVE
+	if !is_key_item and global.party.size() > 1:
+		_possible_actions[give_label.name] = ACTIONS.GIVE
 		give_label.visible = true
 	else:
 		give_label.visible = false
 	
 	_set_actions()
 	
-	arrow.cursor_index = 0
-	arrow.set_cursor_from_index(0, false)
+	_arrow.cursor_index = 0
+	_arrow.set_cursor_from_index(0, false)
 	visible = true
-	active = true
-	arrow.on = true
+	_active = true
+	_arrow.on = true
 
 func _set_actions():
-	var item_data = InventoryManager.Load_item_data(current_item_name)
-	print(current_item_name)
+	var item_data = InventoryManager.Load_item_data(_current_item_name)
 	if item_data["action_two"] != null:
 		if item_data["action_two"]["function"] == "equip":
-			if is_equipable:
-				if InventoryManager.Inventories[current_char][current_item].equiped == true:
+			if _is_equipable:
+				if InventoryManager.Inventories[_current_char][_current_item_idx].equiped == true:
 					action_two_label.text = item_data["action_two"]["nametwo"]
 				else:
 					action_two_label.text = item_data["action_two"]["name"]
@@ -94,8 +93,8 @@ func _set_actions():
 	
 	if item_data["action_one"] != null:
 		if item_data["action_one"]["function"] == "equip":
-			if is_equipable:
-				if InventoryManager.Inventories[current_char][current_item].equiped == true:
+			if _is_equipable:
+				if InventoryManager.Inventories[_current_char][_current_item_idx].equiped == true:
 					action_one_label.text = item_data["action_one"]["nametwo"]
 				else:
 					action_one_label.text = item_data["action_one"]["name"]
@@ -110,58 +109,56 @@ func _set_actions():
 	else:
 		action_one_label.visible = false
 	yield(get_tree(), "idle_frame")
-	$arrow.set_cursor_to_front()
+	_arrow.set_cursor_to_front()
 	
 
 
 func _push_action(action, node):
 	match action["function"]:
 		"equip":
-			possible_actions[node.name] = ACTIONS.EQUIP
+			_possible_actions[node.name] = ACTIONS.EQUIP
 		"consume":
-			possible_actions[node.name] = ACTIONS.CONSUME
+			_possible_actions[node.name] = ACTIONS.CONSUME
 		"use":
-			possible_actions[node.name] = ACTIONS.USE
+			_possible_actions[node.name] = ACTIONS.USE
 		"transform":
-			possible_actions[node.name] = ACTIONS.TRANSFORM
+			_possible_actions[node.name] = ACTIONS.TRANSFORM
 
 func _physics_process(_delta):
-	if active:
-		if (possible_actions[arrow.get_current_item().name] == ACTIONS.EQUIP):
-			if InventoryManager.Inventories[current_char][current_item].equiped == false:
-				emit_signal("show_statsbar", current_char)
+	if _active:
+		if (_possible_actions[_arrow.get_current_item().name] == ACTIONS.EQUIP):
+			if InventoryManager.Inventories[_current_char][_current_item_idx].equiped == false:
+				emit_signal("show_statsbar", _current_char)
 			else:
-				emit_signal("show_statsbar", current_char, true)
+				emit_signal("show_statsbar", _current_char, true)
 		else:
 			emit_signal("hide_statsbar")
 		
 		
 		if Input.is_action_just_pressed("ui_cancel"):
-			visible = false
-			active = false
-			arrow.on = false
-			arrow.play_sfx("back")
+			_arrow.play_sfx("back")
 			emit_signal("hide_statsbar")
-			emit_signal("back")
-			return
-		
+			_close()
 	
 func chain_with_equip():
 	$TargetCharaSelect.chain_with_equip()
 
-
 func _on_TargetCharaSelect_back(to_inventory):
 	if to_inventory:
-		visible = false
-		active = false
-		arrow.on = false
-		emit_signal("back")
-		return
+		_close()
 	else:
-		active = true
-		arrow.on = true
-		bounce()
+		_back_from_submenu()
 
+func _back_from_submenu():
+	_active = true
+	_arrow.on = true
+	bounce()
+
+func _close():
+	visible = false
+	_active = false
+	_arrow.on = false
+	emit_signal("back")
 
 func _on_ConfirmationSelect_back(accept, current_action, current_character, target_character, cur_item):
 	if accept == true:
@@ -170,65 +167,46 @@ func _on_ConfirmationSelect_back(accept, current_action, current_character, targ
 				InventoryManager.dropItem(current_character,cur_item)
 			"equip":
 				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
-				InventoryManager.equipItem(target_character, cur_item)
+				InventoryManager.equip_item(target_character, cur_item)
 				emit_signal("hide_statsbar")
 			"equipgive": # give item and equip
 				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
-				InventoryManager.giveItem(current_character,target_character, cur_item)
-				InventoryManager.equipItem(target_character, InventoryManager.Inventories[target_character].size()-1)
+				InventoryManager.give_item(current_character,target_character, cur_item)
+				InventoryManager.equip_item(target_character, InventoryManager.Inventories[target_character].size()-1)
 				emit_signal("hide_statsbar")
 			"swap":
-				emit_signal("swapmode", target_character)
+				emit_signal("swap_mode_selected", target_character)
 			"SortManual":
-				emit_signal("sortmode")		
+				emit_signal("sort_mode_selected")		
 
 		
 		$TargetCharaSelect.visible = false
 		$TargetCharaSelect.active = false
-		visible = false
-		active = false
-		arrow.on = false
-		bounce()
-		emit_signal("back")
-		return
+		_close()
 	else:
 		match current_action:
 			"equip": #answered no to equip after swap
 				$TargetCharaSelect.active = false
 				$TargetCharaSelect.visible = false
-				visible = false
-				active = false
-				arrow.on = false
 				emit_signal("hide_statsbar")
-				emit_signal("back")
+				_close()
 			"equipgive": #give item but don't equip
-				InventoryManager.giveItem(current_character,target_character, cur_item)
+				InventoryManager.give_item(current_character,target_character, cur_item)
 				$TargetCharaSelect.active = false
 				$TargetCharaSelect.visible = false
-				visible = false
-				active = false
-				arrow.on = false
 				emit_signal("hide_statsbar")
-				emit_signal("back")
+				_close()
 			"SortAuto":
-				InventoryManager.sortAuto(current_character)
-				visible = false
-				active = false
-				arrow.on = false
-				emit_signal("back")
+				InventoryManager.sort_auto(current_character)
+				_close()
 			"swap":
 				$TargetCharaSelect.active = false
 				$TargetCharaSelect.visible = false
-				visible = false
-				active = false
-				arrow.on = false
-				emit_signal("back")
+				_close()
 			"drop":
-				active = true
-				arrow.on = true
+				_back_from_submenu()
 			"back":
-				active = true
-				arrow.on = true
+				_back_from_submenu()
 
 func bounce():
 	$Tween.interpolate_property(self, "rect_position",
@@ -249,30 +227,26 @@ func _on_SortTypeSelect_visibility_changed():
 func _on_arrow_selected(cursor_index):
 	Input.action_release("ui_accept")
 	bounce()
-	active = false
-	arrow.on = false
+	_active = false
+	_arrow.on = false
 	var action = ""
-	if arrow.get_current_item() == action_one_label:
+	if _arrow.get_current_item() == action_one_label:
 		action = "action_one"
-	elif arrow.get_current_item() == action_two_label:
+	elif _arrow.get_current_item() == action_two_label:
 		action = "action_two"
-	var item_data = InventoryManager.Load_item_data(current_item_name)
-	match(possible_actions[arrow.get_current_item().name]):
+	var item_data = InventoryManager.Load_item_data(_current_item_name)
+	match(_possible_actions[_arrow.get_current_item().name]):
 		ACTIONS.EQUIP:
 			#equips an item
-			if InventoryManager.Inventories[current_char][current_item].equiped == false:
-				InventoryManager.equipItem(current_char, current_item)
+			if InventoryManager.Inventories[_current_char][_current_item_idx].equiped == false:
+				InventoryManager.equip_item(_current_char, _current_item_idx)
 				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
 			else:
-				InventoryManager.unequip(current_char, InventoryManager.Inventories[current_char][current_item].ItemName)
+				InventoryManager.unequip(_current_char, InventoryManager.Inventories[_current_char][_current_item_idx].ItemName)
 				audioManager.play_sfx(load("res://Audio/Sound effects/EB/close.wav"), "menu")
-			visible = false
-			active = false
-			arrow.on = false
+			_close()
 			emit_signal("hide_statsbar")
-			emit_signal("back")
 		ACTIONS.CONSUME:
-			# LOCALIZATION Code added: Using a different title for the target box depending on the action
 			# (give => to whom, use => on whom, eat => who)
 			var title = "INVENTORY_ACTION_TARGET"
 			var action_name = item_data[action]["name"]
@@ -283,48 +257,50 @@ func _on_arrow_selected(cursor_index):
 			for party_mem in global.party:
 				if _can_item_target(item_data[action], party_mem):
 					targets_list.append(party_mem.name)
-			$TargetCharaSelect.show_target_chara_select(rect_position, current_char, current_item, action, targets_list, title)
+			$TargetCharaSelect.show_target_chara_select(rect_position, _current_char, _current_item_idx, action, targets_list, title)
 			
 		ACTIONS.USE:
-			#use an item to check something in front of you
-			InventoryManager.useItem(current_char, current_item)
-			visible = false
-			active = false
-			arrow.on = false
-			# LOCALIZATION Code change: Removed use of globaldata.language
-			emit_signal("show_dialogbox", item_data[action]["text"], current_char)
+			var sub_view = null
+			match item_data:
+				globaldata.items.Ocarina:
+					emit_signal("exit")
+					uiManager.open_ocarina_screen()
+				globaldata.items.Ruler:
+					emit_signal("exit")
+					global.receiver = globaldata.get(_current_char)
+					global.set_dialog("ItemDescriptions/ruler")
+					uiManager.open_dialogue_box()
+			if sub_view:
+				sub_view.connect("back", self, "_close")
 			
 		ACTIONS.TRANSFORM:
 			#transforms an item into another
-			InventoryManager.transformItem(current_char, current_item)
-			visible = false
-			active = false
-			arrow.on = false
-			# LOCALIZATION Code change: Removed use of globaldata.language
-			emit_signal("show_dialogbox", item_data[action]["text"])
+			InventoryManager.transform_item(_current_char, _current_item_idx)
+			_close()
+			emit_signal("show_dialogbox", "ACTION_RESULT_TRANSFORM_%s" % _current_item_name.to_upper())
 		
 		ACTIONS.GIVE:
 			#summon targetCharaSelect
-			# LOCALIZATION Code added: Using a different title for the target box depending on the action
 			# (give => to whom, use => on whom, eat => who)
 			var targets_list = []
 			for partyMem in global.party:
-				if partyMem.name != current_char:
+				if partyMem.name != _current_char:
 					targets_list.append(partyMem.name)
 
-			$TargetCharaSelect.show_target_chara_select(rect_position, current_char, current_item, "give", targets_list, "INVENTORY_ACTION_GIVE_TARGET")
+			$TargetCharaSelect.show_target_chara_select(rect_position, _current_char, _current_item_idx, "give", targets_list, "INVENTORY_ACTION_GIVE_TARGET")
 		
 		ACTIONS.SORT:
 			#sort
-			$SortTypeSelect.Show_confirmation_select(rect_position, "", current_char, null, null)
+			$SortTypeSelect.Show_confirmation_select(rect_position, "", _current_char, null, null)
 		
 		ACTIONS.DROP:
 			#drop
-			$ConfirmationSelect.Show_confirmation_select(rect_position, "drop", "back", current_char, null, current_item)
-	get_parent().updatePartyInfos()
+			$ConfirmationSelect.Show_confirmation_select(rect_position, "drop", "back", _current_char, null, _current_item_idx)
+	
+	emit_signal("action_selected")
 
 
-func _can_item_target(item_action, character):
-	return !character.status.has(globaldata.ailments.Unconscious)\
+func _can_item_target(item_action, character) -> bool:
+	return !StatusManager.is_unconscious(character)\
 		or item_action.has("targetUnconscious") and item_action["targetUnconscious"] == true
 

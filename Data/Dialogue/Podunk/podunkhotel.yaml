@@ -1,0 +1,111 @@
+'0':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_0
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_1
+  cash: true
+  goto: '2'
+'2':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_2
+  options:
+    DIALOGUE_PODUNK_PODUNKHOTEL_2-OPT_0: '3'
+    DIALOGUE_PODUNK_PODUNKHOTEL_2-OPT_1: '12'
+    cancel: '12'
+'3':
+  name: Simon
+  cash: false
+  if:
+    hascash: 50
+    goto: '5'
+  goto: '13'
+'5':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_5
+  givecash: -50
+  goto: '6'
+'6':
+  actors:
+    player: player
+  showbox: false
+  cash: false
+  fadein:
+    speed: 0.3
+    anim: Circle Focus
+  objectfunction:
+    MusicArea: stop_music
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '11'
+'7':
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_7
+  teleportactors:
+    player:
+      x: -136
+      y: -632
+  fadefocus: player
+  goto: '8'
+  fadesize:
+    speed: 0.2
+    size: 0.1
+  fadespin: true
+'8':
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_8
+  goto: '9'
+'9':
+  showbox: false
+  returncam: 0.1
+  fadeout:
+    speed: 0.1
+    anim: Circle
+  goto: '10'
+'10':
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '11'
+  fadesize:
+    size: 0
+'11':
+  actorsdir:
+    player:
+      x: 0
+      y: 1
+  teleportactors:
+    player:
+      x: -136
+      y: -632
+  teleportparty:
+    x: 520
+    y: 400
+  returncam: 0.01
+  fadefocus: player
+  fadeout:
+    type: 1
+    anim: Circle
+  objectfunction:
+    MusicArea2: play_music
+    Objects/Hotel Room: replace_party_members
+  setflags: good_morning
+  heal: All
+  restorepp: All
+  wait: 1
+  autoadvance: true
+  caninput: false
+'12':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_12
+  cash: false
+'13':
+  name: DIALOGUE_PODUNK_PODUNKHOTEL_SPEAKER_Simon
+  sound: Adult
+  text: DIALOGUE_PODUNK_PODUNKHOTEL_13
+  cash: false

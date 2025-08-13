@@ -1,0 +1,38 @@
+name: PSEUDOZOMBIE_NAME
+description: PSEUDOZOMBIE_DESC
+article: PSEUDOZOMBIE_ART
+maxhp: 80
+hp: 80
+maxpp: 0
+pp: 0
+offense: 8
+defense: 20
+speed: 8
+iq: 55
+guts: 0
+level: 5
+exp: 13
+cash: 18
+items:
+- chance: 15
+  item: Bread
+- chance: 15
+  item: Fries
+- chance: 12
+  item: Antidote
+skills:
+- skill: scratch
+  weight: 4
+- skill: poisonBite
+  weight: 2
+- skill: mysteriousAction
+  weight: 1
+- skill: hystericalLaugh
+  weight: 1
+boss: false
+sprite: pseudo zombie
+music: Unsettling Opponent.mp3
+bg: pseudozombie
+ov:
+  sprite: PseudoZombieOV
+  anim: BasicEnemy

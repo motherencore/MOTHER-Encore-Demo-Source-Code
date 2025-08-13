@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/UI/Battle/BattleSpriteNPC.gd" type="Script" id=2]
+
+[node name="BattleSpriteNPC" type="Control"]
+show_behind_parent = true
+margin_top = -16.0
+margin_bottom = -16.0
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

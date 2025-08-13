@@ -1,0 +1,171 @@
+'0':
+  actors:
+    ninten: leader
+    lamp: Objects/lamp
+  talker: lamp
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+  actorsanim:
+    lamp:
+      anim: Idle
+  music: ''
+'1':
+  actorsturn:
+    ninten:
+      x: 1
+      y: 0
+  movecam:
+    x: 474
+    y: 392
+    time: 1
+  changecam: lamp
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '2'
+  actorsanim:
+    lamp:
+      anim: Open
+  actorsshake:
+    lamp:
+      x: 2
+      length: 1
+'2':
+  emoteactors:
+    ninten: surprise
+  objectfunction:
+    Poltergeist/MusicArea: play_music
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '4'
+  actorsshake:
+    lamp:
+      x: 2
+      length: 0.5
+'4':
+  actorsmove:
+    lamp:
+      movement:
+      - x: 460
+        y: 456
+      speed: 600
+      type: position
+  wait: 0.2
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  actorsjump:
+    ninten:
+      height: 3
+      length: 0.2
+  soundeffect: bash.mp3
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '6'
+  shakecam:
+    length: 0.2
+    size: small
+'6':
+  actorsmove:
+    lamp:
+      movement:
+      - x: 410
+        y: 408
+      speed: 500
+      type: position
+  wait: 0.1
+  autoadvance: true
+  caninput: false
+  goto: '7'
+'7':
+  actorsjump:
+    ninten:
+      height: 3
+      length: 0.2
+  soundeffect: bash.mp3
+  wait: 0.05
+  autoadvance: true
+  caninput: false
+  goto: '8'
+  shakecam:
+    length: 0.2
+    size: small
+'8':
+  actorsmove:
+    lamp:
+      movement:
+      - x: 480
+        y: 328
+      speed: 500
+      type: position
+  wait: 0.1
+  autoadvance: true
+  caninput: false
+  goto: '9'
+'9':
+  actorsjump:
+    ninten:
+      height: 3
+      length: 0.2
+  soundeffect: bash.mp3
+  wait: 0.1
+  autoadvance: true
+  caninput: false
+  goto: '10'
+  shakecam:
+    length: 0.2
+    size: small
+'10':
+  actorsmove:
+    lamp:
+      movement:
+      - x: 496
+        y: 392
+      speed: 500
+      type: position
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '11'
+'11':
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '12'
+  actorsshake:
+    lamp:
+      x: 2
+      length: 0.5
+'12':
+  actorsjump:
+    lamp:
+      height: 24
+      length: 0.35
+  actorsmove:
+    lamp:
+      movement:
+      - x: 432
+        y: 392
+      speed: 200
+      type: position
+  objectfunction:
+    Room Shaker: delayed_start
+  battler:
+    actor: lamp
+    enemy: lamp
+  batwinflag: poltergeist
+  wait: 0.35
+  autoadvance: true
+  caninput: false
+  batloseheal: leader
+  ovbattlemusic: true

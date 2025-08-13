@@ -1,31 +1,22 @@
-extends Sprite
+extends ControlledTwoStatesObject
 
-var active = false
-var can_activate = true
-onready var animationState = $AnimationTree.get("parameters/playback")
-onready var partyMember = preload("res://Nodes/Reusables/PartyFollower.tscn")
+func _init():
+	_state_anim_player = "AnimationPlayer"
+	_is_synced_with_room = true
+
+func set_initially_on(value: bool):
+	_initially_on = value
 
 func _ready():
-	$AnimationTree.active = true
-	if active:
-		$Sprite.texture = load("res://Graphics/Objects/Block Blue.png")
-		animationState.travel("Stay Open")
-	else:
+	if _initially_on:
 		$Sprite.texture = load("res://Graphics/Objects/Block Red.png")
-		animationState.travel("Stay Closed")
+	else:
+		$Sprite.texture = load("res://Graphics/Objects/Block Blue.png")
 
-func _process(delta):
-	if "block" in global.currentScene and can_activate == true:
-		if (global.currentScene.block and active) or (!global.currentScene.block and !active):
-			animationState.travel("Stay Open")
-		else:
-			animationState.travel("Stay Closed")
 
 func _on_Area2D_body_entered(body):
-	if body == global.persistPlayer:
-		can_activate = false
-		
+	pass # Replace with function body.
+
+
 func _on_Area2D_body_exited(body):
-	if body == global.persistPlayer:
-		can_activate = true
-	
+	pass # Replace with function body.

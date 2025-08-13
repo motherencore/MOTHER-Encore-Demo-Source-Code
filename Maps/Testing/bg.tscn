@@ -1,0 +1,144 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Graphics/Battle BGS/lamp.png" type="Texture" id=1]
+[ext_resource path="res://Shaders/Video Drug.shader" type="Shader" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+//replace \"blend_mix\" with \"blend_add\" or \"blend_sub\" or \"blend_mul\" to change blend mode
+render_mode blend_mix;
+
+//these are variables
+uniform bool horizontal_distortion;
+uniform bvec2 vertical_distortion;
+uniform vec2 amplitude = vec2(0,0);
+uniform vec2 frequency = vec2(0,0);
+uniform float scale = 0.0;
+uniform vec2 move = vec2(0,0);
+uniform bool ping_pong;
+uniform float palette_shifting_speed = 0;
+uniform sampler2D palette;
+uniform bool palette_shifting;
+uniform bvec2 interleaved;
+uniform float screen_height = 256;
+
+ void fragment(){
+    vec2 newuv = UV;
+	//tbh i dont know how to explain what it does, ill just say it makes the background move
+	if (horizontal_distortion) { //oscillation
+		newuv.x += amplitude.x * sin((frequency.x * newuv.y) + scale * TIME)/1.0;
+	} else { //compression
+		newuv.x += amplitude.x * sin((frequency.x * newuv.x) + scale * TIME)/1.0;
+	}
+	
+	if (vertical_distortion.x) { //oscillation
+		newuv.y += amplitude.y * cos((frequency.y * newuv.x) + scale * TIME)/1.0;
+	} else if (vertical_distortion.y) { //compression
+		newuv.y += amplitude.y * cos((frequency.y * newuv.y) + scale * TIME)/1.0;
+	}
+	//this one i can explain, it moves the texture to up and right using postives, down and left using negetives
+	//the higher the number the faster it is
+	if (ping_pong) {
+		newuv.x += move.x * sin(scale * TIME);
+		newuv.y += move.y * cos(scale * TIME);
+	} else {
+		newuv.x += TIME * move.x/0.5;
+		newuv.y += TIME * move.y/0.5;
+	}
+	
+	
+	vec4 c = texture(TEXTURE, newuv);
+	COLOR = c;
+	float ccycle = mod(c.r - TIME * palette_shifting_speed, 1.0);
+	float diff_x = 0.0;
+	float diff_y = 0.0;
+	
+	if (palette_shifting) {
+		COLOR = vec4(texture(palette, vec2(ccycle, 0)).rgb, c.a);
+	}
+	
+	
+	
+	if (interleaved.x) {
+		if ( int(newuv.y * screen_height) % 2 == 0 ){
+		
+			diff_x += 0.01 * sin((amplitude.x * newuv.y) + (scale * TIME));
+		
+		}else{
+			diff_x -= 0.01 * sin((amplitude.x * newuv.y) + (scale * TIME));
+		}
+		
+		if (palette_shifting) {
+			palette_shifting_speed * 2.0;
+			COLOR = COLOR + (texture(TEXTURE, vec2(newuv.x + diff_x, newuv.y)));
+		} else{
+			COLOR = (texture(TEXTURE, vec2(newuv.x + diff_x, newuv.y)));
+		
+	} else {
+		
+	}
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/horizontal_distortion = false
+shader_param/vertical_distortion = 0
+shader_param/amplitude = Vector2( 0, 0 )
+shader_param/frequency = Vector2( 0, 0 )
+shader_param/scale = 0.0
+shader_param/move = Vector2( 0, 0 )
+shader_param/ping_pong = false
+shader_param/palette_shifting_speed = 0.0
+shader_param/palette_shifting = false
+shader_param/interleaved = 0
+shader_param/screen_height = 180.0
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+shader_param/horizontal_distortion = null
+shader_param/vertical_distortion = null
+shader_param/amplitude = Vector2( 0, 0 )
+shader_param/frequency = Vector2( 0, 0 )
+shader_param/scale = 0.0
+shader_param/move = Vector2( 0.2, 0.2 )
+shader_param/ping_pong = null
+shader_param/palette_shifting = false
+shader_param/texture_size = Vector2( 0, 0 )
+shader_param/skip_first_row = true
+shader_param/use_palette_alpha = false
+shader_param/fps = 6.0
+shader_param/interleaved = 1
+shader_param/screen_height = 256.0
+shader_param/screen_width = 320.0
+
+[node name="TextureRect" type="ColorRect"]
+margin_right = 320.0
+margin_bottom = 180.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 2 )
+margin_left = -58.0
+margin_top = -45.0
+margin_right = 384.0
+margin_bottom = 216.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource( 3 )
+margin_left = -1.0
+margin_top = 3.0
+margin_right = 319.0
+margin_bottom = 183.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+
+[node name="YSort" type="YSort" parent="."]

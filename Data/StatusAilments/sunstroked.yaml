@@ -1,0 +1,18 @@
+healing:
+  persistent: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_SUNSTROKED
+  effect: BATTLE_MSG_STATUS_SUNSTROKED_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_SUNSTROKED
+  heal_overworld: ACTION_RESULT_HEAL_SUNSTROKED
+  heal_overworld_fail: ACTION_RESULT_HEAL_SUNSTROKED_FAIL
+status_bubble: sunstroked
+effects_by_char:
+  any:
+    do_skill:
+      skill: sunstrokedEffect
+      moment: after
+    dealt_color:
+      color: 'E6E600'
+      action:
+        specific_skill: sunstrokedEffect

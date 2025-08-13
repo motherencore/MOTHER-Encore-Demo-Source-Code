@@ -1,0 +1,25 @@
+name: CRITICALTHINKING_NAME
+description: CRITICALTHINKING_DESC
+dialog: CRITICALTHINKING_DIALOG
+skillType: skill
+actionType: 2
+useCases: 1
+damageType: none
+targetType: 5
+damage: 0
+variance: 0
+priority: 0
+statusEffects:
+- chance: 80
+  name: confused
+statusHeals: []
+critChance: 0
+failChance: 0
+ppCost: 0
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: ''
+userAnim: ''
+useSound: ''
+hitSound: ''

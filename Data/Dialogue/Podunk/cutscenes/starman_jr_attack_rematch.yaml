@@ -1,0 +1,43 @@
+'0':
+  actors:
+    player: leader
+    starman jr: Objects/starman jr capsule
+  actorsturn:
+    player:
+      x: 0
+      y: -1
+      speed: 0.1
+  movecam:
+    actor: starman jr
+  objectfunction:
+    Flag Landmark/Room Shaker: stop_shake
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '1'
+  actorsanim:
+    starman jr:
+      anim: Idle
+'1':
+  actorsturn:
+    player:
+      x: 0
+      y: -1
+      speed: 0.1
+  wait: 6
+  autoadvance: true
+  caninput: false
+  goto: '2'
+  actorsanim:
+    starman jr:
+      anim: Open
+'2':
+  talker: starman jr
+  name: STARMANJR_NAME
+  sound: Robot
+  text: DIALOGUE_PODUNK_CUTSCENES_STARMAN_JR_ATTACK_REMATCH_2
+  battler:
+    actor: starman jr
+    enemy: starmanjr
+    keep: true
+  batwincutscene: Podunk/cutscenes/starman_jr_defeat

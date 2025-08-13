@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Rampant Redneck.mp3-e4fac8f83677c375bb38b2260f00c6da.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Rampant Redneck.mp3"
+dest_files=[ "res://.import/Rampant Redneck.mp3-e4fac8f83677c375bb38b2260f00c6da.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0.974

@@ -1,7 +1,5 @@
 extends PanelContainer
 
-const Cursor = preload("res://Scripts/UI/cursor.gd")
-
 signal closed_from_input(input)
 signal closed_from_answer(answer)
 signal closed_from_timeout()
@@ -92,7 +90,7 @@ func _input(event):
 						_callback.call_funcv([false])
 					finish()
 			else:
-				if event.get_class() in allowed_input_types and globaldata.is_key_allowed(event):
+				if event.get_class() in allowed_input_types and event.device == 0 and globaldata.is_key_allowed(event):
 					tween.stop_all()
 					_registered_input = event
 					# We need to defer the window closing until the key is released or it will cause problem if we reaffect the action

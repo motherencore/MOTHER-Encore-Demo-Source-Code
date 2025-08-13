@@ -1,5 +1,7 @@
 extends AnimatedSprite
 
+class_name Cursor
+
 export var menu_parent_path : NodePath
 export var cursor_offset : Vector2
 export var cursor_size = Vector2(8, 8)
@@ -37,18 +39,20 @@ signal cancel()
 func _ready():
 	menu_parent = get_node_or_null(menu_parent_path)
 	set_cursor_from_index(0, false)
+	if menu_parent:
+		menu_parent.connect("item_rect_changed", self, "refresh_pos", [false])
 	if highlight:
 		if visible:
 			turn_on_highlight()
 		connect("visibility_changed", self, "turn_on_highlight")
 		connect("visibility_changed", self, "unhighlight")
-	global.connect("locale_changed", self, "_refresh_pos")
+	global.connect("locale_changed", self, "refresh_pos")
 
 func _physics_process(delta):
-	if is_active():
+	if is_active() and !Input.is_action_pressed("ui_toggle"):
 		input = controlsManager.get_controls_vector(true)
 		if input != Vector2.ZERO and $Timer.time_left == 0:
-			print(input)
+			#print(input)
 			var old_index = cursor_index
 			var index: int
 			var dir: int
@@ -103,7 +107,7 @@ func _physics_process(delta):
 					#if dir == 0 and index != cursor_index:
 					dir = index - cursor_index
 					if dir != 0:
-						dir = sign(dir)
+						dir = sign(dir) as int
 			# process direction to validate idx
 			if dir != 0:
 				var step = 1
@@ -114,15 +118,13 @@ func _physics_process(delta):
 				elif dir < 0:
 					index = _idx_or_prev_valid_idx(index, step)
 				set_cursor_from_index(index)
-			
-			
+
 			if cursor_index != old_index:
 				if move_sfx:
 					play_sfx('cursor1')
 				emit_signal("moved", input)
 			else:
 				emit_signal("failed_move", input)
-				print("womp womp")
 
 func _input(event):
 	if is_active():
@@ -147,9 +149,10 @@ func _input(event):
 					Input.action_release("ui_cancel")
 					get_tree().set_input_as_handled()
 
-func _refresh_pos():
-	yield(get_tree(), "idle_frame")
-	set_cursor_from_index(cursor_index)
+func refresh_pos(wait = true):
+	if wait:
+		yield(get_tree(), "idle_frame")
+	set_cursor_from_index(cursor_index, false)
 
 func _set_on(val):
 	on = val
@@ -197,7 +200,7 @@ func get_menu_item_at_index(index : int) -> Control:
 func get_current_item() -> Control:
 	return get_menu_item_at_index(cursor_index)
 
-func set_cursor_from_index(index : int, transition = true) -> void:
+func set_cursor_from_index(index : int, transition = true, play_sfx = false) -> void:
 	
 	if !is_instance_valid(menu_parent):
 		return
@@ -244,6 +247,9 @@ func set_cursor_from_index(index : int, transition = true) -> void:
 		$Tween.remove_all()
 		scale = Vector2.ONE
 		global_position = new_position
+
+	if play_sfx:
+		play_sfx('cursor1')
 
 func set_cursor_to_front():
 	var j = -1
@@ -337,16 +343,33 @@ func get_farthest_menu_item_index(newParent):
 				farthest = i
 	return farthest
 
-func change_parent(newParent, play_sfx = true, closest_index = true):
+func change_parent(new_parent, play_sfx = true, closest_index = true):
 	var index
 	if closest_index:
-		index = get_closest_menu_item_index(newParent)
+		index = get_closest_menu_item_index(new_parent)
 	else:
-		index = get_farthest_menu_item_index(newParent)
-	menu_parent = newParent
+		index = get_farthest_menu_item_index(new_parent)
+	if _should_skip_item(new_parent.get_child(index)):
+		return false
+	_connect_to_menu_parent(new_parent, menu_parent)
+	menu_parent = new_parent
 	set_cursor_from_index(index, true)
 	if play_sfx:
 		play_sfx('cursor1')
+	return true
+
+func change_parent_same_index(new_parent, play_sfx = true):
+	_connect_to_menu_parent(new_parent, menu_parent)
+	menu_parent = new_parent
+	set_cursor_from_index(int(min(cursor_index, get_last_available_idx())), false)
+	if play_sfx:
+		play_sfx("cursor1")
+	return true
+
+func _connect_to_menu_parent(new_parent, old_parent = null):
+	if old_parent != null:
+		old_parent.disconnect("item_rect_changed", self, "refresh_pos")
+	new_parent.connect("item_rect_changed", self, "refresh_pos", [false])
 
 func _on_arrow_visibility_changed():
 	if reset_on_show:

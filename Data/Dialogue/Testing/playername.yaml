@@ -1,0 +1,14 @@
+'0':
+  name: DIALOGUE_TESTING_PLAYERNAME_SPEAKER_Developer
+  text: DIALOGUE_TESTING_PLAYERNAME_0
+  goto: '1'
+'1':
+  text: ''
+  showbox: false
+  caninput: false
+  goto: '2'
+  cleardialog: true
+  keyboard: playername
+'2':
+  name: DIALOGUE_TESTING_PLAYERNAME_SPEAKER_Developer
+  text: DIALOGUE_TESTING_PLAYERNAME_2

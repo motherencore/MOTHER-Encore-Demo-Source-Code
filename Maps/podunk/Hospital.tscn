@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Nodes/Overworld/Objects/Openable Door.tscn" type="PackedScene" id=2]
@@ -10,30 +10,6 @@
 [ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=12]
-
-[sub_resource type="Shader" id=432]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=433]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
 
 [sub_resource type="Animation" id=48]
 resource_name = "PhoneRing"
@@ -68,7 +44,7 @@ extents = Vector2( 40, 28 )
 position = Vector2( 0, 8 )
 script = ExtResource( 5 )
 player_map_offset = Vector2( 96, 260 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -97,14 +73,7 @@ player_turn = {
 "x": true,
 "y": true
 }
-
-[node name="interact" parent="npc" index="3"]
-scale = Vector2( 1, 2 )
-
-[node name="ButtonPrompt" parent="npc/interact" index="1"]
-material = SubResource( 433 )
-position = Vector2( 0, -5.5 )
-scale = Vector2( 1, 0.5 )
+extended_interact = 1
 
 [node name="Below" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -294,8 +263,6 @@ shape = SubResource( 434 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
-[editable path="npc"]
-[editable path="npc/CharacterSprite"]
 [editable path="doors/Hospital/Lobby_Hall"]
 [editable path="doors/Hospital/Lobby_Hall2"]
 [editable path="doors/Hospital/PartyRoom_Hall"]

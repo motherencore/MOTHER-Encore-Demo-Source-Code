@@ -1,18 +1,14 @@
 extends NinePatchRect
 
 signal back
-signal exit
 
 var active = false
 var doingAction = false
 
-func show_dialogBox(dialog, character = null, action = ""):
+func show_dialog_box(dialog: String, chara_name := "", value := 0, stat := "", item = null):
+	var character = globaldata[chara_name] if chara_name else null
 	active = true
-	# LOCALIZATION Code change: moved substitution of "User" to separate method
-	# Which also does more substitutions
-	if character:
-		global.itemUser = globaldata[character]
-	$TextLabel.text = globaldata.replaceText(dialog)
+	$TextLabel.text = TextTools.format_text_with_context(dialog, character, item, stat, value)
 	$AnimationPlayer.play("Open")
 
 func _input(event):
@@ -20,5 +16,6 @@ func _input(event):
 		active = false
 		Input.action_release("ui_accept")
 		Input.action_release("ui_cancel")
+		get_tree().set_input_as_handled()
 		$AnimationPlayer.play("Close")
 		emit_signal("back")

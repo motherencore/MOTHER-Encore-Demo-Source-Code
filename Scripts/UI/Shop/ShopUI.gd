@@ -46,7 +46,7 @@ var _characterIdx = 0
 
 # Buy or Sell Menu State
 # Buy state
-var shopJsonName = ""
+var shopYamlName = ""
 var shopList = []
 # Sell state
 var currentInv = []
@@ -97,12 +97,12 @@ func _ready():
 		_characterOrder.append(partyMem.name)
 	
 	# init shop
-	if shopJsonName in globaldata.shopLists:
-		shopList = globaldata.shopLists[shopJsonName]
+	if shopYamlName in globaldata.shopLists:
+		shopList = globaldata.shopLists[shopYamlName]
 		shopBox.buy.item_list.clear()
 		shopBox.buy.restriction_func = funcref(self, "_is_purchasable_cb")
 		for item_name in shopList:
-			shopBox.buy.item_list.append(InventoryManager.Item.new(item_name, false))
+			shopBox.buy.item_list.append(InventoryManager.Item.new(item_name))
 	
 	enter_buysell()
 	#set up highlights for buy/sell
@@ -122,11 +122,11 @@ func _input(event):
 
 func close():
 	if uiManager.dialogueBox:
-		uiManager.dialogueBox.call_deferred("next_dialog")
+		uiManager.dialogueBox.call_deferred("next_phrase")
 		queue_free()
 
 func _update_cash():
-	$ShopBox/Header/CashBox/Label.text = str(globaldata.cash).pad_zeros(6)
+	$ShopBox/Header/CashBox/HBoxContainer/Amount.text = str(globaldata.cash).pad_zeros(6)
 
 func _is_purchasable_cb(item_instance):
 	return !InventoryManager.isInventoryFull(_currentCharacter.name) \
@@ -134,7 +134,6 @@ func _is_purchasable_cb(item_instance):
 
 func _is_sellable_cb(item_instance):
 	return globaldata.items[item_instance.ItemName].value > 0
-
 
 func enter_buysell():
 	# hide non-used menus
@@ -174,7 +173,7 @@ func enter_sell(reset=true):
 	shopBox.sell.enter(reset)
 	_update_desc_and_portraits(shopBox.sell)
 
-func enter_desc_dialog(state: int):
+func _enter_desc_dialog(state: int, selected_index: int):
 	if _selectedItem == "":
 		_selectedItem = "error"
 	var item = _selectedItem
@@ -186,22 +185,22 @@ func enter_desc_dialog(state: int):
 			question = "SHOP_ASK_EQUIP"
 		DialogState.SELL_OLD_EQUIP:
 			item = _prevEquip
-			descNoDialog.setItem(_prevEquip)
+			descNoDialog.set_item(_prevEquip)
 			question = "SHOP_ASK_SELL_OLD"
 		DialogState.SELL:
 			question = "SHOP_ASK_SELL"
 		DialogState.SELL_EQUIP_NO_SPACE:
 			item = _prevEquip
-			descNoDialog.setItem(_prevEquip)
+			descNoDialog.set_item(_prevEquip)
 			question = "SHOP_ASK_SELL_FOR_SPACE"
 		DialogState.SELL_FOR_CASH:
 			question = "SHOP_ASK_SELL_FOR_CASH"
 	
-	question = _format_text_with_item(question, globaldata.items[item])
-	descDialog.ask(question, item, funcref(self, "desc_dialog_answer"), [state])
+	question = TextTools.format_text_with_context(question, null, globaldata.items[item])
+	descDialog.ask(question, item, funcref(self, "_desc_dialog_answer"), [state, selected_index])
 	
 
-func desc_dialog_answer(state: int, yes: bool):
+func _desc_dialog_answer(state: int, selected_index: int, yes: bool):
 	if _selectedItem == "":
 		_selectedItem = "error"
 	var item = globaldata.items[_selectedItem]
@@ -209,9 +208,9 @@ func desc_dialog_answer(state: int, yes: bool):
 		DialogState.BUY:
 			if yes:
 				buy_something()
-				if InventoryManager.doesItemHaveFunction(_selectedItem, "equip") and checkCanEquip(_selectedItem, _currentCharacter):
+				if InventoryManager.is_equippable_by(_currentCharacter.name, _selectedItem):
 					# next dialog state if equippible
-					enter_desc_dialog(DialogState.EQUIP_BOUGHT)
+					_enter_desc_dialog(DialogState.EQUIP_BOUGHT, selected_index)
 					return
 			# else, re enable buy state
 			enter_buy(false)
@@ -220,31 +219,25 @@ func desc_dialog_answer(state: int, yes: bool):
 				_prevEquip = _currentCharacter["equipment"][item.slot]
 				# get most recent item (bought item)
 				var recentItem = InventoryManager.getInventory(_currentCharacter.name).back()
-				InventoryManager.equipItemFromUID(_currentCharacter, recentItem.uid)
+				InventoryManager.equip_item_from_uid(_currentCharacter, recentItem.uid)
 				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
 				if _prevEquip != "":
-					enter_desc_dialog(DialogState.SELL_OLD_EQUIP)
+					_enter_desc_dialog(DialogState.SELL_OLD_EQUIP, selected_index)
 					return
 			enter_buy(false)
 		DialogState.SELL_OLD_EQUIP:
 			if yes:
-				sell_something(_prevEquip)
+				sell_something(_prevEquip, selected_index)
 			_prevEquip = ""
 			enter_buy(false)
 		DialogState.SELL:
 			if yes:
-				sell_something()
+				sell_something(_selectedItem, selected_index)
 			enter_sell(false)
 		DialogState.SELL_EQUIP_NO_SPACE:
 			if yes:
-				# *sighs*, the things I do around here to get an index
-				var inv = InventoryManager.getInventory(_currentCharacter.name)
-				var idx = -1
-				for i in inv.size():
-					if inv[i].ItemName == _prevEquip and inv[i].equiped:
-						idx = i
-				sell_something(_prevEquip, idx)
-				enter_desc_dialog(DialogState.BUY)
+				sell_something(_prevEquip, selected_index)
+				_enter_desc_dialog(DialogState.BUY, selected_index)
 				_prevEquip = ""
 				return
 			_prevEquip = ""
@@ -267,20 +260,21 @@ func buy_something():
 	# update purchasables(in cash update?)
 	_update_cash()
 
-func sell_something(item_name = _selectedItem, idx = -1):
+func sell_something(item_name, idx: int):
 	$AudioStreamPlayer.stream = registerSfx
 	$AudioStreamPlayer.play()
-	var item = globaldata.items[item_name]
-	globaldata.cash += item.value
+	var item_def = globaldata.items[item_name]
+	var item_int = InventoryManager.getInventory(_currentCharacter.name)[idx]
+	globaldata.cash += item_def.value * item_int.doses
 	if item_name == _prevEquip:
-		InventoryManager.dropItem(_currentCharacter.name, InventoryManager.findItemIdx(_currentCharacter.name, item_name))
+		InventoryManager.dropItem(_currentCharacter.name, InventoryManager.find_item_index(_currentCharacter.name, item_name))
 	else:
-		if idx > 0:
-			InventoryManager.dropItem(_currentCharacter.name, idx)
-		else:
-			InventoryManager.dropItem(_currentCharacter.name, shopBox.sell.cursor.cursor_index + shopBox.sell.page)
+		InventoryManager.dropItem(_currentCharacter.name, idx)
 	# update sell list
 	_update_cash()
+
+func _get_resale_price(item: InventoryManager.Item) -> int:
+	return globaldata.items[item.ItemName].value * item.doses
 
 func updatePortraits(highlighted_item=null):
 	for i in 4: # there's 4 portraits!
@@ -299,9 +293,9 @@ func updatePortraits(highlighted_item=null):
 		var is_lower = false
 		if i < _characterOrder.size():
 			if highlighted_item and !InventoryManager.isInventoryFull(_characterOrder[i]):
-				var current_item_data = globaldata.items[highlighted_item]
+				var current_item_data = globaldata.items.get(highlighted_item)
 				var character = _characterOrder[i]
-				if InventoryManager.doesItemHaveFunction(highlighted_item, "equip"):
+				if current_item_data and InventoryManager.is_equippable(highlighted_item):
 					is_suitable = current_item_data["usable"][character]
 					var current_item_slot = current_item_data["slot"]
 					#- item is equiped
@@ -322,9 +316,9 @@ func updatePortraits(highlighted_item=null):
 		portraitNode.show_is_item_lower(is_lower)
 
 func _update_desc_and_portraits(current_menu):
-	var item_id = current_menu.get_current_item_id()
-	updatePortraits(item_id)
-	descNoDialog.setItem(item_id)
+	var item = current_menu.get_current_item()
+	updatePortraits(item.ItemName if item else "")
+	descNoDialog.set_item_from_inv(item)
 
 func changeCharacter(dir):
 	_characterIdx = wrapi(_characterIdx + dir, 0, _characterOrder.size())
@@ -345,10 +339,6 @@ func changeCharacter(dir):
 	else:
 		updatePortraits()
 
-func checkCanEquip(itemname, character):
-	var itemdata = globaldata.items[itemname]
-	return itemdata.usable[character.name]
-
 # SIGNAL CONNECTIONS
 
 
@@ -368,10 +358,10 @@ func _on_exit_sell():
 	$AudioStreamPlayer.stream = cursorCloseSfx
 	$AudioStreamPlayer.play()
 
-func _on_buy_cursor_moved(itemIdx):
+func _on_buy_cursor_moved(item_idx):
 	_update_desc_and_portraits(shopBox.buy)
 
-func _on_buy_item_selected(itemIdx):
+func _on_buy_item_selected(item_idx):
 	var item_id = shopBox.buy.get_current_item_id()
 	var itemData = globaldata.items[item_id]
 	if InventoryManager.isInventoryFull(_currentCharacter.name):
@@ -379,34 +369,34 @@ func _on_buy_item_selected(itemIdx):
 		# For SELL_EQUIP_NO_SPACE: The party member should be able to equip the item,
 		# they should have another equippable item in the same slot, it should be different,
 		# and they should have enough money to buy it after selling the current one
-		if checkCanEquip(item_id, _currentCharacter) and InventoryManager.doesItemHaveFunction(item_id, "equip") \
-		  and _prevEquip != "" and _prevEquip != item_id \
-		  and itemData.cost - globaldata.items[_prevEquip].value <= globaldata.cash:
+		if InventoryManager.is_equippable_by(_currentCharacter.name, item_id)\
+				and _prevEquip != "" and _prevEquip != item_id \
+				and itemData.cost - globaldata.items[_prevEquip].value <= globaldata.cash:
 			_selectedItem = item_id
 			shopBox.buy.cursor.on = false
-			enter_desc_dialog(DialogState.SELL_EQUIP_NO_SPACE)
+			_enter_desc_dialog(DialogState.SELL_EQUIP_NO_SPACE, item_idx)
 		else:
 			descNoDialog.warn(tr("TRANSACTION_FULL"), 1)
 	elif itemData.cost > globaldata.cash:
 		_selectedItem = item_id
 		shopBox.buy.cursor.on = false
-		enter_desc_dialog(DialogState.SELL_FOR_CASH)
+		_enter_desc_dialog(DialogState.SELL_FOR_CASH, item_idx)
 	else:
 		_selectedItem = item_id
 		shopBox.buy.cursor.on = false
-		enter_desc_dialog(DialogState.BUY)
+		_enter_desc_dialog(DialogState.BUY, item_idx)
 
-func _on_sell_cursor_moved(itemIdx):
+func _on_sell_cursor_moved(item_idx):
 	_update_desc_and_portraits(shopBox.sell)
 
-func _on_sell_item_selected(itemIdx):
+func _on_sell_item_selected(item_idx):
 	var item_id = shopBox.sell.get_current_item_id()
 	var itemData = globaldata.items[item_id]
 	if itemData.value <= 0:
 		return
 	_selectedItem = item_id
 	shopBox.sell.cursor.on = false
-	enter_desc_dialog(DialogState.SELL)
+	_enter_desc_dialog(DialogState.SELL, item_idx)
 
 func _on_enter_buy():
 	if shopBox.buy.item_list.empty():
@@ -422,12 +412,3 @@ func _on_enter_sell():
 
 func _on_arrow_cancel():
 	uiManager.remove_ui(self)
-
-# LOCALIZATION Code added: New method to handle formatting of items and articles in text
-# Same method in Storage.gd
-func _format_text_with_item(text, item):
-	return tr(text).format({
-		"item": tr(item.name)
-		}).format(
-			globaldata.get_item_or_skill_articles(item), "{i_}"
-		)

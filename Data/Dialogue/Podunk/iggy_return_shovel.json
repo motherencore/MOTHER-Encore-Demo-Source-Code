@@ -1,9 +1,0 @@
-{
-    "0": {
-        "name": "DIALOGUE_PODUNK_IGGY_RETURN_SHOVEL_SPEAKER_Iggy",
-        "text": "DIALOGUE_PODUNK_IGGY_RETURN_SHOVEL_0",
-        "sound": "Adult",
-        "removeitem": "Shovel",
-        "flag": "returned_shovel"
-    }
-}

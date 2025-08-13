@@ -198,6 +198,7 @@ patch_margin_right = 9
 patch_margin_bottom = 9
 
 [node name="Cursor" type="Control" parent="CanvasLayer/Body"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -477,7 +478,7 @@ margin_bottom = 72.0
 rect_clip_content = true
 
 [node name="Both" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 12.0
 custom_fonts/font = ExtResource( 2 )
 text = "MENU_BOTH"
@@ -485,7 +486,7 @@ valign = 1
 
 [node name="Objects" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 16.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
 text = "MENU_OBJECTS"
@@ -493,7 +494,7 @@ valign = 1
 
 [node name="NPCs" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 32.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 44.0
 custom_fonts/font = ExtResource( 2 )
 text = "MENU_NPCS"
@@ -501,7 +502,7 @@ valign = 1
 
 [node name="None" type="Label" parent="CanvasLayer/ButtonPrompts/VBoxContainer"]
 margin_top = 48.0
-margin_right = 75.0
+margin_right = 77.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 2 )
 text = "MENU_NONE"
@@ -519,7 +520,7 @@ cancel_on = true
 reset_on_show = false
 
 [node name="Present" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
-position = Vector2( 72, 57 )
+position = Vector2( 75, 57 )
 texture = ExtResource( 12 )
 hframes = 5
 
@@ -529,7 +530,7 @@ position = Vector2( 0, -8 )
 offset = Vector2( 0, -8 )
 
 [node name="NPC" type="Sprite" parent="CanvasLayer/ButtonPrompts"]
-position = Vector2( 104, 49 )
+position = Vector2( 104, 50 )
 texture = ExtResource( 13 )
 hframes = 5
 vframes = 4

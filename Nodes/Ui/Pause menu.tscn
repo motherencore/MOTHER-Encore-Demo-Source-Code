@@ -213,7 +213,14 @@ margin_top = 8.0
 margin_right = 148.0
 margin_bottom = 58.0
 
-[node name="Sign" parent="menu/Commands/Bottom" instance=ExtResource( 3 )]
+[node name="Cash" parent="menu/Commands/Bottom" instance=ExtResource( 3 )]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = -2.0
+margin_right = 4.0
+margin_bottom = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="menu/Commands/Bottom"]
 anchor_right = 1.0
@@ -243,13 +250,13 @@ anims/open = SubResource( 1 )
 [node name="EquipMenuUI" parent="." instance=ExtResource( 9 )]
 
 [node name="MapScreen" parent="." instance=ExtResource( 6 )]
+layer = 2
 
 [node name="StatsMenuUI" parent="." instance=ExtResource( 10 )]
 
 [node name="OptionsUI" parent="." instance=ExtResource( 14 )]
 
 [connection signal="selected" from="menu/Commands/Arrow" to="." method="_on_Arrow_selected"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="back" from="InventoryUI" to="." method="_on_InventoryUI_back"]
 [connection signal="exit" from="InventoryUI" to="." method="_on_InventoryUI_exit"]
 [connection signal="back" from="PSIMenuUI" to="." method="_on_PSIMenuUI_back"]
@@ -257,4 +264,4 @@ anims/open = SubResource( 1 )
 [connection signal="back" from="MapScreen" to="." method="_on_MapScreen_back"]
 [connection signal="back" from="StatsMenuUI" to="." method="_on_StatsMenuUI_back"]
 [connection signal="back" from="OptionsUI" to="." method="_on_OptionsUI_back"]
-[connection signal="closeMenu" from="OptionsUI" to="." method="_on_OptionsUI_closeMenu"]
+[connection signal="close_to_title" from="OptionsUI" to="." method="_on_close_to_title"]

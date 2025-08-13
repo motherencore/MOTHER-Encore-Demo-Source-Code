@@ -1,0 +1,25 @@
+name: POISONBITE_NAME
+description: POISONBITE_DESC
+dialog: POISONBITE_DIALOG
+skillType: skill
+actionType: 0
+useCases: 1
+damageType: normal
+targetType: 0
+damage: 8
+variance: 4
+priority: 0
+statusEffects:
+- chance: 80
+  name: poisoned
+statusHeals: []
+critChance: 0
+failChance: 10
+ppCost: 0
+hpCost: 0
+hitEffect: bash
+preHitEffect: ''
+screenEffect: ''
+userAnim: bash
+useSound: ''
+hitSound: bash

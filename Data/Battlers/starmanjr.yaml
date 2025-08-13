@@ -1,0 +1,26 @@
+name: STARMANJR_NAME
+description: STARMANJR_DESC
+article: STARMANJR_ART
+maxhp: 1000
+hp: 1000
+maxpp: 100
+pp: 100
+offense: 27
+defense: 40
+speed: 16
+iq: -470
+guts: 0
+level: 12
+exp: 404
+cash: 300
+skills:
+- skill: attack
+  weight: 5
+- skill: pkBeamA
+  weight: 1
+battlescript: podunk/starmanjr
+boss: true
+sprite: starman jr
+music: Rising Star.ogg
+musicintro: ''
+bg: starmanjr

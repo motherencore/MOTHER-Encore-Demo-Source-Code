@@ -1,0 +1,24 @@
+name: CANARY
+description: CANARYLIFE2_DESC
+dialog:
+- CANARYLIFE2_DIALOG1
+skillType: skill
+actionType: 2
+useCases: 1
+damageType: none
+targetType: 1
+damage: 0
+variance: 0
+priority: 0
+statusEffects: []
+statusHeals: []
+critChance: 0
+failChance: 100
+ppCost: 0
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: ''
+userAnim: ''
+useSound: ''
+hitSound: ''

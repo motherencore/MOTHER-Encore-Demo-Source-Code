@@ -71,13 +71,14 @@ tracks/0/keys = {
 [node name="Item" type="Sprite"]
 show_behind_parent = true
 script = ExtResource( 1 )
+button_prompt = NodePath("interact/ButtonPrompt")
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="Sparkles" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4, -4 )
-frame = 34
+frame = 23
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
@@ -88,6 +89,7 @@ collision_mask = 0
 shape = SubResource( 2 )
 
 [node name="interact" type="Area2D" parent="."]
+z_index = 1
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact"]

@@ -1,0 +1,26 @@
+name: VENTODOR_NAME
+description: VENTODOR_DESC
+dialog: VENTODOR_DIALOG
+skillType: skill
+actionType: 2
+useCases: 1
+damageType: none
+targetType: 0
+damage: 0
+variance: 0
+priority: 0
+statusEffects: []
+statusHeals: []
+statMods:
+  offense: -1
+  defense: -1
+critChance: 0
+failChance: 0
+ppCost: 0
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: ''
+userAnim: ''
+useSound: ''
+hitSound: ''

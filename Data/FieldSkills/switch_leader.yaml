@@ -1,0 +1,9 @@
+name: FIELD_SWITCH_LEADER
+description: FIELD_SWITCH_LEADER_DESC
+flag: switch_leader
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: true
+  pippi: true

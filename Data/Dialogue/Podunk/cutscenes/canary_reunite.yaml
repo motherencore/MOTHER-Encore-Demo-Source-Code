@@ -1,0 +1,216 @@
+'0':
+  actors:
+    ninten: ninten
+    pippi: pippi
+    chick: canarychick
+    laura: talker
+  talker: null
+  actorsdir:
+    laura:
+      x: 0
+      y: -1
+  emoteactors:
+    laura: dot
+  changecam: null
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  text: DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_1
+  goto: '2'
+'2':
+  text: DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_2
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_2-OPT_0: '4'
+    DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_2-OPT_1: '3'
+    cancel: '3'
+'3':
+  showbox: false
+'4':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - x: -1026
+        y: 96
+      speed: 32
+      animation: Walk
+      type: position
+    pippi:
+      movement:
+      - x: -1006
+        y: 96
+      speed: 32
+      animation: Walk
+      type: position
+    chick:
+      movement:
+      - x: -1016
+        y: 72
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+    pippi:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+    chick:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  movecam:
+    x: -1016
+    y: 64
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  actorsjump:
+    chick:
+      height: 4
+      times: 2
+  soundeffect: M3/Critter Cry.mp3
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '6'
+'6':
+  emoteactors:
+    laura: surprise
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '7'
+'7':
+  actorsturn:
+    laura:
+      x: 0
+      y: 1
+      speed: 0.05
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '8'
+'8':
+  actorsjump:
+    chick:
+      height: 4
+      queue: true
+      times: 2
+    laura:
+      height: 4
+      queue: true
+      times: 2
+  actorsmove:
+    chick:
+      movement:
+      - x: -1016
+        y: 64
+      speed: 64
+      animation: Walk
+      type: position
+    laura:
+      movement:
+      - wait: 0.1
+      - x: -1016
+        y: 56
+      speed: 64
+      animation: Walk
+      type: position
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '9'
+'9':
+  actorsjump:
+    chick:
+      height: 4
+      queue: true
+      times: 2
+    laura:
+      height: 4
+      queue: true
+      times: 2
+  actorsmove:
+    chick:
+      movement:
+      - x: -1020
+        y: 60
+      - x: -1016
+        y: 56
+      - x: -1012
+        y: 60
+      - x: -1016
+        y: 64
+      speed: 64
+      animation: Walk
+      type: position
+    laura:
+      movement:
+      - x: -1012
+        y: 60
+      - x: -1016
+        y: 64
+      - x: -1020
+        y: 60
+      - x: -1016
+        y: 56
+      - wait: 0.1
+      speed: 64
+      animation: Walk
+      type: position
+  actorsturn:
+    chick:
+      x: 0
+      y: -1
+      speed: 0.05
+      queue: true
+    laura:
+      x: 0
+      y: 1
+      speed: 0.05
+      queue: true
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '10'
+'10':
+  text: DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_10
+  emoteactors:
+    laura: heart
+  goto: '11'
+'11':
+  objectfunction:
+    Music/MusicArea12: stop_music
+    melodyBG: appear
+  wait: 4
+  autoadvance: true
+  caninput: false
+  goto: '12'
+  music: Melodies/melody2.mp3
+'12':
+  text: DIALOGUE_PODUNK_CUTSCENES_CANARY_REUNITE_12
+  soundeffect: M3/heal_se.wav
+  objectfunction:
+    Music/MusicArea2: play_music
+    melodyBG: disappear
+  wait: 0.6
+  goto: '13'
+'13':
+  removeitem: CanaryChick
+  setflags: canary_melody
+  changereplaced:
+    chick: Objects/NPCS/npc36
+  setcrumbs: true
+  setpartynpcs:
+    canarychick: false

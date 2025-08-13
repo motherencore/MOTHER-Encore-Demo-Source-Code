@@ -16,6 +16,7 @@ rect_min_size = Vector2( 12, 12 )
 custom_fonts/font = ExtResource( 1 )
 custom_styles/normal = SubResource( 4 )
 text = "Label"
+valign = 2
 script = ExtResource( 3 )
 
 [node name="Equiped_spr" type="Sprite" parent="."]

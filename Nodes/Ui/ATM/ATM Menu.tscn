@@ -233,15 +233,15 @@ text = "ATM_WITHDRAW"
 [node name="IndicatorL" parent="." instance=ExtResource( 4 )]
 margin_left = 80.0
 margin_top = 45.0
-margin_right = -240.0
-margin_bottom = -135.0
+margin_right = 80.0
+margin_bottom = 45.0
 key = "ui_focus_prev"
 
 [node name="IndicatorR" parent="." instance=ExtResource( 4 )]
 margin_left = 240.0
 margin_top = 45.0
-margin_right = -80.0
-margin_bottom = -135.0
+margin_right = 240.0
+margin_bottom = 45.0
 
 [node name="CursorTween" type="Tween" parent="."]
 

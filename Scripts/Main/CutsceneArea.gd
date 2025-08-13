@@ -34,7 +34,7 @@ func check_start():
 
 func start_cutscene():
 	global.persistPlayer.pause()
-	global.set_dialog(dialog, null) 
+	global.set_dialog(dialog) 
 	uiManager.open_dialogue_box()
 
 func check_flags():

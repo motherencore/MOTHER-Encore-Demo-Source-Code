@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Forgetful_monospace.png-32ef4baa2dec8a8b89cd380dd3e514c3.stex"
+path="res://.import/forgetful_monospace.png-69a439a6b6c1d365b588bc90264c5aae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Forgetful_monospace.png"
-dest_files=[ "res://.import/Forgetful_monospace.png-32ef4baa2dec8a8b89cd380dd3e514c3.stex" ]
+source_file="res://Graphics/UI/Ailments/forgetful_monospace.png"
+dest_files=[ "res://.import/forgetful_monospace.png-69a439a6b6c1d365b588bc90264c5aae.stex" ]
 
 [params]
 

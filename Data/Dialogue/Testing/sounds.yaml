@@ -1,0 +1,41 @@
+'0':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Shy
+  text: DIALOGUE_TESTING_SOUNDS_0
+  type: normal
+  goto: '1'
+  font: EBZ
+'1':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Adult
+  text: DIALOGUE_TESTING_SOUNDS_1
+  type: normal
+  goto: '2'
+  font: EBZ
+'2':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Kid
+  text: DIALOGUE_TESTING_SOUNDS_2
+  type: normal
+  goto: '3'
+  font: EBZ
+'3':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Robot
+  text: DIALOGUE_TESTING_SOUNDS_3
+  type: normal
+  goto: '4'
+  font: EBZ
+'4':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Saturn
+  text: DIALOGUE_TESTING_SOUNDS_4
+  type: normal
+  goto: '5'
+  font: EBZ
+'5':
+  name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
+  sound: Sexy
+  text: DIALOGUE_TESTING_SOUNDS_5
+  type: normal
+  font: EBZ

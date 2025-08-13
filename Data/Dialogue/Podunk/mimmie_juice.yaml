@@ -1,0 +1,19 @@
+'0':
+  if:
+    invspace: true
+    goto: '1'
+  goto: '3'
+'1':
+  name: DIALOGUE_PODUNK_MIMMIE_JUICE_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_JUICE_1
+  goto: '2'
+'2':
+  talker: null
+  text: DIALOGUE_PODUNK_MIMMIE_JUICE_2
+  item: OrangeJuice
+  soundeffect: Item Received.mp3
+'3':
+  name: DIALOGUE_PODUNK_MIMMIE_JUICE_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MIMMIE_JUICE_3

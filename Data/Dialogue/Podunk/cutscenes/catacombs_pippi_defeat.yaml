@@ -1,0 +1,331 @@
+'0':
+  actors:
+    ninten: leader
+    pippi: Objects/npc
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_0
+  actorsjump:
+    pippi:
+      speed: 0.2
+      height: 16
+      times: 2
+  actorsmove:
+    pippi:
+      movement:
+      - x: -1416
+        y: -1672
+      - wait: 0.8
+      - x: -1416
+        y: -1680
+      speed: 96
+      animation: Walk
+      type: position
+  goto: '1'
+  actorsblend:
+    pippi: false
+  actorsshake:
+    pippi:
+      x: 1
+      length: 0.2
+'1':
+  talker: null
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_1
+  actorsdir:
+    pippi:
+      x: 0
+      y: 1
+  emoteactors:
+    pippi: sweat
+  actorsturn:
+    pippi:
+      x: 0
+      y: -1
+      speed: 0.05
+  goto: '2'
+  actorsblend:
+    pippi: true
+  actorsshake:
+    pippi:
+      x: 0.5
+      length: -1
+'2':
+  showbox: false
+  actorsjump:
+    ninten:
+      speed: 0.2
+      height: 8
+      queue: true
+      times: 2
+  actorsmove:
+    ninten:
+      movement:
+      - x: -1416
+        y: -1656
+      - wait: 0.2
+      speed: 32
+      animation: Walk
+      type: position
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_3
+  emoteactors:
+    pippi: question
+  goto: '4'
+  stopactorsloop:
+    pippi: null
+'4':
+  showbox: false
+  wait: 1.1
+  autoadvance: true
+  caninput: false
+  goto: '5'
+  actorsanim:
+    ninten:
+      type: 0
+      anim: Talk
+'5':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_5
+  actorsturn:
+    pippi:
+      x: 0
+      y: 1
+      speed: 0.1
+  goto: '6'
+  actorsanim:
+    ninten:
+      type: 0
+      anim: Idle
+'6':
+  showbox: false
+  actorsjump:
+    ninten:
+      speed: 0.2
+      height: 8
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '7'
+'7':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_7
+  emoteactors:
+    pippi: angry
+  actorsjump:
+    ninten:
+      speed: 0.2
+      height: 8
+    pippi:
+      speed: 0.2
+      height: 8
+      times: 2
+  goto: '9'
+  actorsanim:
+    ninten:
+      type: 0
+      anim: Idle
+  shakecam:
+    x: 1
+    y: 0
+    size: medium
+'9':
+  showbox: false
+  emoteactors:
+    ninten: dot
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '10'
+'10':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_10
+  emoteactors:
+    pippi: surprise
+  goto: '12'
+'12':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_12
+  emoteactors:
+    pippi: heart
+  goto: '13'
+'13':
+  showbox: false
+  actorsjump:
+    ninten:
+      speed: 0.2
+      height: 8
+      times: 2
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '14'
+'14':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_14
+  goto: '17'
+'17':
+  showbox: false
+  actorsjump:
+    ninten:
+      speed: 0.2
+      height: 8
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '18'
+'18':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_18
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_18-OPT_0: '19'
+    DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_18-OPT_1: '20'
+    cancel: '20'
+'19':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_19
+  goto: '29'
+'20':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_20
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_21-OPT_0: '23'
+    DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_21-OPT_1: '22'
+    cancel: '22'
+'22':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_22
+  goto: '29'
+'23':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_23
+  emoteactors:
+    pippi: heart
+  goto: '26'
+'26':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_26
+  if:
+    invspace: true
+    goto: '27'
+  goto: '28'
+'27':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_27
+  item: CourageBadge
+  soundeffect: Item Received.mp3
+  setflags: courage_badge_received
+  goto: '29'
+'28':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_28
+  goto: '29'
+'29':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_29
+  goto: '30'
+'30':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - wait: 1
+      - x: -1448
+        y: -1624
+      - x: -1599
+        y: -1624
+      speed: 32
+      animation: Walk
+      type: position
+    pippi:
+      movement:
+      - x: -1472
+        y: -1624
+      - x: -1616
+        y: -1624
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: -1
+      y: 1
+      speed: 0.3
+  wait: 8
+  autoadvance: true
+  caninput: false
+  goto: '31'
+'31':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_31
+  actorsturn:
+    pippi:
+      x: 1
+      y: 0
+      speed: 0.05
+  goto: '32'
+'32':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - x: -1616
+        y: -1624
+      speed: 32
+      animation: Walk
+      type: position
+    pippi:
+      movement:
+      - x: -1599
+        y: -1624
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    pippi:
+      x: -1
+      y: 0
+      speed: 0.05
+      queue: true
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '33'
+'33':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_CATACOMBS_PIPPI_DEFEAT_33
+  soundeffect: Party Fanfare.mp3
+  setflags: pippi_rescued
+  setpartymembers:
+    pippi: true
+  changereplaced:
+    pippi: pippi
+  wait: 5
+  givestatus:
+    pippi: poisoned
+  setcrumbs: true

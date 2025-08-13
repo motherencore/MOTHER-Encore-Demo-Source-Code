@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/UI/Inventory/InventoryUI.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox.png" type="Texture" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=10]
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=11]
 [ext_resource path="res://Nodes/Ui/Inventory/ActionSelect.gd" type="Script" id=12]
-[ext_resource path="res://Nodes/Ui/Battle/PartyInfoPlate.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Nodes/Ui/Inventory/TargetCharaSelect.gd" type="Script" id=15]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_title.png" type="Texture" id=16]
 [ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=17]
@@ -23,163 +22,6 @@
 [ext_resource path="res://Nodes/Ui/Inventory/StatsBar.gd" type="Script" id=22]
 [ext_resource path="res://Nodes/Ui/Inventory/DialogBox.gd" type="Script" id=23]
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=24]
-
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=13]
-resource_local_to_scene = true
-shader = SubResource( 2 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=14]
-resource_local_to_scene = true
-shader = SubResource( 2 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=15]
-resource_local_to_scene = true
-shader = SubResource( 2 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=16]
-resource_local_to_scene = true
-shader = SubResource( 2 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="Animation" id=6]
-resource_name = "Close"
-length = 0.15
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 0.4, 0.378929 ),
-"update": 0,
-"values": [ 132.0, 180.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.15 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../PartyInfoHBox:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 180 ), Vector2( 0, 127 ), Vector2( 0, 131 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Open"
-length = 0.125
-step = 0.0416667
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0833333, 0.125 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 180.0, 130.0, 132.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../PartyInfoHBox:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.125, 0.126 ),
-"transitions": PoolRealArray( 0.4, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 131 ), Vector2( 0, 180 ), Vector2( 0, 131 ) ]
-}
-
-[sub_resource type="Animation" id=8]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 180.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../PartyInfoHBox:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 180 ) ]
-}
 
 [sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 2 )
@@ -202,7 +44,7 @@ resource_name = "Close"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -211,7 +53,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 0.4, 0.378929 ),
 "update": 0,
-"values": [ Vector2( 31, 132 ), Vector2( 31, 180 ) ]
+"values": [ 0.0, 48.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -231,7 +73,7 @@ resource_name = "Open"
 length = 0.125
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -240,7 +82,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.0833333, 0.125 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 31, 180 ), Vector2( 31, 130 ), Vector2( 31, 132 ) ]
+"values": [ 48.0, -2.0, 0.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -258,7 +100,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=11]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -267,7 +109,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 31, 180 ) ]
+"values": [ 48.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -282,12 +124,85 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "Close"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 0.4, 0.378929 ),
+"update": 0,
+"values": [ 0.0, 48.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Open"
+length = 0.125
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 48.0, -2.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 48.0 ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "Close"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath(".:rect_pivot_offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -299,7 +214,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -180 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Inventory/InventorySelect:visible")
+tracks/1/path = NodePath("Inventory:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -311,7 +226,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("StatsBar:visible")
+tracks/2/path = NodePath("Bottom/StatsBar:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -335,28 +250,16 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("PartyInfoHBox:rect_position")
+tracks/4/path = NodePath(".:rect_position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
 "times": PoolRealArray( 0, 0.15 ),
-"transitions": PoolRealArray( 0.4, 1 ),
+"transitions": PoolRealArray( 0.4, 0.45 ),
 "update": 0,
-"values": [ Vector2( 0, 131 ), Vector2( 0, 360 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("PartyInfoHBox:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.15 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
+"values": [ 0.0, -180.0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -364,7 +267,7 @@ resource_name = "Open"
 length = 0.15
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath(".:rect_position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -373,37 +276,13 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -180 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PartyInfoHBox:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.15 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 380 ), Vector2( 0, 127 ), Vector2( 0, 131 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PartyInfoHBox:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"values": [ -180.0, 2.0, 0.0 ]
 }
 
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath(".:rect_pivot_offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -415,7 +294,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -180 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("StatsBar:rect_position:y")
+tracks/1/path = NodePath("Bottom/StatsBar:rect_position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -424,87 +303,27 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 132.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PartyInfoHBox:rect_size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 320, 49 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("PartyInfoHBox:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 131 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("PartyInfoHBox:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("PartyInfoHBox:margin_right")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ 0.0 ]
 }
 
-[node name="InventoryUI" type="CanvasLayer"]
-layer = 2
-offset = Vector2( 0, -180 )
-transform = Transform2D( 1, 0, 0, 1, 0, -180 )
+[node name="InventoryUI" type="Control"]
+margin_left = 31.0
+margin_right = 288.0
+margin_bottom = 132.0
+rect_pivot_offset = Vector2( 0, -180 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_vertical_guides_": [  ]
-}
 
 [node name="Inventory" type="NinePatchRect" parent="."]
 material = ExtResource( 10 )
-margin_left = 31.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_top = 23.0
-margin_right = 288.0
-margin_bottom = 132.0
 rect_pivot_offset = Vector2( 59, 58 )
 texture = ExtResource( 2 )
 patch_margin_left = 8
 patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
-
-[node name="InventorySelect" parent="Inventory" instance=ExtResource( 5 )]
-anchor_right = 1.0
-margin_left = 0.0
-margin_top = -23.0
-margin_right = 0.0
-margin_bottom = 4.0
-noKey = false
-menuName = "MENU_TITLE_GOODS"
 
 [node name="CenterContainer" type="CenterContainer" parent="Inventory"]
 anchor_right = 1.0
@@ -547,70 +366,160 @@ custom_constants/hseparation = 25
 columns = 2
 
 [node name="Item1" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_right = 25.0
+margin_right = 98.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item2" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 50.0
-margin_right = 75.0
+margin_left = 123.0
+margin_right = 221.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item3" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 12.0
-margin_right = 25.0
+margin_right = 98.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item4" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 50.0
+margin_left = 123.0
 margin_top = 12.0
-margin_right = 75.0
+margin_right = 221.0
 margin_bottom = 24.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item5" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 24.0
-margin_right = 25.0
+margin_right = 98.0
 margin_bottom = 36.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item6" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 50.0
+margin_left = 123.0
 margin_top = 24.0
-margin_right = 75.0
+margin_right = 221.0
 margin_bottom = 36.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
 [node name="Item7" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 36.0
-margin_right = 25.0
+margin_right = 98.0
 margin_bottom = 48.0
+rect_min_size = Vector2( 98, 12 )
 text = "Bread"
 
-[node name="ColorRect" type="ColorRect" parent="Inventory"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 17.0
-margin_bottom = 15.0
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-script = ExtResource( 11 )
+[node name="Item8" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_top = 36.0
+margin_right = 221.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
 
-[node name="Arrow" parent="Inventory/ColorRect" instance=ExtResource( 24 )]
-position = Vector2( 4, 4 )
-cursor_offset = Vector2( -6, 0 )
-on = true
+[node name="Item9" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_top = 48.0
+margin_right = 98.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item10" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_top = 48.0
+margin_right = 221.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item11" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_top = 60.0
+margin_right = 98.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item12" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_top = 60.0
+margin_right = 221.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item13" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_top = 72.0
+margin_right = 98.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item14" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_top = 72.0
+margin_right = 221.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item15" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_top = 84.0
+margin_right = 98.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Item16" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_top = 84.0
+margin_right = 221.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 98, 12 )
+text = "Bread"
+
+[node name="Arrow" parent="Inventory" instance=ExtResource( 24 )]
+position = Vector2( 11, 11 )
+menu_parent_path = NodePath("../CenterContainer/Items/GridContainer")
+cursor_offset = Vector2( -5, 1 )
+consume_input_events = true
+skip_empty_labels = true
+skip_hidden_items = true
 move_sfx = true
 select_sfx = true
-cancel_sfx = true
+cancel_on = true
 
-[node name="Position2D" type="Position2D" parent="Inventory/ColorRect/Arrow"]
+[node name="Position2D" type="Position2D" parent="Inventory/Arrow"]
 position = Vector2( 9, 9 )
+
+[node name="ColorRect" type="ColorRect" parent="Inventory/Arrow"]
+show_behind_parent = true
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 5.0
+margin_bottom = 4.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 11 )
 
 [node name="DescriptionPanel" parent="Inventory" instance=ExtResource( 4 )]
 anchor_right = 1.0
 margin_top = 61.0
 margin_right = 1.0
 margin_bottom = 109.0
+
+[node name="Background" type="ColorRect" parent="Inventory/DescriptionPanel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = -7.0
+margin_bottom = -6.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 11 )
 
 [node name="Scrollbar" parent="Inventory/DescriptionPanel" instance=ExtResource( 6 )]
 anchor_left = 1.0
@@ -631,358 +540,40 @@ rect_pivot_offset = Vector2( -82, -3 )
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 11 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 101.0
-margin_top = 105.0
-margin_right = 277.0
-margin_bottom = 145.0
-alignment = 2
-
-[node name="Label" type="Label" parent="HBoxContainer"]
-margin_left = 5.0
-margin_top = 14.0
-margin_right = 164.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 8 )
-text = "INVENTORY_DESCRIPTION"
-
-[node name="Button" parent="HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 168.0
-margin_top = 14.0
-margin_right = 176.0
-margin_bottom = 25.0
-key = "ui_scope"
-
-[node name="PartyInfoHBox" type="HBoxContainer" parent="."]
-visible = false
+[node name="HBoxContainer" type="HBoxContainer" parent="Inventory"]
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 131.0
-margin_bottom = 180.0
-custom_constants/separation = 9
-alignment = 1
+margin_left = -9.0
+margin_top = -2.0
+margin_right = -9.0
+margin_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
 
-[node name="PartyInfoPlate" parent="PartyInfoHBox" instance=ExtResource( 13 )]
-material = SubResource( 13 )
-margin_left = 16.0
-margin_right = 81.0
-
-[node name="PartyInfoPlate2" parent="PartyInfoHBox" instance=ExtResource( 13 )]
-material = SubResource( 14 )
-margin_left = 90.0
-margin_right = 155.0
-
-[node name="PartyInfoPlate3" parent="PartyInfoHBox" instance=ExtResource( 13 )]
-material = SubResource( 15 )
-margin_left = 164.0
-margin_right = 229.0
-
-[node name="PartyInfoPlate4" parent="PartyInfoHBox" instance=ExtResource( 13 )]
-material = SubResource( 16 )
-margin_left = 238.0
-margin_right = 303.0
-
-[node name="StatsBar" type="NinePatchRect" parent="."]
-material = ExtResource( 10 )
-margin_left = 31.0
-margin_top = 132.0
-margin_right = 288.0
-margin_bottom = 180.0
-rect_pivot_offset = Vector2( -732, 257 )
-texture = ExtResource( 20 )
-patch_margin_left = 45
-patch_margin_top = 16
-patch_margin_right = 8
-patch_margin_bottom = 8
-script = ExtResource( 22 )
-
-[node name="CenterContainer" type="CenterContainer" parent="StatsBar"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 40.0
-margin_bottom = 42.0
-
-[node name="CharacterPortrait" type="TextureRect" parent="StatsBar/CenterContainer"]
-margin_left = 7.0
-margin_top = 8.0
-margin_right = 28.0
-margin_bottom = 29.0
-rect_min_size = Vector2( 21, 21 )
-texture = ExtResource( 7 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StatsNameAndDividers" type="Node2D" parent="StatsBar"]
-
-[node name="HP" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 45.0
-margin_right = 71.0
+[node name="Label" type="Label" parent="Inventory/HBoxContainer"]
+margin_right = 159.0
 margin_bottom = 11.0
-size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 8 )
-text = "MENU_HP"
-align = 2
+text = "INVENTORY_DESCRIPTION"
 
-[node name="PP" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 75.0
-margin_right = 101.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "MENU_PP"
-align = 2
+[node name="Button" parent="Inventory/HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 163.0
+margin_right = 171.0
+key = "ui_scope"
 
-[node name="OFE" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 105.0
-margin_right = 131.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "STAT_SHORT_OFFENSE"
-align = 2
-
-[node name="DEF" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 135.0
-margin_right = 161.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "STAT_SHORT_DEFENSE"
-align = 2
-
-[node name="IQ" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 165.0
-margin_right = 191.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "STAT_SHORT_IQ"
-align = 2
-
-[node name="SPD" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 195.0
-margin_right = 221.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "STAT_SHORT_SPEED"
-align = 2
-
-[node name="GUT" type="Label" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 225.0
-margin_right = 251.0
-margin_bottom = 11.0
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 8 )
-text = "STAT_SHORT_GUTS"
-align = 2
-
-[node name="Divider2" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 222.0
-margin_top = 3.0
-margin_right = 223.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider5" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 222.0
-margin_top = 16.0
-margin_right = 223.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider7" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 192.0
-margin_top = 16.0
-margin_right = 193.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider9" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 162.0
-margin_top = 16.0
-margin_right = 163.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider11" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 132.0
-margin_top = 16.0
-margin_right = 133.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider12" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 102.0
-margin_top = 16.0
-margin_right = 103.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider13" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 72.0
-margin_top = 16.0
-margin_right = 73.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.513726, 0.462745, 0.560784, 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider3" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 192.0
-margin_top = 3.0
-margin_right = 193.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider4" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 162.0
-margin_top = 3.0
-margin_right = 163.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider6" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 132.0
-margin_top = 3.0
-margin_right = 133.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Divider8" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 102.0
-margin_top = 3.0
-margin_right = 103.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-
-[node name="Divider10" type="ColorRect" parent="StatsBar/StatsNameAndDividers"]
-margin_left = 72.0
-margin_top = 3.0
-margin_right = 73.0
-margin_bottom = 11.0
-rect_min_size = Vector2( 1, 1 )
-rect_pivot_offset = Vector2( -82, -3 )
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StatsLabels" type="Control" parent="StatsBar"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="StatsBar/StatsLabels"]
-margin_left = 43.0
-margin_top = 14.0
-margin_right = 252.0
-margin_bottom = 42.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StatsBar/StatsLabels/MarginContainer"]
-margin_right = 209.0
-margin_bottom = 28.0
-custom_constants/separation = 30
-
-[node name="HPStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
+[node name="InventorySelect" parent="." instance=ExtResource( 5 )]
+anchor_right = 1.0
+margin_left = 0.0
 margin_right = 0.0
-margin_bottom = 28.0
-
-[node name="PPStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 30.0
-margin_right = 30.0
-margin_bottom = 28.0
-
-[node name="OFEStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 60.0
-margin_right = 60.0
-margin_bottom = 28.0
-
-[node name="DEFStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 90.0
-margin_right = 90.0
-margin_bottom = 28.0
-
-[node name="IQStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 120.0
-margin_right = 120.0
-margin_bottom = 28.0
-
-[node name="SPDStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 150.0
-margin_right = 150.0
-margin_bottom = 28.0
-
-[node name="GUTStats" parent="StatsBar/StatsLabels/MarginContainer/HBoxContainer" instance=ExtResource( 21 )]
-margin_left = 180.0
-margin_right = 180.0
-margin_bottom = 28.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StatsBar"]
-anims/Close = SubResource( 6 )
-anims/Open = SubResource( 7 )
-anims/RESET = SubResource( 8 )
+margin_bottom = 27.0
+noKey = false
+menuName = "MENU_TITLE_GOODS"
 
 [node name="ActionSelect" type="Control" parent="."]
+visible = false
 material = ExtResource( 10 )
 margin_left = 37.0
 margin_top = 42.0
@@ -1153,13 +744,21 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 19 )
 
-[node name="ConfirmationLabel" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect" instance=ExtResource( 3 )]
+[node name="TitleMarginContainer" type="MarginContainer" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect"]
+margin_right = 14.0
+margin_bottom = 14.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 2
+custom_constants/margin_left = 6
+
+[node name="ConfirmationLabel" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect/TitleMarginContainer" instance=ExtResource( 3 )]
 modulate = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 margin_left = 6.0
 margin_top = 2.0
-margin_right = 56.0
+margin_right = 6.0
 margin_bottom = 14.0
-text = "Q?"
+rect_min_size = Vector2( 0, 0 )
+text = ""
 
 [node name="MarginContainer" type="MarginContainer" parent="ActionSelect/TargetCharaSelect/ConfirmationSelect"]
 anchor_right = 1.0
@@ -1215,13 +814,21 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 19 )
 
-[node name="ConfirmationLabel" parent="ActionSelect/ConfirmationSelect" instance=ExtResource( 3 )]
+[node name="TitleMarginContainer" type="MarginContainer" parent="ActionSelect/ConfirmationSelect"]
+margin_right = 14.0
+margin_bottom = 14.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 2
+custom_constants/margin_left = 6
+
+[node name="ConfirmationLabel" parent="ActionSelect/ConfirmationSelect/TitleMarginContainer" instance=ExtResource( 3 )]
 modulate = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 margin_left = 6.0
 margin_top = 2.0
-margin_right = 56.0
+margin_right = 6.0
 margin_bottom = 14.0
-text = "Q?"
+rect_min_size = Vector2( 0, 0 )
+text = ""
 
 [node name="MarginContainer" type="MarginContainer" parent="ActionSelect/ConfirmationSelect"]
 anchor_right = 1.0
@@ -1300,7 +907,7 @@ margin_bottom = 47.0
 custom_constants/separation = 2
 
 [node name="CharaLabel1" parent="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 164.0
+margin_right = 0.0
 rect_min_size = Vector2( 39, 12 )
 text = "INVENTORY_ACTION_SORT_MANUAL"
 
@@ -1325,13 +932,19 @@ cancel_on = true
 
 [node name="Tween" type="Tween" parent="ActionSelect"]
 
-[node name="DialogBox" type="NinePatchRect" parent="."]
+[node name="Bottom" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 48.0
+
+[node name="DialogBox" type="NinePatchRect" parent="Bottom"]
 visible = false
 material = ExtResource( 10 )
-margin_left = 31.0
-margin_top = 180.0
-margin_right = 288.0
-margin_bottom = 228.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 48.0
+margin_bottom = 48.0
 texture = ExtResource( 2 )
 patch_margin_left = 6
 patch_margin_top = 6
@@ -1339,7 +952,7 @@ patch_margin_right = 6
 patch_margin_bottom = 7
 script = ExtResource( 23 )
 
-[node name="TextLabel" type="Label" parent="DialogBox"]
+[node name="TextLabel" type="Label" parent="Bottom/DialogBox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
@@ -1352,10 +965,338 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBox"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bottom/DialogBox"]
 anims/Close = SubResource( 9 )
 anims/Open = SubResource( 10 )
 anims/RESET = SubResource( 11 )
+
+[node name="StatsBar" type="NinePatchRect" parent="Bottom"]
+material = ExtResource( 10 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -732, 257 )
+texture = ExtResource( 20 )
+patch_margin_left = 45
+patch_margin_top = 16
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 22 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Bottom/StatsBar"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 40.0
+margin_bottom = 42.0
+
+[node name="CharacterPortrait" type="TextureRect" parent="Bottom/StatsBar/CenterContainer"]
+margin_left = 7.0
+margin_top = 8.0
+margin_right = 28.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 21, 21 )
+texture = ExtResource( 7 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsNameAndDividers" type="HBoxContainer" parent="Bottom/StatsBar"]
+anchor_right = 1.0
+margin_left = -484.0
+margin_top = -3.0
+margin_right = -6.0
+margin_bottom = 11.0
+grow_horizontal = 0
+custom_constants/separation = 1
+alignment = 2
+
+[node name="HP" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_top = 3.0
+margin_right = 56.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "MENU_HP"
+align = 2
+
+[node name="Divider1" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 57.0
+margin_top = 6.0
+margin_right = 58.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+
+[node name="PP" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 59.0
+margin_top = 3.0
+margin_right = 115.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "MENU_PP"
+align = 2
+
+[node name="Divider2" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 116.0
+margin_top = 6.0
+margin_right = 117.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+
+[node name="OFE" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 118.0
+margin_top = 3.0
+margin_right = 253.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_OFFENSE"
+align = 2
+
+[node name="Divider3" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 254.0
+margin_top = 6.0
+margin_right = 255.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DEF" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 256.0
+margin_top = 3.0
+margin_right = 391.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_DEFENSE"
+align = 2
+
+[node name="Divider4" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 392.0
+margin_top = 6.0
+margin_right = 393.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+
+[node name="SPD" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 394.0
+margin_top = 3.0
+margin_right = 515.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_SPEED"
+align = 2
+
+[node name="Divider5" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 516.0
+margin_top = 6.0
+margin_right = 517.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+
+[node name="IQ" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 518.0
+margin_top = 3.0
+margin_right = 617.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_IQ"
+align = 2
+
+[node name="Divider6" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 618.0
+margin_top = 6.0
+margin_right = 619.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 1, 8 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 8
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 11 )
+
+[node name="GUT" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 620.0
+margin_top = 3.0
+margin_right = 735.0
+margin_bottom = 14.0
+grow_horizontal = 0
+rect_min_size = Vector2( 27, 8 )
+size_flags_horizontal = 0
+size_flags_vertical = 8
+custom_fonts/font = ExtResource( 8 )
+text = "STAT_SHORT_GUTS"
+align = 2
+valign = 2
+
+[node name="StatsLabels" type="HBoxContainer" parent="Bottom/StatsBar"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -214.0
+margin_top = 14.0
+margin_right = -5.0
+margin_bottom = 42.0
+custom_constants/separation = 0
+alignment = 2
+
+[node name="HPStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_right = 29.0
+size_flags_horizontal = 3
+
+[node name="Divider1" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 29.0
+margin_top = 2.0
+margin_right = 30.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PPStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 30.0
+margin_right = 59.0
+size_flags_horizontal = 3
+
+[node name="Divider2" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 59.0
+margin_top = 2.0
+margin_right = 60.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OFEStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 60.0
+margin_right = 89.0
+size_flags_horizontal = 3
+
+[node name="Divider3" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 89.0
+margin_top = 2.0
+margin_right = 90.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DEFStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 90.0
+margin_right = 119.0
+size_flags_horizontal = 3
+
+[node name="Divider4" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 119.0
+margin_top = 2.0
+margin_right = 120.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SPDStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 120.0
+margin_right = 149.0
+size_flags_horizontal = 3
+
+[node name="Divider5" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 149.0
+margin_top = 2.0
+margin_right = 150.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IQStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 150.0
+margin_right = 179.0
+size_flags_horizontal = 3
+
+[node name="Divider6" type="ColorRect" parent="Bottom/StatsBar/StatsLabels"]
+margin_left = 179.0
+margin_top = 2.0
+margin_right = 180.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 1, 24 )
+rect_pivot_offset = Vector2( -82, -3 )
+size_flags_vertical = 4
+color = Color( 0.513726, 0.462745, 0.560784, 1 )
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUTStats" parent="Bottom/StatsBar/StatsLabels" instance=ExtResource( 21 )]
+margin_left = 180.0
+margin_right = 209.0
+size_flags_horizontal = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bottom/StatsBar"]
+anims/Close = SubResource( 6 )
+anims/Open = SubResource( 7 )
+anims/RESET = SubResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 3 )
@@ -1364,26 +1305,33 @@ anims/RESET = SubResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[connection signal="character_changed" from="Inventory/InventorySelect" to="." method="_on_InventorySelect_character_changed"]
+[connection signal="cancel" from="Inventory/Arrow" to="." method="_on_arrow_cancel"]
+[connection signal="failed_move" from="Inventory/Arrow" to="." method="_on_arrow_failed_move"]
+[connection signal="moved" from="Inventory/Arrow" to="." method="_on_arrow_moved"]
+[connection signal="selected" from="Inventory/Arrow" to="." method="_on_arrow_selected"]
+[connection signal="character_changed" from="InventorySelect" to="." method="_on_InventorySelect_character_changed"]
+[connection signal="action_selected" from="ActionSelect" to="." method="_update_party_infos"]
 [connection signal="back" from="ActionSelect" to="." method="_on_ActionSelect_back"]
+[connection signal="exit" from="ActionSelect" to="." method="_on_ActionSelect_exit"]
 [connection signal="hide_statsbar" from="ActionSelect" to="." method="_on_ActionSelect_hide_statsbar"]
 [connection signal="show_dialogbox" from="ActionSelect" to="." method="_on_ActionSelect_show_dialogbox"]
 [connection signal="show_statsbar" from="ActionSelect" to="." method="_on_ActionSelect_show_statsbar"]
-[connection signal="sortmode" from="ActionSelect" to="." method="_on_ActionSelect_sortmode"]
-[connection signal="swapmode" from="ActionSelect" to="." method="_on_ActionSelect_swapmode"]
+[connection signal="sort_mode_selected" from="ActionSelect" to="." method="_on_ActionSelect_sortmode"]
+[connection signal="swap_mode_selected" from="ActionSelect" to="." method="_on_ActionSelect_swapmode"]
 [connection signal="visibility_changed" from="ActionSelect" to="ActionSelect" method="_on_ActionSelect_visibility_changed"]
 [connection signal="selected" from="ActionSelect/arrow" to="ActionSelect" method="_on_arrow_selected"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect" to="ActionSelect" method="_on_TargetCharaSelect_back"]
 [connection signal="hide_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_TargetCharaSelect_hide_statsbar"]
-[connection signal="show_dialogbox" from="ActionSelect/TargetCharaSelect" to="." method="_on_TargetCharaSelect_show_dialogbox"]
+[connection signal="show_dialogbox" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_show_dialogbox"]
 [connection signal="show_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_show_statsbar"]
 [connection signal="resized" from="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" to="ActionSelect/TargetCharaSelect" method="_on_VBoxContainer_resized"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect/TargetCharaSelect" method="_on_ConfirmationSelect_back"]
+[connection signal="resized" from="ActionSelect/TargetCharaSelect/ConfirmationSelect/TitleMarginContainer/ConfirmationLabel" to="ActionSelect/TargetCharaSelect/ConfirmationSelect" method="_on_content_resized"]
 [connection signal="back" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_visibility_changed"]
+[connection signal="resized" from="ActionSelect/ConfirmationSelect/TitleMarginContainer/ConfirmationLabel" to="ActionSelect/ConfirmationSelect" method="_on_content_resized"]
 [connection signal="back" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_SortTypeSelect_visibility_changed"]
 [connection signal="resized" from="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" to="ActionSelect/SortTypeSelect" method="_on_VBoxContainer_resized"]
-[connection signal="back" from="DialogBox" to="." method="_on_DialogBox_back"]
-[connection signal="exit" from="DialogBox" to="." method="_on_DialogBox_exit"]
+[connection signal="back" from="Bottom/DialogBox" to="." method="_on_DialogBox_back"]

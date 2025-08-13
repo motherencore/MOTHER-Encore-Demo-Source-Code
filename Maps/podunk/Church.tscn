@@ -326,8 +326,9 @@ extents = Vector2( 16, 41 )
 [node name="Podunk Church" type="Node2D"]
 script = ExtResource( 15 )
 player_map_offset = Vector2( 103, 408 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
+is_sub_area = true
 
 [node name="PodunkChurchBackroomBottom" type="Sprite" parent="."]
 position = Vector2( -8, -400 )

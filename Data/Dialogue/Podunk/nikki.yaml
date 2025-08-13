@@ -1,0 +1,16 @@
+'0':
+  name: DIALOGUE_PODUNK_NIKKI_SPEAKER_Nikki
+  sound: Adult
+  text: DIALOGUE_PODUNK_NIKKI_0
+  options:
+    DIALOGUE_PODUNK_NIKKI_2-OPT_0: '4'
+    DIALOGUE_PODUNK_NIKKI_2-OPT_1: '3'
+    cancel: '3'
+'3':
+  name: DIALOGUE_PODUNK_NIKKI_SPEAKER_Nikki
+  sound: Adult
+  text: DIALOGUE_PODUNK_NIKKI_3
+'4':
+  name: DIALOGUE_PODUNK_NIKKI_SPEAKER_Nikki
+  sound: Adult
+  text: DIALOGUE_PODUNK_NIKKI_4

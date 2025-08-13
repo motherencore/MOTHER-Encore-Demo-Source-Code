@@ -71,8 +71,7 @@ func update():
 			node.text = str(int(charData[stat] + charData.boosts[stat]))
 
 	# Level, EXP
-	var nextLvl = charData.level + 1
-	var expNeeded = int(nextLvl * nextLvl * (nextLvl + 1) * .75)
+	var expNeeded = globaldata.get_exp_for_level(charData.level + 1)
 	label_level.text = str(int(charData.level))
 	label_exp.text = str(int(charData.exp)) + "/" + str(expNeeded)
 	
@@ -91,20 +90,11 @@ func update():
 	while MAX_STATUS_DISPLAYED > 0 and ailments_to_show.size() > MAX_STATUS_DISPLAYED:
 		ailments_to_show = ailments_to_show.slice(1, -1)
 	for node in box_ailments.get_children():
-		var ailment_id = globaldata.status_name_to_enum(node.get_name())
-		node.visible = (ailment_id in ailments_to_show)
-	var text_unconscious = _format_text_with_target("AILMENT_UNCONSCIOUS", charData)
+		var status_name = node.get_name().to_lower()
+		node.visible = StatusManager.has_status(charData, status_name) and !StatusManager.get_ailment_info(status_name).get("hidden", false)
+	var text_unconscious = TextTools.format_text_with_context("AILMENT_UNCONSCIOUS", charData)
 	label_unconscious.text = text_unconscious[0].to_upper() + text_unconscious.substr(1)
-	label_unconscious.visible = globaldata.ailments.Unconscious in ailments_to_show
-
-# To handle formatting of targets and articles in text (more particularly gender agreement)
-# Similar method in PSIMenuUI.gd
-func _format_text_with_target(text, target):
-	return tr(text).format({
-		"target": target.nickname
-		}).format(
-			globaldata.get_battler_articles(target), "{t_}"
-		)
+	label_unconscious.visible = StatusManager.is_unconscious(charData)
 
 func _on_InventorySelect_character_changed(character):
 	_character = character

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main/dandelion.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Objects/Dandelion.png" type="Texture" id=2]
@@ -6,6 +6,16 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.5, 3.5 )
+
+[sub_resource type="CanvasItemMaterial" id=2]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.719008, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="Dandelion" type="Area2D"]
 script = ExtResource( 1 )
@@ -18,12 +28,15 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 hframes = 2
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource( 2 )
 position = Vector2( 0, -1 )
 emitting = false
+amount = 16
 lifetime = 2.0
 one_shot = true
 speed_scale = 5.0
+explosiveness = 0.8
 randomness = 0.05
 lifetime_randomness = 0.1
 texture = ExtResource( 3 )
@@ -37,24 +50,8 @@ initial_velocity_random = 0.1
 damping = 3.0
 scale_amount = 0.5
 scale_amount_random = 1.0
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 0, -1 )
-emitting = false
-lifetime = 2.0
-one_shot = true
-speed_scale = 5.0
-randomness = 0.05
-lifetime_randomness = 0.1
-emission_shape = 1
-emission_sphere_radius = 2.0
-direction = Vector2( 0, -1 )
-spread = 100.0
-gravity = Vector2( 0, -5 )
-initial_velocity = 10.0
-initial_velocity_random = 0.1
-damping = 3.0
-scale_amount = 2.0
-scale_amount_random = 1.0
+color_ramp = SubResource( 3 )
+anim_offset = 1.0
+anim_offset_random = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_Dandelion_body_entered"]

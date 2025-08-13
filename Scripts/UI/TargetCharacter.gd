@@ -53,6 +53,10 @@ func _refresh_list_view():
 	arrow.on = true
 	arrow.set_cursor_from_index(0, false)
 
+	yield($MarginContainer/VBoxContainer, "draw")
+	_bg_resize()
+
+
 #used to make the box appear with the right parameters
 func show_target_chara_select(pos, char_list):
 	_char_list = char_list
@@ -82,9 +86,11 @@ func _on_select(idx):
 	active = false
 	emit_signal("next", _char_list[idx])
 
-# LOCALIZATION Code change: The box also changes size horizontally; yield makes it more reliable
 func _on_VBoxContainer_resized():
 	yield(get_tree(), "idle_frame")
+	_bg_resize()
+
+func _bg_resize():
 	$MarginContainer.set_size(Vector2(0, 0))
 	rect_size.x = $MarginContainer.rect_size.x
 	rect_size.y = $MarginContainer.rect_size.y

@@ -1,0 +1,16 @@
+'0':
+  sound: Adult
+  text: DIALOGUE_SHITPOST_DIALOGUE_PAPERCLIP_0
+  options:
+    DIALOGUE_SHITPOST_DIALOGUE_PAPERCLIP_0-OPT_0: '1'
+    DIALOGUE_SHITPOST_DIALOGUE_PAPERCLIP_0-OPT_1: '11'
+  type: question
+  font: EBZ
+'1':
+  sound: Adult
+  text: DIALOGUE_SHITPOST_DIALOGUE_PAPERCLIP_1
+  font: EBZ
+'11':
+  sound: Adult
+  text: DIALOGUE_SHITPOST_DIALOGUE_PAPERCLIP_11
+  font: EBZ

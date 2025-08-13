@@ -122,7 +122,7 @@ func switch_tab():
 	
 
 func close():
-	uiManager.dialogueBox.endDialogue()
+	uiManager.dialogueBox.next_phrase()
 	queue_free()
 
 func setup():

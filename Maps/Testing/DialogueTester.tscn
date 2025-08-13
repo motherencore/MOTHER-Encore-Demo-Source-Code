@@ -1,0 +1,752 @@
+[gd_scene load_steps=71 format=2]
+
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Maps/Testing/DialogueTester.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/UI/Teleport/teleport_bg.png" type="Texture" id=3]
+[ext_resource path="res://Nodes/Ui/Options/OptionsUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Graphics/UI/debug/close.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ana.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/UI/Inventory/characters/lloyd.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/UI/Inventory/characters/teddy.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/UI/debug/FavFoodIcon.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/UI/debug/PlayerIcon_gr.png" type="Texture" id=12]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=13]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ninten.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/UI/debug/close_hl.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/UI/Options/controls_kbd.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/UI/Options/controls_pad.png" type="Texture" id=17]
+[ext_resource path="res://Fonts/EBMain_ko.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Fonts/EBMain_fw9.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://Fonts/EBMain_jaM3.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://Fonts/EBMain.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://addons/BottomTextEditor/fonts/CascadiaCode.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ninten_gr.png" type="Texture" id=23]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ana_gr.png" type="Texture" id=24]
+[ext_resource path="res://Graphics/UI/Inventory/characters/lloyd_gr.png" type="Texture" id=25]
+[ext_resource path="res://Graphics/UI/Inventory/characters/teddy_gr.png" type="Texture" id=26]
+[ext_resource path="res://Graphics/UI/Inventory/characters/teddy_hl.png" type="Texture" id=27]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ninten_hl.png" type="Texture" id=28]
+[ext_resource path="res://Graphics/UI/Inventory/characters/ana_hl.png" type="Texture" id=29]
+[ext_resource path="res://Graphics/UI/Inventory/characters/lloyd_hl.png" type="Texture" id=30]
+[ext_resource path="res://Graphics/UI/Options/controls_kbd_hl.png" type="Texture" id=31]
+[ext_resource path="res://Graphics/UI/Options/controls_pad_hl.png" type="Texture" id=32]
+[ext_resource path="res://Graphics/UI/debug/PlayerIcon_hl.png" type="Texture" id=33]
+[ext_resource path="res://Graphics/UI/debug/PlayerIcon.png" type="Texture" id=34]
+[ext_resource path="res://Graphics/UI/debug/FavFoodIcon_gr.png" type="Texture" id=35]
+[ext_resource path="res://Graphics/UI/debug/FavFoodIcon_hl.png" type="Texture" id=36]
+[ext_resource path="res://Graphics/UI/Options/controls_kbd_gr.png" type="Texture" id=37]
+[ext_resource path="res://Graphics/UI/Options/controls_pad_gr.png" type="Texture" id=38]
+[ext_resource path="res://Graphics/UI/debug/saturn.png" type="Texture" id=39]
+[ext_resource path="res://Graphics/UI/debug/saturn_hl.png" type="Texture" id=40]
+[ext_resource path="res://Graphics/UI/debug/saturn_gr.png" type="Texture" id=41]
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.0666667, 0.219608, 0.415686, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.0901961, 0.290196, 0.545098, 1 )
+draw_center = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.101961, 0.356863, 0.623529, 1 )
+shadow_color = Color( 0, 0, 0, 0.305882 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.0666667, 0.219608, 0.415686, 1 )
+shadow_color = Color( 0, 0, 0, 0.305882 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.0235294, 0.0235294, 0.278431, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id=22]
+
+[sub_resource type="StyleBoxTexture" id=23]
+
+[sub_resource type="StyleBoxFlat" id=15]
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=14]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+expand_margin_left = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.243137, 0.243137, 0.243137, 1 )
+expand_margin_left = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=16]
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id=54]
+content_margin_left = 1.0
+content_margin_right = 1.0
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 0.647059, 0.627451, 0.509804, 0.72549 )
+
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.101961, 0.0901961, 0.352941, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=56]
+bg_color = Color( 0.152941, 0.141176, 0.458824, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=57]
+content_margin_left = 3.0
+content_margin_right = 3.0
+bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.6, 0.6, 0.6, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.0666667, 0.188235, 0.341176, 0.784314 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0235294, 0.0666667, 0.12549, 1 )
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 18.0
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="Theme" id=25]
+default_font = ExtResource( 5 )
+Button/styles/disabled = SubResource( 6 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
+LineEdit/fonts/font = ExtResource( 1 )
+LineEdit/styles/focus = SubResource( 22 )
+LineEdit/styles/normal = SubResource( 23 )
+PopupDialog/styles/panel = SubResource( 15 )
+PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/constants/hseparation = 0
+PopupMenu/constants/vseparation = 2
+PopupMenu/fonts/font = ExtResource( 1 )
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = SubResource( 14 )
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource( 13 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = SubResource( 16 )
+TooltipLabel/fonts/font = ExtResource( 1 )
+TooltipPanel/styles/panel = SubResource( 54 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/decrement_pressed = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/icons/increment_pressed = null
+VScrollBar/styles/grabber = SubResource( 55 )
+VScrollBar/styles/grabber_highlight = SubResource( 56 )
+VScrollBar/styles/grabber_pressed = SubResource( 56 )
+VScrollBar/styles/scroll = SubResource( 57 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 10
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = ExtResource( 6 )
+WindowDialog/icons/close_highlight = ExtResource( 15 )
+WindowDialog/styles/panel = SubResource( 17 )
+
+[sub_resource type="DynamicFont" id=53]
+font_data = ExtResource( 21 )
+fallback/0 = ExtResource( 19 )
+fallback/1 = ExtResource( 20 )
+fallback/2 = ExtResource( 18 )
+fallback/3 = ExtResource( 22 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+content_margin_left = 1.0
+content_margin_right = 1.0
+bg_color = Color( 0.25098, 0.25098, 0.25098, 0.678431 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 1.0
+content_margin_right = 1.0
+bg_color = Color( 0.6, 0.6, 0.6, 0.501961 )
+
+[sub_resource type="Theme" id=12]
+default_font = ExtResource( 5 )
+Button/styles/disabled = SubResource( 6 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
+LineEdit/fonts/font = ExtResource( 1 )
+LineEdit/styles/focus = SubResource( 22 )
+LineEdit/styles/normal = SubResource( 23 )
+PopupDialog/styles/panel = SubResource( 15 )
+PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/constants/hseparation = 0
+PopupMenu/constants/vseparation = 2
+PopupMenu/fonts/font = ExtResource( 1 )
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = SubResource( 14 )
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource( 13 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = SubResource( 16 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 10
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = ExtResource( 6 )
+WindowDialog/icons/close_highlight = ExtResource( 15 )
+WindowDialog/styles/panel = SubResource( 17 )
+
+[sub_resource type="StyleBoxFlat" id=46]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.658824, 0.12549, 0.12549, 1 )
+shadow_color = Color( 0.235294, 0.235294, 0.235294, 0.305882 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=47]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.278431, 0.0627451, 0.0627451, 1 )
+shadow_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=58]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.454902, 0.0745098, 0.0745098, 1 )
+
+[sub_resource type="StyleBoxFlat" id=45]
+content_margin_left = 1.0
+content_margin_top = 1.0
+bg_color = Color( 0.454902, 0.0745098, 0.0745098, 1 )
+shadow_color = Color( 0.235294, 0.235294, 0.235294, 0.305882 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=50]
+content_margin_left = 9.0
+content_margin_right = 8.0
+content_margin_top = 2.0
+bg_color = Color( 0.101961, 0.356863, 0.623529, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=44]
+content_margin_left = 9.0
+content_margin_right = 8.0
+content_margin_top = 2.0
+bg_color = Color( 0.0666667, 0.219608, 0.415686, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=51]
+content_margin_left = 9.0
+content_margin_right = 8.0
+content_margin_top = 2.0
+bg_color = Color( 0.0235294, 0.0235294, 0.278431, 1 )
+
+[sub_resource type="Theme" id=24]
+default_font = ExtResource( 5 )
+Button/styles/hover = SubResource( 50 )
+Button/styles/normal = SubResource( 44 )
+Button/styles/pressed = SubResource( 51 )
+LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
+LineEdit/fonts/font = ExtResource( 1 )
+LineEdit/styles/focus = SubResource( 22 )
+LineEdit/styles/normal = SubResource( 23 )
+PopupDialog/styles/panel = SubResource( 15 )
+PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/constants/hseparation = 0
+PopupMenu/constants/vseparation = 2
+PopupMenu/fonts/font = ExtResource( 1 )
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = SubResource( 14 )
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource( 13 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = SubResource( 16 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 10
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = ExtResource( 6 )
+WindowDialog/icons/close_highlight = ExtResource( 15 )
+WindowDialog/styles/panel = SubResource( 17 )
+
+[node name="DialogueTester" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -411, -392 )
+mouse_filter = 1
+input_pass_on_modal_close_click = false
+theme = SubResource( 25 )
+script = ExtResource( 2 )
+_all_buttons = [ NodePath("PartyPrefs/ButtonLeadLeft"), NodePath("PartyPrefs/ButtonLeadRight"), NodePath("PartyPrefs/ButtonPartyIncr"), NodePath("PartyPrefs/ButtonPartyDecr"), NodePath("PartyPrefs/Members/Leader"), NodePath("PartyPrefs/Members/Follower1"), NodePath("PartyPrefs/Members/Follower2"), NodePath("PartyPrefs/Members/Follower3"), NodePath("InputPrefs/Keyboard"), NodePath("InputPrefs/GamePad"), NodePath("Player"), NodePath("FavFood"), NodePath("Save/LoadButton"), NodePath("Save/SaveButton"), NodePath("ButtonOK"), NodePath("ButtonOptions"), NodePath("ButtonCopy"), NodePath("Saturn") ]
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 4.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 7 )
+text = "MOTHER: ENCORE dialogue tester"
+align = 1
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="."]
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 25.0
+margin_right = -4.0
+margin_bottom = 93.0
+focus_mode = 1
+input_pass_on_modal_close_click = false
+theme = SubResource( 25 )
+custom_constants/line_spacing = 3
+custom_fonts/font = SubResource( 53 )
+custom_styles/read_only = SubResource( 8 )
+custom_styles/normal = SubResource( 1 )
+text = "[@]"
+highlight_all_occurrences = true
+virtual_keyboard_enabled = false
+wrap_enabled = true
+caret_blink = true
+caret_moving_by_right_click = false
+
+[node name="ButtonOK" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -24.0
+margin_top = 99.0
+margin_right = 24.0
+margin_bottom = 112.0
+grow_horizontal = 2
+hint_tooltip = "Show dialogue"
+focus_mode = 0
+theme = SubResource( 12 )
+custom_styles/hover = SubResource( 46 )
+custom_styles/pressed = SubResource( 47 )
+custom_styles/disabled = SubResource( 58 )
+custom_styles/normal = SubResource( 45 )
+enabled_focus_mode = 0
+text = "MENU_OK"
+
+[node name="ButtonOptions" type="Button" parent="."]
+margin_left = 5.0
+margin_top = 99.0
+margin_right = 75.0
+margin_bottom = 112.0
+hint_tooltip = "Game options"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "MENU_OPTIONS"
+
+[node name="ButtonCopy" type="Button" parent="."]
+margin_left = 245.0
+margin_top = 99.0
+margin_right = 315.0
+margin_bottom = 112.0
+hint_tooltip = "Copy to clipboard"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "SAVE_COPY"
+
+[node name="PartyPrefs" type="ColorRect" parent="."]
+anchor_right = 1.0
+margin_left = 4.0
+margin_top = 122.0
+margin_right = -121.0
+margin_bottom = 145.0
+color = Color( 1, 1, 1, 0.117647 )
+
+[node name="ButtonLeadLeft" type="Button" parent="PartyPrefs"]
+margin_left = 36.0
+margin_top = 5.0
+margin_right = 49.0
+margin_bottom = 18.0
+grow_horizontal = 2
+hint_tooltip = "Change party leader"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "←"
+
+[node name="ButtonLeadRight" type="Button" parent="PartyPrefs"]
+margin_left = 52.0
+margin_top = 5.0
+margin_right = 65.0
+margin_bottom = 18.0
+grow_horizontal = 2
+hint_tooltip = "Change party leader"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "→"
+
+[node name="ButtonPartyIncr" type="Button" parent="PartyPrefs"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 17.0
+margin_bottom = 18.0
+hint_tooltip = "Add party member"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "+"
+
+[node name="ButtonPartyDecr" type="Button" parent="PartyPrefs"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 33.0
+margin_bottom = 18.0
+hint_tooltip = "Remove party member"
+focus_mode = 0
+theme = SubResource( 12 )
+enabled_focus_mode = 0
+text = "–"
+
+[node name="Members" type="HBoxContainer" parent="PartyPrefs"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -2.0
+margin_top = -1.0
+margin_right = -2.0
+margin_bottom = 22.0
+grow_horizontal = 0
+rect_min_size = Vector2( 21, 0 )
+rect_pivot_offset = Vector2( -240, -50 )
+size_flags_vertical = 0
+custom_constants/separation = 1
+alignment = 2
+
+[node name="Leader" type="TextureButton" parent="PartyPrefs/Members"]
+show_behind_parent = true
+material = ExtResource( 13 )
+margin_right = 21.0
+margin_bottom = 23.0
+grow_horizontal = 2
+rect_min_size = Vector2( 21, 23 )
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_horizontal = 6
+size_flags_vertical = 0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 23 )
+expand = true
+stretch_mode = 3
+
+[node name="Follower1" type="TextureButton" parent="PartyPrefs/Members"]
+show_behind_parent = true
+material = ExtResource( 13 )
+margin_left = 22.0
+margin_right = 43.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 21, 23 )
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_vertical = 0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 29 )
+texture_hover = ExtResource( 24 )
+expand = true
+stretch_mode = 3
+
+[node name="Follower2" type="TextureButton" parent="PartyPrefs/Members"]
+show_behind_parent = true
+material = ExtResource( 13 )
+margin_left = 44.0
+margin_right = 65.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 21, 23 )
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 25 )
+expand = true
+stretch_mode = 3
+
+[node name="Follower3" type="TextureButton" parent="PartyPrefs/Members"]
+show_behind_parent = true
+material = ExtResource( 13 )
+margin_left = 66.0
+margin_right = 87.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 21, 23 )
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 26 )
+expand = true
+stretch_mode = 3
+
+[node name="Player" type="TextureButton" parent="."]
+material = ExtResource( 13 )
+margin_left = 200.0
+margin_top = 124.0
+margin_right = 223.0
+margin_bottom = 143.0
+rect_pivot_offset = Vector2( 14, 4 )
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_horizontal = 0
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 33 )
+texture_hover = ExtResource( 12 )
+expand = true
+stretch_mode = 3
+
+[node name="FavFood" type="TextureButton" parent="."]
+material = ExtResource( 13 )
+margin_left = 223.0
+margin_top = 118.0
+margin_right = 245.0
+margin_bottom = 143.0
+hint_tooltip = "Left click to rename
+Right click to insert tag"
+size_flags_horizontal = 0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 36 )
+texture_hover = ExtResource( 35 )
+expand = true
+stretch_mode = 3
+
+[node name="InputPrefs" type="ColorRect" parent="."]
+anchor_right = 1.0
+margin_left = 247.0
+margin_top = 122.0
+margin_right = -26.0
+margin_bottom = 145.0
+color = Color( 1, 1, 1, 0.117647 )
+
+[node name="Keyboard" type="TextureButton" parent="InputPrefs"]
+material = ExtResource( 13 )
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 23.0
+margin_bottom = 22.0
+hint_tooltip = "Left click to select
+Right click to insert tag"
+size_flags_horizontal = 0
+toggle_mode = true
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 31 )
+texture_hover = ExtResource( 37 )
+expand = true
+stretch_mode = 3
+
+[node name="GamePad" type="TextureButton" parent="InputPrefs"]
+material = ExtResource( 13 )
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 45.0
+margin_bottom = 22.0
+hint_tooltip = "Left click to select
+Right click to insert tag"
+size_flags_horizontal = 0
+toggle_mode = true
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 32 )
+texture_hover = ExtResource( 38 )
+expand = true
+stretch_mode = 3
+
+[node name="Saturn" type="TextureButton" parent="."]
+material = ExtResource( 13 )
+margin_left = 297.0
+margin_top = 120.0
+margin_right = 317.0
+margin_bottom = 144.0
+hint_tooltip = "Toggle Saturn font"
+size_flags_horizontal = 0
+toggle_mode = true
+texture_normal = ExtResource( 39 )
+texture_pressed = ExtResource( 40 )
+texture_hover = ExtResource( 41 )
+expand = true
+stretch_mode = 3
+
+[node name="OptionsUI" parent="." instance=ExtResource( 4 )]
+follow_viewport_enable = true
+include_quit = false
+
+[node name="Save" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 155.0
+margin_bottom = 170.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="LoadButton" type="MenuButton" parent="Save"]
+margin_left = 65.0
+margin_right = 155.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 90, 0 )
+hint_tooltip = "Load save"
+theme = SubResource( 25 )
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = false
+shortcut_in_tooltip = false
+text = "MENU_LOAD"
+flat = false
+items = [ "#1", null, 0, false, false, 0, 0, null, "", false, "#2", null, 0, false, false, 1, 0, null, "", false ]
+
+[node name="SaveButton" type="Button" parent="Save"]
+margin_left = 165.0
+margin_right = 255.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 90, 0 )
+hint_tooltip = "Save to current slot"
+theme = SubResource( 12 )
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_SAVE"
+
+[node name="RenameDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_right = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource( 24 )
+popup_exclusive = true
+window_title = "BATTLE_MSG_SPY_NAME"
+
+[node name="LineEdit" type="LineEdit" parent="RenameDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 151.0
+margin_bottom = 20.0
+custom_constants/minimum_spaces = 0
+custom_fonts/font = ExtResource( 5 )
+align = 1
+max_length = 20
+virtual_keyboard_enabled = false
+caret_blink = true
+
+[connection signal="text_changed" from="TextEdit" to="." method="_refresh_navigation"]
+[connection signal="pressed" from="ButtonOK" to="." method="_on_action_ok"]
+[connection signal="pressed" from="ButtonOptions" to="." method="_on_action_options"]
+[connection signal="pressed" from="ButtonCopy" to="." method="_on_action_copy"]
+[connection signal="pressed" from="PartyPrefs/ButtonLeadLeft" to="." method="_on_action_switch_lead" binds= [ 1 ]]
+[connection signal="pressed" from="PartyPrefs/ButtonLeadRight" to="." method="_on_action_switch_lead" binds= [ -1 ]]
+[connection signal="pressed" from="PartyPrefs/ButtonPartyIncr" to="." method="_on_action_party_size" binds= [ 1 ]]
+[connection signal="pressed" from="PartyPrefs/ButtonPartyDecr" to="." method="_on_action_party_size" binds= [ -1 ]]
+[connection signal="gui_input" from="PartyPrefs/Members/Leader" to="." method="_on_naming_icon_interact" binds= [ "Leader", 0 ]]
+[connection signal="pressed" from="PartyPrefs/Members/Leader" to="." method="_on_naming_icon_pressed" binds= [ 0 ]]
+[connection signal="gui_input" from="PartyPrefs/Members/Follower1" to="." method="_on_naming_icon_interact" binds= [ "Follower1", 1 ]]
+[connection signal="pressed" from="PartyPrefs/Members/Follower1" to="." method="_on_naming_icon_pressed" binds= [ 1 ]]
+[connection signal="gui_input" from="PartyPrefs/Members/Follower2" to="." method="_on_naming_icon_interact" binds= [ "Follower2", 2 ]]
+[connection signal="pressed" from="PartyPrefs/Members/Follower2" to="." method="_on_naming_icon_pressed" binds= [ 2 ]]
+[connection signal="gui_input" from="PartyPrefs/Members/Follower3" to="." method="_on_naming_icon_interact" binds= [ "Follower3", 3 ]]
+[connection signal="pressed" from="PartyPrefs/Members/Follower3" to="." method="_on_naming_icon_pressed" binds= [ 3 ]]
+[connection signal="gui_input" from="Player" to="." method="_on_naming_icon_interact" binds= [ "Player", "PlayerName" ]]
+[connection signal="pressed" from="Player" to="." method="_on_naming_icon_pressed" binds= [ "playerName" ]]
+[connection signal="gui_input" from="FavFood" to="." method="_on_naming_icon_interact" binds= [ "FavFood", "FavFood" ]]
+[connection signal="pressed" from="FavFood" to="." method="_on_naming_icon_pressed" binds= [ "favoriteFood" ]]
+[connection signal="gui_input" from="InputPrefs/Keyboard" to="." method="_on_controls_icon_interact" binds= [ "Keyboard" ]]
+[connection signal="pressed" from="InputPrefs/Keyboard" to="." method="_on_controls_icon_pressed" binds= [ false ]]
+[connection signal="gui_input" from="InputPrefs/GamePad" to="." method="_on_controls_icon_interact" binds= [ "GamePad" ]]
+[connection signal="pressed" from="InputPrefs/GamePad" to="." method="_on_controls_icon_pressed" binds= [ true ]]
+[connection signal="pressed" from="Saturn" to="." method="_on_action_toggle_saturn_font"]
+[connection signal="about_to_show" from="Save/LoadButton" to="." method="_on_open_save_select"]
+[connection signal="pressed" from="Save/SaveButton" to="." method="_on_action_save"]
+[connection signal="custom_action" from="RenameDialog" to="." method="_on_popup_cancelled"]
+[connection signal="popup_hide" from="RenameDialog" to="." method="_on_rename_popup_closed"]
+[connection signal="text_changed" from="RenameDialog/LineEdit" to="." method="_on_popup_text_changed"]

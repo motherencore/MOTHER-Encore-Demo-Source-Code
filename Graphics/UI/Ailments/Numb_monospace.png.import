@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Numb_monospace.png-0a93411f8ac2dd3aa72bd57d95a1caf7.stex"
+path="res://.import/numb_monospace.png-2baf148d92094279b3fc021db7fa1528.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Numb_monospace.png"
-dest_files=[ "res://.import/Numb_monospace.png-0a93411f8ac2dd3aa72bd57d95a1caf7.stex" ]
+source_file="res://Graphics/UI/Ailments/numb_monospace.png"
+dest_files=[ "res://.import/numb_monospace.png-2baf148d92094279b3fc021db7fa1528.stex" ]
 
 [params]
 

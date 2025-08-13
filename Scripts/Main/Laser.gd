@@ -52,6 +52,10 @@ func _on_Area2D_area_entered(area):
 		if !gone:
 			$AnimatedSprite.show()
 		wait.queue_free()
+	else:
+		print(area.get_parent())
+		create_spark("Explosion")
+		disappear()
 
 func _on_Area2D2_body_entered(_body):
 	create_spark("Explosion")

@@ -1,0 +1,34 @@
+name: PIPPI_NAME
+nickname: '[Pippi]'
+description: PIPPI_DESC
+article: PIPPI_ART
+maxhp: 500
+hp: 500
+maxpp: 0
+pp: 0
+offense: 20
+defense: 30
+speed: 12
+iq: 3
+guts: 0
+level: 7
+exp: 100
+cash: 200
+skills:
+- skill: bash
+  weight: 3
+- skill: scratch
+  weight: 3
+- skill: poisonBite
+  weight: 2
+- skill: karateChop
+  weight: 3
+- skill: ventOdor
+  weight: 1
+- skill: getDistracted
+  weight: 2
+boss: true
+sprite: pippi
+music: Murky Meanie.ogg
+musicintro: ''
+bg: lockstock

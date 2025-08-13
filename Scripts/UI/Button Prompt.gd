@@ -41,7 +41,7 @@ func reset_scale():
 	scale.y = 1.0 / get_parent().scale.y
 
 func set_key_name():
-	$HBoxContainer/Label.text = globaldata.get_key_name(key)
+	$HBoxContainer/Label.text = TextTools.get_key_name(key)
 
 func show_button(ignoreConditions = false, quick = false):
 	var canShow = false
@@ -54,7 +54,7 @@ func show_button(ignoreConditions = false, quick = false):
 		reset_scale()
 		set_key_name()
 		if !quick:
-			print("show")
+			#print("show")
 			$AnimationPlayer.play("Show")
 		else:
 			show()
@@ -64,7 +64,7 @@ func hide_button(quick = false):
 	if !hidden:
 		hidden = true
 		if !quick:
-			print("hide")
+			#print("hide")
 			$AnimationPlayer.play("Hide")
 		else:
 			$AnimationPlayer.stop()

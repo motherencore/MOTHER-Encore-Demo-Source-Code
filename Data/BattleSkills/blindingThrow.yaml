@@ -1,0 +1,25 @@
+name: BLINDINGTHROW_NAME
+description: BLINDINGTHROW_DESC
+dialog: BLINDINGTHROW_DIALOG
+skillType: skill
+actionType: 2
+useCases: 1
+damageType: none
+targetType: 0
+damage: 0
+variance: 0
+priority: 0
+statusEffects:
+- chance: 100
+  name: blinded
+statusHeals: []
+critChance: 0
+failChance: 10
+ppCost: 0
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: ''
+userAnim: ''
+useSound: ''
+hitSound: ''

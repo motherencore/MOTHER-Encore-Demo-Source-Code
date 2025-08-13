@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Main/Shadow.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/Character Sprites/Water_Ripple.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=354]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 15, 5 )
+
+[sub_resource type="AtlasTexture" id=355]
+atlas = ExtResource( 3 )
+region = Rect2( 30, 0, 15, 5 )
+
+[sub_resource type="AtlasTexture" id=356]
+atlas = ExtResource( 3 )
+region = Rect2( 15, 0, 15, 5 )
+
+[sub_resource type="AtlasTexture" id=504]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 15, 5 )
+
+[sub_resource type="SpriteFrames" id=480]
+animations = [ {
+"frames": [ SubResource( 354 ), SubResource( 355 ), SubResource( 356 ) ],
+"loop": true,
+"name": "ripple",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 504 ) ],
+"loop": true,
+"name": "shadow",
+"speed": 5.0
+} ]
+
+[node name="Shadow" type="AnimatedSprite"]
+show_behind_parent = true
+frames = SubResource( 480 )
+animation = "shadow"
+playing = true
+script = ExtResource( 2 )
+start_anim = "shadow"

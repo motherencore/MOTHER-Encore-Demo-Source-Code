@@ -1,7 +1,7 @@
 extends Area2D
 
 func _ready():
-	$Sprite.texture = load("res://Graphics/VFX/AnaPKOV" + var2str(global.persistPlayer.PK_type) + ".png")
+	$Sprite.texture = load("res://Graphics/VFX/AnaOV%s.png" % global.persistPlayer.current_skill_action)
 	$RayCast2D.cast_to = global.persistPlayer.get_node("CollisionShape2D").global_position - global_position
 	
 	yield ($Timer,"timeout")

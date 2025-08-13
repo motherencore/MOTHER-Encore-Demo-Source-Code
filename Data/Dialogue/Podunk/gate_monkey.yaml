@@ -1,0 +1,87 @@
+'0':
+  actors:
+    player: leader
+    monkey: Objects/NPCS/npc23
+  name: DIALOGUE_PODUNK_GATE_MONKEY_SPEAKER_Monkey
+  sound: Strange
+  text: DIALOGUE_PODUNK_GATE_MONKEY_0
+  if:
+    hasitem: KeyZoo
+    goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_GATE_MONKEY_SPEAKER_Monkey
+  text: DIALOGUE_PODUNK_GATE_MONKEY_1
+  actorsjump:
+    monkey:
+      height: 8
+  goto: '2'
+'2':
+  showbox: false
+  emoteactors:
+    player: question
+  actorsturn:
+    player:
+      x: 0
+      y: 1
+      speed: 0.07
+  movecam:
+    y: -760
+    length: 0.8
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '3'
+'3':
+  movecam:
+    y: -808
+    length: 1.2
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  actorsjump:
+    monkey:
+      height: 8
+      times: 2
+  actorsturn:
+    monkey:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  emoteactors:
+    player: surprise
+  actorsjump:
+    monkey:
+      height: 10
+      length: 0.3
+      times: 5
+  actorsmove:
+    monkey:
+      movement:
+      - x: 100
+        y: -100
+      speed: 96
+      type: step
+  actorsturn:
+    player:
+      speed: 0.1
+      actor: monkey
+  objectfunction:
+    BelowPlayer2/Zoo Opened Flag/Zoo Gate: queue_free
+  wait: 1.8
+  autoadvance: true
+  caninput: false
+  goto: '6'
+'6':
+  text: DIALOGUE_PODUNK_GATE_MONKEY_6
+  removeitem: KeyZoo
+  setflags: zoo_key_stolen
+  eraseactors:
+    monkey: true

@@ -1,0 +1,10 @@
+name: TELEPATHY_NAME
+description: TELEPATHY_DESC
+article: TELEPATHY_ART
+skillType: psi
+useCases: -1
+psiCategory: Assist
+targetType: 5
+ppCost: 0
+useSound: ''
+hitSound: ''

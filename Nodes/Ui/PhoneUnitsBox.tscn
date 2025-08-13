@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/UI/CashBox.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Objects/Items/PhoneCard.png" type="Texture" id=4]
+[ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=5]
+[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 2.2974, 1 ),
+"update": 0,
+"values": [ 6.0, -27.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.287175, 1 ),
+"update": 0,
+"values": [ -27.0, 6.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Box:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -27.0 ]
+}
+
+[sub_resource type="StyleBoxTexture" id=6]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 1.0
+content_margin_bottom = 0.0
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 4.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxTexture" id=5]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 24, 24 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 8.0
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+expand_margin_top = 1.0
+
+[node name="PhoneUnitsBox" type="CanvasLayer"]
+script = ExtResource( 1 )
+_source_value = "phone_units"
+_container = NodePath("Box")
+_anim_player = NodePath("AnimationPlayer")
+_amount_label = NodePath("Box/HBoxContainer/BoxInside/Amount")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 1 )
+anims/Open = SubResource( 4 )
+anims/RESET = SubResource( 3 )
+
+[node name="Box" type="PanelContainer" parent="."]
+material = ExtResource( 5 )
+margin_left = 276.0
+margin_top = -27.0
+margin_right = 308.0
+margin_bottom = -2.0
+grow_horizontal = 0
+rect_pivot_offset = Vector2( 0, -14 )
+size_flags_horizontal = 8
+custom_styles/panel = SubResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Box"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 25.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Box/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 16, 22 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="BoxInside" type="PanelContainer" parent="Box/HBoxContainer"]
+material = ExtResource( 5 )
+margin_left = 22.0
+margin_right = 32.0
+margin_bottom = 24.0
+grow_horizontal = 0
+rect_min_size = Vector2( 10, 24 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 5 )
+
+[node name="Amount" type="Label" parent="Box/HBoxContainer/BoxInside"]
+margin_top = 6.0
+margin_right = 10.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "9"
+align = 1
+valign = 1

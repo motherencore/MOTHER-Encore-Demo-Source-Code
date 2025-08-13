@@ -2,11 +2,11 @@ extends Sprite
 
 signal sprite_changed
 
-export (String,FILE,"*.json") var json
+export (String,FILE,"*.yaml") var yaml
 export (String,FILE) var sprite
 export var autoOffset = true
 
-var JsonFile = null
+var _json_data = null
 var dir = 0
 var defaultOffset = Vector2.ZERO
 var direction = Vector2.ZERO
@@ -28,25 +28,25 @@ func _ready():
 	animationTree = animTree
 	
 	#debug stuff
-	if json != "":
-		JsonFile = globaldata.get_json_file(json)
-		create_animations()
+	if yaml != "":
+		_json_data = globaldata.get_json_data(yaml)
+		_create_animations()
 		set_spritesheet()
 		set_time_scale(5)
-		animationState.travel("Talk")
+		#animationState.travel("Talk")
 	
 	
 
-#sets the json file to be used for animation
+#sets the yaml file to be used for animation
 #connections sets what type of switch mode will be set between animation states
 #each index is for one type of connection
 #inside of each index, the first index is the origin of the connection, the second index is the target of the connection, and the third index is the switch mode as an integer number
 #for the switch modes, 0 is for an immediate switch mode, 1 is for a sync switch mode and 2 is for a switch mode at end
 #for example, [["Talk", "Idle", 2]] will add a connection from "Talk" to "Idle" with a SWITCH_MODE_AT_END switch mode
 func set_animation(path, connections = []):
-	json = path
-	JsonFile = globaldata.get_json_file(json)
-	create_animations(connections)
+	yaml = path
+	_json_data = globaldata.get_json_data(yaml)
+	_create_animations(connections)
 
 #manually set sprite offset
 func set_sprite_offset(sprite_offset):
@@ -56,42 +56,42 @@ func set_sprite(path):
 	sprite = path
 
 
-func create_animations(connections = []):
+func _create_animations(connections = []):
 	var singleTags = []
-	hframes = JsonFile["size"][0]
-	vframes = JsonFile["size"][1]
+	hframes = _json_data["size"][0]
+	vframes = _json_data["size"][1]
 	
-	for i in JsonFile["animations"]:
-		if JsonFile["animations"][i]["directions"].size() == 1:
+	for i in _json_data["animations"]:
+		if _json_data["animations"][i]["directions"].size() == 1:
 			singleTags.append(i)
-		dir = JsonFile["animations"][i]["directions"].size()
+		dir = _json_data["animations"][i]["directions"].size()
 		
 		var directionalAnims = []
-		for j in JsonFile["animations"][i]["directions"].size():
+		for j in _json_data["animations"][i]["directions"].size():
 			
 			var anim := Animation.new()
 			var frame_track_id: int = anim.add_track(Animation.TYPE_VALUE)
 			anim.track_set_path(frame_track_id, sprite_frame_path)
 			
-			if JsonFile["animations"][i]["type"] == 0:
+			if _json_data["animations"][i]["type"] == 0:
 				anim.loop = true
 			else:
 				anim.loop = false
 				
-			var frameCount = JsonFile["animations"][i]["directions"][0].size()
+			var frameCount = _json_data["animations"][i]["directions"][0].size()
 			
-			var animationLength = JsonFile["animations"][i]["directions"][j][0]
+			var animationLength = _json_data["animations"][i]["directions"][j][0]
 			
 			for frame_index in frameCount - 1:
-				anim.track_insert_key(frame_track_id, animationLength, JsonFile["animations"][i]["directions"][j][frame_index + 1][0]-1)
-				animationLength = animationLength + JsonFile["animations"][i]["directions"][j][frame_index + 1][1]
+				anim.track_insert_key(frame_track_id, animationLength, _json_data["animations"][i]["directions"][j][frame_index + 1][0]-1)
+				animationLength = animationLength + _json_data["animations"][i]["directions"][j][frame_index + 1][1]
 			
 			anim.length = animationLength
 			anim.value_track_set_update_mode(frame_track_id,Animation.UPDATE_DISCRETE)
 			
 			var dirTitle = ""
 			var vector = Vector2.ZERO
-			if JsonFile["animations"][i]["directions"].size() > 1:
+			if _json_data["animations"][i]["directions"].size() > 1:
 				match j:
 					0:
 						dirTitle = " Down"
@@ -122,7 +122,7 @@ func create_animations(connections = []):
 				
 			animationPlayer.add_animation(i + dirTitle, anim)
 		directionalTags.append([i, directionalAnims])
-	create_tree(directionalTags, singleTags, connections)
+	_create_tree(directionalTags, singleTags, connections)
 
 #sets the sprite texture
 func set_spritesheet():
@@ -132,7 +132,7 @@ func set_spritesheet():
 			if texture != null:
 				if autoOffset:
 					offset.y = -int(texture.get_height()/float(vframes*2))
-				offset += Vector2(JsonFile["offset"][0], JsonFile["offset"][1])
+				offset += Vector2(_json_data["offset"][0], _json_data["offset"][1])
 				defaultOffset = offset
 			show()
 		else:
@@ -140,7 +140,7 @@ func set_spritesheet():
 	emit_signal("sprite_changed")
 
 #creates the animation tree
-func create_tree(tags:Array, singleTags:Array, connections = []):
+func _create_tree(tags:Array, singleTags:Array, connections = []):
 	var animState = AnimationNodeStateMachine.new()
 	animationTree.set_animation_player("../AnimationPlayer")
 	animationTree.tree_root = animState
@@ -202,6 +202,13 @@ func create_tree(tags:Array, singleTags:Array, connections = []):
 	
 	allTags.append_array(tagNodes)
 	
+	#Create an Idle node if there isn't one
+	if animState.get_start_node() == "":
+		var blendnode = AnimationNodeAnimation.new()
+		animState.add_node("Idle", blendnode)
+		
+		animState.set_start_node("Idle")
+	
 	
 	for anim in connections:
 		var trans = AnimationNodeStateMachineTransition.new()
@@ -213,7 +220,8 @@ func create_tree(tags:Array, singleTags:Array, connections = []):
 			2:
 				trans.switch_mode = AnimationNodeStateMachineTransition.SWITCH_MODE_AT_END
 		
-		animationTree.tree_root.add_transition(anim[0],anim[1],trans)
+		if animationTree.tree_root.has_node(anim[0]) and animationTree.tree_root.has_node(anim[1]):
+			animationTree.tree_root.add_transition(anim[0],anim[1],trans)
 	
 	for i in allTags:
 		for j in allTags:
@@ -226,23 +234,13 @@ func create_tree(tags:Array, singleTags:Array, connections = []):
 	animationTree.active = true
 	animationState = animationTree.get("parameters/playback")
 	
-	if animState.get_start_node() == "":
-		animState.set_start_node(allTags[0])
-		var packed = PackedScene.new()
-	
-		for i in self.get_children():
-			i.owner = self
-		packed.pack(self)
-
-		#ResourceSaver.save("res://FUCK.tscn",packed)
-	
-#animationTree.set("parameters/Idle/blend_position", vector2)
 
 
 
 #travel to an animation state
 func travel(state):
-	animationState.travel(state)
+	if animationTree.tree_root.has_node(state):
+		animationState.travel(state)
 
 #sets the direction for all animation states with multiple directions
 func blend_position(vector):

@@ -1,0 +1,13 @@
+healing:
+  persistent: true
+  passive_heal: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_BLINDED
+  effect: BATTLE_MSG_STATUS_BLINDED_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_BLINDED
+  heal_overworld: ACTION_RESULT_HEAL_BLINDED
+  heal_overworld_fail: ACTION_RESULT_HEAL_BLINDED_FAIL
+status_bubble: blinded
+effects_by_char:
+  any:
+    fail_additionner: 60

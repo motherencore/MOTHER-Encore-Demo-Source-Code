@@ -15,7 +15,7 @@ def parseDialogue(languages):
 			segment = reLine.group(1)
 		elif reLine := re.match(r'^([\w\.]+)-(O|T\d{0,2}): (.*)$', line):
 			lineId = reLine.group(1)
-			lineId = f"{segment} > {lineId}"
+			lineId = f"{segment}_{lineId}"
 			langSymbol = reLine.group(2)
 			lineContent = reLine.group(3)
 			if langSymbol == "O":
@@ -24,20 +24,37 @@ def parseDialogue(languages):
 				langIdx = int(langSymbol[1:]) if langSymbol[1:] else 1
 				translatedLines[languages[langIdx]][lineId] = lineContent
 
+	counter = 0
 	for line in repeatsDict:
-		if len(repeatsDict[line]) > 1:
-			for repeatedLineId in repeatsDict[line][1:]:
-				firstRepeatedLineId = repeatsDict[line][0]
+		if len(repeatsDict[line]) > 1: # This is a repeat
+			if len(languages[1:]) > 0:
 				for lang in languages[1:]:
-					if translatedLines[lang][repeatedLineId] != translatedLines[lang][firstRepeatedLineId]:
-						print(f"WRONG REPEATED LINE IN LANGUAGE “{lang}”!")
+					wrongRepeats = []
+					for repeatedLineId in repeatsDict[line][1:]:
+						firstRepeatedLineId = repeatsDict[line][0]
+						if translatedLines[lang][repeatedLineId] != translatedLines[lang][firstRepeatedLineId]\
+						and translatedLines[lang][repeatedLineId] != ""\
+						and translatedLines[lang][firstRepeatedLineId] != "":
+							if not wrongRepeats:
+								wrongRepeats.append(firstRepeatedLineId)
+							wrongRepeats.append(repeatedLineId)
+					if wrongRepeats:
+						counter += 1
+						print(f"POTENTIAL WRONG REPEAT IN LANGUAGE “{lang}”!")
 						print(f"“{line}”")
-						print(f"{repeatedLineId}: {translatedLines[lang][repeatedLineId]}")
-						print(f"{firstRepeatedLineId}: {translatedLines[lang][firstRepeatedLineId]}")
+						for lineId in wrongRepeats:
+							print(f"{lineId}: {translatedLines[lang][lineId]}")
 						print()
+			else: # Single-language mode
+				print(f"Repeated in {", ".join(repeatsDict[line])}:")
+				print(line)
+				print()
+				counter += 1
 
-if len(sys.argv) < 3:
-    print("Syntax: check_repeats source_language target_language_1 [target_language 2] [...]")
+	print(f"{counter} groups in total")
+
+if len(sys.argv) < 2:
+    print("Syntax: check_repeats source_language target_language_1 [target_language_2] [...]")
     exit()
 
 parseDialogue(sys.argv[1:])

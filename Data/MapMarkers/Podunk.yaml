@@ -1,0 +1,76 @@
+- position:
+    x: -6
+    y: -176
+  type: label
+  value: MAP_PODUNK_ZOO
+- position:
+    x: -51
+    y: -152
+  type: icon
+  value: phone
+- position:
+    x: 111
+    y: -213
+  type: icon
+  value: phone
+- position:
+    x: 155
+    y: -206
+  type: icon
+  value: arrow_side
+- position:
+    x: -131
+    y: -88
+  type: label
+  value: MAP_PODUNK_CANARY
+- position:
+    x: -60
+    y: -109
+  type: icon
+  value: home
+- position:
+    x: -34
+    y: 13
+  type: label
+  value: MAP_PODUNK_PODUNK
+- position:
+    x: 91
+    y: -19
+  type: icon
+  value: arrow_side
+- position:
+    x: -23
+    y: -9
+  type: icon
+  value: hotel
+- position:
+    x: -33
+    y: 10
+  type: icon
+  value: atm
+- position:
+    x: -67
+    y: 11
+  type: icon
+  value: burger
+- position:
+    x: -63
+    y: 31
+  type: icon
+  value: hospital
+- flip_v: true
+  position:
+    x: -68
+    y: 53
+  type: icon
+  value: phone
+- position:
+    x: -10
+    y: 189
+  type: label
+  value: MAP_PODUNK_CEMETERY
+- position:
+    x: -52
+    y: 177
+  type: icon
+  value: phone

@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://Graphics/UI/Battle/bashIcon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/BattleSystem.gd" type="Script" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://Graphics/UI/Battle/itemIcon.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/UI/Battle/placeholderIcon.png" type="Texture" id=9]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=10]
-[ext_resource path="res://Scripts/Main/UI/ActualDialogueBox.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/Battle/BattleDialogueBox.gd" type="Script" id=11]
 [ext_resource path="res://Graphics/Battle Effects/PSI_Lifeup_Bubble_Lvl_1.png" type="Texture" id=15]
 [ext_resource path="res://Graphics/UI/Battle/pointer.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/Battle Effects/PSI_Lifeup_Bubble_Lvl_2.png" type="Texture" id=17]
@@ -50,7 +50,7 @@
 [ext_resource path="res://Graphics/Battle Effects/PSI_Healing_Bubble_Lvl_2.png" type="Texture" id=69]
 [ext_resource path="res://Audio/Sound effects/M3/Healing_b.wav" type="AudioStream" id=70]
 [ext_resource path="res://Graphics/Battle Effects/Offense_Up_Hit_Effect.png" type="Texture" id=71]
-[ext_resource path="res://Nodes/Ui/Battle/BattleCutscene.tscn" type="PackedScene" id=72]
+[ext_resource path="res://Nodes/Ui/Description.tscn" type="PackedScene" id=72]
 [ext_resource path="res://Graphics/Battle Effects/Defense_Up_Hit_Effect.png" type="Texture" id=73]
 [ext_resource path="res://Graphics/Battle Effects/Speed_Up_Hit_Effect.png" type="Texture" id=74]
 [ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=75]
@@ -945,7 +945,7 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 1.0 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1038,7 +1038,7 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 1.0 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1179,7 +1179,7 @@ tracks/10/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1308,7 +1308,7 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 tracks/10/type = "method"
@@ -1322,7 +1322,7 @@ tracks/10/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1463,7 +1463,7 @@ tracks/10/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1592,7 +1592,7 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1733,7 +1733,7 @@ tracks/10/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1862,7 +1862,7 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.3, 0.0, 0.8 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -1966,7 +1966,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -2070,7 +2070,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -2174,7 +2174,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -2278,7 +2278,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -2382,7 +2382,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -2486,7 +2486,7 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ 0, 0.5, 0.0, 0.4 ],
-"method": "start_joy_vibration"
+"method": "_start_joy_vibration"
 } ]
 }
 
@@ -3068,45 +3068,6 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=15]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("ActionMenuBox/ActionIcons:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 9, -18 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("InfoBox1:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 194, -27 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("ActionMenuBox/ActionIcons/BashIcon:margin_top")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -18.0 ]
-}
-
 [sub_resource type="Animation" id=11]
 resource_name = "transitionIn"
 length = 1.9
@@ -3147,136 +3108,31 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 0, 180 ), Vector2( 0, 112 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("InfoBox1:rect_position")
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.3, 1.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 194, -27 ), Vector2( 194, -27 ), Vector2( 194, 0 ) ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.15, 1.25, 1.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.15, 1.2, 1.25, 1.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "enemy_to_position"
+"method": "_enemy_to_position"
 }, {
 "args": [  ],
-"method": "jump_to_partyinfo"
+"method": "_jump_to_battle"
+}, {
+"args": [ true ],
+"method": "_show_action_menu"
 }, {
 "args": [  ],
-"method": "show_enemy_sprites"
+"method": "_show_enemy_sprites"
 }, {
 "args": [  ],
-"method": "remove_enemy_transitions"
+"method": "_remove_enemy_transitions"
 } ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("ActionMenuBox/Arrow:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 1.2, 1.35 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 17, -10 ), Vector2( 17, -10 ), Vector2( 17, 8 ) ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("ActionMenuBox/ActionIcons:rect_position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 1.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Vector2( 9, -18 ), Vector2( 9, 0 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("ActionMenuBox/ActionIcons/BashIcon:margin_top")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 1.2, 1.35 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("ActionMenuBox/ActionIcons/SkillsIcon:margin_top")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 1.3, 1.45 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("ActionMenuBox/ActionIcons/PSIIcon:margin_top")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 1.4, 1.55 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("ActionMenuBox/ActionIcons/ItemsIcon:margin_top")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0, 1.5, 1.65 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("ActionMenuBox/ActionIcons/DefendIcon:margin_top")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
-"times": PoolRealArray( 0, 1.6, 1.75 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
-}
-tracks/12/type = "value"
-tracks/12/path = NodePath("ActionMenuBox/ActionIcons/RunIcon:margin_top")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
-"times": PoolRealArray( 0, 1.7, 1.85 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -18.0, -18.0, 0 ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -3318,19 +3174,19 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "turn_party_to_overworld"
+"method": "_turn_party_to_overworld"
 }, {
 "args": [  ],
-"method": "hide_battle_BG"
+"method": "_hide_battle_BG"
 }, {
 "args": [  ],
-"method": "hide_enemies"
+"method": "_hide_enemies"
 }, {
 "args": [  ],
-"method": "jump_to_overworld"
+"method": "_jump_to_overworld"
 }, {
 "args": [  ],
-"method": "rotate_party_to_original_direction"
+"method": "_rotate_party_to_original_direction"
 } ]
 }
 tracks/3/type = "value"
@@ -3344,6 +3200,158 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 112 ), Vector2( 0, 112 ), Vector2( 0, 180 ) ]
+}
+
+[sub_resource type="Animation" id=72]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ActionMenuBox/ActionIcons:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 9, -18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ActionMenuBox/ActionIcons/BashIcon:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -18.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TargetNameBox:rect_position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -27.0 ]
+}
+
+[sub_resource type="Animation" id=73]
+resource_name = "transitionIn"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ActionMenuBox/Arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 17, -10 ), Vector2( 17, 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ActionMenuBox/ActionIcons:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 9, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ActionMenuBox/ActionIcons/BashIcon:margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -18.0, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ActionMenuBox/ActionIcons/SkillsIcon:margin_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, -18.0, 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ActionMenuBox/ActionIcons/PSIIcon:margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, -18.0, 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ActionMenuBox/ActionIcons/ItemsIcon:margin_top")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, -18.0, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ActionMenuBox/ActionIcons/DefendIcon:margin_top")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4, 0.55 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, -18.0, 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("ActionMenuBox/ActionIcons/RunIcon:margin_top")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, -18.0, 0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("TargetNameBox:rect_position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -27.0, -27.0, 0.0 ]
 }
 
 [node name="Battle" type="CanvasLayer"]
@@ -3363,14 +3371,6 @@ anims/undarken = SubResource( 22 )
 
 [node name="Enemies" type="YSort" parent="."]
 
-[node name="Enemie" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -33.0
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="EnemyTransitions" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -3380,21 +3380,22 @@ __meta__ = {
 
 [node name="top" type="ColorRect" parent="."]
 margin_left = -64.0
-margin_top = -162.0
+margin_top = -180.0
 margin_right = 384.0
-margin_bottom = 18.0
 rect_min_size = Vector2( 0, 180 )
 rect_pivot_offset = Vector2( 224, 180 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="bottom" type="ColorRect" parent="."]
 margin_left = -64.0
-margin_top = 148.0
+margin_top = 180.0
 margin_right = 384.0
-margin_bottom = 328.0
+margin_bottom = 360.0
 grow_vertical = 2
 rect_pivot_offset = Vector2( 224, 0 )
 color = Color( 0, 0, 0, 1 )
+
+[node name="NPCs" type="YSort" parent="."]
 
 [node name="PlayerTransitions" type="Control" parent="."]
 anchor_right = 1.0
@@ -3411,16 +3412,16 @@ __meta__ = {
 }
 
 [node name="PartyInfo" type="Control" parent="."]
-margin_top = 112.0
+margin_top = 180.0
 margin_right = 320.0
-margin_bottom = 180.0
+margin_bottom = 248.0
 
 [node name="TargetsBox" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 21 )
-nameBox = NodePath("../InfoBox1")
+nameBox = NodePath("../TargetNameBox")
 bgDarkinator = NodePath("../BGDarkinator/AnimationPlayer")
 
 [node name="TargetPointer" type="Control" parent="TargetsBox"]
@@ -3444,7 +3445,7 @@ anims/point = SubResource( 13 )
 wait_time = 0.05
 one_shot = true
 
-[node name="InfoBox1" type="NinePatchRect" parent="."]
+[node name="TargetNameBox" type="NinePatchRect" parent="."]
 material = ExtResource( 30 )
 margin_left = 194.0
 margin_top = -27.0
@@ -3455,13 +3456,12 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Label" type="Label" parent="InfoBox1"]
+[node name="Label" type="Label" parent="TargetNameBox"]
 margin_left = 6.0
 margin_top = 7.0
 margin_right = 120.0
 margin_bottom = 21.0
 custom_fonts/font = ExtResource( 25 )
-text = "BATTLE_ACTION_BASH"
 align = 1
 valign = 1
 __meta__ = {
@@ -3478,10 +3478,10 @@ script = ExtResource( 19 )
 __meta__ = {
 "_editor_description_": ""
 }
-nameBox = NodePath("../InfoBox1")
+nameBox = NodePath("../TargetNameBox")
 
 [node name="Arrow" parent="ActionMenuBox" instance=ExtResource( 5 )]
-position = Vector2( 17, 8 )
+position = Vector2( 17, -10 )
 frames = null
 menu_parent_path = NodePath("../ActionIcons")
 cursor_offset = Vector2( 12, 2 )
@@ -3562,7 +3562,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 22 )
-info_box = NodePath("../InfoBox3")
+info_box = NodePath("../InfoBox")
 
 [node name="VBox" type="VBoxContainer" parent="PSIBox"]
 anchor_right = 1.0
@@ -3631,7 +3631,7 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 4 )
-infoBox = NodePath("../InfoBox3")
+infoBox = NodePath("../InfoBox")
 
 [node name="GridContainer" type="GridContainer" parent="SkillsBox"]
 anchor_right = 1.0
@@ -3741,12 +3741,10 @@ anims/RESET = SubResource( 68 )
 [node name="ItemsBox" type="NinePatchRect" parent="."]
 visible = false
 material = ExtResource( 30 )
-anchor_right = 1.0
-anchor_bottom = 1.0
 margin_left = 32.0
 margin_top = 9.0
-margin_right = -32.0
-margin_bottom = -75.0
+margin_right = 288.0
+margin_bottom = 105.0
 rect_pivot_offset = Vector2( 52, 24 )
 texture = ExtResource( 3 )
 patch_margin_left = 8
@@ -3757,7 +3755,7 @@ script = ExtResource( 23 )
 __meta__ = {
 "_edit_lock_": true
 }
-infoBox = NodePath("../InfoBox3")
+infoBox = NodePath("../InfoBox")
 
 [node name="GridContainer" type="GridContainer" parent="ItemsBox"]
 anchor_right = 1.0
@@ -3766,7 +3764,6 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = -20.0
 margin_bottom = -10.0
-rect_clip_content = true
 custom_constants/hseparation = 12
 columns = 2
 __meta__ = {
@@ -3845,12 +3842,22 @@ rect_min_size = Vector2( 100, 12 )
 text = "123456789abcdef"
 
 [node name="Arrow" parent="ItemsBox" instance=ExtResource( 5 )]
-position = Vector2( 16, 15 )
+position = Vector2( 15, 10 )
 menu_parent_path = NodePath("../GridContainer")
+cursor_offset = Vector2( -5, 1 )
 consume_input_events = true
 skip_empty_labels = true
 move_sfx = true
 select_sfx = true
+
+[node name="ColorRect" type="ColorRect" parent="ItemsBox/Arrow"]
+show_behind_parent = true
+margin_left = -5.0
+margin_top = -3.0
+margin_right = 5.0
+margin_bottom = 5.0
+color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
+script = ExtResource( 29 )
 
 [node name="Scrollbar" parent="ItemsBox" instance=ExtResource( 75 )]
 margin_left = 240.0
@@ -3865,50 +3872,7 @@ anims/Close = SubResource( 69 )
 anims/Open = SubResource( 70 )
 anims/RESET = SubResource( 71 )
 
-[node name="InfoBox2" type="NinePatchRect" parent="."]
-visible = false
-material = ExtResource( 30 )
-margin_left = 40.0
-margin_top = 132.0
-margin_right = 280.0
-margin_bottom = 180.0
-texture = ExtResource( 3 )
-patch_margin_left = 8
-patch_margin_top = 8
-patch_margin_right = 8
-patch_margin_bottom = 8
-script = ExtResource( 77 )
-desc_label = NodePath("MarginContainer/Label")
-tween = NodePath("Tween")
-
-[node name="MarginContainer" type="MarginContainer" parent="InfoBox2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 12.0
-margin_top = 8.0
-margin_right = -12.0
-margin_bottom = -9.0
-size_flags_vertical = 4
-custom_constants/margin_top = 2
-
-[node name="Label" type="RichTextLabel" parent="InfoBox2/MarginContainer"]
-margin_top = 9.0
-margin_right = 216.0
-margin_bottom = 24.0
-grow_vertical = 2
-rect_clip_content = false
-size_flags_vertical = 4
-custom_constants/line_separation = 3
-custom_fonts/normal_font = ExtResource( 25 )
-bbcode_enabled = true
-bbcode_text = "Your Mother"
-text = "Your Mother"
-fit_content_height = true
-scroll_active = false
-
-[node name="Tween" type="Tween" parent="InfoBox2"]
-
-[node name="InfoBox3" type="NinePatchRect" parent="."]
+[node name="InfoBox" type="NinePatchRect" parent="."]
 visible = false
 material = ExtResource( 30 )
 margin_left = 32.0
@@ -3921,36 +3885,16 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 script = ExtResource( 77 )
-desc_label = NodePath("MarginContainer/Label")
+desc_label = NodePath("Description")
 tween = NodePath("Tween")
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoBox3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 12.0
-margin_top = 8.0
-margin_right = -12.0
-margin_bottom = -9.0
-size_flags_vertical = 4
-custom_constants/margin_top = 2
+[node name="Description" parent="InfoBox" instance=ExtResource( 72 )]
+margin_left = -1.0
+margin_top = 3.0
+margin_right = 257.0
+margin_bottom = 43.0
 
-[node name="Label" type="RichTextLabel" parent="InfoBox3/MarginContainer"]
-margin_top = 2.0
-margin_right = 232.0
-margin_bottom = 32.0
-grow_vertical = 2
-size_flags_vertical = 4
-custom_constants/line_separation = 3
-custom_fonts/normal_font = ExtResource( 25 )
-bbcode_enabled = true
-bbcode_text = "Your
-Mother"
-text = "Your
-Mother"
-fit_content_height = true
-scroll_active = false
-
-[node name="PPCost" type="PanelContainer" parent="InfoBox3"]
+[node name="PPCost" type="PanelContainer" parent="InfoBox"]
 material = ExtResource( 30 )
 margin_left = 209.0
 margin_top = -10.0
@@ -3959,7 +3903,7 @@ margin_bottom = 8.0
 grow_horizontal = 0
 custom_styles/panel = SubResource( 62 )
 
-[node name="MarginContainer" type="MarginContainer" parent="InfoBox3/PPCost"]
+[node name="MarginContainer" type="MarginContainer" parent="InfoBox/PPCost"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 35.0
@@ -3969,7 +3913,7 @@ size_flags_horizontal = 4
 custom_constants/margin_top = -2
 custom_constants/margin_left = 1
 
-[node name="ButtonText" parent="InfoBox3/PPCost/MarginContainer" instance=ExtResource( 76 )]
+[node name="ButtonText" parent="InfoBox/PPCost/MarginContainer" instance=ExtResource( 76 )]
 modulate = Color( 1, 1, 1, 1 )
 margin_left = 1.0
 margin_top = -2.0
@@ -3984,7 +3928,7 @@ align = 1
 key = "ui_scope"
 hintColor = false
 
-[node name="Tween" type="Tween" parent="InfoBox3"]
+[node name="Tween" type="Tween" parent="InfoBox"]
 
 [node name="Dialoguebox" type="NinePatchRect" parent="."]
 visible = false
@@ -4001,6 +3945,7 @@ patch_margin_bottom = 8
 script = ExtResource( 11 )
 
 [node name="Arrow" parent="Dialoguebox" instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 116, 44 )
 
 [node name="Cursor_Down" parent="Dialoguebox" instance=ExtResource( 5 )]
@@ -4020,24 +3965,26 @@ __meta__ = {
 [node name="ClipBox" type="Control" parent="Dialoguebox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 9.0
+margin_left = 5.0
 margin_top = 5.0
-margin_right = -9.0
+margin_right = -5.0
 margin_bottom = -6.0
 rect_clip_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialoguebox/ClipBox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 4.0
 margin_top = -12.0
+margin_right = -4.0
 margin_bottom = -1.0
 custom_constants/separation = 0
 
 [node name="DippinDots" type="RichTextLabel" parent="Dialoguebox/ClipBox/HBoxContainer"]
 visible = false
-margin_right = 10.0
+margin_right = 9.0
 margin_bottom = 45.0
-rect_min_size = Vector2( 10, 45 )
+rect_min_size = Vector2( 9, 45 )
 custom_constants/line_separation = 3
 custom_fonts/mono_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
@@ -4053,6 +4000,7 @@ scroll_following = true
 margin_right = 282.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 263, 45 )
+rect_clip_content = false
 size_flags_horizontal = 3
 custom_constants/line_separation = 3
 custom_fonts/mono_font = ExtResource( 25 )
@@ -4066,7 +4014,7 @@ scroll_following = true
 
 [node name="YouWin" type="Sprite" parent="Dialoguebox/ClipBox"]
 visible = false
-position = Vector2( 144, 17 )
+position = Vector2( 141, 17 )
 texture = ExtResource( 27 )
 vframes = 6
 
@@ -4088,10 +4036,10 @@ margin_right = -320.0
 margin_bottom = -180.0
 
 [node name="Sprite" type="Sprite" parent="ScreenEffect"]
-texture = ExtResource( 55 )
+texture = ExtResource( 60 )
 centered = false
 hframes = 4
-vframes = 4
+vframes = 6
 frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ScreenEffect"]
@@ -4167,10 +4115,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 15 )
+[node name="AnimScene" type="AnimationPlayer" parent="."]
 anims/transitionIn = SubResource( 11 )
 anims/transitionOut = SubResource( 14 )
+
+[node name="AnimAction" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 72 )
+anims/transitionIn = SubResource( 73 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 65 )
@@ -4178,7 +4129,5 @@ volume_db = -0.3
 bus = "SFX"
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="BattleCutscene" parent="." instance=ExtResource( 72 )]
 
 [connection signal="moved" from="ItemsBox/Arrow" to="ItemsBox" method="_on_Arrow_moved"]

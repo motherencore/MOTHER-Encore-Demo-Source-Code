@@ -1,0 +1,138 @@
+'0':
+  actors:
+    ninten: leader
+    doll: Objects/npcdoll
+    mimmie: Objects/npc2
+    minnie: Objects/npc3
+  actorsdir:
+    ninten:
+      x: 0
+      y: -1
+    mimmie:
+      x: 0
+      y: -1
+  actorsjump:
+    doll:
+      speed: 0.42
+      height: 48
+  actorsmove:
+    doll:
+      movement:
+      - x: 64
+        y: 48
+      speed: 200
+      type: position
+  actorsturn:
+    ninten:
+      x: -1
+      y: -1
+      speed: 1
+  teleportactors:
+    minnie:
+      x: 472
+      y: 88
+  changecam: doll
+  returncam: 1
+  soundeffect: M3/SMAAAASH.wav
+  setflags: doll_defeated
+  unsetflags: poltergeist
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '1'
+  actorsanim:
+    doll:
+      anim: Idle
+  ovbattlemusic: false
+'1':
+  actorsjump:
+    doll:
+      speed: 0.3
+      height: 10
+  actorsmove:
+    doll:
+      movement:
+      - x: 40
+        y: 40
+      speed: 100
+      type: position
+  setflags: pillow_attack
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '2'
+'2':
+  talker: mimmie
+  name: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_2
+  emoteactors:
+    mimmie: dot
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.5
+  changecam: mimmie
+  returncam: 1
+  goto: '3'
+  actorsshake:
+    mimmie:
+      x: 2
+      length: 0.2
+'3':
+  showbox: false
+  actorsmove:
+    mimmie:
+      movement:
+      - x: -16
+        y: 0
+      - x: 0
+        y: -72
+      speed: 64
+      animation: Walk
+      type: step
+  actorsturn:
+    ninten:
+      x: -1
+      y: -1
+      speed: 0.5
+  wait: 1.5
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  actorsdir:
+    mimmie:
+      x: -1
+      y: 0
+  wait: 0.4
+  autoadvance: true
+  caninput: false
+  goto: '5'
+'5':
+  actorsjump:
+    mimmie:
+      height: 10
+      length: 0.2
+  wait: 0.3
+  autoadvance: true
+  caninput: false
+  goto: '6'
+'6':
+  actorsjump:
+    mimmie:
+      height: 10
+      length: 0.2
+  wait: 0.3
+  autoadvance: true
+  caninput: false
+  goto: '7'
+'7':
+  name: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_7
+  actorsdir:
+    mimmie:
+      x: 0
+      y: 1

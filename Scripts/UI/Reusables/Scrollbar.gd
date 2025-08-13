@@ -1,5 +1,7 @@
 extends Control
 
+class_name EncoreScrollBar
+
 export var on = true setget _set_on, _get_on
 export var nb_visible_rows: int setget _set_nb_visible_items
 export var nb_rows: int setget _set_nb_items

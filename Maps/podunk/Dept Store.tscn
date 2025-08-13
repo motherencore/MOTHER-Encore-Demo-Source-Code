@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/DeptStore.tres" type="TileSet" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Drug_Store_Desk.png" type="Texture" id=22]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scripts/Main/room.gd" type="Script" id=25]
-
 
 [sub_resource type="AtlasTexture" id=89]
 atlas = ExtResource( 11 )
@@ -123,54 +122,6 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=437]
 extents = Vector2( 16.5, 36 )
 
-[sub_resource type="Shader" id=432]
-code = "shader_type canvas_item;
-
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 glow_color : hint_color = vec4(1.0);
-uniform float flash_modifier : hint_range(0.0, 1.0) = 0.0;
-uniform float glow_modifier : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 color = texture(TEXTURE, UV);
-	color.rgb = color.rgb + glow_color.rgb * glow_modifier;
-	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
-	COLOR = color;
-}
-"
-
-[sub_resource type="ShaderMaterial" id=433]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=434]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=435]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id=436]
-resource_local_to_scene = true
-shader = SubResource( 432 )
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/glow_color = Color( 1, 1, 1, 1 )
-shader_param/flash_modifier = 0.0
-shader_param/glow_modifier = 0.0
-
 [sub_resource type="RectangleShape2D" id=51]
 extents = Vector2( 20, 10 )
 
@@ -201,7 +152,7 @@ extents = Vector2( 48, 33 )
 [node name="Podunk Dept Store" type="Node2D"]
 script = ExtResource( 25 )
 player_map_offset = Vector2( 127, 243 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 is_sub_area = true
 
@@ -218,7 +169,7 @@ playing = true
 [node name="Escalator2" type="AnimatedSprite" parent="PodunkDeptStoreInteriorBottom"]
 position = Vector2( 104, -29 )
 frames = SubResource( 58 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PodunkDeptStoreInteriorBottom"]
@@ -276,14 +227,8 @@ player_turn = {
 "x": true,
 "y": true
 }
+extended_interact = 2
 initial_dir = Vector2( 0, 1 )
-
-[node name="interact" parent="npc2" index="3"]
-scale = Vector2( 1, 2 )
-
-[node name="ButtonPrompt" parent="npc2/interact" index="1"]
-material = SubResource( 433 )
-scale = Vector2( 1, 0.5 )
 
 [node name="npc4" parent="." instance=ExtResource( 1 )]
 position = Vector2( -511, -188 )
@@ -293,14 +238,8 @@ player_turn = {
 "x": true,
 "y": true
 }
+extended_interact = 1
 initial_dir = Vector2( 0, 1 )
-
-[node name="interact" parent="npc4" index="3"]
-scale = Vector2( 1, 2 )
-
-[node name="ButtonPrompt" parent="npc4/interact" index="1"]
-material = SubResource( 434 )
-scale = Vector2( 1, 0.5 )
 
 [node name="npc3" parent="." instance=ExtResource( 1 )]
 position = Vector2( -264, -608 )
@@ -310,14 +249,8 @@ player_turn = {
 "x": true,
 "y": true
 }
+extended_interact = 1
 initial_dir = Vector2( 0, 1 )
-
-[node name="interact" parent="npc3" index="3"]
-scale = Vector2( 1, 2 )
-
-[node name="ButtonPrompt" parent="npc3/interact" index="1"]
-material = SubResource( 435 )
-scale = Vector2( 1, 0.5 )
 
 [node name="PodunkDrugStoreDesk" type="Sprite" parent="."]
 position = Vector2( -256, -600 )
@@ -380,14 +313,8 @@ player_turn = {
 "x": true,
 "y": true
 }
+extended_interact = 1
 initial_dir = Vector2( -1, 0 )
-
-[node name="interact" parent="Objects/YSort/npc6" index="3"]
-scale = Vector2( 3, 1 )
-
-[node name="ButtonPrompt" parent="Objects/YSort/npc6/interact" index="1"]
-material = SubResource( 436 )
-scale = Vector2( 0.333333, 1 )
 
 [node name="npc3" parent="Objects/YSort" instance=ExtResource( 1 )]
 position = Vector2( -80, -112 )
@@ -671,14 +598,6 @@ entering_sound = "wood"
 position = Vector2( 16, 23 )
 shape = SubResource( 321 )
 
-[editable path="npc2"]
-[editable path="npc2/CharacterSprite"]
-[editable path="npc4"]
-[editable path="npc4/CharacterSprite"]
-[editable path="npc3"]
-[editable path="npc3/CharacterSprite"]
-[editable path="Objects/YSort/npc6"]
-[editable path="Objects/YSort/npc6/CharacterSprite"]
 [editable path="doors/Dept_Pet"]
 [editable path="doors/Dept_Sports"]
 [editable path="doors/Dept_Sports2"]

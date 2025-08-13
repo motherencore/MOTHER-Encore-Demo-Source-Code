@@ -1,0 +1,516 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shaders/Outline.shader" type="Shader" id=2]
+[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=3]
+[ext_resource path="res://Nodes/Overworld/Objects/Item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Overworld/birds.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/Overworld/Objects/Present.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Nodes/Overworld/butterfly.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/Overworld/jump area.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Nodes/Overworld/Enemies/Enemy Spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Graphics/Rooms/DebugWorld.png" type="Texture" id=14]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/color = Color( 0, 0, 0, 1 )
+shader_param/width = 1.0
+shader_param/pattern = 2
+shader_param/inside = true
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/color = Color( 0, 0, 0, 1 )
+shader_param/width = 1.0
+shader_param/pattern = 2
+shader_param/inside = true
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 552, 280 )
+
+[node name="Debug world" type="Node2D"]
+script = ExtResource( 3 )
+region_name = "Testing"
+
+[node name="Room" type="Sprite" parent="."]
+position = Vector2( -256, -96 )
+texture = ExtResource( 14 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Ground" type="TileMap" parent="."]
+format = 1
+
+[node name="Objects" type="TileMap" parent="."]
+cell_size = Vector2( 8, 8 )
+cell_quadrant_size = 8
+cell_custom_transform = Transform2D( 8, 0, 0, 8, 0, 0 )
+cell_y_sort = true
+format = 1
+
+[node name="Doors" type="TileMap" parent="Objects"]
+format = 1
+
+[node name="battleDoor" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( -168, -32 )
+scale = Vector2( 2, 1 )
+targetX = 354
+targetY = -7
+
+[node name="Position2D" parent="Objects/Doors/battleDoor" index="1"]
+position = Vector2( 260, 32 )
+
+[node name="BattleDebug" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( 328, -16 )
+scale = Vector2( 2, 2 )
+targetX = -160
+targetY = -24
+
+[node name="Position2D" parent="Objects/Doors/BattleDebug" index="1"]
+position = Vector2( -244, 0 )
+
+[node name="mapDoor" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( -136, -32 )
+scale = Vector2( 2, 1 )
+targetX = 135
+targetY = 256
+
+[node name="Position2D" parent="Objects/Doors/mapDoor" index="1"]
+position = Vector2( 136, 296 )
+
+[node name="mapDebug" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( 144, 248 )
+scale = Vector2( 2, 2 )
+targetX = -126
+targetY = -24
+
+[node name="Position2D" parent="Objects/Doors/mapDebug" index="1"]
+position = Vector2( -136, -132 )
+
+[node name="creditsDoor" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( -104, -32 )
+scale = Vector2( 2, 1 )
+targetScene = "Snowman/TrainBridge"
+
+[node name="Position2D" parent="Objects/Doors/creditsDoor" index="1"]
+position = Vector2( 52, 32 )
+
+[node name="BossDoor" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( -72, -32 )
+scale = Vector2( 2, 1 )
+targetX = 354
+targetY = 256
+
+[node name="Position2D" parent="Objects/Doors/BossDoor" index="1"]
+position = Vector2( 212, 296 )
+
+[node name="BossDebug" parent="Objects/Doors" instance=ExtResource( 1 )]
+position = Vector2( 328, 248 )
+scale = Vector2( 2, 2 )
+targetX = -64
+targetY = -24
+
+[node name="Position2D" parent="Objects/Doors/BossDebug" index="1"]
+position = Vector2( -196, -132 )
+
+[node name="Maps" type="TileMap" parent="Objects"]
+format = 1
+
+[node name="ToPodunk" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( -192, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "podunk/podunk"
+
+[node name="ToMagicant" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( -160, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "Magicant/Magicant"
+
+[node name="ToMagicant2" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( -128, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "Merrysville/Merrysville"
+
+[node name="ToSnowman" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( -64, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "Snowman/Snowman"
+
+[node name="ToSnowman3" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( 96, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "misc/anas dream/dreamwastaken"
+
+[node name="ToSnowman4" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( 64, 232 )
+scale = Vector2( 2, 1 )
+targetY = 38
+dir = Vector2( 0, -1 )
+targetScene = "Testing/MusicChange"
+
+[node name="ToSnowman2" parent="Objects/Maps" instance=ExtResource( 1 )]
+position = Vector2( -96, 232 )
+scale = Vector2( 2, 1 )
+targetScene = "Reindeerspookane/bottomEagleland"
+
+[node name="Present1" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 392, 240 )
+item = "MapPodunk"
+type = "map"
+
+[node name="Present2" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 416, 240 )
+item = "GGFDiary"
+
+[node name="Present3" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 440, 240 )
+item = "PanFrying"
+
+[node name="Present4" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 464, 240 )
+item = "BatWooden"
+
+[node name="Present5" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 488, 240 )
+item = "Hamburger"
+
+[node name="Present6" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 512, 240 )
+item = "Fries"
+
+[node name="Present7" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 536, 240 )
+item = "HerbMagic"
+
+[node name="Present8" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 560, 240 )
+item = "HerbRed"
+
+[node name="Present9" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 352, 288 )
+item = "Rope"
+
+[node name="Present10" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 376, 288 )
+item = "PSIStone"
+
+[node name="Present11" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 616, 288 )
+item = "CourageBadge"
+
+[node name="Present12" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 400, 288 )
+item = "CapsulePP"
+
+[node name="Present13" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 424, 288 )
+item = "CapsuleHP"
+
+[node name="Present14" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 448, 288 )
+item = "CapsuleOFE"
+
+[node name="Present15" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 472, 288 )
+item = "CapsuleDEF"
+
+[node name="Present16" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 496, 288 )
+item = "CapsuleSPD"
+
+[node name="Present17" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 520, 288 )
+item = "CapsuleIQ"
+
+[node name="Present18" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 544, 288 )
+item = "CapsuleGUT"
+
+[node name="Present19" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 568, 288 )
+item = "FranklinBadge"
+
+[node name="Present20" parent="Objects" instance=ExtResource( 7 )]
+position = Vector2( 592, 288 )
+item = "FranklinBadge0.8"
+
+[node name="npc5" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 48, -23 )
+sprite = "Lloyd"
+dialog = "Testing/names"
+thoughts = "Testing/gay thoughts"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+staring = true
+
+[node name="npc6" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 24, 16 )
+sprite = "Ana"
+dialog = "Testing/addlloyd"
+yaml = "res://Data/Animations/PartyMember.yaml"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+staring = true
+
+[node name="npc8" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -456, -200 )
+sprite = "Lloyd"
+dialog = "Testing/addlloyd"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+staring = true
+
+[node name="npc2" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -40, -32 )
+sprite = "Npcs/4dir/healer"
+dialog = "Testing/boboo"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc12" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -191, -28 )
+sprite = "Npcs/4dir/queenmary"
+dialog = "Testing/skills"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc4" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 16, -32 )
+sprite = "Npcs/4dir/npc"
+dialog = "Testing/addparty"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc9" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( 64, 16 )
+sprite = "Npcs/4dir/npc"
+dialog = "Testing/removelloyd"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc10" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -23, 16 )
+sprite = "Npcs/4dir/minnie"
+dialog = "Podunk/minnie_storage"
+player_turn = {
+"x": true,
+"y": true
+}
+staring = true
+
+[node name="npc3" parent="Objects" instance=ExtResource( 12 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -6, -29 )
+dialog = "debugtut"
+player_turn = {
+"x": false,
+"y": false
+}
+no_collision = true
+initial_dir = Vector2( 0, 1 )
+
+[node name="bird" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -148, 18 )
+
+[node name="bird2" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -127, 36 )
+
+[node name="bird3" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( -181, 40 )
+
+[node name="Item3" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 632, 240 )
+item = "HerbRed"
+
+[node name="Item4" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 656, 240 )
+item = "HerbMagic"
+
+[node name="Item5" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 680, 240 )
+item = "BatWooden"
+
+[node name="Item" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 584, 240 )
+item = "Fries"
+
+[node name="Item2" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 608, 240 )
+offset = Vector2( 1, 0 )
+item = "Hamburger"
+
+[node name="Item7" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 712, 288 )
+item = "BaseballCap"
+
+[node name="Item8" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 736, 288 )
+item = "Bread"
+
+[node name="Item11" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 704, 240 )
+item = "BatPlastic"
+
+[node name="Item12" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 728, 240 )
+item = "Bread"
+
+[node name="Item13" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 760, 288 )
+item = "Bread"
+
+[node name="Item14" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 784, 288 )
+item = "Bread"
+
+[node name="Item9" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 640, 288 )
+item = "OrangeJuice"
+
+[node name="Item10" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 664, 288 )
+offset = Vector2( 1, 0 )
+item = "CapsuleHP"
+
+[node name="butterfly" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -120, 32 )
+
+[node name="butterfly2" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -104, 24 )
+
+[node name="butterfly3" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -120, 16 )
+
+[node name="butterfly4" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -88, 16 )
+
+[node name="Door NPC" parent="Objects" instance=ExtResource( 6 )]
+position = Vector2( -32, 232 )
+scale = Vector2( 2, 1 )
+dialog = "door"
+
+[node name="Jump Area" parent="Objects" instance=ExtResource( 10 )]
+position = Vector2( -159, 22 )
+
+[node name="Sprite" parent="Objects/Jump Area" index="0"]
+material = SubResource( 2 )
+rotation = -0.352557
+
+[node name="Position2D" parent="Objects/Jump Area/Jump Points" index="0"]
+position = Vector2( -34, -16 )
+
+[node name="Position2D2" type="Position2D" parent="Objects/Jump Area/Jump Points" index="1"]
+position = Vector2( -34, 16 )
+
+[node name="Position2D3" type="Position2D" parent="Objects/Jump Area/Jump Points" index="2"]
+position = Vector2( -34, 48 )
+
+[node name="Jump Area2" parent="Objects" instance=ExtResource( 10 )]
+position = Vector2( -200, 72 )
+
+[node name="Sprite" parent="Objects/Jump Area2" index="0"]
+material = SubResource( 3 )
+rotation = -0.352557
+
+[node name="Position2D" parent="Objects/Jump Area2/Jump Points" index="0"]
+position = Vector2( 8, -24 )
+
+[node name="Position2D2" type="Position2D" parent="Objects/Jump Area2/Jump Points" index="1"]
+position = Vector2( 8, -56 )
+
+[node name="Position2D3" type="Position2D" parent="Objects/Jump Area2/Jump Points" index="2"]
+position = Vector2( 49, -42 )
+
+[node name="Enemy Spawner" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 472, 0 )
+enemy = "centipede"
+
+[node name="Enemy Spawner2" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 400, -24 )
+enemy = "rat"
+
+[node name="Enemy Spawner3" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 544, -16 )
+enemy = "gorilla"
+
+[node name="ATM" parent="Objects" instance=ExtResource( 9 )]
+position = Vector2( -8, -28 )
+
+[node name="npc" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -192, 48 )
+sprite = "Npcs/4dir/npc"
+dialog = "Testing/helloworld"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc7" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -192, 16 )
+sprite = "Npcs/4dir/npc"
+dialog = "Testing/sounds"
+player_turn = {
+"x": true,
+"y": true
+}
+initial_dir = Vector2( 0, 1 )
+
+[node name="npc11" parent="Objects" instance=ExtResource( 12 )]
+position = Vector2( -92, 17 )
+sprite = "Npcs/4dir/dogstray"
+dialog = "Testing/playername"
+player_turn = {
+"x": true,
+"y": true
+}
+
+[node name="MusicArea" parent="." instance=ExtResource( 13 )]
+visible = false
+position = Vector2( -104, 0 )
+music = "Flying_Man.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
+position = Vector2( 312, 112 )
+shape = SubResource( 1 )
+
+[editable path="Objects/Doors/battleDoor"]
+[editable path="Objects/Doors/BattleDebug"]
+[editable path="Objects/Doors/mapDoor"]
+[editable path="Objects/Doors/mapDebug"]
+[editable path="Objects/Doors/creditsDoor"]
+[editable path="Objects/Doors/BossDoor"]
+[editable path="Objects/Doors/BossDebug"]
+[editable path="Objects/Jump Area"]
+[editable path="Objects/Jump Area2"]
+[editable path="MusicArea"]

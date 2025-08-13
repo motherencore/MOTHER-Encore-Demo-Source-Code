@@ -1,0 +1,18 @@
+priority: 1
+healing:
+  persistent: true
+  passive_heal: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_POISONED
+  effect: BATTLE_MSG_STATUS_POISONED_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_POISONED
+  heal_overworld: ACTION_RESULT_HEAL_POISONED
+  heal_overworld_fail: ACTION_RESULT_HEAL_POISONED_FAIL
+status_bubble: poisoned
+effects_by_char:
+  party_battler:
+    hp_scroll_multiplier: 1.5
+    info_plate_color: 'EBBAFF'
+  enemy:
+    received_mod:
+      mod: 1.25

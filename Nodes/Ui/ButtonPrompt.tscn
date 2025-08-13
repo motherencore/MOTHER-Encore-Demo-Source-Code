@@ -454,6 +454,7 @@ tracks/5/keys = {
 
 [node name="ButtonPrompt" type="Node2D"]
 material = ExtResource( 4 )
+z_index = 1
 script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

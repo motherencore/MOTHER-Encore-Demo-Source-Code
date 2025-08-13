@@ -192,6 +192,96 @@ custom_fonts/font = ExtResource( 5 )
 text = "Item 3"
 valign = 1
 
+[node name="Item 12" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 13" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 14" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 15" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 16" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 17" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 18" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 19" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
+[node name="Item 20" type="Label" parent="HBoxContainer/ScrollContainer/ListValues"]
+visible = false
+margin_top = 144.0
+margin_right = 28.0
+margin_bottom = 156.0
+focus_mode = 1
+custom_fonts/font = ExtResource( 5 )
+text = "Item 3"
+valign = 1
+
 [node name="arrow" parent="HBoxContainer" instance=ExtResource( 2 )]
 position = Vector2( 11, 16 )
 frames = SubResource( 4 )
@@ -216,7 +306,6 @@ custom_constants/separation = 0
 margin_left = 0.0
 margin_right = 8.0
 margin_bottom = 31.0
-rect_min_size = Vector2( 8, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 3
 position = 1

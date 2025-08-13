@@ -1,0 +1,96 @@
+'0':
+  actors:
+    ninten: ninten
+    pippi: pippi
+    canary: npc
+    marshal: talker
+  name: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_0
+  actorsturn:
+    ninten:
+      actor: marshal
+    pippi:
+      actor: marshal
+  goto: '5'
+'5':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_5
+  actorsturn:
+    ninten:
+      actor: pippi
+    pippi:
+      actor: ninten
+  goto: '7'
+'7':
+  talker: marshal
+  name: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7-OPT_0: '8'
+    DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_7-OPT_1: '10'
+    cancel: '10'
+  cash: true
+  actorsturn:
+    ninten:
+      actor: marshal
+    pippi:
+      actor: marshal
+'8':
+  name: Marshal
+  if:
+    hascash: 55
+    goto: '11'
+  goto: '9'
+'9':
+  name: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_9
+  cash: false
+  goto: '10'
+'10':
+  name: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_10
+  cash: false
+  goto: '119'
+'11':
+  name: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_SPEAKER_Marshal
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_11
+  givecash: -55
+  goto: '119'
+'119':
+  musicvolume: -40
+  wait: 0.5
+  autoadvance: true
+  goto: '12'
+'12':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_12
+  item: CanaryChick
+  cash: false
+  soundeffect: Party Fanfare.mp3
+  setflags: canary_found
+  changereplaced:
+    pippi: pippi
+    canary: canarychick
+  wait: 5
+  goto: '13'
+  setpartynpcs:
+    canarychick: true
+'13':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MARSHAL_CANARY_13
+  actorsturn:
+    ninten:
+      actor: pippi
+    pippi:
+      actor: ninten
+  musicvolume: 0
+  setcrumbs: true

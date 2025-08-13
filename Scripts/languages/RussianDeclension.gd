@@ -1,28 +1,38 @@
-const GENITIVE		= 1
-const DATIVE		= 2
-const ACCUSATIVE 	= 3
-const PREPOSITIONAL	= 4
+class_name RussianDeclension
+extends CustomNameDeclension
 
-const FEMININE_MARKS = "ая"
+enum Cases {NOMINATIVE, GENITIVE, DATIVE, ACCUSATIVE, PREPOSITIONAL}
 
-const CONSONANTS = "бвгджзклмнпрстфхцчшщъ"
-const ALMOST_CONSONANTS = "ьй"
-const LATIN_CONSONANTS = "bcdfghjklmnpqrstvwxz"
+const FEMININE_MARKS := "ая"
 
-func get_russian_declension(name, gender, case):
-	var is_all_caps = (name == name.to_upper())
-	var declined_name = get_russian_declension_proceed(name, gender, case)
-	if is_all_caps:
-		return declined_name.to_upper()
+const CONSONANTS := "бвгджзклмнпрстфхцчшщъ"
+const ALMOST_CONSONANTS := "ьй"
+const SIBILANTS_AND_VELARS := "жчшщгкх"
+const LATIN_CONSONANTS := "bcdfghjklmnpqrstvwxz"
+
+const EXCEPTIONS_YO_TO_YE := ["пётр"]
+const EXCEPTIONS_YO_TO_SOFT := ["васёк", "витёк"]
+
+static func _handle_yo_exceptions(name: String) -> String:
+	if name.to_lower() in EXCEPTIONS_YO_TO_YE:
+		return name.replace("ё", "е").replace("Ё", "Е")
+	elif name.to_lower() in EXCEPTIONS_YO_TO_SOFT:
+		return name.replace("ё", "ь").replace("Ё", "Ь")
 	else:
-		return declined_name
+		return name
 
+# Gender: "M" or "F"
+# Case: 1 (genitive), 2 (dative), 3 (accusative) or 4 (prepositional)
+static func decline_name(name: String, gender: String, case: int) -> String:
+	if case == Cases.NOMINATIVE or not case in Cases.values():
+		return name
 
-func get_russian_declension_proceed(name, gender, case):
-	var suffix = name[-1]
-	var stem = name.trim_suffix(suffix)
+	name = _handle_yo_exceptions(name)
+	
+	var suffix := name[-1]
+	var stem := name.trim_suffix(suffix)
 
-	var suffix_low = suffix.to_lower()
+	var suffix_low := suffix.to_lower()
 
 	if stem == "":
 		return name
@@ -40,8 +50,7 @@ func get_russian_declension_proceed(name, gender, case):
 			else:
 				return name
 
-
-func _get_first_declension(stem, suffix, case):
+static func _get_first_declension(stem: String, suffix: String, case: int) -> String:
 	var suffix_low = suffix.to_lower()
 
 	if suffix_low in ALMOST_CONSONANTS:
@@ -55,22 +64,24 @@ func _get_first_declension(stem, suffix, case):
 			stem += "'"
 		return stem + "ауае"[case - 1]
 
-func _get_second_declension(stem, suffix, case):
-	var suffix_low = suffix.to_lower()
-	var stem_low = stem.to_lower()
+static func _get_second_declension(stem: String, suffix: String, case: int) -> String:
+	var suffix_low := suffix.to_lower()
+	var stem_low := stem.to_lower()
+
 
 	if suffix_low == "а":
-		if stem_low.ends_with("ш") or stem_low.ends_with("ж"):
+		if stem_low[-1] in SIBILANTS_AND_VELARS:
 			return stem + "иеуе"[case - 1]
 		else:
 			return stem + "ыеуе"[case - 1]
 	elif suffix_low == "я":
-		if stem_low.ends_with("и"):
+		if stem_low[-1] == "и":
 			return stem + "ииюи"[case - 1]
 		else:
 			return stem + "иеюе"[case - 1]
 	else:
+		push_error("Unexpected name for Russian second declension: %s" % (stem + suffix))
 		return stem + suffix
 
-func _get_third_declension(stem, case):
+static func _get_third_declension(stem: String, case: int) -> String:
 	return stem + "ииьи"[case - 1]

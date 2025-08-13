@@ -1,0 +1,9 @@
+name: FIELD_TELEPATHY
+description: FIELD_TELEPATHY_DESC
+battle_skill: 'telepathy'
+usable:
+  ninten: true
+  ana: true
+  lloyd: false
+  teddy: false
+  pippi: false

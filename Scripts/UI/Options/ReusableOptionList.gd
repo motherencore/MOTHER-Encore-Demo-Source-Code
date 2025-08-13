@@ -1,8 +1,5 @@
 extends PanelContainer
 
-const Cursor = preload("res://Scripts/UI/cursor.gd")
-const Scrollbar = preload("res://Scripts/UI/Reusables/Scrollbar.gd")
-
 signal selected (cursor_index)
 signal cancel
 
@@ -20,7 +17,7 @@ export (PoolStringArray) onready var content
 export (NodePath) onready var _cursor = get_node(_cursor) as Cursor
 export (NodePath) onready var scroll_view = get_node(scroll_view) as ScrollContainer
 export (NodePath) onready var list = get_node(list) as VBoxContainer
-export (NodePath) onready var scrollbar = get_node(scrollbar) as Scrollbar
+export (NodePath) onready var scrollbar = get_node(scrollbar) as EncoreScrollBar
 
 func _ready():
 	list.connect("resized", self, "_fit_content")
@@ -77,8 +74,8 @@ func _scroll_smartly():
 	elif _cursor.cursor_index + scrolling_threshold + 1 > _scroll_position + max_visible_items:
 		_scroll_position = _cursor.cursor_index - max_visible_items + scrolling_threshold + 1
 
-	_scroll_position = min(_scroll_position, _items_count - max_visible_items)
-	_scroll_position = max(_scroll_position, 0)
+	_scroll_position = min(_scroll_position, _items_count - max_visible_items) as int
+	_scroll_position = max(_scroll_position, 0) as int
 	yield(_scroll_to(_scroll_position), "completed")
 
 func _scroll_to(index):

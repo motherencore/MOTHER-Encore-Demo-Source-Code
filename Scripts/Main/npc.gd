@@ -3,8 +3,8 @@ extends KinematicBody2D
 export (String) var sprite #The npc's sprite
 export (String) var dialog #The normal spoken dialogue of the npc
 export (String) var thoughts #The dialog spoken when using telepathy
-export (String, FILE, "*.json") var json #The json file for animations
-export (Array, PoolStringArray) var connections = [["Talk", "Idle", 2]] 
+export (String, FILE, "*.yaml") var yaml #The yaml file for animations
+export (Array, Array) var connections = [["Talk", "Idle", 2]] 
 export var appear_flag = ""
 export var disappear_flag = ""
 export (Array, PoolStringArray) var event_dialog
@@ -18,9 +18,11 @@ export var no_problem_thoughts = false #say no problem here if read thoughts
 export (bool) var automaticShadow
 export (bool) var no_shadow #Turn this on to remove the npc's shadow.
 export (bool) var no_collision #Turn this on to remove the npc's collisions.
+export (int, "None", "Normal", "Longer", "Much longer") var extended_interact := 0 #Turn this on to extend the interact collision shape of the npc downwards
 export var sprite_offset = Vector2.ZERO #The offset of the sprite
 export var initial_dir = Vector2.ZERO #The direction the npc is facing originally
 export (String, "Idle", "Walk", "Talk") var idle_animation = "Idle" #the animation to play when idle
+export (String, "Idle", "Walk", "Talk", "TalkIdle") var talk_idle_animation = "Idle" #The animation to play when the npc is the current talker and is finished talking
 export var staring = false #If the npc will turn to look at the player if they get close enough
 export var wander = false #If the npc walks around in the overworld
 export var speed = 64 #The speed at which the npc walks
@@ -35,6 +37,7 @@ var party_member = false
 var pause = false
 var startPos = null
 var newPos = null
+var mute = false
 var talking = false
 var player = null
 var inputVector = Vector2.ZERO
@@ -45,30 +48,28 @@ var looking = false
 
 func _ready():
 	check_flags()
-	set_dialog()
-	set_thoughts()
-	set_event_positions()
+	_set_dialog()
+	_set_thoughts()
+	_set_event_positions()
 	characterSprite.set_sprite("res://Graphics/Character Sprites/" + sprite + "/main.png")
 	if !"Npcs" in sprite:
 		party_member = true
-		json = "res://Data/Animations/PartyMember.json"
-	elif json == "":
-		json = "res://Data/Animations/4dir.json"
-	if json != "":
-		characterSprite.set_animation(json, connections)
+		yaml = "res://Data/Animations/PartyMember.yaml"
+	elif yaml == "":
+		yaml = "res://Data/Animations/4dir.yaml"
+	if yaml != "":
+		characterSprite.set_animation(yaml, connections)
 	characterSprite.set_spritesheet()
 	characterSprite.set_sprite_offset(sprite_offset)
-	set_start_pos()
+	_set_start_pos()
 	#animationTree.active = true
 	characterSprite.travel(idle_animation)
 	
 	
 	newPos = global_position
 	if initial_dir == Vector2.ZERO:
-		inputVector = Vector2(0,1)
-		initial_dir = inputVector
-	else:
-		inputVector = initial_dir
+		initial_dir = Vector2(0,1)
+	inputVector = initial_dir
 	if automaticShadow:
 		var size = float($Shadow.texture.get_width())/5
 		$Shadow.scale.x = $Shadow.scale.x + float(size/10)
@@ -78,16 +79,29 @@ func _ready():
 		$Shadow.visible = true
 	if no_collision:
 		$CollisionShape2D.disabled = true
-	
 	if dialog == "":
 		$interact/CollisionShape2D.disabled = true
-	
 
-func _physics_process(_delta):
+	if extended_interact:
+		var shape := ($interact/CollisionShape2D.shape as RectangleShape2D).duplicate()
+		$interact/CollisionShape2D.shape = shape
+		if initial_dir.y != 0:
+			var old_height = shape.extents.y
+			var new_height = old_height * (1 + 0.2 * extended_interact)
+			shape.extents.y = new_height
+			$interact/CollisionShape2D.position.y += (new_height - old_height) * sign(initial_dir.y)
+		elif initial_dir.x != 0:
+			var old_width = shape.extents.x
+			var new_width = old_width * (1 + 0.7 * extended_interact)
+			shape.extents.x = new_width
+			$interact/CollisionShape2D.position.x += (new_width - old_width) * sign(initial_dir.x)
+
+
+func _physics_process(_delta: float):
 	characterSprite.blend_position(inputVector)
 	var old_Pos = position
 	if wander and newPos != null and !pause and !global.persistPlayer.paused and !global.inBattle and !global.queuedBattle:
-		var difference = max(ceil(abs(speed / int(Engine.get_frames_per_second()))), 1)
+		var difference = max(ceil(abs(speed * _delta)), 1)
 		if !talking and (abs(newPos.x - position.x) > difference or abs(newPos.y - position.y) > difference) and !looking:
 			inputVector = position.direction_to(newPos)
 			velocity = move_and_slide(inputVector * speed)
@@ -107,10 +121,13 @@ func _physics_process(_delta):
 		talking = false
 		pause = false
 	else:
-		if talking == true:
+		
+		if talking and !mute:
 			characterSprite.travel("Talk")
+		elif global.talker == self:
+			characterSprite.travel(talk_idle_animation)
 		else:
-			characterSprite.travel("Idle")
+			characterSprite.travel(idle_animation)
 
 func round_vector(pos):
 	pos.x = round(pos.x)
@@ -118,7 +135,7 @@ func round_vector(pos):
 	return pos
 
 func interact():
-	set_dialog()
+	_set_dialog()
 	global.talker = self
 	pause = true
 	newPos = position
@@ -130,13 +147,21 @@ func interact():
 	uiManager.open_dialogue_box()
 	global.persistPlayer.pause()
 
+func stop_interaction():
+	talking = false
+	pause = false
+	mute = false
+	if !staring:
+		get_tree().create_timer(1).connect("timeout", self, "return_to_init_dir")
+	
+
 func telepathy():
-	set_thoughts()
+	_set_thoughts()
 	pause = true
 	newPos = position
 	inputVector = global_position.direction_to(global.persistPlayer.global_position)
 	characterSprite.blend_position(inputVector)
-	global.set_dialog(thoughts, null) 
+	global.set_dialog(thoughts) 
 	uiManager.open_dialogue_box()
 	uiManager.set_telepathy_effect(true, self)
 	global.persistPlayer.pause()
@@ -153,9 +178,9 @@ func blend_position(vector2):
 #	if sprite != "":
 #		if !"Npcs" in sprite:
 #			party_member = true
-#			json = "res://Data/Animations/PartyMember.json"
+#			yaml = "res://Data/Animations/PartyMember.yaml"
 #		else:
-#			json = "res://Data/Animations/4dir.json"
+#			yaml = "res://Data/Animations/4dir.yaml"
 #		var sprite_path = "res://Graphics/Character Sprites/" + sprite + "/main.png"
 #		if (sprite != "" or " ") and ResourceLoader.exists(sprite_path):
 #			$main.texture = load(sprite_path)
@@ -190,10 +215,10 @@ func blend_position(vector2):
 func get_sprite_texture():
 	return characterSprite.texture
 
-func set_start_pos():
+func _set_start_pos():
 	startPos = global_position
 
-func set_dialog():
+func _set_dialog():
 	for flags in event_dialog:
 		var flag = flags[0]
 		var newdialog = flags[1]
@@ -202,7 +227,7 @@ func set_dialog():
 				if globaldata.flags[flag]:
 					dialog = newdialog
 
-func set_thoughts():
+func _set_thoughts():
 	for flags in event_thoughts:
 		var flag = flags[0]
 		var newthought = flags[1]
@@ -211,7 +236,7 @@ func set_thoughts():
 				if globaldata.flags[flag]:
 					thoughts = newthought
 
-func set_event_positions():
+func _set_event_positions():
 	for flags in event_positions:
 		var flag = flags[0]
 		var newpositionx = flags[1]
@@ -248,7 +273,7 @@ func _on_ViewArea_body_exited(body):
 			get_tree().create_timer(1).connect("timeout", self, "return_to_init_dir")
 
 func return_to_init_dir():
-	if !looking:
+	if !looking and !pause:
 		inputVector = initial_dir
 
 func _on_Timer_timeout():

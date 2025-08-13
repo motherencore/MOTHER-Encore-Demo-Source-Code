@@ -1,0 +1,47 @@
+name: TEST_NAME
+nickname: '[Teddy]'
+description: Enemy Description.
+article: Enemy article(s)
+maxhp: 100
+hp: 100
+maxpp: 100
+pp: 100
+offense: 10
+defense: 10
+speed: 10
+iq: 10
+guts: 0
+level: 10
+exp: 100
+cash: 100
+items:
+- chance: 50
+  increaseChance: 0.01
+  item: Bread
+  rare: true
+skills:
+- skill: bite
+  weight: 10
+- skill: approach
+  weight: 1
+swansong: flameBurst
+battlescript: podunk/enemyphasesanddialog
+boss: false
+sprite: TEST
+music: Awesome Battle Music Loop.mp3
+musicintro: Awesome Battle Music Intro.mp3
+bg: lamp
+ov:
+  sprite: MookOV
+  anim: BasicEnemy
+  spriteOffset:
+  - 0
+  - 0
+  shadow: false
+  connections: []
+  returning: false
+  maxDistance: 100
+  maxSpeed: 64
+  acceleration: 200
+  friction: 200
+  walkFrequency: 1

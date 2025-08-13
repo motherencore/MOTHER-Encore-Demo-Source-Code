@@ -1,0 +1,23 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+HTML5.wasm32="res://addons/godot-yaml/wasm/libgodotyaml.wasm"
+OSX.64="res://addons/godot-yaml/osx/libgodotyaml.dylib"
+Windows.64="res://addons/godot-yaml/win64/libgodotyaml.dll"
+Windows.32="res://addons/godot-yaml/win32/libgodotyaml.dll"
+X11.64="res://addons/godot-yaml/x11/libgodotyaml.so"
+
+[dependencies]
+
+HTML5.wasm32=[  ]
+OSX.64=[  ]
+Windows.64=[  ]
+Windows.32=[  ]
+X11.64=[  ]
+X11.32=[  ]

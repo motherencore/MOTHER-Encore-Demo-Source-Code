@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Wally.mp3-b3a10f66d765716f002e8887c9386fce.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Wally.mp3"
+dest_files=[ "res://.import/Wally.mp3-b3a10f66d765716f002e8887c9386fce.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

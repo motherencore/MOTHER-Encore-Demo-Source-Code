@@ -1,0 +1,8 @@
+'0':
+  sound: Adult
+  text: DIALOGUE_SHITPOST_DIALOGUE_VENT_0
+  goto: '1'
+'1':
+  sound: Adult
+  text: DIALOGUE_SHITPOST_DIALOGUE_VENT_1
+  font: EBZ

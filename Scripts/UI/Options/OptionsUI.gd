@@ -1,10 +1,13 @@
 extends CanvasLayer
 
+const VOLUME_GRADES = 11
+
 export var from_save : = true
 export var always_visible : = false
+export var include_quit : = true
 
 signal back
-signal closeMenu
+signal close_to_title
 
 onready var topMenu = $OptionsMenu/NinePatchRect/VBoxContainer
 onready var optionsLabel = $OptionsMenu/NinePatchRect/OptionsLabel
@@ -24,13 +27,6 @@ onready var genericOptionMenu = $OptionsMenu/GenericOption
 onready var buttonPromptsMenu = $OptionsMenu/ButtonPrompts
 onready var buttonPromptsArrow = $OptionsMenu/ButtonPrompts/ButtonPromptsArrow
 onready var controlsMenu = $OptionsMenu/ControlsUI
-
-# LOCALIZATION Code added: Value arrays for all three file settings (could be centralized somewhere?)
-var FLAVORS = ["Plain", "Mint", "Strawberry", "Banana", "Peanut", "Grape", "Melon"]
-var TEXT_SPEEDS = [0.02, 0.035, 0.05]
-var BUTTON_PROMPTS = ["Both", "Objects", "NPCs", "None"]
-
-var VOLUME_GRADES = 11
 
 var optnCursorIndex = 0
 var languageValues
@@ -52,6 +48,9 @@ func _ready():
 		_switch_panel(1)
 	if always_visible:
 		Show_options()
+	if not include_quit:
+		$OptionsMenu/NinePatchRect/VBoxContainer/TitleScreenLabel.hide()
+		$OptionsMenu/NinePatchRect/VBoxContainer/CloseGameLabel.hide()
 	global.connect("settings_changed", self, "_refresh")
 	global.connect("locale_changed", self, "_refresh")
 	controlsMenu.connect("exited", self, "_on_SubMenuArrow_cancel")
@@ -93,7 +92,7 @@ func _on_arrow_selected(cursor_index):
 			2: # Button Prompts
 				buttonPromptsMenu.show()
 				buttonPromptsArrow.on = true
-				buttonPromptsMenu.quick_set()
+				buttonPromptsMenu.refresh(true)
 		_refresh()
 							
 	# LOCALIZATION Code added: Toggle fullscreen, language, volume)
@@ -178,7 +177,7 @@ func _switch_panel(panel, set_cursor = true):
 
 func _on_arrow_cancel():
 	if arrow.menu_parent != topMenu and from_save:
-		arrow.play_sfx('cursor1')
+		arrow.play_sfx('back')
 		_switch_panel(-1)
 	else :
 		# LOCALIZATION Code added: Saving what's changed in the settings
@@ -200,13 +199,14 @@ func _on_ConfirmArrow_selected(cursor_index):
 					$OptionsMenu/Door.enter()
 					$OptionsMenu.hide()
 					global.stop_playtime()
-					emit_signal("closeMenu")
+					emit_signal("close_to_title")
 				"Quit":
 					global.save_settings()
 					get_tree().quit()
+			arrow.on = false
 		1:
 			_switch_panel(-1)
-	arrow.on = true
+			arrow.on = true
 	confirmArrow.on = false
 
 func _on_ConfirmArrow_cancel():
@@ -221,7 +221,7 @@ func _on_TextSpeedArrow_selected(cursor_index):
 	textSpeedArrow.on = false
 	textSpeedMenu.hide()
 
-	globaldata.textSpeed = TEXT_SPEEDS[cursor_index]
+	globaldata.textSpeed = globaldata.TEXT_SPEEDS[cursor_index]
 	_refresh()
 
 # LOCALIZATION Code added: Duplicated the Flavors component, handling confirmation here
@@ -230,7 +230,7 @@ func _on_FlavorsArrow_selected(cursor_index):
 	flavorsArrow.on = false
 	flavorsMenu.hide()
 
-	globaldata.menuFlavor = FLAVORS[cursor_index]
+	globaldata.menuFlavor = globaldata.FLAVORS[cursor_index]
 	_refresh()
 
 # LOCALIZATION Code added: Duplicated the Button Prompts component, handling confirmation here
@@ -239,7 +239,7 @@ func _on_ButtonPromptsArrow_selected(cursor_index):
 	buttonPromptsArrow.on = false
 	buttonPromptsMenu.hide()
 
-	globaldata.buttonPrompts = BUTTON_PROMPTS[cursor_index]
+	globaldata.buttonPrompts = globaldata.BUTTON_PROMPTS[cursor_index]
 	_refresh()
 
 # LOCALIZATION Code added: Handling confirmation for the generic submenu here
@@ -273,24 +273,16 @@ func _on_SubMenuArrow_cancel():
 # LOCALIZATION Code added: To refresh the view with all option values
 func _refresh():
 	# Text Speed
-	match globaldata.textSpeed:
-		0.02:
-			$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/TextSpeedLabel.text = "MENU_FAST"
-			textSpeedArrow.set_cursor_from_index(0, false)
-		0.035:
-			$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/TextSpeedLabel.text = "MENU_MEDIUM"
-			textSpeedArrow.set_cursor_from_index(1, false)
-		0.05:
-			$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/TextSpeedLabel.text = "MENU_SLOW"
-			textSpeedArrow.set_cursor_from_index(2, false)
+	textSpeedArrow.set_cursor_from_index(globaldata.TEXT_SPEEDS.find(globaldata.textSpeed), false)
+	$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/TextSpeedLabel.text = "MENU_" + globaldata.TEXT_SPEEDS_NAMES[textSpeedArrow.cursor_index]
 
 	# Menu Flavor
 	$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/MenuFlavorLabel.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
-	flavorsArrow.set_cursor_from_index(FLAVORS.find(globaldata.menuFlavor), false)
+	flavorsArrow.set_cursor_from_index(globaldata.FLAVORS.find(globaldata.menuFlavor), false)
 
 	# Button Prompts
 	$OptionsMenu/NinePatchRect/FileSettings/VBoxContainer2/ButtonPromptsLabel.text = "MENU_" + globaldata.buttonPrompts.to_upper()
-	buttonPromptsArrow.set_cursor_from_index(BUTTON_PROMPTS.find(globaldata.buttonPrompts), false)
+	buttonPromptsArrow.set_cursor_from_index(globaldata.BUTTON_PROMPTS.find(globaldata.buttonPrompts), false)
 
 	$OptionsMenu/NinePatchRect/Settings/VBoxContainer2/WindowSize.text = _get_resolution_as_text(globaldata.winSize)
 

@@ -1,0 +1,32 @@
+'0':
+  if:
+    haspartymembers:
+      lloyd: true
+    goto: '2'
+  goto: '1'
+'1':
+  name: DIALOGUE_TESTING_REMOVELLOYD_SPEAKER_kirb
+  sound: Kid
+  text: DIALOGUE_TESTING_REMOVELLOYD_1
+'2':
+  actors:
+    lloyd: lloyd
+  name: DIALOGUE_TESTING_REMOVELLOYD_SPEAKER_kirb
+  sound: Kid
+  text: DIALOGUE_TESTING_REMOVELLOYD_2
+  options:
+    DIALOGUE_TESTING_REMOVELLOYD_2-OPT_0: '4'
+    DIALOGUE_TESTING_REMOVELLOYD_2-OPT_1: '3'
+    cancel: '3'
+'3':
+  name: DIALOGUE_TESTING_REMOVELLOYD_SPEAKER_kirb
+  sound: Kid
+  text: DIALOGUE_TESTING_REMOVELLOYD_3
+'4':
+  name: DIALOGUE_TESTING_REMOVELLOYD_SPEAKER_kirb
+  sound: Kid
+  text: DIALOGUE_TESTING_REMOVELLOYD_4
+  setpartymembers:
+    lloyd: false
+  changereplaced:
+    lloyd: Objects/npc8

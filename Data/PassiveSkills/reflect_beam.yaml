@@ -1,0 +1,10 @@
+conditions:
+  skill: pkBeamG
+priority: 3
+passive_skill_actions:
+  sound: franklinbadge
+  vibrate: 0.5
+  damage_multiplier: 0
+  counter_multiplier: 1
+  dialogue: BATTLE_MSG_REFLECT_BEAM
+  context_item: FranklinBadge0.8

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Poisoned.png-ce059d04a989013d2024025c3d0979b7.stex"
+path="res://.import/poisoned.png-467dfae4c5541d47b8c1c96986a03985.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Poisoned.png"
-dest_files=[ "res://.import/Poisoned.png-ce059d04a989013d2024025c3d0979b7.stex" ]
+source_file="res://Graphics/UI/Ailments/poisoned.png"
+dest_files=[ "res://.import/poisoned.png-467dfae4c5541d47b8c1c96986a03985.stex" ]
 
 [params]
 

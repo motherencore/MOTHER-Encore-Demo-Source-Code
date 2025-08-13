@@ -1,0 +1,29 @@
+name: PKBEAM_NAME
+level: 2
+description: PKBEAMG_DESC
+article: PKBEAM_ART
+skillType: psi
+actionType: 0
+useCases: 1
+psiCategory: Offense
+damageType: normal
+targetType: 0
+damage: 390
+variance: 10
+priority: 0
+statusEffects:
+- chance: 70
+  name: blinded
+statusHeals: []
+critChance: 0
+failChance: 0
+ppCost: 35
+hpCost: 0
+hitEffect: ''
+preHitEffect: ''
+screenEffect: pk_beam_gamma
+enemyScreenEffect: e_pk_beam_gamma
+userAnim: psi
+enemyFlashColor: 'BA53E4'
+useSound: ''
+hitSound: bash

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Asthma_monospace.png-195c4263d35dbcbebb6ed99bf1c4d218.stex"
+path="res://.import/asthma_monospace.png-6b7ce9a4734d9c90bc4c401dda128115.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Asthma_monospace.png"
-dest_files=[ "res://.import/Asthma_monospace.png-195c4263d35dbcbebb6ed99bf1c4d218.stex" ]
+source_file="res://Graphics/UI/Ailments/asthma_monospace.png"
+dest_files=[ "res://.import/asthma_monospace.png-6b7ce9a4734d9c90bc4c401dda128115.stex" ]
 
 [params]
 

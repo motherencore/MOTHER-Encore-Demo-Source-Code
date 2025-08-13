@@ -4,33 +4,44 @@
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=2]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=3]
 
-[node name="Sign" type="Label"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -4.0
-margin_top = -2.0
-margin_right = 4.0
-margin_bottom = 10.0
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 327.0
+margin_bottom = 12.0
+size_flags_horizontal = 0
+custom_constants/separation = 0
+
+[node name="SignLeft" type="Label" parent="."]
+margin_right = 273.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
-text = "$"
+text = "$_LEFT"
 
 [node name="Amount" type="Label" parent="."]
-anchor_right = 1.0
-margin_left = 27.0
-margin_right = -10.0
-margin_bottom = 14.0
+margin_left = 273.0
+margin_right = 279.0
+margin_bottom = 12.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "0"
 align = 2
 
-[node name="Control" type="Control" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-
-[node name="cents" type="Sprite" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource( 2 )
-position = Vector2( -5, 5 )
+margin_left = 279.0
+margin_top = 1.0
+margin_right = 289.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 10, 9 )
+size_flags_vertical = 4
 texture = ExtResource( 1 )
+
+[node name="SignRight" type="Label" parent="."]
+margin_left = 289.0
+margin_right = 327.0
+margin_bottom = 12.0
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "$_RIGHT"

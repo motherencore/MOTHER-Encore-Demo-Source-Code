@@ -1,0 +1,164 @@
+'0':
+  actors:
+    ninten: leader
+    doll: Objects/npcdoll
+    mimmie: Objects/npc2
+  actorsdir:
+    ninten:
+      x: 0
+      y: -1
+    mimmie:
+      x: 0
+      y: -1
+  actorsmove:
+    ninten:
+      movement:
+      - x: 128
+        y: 144
+      speed: 64
+      animation: Walk
+      type: position
+    doll:
+      movement:
+      - x: 0
+        y: 16
+      - wait: 1
+      - x: 0
+        y: 16
+      - wait: 1
+      speed: 32
+      type: step
+  teleportactors:
+    doll:
+      x: 128
+      y: 74
+    mimmie:
+      x: 128
+      y: 90
+  changecam: doll
+  returncam: 1
+  wait: 0.1
+  autoadvance: true
+  caninput: false
+  goto: '1'
+  actorsanim:
+    doll:
+      anim: Float
+'1':
+  actorsmove:
+    mimmie:
+      movement:
+      - x: 0
+        y: 20
+      - wait: 1
+      - x: 0
+        y: 20
+      - wait: 1
+      speed: 32
+      animation: Walk
+      type: step
+      moonwalk: true
+  wait: 3
+  autoadvance: true
+  caninput: false
+  goto: '2'
+'2':
+  talker: mimmie
+  name: DIALOGUE_PODUNK_CUTSCENES_DOLL_ATTACK_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_DOLL_ATTACK_2
+  emoteactors:
+    mimmie: exclamation
+  actorsturn:
+    mimmie:
+      x: 0
+      y: 1
+      speed: 0.05
+  changecam: mimmie
+  returncam: 1
+  goto: '3'
+'3':
+  showbox: false
+  actorsmove:
+    mimmie:
+      movement:
+      - x: 136
+        y: 144
+      - x: 136
+        y: 160
+      - x: 128
+        y: 160
+      speed: 128
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 0
+      y: 1
+      speed: 0.1
+  wait: 0.6
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  talker: mimmie
+  name: DIALOGUE_PODUNK_CUTSCENES_DOLL_ATTACK_SPEAKER_Mimmie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_DOLL_ATTACK_4
+  actorsdir:
+    mimmie:
+      x: 0
+      y: -1
+  actorsjump:
+    mimmie:
+      height: 8
+      length: 0.4
+  goto: '5'
+  actorsshake:
+    mimmie:
+      x: 1
+      length: 0.2
+'5':
+  showbox: false
+  actorsmove:
+    doll:
+      movement:
+      - x: 0
+        y: -16
+      speed: 64
+      type: step
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+  changecam: doll
+  returncam: 1
+  wait: 1.2
+  autoadvance: true
+  caninput: false
+  goto: '6'
+  actorsshake:
+    doll:
+      x: 2
+      length: 0.8
+'6':
+  talker: doll
+  actorsmove:
+    doll:
+      movement:
+      - x: 0
+        y: 48
+      speed: 200
+      type: step
+  objectfunction:
+    Room Shaker: stop_shake
+  setflags: doll_attack
+  battler:
+    actor: doll
+    enemy: doll
+    keep: true
+  wait: 0.25
+  autoadvance: true
+  caninput: false
+  batwincutscene: Podunk/cutscenes/doll_defeated

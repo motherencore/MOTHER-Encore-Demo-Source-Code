@@ -1,14 +1,12 @@
 extends PanelContainer
 
 const CharSelect = preload("res://Nodes/Ui/Inventory/InventorySelect.gd")
-const Scrollbar = preload("res://Scripts/UI/Reusables/Scrollbar.gd")
 const PSISkillLine = preload("res://Scripts/UI/PSISkillLine.gd")
-const Cursor = preload("res://Scripts/UI/cursor.gd")
 
 export (NodePath) onready var char_select_view = get_node(char_select_view) as CharSelect
 export (NodePath) onready var tab_view = get_node(tab_view) as Node
 export (NodePath) onready var scroll_view = get_node(scroll_view) as Control
-export (NodePath) onready var scroll_bar_view = get_node(scroll_bar_view) as Scrollbar
+export (NodePath) onready var scroll_bar_view = get_node(scroll_bar_view) as EncoreScrollBar
 export (NodePath) onready var grid_view = get_node(grid_view) as GridContainer
 export (NodePath) onready var description_label = get_node(description_label) as RichTextLabel
 export (NodePath) onready var pp_cost_view = get_node(pp_cost_view) as Node
@@ -22,10 +20,10 @@ signal exited()
 
 enum TABS {FIELD, BATTLE, PSI}
 
-var _is_active = false
-var _listed_skills = []
+var _is_active := false
+var _listed_skills := []
 
-var current_character = globaldata.ninten setget _set_character
+var current_character: Dictionary = globaldata.ninten setget _set_character
 
 func _ready():
 	char_select_view.show()
@@ -95,12 +93,9 @@ func _on_grid_cursor_move(dir):
 func _on_grid_cursor_failed_move(dir):
 	if tabs_cursor.cursor_index == TABS.PSI and grid_view.get_child_count() > 0:
 		if dir.y != 0:
-			var index_in_levels = grid_cursor.cursor_index
 			var index_in_list = _get_psi_list_index()
 			index_in_list = posmod(index_in_list + dir.y, grid_view.get_child_count())
-			grid_cursor.menu_parent = grid_view.get_child(index_in_list).box
-			grid_cursor.set_cursor_from_index(index_in_levels)
-			grid_cursor.play_sfx("cursor1")
+			grid_cursor.change_parent_same_index(grid_view.get_child(index_in_list).get_hbox())
 			_update_scroll()
 			_update_description()
 
@@ -129,7 +124,7 @@ func _update_grid(change_tab = false):
 	for skill in _listed_skills:
 		if tabs_cursor.cursor_index == TABS.PSI:
 			var new_item = psi_template.duplicate()
-			new_item.init(skill[0])
+			new_item.init(skill[0], grid_cursor)
 			for level in skill:
 				new_item.addLevel(level)
 			grid_view.add_child(new_item)
@@ -143,7 +138,7 @@ func _update_grid(change_tab = false):
 	if tabs_cursor.cursor_index != TABS.PSI or _listed_skills.empty():
 		grid_cursor.menu_parent = grid_view
 	else:
-		grid_cursor.menu_parent = grid_view.get_children()[0].box
+		grid_cursor.menu_parent = grid_view.get_children()[0].get_hbox()
 
 	if change_tab:
 		grid_cursor.cursor_index = 0
@@ -162,13 +157,12 @@ func _fill_skill_data():
 	match tabs_cursor.cursor_index:
 		TABS.FIELD:
 			for skill_id in globaldata.fieldSkills:
-				var skill = globaldata.fieldSkills[skill_id]
-				if skill.usable[current_character.name] and (skill.flag == "" or globaldata.flags[skill.flag]):
-					_listed_skills.append(skill)
+				if globaldata.has_field_skill(current_character, skill_id):
+					_listed_skills.append(globaldata.fieldSkills[skill_id])
 		TABS.BATTLE:
 			for skill_id in current_character.learnedSkills:
 				var skill = globaldata.skills.get(skill_id)
-				if skill != null and skill.skillType != "psi":
+				if skill != null and skill.skillType == "skill":
 					_listed_skills.append(skill)
 		TABS.PSI:
 			var skill_dict = {}
@@ -193,11 +187,13 @@ func _update_description():
 	if grid_cursor.on and grid_cursor.cursor_index != -1 and grid_cursor.cursor_index <= grid_cursor.get_last_available_idx():
 		var skill
 		if tabs_cursor.cursor_index == TABS.PSI:
-			skill = _listed_skills[_get_psi_list_index()][grid_cursor.cursor_index]
+			var list_index = _get_psi_list_index()
+			var level = grid_view.get_child(list_index).get_selected_level()
+			skill = _listed_skills[list_index][level]
 		else:
 			skill = _listed_skills[grid_cursor.cursor_index]
 		if skill:
-			description_label.bbcode_text = globaldata.replaceText(skill.description)
+			description_label.bbcode_text = TextTools.add_line_breaks(TextTools.replace_text(skill.description), description_label)
 			if "skillType" in skill and skill.skillType == "psi":
 				if !pp_cost_view.visible:
 					pp_cost_view.get_node("AnimationPlayer").play("ShowPP")

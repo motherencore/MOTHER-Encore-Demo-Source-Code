@@ -1,0 +1,44 @@
+type: 0
+animations:
+    TalkIdle:
+        type: 0
+        directions:
+            - - 0
+              - - 3
+                - 0.25
+    TransitionIdle:
+        type: 1
+        directions:
+            - - 0
+              - - 2
+                - 0.25
+              - - 1
+                - 0.25
+    Talk:
+        type: 0
+        directions:
+            - - 0
+              - - 3
+                - 0.25
+              - - 4
+                - 0.25
+    Idle:
+        type: 0
+        directions:
+            - - 0
+              - - 1
+                - 0.25
+    TransitionTalk:
+        type: 1
+        directions:
+            - - 0
+              - - 2
+                - 0.25
+              - - 3
+                - 0.25
+size:
+    - 4
+    - 1
+offset:
+    - 0
+    - 0

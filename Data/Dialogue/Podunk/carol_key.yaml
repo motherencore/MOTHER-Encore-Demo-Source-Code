@@ -1,0 +1,10 @@
+'0':
+  name: DIALOGUE_PODUNK_CAROL_KEY_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CAROL_KEY_0
+  goto: '4'
+'4':
+  name: DIALOGUE_PODUNK_CAROL_KEY_SPEAKER_Carol
+  sound: Sexy
+  text: DIALOGUE_PODUNK_CAROL_KEY_4
+  setflags: carol_ask_key

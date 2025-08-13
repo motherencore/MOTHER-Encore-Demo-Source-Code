@@ -1,0 +1,30 @@
+name: RAT_NAME
+description: RAT_DESC
+article: RAT_ART
+maxhp: 70
+hp: 70
+maxpp: 0
+pp: 0
+offense: 10
+defense: 18
+speed: 7
+iq: 1
+guts: 5
+level: 5
+exp: 9
+cash: 2
+items:
+- chance: 100
+  item: Bread
+skills:
+- skill: scratch
+  weight: 1
+- skill: bite
+  weight: 1
+boss: false
+sprite: rat
+music: Flippant Foe.mp3
+bg: rat
+ov:
+  sprite: RatOV
+  anim: BasicEnemy

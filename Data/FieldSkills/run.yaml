@@ -1,0 +1,8 @@
+name: FIELD_RUN
+description: FIELD_RUN_DESC
+usable:
+  ninten: true
+  ana: true
+  lloyd: true
+  teddy: true
+  pippi: true

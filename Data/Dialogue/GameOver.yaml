@@ -1,0 +1,30 @@
+'0':
+  sound: Adult
+  text: DIALOGUE_GAMEOVER_0
+  goto: '2'
+'2':
+  sound: Adult
+  text: DIALOGUE_GAMEOVER_2
+  options:
+    DIALOGUE_GAMEOVER_2-OPT_0: '8'
+    DIALOGUE_GAMEOVER_2-OPT_1: '3'
+    cancel: '3'
+'3':
+  sound: Adult
+  text: DIALOGUE_GAMEOVER_3
+  options:
+    DIALOGUE_GAMEOVER_5-OPT_0: '6'
+    DIALOGUE_GAMEOVER_5-OPT_1: '2'
+    cancel: '2'
+'6':
+  sound: Adult
+  text: DIALOGUE_GAMEOVER_6
+  sendsignal:
+  - end_gameover
+  - false
+'8':
+  sound: Adult
+  text: DIALOGUE_GAMEOVER_8
+  sendsignal:
+  - end_gameover
+  - true

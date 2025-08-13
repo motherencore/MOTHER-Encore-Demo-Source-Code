@@ -1,13 +1,13 @@
 extends Node2D
 
 signal cutscene_ended
-signal scene_changed
 signal locale_changed
 signal inputs_changed
 signal settings_changed
+signal party_changed
 
 onready var tween = $Tween
-var party =  []
+var party = []
 var partyNpcs = []
 var partySize: int = 255
 var partySpace = []
@@ -16,12 +16,11 @@ var partyObjects = []
 var currentScene = null
 var previousScene = null
 var persistPlayer = null
-var currentCamera = null
+var currentCamera: GameCamera = null
 var debugMenu = load("res://Nodes/Ui/debug/debug.tscn")
 var maxInventorySlots = 10
 var dialogue = []
 var receiver = null
-var itemUser = null
 var item = null
 enum {KEYBOARD, GAMEPAD}
 var device = KEYBOARD
@@ -30,19 +29,20 @@ var talker = null
 var inBattle = false
 var queuedBattle = false
 var gameover = false
-var fadeout = 0
 var phoneLocation
 var mousePosition
 var mouseShownTime: float = 0.0
 var mouseHiddenTime: float = 0.0
+var mouseIdleTime: float = 0.0
 
-var LANGUAGES_DEBUG = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de", "ru"]
-var LANGUAGES_RELEASE = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de"]
+var LANGUAGES_DEBUG = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de", "ru", "uk"]
+var LANGUAGES_RELEASE = ["en", "fr", "it", "ja", "ko", "es", "es_ES", "pt_BR", "pl", "de", "ru", "uk"]
 var LANGUAGE_DEFAULT = "en"
 
 onready var playerNode = load("res://Nodes/Reusables/Player.tscn")
 
-const POSSIBLE_PARTY_MEMBERS = ["ninten", "lloyd", "ana", "teddy", "pippi", "canarychick", "flyingman", "eve"]
+const POSSIBLE_PARTY_MEMBERS = ["ninten", "ana", "lloyd", "teddy", "pippi", "canarychick", "flyingman", "eve"]
+const POSSIBLE_PLAYABLE_MEMBERS = ["ninten", "ana", "lloyd", "teddy", "pippi"]
 
 func _ready():
 	set_localized_default_inputs()
@@ -81,17 +81,23 @@ func _physics_process(delta):
 		
 	if mousePosition != Input.get_last_mouse_speed():
 		mouseShownTime = 0
+		mouseIdleTime = 0
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
 			mouseHiddenTime += delta
-			if mouseHiddenTime >= 0.05:
+			if mouseHiddenTime >= delta*5:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				mouseHiddenTime = 0
+	else:
+		mouseIdleTime += delta
 		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		mouseShownTime += delta
 		
 	mousePosition = Input.get_last_mouse_speed()
 	
+	if mouseIdleTime >= 0.5:
+		mouseHiddenTime = 0
+
 	if mouseShownTime >= 1.5:
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		mouseShownTime = 0
@@ -102,11 +108,11 @@ func _physics_process(delta):
 		elif Input.is_action_just_released("ui_g"):
 			Engine.time_scale = 1.0
 		
+		if Input.is_action_just_pressed("ui_w"):
+			global.persistPlayer.visible = !global.persistPlayer.visible
+		
 		if Input.is_action_just_pressed("ui_F2") and !persistPlayer.paused and persistPlayer.state == persistPlayer.MOVE and !global.inBattle:
-			uiManager.onScreenEnemies.append(["TEST", null])
-			uiManager.onScreenEnemies.append(["TEST", null])
-			uiManager.onScreenEnemies.append(["TEST", null])
-			uiManager.start_battle()
+			uiManager.start_battle(0, true, ["TEST", "TEST"])
 		
 		if Input.is_action_just_pressed("ui_F6"):
 			global.persistPlayer.pause()
@@ -116,16 +122,25 @@ func _physics_process(delta):
 			global.persistPlayer.pause()
 			uiManager.open_storage(true)
 
-		if Input.is_action_just_pressed("ui_L"):
+		if Input.is_action_just_pressed("ui_load", true):
 			audioManager.fadeout_all_music(0.5)
 			load_game(globaldata.saveFile)
+
+		if Input.is_action_just_pressed("ui_load_select"):
+			global.persistPlayer.pause()
+			uiManager.open_save(SaveSelect.Type.LOAD)
 		
 		# LOCALIZATION Code added: Debug feature to quickly translate the UI
 		if Input.is_action_just_pressed("ui_translate"):
-			toggle_language(LANGUAGES_DEBUG)
+			if Input.is_action_just_pressed("ui_translate", true):
+				toggle_language(LANGUAGES_DEBUG)
+			else:
+				toggle_language(LANGUAGES_DEBUG, -1)
 			save_settings()
+			
 		for i in LANGUAGES_DEBUG.size():
-			if Input.is_action_just_pressed("ui_lang%s" % i):
+			var input = "ui_lang%s" % i
+			if input in InputMap.get_actions() and Input.is_action_just_pressed(input):
 				set_language(LANGUAGES_DEBUG[i])
 				save_settings()
 		
@@ -143,32 +158,40 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_F12"):
 			goto_scene("res://Maps/Testing/Debug world.tscn")
 			persistPlayer.position = Vector2.ZERO
+			persistPlayer.unpause()
 		
 		if Input.is_action_just_pressed("ui_backtick"):
 			if uiManager.uiStack.size() == 0:
 				var dm = debugMenu.instance()
 				uiManager.add_ui(dm)
 		
-		var party_keys = ["one", "two", "three", "four", "five", "six", "seven"]
-		for i in party_keys.size():
-			if Input.is_action_just_pressed("ui_%s" % party_keys[i], true):
+		for i in POSSIBLE_PARTY_MEMBERS.size():
+			if Input.is_action_just_pressed("ui_%s" % (i+1), true):
 				var party_member = globaldata.get(POSSIBLE_PARTY_MEMBERS[i])
 				if party_member in party:
-					if party_member.status.has(globaldata.ailments.Unconscious):
-						if partyObjects.size() > 1:
+					if StatusManager.is_unconscious(party_member):
+						if party.size() > 1:
 							party.erase(party_member)
 							if party_member != globaldata.ninten:
 								party_member.status.clear()
-						else: 
+						else:
 							party_member.status.clear()
 					else: 
-						party_member.status.append(globaldata.ailments.Unconscious)
+						StatusManager.add_status(party_member, StatusManager.AILMENT_UNCONSCIOUS)
+				elif party_member in partyNpcs:
+					partyNpcs.erase(party_member)
+					party_member.status.clear()
 				else:
-					party.append(party_member) 
+					if party_member.name in POSSIBLE_PLAYABLE_MEMBERS:
+						party.append(party_member) 
+					else:
+						party_member.status.clear()
+						partyNpcs.append(party_member)
 					if party_member == globaldata.ninten:
 						party_member.status.clear()
 				create_party_followers()
-				persistPlayer._spritesheet()
+				global.emit_signal("party_changed")
+				persistPlayer.spritesheet()
 			
 		if Input.is_action_just_pressed("ui_mute"):
 			audioManager.stop_all_music()
@@ -187,24 +210,31 @@ func goto_scene(path, playerPosition = Vector2.ZERO, playerDirection = Vector2(0
 	call_deferred("_deferred_goto_scene", path, playerPosition, playerDirection)
 
 func _deferred_goto_scene(path, playerPosition, playerDirection):
-	var PassiveHealer
 	if currentScene.has_node("YSort"):
 		currentScene.get_node("YSort").remove_child(persistPlayer)
 	else:
 		currentScene.get_node("Objects").remove_child(persistPlayer)
-	PassiveHealer = currentScene.get_node("Objects").get_node_or_null("PassiveHeal")
-	if PassiveHealer != null:
-		PassiveHealer = PassiveHealer.duplicate()
+	
+	# This could be moved somewhere else for better code organization
+	# var ao_oni
+	# ao_oni = currentScene.get_node("Objects").get_node_or_null("AoOni")
+	# if ao_oni != null:
+	# 	ao_oni = ao_oni.duplicate()
 	
 	persistPlayer.set_all_collisions(false)
 	
 	for node in persistArray:
 		if node != null:
 			node.get_parent().remove_child(node)
-	currentScene.free()
-	var scene = ResourceLoader.load(path)
-	currentScene = scene.instance()
 	
+	var new_scene = ResourceLoader.load(path).instance()
+
+	if currentScene is AreaRoom and new_scene is AreaRoom:
+		currentScene.leave_for(new_scene)
+	
+	currentScene.free()
+
+	currentScene = new_scene
 	
 	get_tree().get_root().add_child(currentScene)
 	
@@ -216,14 +246,14 @@ func _deferred_goto_scene(path, playerPosition, playerDirection):
 	create_party_followers()
 	set_party_position(playerPosition, playerDirection)
 	
-	if PassiveHealer != null:
-		currentScene.get_node("Objects").add_child(PassiveHealer)
+	# if ao_oni != null:
+	# 	currentScene.get_node("Objects").add_child(ao_oni)
 	
 	for node in persistArray:
 		currentScene.add_child(node)
 	
 	get_tree().set_current_scene(currentScene)
-	uiManager.scene_changed()
+	uiManager.update_key_indicator()
 	yield(get_tree(), "idle_frame")
 	
 	persistPlayer.set_all_collisions(true)
@@ -259,10 +289,10 @@ func _deferred_goto_zone(scene):
 	
 	if currentScene.get_name() != "Snowman" and currentScene.get_name() != "Snowman Interiors":
 		persistPlayer.costume = "Normal"
-		persistPlayer._spritesheet()
+		persistPlayer.spritesheet()
 	else:
 		persistPlayer.costume = "Snow"
-		persistPlayer._spritesheet()
+		persistPlayer.spritesheet()
 
 func set_party_position(position, direction):
 	persistPlayer.position = position
@@ -303,8 +333,6 @@ func create_party_followers():
 		follow.spacing = i * 18 + 18
 		follow.delay = i * 0.2 + 0.2
 		follow.position = partySpace[follow.spacing]
-		if i >= party.size() - 1:
-			follow.partyMemberClass = global.partyNpcs
 		partyObjects.append(follow)
 		persistPlayer.get_parent().add_child(follow)
 	set_follower_index() # ensures follower objects know what place they're supposed to be in
@@ -324,21 +352,26 @@ func party_call(function, value = null):
 				else:
 					i.call(function)
 
-func get_conscious_party():
-	var arr = []
-	for partyMember in party:
-		if !partyMember["status"].has(globaldata.ailments.Unconscious):
-			arr.append(partyMember)
+func get_conscious_party() -> Array:
+	var arr := []
+	for mem in party:
+		if !StatusManager.is_unconscious(mem):
+			arr.append(mem)
 	return arr
 
-func set_dialog(path, npc):
-	dialogue.append(["res://Data/Dialogue/" + path +".json", npc])
+func get_party_names() -> Array:
+	var ret := []
+	for mem in party:
+		ret.append(mem.name)
+	return ret
+
+func set_dialog(path, npc = null):
+	dialogue.append(["res://Data/Dialogue/" + path +".yaml", npc])
 
 func set_respawn():
 	globaldata.respawnPoint = persistPlayer.position
 	globaldata.respawnScene = currentScene.get_filename()
-	print(globaldata.respawnPoint)
-	print(globaldata.respawnScene)
+	print("Respawn: %s %s" % [currentScene.name, globaldata.respawnPoint])
 
 func goto_respawn():
 	goto_scene(globaldata.respawnScene, globaldata.respawnPoint)
@@ -346,24 +379,22 @@ func goto_respawn():
 	persistPlayer.direction = Vector2(0, 1)
 	persistPlayer.blend_position(persistPlayer.direction)
 
-func get_location():
-	if phoneLocation == "":
-		return currentScene.name
-	else:
-		return phoneLocation
-
-func _input(event):
+func _input(event: InputEvent):
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion :
 		device = GAMEPAD
 	elif event is InputEventKey:
 		device = KEYBOARD
 	
-	if event.is_action_pressed("ui_fullscreen"):
-		toggle_fullscreen()
-		global.emit_signal("settings_changed")
-		
-	if event.is_action_pressed("ui_winsize"):
-		increase_win_size(1)
+	if event is InputEventWithModifiers and !(event.alt or event.control or event.meta):
+		if event.is_action_pressed("ui_fullscreen"):
+			toggle_fullscreen()
+			global.emit_signal("settings_changed")
+			
+		if event.is_action_pressed("ui_winsize"):
+			if event.shift:
+				increase_win_size(-1)
+			else:
+				increase_win_size(1)
 
 func start_joy_vibration(device_id: int, weak_magnitude: float, strong_magnitude: float, duration: float = 0):
 	if globaldata.rumble:
@@ -375,13 +406,13 @@ func detect_buttons_style():
 	var PLAYSTATION_PATTERNS = ["playstation", "sony", "ps5", "ps4", "ps3", "ps2", "dualsense", "dualshock"]
 	for pattern in NINTENDO_PATTERNS:
 		if pattern in joy_name.to_lower():
-			return globaldata.BTN_STYLES.NINTENDO
+			return globaldata.BtnStyles.NINTENDO
 
 	for pattern in PLAYSTATION_PATTERNS:
 		if pattern in joy_name.to_lower():
-			return globaldata.BTN_STYLES.PLAYSTATION
+			return globaldata.BtnStyles.PLAYSTATION
 
-	return globaldata.BTN_STYLES.XBOX
+	return globaldata.BtnStyles.XBOX
 
 # LOCALIZATION Code added: New method "set_win_size" to set window size to any value
 # (especially from the options UI)
@@ -479,9 +510,12 @@ func serialize_inputs() -> Dictionary:
 func deserialize_inputs(controls) -> void:
 	if controls != null:
 		for action in controls:
-			InputMap.action_erase_events(action)
-			for event in controls[action]:
-				InputMap.action_add_event(action, str2var(event))
+			if InputMap.has_action(action):
+				InputMap.action_erase_events(action)
+				for event in controls[action]:
+					var event_to_add = str2var(event)
+					event_to_add.device = 0
+					InputMap.action_add_event(action, event_to_add)
 
 # Default action keys adapted to various keyboard layouts
 func set_localized_default_inputs():
@@ -519,7 +553,7 @@ func _on_Playtimer_timeout():
 
 func save_settings():
 	# LOCALIZATION Code change: Language isn't stored in globaldata anymore
-	var saveDict = {
+	var save_dict = {
 		"language": TranslationServer.get_locale(),
 		"winsize": globaldata.winSize,
 		"fullscreen": OS.window_fullscreen,
@@ -532,32 +566,33 @@ func save_settings():
 	}
 	
 
-	var saveGame = File.new()
-	saveGame.open_encrypted_with_pass("user://settings.save", File.WRITE,"ENCORE")
-	saveGame.store_line(to_json(saveDict))
-	saveGame.close()
+	var save_file = File.new()
+	save_file.open_encrypted_with_pass("user://settings.save", File.WRITE,"ENCORE")
+	save_file.store_line(to_json(save_dict))
+	save_file.close()
 
 func load_settings():
-	var saveGame = File.new()
-	if not saveGame.file_exists("user://settings.save"):
+	var save_file = File.new()
+	if not save_file.file_exists("user://settings.save"):
 		set_language_default()
 		return 
 	
-	saveGame.open_encrypted_with_pass("user://settings.save", File.READ,"ENCORE")
+	save_file.open_encrypted_with_pass("user://settings.save", File.READ,"ENCORE")
 	
-	var saveData = parse_json(saveGame.get_line())
-	
-	var language = saveData["language"]
-	var winSize = saveData["winsize"]
-	var fullscreen = saveData["fullscreen"]
-	var musicVolume = saveData["musicvolume"]
-	var sfxVolume = saveData["sfxvolume"]
-	deserialize_inputs(saveData.get("inputmap"))
-	globaldata.rumble = saveData.get("rumble", true)
-	globaldata.buttonsStyle = saveData.get("buttonsStyle", globaldata.BTN_STYLES.DETECT)
-	globaldata.saveFile = int(saveData.get("savefile", 0))
+	var save_data = parse_json(save_file.get_line())
+	save_file.close()
 
-	if language in get_supported_languages():
+	var language = save_data["language"]
+	var winSize = save_data["winsize"]
+	var fullscreen = save_data["fullscreen"]
+	var musicVolume = save_data["musicvolume"]
+	var sfxVolume = save_data["sfxvolume"]
+	deserialize_inputs(save_data.get("inputmap"))
+	globaldata.rumble = save_data.get("rumble", true)
+	globaldata.buttonsStyle = save_data.get("buttonsStyle", globaldata.BtnStyles.DETECT)
+	globaldata.saveFile = int(save_data.get("savefile", 0))
+
+	if language in TranslationServer.get_loaded_locales():
 		TranslationServer.set_locale(language)
 	else:
 		set_language_default()
@@ -566,16 +601,28 @@ func load_settings():
 	set_music_volume(musicVolume)
 	set_sfx_volume(sfxVolume)
 	
-	saveGame.close()
+func save_from_dict(num: int, dict: Dictionary):
+	audioManager.play_sfx(load("res://Audio/Sound effects/Save.mp3"), "menu")
+	var save_file = File.new()
+	save_file.open_encrypted_with_pass("user://saveFile" + var2str(num) + ".save", File.WRITE,"ENCORE")
+	save_file.store_line(to_json(dict))
+	save_file.close()
 
-func save():
-	var saveDict = {
+func save_game(num: int):
+	var location = phoneLocation if phoneLocation else currentScene.name
+
+	var party_names := []
+	for mem in party + partyNpcs:
+		party_names.append(mem.name)
+
+	var save_dict = {
 		"scene": currentScene.get_filename(),
-		"scenename": get_location(),
+		"scenename": location,
 		"posX": persistPlayer.position.x, 
 		"posY": persistPlayer.position.y,
 		"playtime": globaldata.playtime,
 		"flags": globaldata.flags,
+		"object_flags": globaldata.object_flags,
 		"keys": globaldata.keys,
 		"textspeed": globaldata.textSpeed,
 		"menuflavor": globaldata.menuFlavor,
@@ -584,122 +631,83 @@ func save():
 		"description": globaldata.description,
 		"cash": globaldata.cash,
 		"bank": globaldata.bank,
-		"ninten": globaldata.ninten,
-		"ana": globaldata.ana,
-		"lloyd": globaldata.lloyd,
-		"teddy": globaldata.teddy,
-		"pippi": globaldata.pippi,
-		"eve": globaldata.eve,
+		"ninten": globaldata.ninten.duplicate(true),
+		"ana": globaldata.ana.duplicate(true),
+		"lloyd": globaldata.lloyd.duplicate(true),
+		"teddy": globaldata.teddy.duplicate(true),
+		"pippi": globaldata.pippi.duplicate(true),
+		"eve": globaldata.eve.duplicate(true),
+		"flyingman": globaldata.flyingman.duplicate(true),
 		"favoritefood": globaldata.favoriteFood,
-		"flying": globaldata.flyingman,
+		"playername": globaldata.playerName,
 		"runsound": persistPlayer.run_sound,
 		"dirX": persistPlayer.direction.x,
 		"dirY": persistPlayer.direction.y,
-		"party": party,
-		"partyNpcs": partyNpcs,
+		"party": party_names,
 		"inventories": InventoryManager.save_inventories(),
-		"rareDrops": globaldata.rareDrops
+		"rareDrops": globaldata.rareDrops,
+		"encountered": globaldata.encountered
 	}
-	return saveDict
-
-func save_from_dict(num, dict):
-	audioManager.play_sfx(load("res://Audio/Sound effects/Save.mp3"), "menu")
-	var saveGame = File.new()
-	saveGame.open_encrypted_with_pass("user://saveFile" + var2str(num) + ".save", File.WRITE,"ENCORE")
-	saveGame.store_line(to_json(dict))
-	saveGame.close()
-
-func save_game(num):
-	audioManager.play_sfx(load("res://Audio/Sound effects/Save.mp3"), "menu")
-	var saveGame = File.new()
-	saveGame.open_encrypted_with_pass("user://saveFile" + var2str(num) + ".save", File.WRITE,"ENCORE")
-	var saveData = global.save()
-	saveGame.store_line(to_json(saveData))
-	saveGame.close()
+	StatusManager.save_statuses(save_dict)
+	save_from_dict(num, save_dict)
 	set_respawn()
 	globaldata.flags["saved"] = true
 
-func load_game(num, goto_game = true):
-	var saveGame = File.new()
-	if not saveGame.file_exists("user://saveFile" + var2str(num) + ".save"):
-		return 
-	
-	saveGame.open_encrypted_with_pass("user://saveFile" + var2str(num) + ".save", File.READ,"ENCORE")
+func load_to_dict(num):
+	var save_file = File.new()
+	if not save_file.file_exists("user://saveFile" + var2str(num) + ".save"):
+		return
+	save_file.open_encrypted_with_pass("user://saveFile" + var2str(num) + ".save", File.READ,"ENCORE")
+	var save_dict = parse_json(save_file.get_line())
+	save_file.close()
+	_upgrade_from_old_save(save_dict)
+	return save_dict
 
-	var saveData = parse_json(saveGame.get_line())
+func load_game(num, goto_game = true):
+	var saveData = load_to_dict(num)
+	if not saveData:
+		return
 	
-	if saveData.has("posX") and saveData.has("posY"):
-		globaldata.respawnPoint = Vector2(saveData["posX"], saveData["posY"])
-	if saveData.has("scene"):
-		globaldata.respawnScene = saveData["scene"]
-	if saveData.has("playtime"):
-		globaldata.playtime = saveData["playtime"]
-	
-	
-	if saveData.has("ninten"):
-		globaldata.ninten = saveData["ninten"]
-	if saveData.has("ana"):
-		globaldata.ana = saveData["ana"]
-	if saveData.has("lloyd"):
-		globaldata.lloyd = saveData["lloyd"]
-	if saveData.has("teddy"):
-		globaldata.teddy = saveData["teddy"]
-	if saveData.has("pippi"):
-		globaldata.pippi = saveData["pippi"]
-	if saveData.has("favoritefood"):
-		globaldata.favoriteFood = saveData["favoritefood"]
-	if saveData.has("flying"):
-		globaldata.flyingman = saveData["flying"]
-	if saveData.has("eve"):
-		globaldata.flyingman = saveData["eve"]
-	if saveData.has("textspeed"):
-		globaldata.textSpeed = saveData["textspeed"]
-	if saveData.has("menuflavor"):
-		globaldata.menuFlavor = saveData["menuflavor"]
-	if saveData.has("buttonprompts"):
-		globaldata.buttonPrompts = saveData["buttonprompts"]
-	if saveData.has("earned_cash"):
-		globaldata.earned_cash = saveData["earned_cash"]
-	if saveData.has("cash"):
-		globaldata.cash = saveData["cash"]
-	if saveData.has("bank"):
-		globaldata.bank = saveData["bank"]
-	if saveData.has("description"):
-		globaldata.description = saveData["description"]
-	if saveData.has("inventories"):
-		InventoryManager.load_inventories(saveData["inventories"])
-	if saveData.has("keys"):
-		globaldata.keys = saveData["keys"]
-	if saveData.has("rareDrops"):
-		globaldata.rareDrops = saveData["rareDrops"]
-	
+	globaldata.respawnPoint = Vector2(saveData.get("posX", 0), saveData.get("posY", 0))
+	globaldata.respawnScene = saveData.get("scene", globaldata.respawnScene)
+	globaldata.playtime = int(saveData.get("playtime", 0))
+	globaldata.ninten = saveData.get("ninten", globaldata.ninten)
+	globaldata.ana = saveData.get("ana", globaldata.ana)
+	globaldata.lloyd = saveData.get("lloyd", globaldata.lloyd)
+	globaldata.teddy = saveData.get("teddy", globaldata.teddy)
+	globaldata.pippi = saveData.get("pippi", globaldata.pippi)
+	globaldata.flyingman = saveData.get("flyingman", globaldata.flyingman)
+	globaldata.eve = saveData.get("eve", globaldata.eve)
+	globaldata.favoriteFood = saveData.get("favoritefood", globaldata.favoriteFood)
+	globaldata.playerName = saveData.get("playername", globaldata.playerName)
+	globaldata.textSpeed = saveData.get("textspeed", globaldata.TEXT_SPEEDS[0])
+	globaldata.menuFlavor = saveData.get("menuflavor", globaldata.FLAVORS[0])
+	globaldata.buttonPrompts = saveData.get("buttonprompts", globaldata.BUTTON_PROMPTS[0])
+	globaldata.earned_cash = int(saveData.get("earned_cash", 0))
+	globaldata.cash = int(saveData.get("cash", 0))
+	globaldata.bank = int(saveData.get("bank", 0))
+	globaldata.description = saveData.get("description", true)
+	InventoryManager.load_inventories(saveData.get("inventories", {}))
+	globaldata.keys = saveData.get("keys", {})
+	globaldata.object_flags = saveData.get("object_flags", {})
+	globaldata.rareDrops = saveData.get("rareDrops", {})
+	globaldata.encountered = saveData.get("encountered", {})
+	#load statuses
+	StatusManager.load_statuses(saveData)
 	#reappend party
-	global.party.clear()
+	party.clear()
+	partyNpcs.clear()
 	for i in saveData["party"]:
-		global.party.append(globaldata.get(i["name"]))
+		if i in POSSIBLE_PLAYABLE_MEMBERS:
+			party.append(globaldata.get(i))
+		else:
+			partyNpcs.append(globaldata.get(i))
 	
-	global.partyNpcs.clear()
-	for i in saveData["partyNpcs"]:
-		global.partyNpcs.append(globaldata.get(i["name"]))
 	uiManager.set_menu_flavors(globaldata.menuFlavor)
 	
-	#reappend statuses
-	for partyMem in POSSIBLE_PARTY_MEMBERS:
-		var tempstatus = []
-		for i in globaldata.get(partyMem).status:
-			tempstatus.append(int(i))
-		globaldata.get(partyMem).status.clear()
-		globaldata.get(partyMem).status.append_array(tempstatus)
-		
-	
 	for flag in globaldata.flags:
-		if saveData["flags"].get(flag) != null:
-			globaldata.flags[flag] = saveData["flags"][flag]
-		else:
-			globaldata.flags[flag] = false
-	
-	globaldata.upgrade_from_old_save()
-	
+		globaldata.flags[flag] = saveData["flags"].get(flag, false)
+		
 	if goto_game:
 		persistPlayer.pause()
 		goto_scene(saveData["scene"], globaldata.respawnPoint, Vector2(saveData["dirX"], saveData["dirY"]))
@@ -718,14 +726,69 @@ func load_game(num, goto_game = true):
 		yield(get_tree(), "idle_frame")
 		persistPlayer.unpause()
 		start_playtime()
-	saveGame.close()
 
 func erase_save(num):
 	audioManager.play_sfx(load("res://Audio/Sound effects/M3/Party_Member_Death.wav"), "menu")
 	var saveGame = Directory.new()
 	saveGame.remove("user://saveFile" + var2str(num) + ".save")
 
-#Utility function, may be moved to a better place like Utils.gd if it exist?
-static func delete_children(node):
-	for n in node.get_children():
-		n.free()
+func _upgrade_from_old_save(save_data: Dictionary):
+	globaldata.reset_constant_char_data(save_data)
+
+	for char_name in POSSIBLE_PARTY_MEMBERS:
+		if save_data.has(char_name):
+			var chara = save_data[char_name]
+			if char_name in POSSIBLE_PLAYABLE_MEMBERS:
+				# Escape characters that may cause conflicts with text tags
+				chara["nickname"] = chara["nickname"].replace("[", "⟦").replace("]", "⟧")
+			if chara.get("equipment", {}).get("head") != null:
+				# Handle the new slots (arms/body/other instead of head/body/other)
+				chara["equipment"]["arms"] = ""
+				chara["equipment"]["other"] = chara["equipment"]["head"]
+				chara["equipment"].erase("head")
+			# Remove passiveSkill field, we don’t need that anymore (deduced from items)
+			chara.erase("passiveSkills")
+			# Remove passiveHeal field, it's handled within the status now
+			chara.erase("passiveHeal")
+			# Convert statuses from integers to dictionaries
+			var status = chara.get("status")
+			if status != null:
+				var old_status_enum = ["asthma","blinded","burned","cold","confused","forgetful","nausea","numb","poisoned","sleeping","sunstroked","mushroomized","unconscious"]
+				for i in range(status.size()):
+					if typeof(status[i]) in [TYPE_INT, TYPE_REAL]:
+						status[i] = { "status": old_status_enum[status[i]] }
+							
+
+	# Now "party" is just an array of names, because we don't need duplicate data
+	for i in save_data.get("party", []).size():
+		if save_data.party[i] is Dictionary:
+			save_data.party[i] = save_data.party[i].name
+
+	# Now "partyNpcs" is just an array of names, because we don't need duplicate data
+	for i in save_data.get("partyNpcs", []).size():
+		save_data.party.append(save_data.partyNpcs[i].name)
+	save_data.erase("partyNpcs")
+
+	save_data["flags"]["visited_podunk"] = true
+
+	save_data["object_flags"] = save_data.get("object_flags", {})
+	for flag_key in save_data["flags"].keys():
+		if ("_present_" in flag_key) or ("_pres_" in flag_key)\
+			or ("_item_" in flag_key) or ("_key_" in flag_key)\
+			or ("_door_" in flag_key) or ("_plate_" in flag_key):
+			var new_flag_key = flag_key
+			new_flag_key = flag_key.replace("debug_present_", "Debug World/Present")\
+			.replace("basement_pres_", "Ninten's House/Present")\
+			.replace("podunk_pres_", "Podunk/Present")\
+			.replace("cem_pres_", "Podunk/PresentCem")\
+			.replace("zoo_pres_", "Podunk/PresentZoo")\
+			.replace("catac_pres_", "Catacombs/Present")\
+			.replace("zoo_office_pres_", "Zoo Office/Present")\
+			.replace("catac_item_", "Catacombs/Item")\
+			.replace("catac_key_", "Catacombs/Key")\
+			.replace("catac_door_", "Catacombs/Locked Door")\
+			.replace("catac_plate_", "Catacombs/Plate")\
+
+			if new_flag_key != flag_key:
+				save_data["object_flags"][new_flag_key] = save_data["flags"][flag_key] or save_data["object_flags"].get(new_flag_key, false)
+				save_data["flags"].erase(flag_key)

@@ -1,0 +1,91 @@
+'0':
+  actors:
+    ninten: leader
+    minnie: Objects/npc3
+  actorsjump:
+    minnie:
+      height: 8
+      times: 2
+  actorsturn:
+    ninten:
+      x: 1
+      y: -1
+      speed: 0.5
+    minnie:
+      x: 0
+      y: 1
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  talker: minnie
+  name: DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_1
+  goto: '3'
+'3':
+  showbox: false
+  actorsmove:
+    minnie:
+      movement:
+      - x: 560
+        y: 144
+      - x: 488
+        y: 144
+      speed: 64
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 1
+      y: 0
+      speed: 0.5
+  wait: 2.5
+  autoadvance: true
+  caninput: false
+  goto: '4'
+'4':
+  name: DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MINNIE_LEAVE_4
+  goto: '5'
+'5':
+  showbox: false
+  actorsmove:
+    minnie:
+      movement:
+      - wait: 0.3
+      - x: 488
+        y: 156
+      - x: 464
+        y: 156
+      - x: 464
+        y: 200
+      speed: 64
+      animation: Walk
+      type: position
+      queue: true
+  actorsturn:
+    ninten:
+      x: 0
+      y: 1
+      speed: 0.6
+    minnie:
+      x: 0
+      y: 1
+      speed: 0.1
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '6'
+'6':
+  actorsdir:
+    minnie:
+      x: 1
+      y: 0
+  teleportactors:
+    minnie:
+      x: 64
+      y: 370
+  setflags: minnie_leave

@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Maps/Testing/cutscene.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+
+func _process(delta):
+	text = \"x: \" + var2str(global.persistPlayer.position.x) + \" y: \" + var2str(global.persistPlayer.position.y)
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.137255 )
+position = Vector2( 158, 91 )
+scale = Vector2( 6.5, 3.66667 )
+texture = ExtResource( 2 )
+
+[node name="Icon2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.137255 )
+position = Vector2( 149, 60 )
+scale = Vector2( 0.645833, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="Objects" type="TileMap" parent="."]
+format = 1
+
+[node name="CStrigger" type="Area2D" parent="Objects"]
+position = Vector2( 150, 61 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+cutsceneFile = "test"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/CStrigger"]
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+script = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="body_entered" from="Objects/CStrigger" to="Objects/CStrigger" method="_on_CStrigger_body_entered"]

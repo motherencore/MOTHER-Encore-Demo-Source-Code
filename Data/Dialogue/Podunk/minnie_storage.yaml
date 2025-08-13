@@ -1,0 +1,23 @@
+'0':
+  name: DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MINNIE_STORAGE_0
+  options:
+    DIALOGUE_PODUNK_MINNIE_STORAGE_0-OPT_0: '1'
+    DIALOGUE_PODUNK_MINNIE_STORAGE_0-OPT_1: '3'
+    cancel: '3'
+'1':
+  text: ''
+  showbox: false
+  openstorage: true
+  caninput: false
+  goto: '3'
+  cleardialog: true
+'2':
+  name: DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MINNIE_STORAGE_2
+'3':
+  name: DIALOGUE_PODUNK_MINNIE_STORAGE_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_MINNIE_STORAGE_3

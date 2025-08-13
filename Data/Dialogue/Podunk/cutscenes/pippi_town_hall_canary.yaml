@@ -1,0 +1,37 @@
+'0':
+  actors:
+    ninten: ninten
+    pippi: pippi
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_PIPPI_TOWN_HALL_CANARY_0
+  actorsturn:
+    ninten:
+      speed: 0.1
+      actor: pippi
+    pippi:
+      speed: 0.1
+      actor: ninten
+  goto: '3'
+'3':
+  showbox: false
+  actorsmove:
+    ninten:
+      movement:
+      - wait: 0.1
+      - x: 0
+        y: 16
+      speed: 32
+      animation: Walk
+      type: step
+    pippi:
+      movement:
+      - x: 0
+        y: 15
+      speed: 32
+      animation: Walk
+      type: step
+  wait: 1
+  autoadvance: true
+  caninput: false

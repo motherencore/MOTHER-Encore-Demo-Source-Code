@@ -1,0 +1,65 @@
+'0':
+  actors:
+    pippi: talker
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_0
+  goto: '1'
+'1':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_1
+  if:
+    flags:
+      courage_badge_received: true
+    goto: '2'
+  goto: '3'
+'2':
+  name: '[Pippi]'
+  if:
+    hasinstorage1: CourageBadge
+    hasinstorage2: FranklinBadge0.8
+    hasitem1: CourageBadge
+    hasitem2: FranklinBadge0.8
+    or: true
+    goto: '9'
+  goto: '6'
+'3':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_3
+  goto: '5'
+'5':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_5
+  if:
+    invspace: true
+    goto: '7'
+  goto: '8'
+'6':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_6
+  if:
+    invspace: true
+    goto: '7'
+  goto: '8'
+'7':
+  talker: null
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_7
+  item: CourageBadge
+  soundeffect: Item Received.mp3
+  setflags: courage_badge_received
+  goto: '9'
+'8':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_8
+  goto: '9'
+'9':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_PIPPI_HOUSE_9

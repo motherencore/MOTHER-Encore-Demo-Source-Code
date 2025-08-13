@@ -1,32 +1,26 @@
-const HARD_TO_SOFT = {"p": "pi", "b": "bi", "f": "fi", "w": "wi", "m": "mi", "t": "ci", "d": "dzi", "s": "si", "z": "zi", "n": "ni", "ł": "l",
+class_name PolishDeclension
+extends CustomNameDeclension
+
+enum Cases {NOMINATIVE, GENITIVE, DATIVE, ACCUSATIVE, INSTRUMENTAL, LOCATIVE, VOCATIVE}
+
+const HARD_TO_SOFT := {"p": "pi", "b": "bi", "f": "fi", "w": "wi", "m": "mi", "t": "ci", "d": "dzi", "s": "si", "z": "zi", "n": "ni", "ł": "l",
 "r": "rz", "k": "c", "g": "dz", "ch": "sz", "st": "ści", "zd":"ździ", "sł": "śl", "zł": "źl", "sn": "śni", "zn": "źni"}
 
-const HARD_EXCEPTIONS = ["k", "g", "ch"]
+const HARD_EXCEPTIONS := ["k", "g", "ch"]
 
-const I_OVER_Y = ["k", "g", "ć", "dź", "ś", "ź", "ń", "l", "ść", "źdź", "śl", "śń", "źń", "j", "i", "y"]
+const I_OVER_Y := ["k", "g", "ć", "dź", "ś", "ź", "ń", "l", "ść", "źdź", "śl", "śń", "źń", "j", "i", "y"]
 
-const POLISH_I_NAMES = ["alusi", "ani", "asi", "basi", "danusi", "dosi", "frani", "gabrysi", "geni", "gosi", "halusi", "hani", "jadzi", "jagusi", "joasi", "kasi", "kazi", "krysi", "mani", "marysi", "reni", "rysi", "soni", "stasi", "stasi", "stefci", "tosi", "wiesi", "władzi", "zosi", "zuzi"]
+const POLISH_I_NAMES := ["alusi", "ani", "asi", "basi", "danusi", "dosi", "frani", "gabrysi", "geni", "gosi", "halusi", "hani", "jadzi", "jagusi", "joasi", "kasi", "kazi", "krysi", "mani", "marysi", "reni", "rysi", "soni", "stasi", "stasi", "stefci", "tosi", "wiesi", "władzi", "zosi", "zuzi"]
 
-const GENITIVE		= 1
-const DATIVE		= 2
-const ACCUSATIVE 	= 3
-const INSTRUMENTAL	= 4
-const LOCATIVE		= 5
-const VOCATIVE		= 6
+const vowels := "aeiouyąęó"
 
-const vowels = "aeiouyąęó"
+# Gender: "M" or "F"
+# Case: 1 (genitive), 2 (dative), 3 (accusative), 4 (instrumental), 5 (locative) or 6 (vocative)
+static func decline_name(name: String, gender: String, case: int) -> String:
+	if case == Cases.NOMINATIVE or not case in Cases.values():
+		return name
 
-func get_polish_declension(name, gender, case):
-	var is_all_caps = (name == name.to_upper())
-	var declined_name = get_polish_declension_proceed(name, gender, case)
-	if is_all_caps:
-		return declined_name.to_upper()
-	else:
-		return declined_name
-
-
-func get_polish_declension_proceed(name, gender, case):
-	var suffix = name[-1]
+	var suffix := name[-1]
 	if not suffix.to_lower() in vowels:
 		suffix = ""
 	
@@ -58,57 +52,68 @@ func get_polish_declension_proceed(name, gender, case):
 		_:
 			return name
 
-
-func _get_masculine_declension(stem, case):
+static func _get_masculine_declension(stem: String, case: int) -> String:
+	if stem.to_lower().ends_with("ek"):
+		stem = stem.trim_suffix("ek") + "k"
 	match case:
-		GENITIVE, ACCUSATIVE:
+		Cases.GENITIVE, Cases.ACCUSATIVE:
 			return stem + "a"
-		DATIVE:
+		Cases.DATIVE:
 			return stem + "owi"
-		INSTRUMENTAL:
+		Cases.INSTRUMENTAL:
 			if stem.to_lower().ends_with("k") or stem.to_lower().ends_with("g"):
 				return stem + "iem"
 			else:
 				return stem + "em"
-		LOCATIVE, VOCATIVE:
+		Cases.LOCATIVE, Cases.VOCATIVE:
 			if _has_hard_final(stem, true):
 				return _soften_final(stem) + "e"
 			else:
 				return stem + "u"
+		_:
+			assert(false, "Unexpected case for Polish adjective declension: %s" % case)
+			return ""
 
-
-func _get_feminine_declension(stem, case):
+static func _get_feminine_declension(stem: String, case: int) -> String:
 	match case:
-		GENITIVE:
+		Cases.GENITIVE:
 			return _add_i_or_y(stem)
-		DATIVE, LOCATIVE:
+		Cases.DATIVE, Cases.LOCATIVE:
 			if _has_hard_final(stem):
 				return _soften_final(stem) + "e"
 			else:
 				return _add_i_or_y(stem)
-		ACCUSATIVE:
+		Cases.ACCUSATIVE:
 			return stem + "ę"
-		INSTRUMENTAL:
+		Cases.INSTRUMENTAL:
 			return stem + "ą"
-		VOCATIVE:
-			return stem + "o"
+		Cases.VOCATIVE:
+			if stem.to_lower() in POLISH_I_NAMES:
+				return stem + "u"
+			else:
+				return stem + "o"
+		_:
+			assert(false, "Unexpected case for Polish feminine declension: %s" % case)
+			return ""
 
-
-func _get_adjective_declension(stem, group, case):
-	var i = "i" if group == 2 else ""
-	var yi = "i" if group == 2 else "y"
+static func _get_adjective_declension(stem: String, group: int, case: int) -> String:
+	var i := "i" if group == 2 else ""
+	var yi := "i" if group == 2 else "y"
 
 	match case:
-		GENITIVE, ACCUSATIVE:
+		Cases.GENITIVE, Cases.ACCUSATIVE:
 			return stem + i + "ego"
-		DATIVE:
+		Cases.DATIVE:
 			return stem + i + "emu"
-		INSTRUMENTAL, LOCATIVE:
+		Cases.INSTRUMENTAL, Cases.LOCATIVE:
 			return stem + yi + "m"
-		VOCATIVE:
+		Cases.VOCATIVE:
 			return stem + yi
+		_:
+			assert(false, "Unexpected case for Polish adjective declension: %s" % case)
+			return ""
 
-func _add_i_or_y(string):
+static func _add_i_or_y(string: String) -> String:
 	if string.to_lower() in POLISH_I_NAMES: # If the stem ends with -i and it’s a native Polish name, we don’t add anything
 		return string
 	for final in I_OVER_Y:
@@ -116,13 +121,14 @@ func _add_i_or_y(string):
 			return string + "i"
 	return string + "y"
 
-func _has_hard_final(string, excludeKGCh = false):
+static func _has_hard_final(string: String, excludeKGCh := false) -> bool:
 	for final in HARD_TO_SOFT:
 		if ((not excludeKGCh) or (not final in HARD_EXCEPTIONS)) and string.to_lower().ends_with(final):
 			return true
 	return false
 
-func _soften_final(string):
+static func _soften_final(string: String) -> String:
 	for final in HARD_TO_SOFT:
 		if string.to_lower().ends_with(final):
 			return string.trim_suffix(final) + HARD_TO_SOFT[final]
+	return string

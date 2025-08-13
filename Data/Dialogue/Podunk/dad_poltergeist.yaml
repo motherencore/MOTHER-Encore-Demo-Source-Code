@@ -1,0 +1,25 @@
+'0':
+  text: DIALOGUE_PODUNK_DAD_POLTERGEIST_0
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_DAD_POLTERGEIST_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_PODUNK_DAD_POLTERGEIST_1
+  goto: '7'
+'7':
+  name: DIALOGUE_PODUNK_DAD_POLTERGEIST_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_PODUNK_DAD_POLTERGEIST_7
+  movecam:
+    x: 96
+    length: 1.0
+  goto: '9'
+'9':
+  name: DIALOGUE_PODUNK_DAD_POLTERGEIST_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_PODUNK_DAD_POLTERGEIST_9
+  returncam: 1.0
+  goto: '13'
+'13':
+  text: DIALOGUE_PODUNK_DAD_POLTERGEIST_13
+  setflags: talked_to_dad

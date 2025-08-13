@@ -1,113 +1,312 @@
 extends Control
 
-const favFoodStep = 5
-const finalStep = 6
-const dontCareChoices = 7
-const blinkDuration = .3
+const BLINK_DURATION := .3
 
-var maxCharacters := len(tr("LONGEST_POSSIBLE_NAME"))
-var is_highlight_played := false
-const KEYBOARD_ROWS = 5
-var keyboardPanel = 0
-var blacklist = tr("BLACKLISTED_NAMES").split(",")
-var step = -1
-var text = ""
-var dontCare = [
-	"NAME_NINTEN", 
-	"NAME_ANA",
-	"NAME_LLOYD",
-	"NAME_PIPPI",
-	"NAME_TEDDY",
-	"FAVFOOD"]
+const DONT_CARE_CHOICES := 7
 
-var information = [
-	"", #ninten
-	"", #ana
-	"", #lloyd
-	"", #pippi
-	"", #teddy
-	"", #favorite food
-	"", #favorite thing
-]
+const SPRITES_GAP := 320
 
-var soundEffects = {
+const KEYBOARD_ROWS := 5
+
+var _scenario_id := "intro"
+var _embed_mode := false
+
+var _scenario: Array
+var _check_duplicates_in: Array
+var _allow_cancel := false
+var _input_results := []
+var _is_highlight_played := false
+var _current_keyboard_panel := 0
+var _blacklisted_names = tr("BLACKLISTED_NAMES").split(",")
+var _current_step := 0
+var _input_text := ""
+var _current_settings_panel = null
+var _music_id
+
+var _sound_effects := {
 	"set_upper": load("res://Audio/Sound effects/M3/menu_open2.wav"),
 	"set_lower": load("res://Audio/Sound effects/M3/menu_close2.wav"),
 	"next": load("res://Audio/Sound effects/M3/menu_open.wav"),
 	"prev": load("res://Audio/Sound effects/M3/menu_close.wav")
 }
 
-var currentOtherOption = null
-var menuFlavor
+onready var _prompt_label := $CanvasLayer/NameBox/Label
+onready var _input_label := $CanvasLayer/NameBox/name/Label
+onready var _keyboard_arrow := $CanvasLayer/NamingBox/arrow
+onready var _settings_arrow := $CanvasLayer/Settings/SettingsArrow
+onready var _text_speed_arrow := $CanvasLayer/TextSpeed/TextSpeedArrow
+onready var _flavors_arrow := $CanvasLayer/Flavors/FlavorsArrow
+onready var _button_prompts_arrow := $CanvasLayer/ButtonPrompts/ButtonPromptsArrow
+onready var _confirm_arrow := $CanvasLayer/ConfirmationRight/Surely/ConfirmationArrow
+onready var _keyboard_area := $CanvasLayer/NamingBox/Grid
+onready var _keyboard_grid_1 := $CanvasLayer/NamingBox/Grid/GridContainer
+onready var _keyboard_grid_2 := $CanvasLayer/NamingBox/Grid/GridContainer2
+onready var _keyboard_grid_3 := $CanvasLayer/NamingBox/Grid/GridContainer3
+onready var _keyboard_grid_dont_care := $CanvasLayer/NamingBox/CommandGrid/GridContainer4
+onready var _keyboard_grid_ok_back := $CanvasLayer/NamingBox/CommandGrid/GridContainer5
+onready var _panel_switch_button := $CanvasLayer/NamingBox/PressButton/Label
+onready var _flavors_menu := $CanvasLayer/Flavors
+onready var _text_speed_menu := $CanvasLayer/TextSpeed
+onready var _button_prompts_menu := $CanvasLayer/ButtonPrompts
+onready var _char_anims := $CharAnims
+onready var _menu_anims := $MenuAnims
+onready var _tween := $Tween
+onready var _actors_container := $Objects/Actors/ActorsSequence
+onready var _actors_collection := $Toolbox/Actors
+onready var _confirm_collection := $Toolbox/Confirm
+onready var _keyboard_dont_care := $"CanvasLayer/NamingBox/CommandGrid/GridContainer4/Don't care"
+onready var _keyboard_ok := $CanvasLayer/NamingBox/CommandGrid/GridContainer5/OK
+onready var _keyboard_backspace := $CanvasLayer/NamingBox/CommandGrid/GridContainer5/Backspace
 
-onready var bioLabel = $CanvasLayer/NameBox/Label
-onready var nameLabel = $CanvasLayer/NameBox/name/Label
-onready var arrow = $CanvasLayer/NamingBox/arrow
-onready var othersArrow = $CanvasLayer/Others/OthersArrow
-onready var textSpeedArrow = $CanvasLayer/TextSpeed/TextSpeedArrow
-onready var flavorsArrow = $CanvasLayer/Flavors/FlavorsArrow
-onready var buttonPromptsArrow = $CanvasLayer/ButtonPrompts/ButtonPromptsArrow
-onready var confirmArrow = $CanvasLayer/ConfirmationRight/Surely/ConfirmationArrow
-onready var topGrid = $CanvasLayer/NamingBox/Grid
-onready var grid = $CanvasLayer/NamingBox/Grid/GridContainer
-onready var grid2 = $CanvasLayer/NamingBox/Grid/GridContainer2
-onready var grid3 = $CanvasLayer/NamingBox/Grid/GridContainer3
-onready var grid4 = $CanvasLayer/NamingBox/CommandGrid/GridContainer4
-onready var grid5 = $CanvasLayer/NamingBox/CommandGrid/GridContainer5
-onready var changePanelLabel = $CanvasLayer/NamingBox/PressButton/Label
-onready var flavorsMenu = $CanvasLayer/Flavors
-onready var textSpeedMenu = $CanvasLayer/TextSpeed
-onready var buttonPromptsMenu = $CanvasLayer/ButtonPrompts
-onready var charAnims = $CharAnims
-onready var menuAnims = $MenuAnims
-onready var tween = $Tween
-
-
+func init(scenario_id, embed_mode := false):
+	_scenario_id = scenario_id
+	_embed_mode = embed_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# LOCALIZATION Code change: Use of csv keys instead of id
-	$CanvasLayer / Others / VBoxContainer2 / Flavor.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
+	var naming_sequence = globaldata.namingSequences[_scenario_id]
+	_scenario = naming_sequence.scenario
+	_check_duplicates_in = naming_sequence.get("check_duplicates_in", [])
+	_init_sprites()
 		
-	# LOCALIZATION Code change: Use of csv keys instead of id
-	$CanvasLayer / Others / VBoxContainer2 / Prompts.text = "MENU_" + globaldata.buttonPrompts.to_upper()
-	
-	blacklist.append("")
-	currentOtherOption = textSpeedMenu
-	global.cutscene = true
-	global.persistPlayer.pause()
-	global.persistPlayer.hide()
-	refresh_keys()
-	set_dots()
+	for step in _scenario:
+		var target = step.get("target", "")
+		if target in globaldata:
+			var value = globaldata.get(step.target)
+			if not value is String:
+				value = value.nickname
+			_input_results.append(value)
+		else:
+			_input_results.append("")
+		
+	_blacklisted_names.append("")
 
-	# LOCALIZATION Useful to debug language stuff
+	_refresh_settings_menu()
+	_current_settings_panel = _text_speed_menu
+	global.persistPlayer.pause()
+	
+	if !_embed_mode:
+		global.cutscene = true
+		global.persistPlayer.hide()
+	else:	
+		$Background.hide()
+		$CanvasLayer/NameBox/Mask.hide()
+
+	if naming_sequence.has("bgm"):
+		if _embed_mode:
+			audioManager.pause_all_music()
+		
+		audioManager.add_audio_player()
+		_music_id = audioManager.get_latest_audio_player_index()
+		audioManager.play_music("", naming_sequence.bgm, _music_id)
+		audioManager.set_audio_player_volume(_music_id, 8)
+
+	_refresh_keys()
+
 	global.connect("locale_changed", self, "_update_locale")
 	
-	charAnims.play("Start")
-	audioManager.add_audio_player()
-	audioManager.play_music_from_id("", "Mother_Earth_Piano.mp3", audioManager.get_audio_player_count() - 1)
-	audioManager.set_audio_player_volume(audioManager.get_audio_player_count() - 1, 8)
-	yield(get_tree().create_timer(0.5), "timeout")
-	step = 0
+	_char_anims.play("Start")
+	_set_new_step()
 
-func _process(delta):
-	if step < 6:
-		if step > 0:
-			$CanvasLayer/NameBox/Indicator.show()
+	yield(get_tree().create_timer(0.5), "timeout")
+	_allow_cancel = naming_sequence.get("allow_cancel", true)
+
+# LOCALIZATION Code added: View refresh when the locale changes
+func _update_locale():
+	_toggle_keyboard_panel(0)
+	_refresh_keys()
+
+func _set_next_step(restart = false):
+	if !_tween.is_active():
+		if not restart:
+			if _scenario[_current_step].type == "naming":
+				var error_msg = _check_for_errors(_input_text)			
+				if error_msg:
+					_prompt_label.text = error_msg
+					$BlockName.play()
+					if !_is_highlight_played:
+						_highlight_color()
+						yield(get_tree().create_timer(2), "timeout")
+						_set_naming_prompt()
+					return
+				_input_results[_current_step] = _input_text
+				$OkDesuka.play()
+				_change_sprite(1)
+			_current_step += 1
 		else:
-			$CanvasLayer/NameBox/Indicator.hide()
-		if text == "":
-			$CanvasLayer/NameBox/Indicator2.hide()
+			_change_sprite(0, true)
+			_menu_anims.play("Naming Open")
+			_current_step = 0
+		_play_char_anims()
+		_set_new_step()
+
+func _set_prev_step():
+	if !_tween.is_active():
+		if _scenario[_current_step].type == "naming":
+			_input_results[_current_step] = _input_text
+
+		_current_step -= 1
+
+		if _current_step < 0:
+			if _allow_cancel:
+				_keyboard_arrow.on = false
+				_finish(false)
+			else:
+				_current_step = 0
 		else:
-			$CanvasLayer/NameBox/Indicator2.show()
-	
+			audioManager.play_sfx(_sound_effects["prev"], "swish")
+			if _scenario[_current_step].type == "naming":
+				_change_sprite(-1)
+			
+			_play_char_anims(-1)
+			_set_new_step()
+
+func _set_new_step():
+	_keyboard_arrow.on = false
+	_confirm_arrow.on = false
+	_settings_arrow.on = false
+	if _current_step >= _scenario.size():
+		_menu_anims.play("ConfirmationClose")
+		_save_new_names()
+		$OkDesuka.play()
+		_finish(true)
+	else:
+		match (_scenario[_current_step].type):
+			"naming":
+				_keyboard_arrow.on = true
+				_input_text = _input_results[_current_step]
+				_reset_keyboard_cursor()
+				_set_dots()
+				_set_naming_prompt()
+				_update_lr_prompts()
+				_keyboard_dont_care.visible = _scenario[_current_step].has("dont_care")
+			"settings":
+				_settings_arrow.hide()
+				_menu_anims.play("SettingsOpen")
+				if _tween.is_active():
+					yield(_tween, "tween_all_completed")
+					_settings_arrow.set_cursor_from_index(0, false)
+					_settings_arrow.on = true
+					_settings_arrow.show()
+				_on_SettingsArrow_moved(0)
+			"confirm":
+				_confirm_arrow.hide()
+				_refresh_confirmation_view()
+				_menu_anims.play("ConfirmationOpen")
+				_hide_all_setting_panels()
+				yield(_menu_anims, "animation_finished")
+				_confirm_arrow.set_cursor_from_index(0, false)
+				_confirm_arrow.on = true
+				_confirm_arrow.show()
+
+func _input(event):
+	if _current_step in range (0,_scenario.size()):
+		if _scenario[_current_step].type == "naming":
+			if event.is_action_pressed("ui_cancel"):
+				_backspace()
+			if event.is_action_pressed("ui_scope"):
+				_toggle_keyboard_panel()
+			if event.is_action_pressed("ui_select"):
+				if _scenario[_current_step].has("dont_care"):
+					_keyboard_arrow.change_parent(_keyboard_grid_dont_care)
+				else:
+					_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
+					_keyboard_arrow.set_cursor_from_index(_keyboard_arrow.get_last_available_idx())
+			if event.is_action_pressed("ui_focus_next") and _can_do_next():
+				_set_next_step()
+			if event.is_action_pressed("ui_focus_prev") and _can_do_prev():
+				_set_prev_step()	
+		elif _scenario[_current_step].type == "confirm":
+			if event.is_action_pressed("ui_cancel"):
+				_restart_sequence()
+
+func _init_sprites():
+	for i in _scenario.size():
+		var _sprite_name = _scenario[i].get("sprite")
+		if _sprite_name:
+			var _sprite = _actors_collection.get_node_or_null(_sprite_name)
+			var _new_sprite
+			if _sprite:
+				_new_sprite = _actors_collection.get_node(_sprite_name).duplicate()
+			else:
+				_new_sprite = load("res://Nodes/Reusables/npc.tscn").instance()
+				_new_sprite.sprite = _sprite_name
+				_new_sprite.idle_animation = "Walk"
+			_new_sprite.position.x = i * SPRITES_GAP
+			_actors_container.add_child(_new_sprite)
+
+func _highlight_color():
+	_is_highlight_played = true
+	for i in range(2):
+		var temporal = _prompt_label.text
+		if temporal != _prompt_label.text:
+			break
+		_prompt_label.modulate = Color(TextTools.DIALOG_HINT_COLOR)
+		yield(get_tree().create_timer(BLINK_DURATION), "timeout")
+		_prompt_label.modulate = Color(Color.white)
+		yield(get_tree().create_timer(BLINK_DURATION), "timeout")
+		if temporal != _prompt_label.text:
+			break
+	_is_highlight_played = false
+
+func _reset_keyboard_cursor():
+	_keyboard_arrow.change_parent(_keyboard_grid_1, false)
+	_keyboard_arrow.cursor_index = 0
+	_keyboard_arrow.set_cursor_from_index(0, true)
+
+func _set_dots():
+	_input_label.text = _input_text
+	var max_characters = tr(_scenario[_current_step].longest_name).length()
+	if len(_input_label.text) < max_characters:
+		# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
+		_input_label.text += tr("SYMBOL_BULLET_NAMING")
+		for i in max_characters - len(_input_label.text):
+			# LOCALIZATION Code change: To handle the Japanese full-width dot character as well
+			_input_label.text += tr("SYMBOL_DOT")
+
+func _set_naming_prompt():
+	_prompt_label.text = _scenario[_current_step].prompt
+
+func _play_char_anims(direction = 1):
+	if _current_step - direction in range(0, _scenario.size()):
+		_play_char_anim(_scenario[_current_step - direction].char_anims_leave)
+	if _current_step in range(0, _scenario.size()):
+		_play_char_anim(_scenario[_current_step].char_anims_enter)
+
+func _play_char_anim(sequences):
+	if sequences.empty():
+		return
+	_char_anims.play(sequences[0])
+	for i in range(1,sequences.size()):
+		yield(_char_anims, "animation_finished")
+		_char_anims.play(sequences[i])
+
+func _change_sprite(direction, reset = false):
+	var final_val = _actors_container.position.x - (SPRITES_GAP * direction) if !reset else 0
+	var duration = 1.0 if !reset else 1.5
+	var trans_type = Tween.TRANS_QUART if !reset else Tween.TRANS_QUAD
+	var ease_type = Tween.EASE_IN_OUT if !reset else Tween.EASE_OUT
+	_tween.interpolate_property(_actors_container, "position:x", 
+		_actors_container.position.x, final_val, duration, trans_type, ease_type)
+	_tween.start()	
+
+func _update_lr_prompts():
+	$CanvasLayer/NameBox/Indicator.visible = _can_do_prev()
+	$CanvasLayer/NameBox/Indicator2.visible = _can_do_next()
+
+func _can_do_prev():
+	return _scenario[_current_step].type == "naming" and _current_step > 0
+
+func _can_do_next():
+	return _scenario[_current_step].type == "naming" and _current_step < _scenario.size() - 1 and !_input_text.empty()
+
 # LOCALIZATION Code change: Instead of switching to lower case, now the method refreshes the keys
 # according to current keyboard panel: caps/small, but also hiragana/katakana/romaji, etc.
-func refresh_keys():
+func _refresh_keys():
 	var gridId = 0
-	for parent in topGrid.get_children():
-		if parent is GridContainer && !parent in [grid4, grid5]:
-			var letters = tr("KEYBOARD_PANEL%s_GRID%s" % [keyboardPanel,gridId])
+	for parent in _keyboard_area.get_children():
+		if parent is GridContainer && !parent in [_keyboard_grid_dont_care, _keyboard_grid_ok_back]:
+			var letters = tr("KEYBOARD_PANEL%s_GRID%s" % [_current_keyboard_panel,gridId])
 			# In case we need to set a different number of columns for different languages
 			#parent.columns = len(letters) / KEYBOARD_ROWS
 			for i in parent.get_child_count():
@@ -126,21 +325,21 @@ func refresh_keys():
 					label.text = "A" if letter != "" else ""
 			gridId += 1
 
-	var nextKeyboardPanel = fmod(keyboardPanel + 1, _count_keyboard_panels())
-	changePanelLabel.text = "KEYBOARD_PANEL%s_NAME" % nextKeyboardPanel
+	var next_current_keyboard_panel = fmod(_current_keyboard_panel + 1, _count_keyboard_panels())
+	_panel_switch_button.text = "KEYBOARD_PANEL%s_NAME" % next_current_keyboard_panel
 
 # LOCALIZATION Code change: Now switches to the next keyboard panel (caps/small, hiragana/katakana/romaji, etc.)
 # Adapted so that we can have more than two panels
-func toggle_keyboard_panel(dir = 1):
-	keyboardPanel = fmod(keyboardPanel + dir, _count_keyboard_panels())
-	refresh_keys()
-	if arrow.menu_parent.get_child(arrow.cursor_index).text == "":
-		set_info() # Resets cursor if selected keyboard key is empty
+func _toggle_keyboard_panel(dir = 1):
+	_current_keyboard_panel = int(fmod(_current_keyboard_panel + dir, _count_keyboard_panels()))
+	_refresh_keys()
+	if _keyboard_arrow.menu_parent.get_child(_keyboard_arrow.cursor_index).text == "":
+		_reset_keyboard_cursor()
 	if dir != 0:
-		if keyboardPanel == _count_keyboard_panels() - 1:
-			audioManager.play_sfx(soundEffects["set_lower"], "casing")
+		if _current_keyboard_panel == _count_keyboard_panels() - 1:
+			audioManager.play_sfx(_sound_effects["set_lower"], "casing")
 		else:
-			audioManager.play_sfx(soundEffects["set_upper"], "casing")
+			audioManager.play_sfx(_sound_effects["set_upper"], "casing")
 
 # LOCALIZATION Code added: Returns the number of keyboard panels, based on the csv keys
 # (Too bad there’s no way to know if one csv entry is empty in a certain language)
@@ -153,13 +352,13 @@ func _count_keyboard_panels():
 # LOCALIZATION Code added: Appends new character to the current name,
 # and also merges characters together in languages that require it (specifically Korean)
 func _keyboard_char_addition(character):
-	var hangul_addition = globaldata.hangul.compose_addition(text, character)
+	var hangul_addition = KoreanHangul.compose_addition(_input_text, character)
 	if hangul_addition:
-		text = hangul_addition
+		_input_text = hangul_addition
 		return true
 	else:
-		if len(text) < maxCharacters:
-			text += character
+		if len(_input_text) < tr(_scenario[_current_step].longest_name).length():
+			_input_text += character
 			return true
 
 	return false
@@ -167,503 +366,314 @@ func _keyboard_char_addition(character):
 # LOCALIZATION Code added: Removes last character from the current name,
 # and also remerges characters together in languages that require it (specifically Korean)
 func _keyboard_char_removal():
-	var hangul_removal = globaldata.hangul.compose_removal(text)
+	var hangul_removal = KoreanHangul.compose_removal(_input_text)
 	if hangul_removal:
-		text = hangul_removal
+		_input_text = hangul_removal
 	else:
-		text = text.left(text.length()-1)
+		_input_text = _input_text.left(_input_text.length()-1)
 
-# LOCALIZATION Code added: View refresh when the locale changes
-func _update_locale():
-	toggle_keyboard_panel(0)
-	refresh_keys()
-	set_info()
-
-func backspace():
-	if text != "":
+func _backspace():
+	if _input_text != "":
 		# LOCALIZATION Code change: Calls the new method for character removal
 		_keyboard_char_removal()
-		set_dots()
-		arrow.play_sfx("back")
-	elif step != 0:
-		set_prev_step()
-		set_info()
+		_set_dots()
+		_update_lr_prompts()
+		_keyboard_arrow.play_sfx("back")
 	else:
-		arrow.on = false
-		audioManager.stop_all_music()
-		global.cutscene = false
-		
-		$Objects/Door.enter()
+		_set_prev_step()
 
-func set_prev_step():
-	if !tween.is_active():
-		information[step] = text
-		step -= 1
-		text = information[step]
-		set_info()
-		tween.interpolate_property($Objects/Actors, "position:x", 
-			$Objects/Actors.position.x, $Objects/Actors.position.x + 320, 1.0,
-			Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-		tween.start()
-		audioManager.play_sfx(soundEffects["prev"], "swish")
-		if charAnims.current_animation == "FavFoodLoop":
-			charAnims.play("FavFoodEnd")
-		
-		if step == favFoodStep:
-			charAnims.play("FavFoodStart")
-			yield(charAnims, "animation_finished")
-			charAnims.play("FavFoodLoop")
-
-func is_blocked(name):
+func _check_for_errors(name):
 	var checkname = name.to_lower().strip_edges()
-	if checkname in blacklist:
-		return 0
-	for index in range(len(information)):
-		if index != step and name.strip_edges() == information[index].strip_edges():
-			return 1
+	# Checking for blacklisted names
+	if checkname in _blacklisted_names:
+		return "NAME_BLOCKED"
+	# Checking for identical names from other steps
+	for index in range(len(_input_results)):
+		if index != _current_step and checkname == _input_results[index].to_lower().strip_edges():
+			return "NAME_DUPLICATED"
+	# Checking for identical names in previous naming scenarios
+	for other_name_id in _check_duplicates_in:
+		if other_name_id in globaldata:
+			var other_name = globaldata.get(other_name_id)
+			if not other_name is String:
+				other_name = other_name.nickname
+			if checkname == other_name.to_lower().strip_edges():
+				return "NAME_DUPLICATED"
 
-func highlight_color():
-	is_highlight_played = true
-	for i in range(2):
-		var temporal = bioLabel.text
-		if temporal != bioLabel.text:
-			break
-		bioLabel.modulate = Color(globaldata.dialogHintColor)
-		yield(get_tree().create_timer(blinkDuration), "timeout")
-		bioLabel.modulate = Color(Color.white)
-		yield(get_tree().create_timer(blinkDuration), "timeout")
-		if temporal != bioLabel.text:
-			break
-	is_highlight_played = false
-
-func set_next_step():
-	if !tween.is_active():
-		match is_blocked(text):
-			0:
-				bioLabel.text = "NAME_BLOCKED"
-				$BlockName.play()
-				if !is_highlight_played:
-					highlight_color()
-					yield(get_tree().create_timer(2), "timeout")
-					set_bios()
-			1:
-				bioLabel.text = "NAME_DUPLICATED"
-				$BlockName.play()
-				if !is_highlight_played:
-					highlight_color()
-					yield(get_tree().create_timer(2), "timeout")
-					set_bios()
-			_:
-				information[step] = text
-				$OkDesuka.play()
-				tween.interpolate_property($Objects/Actors, "position:x", 
-					$Objects/Actors.position.x, $Objects/Actors.position.x - 320, 1.0,
-					Tween.TRANS_QUART, Tween.EASE_IN_OUT)
-				tween.start()
-			# LOCALIZATION Code change: Refactored a bit, used constants
-				step += 1
-				text = information[step]
-				match step:
-					favFoodStep:
-						set_info()
-						charAnims.play("FavFoodStart")
-						yield(charAnims, "animation_finished")
-						charAnims.play("FavFoodLoop")
-					finalStep:
-						charAnims.play("FavFoodEnd")
-						show_others()
-					_:
-						set_info()
-			
-
-func set_info():
-	# LOCALIZATION Code change: maxCharacters now depends on the language (Japanese characters are bigger and tell more stuff)
-	# + some refactoring here, moved maxCharacters reaffectations into this method
-	if step == favFoodStep:
-		maxCharacters = len(tr("LONGEST_POSSIBLE_FOOD"))
-	else:
-		maxCharacters = len(tr("LONGEST_POSSIBLE_NAME"))
-	arrow.change_parent(grid, false)
-	arrow.cursor_index = 0
-	arrow.set_cursor_from_index(0, true)
-	set_dots()
-	set_bios()
-
-func set_dots():
-	nameLabel.text = text
-	if len(nameLabel.text) < maxCharacters:
-		# LOCALIZATION Code change: To handle the Japanese full-width bullet character as well
-		nameLabel.text += tr("SYMBOL_BULLET_NAMING")
-		for i in maxCharacters - len(nameLabel.text):
-			# LOCALIZATION Code change: To handle the Japanese full-width dot character as well
-			nameLabel.text += tr("SYMBOL_DOT")
-
-func set_bios():
-	bioLabel.text = "NAME_BIO" + str(step)
-
-# LOCALIZATION Code change due to the use of csv keys
-func set_dont_care():
+func _set_dont_care():
 	var index = 0
-	for i in dontCareChoices:
-		if text == tr(dontCare[step] + str(i)):
-			index = fmod(i + 1, dontCareChoices)
+	for i in DONT_CARE_CHOICES:
+		if _input_text == tr(_scenario[_current_step].dont_care + str(i)):
+			index = fmod(i + 1, DONT_CARE_CHOICES)
 			break
-	text = tr(dontCare[step] + str(index))
-	set_dots()
+	_input_text = tr(_scenario[_current_step].dont_care + str(index))
+	_update_lr_prompts()
+	_set_dots()
 
-func show_others():
-	arrow.on = false
-	menuAnims.play("OthersOpen")
-	othersArrow.hide()
-	show_other_option(textSpeedMenu)
-	if tween.is_active():
-		yield(tween, "tween_all_completed")
-		othersArrow.set_cursor_from_index(0, false)
-		othersArrow.on = true
-		othersArrow.show()
-
-func show_other_option(menu):
-	hide_all_other_options()
-	currentOtherOption = menu
-	if tween.is_active():
-		yield(tween, "tween_all_completed")
-	if currentOtherOption == menu:
-		tween.interpolate_property(menu, "rect_position:x",
+func _show_setting_panel(menu):
+	_hide_all_setting_panels()
+	_current_settings_panel = menu
+	if _tween.is_active():
+		yield(_tween, "tween_all_completed")
+	if _current_settings_panel == menu:
+		_tween.interpolate_property(menu, "rect_position:x",
 			menu.rect_position.x, 184, 0.2,
 			Tween.TRANS_QUART, Tween.EASE_OUT)
-		tween.start()
+		_tween.start()
+		if menu == _button_prompts_menu:
+			_button_prompts_menu.refresh(false)
 
-func hide_all_other_options():
-	currentOtherOption = null
-	tween.stop_all()
-	for i in [textSpeedMenu, flavorsMenu, buttonPromptsMenu]:
-		tween.interpolate_property(i, "rect_position:x",
+func _refresh_settings_menu():
+	var speed_index = globaldata.TEXT_SPEEDS.find(globaldata.textSpeed)
+	$CanvasLayer/Settings/VBoxContainer2/Speed.text = "MENU_" + globaldata.TEXT_SPEEDS_NAMES[speed_index]
+	$CanvasLayer/Settings/VBoxContainer2/Flavor.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
+	$CanvasLayer/Settings/VBoxContainer2/Prompts.text = "MENU_" + globaldata.buttonPrompts.to_upper()
+
+func _refresh_settings_selections(index):
+	match index:
+		0:
+			_text_speed_arrow.set_cursor_from_index(globaldata.TEXT_SPEEDS.find(globaldata.textSpeed), false)
+		1:
+			_flavors_arrow.set_cursor_from_index(globaldata.FLAVORS.find(globaldata.menuFlavor), false)
+		2:
+			_button_prompts_arrow.set_cursor_from_index(globaldata.BUTTON_PROMPTS.find(globaldata.buttonPrompts), false)
+			_button_prompts_menu.refresh(false)
+
+func _hide_all_setting_panels():
+	_current_settings_panel = null
+	_tween.stop_all()
+	for i in [_text_speed_menu, _flavors_menu, _button_prompts_menu]:
+		_tween.interpolate_property(i, "rect_position:x",
 			i.rect_position.x, 328, 0.2,
 			Tween.TRANS_QUART, Tween.EASE_OUT)
-	tween.start()
+	_tween.start()
 
-func show_confirmation():
-	othersArrow.on = false
-	confirmArrow.hide()
-	$CanvasLayer/ConfirmationLeft/Ninten/Label.text = information[0]
-	$CanvasLayer/ConfirmationLeft/Ana/Label.text = information[1]
-	$CanvasLayer/ConfirmationLeft/Lloyd/Label.text = information[2]
-	$CanvasLayer/ConfirmationLeft/Pippi/Label.text = information[3]
-	$CanvasLayer/ConfirmationLeft/Teddy/Label.text = information[4]
-	$CanvasLayer/ConfirmationRight/Food/Label.text = information[5]
-	menuAnims.play("ConfirmationOpen")
-	hide_all_other_options()
-	yield(menuAnims, "animation_finished")
-	confirmArrow.set_cursor_from_index(0, false)
-	confirmArrow.show()
-	confirmArrow.on = true
+func _refresh_confirmation_view():
+	for i in _input_results.size():
+		if _scenario[i].type == "naming":
+			var res_node = find_node("Confirm%s" % i)
+			res_node.get_node("Label").text = _input_results[i]
+			var image_node = _confirm_collection.get_node(_scenario[i].sprite).duplicate()
+			res_node.add_child(image_node)
 
-func restart_sequence():
-	arrow.on = true
-	confirmArrow.on = false
-	step = 0
-	text = information[step]
-	set_info()
-	menuAnims.play("Naming Open")
-	tween.interpolate_property($Objects/Actors, "position:x", 
-		$Objects/Actors.position.x, 0, 1.5,
-		Tween.TRANS_QUAD, Tween.EASE_OUT)
-	tween.start()
+func _restart_sequence():
+	_set_next_step(true)
 
-func end_sequence():
-	arrow.on = false
-	global.cutscene = false
-	globaldata.ninten.nickname = information[0]
-	globaldata.ana.nickname = information[1]
-	globaldata.lloyd.nickname = information[2]
-	globaldata.pippi.nickname = information[3]
-	globaldata.teddy.nickname = information[4]
-	globaldata.favoriteFood = information[5]
-	menuAnims.play("ConfirmationClose")
-	global.cutscene = false
-	$OkDesuka.play()
-	$Objects/Door2.enter()
+func _save_new_names():
+	for i in _scenario.size():
+		if _scenario[i].has("target"):
+			var target = _scenario[i].target
+			if target in globaldata:
+				if globaldata.get(target) is String:
+					globaldata.set(target, _input_results[i])
+				else:
+					globaldata.get(target).nickname = _input_results[i]
 
-func _input(event):
-	if step < 6 and step >= 0:
-		if event.is_action_pressed("ui_cancel"):
-			backspace()
-		if event.is_action_pressed("ui_scope"):
-			toggle_keyboard_panel()
-		if event.is_action_pressed("ui_select"):
-			arrow.change_parent(grid4)
-		if event.is_action_pressed("ui_focus_next") and text != "":
-			set_next_step()
-		if event.is_action_pressed("ui_focus_prev") and step != 0:
-			set_prev_step()
-	elif step == 7:
-		if event.is_action_pressed("ui_cancel"):
-			restart_sequence()
+func _finish(completed):
+	if _embed_mode:
+		#audioManager.music_fadeout(_music_id) # doesn’t sound great
+		audioManager.stop_audio_player(_music_id)
+		audioManager.resume_all_music()
+		uiManager.remove_ui(self)
+		if is_instance_valid(uiManager.dialogueBox):
+			uiManager.dialogueBox.call_deferred("next_phrase")
+		else:
+			global.persistPlayer.unpause()
+		queue_free()
+	else:
+		global.cutscene = false
+		if completed:
+			$Objects/Door2.enter()
+		else:
+			audioManager.stop_all_music()
+			$Objects/Door.enter()
 
 func _on_arrow_selected(cursor_index):
-	match arrow.menu_parent.get_child(cursor_index).name:
-		"Don't care":
-			set_dont_care()
-			arrow.play_sfx("cursor2")
-		"Backspace":
-			backspace()
-		"OK":
-			if text != "":
-				set_next_step()
+	match _keyboard_arrow.get_current_item():
+		_keyboard_dont_care:
+			_set_dont_care()
+			_keyboard_arrow.play_sfx("cursor2")
+		_keyboard_backspace:
+			_backspace()
+		_keyboard_ok:
+			if _input_text != "":
+				_set_next_step()
 		_:
 			var character = ""
-			if arrow.menu_parent.get_child(cursor_index).percent_visible == 1:
-				# LOCALIZATION Code change: added tr() for editable keyboard keys
-				character = tr(arrow.menu_parent.get_child(cursor_index).text)
+			if _keyboard_arrow.menu_parent.get_child(cursor_index).percent_visible == 1:
+				character = tr(_keyboard_arrow.menu_parent.get_child(cursor_index).text)
 			else :
-				# LOCALIZATION Code change: added tr() for editable keyboard keys
-				character = tr(arrow.menu_parent.get_child(cursor_index).get_child(0).text)
+				character = tr(_keyboard_arrow.menu_parent.get_child(cursor_index).get_child(0).text)
 			
-			# LOCALIZATION Code change: Calls the new method for character addition
 			var has_text_changed = _keyboard_char_addition(character)
 			if has_text_changed:
-				set_dots()
-				arrow.play_sfx("cursor2")
+				_set_dots()
+				_update_lr_prompts()
+				_keyboard_arrow.play_sfx("cursor2")
 
 func _on_arrow_failed_move(dir):
 	var index = 0
-	match arrow.menu_parent:
-		grid:
+	match _keyboard_arrow.menu_parent:
+		_keyboard_grid_1:
 			match dir:
 				Vector2(-1, 0):
-					arrow.change_parent(grid3)
-					arrow.set_cursor_from_index(arrow.cursor_index + grid3.columns - 1)
+					_keyboard_arrow.change_parent(_keyboard_grid_3)
+					_keyboard_arrow.set_cursor_from_index(_keyboard_arrow.cursor_index + _keyboard_grid_3.columns - 1)
 				Vector2(1, 0):
-					arrow.change_parent(grid2)
+					_keyboard_arrow.change_parent(_keyboard_grid_2)
 				Vector2(0, -1):
-					arrow.change_parent(grid4)
+					_keyboard_arrow.change_parent(_keyboard_grid_dont_care) \
+					or _keyboard_arrow.set_cursor_from_index(_keyboard_grid_1.get_child_count() - _keyboard_grid_1.columns + (_keyboard_arrow.cursor_index % _keyboard_grid_1.columns), true, true)
 				Vector2(0, 1):
-					arrow.change_parent(grid4)
-		grid2:
+					_keyboard_arrow.change_parent(_keyboard_grid_dont_care) or _keyboard_arrow.set_cursor_from_index(_keyboard_arrow.cursor_index % _keyboard_grid_1.columns, true, true)
+		_keyboard_grid_2:
 			match dir:
 				Vector2(-1, 0):
-					arrow.change_parent(grid)
+					_keyboard_arrow.change_parent(_keyboard_grid_1)
 				Vector2(1, 0):
-					arrow.change_parent(grid3)
+					_keyboard_arrow.change_parent(_keyboard_grid_3)
 				Vector2(0, -1):
-					if arrow.cursor_index % grid2.columns > grid2.columns/2:
-						arrow.change_parent(grid5)
-						arrow.set_cursor_from_index(0)
+					if _keyboard_arrow.cursor_index % _keyboard_grid_2.columns >= _keyboard_grid_2.columns/2:
+						_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
+						_keyboard_arrow.set_cursor_from_index(0)
 					else:
-						arrow.change_parent(grid4)
-						arrow.set_cursor_from_index(0)
+						_keyboard_arrow.change_parent(_keyboard_grid_dont_care) \
+						or _keyboard_arrow.set_cursor_from_index(_keyboard_grid_2.get_child_count() - _keyboard_grid_2.columns + (_keyboard_arrow.cursor_index % _keyboard_grid_2.columns), true, true)
 				Vector2(0, 1):
-					if arrow.cursor_index > 25:
-						arrow.change_parent(grid5)
+					if _keyboard_arrow.cursor_index % _keyboard_grid_2.columns >= _keyboard_grid_2.columns/2:
+						_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
 					else:
-						arrow.change_parent(grid4)
-		grid3:
+						_keyboard_arrow.change_parent(_keyboard_grid_dont_care) \
+						or _keyboard_arrow.set_cursor_from_index(_keyboard_arrow.cursor_index % _keyboard_grid_2.columns, true, true)
+		_keyboard_grid_3:
 			match dir:
 				Vector2(-1, 0):
-					arrow.change_parent(grid2)
+					_keyboard_arrow.change_parent(_keyboard_grid_2)
 				Vector2(1, 0):
-					arrow.change_parent(grid)
-					arrow.set_cursor_from_index(arrow.cursor_index - grid.columns + 1)
+					_keyboard_arrow.change_parent(_keyboard_grid_1)
+					_keyboard_arrow.set_cursor_from_index(_keyboard_arrow.cursor_index - _keyboard_grid_1.columns + 1)
 				Vector2(0, -1):
-					arrow.change_parent(grid5)
+					_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
 				Vector2(0, 1):
-					arrow.change_parent(grid5)
-		grid4:
+					_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
+		_keyboard_grid_dont_care:
 			match dir:
 				Vector2(-1, 0):
-					arrow.change_parent(grid5)
-					arrow.set_cursor_from_index(arrow.cursor_index + grid5.columns - 1)
+					_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
+					_keyboard_arrow.set_cursor_from_index(_keyboard_arrow.cursor_index + _keyboard_grid_ok_back.columns - 1)
 				Vector2(1, 0):
-					arrow.change_parent(grid5)
+					_keyboard_arrow.change_parent(_keyboard_grid_ok_back)
 				Vector2(0, -1):
-					arrow.change_parent(grid)
+					_keyboard_arrow.change_parent(_keyboard_grid_1)
 				Vector2(0, 1):
-					arrow.change_parent(grid)
-					arrow.set_cursor_from_index(0)
-		grid5:
+					_keyboard_arrow.change_parent(_keyboard_grid_1)
+					_keyboard_arrow.set_cursor_from_index(0)
+		_keyboard_grid_ok_back:
 			match dir:
 				Vector2(-1, 0):
-					arrow.change_parent(grid4)
+					_keyboard_arrow.change_parent(_keyboard_grid_dont_care) or _keyboard_arrow.set_cursor_from_index(_keyboard_arrow.get_last_available_idx(), true, true)
 				Vector2(1, 0):
-					arrow.change_parent(grid4)
-					arrow.set_cursor_from_index(arrow.cursor_index - grid4.columns + 1)
+					_keyboard_arrow.change_parent(_keyboard_grid_dont_care) or _keyboard_arrow.set_cursor_from_index(_keyboard_arrow.get_first_available_idx(), true, true)
 				Vector2(0, -1):
-					arrow.change_parent(grid3)
+					_keyboard_arrow.change_parent(_keyboard_grid_3)
 				Vector2(0, 1):
-					arrow.change_parent(grid3)
-					if arrow.cursor_index == 0:
-						arrow.set_cursor_from_index(0)
+					_keyboard_arrow.change_parent(_keyboard_grid_3)
+					if _keyboard_arrow.cursor_index == 0:
+						_keyboard_arrow.set_cursor_from_index(0)
 					else:
-						arrow.set_cursor_from_index(grid3.columns - 1)
+						_keyboard_arrow.set_cursor_from_index(_keyboard_grid_3.columns - 1)
 
-func _on_OthersArrow_moved(dir):
-	match othersArrow.cursor_index:
+func _on_SettingsArrow_moved(dir):
+	match _settings_arrow.cursor_index:
 		0:
-			show_other_option(textSpeedMenu)
+			_show_setting_panel(_text_speed_menu)
 		1:
-			show_other_option(flavorsMenu)
+			_show_setting_panel(_flavors_menu)
 		2:
-			show_other_option(buttonPromptsMenu)
+			_show_setting_panel(_button_prompts_menu)
 		3:
-			hide_all_other_options()
+			_hide_all_setting_panels()
 
-func _on_OthersArrow_selected(cursor_index):
-	othersArrow.on = false
-	if tween.is_active():
-		yield(tween, "tween_all_completed")
-		if tween.is_active():
-			yield(tween, "tween_all_completed")
-	match cursor_index:
+func _on_SettingsArrow_selected(cursor_index):
+	_settings_arrow.on = false
+	if _tween.is_active():
+		yield(_tween, "tween_all_completed")
+		if _tween.is_active():
+			yield(_tween, "tween_all_completed")
+	match _settings_arrow.cursor_index:
 		0:
-			textSpeedArrow.on = true
-			textSpeedArrow.show()
-			match globaldata.textSpeed:
-				0.02:
-					textSpeedArrow.set_cursor_from_index(0, false)
-				0.035:
-					textSpeedArrow.set_cursor_from_index(1, false)
-				0.05:
-					textSpeedArrow.set_cursor_from_index(2, false)
-			textSpeedMenu._on_TextSpeedArrow_moved(null)
+			_text_speed_arrow.on = true
+			_text_speed_arrow.show()
 		1:
-			flavorsArrow.on = true
-			flavorsArrow.show()
-			match globaldata.menuFlavor:
-				"Plain":
-					flavorsArrow.set_cursor_from_index(0, false)
-				"Mint":
-					flavorsArrow.set_cursor_from_index(1, false)
-				"Strawberry":
-					flavorsArrow.set_cursor_from_index(2, false)
-				"Banana":
-					flavorsArrow.set_cursor_from_index(3, false)
-				"Peanut":
-					flavorsArrow.set_cursor_from_index(4, false)
-				"Grape":
-					flavorsArrow.set_cursor_from_index(5, false)
-				"Melon":
-					flavorsArrow.set_cursor_from_index(6, false)
+			_flavors_arrow.on = true
+			_flavors_arrow.show()
 		2:
-			buttonPromptsArrow.on = true
-			buttonPromptsArrow.show()
-			match globaldata.buttonPrompts:
-				"Both":
-					buttonPromptsArrow.set_cursor_from_index(0, false)
-				"Objects":
-					buttonPromptsArrow.set_cursor_from_index(1, false)
-				"NPCs":
-					buttonPromptsArrow.set_cursor_from_index(2, false)
-				"None":
-					buttonPromptsArrow.set_cursor_from_index(3, false)
-			buttonPromptsMenu._on_ButtonPromptsArrow_moved(null)
+			_button_prompts_arrow.on = true
+			_button_prompts_arrow.show()
+			_button_prompts_menu.refresh(false)
 		3:
-			step += 1
-			show_confirmation()
-
-func _on_OthersArrow_cancel():
-	hide_all_other_options()
-	othersArrow.on = false
-	arrow.on = true
-	arrow.hide()
-	arrow.set_cursor_from_index(0, false)
-	menuAnims.play("OthersClose")
-	if tween.is_active():
-		yield(tween, "tween_all_completed")
-	set_prev_step()
+			_set_next_step()
+			return
 	
-	
+	_refresh_settings_selections(_settings_arrow.cursor_index)
 
+func _on_SettingsArrow_cancel():
+	_hide_all_setting_panels()
+	_settings_arrow.on = false # TODO move to set_prev_step
+	_keyboard_arrow.on = true
+	_keyboard_arrow.hide()
+	_keyboard_arrow.set_cursor_from_index(0, false)
+	_menu_anims.play("SettingsClose")
+	if _tween.is_active():
+		yield(_tween, "tween_all_completed")
+	_set_prev_step()
 
 func _on_TextSpeedArrow_selected(cursor_index):
-	othersArrow.on = true
-	textSpeedArrow.on = false
-	textSpeedArrow.hide()
-	# LOCALIZATION Code change: Use of csv keys here
-	match cursor_index:
-		0:
-			globaldata.textSpeed = 0.02
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_FAST"
-		1:
-			globaldata.textSpeed = 0.035
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_MEDIUM"
-		2:
-			globaldata.textSpeed = 0.05
-			$CanvasLayer/Others/VBoxContainer2/Speed.text = "MENU_SLOW"
-
+	_settings_arrow.on = true
+	_text_speed_arrow.on = false
+	_text_speed_arrow.hide()
+	globaldata.textSpeed = globaldata.TEXT_SPEEDS[cursor_index]
+	_refresh_settings_menu()
 
 func _on_TextSpeedArrow_cancel():
-	othersArrow.on = true
-	textSpeedArrow.on = false
-	textSpeedArrow.hide()
-	textSpeedArrow.get_current_item().percent_visible = 1
-
+	_settings_arrow.on = true
+	_text_speed_arrow.on = false
+	_text_speed_arrow.hide()
+	_text_speed_arrow.get_current_item().percent_visible = 1
 
 func _on_FlavorsArrow_selected(cursor_index):
-	match cursor_index:
-		0:
-			globaldata.menuFlavor = "Plain"
-		1:
-			globaldata.menuFlavor = "Mint"
-		2:
-			globaldata.menuFlavor = "Strawberry"
-		3:
-			globaldata.menuFlavor = "Banana"
-		4:
-			globaldata.menuFlavor = "Peanut"
-		5:
-			globaldata.menuFlavor = "Grape"
-		6:
-			globaldata.menuFlavor = "Melon"
-	othersArrow.on = true
-	flavorsArrow.on = false
-	# LOCALIZATION Code changed: Use of csv keys here
-	$CanvasLayer/Others/VBoxContainer2/Flavor.text = "FLAVOR_" + globaldata.menuFlavor.to_upper()
-	flavorsArrow.hide()
+	_settings_arrow.on = true
+	_flavors_arrow.on = false
+	_flavors_arrow.hide()
+	globaldata.menuFlavor = globaldata.FLAVORS[cursor_index]
+	_refresh_settings_menu()
 
 func _on_FlavorsArrow_cancel():
 	uiManager.set_menu_flavors(globaldata.menuFlavor)
-	othersArrow.on = true
-	flavorsArrow.on = false
-	flavorsArrow.hide()
+	_settings_arrow.on = true
+	_flavors_arrow.on = false
+	_flavors_arrow.hide()
 
 func _on_ButtonPromptsArrow_selected(cursor_index):
-	# LOCALIZATION Code change: Relying on cursor position instead of node text
-	match cursor_index:
-		0:
-			globaldata.buttonPrompts = "Both"
-		1:
-			globaldata.buttonPrompts = "Objects"
-		2:
-			globaldata.buttonPrompts = "NPCs"
-		3:
-			globaldata.buttonPrompts = "None"
-	$CanvasLayer/Others/VBoxContainer2/Prompts.text = buttonPromptsArrow.get_current_item().text
-	othersArrow.on = true
-	buttonPromptsArrow.on = false
-	buttonPromptsArrow.hide()
+	_settings_arrow.on = true
+	_button_prompts_arrow.on = false
+	_button_prompts_arrow.hide()
+	globaldata.buttonPrompts = globaldata.BUTTON_PROMPTS[cursor_index]
+	_refresh_settings_menu()
 
 func _on_ButtonPromptsArrow_cancel():
-	othersArrow.on = true
-	buttonPromptsArrow.on = false
-	buttonPromptsArrow.hide()
-	match globaldata.buttonPrompts:
-		"Both":
-			buttonPromptsMenu._on_ButtonPromptsArrow_moved(Vector2.ZERO)
-		"Objects":
-			buttonPromptsMenu._on_ButtonPromptsArrow_moved(Vector2.ZERO)
-		"NPCs":
-			buttonPromptsMenu._on_ButtonPromptsArrow_moved(Vector2.ZERO)
-		"None":
-			buttonPromptsMenu._on_ButtonPromptsArrow_moved(Vector2.ZERO)
+	_settings_arrow.on = true
+	_button_prompts_arrow.on = false
+	_button_prompts_arrow.hide()
+	_refresh_settings_selections(2)
 
 func _on_ConfirmationArrow_selected(cursor_index):
-	confirmArrow.on = false
+	_confirm_arrow.on = false
 	match cursor_index:
 		0:
-			end_sequence()
+			_set_next_step()
 		1:
-			restart_sequence()
-
+			_restart_sequence()
 
 func _on_ConfirmationArrow_cancel():
-	restart_sequence()
+	_restart_sequence()

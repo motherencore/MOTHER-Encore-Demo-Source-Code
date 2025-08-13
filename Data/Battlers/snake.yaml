@@ -1,0 +1,25 @@
+name: SNAKE_NAME
+description: SNAKE_DESC
+article: SNAKE_ART
+maxhp: 18
+hp: 18
+maxpp: 0
+pp: 0
+offense: 6
+defense: 8
+speed: 10
+iq: 1
+guts: 0
+level: 5
+exp: 12
+cash: 16
+skills:
+- skill: bite
+  weight: 1
+boss: false
+sprite: snake
+music: Flippant Foe.mp3
+bg: snake
+ov:
+  sprite: SnakeOV
+  anim: BasicEnemy

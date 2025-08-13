@@ -580,9 +580,6 @@ shader_param/inside = true
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 8, 8 )
-
 [sub_resource type="Animation" id=11]
 resource_name = "Arrow"
 length = 1.16667
@@ -639,6 +636,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -20.2 ]
 }
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8, 8 )
 
 [sub_resource type="Animation" id=34]
 resource_name = "Arrow"
@@ -1012,7 +1012,7 @@ extents = Vector2( 40, 12 )
 [node name="Podunk" type="Node2D"]
 script = ExtResource( 20 )
 player_map_offset = Vector2( 98, 132 )
-map_name_override = "Podunk"
+region_name = "Podunk"
 map_item = "MapPodunk"
 
 [node name="Ground" type="TileMap" parent="."]
@@ -5818,6 +5818,7 @@ tile_data = PoolIntArray( -393196, 55, 131072, -393195, 55, 3, -393194, 55, 4, -
 position = Vector2( 288, 1488 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5827,6 +5828,7 @@ tile_data = PoolIntArray( -393217, 54, 2, -458752, 54, 3, -458751, 54, 4, -45875
 position = Vector2( 560, 1696 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5836,6 +5838,7 @@ tile_data = PoolIntArray( -262146, 54, 2, -262145, 54, 3, -327680, 54, 4, -32767
 position = Vector2( 544, 2080 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5845,6 +5848,7 @@ tile_data = PoolIntArray( -393218, 55, 131072, -393217, 55, 3, -458752, 55, 4, -
 position = Vector2( -256, 2064 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5854,6 +5858,7 @@ tile_data = PoolIntArray( -196610, 55, 131072, -196609, 55, 3, -262144, 55, 4, -
 position = Vector2( 688, 2080 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5863,6 +5868,7 @@ tile_data = PoolIntArray( -327682, 54, 2, -327681, 54, 3, -393216, 54, 4, -39321
 position = Vector2( 224, 2032 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5882,6 +5888,7 @@ tile_data = PoolIntArray( -131075, 58, 131072, -131074, 58, 3, -131073, 58, 4, -
 position = Vector2( 432, 1760 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 collision_layer = 1597
 collision_mask = 0
 format = 1
@@ -5903,6 +5910,7 @@ position = Vector2( 0, -816 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_tile_origin = 2
+show_collision = true
 format = 1
 tile_data = PoolIntArray( 12, 147, 0 )
 
@@ -6107,7 +6115,6 @@ texture = ExtResource( 29 )
 
 [node name="Area2D" parent="Objects/Doors/Openable Door" index="1"]
 position = Vector2( 0, 22 )
-scale = Vector2( 1, 2 )
 
 [node name="interact" parent="Objects/Doors/Openable Door" index="2"]
 position = Vector2( 0, 22 )
@@ -6306,24 +6313,21 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -5767129, 148, 11, -5701591, 148, 1, -5701590, 148, 2, -5701589, 148, 3, -5701588, 148, 4, -5701587, 148, 5, -5701586, 148, 8, -5701585, 148, 6, -5701584, 148, 7, -5504990, 148, 12, -5504962, 148, 1, -5504961, 148, 2, -5504960, 148, 3, -5504959, 148, 4, -5504958, 148, 5, -5504957, 148, 8, -5504956, 148, 6, -5504955, 148, 7, -5504953, 166, 0, -5504951, 148, 1, -5504950, 148, 2, -5504949, 148, 3, -5504946, 148, 4, -5504945, 148, 5, -5504944, 148, 8, -5504939, 148, 6, -5504938, 148, 7, -5308376, 148, 1, -5308375, 148, 2, -5308374, 148, 4, -5308373, 148, 5, -5308369, 148, 6, -5308368, 148, 7, -5242849, 148, 11, -5242843, 148, 12, -5177271, 148, 4, -5177270, 148, 5, -5177269, 148, 8, -5177268, 148, 6, -5177267, 148, 7, -5111729, 148, 12, -4980701, 148, 8, -4980700, 148, 6, -4980699, 148, 7, -4980698, 148, 1, -4980697, 148, 2, -4980696, 148, 3, -4980694, 148, 1, -4980693, 148, 2, -4980692, 148, 3, -4915123, 148, 11, -4849644, 148, 4, -4849643, 148, 5, -4849642, 148, 6, -4849641, 148, 7, -4849613, 148, 4, -4849612, 148, 5, -4849611, 148, 8, -4849610, 148, 6, -4849609, 148, 7, -4849597, 148, 4, -4849596, 148, 5, -4849591, 148, 6, -4849590, 148, 7, -4784096, 148, 6, -4784095, 148, 7, -4653015, 148, 12, -4653014, 148, 65545, -4521956, 148, 11, -4456389, 148, 4, -4456388, 148, 5, -4456387, 148, 8, -4456386, 148, 6, -4456385, 148, 7, -4456383, 148, 4, -4456382, 148, 5, -4456381, 148, 6, -4456380, 148, 7, -4390874, 148, 11, -4259811, 148, 1, -4259810, 148, 2, -4259809, 148, 3, -4259808, 148, 1, -4259807, 148, 2, -4259806, 148, 3 )
 
-[node name="Present1" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
+[node name="PresentZoo1" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
 position = Vector2( 864, -1448 )
-flag = "zoo_pres_1"
 item = "CapsulePP"
 
-[node name="Present2" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
+[node name="PresentZoo2" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
 position = Vector2( 1072, -1384 )
-flag = "zoo_pres_2"
 item = "Fries"
 
-[node name="Present3" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
+[node name="PresentZoo3" parent="Objects/Zoo Flag" instance=ExtResource( 13 )]
 position = Vector2( 1200, -1088 )
-flag = "zoo_pres_3"
 item = "Hamburger"
 
 [node name="Jump Area" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 1211, -1334 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": false
@@ -6331,13 +6335,14 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area/Jump Points" index="0"]
 position = Vector2( -21, 22 )
 
 [node name="Jump Area2" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 680, -1368 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": false
@@ -6345,17 +6350,18 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area2" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area2/Jump Points" index="0"]
 position = Vector2( -21, 22 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area2" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area2" index="3"]
 anims/Arrow = SubResource( 16 )
 anims/RESET = SubResource( 17 )
 
 [node name="Jump Area3" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 540, -1296 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": false,
 "y": true
@@ -6363,17 +6369,18 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area3" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area3/Jump Points" index="0"]
 position = Vector2( -12, 40 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area3" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area3" index="3"]
 anims/Arrow = SubResource( 18 )
 anims/RESET = SubResource( 19 )
 
 [node name="Jump Area7" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 488, -1152 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": true
@@ -6381,6 +6388,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area7" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area7/Jump Points" index="0"]
 position = Vector2( 56, 24 )
@@ -6391,13 +6399,13 @@ position = Vector2( 104, 40 )
 [node name="Position2D3" type="Position2D" parent="Objects/Zoo Flag/Jump Area7/Jump Points" index="2"]
 position = Vector2( 160, 56 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area7" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area7" index="3"]
 anims/Arrow = SubResource( 26 )
 anims/RESET = SubResource( 27 )
 
 [node name="Jump Area8" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 640, -1104 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": true
@@ -6405,6 +6413,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area8" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area8/Jump Points" index="0"]
 position = Vector2( -48, -8 )
@@ -6415,13 +6424,13 @@ position = Vector2( -96, -24 )
 [node name="Position2D3" type="Position2D" parent="Objects/Zoo Flag/Jump Area8/Jump Points" index="2"]
 position = Vector2( -144, -40 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area8" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area8" index="3"]
 anims/Arrow = SubResource( 28 )
 anims/RESET = SubResource( 29 )
 
 [node name="Jump Area6" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 656, -1440 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": true
@@ -6429,6 +6438,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area6" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area6/Jump Points" index="0"]
 position = Vector2( -48, 8 )
@@ -6442,13 +6452,13 @@ position = Vector2( -128, 56 )
 [node name="Position2D4" type="Position2D" parent="Objects/Zoo Flag/Jump Area6/Jump Points" index="3"]
 position = Vector2( -152, 104 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area6" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area6" index="3"]
 anims/Arrow = SubResource( 24 )
 anims/RESET = SubResource( 25 )
 
 [node name="Jump Area5" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 496, -1344 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": true,
 "y": true
@@ -6456,6 +6466,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area5" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area5/Jump Points" index="0"]
 position = Vector2( 32, -40 )
@@ -6469,13 +6480,13 @@ position = Vector2( 112, -88 )
 [node name="Position2D4" type="Position2D" parent="Objects/Zoo Flag/Jump Area5/Jump Points" index="3"]
 position = Vector2( 168, -88 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area5" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area5" index="3"]
 anims/Arrow = SubResource( 20 )
 anims/RESET = SubResource( 21 )
 
 [node name="Jump Area4" parent="Objects/Zoo Flag" instance=ExtResource( 17 )]
 position = Vector2( 636, -1056 )
-jumpHeight = 25
+jump_height = 25
 player_turn = {
 "x": false,
 "y": true
@@ -6483,11 +6494,12 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Zoo Flag/Jump Area4" index="0"]
 material = SubResource( 7 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Zoo Flag/Jump Area4/Jump Points" index="0"]
 position = Vector2( -12, 40 )
 
-[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area4" index="4"]
+[node name="AnimationPlayer" parent="Objects/Zoo Flag/Jump Area4" index="3"]
 anims/Arrow = SubResource( 22 )
 anims/RESET = SubResource( 23 )
 
@@ -6655,9 +6667,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area" index="1"]
-shape = SubResource( 9 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area/Jump Points" index="0"]
 position = Vector2( -8, -40 )
@@ -6668,6 +6678,9 @@ position = Vector2( -40, -88 )
 [node name="Position2D3" type="Position2D" parent="Objects/Jump Area/Jump Points" index="2"]
 position = Vector2( -40, -144 )
 
+[node name="CollisionShape2D" parent="Objects/Jump Area/Inside" index="0"]
+shape = SubResource( 9 )
+
 [node name="Jump Area2" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( -536, 296 )
 player_turn = {
@@ -6677,9 +6690,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area2" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area2" index="1"]
-shape = SubResource( 10 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area2/Jump Points" index="0"]
 position = Vector2( 8, 64 )
@@ -6690,9 +6701,12 @@ position = Vector2( 40, 112 )
 [node name="Position2D3" type="Position2D" parent="Objects/Jump Area2/Jump Points" index="2"]
 position = Vector2( 56, 160 )
 
-[node name="AnimationPlayer" parent="Objects/Jump Area2" index="4"]
+[node name="AnimationPlayer" parent="Objects/Jump Area2" index="3"]
 anims/Arrow = SubResource( 11 )
 anims/RESET = SubResource( 12 )
+
+[node name="CollisionShape2D" parent="Objects/Jump Area2/Inside" index="0"]
+shape = SubResource( 10 )
 
 [node name="Jump Area3" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( -472, -608 )
@@ -6703,9 +6717,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area3" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area3" index="1"]
-shape = SubResource( 10 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area3/Jump Points" index="0"]
 position = Vector2( 8, 56 )
@@ -6713,9 +6725,12 @@ position = Vector2( 8, 56 )
 [node name="Position2D2" type="Position2D" parent="Objects/Jump Area3/Jump Points" index="1"]
 position = Vector2( 8, 120 )
 
-[node name="AnimationPlayer" parent="Objects/Jump Area3" index="4"]
+[node name="AnimationPlayer" parent="Objects/Jump Area3" index="3"]
 anims/Arrow = SubResource( 34 )
 anims/RESET = SubResource( 35 )
+
+[node name="CollisionShape2D" parent="Objects/Jump Area3/Inside" index="0"]
+shape = SubResource( 10 )
 
 [node name="Jump Area4" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( -472, -496 )
@@ -6726,9 +6741,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area4" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area4" index="1"]
-shape = SubResource( 10 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area4/Jump Points" index="0"]
 position = Vector2( 8, -56 )
@@ -6736,9 +6749,12 @@ position = Vector2( 8, -56 )
 [node name="Position2D2" type="Position2D" parent="Objects/Jump Area4/Jump Points" index="1"]
 position = Vector2( 8, -104 )
 
-[node name="AnimationPlayer" parent="Objects/Jump Area4" index="4"]
+[node name="AnimationPlayer" parent="Objects/Jump Area4" index="3"]
 anims/Arrow = SubResource( 36 )
 anims/RESET = SubResource( 37 )
+
+[node name="CollisionShape2D" parent="Objects/Jump Area4/Inside" index="0"]
+shape = SubResource( 10 )
 
 [node name="Jump Area5" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 1736, 16 )
@@ -6749,9 +6765,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area5" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area5" index="1"]
-shape = SubResource( 10 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area5/Jump Points" index="0"]
 position = Vector2( 8, 40 )
@@ -6762,9 +6776,12 @@ position = Vector2( -8, 88 )
 [node name="Position2D3" type="Position2D" parent="Objects/Jump Area5/Jump Points" index="2"]
 position = Vector2( -32, 136 )
 
-[node name="AnimationPlayer" parent="Objects/Jump Area5" index="4"]
+[node name="AnimationPlayer" parent="Objects/Jump Area5" index="3"]
 anims/Arrow = SubResource( 38 )
 anims/RESET = SubResource( 39 )
+
+[node name="CollisionShape2D" parent="Objects/Jump Area5/Inside" index="0"]
+shape = SubResource( 10 )
 
 [node name="Jump Area6" parent="Objects" instance=ExtResource( 17 )]
 position = Vector2( 1696, 144 )
@@ -6775,9 +6792,7 @@ player_turn = {
 
 [node name="Sprite" parent="Objects/Jump Area6" index="0"]
 material = SubResource( 8 )
-
-[node name="CollisionShape2D" parent="Objects/Jump Area6" index="1"]
-shape = SubResource( 10 )
+rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area6/Jump Points" index="0"]
 position = Vector2( 32, -40 )
@@ -6788,9 +6803,12 @@ position = Vector2( 48, -88 )
 [node name="Position2D3" type="Position2D" parent="Objects/Jump Area6/Jump Points" index="2"]
 position = Vector2( 48, -120 )
 
-[node name="AnimationPlayer" parent="Objects/Jump Area6" index="4"]
+[node name="AnimationPlayer" parent="Objects/Jump Area6" index="3"]
 anims/Arrow = SubResource( 40 )
 anims/RESET = SubResource( 41 )
+
+[node name="CollisionShape2D" parent="Objects/Jump Area6/Inside" index="0"]
+shape = SubResource( 10 )
 
 [node name="Bridge3" type="TileMap" parent="Objects"]
 tile_set = ExtResource( 2 )
@@ -6865,44 +6883,36 @@ New_parent = NodePath("../../../BelowPlayer1")
 
 [node name="Items" type="YSort" parent="Objects"]
 
-[node name="Present10" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="Present1" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 1816, 584 )
-flag = "podunk_pres_1"
 item = "Hamburger"
 
 [node name="Present2" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( -568, 264 )
-flag = "podunk_pres_2"
 item = "Fries"
 
-[node name="Present" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="Present3" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( -440, -680 )
-flag = "podunk_pres_3"
 item = "CapsuleSPD"
 
-[node name="Present11" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="Present4" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 2472, -1144 )
-flag = "podunk_pres_4"
 item = "Hamburger"
 
-[node name="Present12" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="Present5" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 2440, -1400 )
-flag = "podunk_pres_5"
 item = "Hamburger"
 
-[node name="Present9" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="Present6" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 1772, -57 )
-flag = "podunk_pres_6"
 item = "CapsuleIQ"
 
-[node name="Present4" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentZoo4" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 1088, -1552 )
-flag = "zoo_pres_4"
 item = "Hamburger"
 
-[node name="Present3" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentCem4" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 1080, 4680 )
-flag = "cem_pres_4"
 item = "CapsuleOFE"
 
 [node name="Item" parent="Objects/Items" instance=ExtResource( 24 )]
@@ -6910,24 +6920,20 @@ position = Vector2( 1432, 4664 )
 flag = "got_shovel"
 item = "Shovel"
 
-[node name="Present5" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentCem5" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 1344, 4504 )
-flag = "cem_pres_5"
 item = "Fries"
 
-[node name="Present6" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentCem3" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 864, 4512 )
-flag = "cem_pres_3"
 item = "Hamburger"
 
-[node name="Present7" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentCem1" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 408, 4400 )
-flag = "cem_pres_1"
 item = "Hamburger"
 
-[node name="Present8" parent="Objects/Items" instance=ExtResource( 13 )]
+[node name="PresentCem2" parent="Objects/Items" instance=ExtResource( 13 )]
 position = Vector2( 208, 4600 )
-flag = "cem_pres_2"
 item = "CapsuleHP"
 
 [node name="Item2" parent="Objects/Items" instance=ExtResource( 24 )]
@@ -7878,7 +7884,7 @@ sprite = "Npcs/4dir/pippismom"
 dialog = "Podunk/pippismom_canary"
 appear_flag = "canary_found"
 disappear_flag = "pippi_reunite"
-event_dialog = [ PoolStringArray( "canary_delivered", "Podunk/pippismom_mayor" ) ]
+event_dialog = [ PoolStringArray( "canary_melody", "Podunk/cutscenes/leave_canary_village" ), PoolStringArray( "leave_canary_village", "Podunk/pippismom_mayor" ) ]
 player_turn = {
 "x": true,
 "y": true
@@ -7969,7 +7975,7 @@ player_turn = {
 "x": true,
 "y": true
 }
-initial_dir = Vector2( -10, 0 )
+initial_dir = Vector2( -1, 0 )
 staring = true
 
 [node name="npc25" parent="Objects/NPCS" instance=ExtResource( 8 )]
@@ -8418,6 +8424,17 @@ player_turn = {
 initial_dir = Vector2( 0, 1 )
 wander = true
 
+[node name="npc3" parent="Objects/NPCS" instance=ExtResource( 8 )]
+position = Vector2( -80, 2920 )
+sprite = "Npcs/4dir/mouse"
+dialog = "Reusable/squeak"
+thoughts = "Podunk/mouse_poison"
+player_turn = {
+"x": true,
+"y": true
+}
+speed = 80
+
 [node name="Enemies" type="YSort" parent="Objects"]
 
 [node name="Enemy Spawner3" parent="Objects/Enemies" instance=ExtResource( 19 )]
@@ -8652,15 +8669,15 @@ disappear_flag = "monkey_melody"
 
 [node name="Sparkles" parent="Objects/ZooSignSparkle" instance=ExtResource( 4 )]
 position = Vector2( 803, -1161 )
-frame = 8
+frame = 27
 
 [node name="Sparkles2" parent="Objects/ZooSignSparkle/Sparkles" instance=ExtResource( 4 )]
 position = Vector2( 11, -18 )
-frame = 38
+frame = 27
 
 [node name="Sparkles3" parent="Objects/ZooSignSparkle/Sparkles" instance=ExtResource( 4 )]
 position = Vector2( 28, -7 )
-frame = 9
+frame = 15
 
 [node name="AbovePlayer1" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -8728,14 +8745,13 @@ collision_mask = 0
 format = 1
 
 [node name="Music" type="Node2D" parent="."]
-visible = false
 
 [node name="MusicArea" parent="Music" instance=ExtResource( 6 )]
 position = Vector2( 368, 1053 )
 loop = "Pollyanna.ogg"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Music/MusicArea"]
-polygon = PoolVector2Array( -824, -853, -552, -572, -552, -420, -832, -333, -1112, 1547, -1112, 2723, 1936, 2723, 3192, -2237, 3200, -3005, 671, -3005, 672, -2501, 1232, -2501, 615, -1861, -305, -1861, -168, -1997, -321, -1997, -49, -2269, -904, -2168, -1024, -853 )
+polygon = PoolVector2Array( -824, -853, -552, -572, -552, -420, -832, -333, -1112, 1547, -1112, 2723, 1936, 2723, 3192, -2237, 3200, -3005, 671, -3005, 672, -2501, 1232, -2501, 615, -1861, -304, -1861, -168, -1997, -320, -1997, -48, -2269, -904, -2168, -1024, -853 )
 
 [node name="MusicArea3" parent="Music" instance=ExtResource( 6 )]
 position = Vector2( -484, 526 )
@@ -8818,7 +8834,7 @@ loop = "Pollyanna.ogg"
 appear_flag = "zoo_freed"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Music/MusicArea11"]
-polygon = PoolVector2Array( 72, -816, 992, -816, 1600, -1448, 1016, -1448, 1000, -1464, 544, -1464, 336, -1256, 336, -1232, 48, -944, 200, -944 )
+polygon = PoolVector2Array( 64, -808, 984, -808, 1600, -1448, 1016, -1448, 1000, -1464, 544, -1464, 336, -1256, 336, -1232, 48, -944, 200, -944 )
 
 [node name="MusicArea12" parent="Music" instance=ExtResource( 6 )]
 position = Vector2( -1104, 304 )

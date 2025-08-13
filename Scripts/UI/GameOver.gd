@@ -8,8 +8,6 @@ signal fade_done
 
 func _init():
 	fade = uiManager.fade
-	
-	#uiManager.add_ui(fade)
 	uiManager.clearOnScreenEnemies()
 
 func _ready():
@@ -29,23 +27,20 @@ func _ready():
 	yield($Timer, "timeout")
 	fade.set_cut(1, 0.01)
 	audioManager.stop_all_music()
-	audioManager.remove_all_unplaying()
 	audioManager.add_audio_player()
-	audioManager.play_music_from_id("", "Game_Over.ogg", audioManager.get_audio_player_count()-1)
+	audioManager.play_music_on_latest_player("", "Game_Over.ogg")
 	$AnimationPlayer.play("nintenFall")
 	yield($AnimationPlayer, "animation_finished")
 	
-	global.set_dialog(gameOverDialog, null)
+	global.set_dialog(gameOverDialog)
 	var dialogueBox = uiManager.open_dialogue_box()
 	dialogueBox.unpausePlayer = false
-	dialogueBox.connect("finalPhrase", self, "end_phrase")
-	
+	dialogueBox.connect("end_gameover", self, "end_dialogue")
 	
 
-func end_phrase(phrase):
-	print(phrase)
-	if phrase == 9:
-		audioManager.music_fadeout(audioManager.get_audio_player_count()-1, 5)
+func end_dialogue(try_again):
+	if try_again:
+		audioManager.music_fadeout(audioManager.get_latest_audio_player_index(), 5)
 		$AnimationPlayer.play("nintenGetup")
 		yield($AnimationPlayer, "animation_finished")
 		
@@ -65,8 +60,8 @@ func end_phrase(phrase):
 		global.gameover = false
 		uiManager.commandsMenuActive = false
 		uiManager.remove_ui(self)
-	elif phrase == 7:
-		audioManager.music_fadeout(audioManager.get_audio_player_count()-1, 5)
+	else:
+		audioManager.music_fadeout(audioManager.get_latest_audio_player_index(), 5)
 		$AnimationPlayer.play("transitionOut")
 		fade.fade_in("Fade", Color.black, 0.2)
 		yield($AnimationPlayer, "animation_finished")
@@ -89,5 +84,5 @@ func revive_party():
 			i.hp = i.maxhp + i.boosts.maxhp
 			i.pp = i.maxpp + i.boosts.maxpp
 		else:
-			i.status.append(globaldata.ailments.Unconscious)
+			StatusManager.add_status(i, StatusManager.AILMENT_UNCONSCIOUS)
 			i.pp = i.maxpp + i.boosts.maxpp

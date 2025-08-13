@@ -1,0 +1,16 @@
+'0':
+  name: DIALOGUE_PODUNK_ISABELLA_2_SPEAKER_Isabella
+  sound: Sexy
+  text: DIALOGUE_PODUNK_ISABELLA_2_0
+  options:
+    DIALOGUE_PODUNK_ISABELLA_2_0-OPT_0: '1'
+    DIALOGUE_PODUNK_ISABELLA_2_0-OPT_1: '2'
+    cancel: '2'
+'1':
+  name: DIALOGUE_PODUNK_ISABELLA_2_SPEAKER_Isabella
+  sound: Sexy
+  text: DIALOGUE_PODUNK_ISABELLA_2_1
+'2':
+  name: DIALOGUE_PODUNK_ISABELLA_2_SPEAKER_Isabella
+  sound: Sexy
+  text: DIALOGUE_PODUNK_ISABELLA_2_2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blinded.png-70d49d29895a67f113f58260d3b91e04.stex"
+path="res://.import/blinded.png-05e7f5ecd74fc3a4afe13bdd95f92c68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/UI/Ailments/Blinded.png"
-dest_files=[ "res://.import/Blinded.png-70d49d29895a67f113f58260d3b91e04.stex" ]
+source_file="res://Graphics/UI/Ailments/blinded.png"
+dest_files=[ "res://.import/blinded.png-05e7f5ecd74fc3a4afe13bdd95f92c68.stex" ]
 
 [params]
 

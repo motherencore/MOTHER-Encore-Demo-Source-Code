@@ -1,0 +1,51 @@
+'0':
+  actors:
+    ninten: leader
+    minnie: Objects/npc3
+  actorsdir:
+    minnie:
+      x: 0
+      y: -1
+  actorsjump:
+    minnie:
+      height: 8
+      times: 2
+  movecam:
+    x: 105
+  wait: 0.8
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  talker: minnie
+  name: DIALOGUE_PODUNK_CUTSCENES_MINNIE_DOOR_SPEAKER_Minnie
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MINNIE_DOOR_1
+  emoteactors:
+    minnie: sweat
+  actorsturn:
+    ninten:
+      x: -1
+      y: 0
+      speed: 0.3
+  goto: '2'
+'2':
+  showbox: false
+  actorsmove:
+    minnie:
+      movement:
+      - x: -24
+        y: 0
+      speed: 32
+      animation: Walk
+      type: step
+  actorsturn:
+    minnie:
+      x: 1
+      y: 0
+      speed: 0.08
+      queue: true
+  setflags: minnie_door
+  wait: 1.4
+  autoadvance: true
+  caninput: false

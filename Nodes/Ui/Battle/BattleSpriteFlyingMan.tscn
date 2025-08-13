@@ -1,0 +1,225 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Graphics/Character Sprites/FlyingMan/battle.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/Battle/BattleSpriteNPC.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack1"
+length = 0.214286
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.142857 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 7 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Attack1Loop"
+length = 0.142857
+loop = true
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Attack2"
+length = 0.785714
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.571429, 0.642857, 0.714286 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Damaged"
+length = 0.285714
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "DamagedLoop"
+length = 0.142857
+loop = true
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 28, 29 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Hit"
+length = 0.001
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Jump"
+length = 0.285714
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "JumpLoop"
+length = 0.142857
+loop = true
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "RESET"
+length = 0.001
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Recoil"
+length = 0.0714286
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 19 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "RecoilLoop"
+length = 0.285714
+loop = true
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 23 ]
+}
+
+[node name="BattleSpriteFlyingMan" type="Control"]
+show_behind_parent = true
+script = ExtResource( 2 )
+_npc_sprite_path = NodePath("Sprite")
+_anim_player = NodePath("AnimationPlayer")
+_jump_tween = NodePath("JumpTween")
+_fx_tween = NodePath("FXTweet")
+
+[node name="JumpTween" type="Tween" parent="."]
+
+[node name="FXTweet" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack1 = SubResource( 6 )
+anims/Attack1Loop = SubResource( 7 )
+anims/Attack2 = SubResource( 8 )
+anims/Damaged = SubResource( 4 )
+anims/DamagedLoop = SubResource( 5 )
+anims/Hit = SubResource( 11 )
+anims/Jump = SubResource( 2 )
+anims/JumpLoop = SubResource( 3 )
+anims/RESET = SubResource( 1 )
+anims/Recoil = SubResource( 10 )
+anims/RecoilLoop = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 10
+vframes = 3

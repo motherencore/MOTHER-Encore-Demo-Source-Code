@@ -1,0 +1,342 @@
+'0':
+  actors:
+    ninten: ninten
+    pippi: pippi
+    abbott: Objects/npc3
+    mayor: talker
+  actorsdir:
+    mayor:
+      x: 0
+      y: 1
+  actorsmove:
+    ninten:
+      movement:
+      - x: 8
+        y: -579
+      speed: 32
+      animation: Walk
+      type: position
+    pippi:
+      movement:
+      - x: -10
+        y: -579
+      speed: 32
+      animation: Walk
+      type: position
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+    pippi:
+      x: 0
+      y: -1
+      speed: 0.1
+      queue: true
+  wait: 1.2
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_1
+  goto: '6'
+'6':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_6
+  cash: true
+  givecash: 100
+  soundeffect: M3/register.wav
+  goto: '7'
+'7':
+  talker: mayor
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_7
+  cash: false
+  goto: '8'
+'8':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_8
+  wait: 0.8
+  goto: '9'
+'9':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_9
+  soundeffect: EB/yell.wav
+  wait: 1
+  goto: '10'
+  shakecam:
+    x: 1
+    y: 0
+    length: 0.2
+    size: big
+'10':
+  showbox: false
+  actorsjump:
+    abbott:
+      height: 8
+      queue: true
+      times: 2
+  actorsmove:
+    abbott:
+      movement:
+      - wait: 1
+      - x: 8
+        y: -552
+      speed: 108
+      animation: Walk
+      type: position
+  movecam:
+    y: -556
+  changecam: null
+  soundeffect: Footsteps/wood_fadein.wav
+  wait: 2
+  autoadvance: true
+  caninput: false
+  goto: '11'
+'11':
+  talker: null
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Abbott
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_11
+  actorsturn:
+    ninten:
+      x: 0
+      y: 1
+      speed: 0.1
+    pippi:
+      x: 0
+      y: 1
+      speed: 0.1
+  goto: '12'
+  actorsanim:
+    abbott:
+      anim: Walk
+'12':
+  talker: mayor
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_12
+  goto: '13'
+'13':
+  talker: null
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Abbott
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_13
+  goto: '14'
+'14':
+  showbox: false
+  actorsmove:
+    abbott:
+      movement:
+      - x: 8
+        y: -472
+      speed: 108
+      animation: Walk
+      type: position
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '15'
+'15':
+  talker: mayor
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_15
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_18-OPT_0: '19'
+    DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_18-OPT_1: '19'
+    cancel: '19'
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+    pippi:
+      x: 0
+      y: -1
+      speed: 0.1
+  changecam: ninten
+  returncam: 0.5
+'19':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_19
+  goto: '21'
+'21':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_21
+  wait: 0.8
+  goto: '22'
+'22':
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_22
+  soundeffect: EB/yell.wav
+  wait: 1
+  goto: '23'
+  shakecam:
+    x: 1
+    y: 0
+    length: 0.2
+    size: big
+'23':
+  showbox: false
+  actorsjump:
+    abbott:
+      height: 6
+      queue: true
+      times: 2
+  actorsmove:
+    abbott:
+      movement:
+      - wait: 1.2
+      - x: 8
+        y: -552
+      speed: 108
+      animation: Walk
+      type: position
+  movecam:
+    y: -556
+  changecam: null
+  soundeffect: Footsteps/wood_fadein.wav
+  wait: 2.2
+  autoadvance: true
+  caninput: false
+  goto: '24'
+'24':
+  talker: null
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Abbott
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_24
+  actorsturn:
+    ninten:
+      x: 0
+      y: 1
+      speed: 0.1
+    pippi:
+      x: 0
+      y: 1
+      speed: 0.1
+  goto: '25'
+'25':
+  talker: mayor
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_25
+  goto: '26'
+'26':
+  talker: null
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Abbott
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_26
+  goto: '27'
+'27':
+  showbox: false
+  actorsmove:
+    abbott:
+      movement:
+      - x: 8
+        y: -565
+      speed: 64
+      animation: Walk
+      type: position
+  movecam:
+    y: -556
+  changecam: null
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '28'
+'28':
+  talker: null
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_28
+  item: KeyZoo
+  soundeffect: Item Received.mp3
+  goto: '29'
+'29':
+  showbox: false
+  actorsmove:
+    abbott:
+      movement:
+      - x: 8
+        y: -472
+      speed: 108
+      animation: Walk
+      type: position
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '30'
+'30':
+  talker: mayor
+  name: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_SPEAKER_Mayor_Goodman
+  sound: Adult
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_30
+  actorsturn:
+    ninten:
+      x: 0
+      y: -1
+      speed: 0.1
+    pippi:
+      x: 0
+      y: -1
+      speed: 0.1
+  changecam: ninten
+  returncam: 0.5
+  goto: '32'
+'32':
+  talker: pippi
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_32
+  actorsturn:
+    ninten:
+      x: -1
+      y: 0
+      speed: 0.1
+    pippi:
+      x: 1
+      y: 0
+      speed: 0.1
+  goto: '34'
+'34':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_34
+  if:
+    flags:
+      courage_badge_received: true
+    goto: '35'
+  goto: '38'
+'35':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_35
+  options:
+    DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_36-OPT_0: '37'
+    DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_36-OPT_1: '37'
+    cancel: '37'
+'37':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_37
+  setflags: pippi_delivered
+  cure:
+    character: ninten
+    status: Unconscious
+  setpartymembers:
+    pippi: false
+  changereplaced:
+    pippi: Objects/npc4
+'38':
+  name: '[Pippi]'
+  sound: Kid
+  text: DIALOGUE_PODUNK_CUTSCENES_MAYOR_PIPPI_RESCUE_38
+  goto: '35'

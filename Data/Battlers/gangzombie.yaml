@@ -1,0 +1,34 @@
+name: GANGZOMBIE_NAME
+description: GANGZOMBIE_DESC
+article: GANGZOMBIE_ART
+maxhp: 120
+hp: 120
+maxpp: 0
+pp: 0
+offense: 14
+defense: 24
+speed: 8
+iq: 5
+guts: 0
+level: 6
+exp: 20
+cash: 32
+items:
+- chance: 70
+  item: Hamburger
+skills:
+- skill: punch
+  weight: 4
+- skill: poisonBite
+  weight: 2
+- skill: mysteriousAction
+  weight: 1
+- skill: hystericalLaugh
+  weight: 1
+boss: false
+sprite: gang zombie
+music: Retro Enemy.mp3
+bg: gangzombie
+ov:
+  sprite: GangZombieOV
+  anim: BasicEnemy

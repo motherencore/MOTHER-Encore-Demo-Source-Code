@@ -1,0 +1,60 @@
+allow_back: true
+bgm: Mother_Earth_Piano.mp3
+scenario:
+- char_anims_enter: []
+  char_anims_leave: []
+  dont_care: NAME_NINTEN
+  longest_name: LONGEST_POSSIBLE_NAME
+  prompt: NAME_BIO0
+  sprite: Ninten
+  target: ninten
+  type: naming
+- char_anims_enter: []
+  char_anims_leave: []
+  dont_care: NAME_ANA
+  longest_name: LONGEST_POSSIBLE_NAME
+  prompt: NAME_BIO1
+  sprite: Ana
+  target: ana
+  type: naming
+- char_anims_enter: []
+  char_anims_leave: []
+  dont_care: NAME_LLOYD
+  longest_name: LONGEST_POSSIBLE_NAME
+  prompt: NAME_BIO2
+  sprite: Lloyd
+  target: lloyd
+  type: naming
+- char_anims_enter: []
+  char_anims_leave: []
+  dont_care: NAME_PIPPI
+  longest_name: LONGEST_POSSIBLE_NAME
+  prompt: NAME_BIO3
+  sprite: Pippi
+  target: pippi
+  type: naming
+- char_anims_enter: []
+  char_anims_leave: []
+  dont_care: NAME_TEDDY
+  longest_name: LONGEST_POSSIBLE_NAME
+  prompt: NAME_BIO4
+  sprite: Teddy
+  target: teddy
+  type: naming
+- char_anims_enter:
+  - FavFoodStart
+  - FavFoodLoop
+  char_anims_leave:
+  - FavFoodEnd
+  dont_care: FAVFOOD
+  longest_name: LONGEST_POSSIBLE_FOOD
+  prompt: NAME_BIO5
+  sprite: Plate
+  target: favoriteFood
+  type: naming
+- char_anims_enter: []
+  char_anims_leave: []
+  type: settings
+- char_anims_enter: []
+  char_anims_leave: []
+  type: confirm

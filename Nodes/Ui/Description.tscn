@@ -1,29 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/UI/Reusables/Description.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/EBMain_la.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Graphics/UI/Inventory/item_icon.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Objects/Items/BatWooden.png" type="Texture" id=4]
 [ext_resource path="res://Shaders/MenuFlavors.tres" type="Material" id=5]
-[ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=6]
 
 [node name="DescriptionPanel" type="Control"]
-margin_right = 254.0
+margin_right = 258.0
 margin_bottom = 48.0
 script = ExtResource( 1 )
-DescText = NodePath("HBox/MarginContainer/Desc")
-DescSpriteRect = NodePath("HBox/TextureRect")
-DescSprite = NodePath("HBox/TextureRect/Item")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 6.0
-margin_right = -6.0
-margin_bottom = -6.0
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-script = ExtResource( 6 )
+_text_label = NodePath("HBox/MarginContainer/Desc")
+_sprite_container = NodePath("HBox/TextureRect")
+_sprite = NodePath("HBox/TextureRect/Item")
 
 [node name="HBox" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -34,14 +23,18 @@ margin_right = -7.0
 margin_bottom = -6.0
 custom_constants/separation = 5
 
-[node name="TextureRect" type="TextureRect" parent="HBox"]
+[node name="TextureRect" type="NinePatchRect" parent="HBox"]
 material = ExtResource( 5 )
 margin_top = 7.0
 margin_right = 22.0
 margin_bottom = 29.0
+rect_min_size = Vector2( 22, 22 )
 size_flags_vertical = 4
 texture = ExtResource( 3 )
-stretch_mode = 4
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="Item" type="Sprite" parent="HBox/TextureRect"]
 position = Vector2( 11, 11 )
@@ -49,17 +42,17 @@ texture = ExtResource( 4 )
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox"]
 margin_left = 27.0
-margin_top = 4.0
-margin_right = 236.0
+margin_top = 3.0
+margin_right = 240.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
-custom_constants/margin_top = 2
+custom_constants/margin_top = 3
 
 [node name="Desc" type="RichTextLabel" parent="HBox/MarginContainer"]
-margin_top = 2.0
-margin_right = 209.0
-margin_bottom = 28.0
+margin_top = 3.0
+margin_right = 213.0
+margin_bottom = 29.0
 grow_vertical = 2
 rect_clip_content = false
 size_flags_horizontal = 3

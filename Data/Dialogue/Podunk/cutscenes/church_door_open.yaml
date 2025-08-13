@@ -1,0 +1,35 @@
+'0':
+  actors:
+    ninten: leader
+    priest: Objects/npc
+  setflags: church_door_opened
+  wait: 0.5
+  autoadvance: true
+  caninput: false
+  goto: '1'
+'1':
+  emoteactors:
+    priest: surprise
+  wait: 1
+  autoadvance: true
+  caninput: false
+  goto: '2'
+  shakecam:
+    y: 0
+    length: 0.2
+    size: small
+'2':
+  actorsturn:
+    priest:
+      x: 0
+      y: -1
+      speed: 0.1
+  objectfunction:
+    Objects/Flag Landmark/Position2D/Door: open
+  wait: 2.5
+  autoadvance: true
+  caninput: false
+  shakecam:
+    y: 0
+    length: 2
+    size: medium

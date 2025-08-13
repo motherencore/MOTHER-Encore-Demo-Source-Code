@@ -1,0 +1,10 @@
+'0':
+  actors:
+    leader: leader
+  text: DIALOGUE_PODUNK_NON-PERSON_TEXT_CANARY_HOUSE_0
+  actorsjump:
+    leader:
+      speed: 0.25
+      height: 16
+      crouch: true
+      times: 2

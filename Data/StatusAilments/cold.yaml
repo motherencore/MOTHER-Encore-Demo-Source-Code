@@ -1,0 +1,28 @@
+healing:
+  persistent: true
+messages:
+  afflict_battle: BATTLE_MSG_STATUS_COLD
+  effect: BATTLE_MSG_STATUS_COLD_EFFECT
+  heal_battle: BATTLE_MSG_HEAL_STATUS_COLD
+  heal_overworld: ACTION_RESULT_HEAL_COLD
+  heal_overworld_fail: ACTION_RESULT_HEAL_COLD_FAIL
+transmit:
+  action:
+    action_type: 0
+    skill_type: [ basic, skill ]
+  prob: 10
+status_bubble: cold
+effects_by_char:
+  any:
+    dealt_mod:
+      mod: 0.5
+      action:
+        action_type: 0
+        skill_type: [ basic, skill ]
+        damage_type: normal
+    dealt_color:
+      color: '00DED6'
+      action:
+        action_type: 0
+        skill_type: [ basic, skill ]
+        damage_type: normal

@@ -1,31 +1,10 @@
-[gd_scene load_steps=174 format=2]
+[gd_scene load_steps=169 format=2]
 
 [ext_resource path="res://Graphics/Character Sprites/Pippi/main.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/testing/party/party.gd" type="Script" id=2]
-[ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=3]
+[ext_resource path="res://Nodes/Reusables/Shadow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Shaders/Flash.tres" type="Material" id=4]
-[ext_resource path="res://Graphics/Character Sprites/Water_Ripple.png" type="Texture" id=5]
 [ext_resource path="res://Nodes/Reusables/Effects/AfterImageCreator.tscn" type="PackedScene" id=6]
-
-[sub_resource type="AtlasTexture" id=354]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 15, 5 )
-
-[sub_resource type="AtlasTexture" id=355]
-atlas = ExtResource( 5 )
-region = Rect2( 30, 0, 15, 5 )
-
-[sub_resource type="AtlasTexture" id=356]
-atlas = ExtResource( 5 )
-region = Rect2( 15, 0, 15, 5 )
-
-[sub_resource type="SpriteFrames" id=357]
-animations = [ {
-"frames": [ SubResource( 354 ), SubResource( 355 ), SubResource( 356 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
 
 [sub_resource type="AnimationNodeAnimation" id=222]
 animation = "Blink Down"
@@ -1506,24 +1485,12 @@ tracks/0/keys = {
 "values": [ 98, 89, 88, 89 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Shadow:visible")
+tracks/1/path = NodePath("Position:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 0.233258, 0.233258, 0.233258, 0.233258 ),
 "update": 0,
@@ -1673,24 +1640,12 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Shadow:visible")
+tracks/1/path = NodePath("Position:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -2043,10 +1998,6 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 0, 7 )
-texture = ExtResource( 3 )
-
 [node name="Position" type="Position2D" parent="."]
 
 [node name="main" type="Sprite" parent="Position"]
@@ -2057,11 +2008,6 @@ hframes = 10
 vframes = 20
 frame = 1
 
-[node name="Ripple" type="AnimatedSprite" parent="."]
-position = Vector2( 0, 7 )
-frames = SubResource( 357 )
-playing = true
-
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
@@ -2069,6 +2015,9 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Hurtbox"]
 position = Vector2( -0.5, 3 )
 polygon = PoolVector2Array( 7, 3, 0, 6, -7, 3, 0, 0 )
+
+[node name="Shadow" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 7 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.5, 3 )

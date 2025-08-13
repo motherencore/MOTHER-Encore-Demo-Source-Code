@@ -1,0 +1,24 @@
+name: DOLL_NAME
+description: DOLL_DESC
+article: DOLL_ART
+maxhp: 38
+hp: 38
+maxpp: 0
+pp: 0
+offense: 4
+defense: 9
+speed: 5
+iq: 1
+guts: 0
+level: 2
+exp: 8
+cash: 10
+skills:
+- skill: tackle
+  weight: 5
+- skill: float
+  weight: 1
+boss: true
+sprite: doll
+music: ''
+bg: baby

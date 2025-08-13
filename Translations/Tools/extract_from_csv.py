@@ -4,7 +4,7 @@ import csv, os, re, sys
 FOLDER_TEXT = "text-{}/"
 FOLDER_CSV = "../TranslatedText/"
 SUFFIX_CSV = " - sheet.csv"
-METADATA_REGEX = "SHORT|DESC|ART|DIALOG|ACT1_NAME|ACT1_TEXT|ACT1_FAIL|ACT2_NAME|ACT2_TEXT|ACT2_FAIL"
+METADATA_REGEX = "NAME|SHORT|DESC|ART|DIALOG|ACT1_NAME|ACT1_TEXT|ACT1_FAIL|ACT2_NAME|ACT2_TEXT|ACT2_FAIL"
 SUBSTITUTIONS = {
     'fr': {'·': " ", "•": " ", "’": "'", "!": "¦"}
 }
@@ -67,9 +67,6 @@ def parseCsv(csvName, languages, classes = {}):
                 elif reMatch := re.match(r'^(.+)_(\d+)$', key): # Dialogue
                     segment = reMatch.group(1)
                     id = reMatch.group(2)
-                elif reMatch := re.match(r'^([A-Z0-9\.]+)$', key): # Item/battler/skill name
-                    segment = reMatch.group(1)
-                    id = "name"
                 elif reMatch := re.match(fr'^([A-Z0-9\.]+)_({METADATA_REGEX})$', key): # Item/battler/skill metadata
                     segment = reMatch.group(1)
                     id = reMatch.group(2).lower()
@@ -114,7 +111,7 @@ def extract(textType, languages, classes = {}):
     with open(f"{folderText}{textType}.txt", 'w', encoding="utf-8") as textFile:
         textFile.write(ret)
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 2:
     print("Syntax: extract_from_csv source_language target_language_1 [target_language 2] [...]")
     exit()
 

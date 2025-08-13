@@ -330,6 +330,7 @@ text = "Skill2"
 menu_parent_path = NodePath("../GridContainer")
 loop_around = true
 skip_empty_labels = true
+skip_hidden_items = true
 move_sfx = true
 cancel_sfx = true
 cancel_on = true

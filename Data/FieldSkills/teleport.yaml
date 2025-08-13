@@ -1,0 +1,9 @@
+name: FIELD_TELEPORT
+description: FIELD_TELEPORT_DESC
+battle_skill: teleportA
+usable:
+  ninten: true
+  ana: true
+  lloyd: false
+  teddy: false
+  pippi: false

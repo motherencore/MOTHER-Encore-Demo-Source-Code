@@ -41,7 +41,7 @@ func play_music():
 	if get_tree().is_connected(\"idle_frame\", self, \"play_music\"):
 		get_tree().disconnect(\"idle_frame\", self, \"play_music\")
 	var sameSong = false
-	var musicPlayer = audioManager.get_audio_player_count() - 1
+	var musicPlayer = audioManager.get_latest_audio_player_index()
 	#To check if the music area the player is going into has the same loop and song as the one the player was in before
 	#Music Changers are Music Areas
 	if audioManager.musicChangers[0] != self:
@@ -49,12 +49,12 @@ func play_music():
 			if audioManager.musicChangers[0].music == music or audioManager.get_audio_player_from_song(music):
 				sameSong = true
 				if audioManager.get_audio_player_from_song(music):
-					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music))
+					musicPlayer = audioManager.get_audio_player_index(audioManager.get_audio_player_from_song(music))
 		if loop != \"\":
 			if audioManager.musicChangers[0].loop == loop or audioManager.get_audio_player_from_song(loop):
 				sameSong = true
 				if audioManager.get_audio_player_from_song(loop):
-					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop))
+					musicPlayer = audioManager.get_audio_player_index(audioManager.get_audio_player_from_song(loop))
 	#Otherwise it's different
 	else:
 		if music != \"\":
@@ -63,28 +63,28 @@ func play_music():
 		if loop != \"\":
 			if audioManager.get_audio_player(musicPlayer).stream == load(\"res://Audio/Music/\" + loop):
 				sameSong = true
-	if !sameSong and audioManager.get_audio_player(audioManager.get_audio_player_count() - 1).playing: #Checks if it isn't the same song playing
+	if !sameSong and audioManager.get_audio_player(audioManager.get_latest_audio_player_index()).playing: #Checks if it isn't the same song playing
 		audioManager.add_audio_player()
 		var start = 0
-		musicPlayer = audioManager.get_audio_player_count() - 1
+		musicPlayer = audioManager.get_latest_audio_player_index()
 		attachedPlayer = audioManager.get_audio_player(musicPlayer)
 		if diegetic:
 			start = audioManager.get_audio_player(0).get_playback_position()
-		audioManager.set_audio_player_volume(musicPlayer, -80)
+		audioManager.set_audio_player_volume(musicPlayer, audioManager.SILENT_SOUND_THRESHOLD)
 		audioManager.music_fadein(musicPlayer, volume_db, fadein_length)
-		audioManager.play_music(music, loop, attachedPlayer, start)
+		audioManager.play_music(music, loop, musicPlayer, start)
 		
 	else:
 		var was_playing = true
-		#musicPlayer = audioManager.get_audio_player_count() - 1
-		if !audioManager.get_audio_player(musicPlayer).playing or audioManager.get_audio_player(musicPlayer).volume_db == -80:
+		#musicPlayer = audioManager.get_latest_audio_player_index()
+		if !audioManager.get_audio_player(musicPlayer).playing or audioManager.get_audio_player(musicPlayer).volume_db <= audioManager.SILENT_SOUND_THRESHOLD:
 			was_playing = false
 		if was_playing:
 			attachedPlayer = audioManager.get_audio_player(musicPlayer)
 			audioManager.music_fadeto(musicPlayer, volume_db)
 		else:
 			attachedPlayer = audioManager.get_audio_player(musicPlayer)
-			audioManager.play_music(music, loop, attachedPlayer)
+			audioManager.play_music(music, loop, musicPlayer)
 			audioManager.set_audio_player_volume(musicPlayer, volume_db)
 
 func check_player_and_stop():
@@ -96,15 +96,15 @@ func stop_music(fadeoutLength = 1.5):
 		audioManager.musicChangers.erase(self)
 	if attachedPlayer != null:
 		var sameSong = false
-		var musicPlayer = audioManager.get_audio_player_id(attachedPlayer)
+		var musicPlayer = audioManager.get_audio_player_index(attachedPlayer)
 		if audioManager.musicChangers.size() > 0:
 			if music != \"\":
 				if audioManager.get_audio_player_from_song(music, self) != null:
-					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(music, self))
+					musicPlayer = audioManager.get_audio_player_index(audioManager.get_audio_player_from_song(music, self))
 					sameSong = true
 			if loop != \"\":
 				if audioManager.get_audio_player_from_song(loop, self) != null:
-					musicPlayer = audioManager.get_audio_player_id(audioManager.get_audio_player_from_song(loop, self))
+					musicPlayer = audioManager.get_audio_player_index(audioManager.get_audio_player_from_song(loop, self))
 					sameSong = true
 			if diegetic:
 				sameSong = false

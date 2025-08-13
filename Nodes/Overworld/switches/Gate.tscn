@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Graphics/Objects/Gate.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Main/Switches/Door.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Main/Switches/ControlledDoor.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 8 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Close"
+resource_name = "Off"
 length = 0.5
 step = 0.0833333
 tracks/0/type = "value"
@@ -22,9 +22,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 5, 4, 3, 2, 1, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("collision/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.166667 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
-resource_name = "Open"
+resource_name = "On"
 length = 0.5
 step = 0.0833333
 tracks/0/type = "value"
@@ -38,6 +50,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("collision/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.333333 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -55,24 +79,63 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Close"
+[sub_resource type="Animation" id=5]
+resource_name = "StayOff"
+length = 0.001
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("collision/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "Open"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-
-[sub_resource type="AnimationNodeStateMachine" id=9]
-states/Close/node = SubResource( 5 )
-states/Close/position = Vector2( 165.667, 120.333 )
-states/Open/node = SubResource( 6 )
-states/Open/position = Vector2( 332.333, 121.222 )
-transitions = [ "Close", "Open", SubResource( 7 ), "Open", "Close", SubResource( 8 ) ]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+[sub_resource type="Animation" id=6]
+resource_name = "StayOn"
+length = 0.001
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("collision/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Gate" type="Sprite"]
 script = ExtResource( 2 )
@@ -91,11 +154,8 @@ position = Vector2( 0.5, 0 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Close = SubResource( 2 )
-anims/Open = SubResource( 3 )
+anims/Off = SubResource( 2 )
+anims/On = SubResource( 3 )
 anims/RESET = SubResource( 4 )
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 9 )
-anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 10 )
+anims/StayOff = SubResource( 5 )
+anims/StayOn = SubResource( 6 )
